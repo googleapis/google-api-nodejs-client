@@ -78,4 +78,95 @@ function Appsactivity(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Activity
+ * @memberOf! appsactivity(v1)
+ * @type object
+ * @property {appsactivity(v1).Event} combinedEvent The fields common to all of the singleEvents that make up the Activity.
+ * @property {appsactivity(v1).Event[]} singleEvents A list of all the Events that make up the Activity.
+ */
+/**
+ * @typedef Event
+ * @memberOf! appsactivity(v1)
+ * @type object
+ * @property {string[]} additionalEventTypes Additional event types. Some events may have multiple types when multiple actions are part of a single event. For example, creating a document, renaming it, and sharing it may be part of a single file-creation event.
+ * @property {string} eventTimeMillis The time at which the event occurred formatted as Unix time in milliseconds.
+ * @property {boolean} fromUserDeletion Whether this event is caused by a user being deleted.
+ * @property {appsactivity(v1).Move} move Extra information for move type events, such as changes in an object&#39;s parents.
+ * @property {appsactivity(v1).PermissionChange[]} permissionChanges Extra information for permissionChange type events, such as the user or group the new permission applies to.
+ * @property {string} primaryEventType The main type of event that occurred.
+ * @property {appsactivity(v1).Rename} rename Extra information for rename type events, such as the old and new names.
+ * @property {appsactivity(v1).Target} target Information specific to the Target object modified by the event.
+ * @property {appsactivity(v1).User} user Represents the user responsible for the event.
+ */
+/**
+ * @typedef ListActivitiesResponse
+ * @memberOf! appsactivity(v1)
+ * @type object
+ * @property {appsactivity(v1).Activity[]} activities List of activities.
+ * @property {string} nextPageToken Token for the next page of results.
+ */
+/**
+ * @typedef Move
+ * @memberOf! appsactivity(v1)
+ * @type object
+ * @property {appsactivity(v1).Parent[]} addedParents The added parent(s).
+ * @property {appsactivity(v1).Parent[]} removedParents The removed parent(s).
+ */
+/**
+ * @typedef Parent
+ * @memberOf! appsactivity(v1)
+ * @type object
+ * @property {string} id The parent&#39;s ID.
+ * @property {boolean} isRoot Whether this is the root folder.
+ * @property {string} title The parent&#39;s title.
+ */
+/**
+ * @typedef Permission
+ * @memberOf! appsactivity(v1)
+ * @type object
+ * @property {string} name The name of the user or group the permission applies to.
+ * @property {string} permissionId The ID for this permission. Corresponds to the Drive API&#39;s permission ID returned as part of the Drive Permissions resource.
+ * @property {string} role Indicates the Google Drive permissions role. The role determines a user&#39;s ability to read, write, or comment on the file.
+ * @property {string} type Indicates how widely permissions are granted.
+ * @property {appsactivity(v1).User} user The user&#39;s information if the type is USER.
+ * @property {boolean} withLink Whether the permission requires a link to the file.
+ */
+/**
+ * @typedef PermissionChange
+ * @memberOf! appsactivity(v1)
+ * @type object
+ * @property {appsactivity(v1).Permission[]} addedPermissions Lists all Permission objects added.
+ * @property {appsactivity(v1).Permission[]} removedPermissions Lists all Permission objects removed.
+ */
+/**
+ * @typedef Photo
+ * @memberOf! appsactivity(v1)
+ * @type object
+ * @property {string} url The URL of the photo.
+ */
+/**
+ * @typedef Rename
+ * @memberOf! appsactivity(v1)
+ * @type object
+ * @property {string} newTitle The new title.
+ * @property {string} oldTitle The old title.
+ */
+/**
+ * @typedef Target
+ * @memberOf! appsactivity(v1)
+ * @type object
+ * @property {string} id The ID of the target. For example, in Google Drive, this is the file or folder ID.
+ * @property {string} mimeType The MIME type of the target.
+ * @property {string} name The name of the target. For example, in Google Drive, this is the title of the file.
+ */
+/**
+ * @typedef User
+ * @memberOf! appsactivity(v1)
+ * @type object
+ * @property {boolean} isDeleted A boolean which indicates whether the specified User was deleted. If true, name, photo and permission_id will be omitted.
+ * @property {string} name The displayable name of the user.
+ * @property {string} permissionId The permission ID associated with this user. Equivalent to the Drive API&#39;s permission ID for this user, returned as part of the Drive Permissions resource.
+ * @property {appsactivity(v1).Photo} photo The profile photo of the user. Not present if the user has no profile photo.
+ */
 module.exports = Appsactivity;

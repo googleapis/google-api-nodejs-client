@@ -101,7 +101,7 @@ function Dns(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} params.resource Request body data
+     * @param {dns(v1).Change} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -347,7 +347,7 @@ function Dns(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} params.resource Request body data
+     * @param {dns(v1).ManagedZone} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -770,4 +770,89 @@ function Dns(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Change
+ * @memberOf! dns(v1)
+ * @type object
+ * @property {dns(v1).ResourceRecordSet[]} additions Which ResourceRecordSets to add?
+ * @property {dns(v1).ResourceRecordSet[]} deletions Which ResourceRecordSets to remove? Must match existing data exactly.
+ * @property {string} id Unique identifier for the resource; defined by the server (output only).
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dns#change&quot;.
+ * @property {string} startTime The time that this operation was started by the server (output only). This is in RFC3339 text format.
+ * @property {string} status Status of the operation (output only).
+ */
+/**
+ * @typedef ChangesListResponse
+ * @memberOf! dns(v1)
+ * @type object
+* @property {dns(v1).Change[]} changes The requested changes.
+* @property {string} kind Type of resource.
+* @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.
+
+In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
+*/
+/**
+ * @typedef ManagedZone
+ * @memberOf! dns(v1)
+ * @type object
+ * @property {string} creationTime The time that this resource was created on the server. This is in RFC3339 text format. Output only.
+ * @property {string} description A mutable string of at most 1024 characters associated with this resource for the user&#39;s convenience. Has no effect on the managed zone&#39;s function.
+ * @property {string} dnsName The DNS name of this managed zone, for instance &quot;example.com.&quot;.
+ * @property {string} id Unique identifier for the resource; defined by the server (output only)
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dns#managedZone&quot;.
+ * @property {string} name User assigned name for this resource. Must be unique within the project. The name must be 1-32 characters long, must begin with a letter, end with a letter or digit, and only contain lowercase letters, digits or dashes.
+ * @property {string} nameServerSet Optionally specifies the NameServerSet for this ManagedZone. A NameServerSet is a set of DNS name servers that all host the same ManagedZones. Most users will leave this field unset.
+ * @property {string[]} nameServers Delegate your managed_zone to these virtual name servers; defined by the server (output only)
+ */
+/**
+ * @typedef ManagedZonesListResponse
+ * @memberOf! dns(v1)
+ * @type object
+* @property {string} kind Type of resource.
+* @property {dns(v1).ManagedZone[]} managedZones The managed zone resources.
+* @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token.
+
+In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
+*/
+/**
+ * @typedef Project
+ * @memberOf! dns(v1)
+ * @type object
+ * @property {string} id User assigned unique identifier for the resource (output only).
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dns#project&quot;.
+ * @property {string} number Unique numeric identifier for the resource; defined by the server (output only).
+ * @property {dns(v1).Quota} quota Quotas assigned to this project (output only).
+ */
+/**
+ * @typedef Quota
+ * @memberOf! dns(v1)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dns#quota&quot;.
+ * @property {integer} managedZones Maximum allowed number of managed zones in the project.
+ * @property {integer} resourceRecordsPerRrset Maximum allowed number of ResourceRecords per ResourceRecordSet.
+ * @property {integer} rrsetAdditionsPerChange Maximum allowed number of ResourceRecordSets to add per ChangesCreateRequest.
+ * @property {integer} rrsetDeletionsPerChange Maximum allowed number of ResourceRecordSets to delete per ChangesCreateRequest.
+ * @property {integer} rrsetsPerManagedZone Maximum allowed number of ResourceRecordSets per zone in the project.
+ * @property {integer} totalRrdataSizePerChange Maximum allowed size for total rrdata in one ChangesCreateRequest in bytes.
+ */
+/**
+ * @typedef ResourceRecordSet
+ * @memberOf! dns(v1)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dns#resourceRecordSet&quot;.
+ * @property {string} name For example, www.example.com.
+ * @property {string[]} rrdatas As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1).
+ * @property {integer} ttl Number of seconds that this ResourceRecordSet can be cached by resolvers.
+ * @property {string} type The identifier of a supported record type, for example, A, AAAA, MX, TXT, and so on.
+ */
+/**
+ * @typedef ResourceRecordSetsListResponse
+ * @memberOf! dns(v1)
+ * @type object
+* @property {string} kind Type of resource.
+* @property {string} nextPageToken The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token.
+
+In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
+* @property {dns(v1).ResourceRecordSet[]} rrsets The resource record set resources.
+*/
 module.exports = Dns;

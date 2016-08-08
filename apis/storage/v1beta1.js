@@ -109,7 +109,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1beta1).BucketAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -167,7 +167,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1beta1).BucketAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -197,7 +197,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1beta1).BucketAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -287,7 +287,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string=} params.projection Set of properties to return. Defaults to no_acl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1beta1).Bucket} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -348,7 +348,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1beta1).Bucket} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -378,7 +378,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1beta1).Bucket} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -472,7 +472,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.object Name of the object.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1beta1).ObjectAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -532,7 +532,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string} params.object Name of the object.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1beta1).ObjectAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -563,7 +563,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string} params.object Name of the object.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1beta1).ObjectAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -725,7 +725,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string} params.object Name of the object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1beta1).Object} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -756,7 +756,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of the bucket in which the object resides.
      * @param {string} params.object Name of the object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1beta1).Object} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -778,4 +778,117 @@ function Storage(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Bucket
+ * @memberOf! storage(v1beta1)
+ * @type object
+ * @property {storage(v1beta1).BucketAccessControl[]} acl Access controls on the bucket.
+ * @property {storage(v1beta1).ObjectAccessControl[]} defaultObjectAcl Default access controls to apply to new objects when no ACL is provided.
+ * @property {string} id The name of the bucket.
+ * @property {string} kind The kind of item this is. For buckets, this is always storage#bucket.
+ * @property {string} location The location of the bucket. Object data for objects in the bucket resides in physical storage in this location. Can be US or EU. Defaults to US.
+ * @property {object} owner The owner of the bucket. This will always be the project team&#39;s owner group.
+ * @property {string} projectId The project the bucket belongs to.
+ * @property {string} selfLink The URI of this bucket.
+ * @property {string} timeCreated Creation time of the bucket in RFC 3339 format.
+ * @property {object} website The bucket&#39;s website configuration.
+ */
+/**
+ * @typedef BucketAccessControl
+ * @memberOf! storage(v1beta1)
+ * @type object
+* @property {string} bucket The name of the bucket.
+* @property {string} domain The domain associated with the entity, if any.
+* @property {string} email The email address associated with the entity, if any.
+* @property {string} entity The entity holding the permission, in one of the following forms: 
+- user-userId 
+- user-email 
+- group-groupId 
+- group-email 
+- domain-domain 
+- allUsers 
+- allAuthenticatedUsers Examples: 
+- The user liz@example.com would be user-liz@example.com. 
+- The group example@googlegroups.com would be group-example@googlegroups.com. 
+- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+* @property {string} entityId The ID for the entity, if any.
+* @property {string} id The ID of the access-control entry.
+* @property {string} kind The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.
+* @property {string} role The access permission for the entity. Can be READER, WRITER, or OWNER.
+* @property {string} selfLink The link to this access-control entry.
+*/
+/**
+ * @typedef BucketAccessControls
+ * @memberOf! storage(v1beta1)
+ * @type object
+ * @property {storage(v1beta1).BucketAccessControl[]} items The list of items.
+ * @property {string} kind The kind of item this is. For lists of bucket access control entries, this is always storage#bucketAccessControls.
+ */
+/**
+ * @typedef Buckets
+ * @memberOf! storage(v1beta1)
+ * @type object
+ * @property {storage(v1beta1).Bucket[]} items The list of items.
+ * @property {string} kind The kind of item this is. For lists of buckets, this is always storage#buckets.
+ * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+ */
+/**
+ * @typedef Object
+ * @memberOf! storage(v1beta1)
+ * @type object
+ * @property {storage(v1beta1).ObjectAccessControl[]} acl Access controls on the object.
+ * @property {string} bucket The bucket containing this object.
+ * @property {string} cacheControl Cache-Control directive for the object data.
+ * @property {string} contentDisposition Content-Disposition of the object data.
+ * @property {string} contentEncoding Content-Encoding of the object data.
+ * @property {string} contentLanguage Content-Language of the object data.
+ * @property {string} id The ID of the object.
+ * @property {string} kind The kind of item this is. For objects, this is always storage#object.
+ * @property {object} media Object media data. Provided on your behalf when uploading raw media or multipart/related with an auxiliary media part.
+ * @property {object} metadata User-provided metadata, in key/value pairs.
+ * @property {string} name The name of this object. Required if not specified by URL parameter.
+ * @property {object} owner The owner of the object. This will always be the uploader of the object.
+ * @property {string} selfLink The link to this object.
+ */
+/**
+ * @typedef ObjectAccessControl
+ * @memberOf! storage(v1beta1)
+ * @type object
+* @property {string} bucket The name of the bucket.
+* @property {string} domain The domain associated with the entity, if any.
+* @property {string} email The email address associated with the entity, if any.
+* @property {string} entity The entity holding the permission, in one of the following forms: 
+- user-userId 
+- user-email 
+- group-groupId 
+- group-email 
+- domain-domain 
+- allUsers 
+- allAuthenticatedUsers Examples: 
+- The user liz@example.com would be user-liz@example.com. 
+- The group example@googlegroups.com would be group-example@googlegroups.com. 
+- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+* @property {string} entityId The ID for the entity, if any.
+* @property {string} id The ID of the access-control entry.
+* @property {string} kind The kind of item this is. For object access control entries, this is always storage#objectAccessControl.
+* @property {string} object The name of the object.
+* @property {string} role The access permission for the entity. Can be READER or OWNER.
+* @property {string} selfLink The link to this access-control entry.
+*/
+/**
+ * @typedef ObjectAccessControls
+ * @memberOf! storage(v1beta1)
+ * @type object
+ * @property {storage(v1beta1).ObjectAccessControl[]} items The list of items.
+ * @property {string} kind The kind of item this is. For lists of object access control entries, this is always storage#objectAccessControls.
+ */
+/**
+ * @typedef Objects
+ * @memberOf! storage(v1beta1)
+ * @type object
+ * @property {storage(v1beta1).Object[]} items The list of items.
+ * @property {string} kind The kind of item this is. For lists of objects, this is always storage#objects.
+ * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+ * @property {string[]} prefixes The list of prefixes of objects matching-but-not-listed up to and including the requested delimiter.
+ */
 module.exports = Storage;

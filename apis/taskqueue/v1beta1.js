@@ -198,4 +198,39 @@ function Taskqueue(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Task
+ * @memberOf! taskqueue(v1beta1)
+ * @type object
+ * @property {string} enqueueTimestamp Time (in seconds since the epoch) at which the task was enqueued.
+ * @property {string} id Name of the task.
+ * @property {string} kind The kind of object returned, in this case set to task.
+ * @property {string} leaseTimestamp Time (in seconds since the epoch) at which the task lease will expire. This value is 0 if the task isnt currently leased out to a worker.
+ * @property {string} payloadBase64 A bag of bytes which is the task payload. The payload on the JSON side is always Base64 encoded.
+ * @property {string} queueName Name of the queue that the task is in.
+ */
+/**
+ * @typedef TaskQueue
+ * @memberOf! taskqueue(v1beta1)
+ * @type object
+ * @property {object} acl ACLs that are applicable to this TaskQueue object.
+ * @property {string} id Name of the taskqueue.
+ * @property {string} kind The kind of REST object returned, in this case taskqueue.
+ * @property {integer} maxLeases The number of times we should lease out tasks before giving up on them. If unset we lease them out forever until a worker deletes the task.
+ * @property {object} stats Statistics for the TaskQueue object in question.
+ */
+/**
+ * @typedef Tasks
+ * @memberOf! taskqueue(v1beta1)
+ * @type object
+ * @property {taskqueue(v1beta1).Task[]} items The actual list of tasks returned as a result of the lease operation.
+ * @property {string} kind The kind of object returned, a list of tasks.
+ */
+/**
+ * @typedef Tasks2
+ * @memberOf! taskqueue(v1beta1)
+ * @type object
+ * @property {taskqueue(v1beta1).Task[]} items The actual list of tasks currently active in the TaskQueue.
+ * @property {string} kind The kind of object returned, a list of tasks.
+ */
 module.exports = Taskqueue;

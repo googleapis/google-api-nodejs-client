@@ -109,7 +109,7 @@ function Fusiontables(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table for which a new column is being added.
-     * @param {object} params.resource Request body data
+     * @param {fusiontables(v1).Column} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -169,7 +169,7 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.columnId Name or identifier for the column that is being updated.
      * @param {string} params.tableId Table for which the column is being updated.
-     * @param {object} params.resource Request body data
+     * @param {fusiontables(v1).Column} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -199,7 +199,7 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.columnId Name or identifier for the column that is being updated.
      * @param {string} params.tableId Table for which the column is being updated.
-     * @param {object} params.resource Request body data
+     * @param {fusiontables(v1).Column} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -354,7 +354,7 @@ function Fusiontables(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table for which a new style is being added
-     * @param {object} params.resource Request body data
+     * @param {fusiontables(v1).StyleSetting} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -414,7 +414,7 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {integer} params.styleId Identifier (within a table) for the style being updated.
      * @param {string} params.tableId Table whose style is being updated.
-     * @param {object} params.resource Request body data
+     * @param {fusiontables(v1).StyleSetting} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -444,7 +444,7 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {integer} params.styleId Identifier (within a table) for the style being updated.
      * @param {string} params.tableId Table whose style is being updated.
-     * @param {object} params.resource Request body data
+     * @param {fusiontables(v1).StyleSetting} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -632,7 +632,7 @@ function Fusiontables(options) { // eslint-disable-line
      * @memberOf! fusiontables(v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {fusiontables(v1).Table} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -691,7 +691,7 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.replaceViewDefinition Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      * @param {string} params.tableId ID of the table that is being updated.
-     * @param {object} params.resource Request body data
+     * @param {fusiontables(v1).Table} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -721,7 +721,7 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.replaceViewDefinition Should the view definition also be updated? The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      * @param {string} params.tableId ID of the table that is being updated.
-     * @param {object} params.resource Request body data
+     * @param {fusiontables(v1).Table} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -905,7 +905,7 @@ function Fusiontables(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table for which a new template is being created
-     * @param {object} params.resource Request body data
+     * @param {fusiontables(v1).Template} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -965,7 +965,7 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table to which the updated template belongs
      * @param {integer} params.templateId Identifier for the template that is being updated
-     * @param {object} params.resource Request body data
+     * @param {fusiontables(v1).Template} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -995,7 +995,7 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table to which the updated template belongs
      * @param {integer} params.templateId Identifier for the template that is being updated
-     * @param {object} params.resource Request body data
+     * @param {fusiontables(v1).Template} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1017,4 +1017,202 @@ function Fusiontables(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Bucket
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {string} color Color of line or the interior of a polygon in #RRGGBB format.
+ * @property {string} icon Icon name used for a point.
+ * @property {number} max Maximum value in the selected column for a row to be styled according to the bucket color, opacity, icon, or weight.
+ * @property {number} min Minimum value in the selected column for a row to be styled according to the bucket color, opacity, icon, or weight.
+ * @property {number} opacity Opacity of the color: 0.0 (transparent) to 1.0 (opaque).
+ * @property {integer} weight Width of a line (in pixels).
+ */
+/**
+ * @typedef Column
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {object} baseColumn Optional identifier of the base column. If present, this column is derived from the specified base column.
+ * @property {integer} columnId Identifier for the column.
+ * @property {string} description Optional column description.
+ * @property {string} graph_predicate Optional column predicate. Used to map table to graph data model (subject,predicate,object) See http://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/#data-model
+ * @property {string} kind Type name: a template for an individual column.
+ * @property {string} name Required name of the column.
+ * @property {string} type Required type of the column.
+ */
+/**
+ * @typedef ColumnList
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {fusiontables(v1).Column[]} items List of all requested columns.
+ * @property {string} kind Type name: a list of all columns.
+ * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more pages left.
+ * @property {integer} totalItems Total number of columns for the table.
+ */
+/**
+ * @typedef Geometry
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {any[]} geometries The list of geometries in this geometry collection.
+ * @property {any} geometry 
+ * @property {string} type Type: A collection of geometries.
+ */
+/**
+ * @typedef Import
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {string} kind Type name: a template for an import request.
+ * @property {string} numRowsReceived The number of rows received from the import request.
+ */
+/**
+ * @typedef Line
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {array[]} coordinates The coordinates that define the line.
+ * @property {string} type Type: A line geometry.
+ */
+/**
+ * @typedef LineStyle
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {string} strokeColor Color of the line in #RRGGBB format.
+ * @property {fusiontables(v1).StyleFunction} strokeColorStyler Column-value, gradient or buckets styler that is used to determine the line color and opacity.
+ * @property {number} strokeOpacity Opacity of the line : 0.0 (transparent) to 1.0 (opaque).
+ * @property {integer} strokeWeight Width of the line in pixels.
+ * @property {fusiontables(v1).StyleFunction} strokeWeightStyler Column-value or bucket styler that is used to determine the width of the line.
+ */
+/**
+ * @typedef Point
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {number[]} coordinates The coordinates that define the point.
+ * @property {string} type Point: A point geometry.
+ */
+/**
+ * @typedef PointStyle
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {string} iconName Name of the icon. Use values defined in http://www.google.com/fusiontables/DataSource?dsrcid=308519
+ * @property {fusiontables(v1).StyleFunction} iconStyler Column or a bucket value from which the icon name is to be determined.
+ */
+/**
+ * @typedef Polygon
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {array[]} coordinates The coordinates that define the polygon.
+ * @property {string} type Type: A polygon geometry.
+ */
+/**
+ * @typedef PolygonStyle
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {string} fillColor Color of the interior of the polygon in #RRGGBB format.
+ * @property {fusiontables(v1).StyleFunction} fillColorStyler Column-value, gradient, or bucket styler that is used to determine the interior color and opacity of the polygon.
+ * @property {number} fillOpacity Opacity of the interior of the polygon: 0.0 (transparent) to 1.0 (opaque).
+ * @property {string} strokeColor Color of the polygon border in #RRGGBB format.
+ * @property {fusiontables(v1).StyleFunction} strokeColorStyler Column-value, gradient or buckets styler that is used to determine the border color and opacity.
+ * @property {number} strokeOpacity Opacity of the polygon border: 0.0 (transparent) to 1.0 (opaque).
+ * @property {integer} strokeWeight Width of the polyon border in pixels.
+ * @property {fusiontables(v1).StyleFunction} strokeWeightStyler Column-value or bucket styler that is used to determine the width of the polygon border.
+ */
+/**
+ * @typedef Sqlresponse
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {string[]} columns Columns in the table.
+ * @property {string} kind Type name: a template for an individual table.
+ * @property {array[]} rows The rows in the table. For each cell we print out whatever cell value (e.g., numeric, string) exists. Thus it is important that each cell contains only one value.
+ */
+/**
+ * @typedef StyleFunction
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {fusiontables(v1).Bucket[]} buckets Bucket function that assigns a style based on the range a column value falls into.
+ * @property {string} columnName Name of the column whose value is used in the style.
+ * @property {object} gradient Gradient function that interpolates a range of colors based on column value.
+ * @property {string} kind Stylers can be one of three kinds: &quot;fusiontables#fromColumn&quot; if the column value is to be used as is, i.e., the column values can have colors in #RRGGBBAA format or integer line widths or icon names; &quot;fusiontables#gradient&quot; if the styling of the row is to be based on applying the gradient function on the column value; or &quot;fusiontables#buckets&quot; if the styling is to based on the bucket into which the the column value falls.
+ */
+/**
+ * @typedef StyleSetting
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {string} kind Type name: an individual style setting. A StyleSetting contains the style defintions for points, lines, and polygons in a table. Since a table can have any one or all of them, a style definition can have point, line and polygon style definitions.
+ * @property {fusiontables(v1).PointStyle} markerOptions Style definition for points in the table.
+ * @property {string} name Optional name for the style setting.
+ * @property {fusiontables(v1).PolygonStyle} polygonOptions Style definition for polygons in the table.
+ * @property {fusiontables(v1).LineStyle} polylineOptions Style definition for lines in the table.
+ * @property {integer} styleId Identifier for the style setting (unique only within tables).
+ * @property {string} tableId Identifier for the table.
+ */
+/**
+ * @typedef StyleSettingList
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {fusiontables(v1).StyleSetting[]} items All requested style settings.
+ * @property {string} kind Type name: in this case, a list of style settings.
+ * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more pages left.
+ * @property {integer} totalItems Total number of styles for the table.
+ */
+/**
+ * @typedef Table
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {string} attribution Optional attribution assigned to the table.
+ * @property {string} attributionLink Optional link for attribution.
+ * @property {string[]} baseTableIds Optional base table identifier if this table is a view or merged table.
+ * @property {fusiontables(v1).Column[]} columns Columns in the table.
+ * @property {string} description Optional description assigned to the table.
+ * @property {boolean} isExportable Variable for whether table is exportable.
+ * @property {string} kind Type name: a template for an individual table.
+ * @property {string} name Name assigned to a table.
+ * @property {string} sql Optional sql that encodes the table definition for derived tables.
+ * @property {string} tableId Encrypted unique alphanumeric identifier for the table.
+ */
+/**
+ * @typedef TableList
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {fusiontables(v1).Table[]} items List of all requested tables.
+ * @property {string} kind Type name: a list of all tables.
+ * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more pages left.
+ */
+/**
+ * @typedef Task
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {string} kind Type of the resource. This is always &quot;fusiontables#task&quot;.
+ * @property {string} progress An indication of task progress.
+ * @property {boolean} started false while the table is busy with some other task. true if this background task is currently running.
+ * @property {string} taskId Identifier for the task.
+ * @property {string} type Type of background task. One of  DELETE_ROWS Deletes one or more rows from the table. ADD_ROWS &quot;Adds one or more rows to a table. Includes importing data into a new table and importing more rows into an existing table. ADD_COLUMN Adds a new column to the table. CHANGE_TYPE Changes the type of a column.
+ */
+/**
+ * @typedef TaskList
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {fusiontables(v1).Task[]} items List of all requested tasks.
+ * @property {string} kind Type of the resource. This is always &quot;fusiontables#taskList&quot;.
+ * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more pages left.
+ * @property {integer} totalItems Total number of tasks for the table.
+ */
+/**
+ * @typedef Template
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {string[]} automaticColumnNames List of columns from which the template is to be automatically constructed. Only one of body or automaticColumns can be specified.
+ * @property {string} body Body of the template. It contains HTML with {column_name} to insert values from a particular column. The body is sanitized to remove certain tags, e.g., script. Only one of body or automaticColumns can be specified.
+ * @property {string} kind Type name: a template for the info window contents. The template can either include an HTML body or a list of columns from which the template is computed automatically.
+ * @property {string} name Optional name assigned to a template.
+ * @property {string} tableId Identifier for the table for which the template is defined.
+ * @property {integer} templateId Identifier for the template, unique within the context of a particular table.
+ */
+/**
+ * @typedef TemplateList
+ * @memberOf! fusiontables(v1)
+ * @type object
+ * @property {fusiontables(v1).Template[]} items List of all requested templates.
+ * @property {string} kind Type name: a list of all templates.
+ * @property {string} nextPageToken Token used to access the next page of this result. No token is displayed if there are no more pages left.
+ * @property {integer} totalItems Total number of templates for the table.
+ */
 module.exports = Fusiontables;

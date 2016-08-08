@@ -54,7 +54,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.clientAccountId Unique numerical account ID of the client to update. (required)
        * @param {string} params.accountId Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to update a client for. (required)
-       * @param {object} params.resource Request body data
+       * @param {adexchangebuyer2(v2beta1).Client} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -112,7 +112,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.accountId Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to create a client for. (required)
-       * @param {object} params.resource Request body data
+       * @param {adexchangebuyer2(v2beta1).Client} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -175,7 +175,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
          * @param {string} params.userId Numerical identifier of the user to retrieve. (required)
          * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
-         * @param {object} params.resource Request body data
+         * @param {adexchangebuyer2(v2beta1).ClientUser} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -269,7 +269,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user should be associated with. (required)
          * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
-         * @param {object} params.resource Request body data
+         * @param {adexchangebuyer2(v2beta1).ClientUserInvitation} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -353,4 +353,106 @@ function Adexchangebuyer2(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef ClientUser
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {string} email User&#39;s email address. The value of this field
+is ignored in an update operation.
+* @property {string} clientAccountId Numerical account ID of the client buyer
+with which the user is associated; the
+buyer must be a client of the current sponsor buyer.
+The value of this field is ignored in an update operation.
+* @property {string} status The status of the client user.
+* @property {string} userId The unique numerical ID of the client user
+that has accepted an invitation.
+The value of this field is ignored in an update operation.
+*/
+/**
+ * @typedef ClientUserInvitation
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {string} email The email address to which the invitation is sent. Email
+addresses should be unique among all client users under each sponsor
+buyer.
+* @property {string} clientAccountId Numerical account ID of the client buyer
+that the invited user is associated with.
+The value of this field is ignored in create operations.
+* @property {string} invitationId The unique numerical ID of the invitation that is sent to the user.
+The value of this field is ignored in create operations.
+*/
+/**
+ * @typedef ListClientUserInvitationsResponse
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {string} nextPageToken A token to retrieve the next page of results.
+Pass this value in the
+ListClientUserInvitationsRequest.pageToken
+field in the subsequent call to the
+clients.invitations.list
+method to retrieve the next
+page of results.
+* @property {adexchangebuyer2(v2beta1).ClientUserInvitation[]} invitations The returned list of client users.
+*/
+/**
+ * @typedef ListClientUsersResponse
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {adexchangebuyer2(v2beta1).ClientUser[]} users The returned list of client users.
+* @property {string} nextPageToken A token to retrieve the next page of results.
+Pass this value in the
+ListClientUsersRequest.pageToken
+field in the subsequent call to the
+clients.invitations.list
+method to retrieve the next
+page of results.
+*/
+/**
+ * @typedef Client
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {boolean} visibleToSeller Whether the client buyer will be visible to sellers.
+* @property {string} status The status of the client buyer.
+* @property {string} entityType The type of the client entity: `ADVERTISER`, `BRAND`, or `AGENCY`.
+* @property {string} role The role which is assigned to the client buyer. Each role implies a set of
+permissions granted to the client. Must be one of `CLIENT_DEAL_VIEWER`,
+`CLIENT_DEAL_NEGOTIATOR`, or `CLIENT_DEAL_APPROVER`.
+* @property {string} clientName Name used to represent this client to publishers.
+You may have multiple clients that map to the same entity,
+but for each client the combination of `clientName` and entity
+must be unique.
+You can specify this field as empty.
+* @property {string} clientAccountId The globally-unique numerical ID of the client.
+The value of this field is ignored in create and update operations.
+* @property {string} entityId Numerical identifier of the client entity.
+The entity can be an advertiser, a brand, or an agency.
+This identifier is unique among all the entities with the same type.
+
+A list of all known advertisers with their identifiers is available in the
+[advertisers.txt](https://storage.googleapis.com/adx-rtb-dictionaries/advertisers.txt)
+file.
+
+A list of all known brands with their identifiers is available in the
+[brands.txt](https://storage.googleapis.com/adx-rtb-dictionaries/brands.txt)
+file.
+
+A list of all known agencies with their identifiers is available in the
+[agencies.txt](https://storage.googleapis.com/adx-rtb-dictionaries/agencies.txt)
+file.
+* @property {string} entityName The name of the entity. This field is automatically fetched based on
+the type and ID.
+The value of this field is ignored in create and update operations.
+*/
+/**
+ * @typedef ListClientsResponse
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {string} nextPageToken A token to retrieve the next page of results.
+Pass this value in the
+ListClientsRequest.pageToken
+field in the subsequent call to the
+accounts.clients.list method
+to retrieve the next page of results.
+* @property {adexchangebuyer2(v2beta1).Client[]} clients The returned list of clients.
+*/
 module.exports = Adexchangebuyer2;

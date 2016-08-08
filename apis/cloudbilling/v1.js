@@ -409,7 +409,7 @@ function Cloudbilling(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the project associated with the billing information that you want to update. For example, `projects/tokyo-rain-123`.
-     * @param {object} params.resource Request body data
+     * @param {cloudbilling(v1).ProjectBillingInfo} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -431,4 +431,35 @@ function Cloudbilling(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef BillingAccount
+ * @memberOf! cloudbilling(v1)
+ * @type object
+ * @property {string} name The resource name of the billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF` would be the resource name for billing account `012345-567890-ABCDEF`.
+ * @property {boolean} open True if the billing account is open, and will therefore be charged for any usage on associated projects. False if the billing account is closed, and therefore projects associated with it will be unable to use paid services.
+ * @property {string} displayName The display name given to the billing account, such as `My Billing Account`. This name is displayed in the Google Developers Console.
+ */
+/**
+ * @typedef ListBillingAccountsResponse
+ * @memberOf! cloudbilling(v1)
+ * @type object
+ * @property {cloudbilling(v1).BillingAccount[]} billingAccounts A list of billing accounts.
+ * @property {string} nextPageToken A token to retrieve the next page of results. To retrieve the next page, call `ListBillingAccounts` again with the `page_token` field set to this value. This field is empty if there are no more results to retrieve.
+ */
+/**
+ * @typedef ListProjectBillingInfoResponse
+ * @memberOf! cloudbilling(v1)
+ * @type object
+ * @property {cloudbilling(v1).ProjectBillingInfo[]} projectBillingInfo A list of `ProjectBillingInfo` resources representing the projects associated with the billing account.
+ * @property {string} nextPageToken A token to retrieve the next page of results. To retrieve the next page, call `ListProjectBillingInfo` again with the `page_token` field set to this value. This field is empty if there are no more results to retrieve.
+ */
+/**
+ * @typedef ProjectBillingInfo
+ * @memberOf! cloudbilling(v1)
+ * @type object
+ * @property {string} name The resource name for the `ProjectBillingInfo`; has the form `projects/{project_id}/billingInfo`. For example, the resource name for the billing information for project `tokyo-rain-123` would be `projects/tokyo-rain-123/billingInfo`. This field is read-only.
+ * @property {string} projectId The ID of the project that this `ProjectBillingInfo` represents, such as `tokyo-rain-123`. This is a convenience field so that you don&#39;t need to parse the `name` field to obtain a project ID. This field is read-only.
+ * @property {string} billingAccountName The resource name of the billing account associated with the project, if any. For example, `billingAccounts/012345-567890-ABCDEF`.
+ * @property {boolean} billingEnabled True if the project is associated with an open billing account, to which usage on the project is charged. False if the project is associated with a closed billing account, or no billing account at all, and therefore cannot use paid services. This field is read-only.
+ */
 module.exports = Cloudbilling;

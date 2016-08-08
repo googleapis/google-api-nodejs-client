@@ -106,7 +106,7 @@ function Tasks(options) { // eslint-disable-line
      * @memberOf! tasks(v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {tasks(v1).TaskList} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -164,7 +164,7 @@ function Tasks(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
-     * @param {object} params.resource Request body data
+     * @param {tasks(v1).TaskList} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -193,7 +193,7 @@ function Tasks(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
-     * @param {object} params.resource Request body data
+     * @param {tasks(v1).TaskList} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -314,7 +314,7 @@ function Tasks(options) { // eslint-disable-line
      * @param {string=} params.parent Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
      * @param {string=} params.previous Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
      * @param {string} params.tasklist Task list identifier.
-     * @param {object} params.resource Request body data
+     * @param {tasks(v1).Task} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -413,7 +413,7 @@ function Tasks(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
-     * @param {object} params.resource Request body data
+     * @param {tasks(v1).Task} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -443,7 +443,7 @@ function Tasks(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
-     * @param {object} params.resource Request body data
+     * @param {tasks(v1).Task} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -465,4 +465,53 @@ function Tasks(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Task
+ * @memberOf! tasks(v1)
+ * @type object
+ * @property {string} completed Completion date of the task (as a RFC 3339 timestamp). This field is omitted if the task has not been completed.
+ * @property {boolean} deleted Flag indicating whether the task has been deleted. The default if False.
+ * @property {string} due Due date of the task (as a RFC 3339 timestamp). Optional.
+ * @property {string} etag ETag of the resource.
+ * @property {boolean} hidden Flag indicating whether the task is hidden. This is the case if the task had been marked completed when the task list was last cleared. The default is False. This field is read-only.
+ * @property {string} id Task identifier.
+ * @property {string} kind Type of the resource. This is always &quot;tasks#task&quot;.
+ * @property {object[]} links Collection of links. This collection is read-only.
+ * @property {string} notes Notes describing the task. Optional.
+ * @property {string} parent Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the &quot;move&quot; method to move the task under a different parent or to the top level.
+ * @property {string} position String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task&#39;s corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the &quot;move&quot; method to move the task to another position.
+ * @property {string} selfLink URL pointing to this task. Used to retrieve, update, or delete this task.
+ * @property {string} status Status of the task. This is either &quot;needsAction&quot; or &quot;completed&quot;.
+ * @property {string} title Title of the task.
+ * @property {string} updated Last modification time of the task (as a RFC 3339 timestamp).
+ */
+/**
+ * @typedef TaskList
+ * @memberOf! tasks(v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {string} id Task list identifier.
+ * @property {string} kind Type of the resource. This is always &quot;tasks#taskList&quot;.
+ * @property {string} selfLink URL pointing to this task list. Used to retrieve, update, or delete this task list.
+ * @property {string} title Title of the task list.
+ * @property {string} updated Last modification time of the task list (as a RFC 3339 timestamp).
+ */
+/**
+ * @typedef TaskLists
+ * @memberOf! tasks(v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {tasks(v1).TaskList[]} items Collection of task lists.
+ * @property {string} kind Type of the resource. This is always &quot;tasks#taskLists&quot;.
+ * @property {string} nextPageToken Token that can be used to request the next page of this result.
+ */
+/**
+ * @typedef Tasks
+ * @memberOf! tasks(v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {tasks(v1).Task[]} items Collection of tasks.
+ * @property {string} kind Type of the resource. This is always &quot;tasks#tasks&quot;.
+ * @property {string} nextPageToken Token used to access the next page of this result.
+ */
 module.exports = Tasks;

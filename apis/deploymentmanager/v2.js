@@ -101,7 +101,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {deploymentmanager(v2).DeploymentsCancelPreviewRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -329,7 +329,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.preview If set to true, creates a deployment and creates "shell" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the update() method or you can use the cancelPreview() method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      * @param {string} params.project The project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {deploymentmanager(v2).Deployment} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -493,7 +493,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      * @param {string} params.project The project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {deploymentmanager(v2).Deployment} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -572,7 +572,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {deploymentmanager(v2).DeploymentsStopRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -654,7 +654,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      * @param {string} params.project The project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {deploymentmanager(v2).Deployment} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1264,4 +1264,193 @@ function Deploymentmanager(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef ConfigFile
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} content The contents of the file.
+ */
+/**
+ * @typedef Deployment
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+* @property {string} description An optional user-provided description of the deployment.
+* @property {string} fingerprint Provides a fingerprint to use in requests to modify a deployment, such as update(), stop(), and cancelPreview() requests. A fingerprint is a randomly generated value that must be provided with update(), stop(), and cancelPreview() requests to perform optimistic locking. This ensures optimistic concurrency so that only one request happens at a time.
+
+The fingerprint is initially generated by Deployment Manager and changes after every request to modify data. To get the latest fingerprint value, perform a get() request to a deployment.
+* @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+* @property {string} insertTime [Output Only] Timestamp when the deployment was created, in RFC3339 text format .
+* @property {deploymentmanager(v2).DeploymentLabelEntry[]} labels Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
+* @property {string} manifest [Output Only] URL of the manifest representing the last manifest that was successfully deployed.
+* @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {deploymentmanager(v2).Operation} operation [Output Only] The Operation that most recently ran, or is currently running, on this deployment.
+* @property {string} selfLink [Output Only] Self link for the deployment.
+* @property {deploymentmanager(v2).TargetConfiguration} target [Input Only] The parameters that define your deployment, including the deployment configuration and relevant templates.
+* @property {deploymentmanager(v2).DeploymentUpdate} update [Output Only] If Deployment Manager is currently updating or previewing an update to this deployment, the updated configuration appears here.
+*/
+/**
+ * @typedef DeploymentLabelEntry
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} key 
+ * @property {string} value 
+ */
+/**
+ * @typedef DeploymentUpdate
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {deploymentmanager(v2).DeploymentUpdateLabelEntry[]} labels [Output Only] Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
+ * @property {string} manifest [Output Only] URL of the manifest representing the update configuration of this deployment.
+ */
+/**
+ * @typedef DeploymentUpdateLabelEntry
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} key 
+ * @property {string} value 
+ */
+/**
+ * @typedef DeploymentsCancelPreviewRequest
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+* @property {string} fingerprint Specifies a fingerprint for cancelPreview() requests. A fingerprint is a randomly generated value that must be provided in cancelPreview() requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to cancel a preview, this would prevent one of the requests).
+
+The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a get() request on the deployment.
+*/
+/**
+ * @typedef DeploymentsListResponse
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {deploymentmanager(v2).Deployment[]} deployments [Output Only] The deployments contained in this response.
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ */
+/**
+ * @typedef DeploymentsStopRequest
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+* @property {string} fingerprint Specifies a fingerprint for stop() requests. A fingerprint is a randomly generated value that must be provided in stop() requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to stop an ongoing update request, this would prevent a collision).
+
+The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a get() request on the deployment.
+*/
+/**
+ * @typedef ImportFile
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} content The contents of the file.
+ * @property {string} name The name of the file.
+ */
+/**
+ * @typedef Manifest
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {deploymentmanager(v2).ConfigFile} config [Output Only] The YAML configuration for this manifest.
+ * @property {string} expandedConfig [Output Only] The fully-expanded configuration file, including any templates and references.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {deploymentmanager(v2).ImportFile[]} imports [Output Only] The imported files for this manifest.
+ * @property {string} insertTime [Output Only] Timestamp when the manifest was created, in RFC3339 text format.
+ * @property {string} layout [Output Only] The YAML layout for this manifest.
+ * @property {string} name [Output Only] The name of the manifest.
+ * @property {string} selfLink [Output Only] Self link for the manifest.
+ */
+/**
+ * @typedef ManifestsListResponse
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {deploymentmanager(v2).Manifest[]} manifests [Output Only] Manifests contained in this list response.
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ */
+/**
+ * @typedef Operation
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} clientOperationId [Output Only] Reserved for future use.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description [Output Only] A textual description of the operation, which is set when the operation is created.
+ * @property {string} endTime [Output Only] The time that this operation was completed. This value is in RFC3339 text format.
+ * @property {object} error [Output Only] If errors are generated during processing of the operation, this field will be populated.
+ * @property {string} httpErrorMessage [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as NOT FOUND.
+ * @property {integer} httpErrorStatusCode [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a 404 means the resource was not found.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} insertTime [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#operation for Operation resources.
+ * @property {string} name [Output Only] Name of the resource.
+ * @property {string} operationType [Output Only] The type of operation, such as insert, update, or delete, and so on.
+ * @property {integer} progress [Output Only] An optional progress indicator that ranges from 0 to 100. There is no requirement that this be linear or support any granularity of operations. This should not be used to guess when the operation will be complete. This number should monotonically increase as the operation progresses.
+ * @property {string} region [Output Only] The URL of the region where the operation resides. Only available when performing regional operations.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} startTime [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
+ * @property {string} status [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
+ * @property {string} statusMessage [Output Only] An optional textual description of the current status of the operation.
+ * @property {string} targetId [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
+ * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies.
+ * @property {string} user [Output Only] User who requested the operation, for example: user@example.com.
+ * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
+ * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
+ */
+/**
+ * @typedef OperationsListResponse
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {deploymentmanager(v2).Operation[]} operations [Output Only] Operations contained in this list response.
+ */
+/**
+ * @typedef Resource
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} finalProperties [Output Only] The evaluated properties of the resource with references expanded. Returned as serialized YAML.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {string} insertTime [Output Only] Timestamp when the resource was created or acquired, in RFC3339 text format .
+ * @property {string} manifest [Output Only] URL of the manifest representing the current configuration of this resource.
+ * @property {string} name [Output Only] The name of the resource as it appears in the YAML config.
+ * @property {string} properties [Output Only] The current properties of the resource before any references have been filled in. Returned as serialized YAML.
+ * @property {string} type [Output Only] The type of the resource, for example compute.v1.instance, or replicaPools.v1beta2.instanceGroupManager.
+ * @property {deploymentmanager(v2).ResourceUpdate} update [Output Only] If Deployment Manager is currently updating or previewing an update to this resource, the updated configuration appears here.
+ * @property {string} updateTime [Output Only] Timestamp when the resource was updated, in RFC3339 text format .
+ * @property {string} url [Output Only] The URL of the actual resource.
+ * @property {object[]} warnings [Output Only] If warning messages are generated during processing of this resource, this field will be populated.
+ */
+/**
+ * @typedef ResourceUpdate
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {object} error [Output Only] If errors are generated during update of the resource, this field will be populated.
+ * @property {string} finalProperties [Output Only] The expanded properties of the resource with reference values expanded. Returned as serialized YAML.
+ * @property {string} intent [Output Only] The intent of the resource: PREVIEW, UPDATE, or CANCEL.
+ * @property {string} manifest [Output Only] URL of the manifest representing the update configuration of this resource.
+ * @property {string} properties [Output Only] The set of updated properties for this resource, before references are expanded. Returned as serialized YAML.
+ * @property {string} state [Output Only] The state of the resource.
+ * @property {object[]} warnings [Output Only] If warning messages are generated during processing of this resource, this field will be populated.
+ */
+/**
+ * @typedef ResourcesListResponse
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} nextPageToken A token used to continue a truncated list request.
+ * @property {deploymentmanager(v2).Resource[]} resources Resources contained in this list response.
+ */
+/**
+ * @typedef TargetConfiguration
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {deploymentmanager(v2).ConfigFile} config The configuration to use for this deployment.
+ * @property {deploymentmanager(v2).ImportFile[]} imports Specifies any files to import for this configuration. This can be used to import templates or other files. For example, you might import a text file in order to use the file in a template.
+ */
+/**
+ * @typedef Type
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {string} insertTime [Output Only] Timestamp when the type was created, in RFC3339 text format.
+ * @property {string} name Name of the type.
+ * @property {deploymentmanager(v2).Operation} operation [Output Only] The Operation that most recently ran, or is currently running, on this type.
+ * @property {string} selfLink [Output Only] Self link for the type.
+ */
+/**
+ * @typedef TypesListResponse
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} nextPageToken A token used to continue a truncated list request.
+ * @property {deploymentmanager(v2).Type[]} types [Output Only] A list of resource types supported by Deployment Manager.
+ */
 module.exports = Deploymentmanager;

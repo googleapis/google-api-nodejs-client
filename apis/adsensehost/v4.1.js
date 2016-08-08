@@ -263,7 +263,7 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account which will contain the ad unit.
        * @param {string} params.adClientId Ad client into which to insert the ad unit.
-       * @param {object} params.resource Request body data
+       * @param {adsensehost(v4.1).AdUnit} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -326,7 +326,7 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {string} params.accountId Account which contains the ad client.
        * @param {string} params.adClientId Ad client which contains the ad unit.
        * @param {string} params.adUnitId Ad unit to get.
-       * @param {object} params.resource Request body data
+       * @param {adsensehost(v4.1).AdUnit} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -356,7 +356,7 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account which contains the ad client.
        * @param {string} params.adClientId Ad client which contains the ad unit.
-       * @param {object} params.resource Request body data
+       * @param {adsensehost(v4.1).AdUnit} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -611,7 +611,7 @@ function Adsensehost(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client to which the new custom channel will be added.
-     * @param {object} params.resource Request body data
+     * @param {adsensehost(v4.1).CustomChannel} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -671,7 +671,7 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client in which the custom channel will be updated.
      * @param {string} params.customChannelId Custom channel to get.
-     * @param {object} params.resource Request body data
+     * @param {adsensehost(v4.1).CustomChannel} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -700,7 +700,7 @@ function Adsensehost(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client in which the custom channel will be updated.
-     * @param {object} params.resource Request body data
+     * @param {adsensehost(v4.1).CustomChannel} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -802,7 +802,7 @@ function Adsensehost(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client to which the new URL channel will be added.
-     * @param {object} params.resource Request body data
+     * @param {adsensehost(v4.1).UrlChannel} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -854,4 +854,144 @@ function Adsensehost(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Account
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {string} id Unique identifier of this account.
+ * @property {string} kind Kind of resource this is, in this case adsensehost#account.
+ * @property {string} name Name of this account.
+ * @property {string} status Approval status of this account. One of: PENDING, APPROVED, DISABLED.
+ */
+/**
+ * @typedef Accounts
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {string} etag ETag of this response for caching purposes.
+ * @property {adsensehost(v4.1).Account[]} items The accounts returned in this list response.
+ * @property {string} kind Kind of list this is, in this case adsensehost#accounts.
+ */
+/**
+ * @typedef AdClient
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {boolean} arcOptIn Whether this ad client is opted in to ARC.
+ * @property {string} id Unique identifier of this ad client.
+ * @property {string} kind Kind of resource this is, in this case adsensehost#adClient.
+ * @property {string} productCode This ad client&#39;s product code, which corresponds to the PRODUCT_CODE report dimension.
+ * @property {boolean} supportsReporting Whether this ad client supports being reported on.
+ */
+/**
+ * @typedef AdClients
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {string} etag ETag of this response for caching purposes.
+ * @property {adsensehost(v4.1).AdClient[]} items The ad clients returned in this list response.
+ * @property {string} kind Kind of list this is, in this case adsensehost#adClients.
+ * @property {string} nextPageToken Continuation token used to page through ad clients. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+ */
+/**
+ * @typedef AdCode
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {string} adCode The ad code snippet.
+ * @property {string} kind Kind this is, in this case adsensehost#adCode.
+ */
+/**
+ * @typedef AdStyle
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {object} colors The colors included in the style. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash.
+ * @property {string} corners The style of the corners in the ad. Possible values are SQUARE, SLIGHTLY_ROUNDED and VERY_ROUNDED.
+ * @property {object} font The font which is included in the style.
+ * @property {string} kind Kind this is, in this case adsensehost#adStyle.
+ */
+/**
+ * @typedef AdUnit
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+* @property {string} code Identity code of this ad unit, not necessarily unique across ad clients.
+* @property {object} contentAdsSettings Settings specific to content ads (AFC) and highend mobile content ads (AFMC - deprecated).
+* @property {adsensehost(v4.1).AdStyle} customStyle Custom style information specific to this ad unit.
+* @property {string} id Unique identifier of this ad unit. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
+* @property {string} kind Kind of resource this is, in this case adsensehost#adUnit.
+* @property {object} mobileContentAdsSettings Settings specific to WAP mobile content ads (AFMC - deprecated).
+* @property {string} name Name of this ad unit.
+* @property {string} status Status of this ad unit. Possible values are:
+NEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.
+
+ACTIVE: Indicates that there has been activity on this ad unit in the last seven days.
+
+INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
+*/
+/**
+ * @typedef AdUnits
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {string} etag ETag of this response for caching purposes.
+ * @property {adsensehost(v4.1).AdUnit[]} items The ad units returned in this list response.
+ * @property {string} kind Kind of list this is, in this case adsensehost#adUnits.
+ * @property {string} nextPageToken Continuation token used to page through ad units. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+ */
+/**
+ * @typedef AssociationSession
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {string} accountId Hosted account id of the associated publisher after association. Present if status is ACCEPTED.
+ * @property {string} id Unique identifier of this association session.
+ * @property {string} kind Kind of resource this is, in this case adsensehost#associationSession.
+ * @property {string[]} productCodes The products to associate with the user. Options: AFC, AFG, AFV, AFS (deprecated), AFMC (deprecated)
+ * @property {string} redirectUrl Redirect URL of this association session. Used to redirect users into the AdSense association flow.
+ * @property {string} status Status of the completed association, available once the association callback token has been verified. One of ACCEPTED, REJECTED, or ERROR.
+ * @property {string} userLocale The preferred locale of the user themselves when going through the AdSense association flow.
+ * @property {string} websiteLocale The locale of the user&#39;s hosted website.
+ * @property {string} websiteUrl The URL of the user&#39;s hosted website.
+ */
+/**
+ * @typedef CustomChannel
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {string} code Code of this custom channel, not necessarily unique across ad clients.
+ * @property {string} id Unique identifier of this custom channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
+ * @property {string} kind Kind of resource this is, in this case adsensehost#customChannel.
+ * @property {string} name Name of this custom channel.
+ */
+/**
+ * @typedef CustomChannels
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {string} etag ETag of this response for caching purposes.
+ * @property {adsensehost(v4.1).CustomChannel[]} items The custom channels returned in this list response.
+ * @property {string} kind Kind of list this is, in this case adsensehost#customChannels.
+ * @property {string} nextPageToken Continuation token used to page through custom channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+ */
+/**
+ * @typedef Report
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {string[]} averages The averages of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
+ * @property {object[]} headers The header information of the columns requested in the report. This is a list of headers; one for each dimension in the request, followed by one for each metric in the request.
+ * @property {string} kind Kind this is, in this case adsensehost#report.
+ * @property {array[]} rows The output rows of the report. Each row is a list of cells; one for each dimension in the request, followed by one for each metric in the request. The dimension cells contain strings, and the metric cells contain numbers.
+ * @property {string} totalMatchedRows The total number of rows matched by the report request. Fewer rows may be returned in the response due to being limited by the row count requested or the report row limit.
+ * @property {string[]} totals The totals of the report. This is the same length as any other row in the report; cells corresponding to dimension columns are empty.
+ * @property {string[]} warnings Any warnings associated with generation of the report.
+ */
+/**
+ * @typedef UrlChannel
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {string} id Unique identifier of this URL channel. This should be considered an opaque identifier; it is not safe to rely on it being in any particular format.
+ * @property {string} kind Kind of resource this is, in this case adsensehost#urlChannel.
+ * @property {string} urlPattern URL Pattern of this URL channel. Does not include &quot;http://&quot; or &quot;https://&quot;. Example: www.example.com/home
+ */
+/**
+ * @typedef UrlChannels
+ * @memberOf! adsensehost(v4.1)
+ * @type object
+ * @property {string} etag ETag of this response for caching purposes.
+ * @property {adsensehost(v4.1).UrlChannel[]} items The URL channels returned in this list response.
+ * @property {string} kind Kind of list this is, in this case adsensehost#urlChannels.
+ * @property {string} nextPageToken Continuation token used to page through URL channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+ */
 module.exports = Adsensehost;

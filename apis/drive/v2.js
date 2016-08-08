@@ -213,7 +213,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.pageToken Page token for changes.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Change ID to start listing changes from.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Channel} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -245,7 +245,7 @@ function Drive(options) { // eslint-disable-line
      * @memberOf! drive(v2)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Channel} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -336,7 +336,7 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.folderId The ID of the folder.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).ChildReference} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -460,7 +460,7 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Comment} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -522,7 +522,7 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Comment} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -552,7 +552,7 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Comment} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -592,7 +592,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
      * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).File} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -853,7 +853,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.timedTextTrackName The timed text track name.
      * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).File} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1016,7 +1016,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
      * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Channel} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1107,7 +1107,7 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).ParentReference} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1256,7 +1256,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.emailMessage A custom message to include in notification emails.
      * @param {string} params.fileId The ID for the file.
      * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Permission} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1316,7 +1316,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Permission} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1348,7 +1348,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Permission} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1441,7 +1441,7 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Property} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1500,7 +1500,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Property} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1531,7 +1531,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Property} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1692,7 +1692,7 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).CommentReply} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1755,7 +1755,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).CommentReply} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1786,7 +1786,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).CommentReply} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1906,7 +1906,7 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.revisionId The ID for the revision.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Revision} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1936,7 +1936,7 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.revisionId The ID for the revision.
-     * @param {object} params.resource Request body data
+     * @param {drive(v2).Revision} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1958,4 +1958,403 @@ function Drive(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef About
+ * @memberOf! drive(v2)
+ * @type object
+* @property {object[]} additionalRoleInfo Information about supported additional roles per file type. The most specific type takes precedence.
+* @property {string} domainSharingPolicy The domain sharing policy for the current user. Possible values are:  
+- allowed 
+- allowedWithWarning 
+- incomingOnly 
+- disallowed
+* @property {string} etag The ETag of the item.
+* @property {object[]} exportFormats The allowable export formats.
+* @property {object[]} features List of additional features enabled on this account.
+* @property {string[]} folderColorPalette The palette of allowable folder colors as RGB hex strings.
+* @property {object[]} importFormats The allowable import formats.
+* @property {boolean} isCurrentAppInstalled A boolean indicating whether the authenticated app is installed by the authenticated user.
+* @property {string} kind This is always drive#about.
+* @property {string} languageCode The user&#39;s language or locale code, as defined by BCP 47, with some extensions from Unicode&#39;s LDML format (http://www.unicode.org/reports/tr35/).
+* @property {string} largestChangeId The largest change id.
+* @property {object[]} maxUploadSizes List of max upload sizes for each file type. The most specific type takes precedence.
+* @property {string} name The name of the current user.
+* @property {string} permissionId The current user&#39;s ID as visible in the permissions collection.
+* @property {object[]} quotaBytesByService The amount of storage quota used by different Google services.
+* @property {string} quotaBytesTotal The total number of quota bytes.
+* @property {string} quotaBytesUsed The number of quota bytes used by Google Drive.
+* @property {string} quotaBytesUsedAggregate The number of quota bytes used by all Google apps (Drive, Picasa, etc.).
+* @property {string} quotaBytesUsedInTrash The number of quota bytes used by trashed items.
+* @property {string} quotaType The type of the user&#39;s storage quota. Possible values are:  
+- LIMITED 
+- UNLIMITED
+* @property {string} remainingChangeIds The number of remaining change ids, limited to no more than 2500.
+* @property {string} rootFolderId The id of the root folder.
+* @property {string} selfLink A link back to this item.
+* @property {drive(v2).User} user The authenticated user.
+*/
+/**
+ * @typedef App
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {boolean} authorized Whether the app is authorized to access data on the user&#39;s Drive.
+ * @property {string} createInFolderTemplate The template url to create a new file with this app in a given folder. The template will contain {folderId} to be replaced by the folder to create the new file in.
+ * @property {string} createUrl The url to create a new file with this app.
+ * @property {boolean} hasDriveWideScope Whether the app has drive-wide scope. An app with drive-wide scope can access all files in the user&#39;s drive.
+ * @property {object[]} icons The various icons for the app.
+ * @property {string} id The ID of the app.
+ * @property {boolean} installed Whether the app is installed.
+ * @property {string} kind This is always drive#app.
+ * @property {string} longDescription A long description of the app.
+ * @property {string} name The name of the app.
+ * @property {string} objectType The type of object this app creates (e.g. Chart). If empty, the app name should be used instead.
+ * @property {string} openUrlTemplate The template url for opening files with this app. The template will contain {ids} and/or {exportIds} to be replaced by the actual file ids. See  Open Files  for the full documentation.
+ * @property {string[]} primaryFileExtensions The list of primary file extensions.
+ * @property {string[]} primaryMimeTypes The list of primary mime types.
+ * @property {string} productId The ID of the product listing for this app.
+ * @property {string} productUrl A link to the product listing for this app.
+ * @property {string[]} secondaryFileExtensions The list of secondary file extensions.
+ * @property {string[]} secondaryMimeTypes The list of secondary mime types.
+ * @property {string} shortDescription A short description of the app.
+ * @property {boolean} supportsCreate Whether this app supports creating new objects.
+ * @property {boolean} supportsImport Whether this app supports importing Google Docs.
+ * @property {boolean} supportsMultiOpen Whether this app supports opening more than one file.
+ * @property {boolean} supportsOfflineCreate Whether this app supports creating new files when offline.
+ * @property {boolean} useByDefault Whether the app is selected as the default handler for the types it supports.
+ */
+/**
+ * @typedef AppList
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string[]} defaultAppIds List of app IDs that the user has specified to use by default. The list is in reverse-priority order (lowest to highest).
+ * @property {string} etag The ETag of the list.
+ * @property {drive(v2).App[]} items The actual list of apps.
+ * @property {string} kind This is always drive#appList.
+ * @property {string} selfLink A link back to this list.
+ */
+/**
+ * @typedef Change
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {boolean} deleted Whether the file has been deleted.
+ * @property {drive(v2).File} file The updated state of the file. Present if the file has not been deleted.
+ * @property {string} fileId The ID of the file associated with this change.
+ * @property {string} id The ID of the change.
+ * @property {string} kind This is always drive#change.
+ * @property {string} modificationDate The time of this modification.
+ * @property {string} selfLink A link back to this change.
+ */
+/**
+ * @typedef ChangeList
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} etag The ETag of the list.
+ * @property {drive(v2).Change[]} items The actual list of changes.
+ * @property {string} kind This is always drive#changeList.
+ * @property {string} largestChangeId The current largest change ID.
+ * @property {string} nextLink A link to the next page of changes.
+ * @property {string} nextPageToken The page token for the next page of changes.
+ * @property {string} selfLink A link back to this list.
+ */
+/**
+ * @typedef Channel
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} address The address where notifications are delivered for this channel.
+ * @property {string} expiration Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
+ * @property {string} id A UUID or similar unique string that identifies this channel.
+ * @property {string} kind Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string &quot;api#channel&quot;.
+ * @property {object} params Additional parameters controlling delivery channel behavior. Optional.
+ * @property {boolean} payload A Boolean value to indicate whether payload is wanted. Optional.
+ * @property {string} resourceId An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
+ * @property {string} resourceUri A version-specific identifier for the watched resource.
+ * @property {string} token An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
+ * @property {string} type The type of delivery mechanism used for this channel.
+ */
+/**
+ * @typedef ChildList
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} etag The ETag of the list.
+ * @property {drive(v2).ChildReference[]} items The actual list of children.
+ * @property {string} kind This is always drive#childList.
+ * @property {string} nextLink A link to the next page of children.
+ * @property {string} nextPageToken The page token for the next page of children.
+ * @property {string} selfLink A link back to this list.
+ */
+/**
+ * @typedef ChildReference
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} childLink A link to the child.
+ * @property {string} id The ID of the child.
+ * @property {string} kind This is always drive#childReference.
+ * @property {string} selfLink A link back to this reference.
+ */
+/**
+ * @typedef Comment
+ * @memberOf! drive(v2)
+ * @type object
+* @property {string} anchor A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.
+* @property {drive(v2).User} author The user who wrote this comment.
+* @property {string} commentId The ID of the comment.
+* @property {string} content The plain text content used to create this comment. This is not HTML safe and should only be used as a starting point to make edits to a comment&#39;s content.
+* @property {object} context The context of the file which is being commented on.
+* @property {string} createdDate The date when this comment was first created.
+* @property {boolean} deleted Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.
+* @property {string} fileId The file which this comment is addressing.
+* @property {string} fileTitle The title of the file which this comment is addressing.
+* @property {string} htmlContent HTML formatted content for this comment.
+* @property {string} kind This is always drive#comment.
+* @property {string} modifiedDate The date when this comment or any of its replies were last modified.
+* @property {drive(v2).CommentReply[]} replies Replies to this post.
+* @property {string} selfLink A link back to this comment.
+* @property {string} status The status of this comment. Status can be changed by posting a reply to a comment with the desired status.  
+- &quot;open&quot; - The comment is still open. 
+- &quot;resolved&quot; - The comment has been resolved by one of its replies.
+*/
+/**
+ * @typedef CommentList
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {drive(v2).Comment[]} items List of comments.
+ * @property {string} kind This is always drive#commentList.
+ * @property {string} nextLink A link to the next page of comments.
+ * @property {string} nextPageToken The token to use to request the next page of results.
+ * @property {string} selfLink A link back to this list.
+ */
+/**
+ * @typedef CommentReply
+ * @memberOf! drive(v2)
+ * @type object
+* @property {drive(v2).User} author The user who wrote this reply.
+* @property {string} content The plain text content used to create this reply. This is not HTML safe and should only be used as a starting point to make edits to a reply&#39;s content. This field is required on inserts if no verb is specified (resolve/reopen).
+* @property {string} createdDate The date when this reply was first created.
+* @property {boolean} deleted Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
+* @property {string} htmlContent HTML formatted content for this reply.
+* @property {string} kind This is always drive#commentReply.
+* @property {string} modifiedDate The date when this reply was last modified.
+* @property {string} replyId The ID of the reply.
+* @property {string} verb The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:  
+- &quot;resolve&quot; - To resolve a comment. 
+- &quot;reopen&quot; - To reopen (un-resolve) a comment.
+*/
+/**
+ * @typedef CommentReplyList
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {drive(v2).CommentReply[]} items List of reply.
+ * @property {string} kind This is always drive#commentReplyList.
+ * @property {string} nextLink A link to the next page of replies.
+ * @property {string} nextPageToken The token to use to request the next page of results.
+ * @property {string} selfLink A link back to this list.
+ */
+/**
+ * @typedef File
+ * @memberOf! drive(v2)
+ * @type object
+* @property {string} alternateLink A link for opening the file in a relevant Google editor or viewer.
+* @property {boolean} appDataContents Whether this file is in the Application Data folder.
+* @property {boolean} canComment Whether the current user can comment on the file.
+* @property {boolean} canReadRevisions Whether the current user has read access to the Revisions resource of the file.
+* @property {boolean} copyable Whether the file can be copied by the current user.
+* @property {string} createdDate Create time for this file (formatted RFC 3339 timestamp).
+* @property {string} defaultOpenWithLink A link to open this file with the user&#39;s default app for this file. Only populated when the drive.apps.readonly scope is used.
+* @property {string} description A short description of the file.
+* @property {string} downloadUrl 
+* @property {boolean} editable Whether the file can be edited by the current user.
+* @property {string} embedLink A link for embedding the file.
+* @property {string} etag ETag of the file.
+* @property {boolean} explicitlyTrashed Whether this file has been explicitly trashed, as opposed to recursively trashed.
+* @property {object} exportLinks Links for exporting Google Docs to specific formats.
+* @property {string} fileExtension The final component of fullFileExtension with trailing text that does not appear to be part of the extension removed. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
+* @property {string} fileSize The size of the file in bytes. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
+* @property {string} folderColorRgb Folder color as an RGB hex string if the file is a folder. The list of supported colors is available in the folderColorPalette field of the About resource. If an unsupported color is specified, it will be changed to the closest color in the palette.
+* @property {string} fullFileExtension The full file extension; extracted from the title. May contain multiple concatenated extensions, such as &quot;tar.gz&quot;. Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
+* @property {string} headRevisionId The ID of the file&#39;s head revision. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
+* @property {string} iconLink A link to the file&#39;s icon.
+* @property {string} id The ID of the file.
+* @property {object} imageMediaMetadata Metadata about image media. This will only be present for image types, and its contents will depend on what can be parsed from the image content.
+* @property {object} indexableText Indexable text attributes for the file (can only be written)
+* @property {boolean} isAppAuthorized Whether the file was created or opened by the requesting app.
+* @property {string} kind The type of file. This is always drive#file.
+* @property {object} labels A group of labels for the file.
+* @property {drive(v2).User} lastModifyingUser The last user to modify this file.
+* @property {string} lastModifyingUserName Name of the last user to modify this file.
+* @property {string} lastViewedByMeDate Last time this file was viewed by the user (formatted RFC 3339 timestamp).
+* @property {string} markedViewedByMeDate Deprecated.
+* @property {string} md5Checksum An MD5 checksum for the content of this file. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
+* @property {string} mimeType The MIME type of the file. This is only mutable on update when uploading new content. This field can be left blank, and the mimetype will be determined from the uploaded content&#39;s MIME type.
+* @property {string} modifiedByMeDate Last time this file was modified by the user (formatted RFC 3339 timestamp). Note that setting modifiedDate will also update the modifiedByMe date for the user which set the date.
+* @property {string} modifiedDate Last time this file was modified by anyone (formatted RFC 3339 timestamp). This is only mutable on update when the setModifiedDate parameter is set.
+* @property {object} openWithLinks A map of the id of each of the user&#39;s apps to a link to open this file with that app. Only populated when the drive.apps.readonly scope is used.
+* @property {string} originalFilename The original filename of the uploaded content if available, or else the original value of the title field. This is only available for files with binary content in Drive.
+* @property {boolean} ownedByMe Whether the file is owned by the current user.
+* @property {string[]} ownerNames Name(s) of the owner(s) of this file.
+* @property {drive(v2).User[]} owners The owner(s) of this file.
+* @property {drive(v2).ParentReference[]} parents Collection of parent folders which contain this file.
+Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder.
+* @property {drive(v2).Permission[]} permissions The list of permissions for users with access to this file.
+* @property {drive(v2).Property[]} properties The list of properties.
+* @property {string} quotaBytesUsed The number of quota bytes used by this file.
+* @property {string} selfLink A link back to this file.
+* @property {boolean} shareable Whether the file&#39;s sharing settings can be modified by the current user.
+* @property {boolean} shared Whether the file has been shared.
+* @property {string} sharedWithMeDate Time at which this file was shared with the user (formatted RFC 3339 timestamp).
+* @property {drive(v2).User} sharingUser User that shared the item with the current user, if available.
+* @property {string[]} spaces The list of spaces which contain the file. Supported values are &#39;drive&#39;, &#39;appDataFolder&#39; and &#39;photos&#39;.
+* @property {object} thumbnail Thumbnail for the file. Only accepted on upload and for files that are not already thumbnailed by Google.
+* @property {string} thumbnailLink A short-lived link to the file&#39;s thumbnail. Typically lasts on the order of hours.
+* @property {string} title The title of this file.
+* @property {drive(v2).Permission} userPermission The permissions for the authenticated user on this file.
+* @property {string} version A monotonically increasing version number for the file. This reflects every change made to the file on the server, even those not visible to the requesting user.
+* @property {object} videoMediaMetadata Metadata about video media. This will only be present for video types.
+* @property {string} webContentLink A link for downloading the content of the file in a browser using cookie based authentication. In cases where the content is shared publicly, the content can be downloaded without any credentials.
+* @property {string} webViewLink A link only available on public folders for viewing their static web assets (HTML, CSS, JS, etc) via Google Drive&#39;s Website Hosting.
+* @property {boolean} writersCanShare Whether writers can share the document with other users.
+*/
+/**
+ * @typedef FileList
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} etag The ETag of the list.
+ * @property {drive(v2).File[]} items The actual list of files.
+ * @property {string} kind This is always drive#fileList.
+ * @property {string} nextLink A link to the next page of files.
+ * @property {string} nextPageToken The page token for the next page of files.
+ * @property {string} selfLink A link back to this list.
+ */
+/**
+ * @typedef GeneratedIds
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string[]} ids The IDs generated for the requesting user in the specified space.
+ * @property {string} kind This is always drive#generatedIds
+ * @property {string} space The type of file that can be created with these IDs.
+ */
+/**
+ * @typedef ParentList
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} etag The ETag of the list.
+ * @property {drive(v2).ParentReference[]} items The actual list of parents.
+ * @property {string} kind This is always drive#parentList.
+ * @property {string} selfLink A link back to this list.
+ */
+/**
+ * @typedef ParentReference
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} id The ID of the parent.
+ * @property {boolean} isRoot Whether or not the parent is the root folder.
+ * @property {string} kind This is always drive#parentReference.
+ * @property {string} parentLink A link to the parent.
+ * @property {string} selfLink A link back to this reference.
+ */
+/**
+ * @typedef Permission
+ * @memberOf! drive(v2)
+ * @type object
+* @property {string[]} additionalRoles Additional roles for this user. Only commenter is currently allowed.
+* @property {string} authKey The authkey parameter required for this permission.
+* @property {string} domain The domain name of the entity this permission refers to. This is an output-only field which is present when the permission type is user, group or domain.
+* @property {string} emailAddress The email address of the user or group this permission refers to. This is an output-only field which is present when the permission type is user or group.
+* @property {string} etag The ETag of the permission.
+* @property {string} expirationDate The time at which this permission will expire (RFC 3339 date-time).
+* @property {string} id The ID of the user this permission refers to, and identical to the permissionId in the About and Files resources. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified.
+* @property {string} kind This is always drive#permission.
+* @property {string} name The name for this permission.
+* @property {string} photoLink A link to the profile photo, if available.
+* @property {string} role The primary role for this user. Allowed values are:  
+- owner 
+- reader 
+- writer
+* @property {string} selfLink A link back to this permission.
+* @property {string} type The account type. Allowed values are:  
+- user 
+- group 
+- domain 
+- anyone
+* @property {string} value The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified.
+* @property {boolean} withLink Whether the link is required for this permission.
+*/
+/**
+ * @typedef PermissionId
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} id The permission ID.
+ * @property {string} kind This is always drive#permissionId.
+ */
+/**
+ * @typedef PermissionList
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} etag The ETag of the list.
+ * @property {drive(v2).Permission[]} items The actual list of permissions.
+ * @property {string} kind This is always drive#permissionList.
+ * @property {string} selfLink A link back to this list.
+ */
+/**
+ * @typedef Property
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} etag ETag of the property.
+ * @property {string} key The key of this property.
+ * @property {string} kind This is always drive#property.
+ * @property {string} selfLink The link back to this property.
+ * @property {string} value The value of this property.
+ * @property {string} visibility The visibility of this property.
+ */
+/**
+ * @typedef PropertyList
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} etag The ETag of the list.
+ * @property {drive(v2).Property[]} items The list of properties.
+ * @property {string} kind This is always drive#propertyList.
+ * @property {string} selfLink The link back to this list.
+ */
+/**
+ * @typedef Revision
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} downloadUrl Short term download URL for the file. This will only be populated on files with content stored in Drive.
+ * @property {string} etag The ETag of the revision.
+ * @property {object} exportLinks Links for exporting Google Docs to specific formats.
+ * @property {string} fileSize The size of the revision in bytes. This will only be populated on files with content stored in Drive.
+ * @property {string} id The ID of the revision.
+ * @property {string} kind This is always drive#revision.
+ * @property {drive(v2).User} lastModifyingUser The last user to modify this revision.
+ * @property {string} lastModifyingUserName Name of the last user to modify this revision.
+ * @property {string} md5Checksum An MD5 checksum for the content of this revision. This will only be populated on files with content stored in Drive.
+ * @property {string} mimeType The MIME type of the revision.
+ * @property {string} modifiedDate Last time this revision was modified (formatted RFC 3339 timestamp).
+ * @property {string} originalFilename The original filename when this revision was created. This will only be populated on files with content stored in Drive.
+ * @property {boolean} pinned Whether this revision is pinned to prevent automatic purging. This will only be populated and can only be modified on files with content stored in Drive which are not Google Docs. Revisions can also be pinned when they are created through the drive.files.insert/update/copy by using the pinned query parameter.
+ * @property {boolean} publishAuto Whether subsequent revisions will be automatically republished. This is only populated and can only be modified for Google Docs.
+ * @property {boolean} published Whether this revision is published. This is only populated and can only be modified for Google Docs.
+ * @property {string} publishedLink A link to the published revision.
+ * @property {boolean} publishedOutsideDomain Whether this revision is published outside the domain. This is only populated and can only be modified for Google Docs.
+ * @property {string} selfLink A link back to this revision.
+ */
+/**
+ * @typedef RevisionList
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} etag The ETag of the list.
+ * @property {drive(v2).Revision[]} items The actual list of revisions.
+ * @property {string} kind This is always drive#revisionList.
+ * @property {string} selfLink A link back to this list.
+ */
+/**
+ * @typedef User
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} displayName A plain text displayable name for this user.
+ * @property {string} emailAddress The email address of the user.
+ * @property {boolean} isAuthenticatedUser Whether this user is the same as the authenticated user for whom the request was made.
+ * @property {string} kind This is always drive#user.
+ * @property {string} permissionId The user&#39;s ID as visible in the permissions collection.
+ * @property {object} picture The user&#39;s profile picture.
+ */
 module.exports = Drive;

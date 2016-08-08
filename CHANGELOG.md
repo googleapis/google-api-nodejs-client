@@ -1,3 +1,8 @@
+##### 12.2.0 - 08 August 2016
+
+###### Backwards compatible changes
+- Added schema information found in discovery docs to generated documentation
+
 ##### 12.1.0 - 05 August 2016
 
 ###### Backwards compatible changes

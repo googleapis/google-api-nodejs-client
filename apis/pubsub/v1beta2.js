@@ -53,7 +53,7 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
-       * @param {object} params.resource Request body data
+       * @param {pubsub(v1beta2).SetIamPolicyRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -110,7 +110,7 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
-       * @param {object} params.resource Request body data
+       * @param {pubsub(v1beta2).TestIamPermissionsRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -139,7 +139,7 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
-       * @param {object} params.resource Request body data
+       * @param {pubsub(v1beta2).Topic} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -168,7 +168,7 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.topic The messages in the request will be published on this topic.
-       * @param {object} params.resource Request body data
+       * @param {pubsub(v1beta2).PublishRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -319,7 +319,7 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
-       * @param {object} params.resource Request body data
+       * @param {pubsub(v1beta2).SetIamPolicyRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -376,7 +376,7 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
-       * @param {object} params.resource Request body data
+       * @param {pubsub(v1beta2).TestIamPermissionsRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -405,7 +405,7 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
-       * @param {object} params.resource Request body data
+       * @param {pubsub(v1beta2).Subscription} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -520,7 +520,7 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.subscription The name of the subscription.
-       * @param {object} params.resource Request body data
+       * @param {pubsub(v1beta2).ModifyAckDeadlineRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -549,7 +549,7 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.subscription The subscription whose message is being acknowledged.
-       * @param {object} params.resource Request body data
+       * @param {pubsub(v1beta2).AcknowledgeRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -578,7 +578,7 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.subscription The subscription from which messages should be pulled.
-       * @param {object} params.resource Request body data
+       * @param {pubsub(v1beta2).PullRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -607,7 +607,7 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.subscription The name of the subscription.
-       * @param {object} params.resource Request body data
+       * @param {pubsub(v1beta2).ModifyPushConfigRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -629,4 +629,146 @@ function Pubsub(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef SetIamPolicyRequest
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {pubsub(v1beta2).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
+ */
+/**
+ * @typedef Policy
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {integer} version Version of the `Policy`. The default version is 0.
+ * @property {pubsub(v1beta2).Binding[]} bindings Associates a list of `members` to a `role`. Multiple `bindings` must not be specified for the same `role`. `bindings` with no members will result in an error.
+ * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+ */
+/**
+ * @typedef Binding
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. Required
+ * @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` or `joe@example.com`. * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: A Google Apps domain name that represents all the users of that domain. For example, `google.com` or `example.com`.
+ */
+/**
+ * @typedef TestIamPermissionsRequest
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {string[]} permissions The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see IAM Overview.
+ */
+/**
+ * @typedef TestIamPermissionsResponse
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
+ */
+/**
+ * @typedef Topic
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {string} name The name of the topic. It must have the format `&quot;projects/{project}/topics/{topic}&quot;`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `&quot;goog&quot;`.
+ */
+/**
+ * @typedef PublishRequest
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {pubsub(v1beta2).PubsubMessage[]} messages The messages to publish.
+ */
+/**
+ * @typedef PubsubMessage
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {string} data The message payload. For JSON requests, the value of this field must be base64-encoded.
+ * @property {object} attributes Optional attributes for this message.
+ * @property {string} messageId ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.
+ * @property {string} publishTime The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
+ */
+/**
+ * @typedef PublishResponse
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {string[]} messageIds The server-assigned ID of each published message, in the same order as the messages in the request. IDs are guaranteed to be unique within the topic.
+ */
+/**
+ * @typedef ListTopicsResponse
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {pubsub(v1beta2).Topic[]} topics The resulting topics.
+ * @property {string} nextPageToken If not empty, indicates that there may be more topics that match the request; this value should be passed in a new `ListTopicsRequest`.
+ */
+/**
+ * @typedef ListTopicSubscriptionsResponse
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {string[]} subscriptions The names of the subscriptions that match the request.
+ * @property {string} nextPageToken If not empty, indicates that there may be more subscriptions that match the request; this value should be passed in a new `ListTopicSubscriptionsRequest` to get more subscriptions.
+ */
+/**
+ * @typedef Empty
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ */
+/**
+ * @typedef Subscription
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {string} name The name of the subscription. It must have the format `&quot;projects/{project}/subscriptions/{subscription}&quot;`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `&quot;goog&quot;`.
+ * @property {string} topic The name of the topic from which this subscription is receiving messages. The value of this field will be `_deleted-topic_` if the topic has been deleted.
+ * @property {pubsub(v1beta2).PushConfig} pushConfig If push delivery is used with this subscription, this field is used to configure it. An empty `pushConfig` signifies that the subscriber will pull and ack messages using API methods.
+ * @property {integer} ackDeadlineSeconds This value is the maximum time after a subscriber receives a message before the subscriber should acknowledge the message. After message delivery but before the ack deadline expires and before the message is acknowledged, it is an outstanding message and will not be delivered again during that time (on a best-effort basis). For pull subscriptions, this value is used as the initial value for the ack deadline. To override this value for a given message, call `ModifyAckDeadline` with the corresponding `ack_id` if using pull. For push delivery, this value is also used to set the request timeout for the call to the push endpoint. If the subscriber never acknowledges the message, the Pub/Sub system will eventually redeliver the message. If this parameter is not set, the default value of 10 seconds is used.
+ */
+/**
+ * @typedef PushConfig
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {string} pushEndpoint A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use &quot;https://example.com/push&quot;.
+ * @property {object} attributes Endpoint configuration attributes. Every endpoint has a set of API supported attributes that can be used to control different aspects of the message delivery. The currently supported attribute is `x-goog-version`, which you can use to change the format of the push message. This attribute indicates the version of the data expected by the endpoint. This controls the shape of the envelope (i.e. its fields and metadata). The endpoint version is based on the version of the Pub/Sub API. If not present during the `CreateSubscription` call, it will default to the version of the API used to make such call. If not present during a `ModifyPushConfig` call, its value will not be changed. `GetSubscription` calls will always return a valid version, even if the subscription was created without this attribute. The possible values for this attribute are: * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
+ */
+/**
+ * @typedef ListSubscriptionsResponse
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {pubsub(v1beta2).Subscription[]} subscriptions The subscriptions that match the request.
+ * @property {string} nextPageToken If not empty, indicates that there may be more subscriptions that match the request; this value should be passed in a new `ListSubscriptionsRequest` to get more subscriptions.
+ */
+/**
+ * @typedef ModifyAckDeadlineRequest
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {string} ackId The acknowledgment ID. Either this or ack_ids must be populated, but not both.
+ * @property {string[]} ackIds List of acknowledgment IDs.
+ * @property {integer} ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to the Pub/Sub system. Must be &gt;= 0. For example, if the value is 10, the new ack deadline will expire 10 seconds after the `ModifyAckDeadline` call was made. Specifying zero may immediately make the message available for another pull request.
+ */
+/**
+ * @typedef AcknowledgeRequest
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {string[]} ackIds The acknowledgment ID for the messages being acknowledged that was returned by the Pub/Sub system in the `Pull` response. Must not be empty.
+ */
+/**
+ * @typedef PullRequest
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {boolean} returnImmediately If this is specified as true the system will respond immediately even if it is not able to return a message in the `Pull` response. Otherwise the system is allowed to wait until at least one message is available rather than returning no messages. The client may cancel the request if it does not wish to wait any longer for the response.
+ * @property {integer} maxMessages The maximum number of messages returned for this request. The Pub/Sub system may return fewer than the number specified.
+ */
+/**
+ * @typedef PullResponse
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {pubsub(v1beta2).ReceivedMessage[]} receivedMessages Received Pub/Sub messages. The Pub/Sub system will return zero messages if there are no more available in the backlog. The Pub/Sub system may return fewer than the `maxMessages` requested even if there are more messages available in the backlog.
+ */
+/**
+ * @typedef ReceivedMessage
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {string} ackId This ID can be used to acknowledge the received message.
+ * @property {pubsub(v1beta2).PubsubMessage} message The message.
+ */
+/**
+ * @typedef ModifyPushConfigRequest
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {pubsub(v1beta2).PushConfig} pushConfig The push configuration for future deliveries. An empty `pushConfig` indicates that the Pub/Sub system should stop pushing messages from the given subscription and allow messages to be pulled and acknowledged - effectively pausing the subscription if `Pull` is not called.
+ */
 module.exports = Pubsub;

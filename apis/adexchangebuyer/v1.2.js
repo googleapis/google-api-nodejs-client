@@ -106,7 +106,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
-     * @param {object} params.resource Request body data
+     * @param {adexchangebuyer(v1.2).Account} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -135,7 +135,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
-     * @param {object} params.resource Request body data
+     * @param {adexchangebuyer(v1.2).Account} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -196,7 +196,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @memberOf! adexchangebuyer(v1.2)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {adexchangebuyer(v1.2).Creative} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -248,4 +248,60 @@ function Adexchangebuyer(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Account
+ * @memberOf! adexchangebuyer(v1.2)
+ * @type object
+ * @property {object[]} bidderLocation Your bidder locations that have distinct URLs.
+ * @property {string} cookieMatchingNid The nid parameter value used in cookie match requests. Please contact your technical account manager if you need to change this.
+ * @property {string} cookieMatchingUrl The base URL used in cookie match requests.
+ * @property {integer} id Account id.
+ * @property {string} kind Resource type.
+ * @property {integer} maximumActiveCreatives The maximum number of active creatives that an account can have, where a creative is active if it was inserted or bid with in the last 30 days. Please contact your technical account manager if you need to change this.
+ * @property {integer} maximumTotalQps The sum of all bidderLocation.maximumQps values cannot exceed this. Please contact your technical account manager if you need to change this.
+ * @property {integer} numberActiveCreatives The number of creatives that this account inserted or bid with in the last 30 days.
+ */
+/**
+ * @typedef AccountsList
+ * @memberOf! adexchangebuyer(v1.2)
+ * @type object
+ * @property {adexchangebuyer(v1.2).Account[]} items A list of accounts.
+ * @property {string} kind Resource type.
+ */
+/**
+ * @typedef Creative
+ * @memberOf! adexchangebuyer(v1.2)
+ * @type object
+ * @property {string} HTMLSnippet The HTML snippet that displays the ad when inserted in the web page. If set, videoURL should not be set.
+ * @property {integer} accountId Account id.
+ * @property {string[]} advertiserId Detected advertiser id, if any. Read-only. This field should not be set in requests.
+ * @property {string} advertiserName The name of the company being advertised in the creative.
+ * @property {string} agencyId The agency id for this creative.
+ * @property {string} apiUploadTimestamp The last upload timestamp of this creative if it was uploaded via API. Read-only. The value of this field is generated, and will be ignored for uploads. (formatted RFC 3339 timestamp).
+ * @property {integer[]} attribute All attributes for the ads that may be shown from this snippet.
+ * @property {string} buyerCreativeId A buyer-specific id identifying the creative in this ad.
+ * @property {string[]} clickThroughUrl The set of destination urls for the snippet.
+ * @property {object[]} corrections Shows any corrections that were applied to this creative. Read-only. This field should not be set in requests.
+ * @property {object[]} disapprovalReasons The reasons for disapproval, if any. Note that not all disapproval reasons may be categorized, so it is possible for the creative to have a status of DISAPPROVED with an empty list for disapproval_reasons. In this case, please reach out to your TAM to help debug the issue. Read-only. This field should not be set in requests.
+ * @property {object} filteringReasons The filtering reasons for the creative. Read-only. This field should not be set in requests.
+ * @property {integer} height Ad height.
+ * @property {string[]} impressionTrackingUrl The set of urls to be called to record an impression.
+ * @property {string} kind Resource type.
+ * @property {integer[]} productCategories Detected product categories, if any. Read-only. This field should not be set in requests.
+ * @property {integer[]} restrictedCategories All restricted categories for the ads that may be shown from this snippet.
+ * @property {integer[]} sensitiveCategories Detected sensitive categories, if any. Read-only. This field should not be set in requests.
+ * @property {string} status Creative serving status. Read-only. This field should not be set in requests.
+ * @property {integer[]} vendorType All vendor types for the ads that may be shown from this snippet.
+ * @property {integer} version The version for this creative. Read-only. This field should not be set in requests.
+ * @property {string} videoURL The url to fetch a video ad. If set, HTMLSnippet should not be set.
+ * @property {integer} width Ad width.
+ */
+/**
+ * @typedef CreativesList
+ * @memberOf! adexchangebuyer(v1.2)
+ * @type object
+ * @property {adexchangebuyer(v1.2).Creative[]} items A list of creatives.
+ * @property {string} kind Resource type.
+ * @property {string} nextPageToken Continuation token used to page through creatives. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+ */
 module.exports = Adexchangebuyer;

@@ -140,7 +140,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Channel} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -239,7 +239,7 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.deviceId Immutable id of Chrome OS Device
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).ChromeOsDevice} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -270,7 +270,7 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.deviceId Immutable id of Chrome OS Device
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).ChromeOsDevice} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -331,7 +331,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerKey Id of the customer to be updated
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Customer} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -360,7 +360,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerKey Id of the customer to be updated
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Customer} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -451,7 +451,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable id of the Google Apps account.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).DomainAlias} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -571,7 +571,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable id of the Google Apps account.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Domains} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -687,7 +687,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Group} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -748,7 +748,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Group} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -777,7 +777,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Group} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -837,7 +837,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.groupKey Email or immutable Id of the group
-       * @param {object} params.resource Request body data
+       * @param {admin(directory_v1).Alias} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -956,7 +956,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable Id of the group
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Member} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1017,7 +1017,7 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
      * @param {string} params.memberKey Email or immutable Id of the user. If Id, it should match with id of member object
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Member} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1047,7 +1047,7 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
      * @param {string} params.memberKey Email or immutable Id of the user. If Id, it should match with id of member object
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Member} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1081,7 +1081,7 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.resourceId Immutable id of Mobile Device
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).MobileDeviceAction} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1297,7 +1297,7 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer The unique ID for the customer's Google account.
      * @param {string} params.notificationId The unique ID of the notification.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Notification} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1327,7 +1327,7 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer The unique ID for the customer's Google account.
      * @param {string} params.notificationId The unique ID of the notification.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Notification} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1418,7 +1418,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).OrgUnit} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1478,7 +1478,7 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.orgUnitPath Full path of the organization unit or its Id
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).OrgUnit} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1508,7 +1508,7 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.orgUnitPath Full path of the organization unit or its Id
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).OrgUnit} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1633,7 +1633,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param {object} params.resource Request body data
+       * @param {admin(directory_v1).CalendarResource} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1693,7 +1693,7 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
        * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param {object} params.resource Request body data
+       * @param {admin(directory_v1).CalendarResource} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1723,7 +1723,7 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
        * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-       * @param {object} params.resource Request body data
+       * @param {admin(directory_v1).CalendarResource} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1814,7 +1814,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the Google Apps account.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).RoleAssignment} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1937,7 +1937,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the Google Apps account.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Role} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1997,7 +1997,7 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the Google Apps account.
      * @param {string} params.roleId Immutable ID of the role.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Role} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2027,7 +2027,7 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the Google Apps account.
      * @param {string} params.roleId Immutable ID of the role.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Role} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2118,7 +2118,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Schema} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2176,7 +2176,7 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.schemaKey Name or immutable Id of the schema.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Schema} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2206,7 +2206,7 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.schemaKey Name or immutable Id of the schema.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Schema} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2387,7 +2387,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).User} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2455,7 +2455,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable Id of the user as admin
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).UserMakeAdmin} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2484,7 +2484,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable Id of the user. If Id, it should match with id of user object
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).User} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2513,7 +2513,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey The immutable id of the user
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).UserUndelete} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2542,7 +2542,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable Id of the user. If Id, it should match with id of user object
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).User} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2582,7 +2582,7 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.showDeleted If set to true retrieves the list of deleted users. Default is false
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
      * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     * @param {object} params.resource Request body data
+     * @param {admin(directory_v1).Channel} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2642,7 +2642,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userKey Email or immutable Id of the user
-       * @param {object} params.resource Request body data
+       * @param {admin(directory_v1).Alias} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2701,7 +2701,7 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string=} params.event Event on which subscription is intended (if subscribing)
        * @param {string} params.userKey Email or immutable Id of the user
-       * @param {object} params.resource Request body data
+       * @param {admin(directory_v1).Channel} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2789,7 +2789,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userKey Email or immutable Id of the user
-       * @param {object} params.resource Request body data
+       * @param {admin(directory_v1).UserPhoto} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2818,7 +2818,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userKey Email or immutable Id of the user
-       * @param {object} params.resource Request body data
+       * @param {admin(directory_v1).UserPhoto} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -2928,4 +2928,643 @@ function Admin(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Alias
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} alias A alias email
+ * @property {string} etag ETag of the resource.
+ * @property {string} id Unique id of the group (Read-only) Unique id of the user (Read-only)
+ * @property {string} kind Kind of resource this is.
+ * @property {string} primaryEmail Group&#39;s primary email (Read-only) User&#39;s primary email (Read-only)
+ */
+/**
+ * @typedef Aliases
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {any[]} aliases List of alias objects.
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ */
+/**
+ * @typedef Asp
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {integer} codeId The unique ID of the ASP.
+ * @property {string} creationTime The time when the ASP was created. Expressed in Unix time format.
+ * @property {string} etag ETag of the ASP.
+ * @property {string} kind The type of the API resource. This is always admin#directory#asp.
+ * @property {string} lastTimeUsed The time when the ASP was last used. Expressed in Unix time format.
+ * @property {string} name The name of the application that the user, represented by their userId, entered when the ASP was created.
+ * @property {string} userKey The unique ID of the user who issued the ASP.
+ */
+/**
+ * @typedef Asps
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {admin(directory_v1).Asp[]} items A list of ASP resources.
+ * @property {string} kind The type of the API resource. This is always admin#directory#aspList.
+ */
+/**
+ * @typedef CalendarResource
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etags ETag of the resource.
+ * @property {string} kind The type of the resource. For calendar resources, the value is admin#directory#resources#calendars#CalendarResource.
+ * @property {string} resourceDescription The brief description of the calendar resource.
+ * @property {string} resourceEmail The read-only email ID for the calendar resource. Generated as part of creating a new calendar resource.
+ * @property {string} resourceId The unique ID for the calendar resource.
+ * @property {string} resourceName The name of the calendar resource. For example, Training Room 1A
+ * @property {string} resourceType The type of the calendar resource. Used for grouping resources in the calendar user interface.
+ */
+/**
+ * @typedef CalendarResources
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {admin(directory_v1).CalendarResource[]} items The CalendarResources in this page of results.
+ * @property {string} kind Identifies this as a collection of CalendarResources. This is always admin#directory#resources#calendars#calendarResourcesList.
+ * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+ */
+/**
+ * @typedef Channel
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} address The address where notifications are delivered for this channel.
+ * @property {string} expiration Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
+ * @property {string} id A UUID or similar unique string that identifies this channel.
+ * @property {string} kind Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string &quot;api#channel&quot;.
+ * @property {object} params Additional parameters controlling delivery channel behavior. Optional.
+ * @property {boolean} payload A Boolean value to indicate whether payload is wanted. Optional.
+ * @property {string} resourceId An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
+ * @property {string} resourceUri A version-specific identifier for the watched resource.
+ * @property {string} token An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
+ * @property {string} type The type of delivery mechanism used for this channel.
+ */
+/**
+ * @typedef ChromeOsDevice
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {object[]} activeTimeRanges List of active time ranges (Read-only)
+ * @property {string} annotatedAssetId AssetId specified during enrollment or through later annotation
+ * @property {string} annotatedLocation Address or location of the device as noted by the administrator
+ * @property {string} annotatedUser User of the device
+ * @property {string} bootMode Chromebook boot mode (Read-only)
+ * @property {string} deviceId Unique identifier of Chrome OS Device (Read-only)
+ * @property {string} etag ETag of the resource.
+ * @property {string} ethernetMacAddress Chromebook Mac Address on ethernet network interface (Read-only)
+ * @property {string} firmwareVersion Chromebook firmware version (Read-only)
+ * @property {string} kind Kind of resource this is.
+ * @property {string} lastEnrollmentTime Date and time the device was last enrolled (Read-only)
+ * @property {string} lastSync Date and time the device was last synchronized with the policy settings in the Google Apps administrator control panel (Read-only)
+ * @property {string} macAddress Chromebook Mac Address on wifi network interface (Read-only)
+ * @property {string} meid Mobile Equipment identifier for the 3G mobile card in the Chromebook (Read-only)
+ * @property {string} model Chromebook Model (Read-only)
+ * @property {string} notes Notes added by the administrator
+ * @property {string} orderNumber Chromebook order number (Read-only)
+ * @property {string} orgUnitPath OrgUnit of the device
+ * @property {string} osVersion Chromebook Os Version (Read-only)
+ * @property {string} platformVersion Chromebook platform version (Read-only)
+ * @property {object[]} recentUsers List of recent device users, in descending order by last login time (Read-only)
+ * @property {string} serialNumber Chromebook serial number (Read-only)
+ * @property {string} status status of the device (Read-only)
+ * @property {string} supportEndDate Final date the device will be supported (Read-only)
+ * @property {boolean} willAutoRenew Will Chromebook auto renew after support end date (Read-only)
+ */
+/**
+ * @typedef ChromeOsDevices
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {admin(directory_v1).ChromeOsDevice[]} chromeosdevices List of Chrome OS Device objects.
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ * @property {string} nextPageToken Token used to access next page of this result.
+ */
+/**
+ * @typedef Customer
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} alternateEmail The customer&#39;s secondary contact email address. This email address cannot be on the same domain as the customerDomain
+ * @property {string} customerCreationTime The customer&#39;s creation time (Readonly)
+ * @property {string} customerDomain The customer&#39;s primary domain name string. Do not include the www prefix when creating a new customer.
+ * @property {string} etag ETag of the resource.
+ * @property {string} id The unique ID for the customer&#39;s Google account. (Readonly)
+ * @property {string} kind Identifies the resource as a customer. Value: admin#directory#customer
+ * @property {string} language The customer&#39;s ISO 639-2 language code. The default value is en-US
+ * @property {string} phoneNumber The customer&#39;s contact phone number in E.164 format.
+ * @property {admin(directory_v1).CustomerPostalAddress} postalAddress The customer&#39;s postal address information.
+ */
+/**
+ * @typedef CustomerPostalAddress
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} addressLine1 A customer&#39;s physical address. The address can be composed of one to three lines.
+ * @property {string} addressLine2 Address line 2 of the address.
+ * @property {string} addressLine3 Address line 3 of the address.
+ * @property {string} contactName The customer contact&#39;s name.
+ * @property {string} countryCode This is a required property. For countryCode information see the ISO 3166 country code elements.
+ * @property {string} locality Name of the locality. An example of a locality value is the city of San Francisco.
+ * @property {string} organizationName The company or company division name.
+ * @property {string} postalCode The postal code. A postalCode example is a postal zip code such as 10009. This is in accordance with - http://portablecontacts.net/draft-spec.html#address_element.
+ * @property {string} region Name of the region. An example of a region value is NY for the state of New York.
+ */
+/**
+ * @typedef DomainAlias
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} creationTime The creation time of the domain alias. (Read-only).
+ * @property {string} domainAliasName The domain alias name.
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ * @property {string} parentDomainName The parent domain name that the domain alias is associated with. This can either be a primary or secondary domain name within a customer.
+ * @property {boolean} verified Indicates the verification state of a domain alias. (Read-only)
+ */
+/**
+ * @typedef DomainAliases
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {admin(directory_v1).DomainAlias[]} domainAliases List of domain alias objects.
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ */
+/**
+ * @typedef Domains
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} creationTime Creation time of the domain. (Read-only).
+ * @property {admin(directory_v1).DomainAlias[]} domainAliases List of domain alias objects. (Read-only)
+ * @property {string} domainName The domain name of the customer.
+ * @property {string} etag ETag of the resource.
+ * @property {boolean} isPrimary Indicates if the domain is a primary domain (Read-only).
+ * @property {string} kind Kind of resource this is.
+ * @property {boolean} verified Indicates the verification state of a domain. (Read-only).
+ */
+/**
+ * @typedef Domains2
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {admin(directory_v1).Domains[]} domains List of domain objects.
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ */
+/**
+ * @typedef Group
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {boolean} adminCreated Is the group created by admin (Read-only) *
+ * @property {string[]} aliases List of aliases (Read-only)
+ * @property {string} description Description of the group
+ * @property {string} directMembersCount Group direct members count
+ * @property {string} email Email of Group
+ * @property {string} etag ETag of the resource.
+ * @property {string} id Unique identifier of Group (Read-only)
+ * @property {string} kind Kind of resource this is.
+ * @property {string} name Group name
+ * @property {string[]} nonEditableAliases List of non editable aliases (Read-only)
+ */
+/**
+ * @typedef Groups
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {admin(directory_v1).Group[]} groups List of group objects.
+ * @property {string} kind Kind of resource this is.
+ * @property {string} nextPageToken Token used to access next page of this result.
+ */
+/**
+ * @typedef Member
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} email Email of member (Read-only)
+ * @property {string} etag ETag of the resource.
+ * @property {string} id Unique identifier of customer member (Read-only) Unique identifier of group (Read-only) Unique identifier of member (Read-only)
+ * @property {string} kind Kind of resource this is.
+ * @property {string} role Role of member
+ * @property {string} status Status of member (Immutable)
+ * @property {string} type Type of member (Immutable)
+ */
+/**
+ * @typedef Members
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ * @property {admin(directory_v1).Member[]} members List of member objects.
+ * @property {string} nextPageToken Token used to access next page of this result.
+ */
+/**
+ * @typedef MobileDevice
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {boolean} adbStatus Adb (USB debugging) enabled or disabled on device (Read-only)
+ * @property {object[]} applications List of applications installed on Mobile Device
+ * @property {string} basebandVersion Mobile Device Baseband version (Read-only)
+ * @property {string} buildNumber Mobile Device Build number (Read-only)
+ * @property {string} defaultLanguage The default locale used on the Mobile Device (Read-only)
+ * @property {boolean} developerOptionsStatus Developer options enabled or disabled on device (Read-only)
+ * @property {string} deviceCompromisedStatus Mobile Device compromised status (Read-only)
+ * @property {string} deviceId Mobile Device serial number (Read-only)
+ * @property {string[]} email List of owner user&#39;s email addresses (Read-only)
+ * @property {string} etag ETag of the resource.
+ * @property {string} firstSync Date and time the device was first synchronized with the policy settings in the Google Apps administrator control panel (Read-only)
+ * @property {string} hardwareId Mobile Device Hardware Id (Read-only)
+ * @property {string} imei Mobile Device IMEI number (Read-only)
+ * @property {string} kernelVersion Mobile Device Kernel version (Read-only)
+ * @property {string} kind Kind of resource this is.
+ * @property {string} lastSync Date and time the device was last synchronized with the policy settings in the Google Apps administrator control panel (Read-only)
+ * @property {boolean} managedAccountIsOnOwnerProfile Boolean indicating if this account is on owner/primary profile or not (Read-only)
+ * @property {string} meid Mobile Device MEID number (Read-only)
+ * @property {string} model Name of the model of the device
+ * @property {string[]} name List of owner user&#39;s names (Read-only)
+ * @property {string} networkOperator Mobile Device mobile or network operator (if available) (Read-only)
+ * @property {string} os Name of the mobile operating system
+ * @property {string[]} otherAccountsInfo List of accounts added on device (Read-only)
+ * @property {string} resourceId Unique identifier of Mobile Device (Read-only)
+ * @property {string} serialNumber Mobile Device SSN or Serial Number (Read-only)
+ * @property {string} status Status of the device (Read-only)
+ * @property {boolean} supportsWorkProfile Work profile supported on device (Read-only)
+ * @property {string} type The type of device (Read-only)
+ * @property {boolean} unknownSourcesStatus Unknown sources enabled or disabled on device (Read-only)
+ * @property {string} userAgent Mobile Device user agent
+ * @property {string} wifiMacAddress Mobile Device WiFi MAC address (Read-only)
+ */
+/**
+ * @typedef MobileDeviceAction
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} action Action to be taken on the Mobile Device
+ */
+/**
+ * @typedef MobileDevices
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ * @property {admin(directory_v1).MobileDevice[]} mobiledevices List of Mobile Device objects.
+ * @property {string} nextPageToken Token used to access next page of this result.
+ */
+/**
+ * @typedef Notification
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} body Body of the notification (Read-only)
+ * @property {string} etag ETag of the resource.
+ * @property {string} fromAddress Address from which the notification is received (Read-only)
+ * @property {boolean} isUnread Boolean indicating whether the notification is unread or not.
+ * @property {string} kind The type of the resource.
+ * @property {string} notificationId 
+ * @property {string} sendTime Time at which notification was sent (Read-only)
+ * @property {string} subject Subject of the notification (Read-only)
+ */
+/**
+ * @typedef Notifications
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {admin(directory_v1).Notification[]} items List of notifications in this page.
+ * @property {string} kind The type of the resource.
+ * @property {string} nextPageToken Token for fetching the next page of notifications.
+ * @property {integer} unreadNotificationsCount Number of unread notification for the domain.
+ */
+/**
+ * @typedef OrgUnit
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {boolean} blockInheritance Should block inheritance
+ * @property {string} description Description of OrgUnit
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ * @property {string} name Name of OrgUnit
+ * @property {string} orgUnitId Id of OrgUnit
+ * @property {string} orgUnitPath Path of OrgUnit
+ * @property {string} parentOrgUnitId Id of parent OrgUnit
+ * @property {string} parentOrgUnitPath Path of parent OrgUnit
+ */
+/**
+ * @typedef OrgUnits
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ * @property {admin(directory_v1).OrgUnit[]} organizationUnits List of user objects.
+ */
+/**
+ * @typedef Privilege
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {admin(directory_v1).Privilege[]} childPrivileges A list of child privileges. Privileges for a service form a tree. Each privilege can have a list of child privileges; this list is empty for a leaf privilege.
+ * @property {string} etag ETag of the resource.
+ * @property {boolean} isOuScopable If the privilege can be restricted to an organization unit.
+ * @property {string} kind The type of the API resource. This is always admin#directory#privilege.
+ * @property {string} privilegeName The name of the privilege.
+ * @property {string} serviceId The obfuscated ID of the service this privilege is for.
+ * @property {string} serviceName The name of the service this privilege is for.
+ */
+/**
+ * @typedef Privileges
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {admin(directory_v1).Privilege[]} items A list of Privilege resources.
+ * @property {string} kind The type of the API resource. This is always admin#directory#privileges.
+ */
+/**
+ * @typedef Role
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {boolean} isSuperAdminRole Returns true if the role is a super admin role.
+ * @property {boolean} isSystemRole Returns true if this is a pre-defined system role.
+ * @property {string} kind The type of the API resource. This is always admin#directory#role.
+ * @property {string} roleDescription A short description of the role.
+ * @property {string} roleId ID of the role.
+ * @property {string} roleName Name of the role.
+ * @property {object[]} rolePrivileges The set of privileges that are granted to this role.
+ */
+/**
+ * @typedef RoleAssignment
+ * @memberOf! admin(directory_v1)
+ * @type object
+* @property {string} assignedTo The unique ID of the user this role is assigned to.
+* @property {string} etag ETag of the resource.
+* @property {string} kind The type of the API resource. This is always admin#directory#roleAssignment.
+* @property {string} orgUnitId If the role is restricted to an organization unit, this contains the ID for the organization unit the exercise of this role is restricted to.
+* @property {string} roleAssignmentId ID of this roleAssignment.
+* @property {string} roleId The ID of the role that is assigned.
+* @property {string} scopeType The scope in which this role is assigned. Possible values are: 
+- CUSTOMER
+- ORG_UNIT
+*/
+/**
+ * @typedef RoleAssignments
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {admin(directory_v1).RoleAssignment[]} items A list of RoleAssignment resources.
+ * @property {string} kind The type of the API resource. This is always admin#directory#roleAssignments.
+ * @property {string} nextPageToken 
+ */
+/**
+ * @typedef Roles
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {admin(directory_v1).Role[]} items A list of Role resources.
+ * @property {string} kind The type of the API resource. This is always admin#directory#roles.
+ * @property {string} nextPageToken 
+ */
+/**
+ * @typedef Schema
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {admin(directory_v1).SchemaFieldSpec[]} fields Fields of Schema
+ * @property {string} kind Kind of resource this is.
+ * @property {string} schemaId Unique identifier of Schema (Read-only)
+ * @property {string} schemaName Schema name
+ */
+/**
+ * @typedef SchemaFieldSpec
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {string} fieldId Unique identifier of Field (Read-only)
+ * @property {string} fieldName Name of the field.
+ * @property {string} fieldType Type of the field.
+ * @property {boolean} indexed Boolean specifying whether the field is indexed or not.
+ * @property {string} kind Kind of resource this is.
+ * @property {boolean} multiValued Boolean specifying whether this is a multi-valued field or not.
+ * @property {object} numericIndexingSpec Indexing spec for a numeric field. By default, only exact match queries will be supported for numeric fields. Setting the numericIndexingSpec allows range queries to be supported.
+ * @property {string} readAccessType Read ACLs on the field specifying who can view values of this field. Valid values are &quot;ALL_DOMAIN_USERS&quot; and &quot;ADMINS_AND_SELF&quot;.
+ */
+/**
+ * @typedef Schemas
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ * @property {admin(directory_v1).Schema[]} schemas List of UserSchema objects.
+ */
+/**
+ * @typedef Token
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {boolean} anonymous Whether the application is registered with Google. The value is true if the application has an anonymous Client ID.
+ * @property {string} clientId The Client ID of the application the token is issued to.
+ * @property {string} displayText The displayable name of the application the token is issued to.
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind The type of the API resource. This is always admin#directory#token.
+ * @property {boolean} nativeApp Whether the token is issued to an installed application. The value is true if the application is installed to a desktop or mobile device.
+ * @property {string[]} scopes A list of authorization scopes the application is granted.
+ * @property {string} userKey The unique ID of the user that issued the token.
+ */
+/**
+ * @typedef Tokens
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {admin(directory_v1).Token[]} items A list of Token resources.
+ * @property {string} kind The type of the API resource. This is always admin#directory#tokenList.
+ */
+/**
+ * @typedef User
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {any} addresses 
+ * @property {boolean} agreedToTerms Indicates if user has agreed to terms (Read-only)
+ * @property {string[]} aliases List of aliases (Read-only)
+ * @property {boolean} changePasswordAtNextLogin Boolean indicating if the user should change password in next login
+ * @property {string} creationTime User&#39;s Google account creation time. (Read-only)
+ * @property {object} customSchemas Custom fields of the user.
+ * @property {string} customerId CustomerId of User (Read-only)
+ * @property {string} deletionTime 
+ * @property {any} emails 
+ * @property {string} etag ETag of the resource.
+ * @property {any} externalIds 
+ * @property {string} hashFunction Hash function name for password. Supported are MD5, SHA-1 and crypt
+ * @property {string} id Unique identifier of User (Read-only)
+ * @property {any} ims 
+ * @property {boolean} includeInGlobalAddressList Boolean indicating if user is included in Global Address List
+ * @property {boolean} ipWhitelisted Boolean indicating if ip is whitelisted
+ * @property {boolean} isAdmin Boolean indicating if the user is admin (Read-only)
+ * @property {boolean} isDelegatedAdmin Boolean indicating if the user is delegated admin (Read-only)
+ * @property {boolean} isMailboxSetup Is mailbox setup (Read-only)
+ * @property {string} kind Kind of resource this is.
+ * @property {string} lastLoginTime User&#39;s last login time. (Read-only)
+ * @property {admin(directory_v1).UserName} name User&#39;s name
+ * @property {string[]} nonEditableAliases List of non editable aliases (Read-only)
+ * @property {any} notes 
+ * @property {string} orgUnitPath OrgUnit of User
+ * @property {any} organizations 
+ * @property {string} password User&#39;s password
+ * @property {any} phones 
+ * @property {string} primaryEmail username of User
+ * @property {any} relations 
+ * @property {boolean} suspended Indicates if user is suspended
+ * @property {string} suspensionReason Suspension reason if user is suspended (Read-only)
+ * @property {string} thumbnailPhotoEtag ETag of the user&#39;s photo (Read-only)
+ * @property {string} thumbnailPhotoUrl Photo Url of the user (Read-only)
+ * @property {any} websites 
+ */
+/**
+ * @typedef UserAbout
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} contentType About entry can have a type which indicates the content type. It can either be plain or html. By default, notes contents are assumed to contain plain text.
+ * @property {string} value Actual value of notes.
+ */
+/**
+ * @typedef UserAddress
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} country Country.
+ * @property {string} countryCode Country code.
+ * @property {string} customType Custom type.
+ * @property {string} extendedAddress Extended Address.
+ * @property {string} formatted Formatted address.
+ * @property {string} locality Locality.
+ * @property {string} poBox Other parts of address.
+ * @property {string} postalCode Postal code.
+ * @property {boolean} primary If this is user&#39;s primary address. Only one entry could be marked as primary.
+ * @property {string} region Region.
+ * @property {boolean} sourceIsStructured User supplied address was structured. Structured addresses are NOT supported at this time. You might be able to write structured addresses, but any values will eventually be clobbered.
+ * @property {string} streetAddress Street.
+ * @property {string} type Each entry can have a type which indicates standard values of that entry. For example address could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value. Such type should have the CUSTOM value as type and also have a customType value.
+ */
+/**
+ * @typedef UserCustomProperties
+ * @memberOf! admin(directory_v1)
+ * @type object
+ */
+/**
+ * @typedef UserEmail
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} address Email id of the user.
+ * @property {string} customType Custom Type.
+ * @property {boolean} primary If this is user&#39;s primary email. Only one entry could be marked as primary.
+ * @property {string} type Each entry can have a type which indicates standard types of that entry. For example email could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value Such types should have the CUSTOM value as type and also have a customType value.
+ */
+/**
+ * @typedef UserExternalId
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} customType Custom type.
+ * @property {string} type The type of the Id.
+ * @property {string} value The value of the id.
+ */
+/**
+ * @typedef UserIm
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} customProtocol Custom protocol.
+ * @property {string} customType Custom type.
+ * @property {string} im Instant messenger id.
+ * @property {boolean} primary If this is user&#39;s primary im. Only one entry could be marked as primary.
+ * @property {string} protocol Protocol used in the instant messenger. It should be one of the values from ImProtocolTypes map. Similar to type, it can take a CUSTOM value and specify the custom name in customProtocol field.
+ * @property {string} type Each entry can have a type which indicates standard types of that entry. For example instant messengers could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value. Such types should have the CUSTOM value as type and also have a customType value.
+ */
+/**
+ * @typedef UserMakeAdmin
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {boolean} status Boolean indicating new admin status of the user
+ */
+/**
+ * @typedef UserName
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} familyName Last Name
+ * @property {string} fullName Full Name
+ * @property {string} givenName First Name
+ */
+/**
+ * @typedef UserOrganization
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} costCenter The cost center of the users department.
+ * @property {string} customType Custom type.
+ * @property {string} department Department within the organization.
+ * @property {string} description Description of the organization.
+ * @property {string} domain The domain to which the organization belongs to.
+ * @property {string} location Location of the organization. This need not be fully qualified address.
+ * @property {string} name Name of the organization
+ * @property {boolean} primary If it user&#39;s primary organization.
+ * @property {string} symbol Symbol of the organization.
+ * @property {string} title Title (designation) of the user in the organization.
+ * @property {string} type Each entry can have a type which indicates standard types of that entry. For example organization could be of school, work etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a CustomType value.
+ */
+/**
+ * @typedef UserPhone
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} customType Custom Type.
+ * @property {boolean} primary If this is user&#39;s primary phone or not.
+ * @property {string} type Each entry can have a type which indicates standard types of that entry. For example phone could be of home_fax, work, mobile etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
+ * @property {string} value Phone number.
+ */
+/**
+ * @typedef UserPhoto
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {integer} height Height in pixels of the photo
+ * @property {string} id Unique identifier of User (Read-only)
+ * @property {string} kind Kind of resource this is.
+ * @property {string} mimeType Mime Type of the photo
+ * @property {string} photoData Base64 encoded photo data
+ * @property {string} primaryEmail Primary email of User (Read-only)
+ * @property {integer} width Width in pixels of the photo
+ */
+/**
+ * @typedef UserRelation
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} customType Custom Type.
+ * @property {string} type The relation of the user. Some of the possible values are mother, father, sister, brother, manager, assistant, partner.
+ * @property {string} value The name of the relation.
+ */
+/**
+ * @typedef UserUndelete
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} orgUnitPath OrgUnit of User
+ */
+/**
+ * @typedef UserWebsite
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} customType Custom Type.
+ * @property {boolean} primary If this is user&#39;s primary website or not.
+ * @property {string} type Each entry can have a type which indicates standard types of that entry. For example website could be of home, work, blog etc. In addition to the standard type, an entry can have a custom type and can give it any name. Such types should have the CUSTOM value as type and also have a customType value.
+ * @property {string} value Website.
+ */
+/**
+ * @typedef Users
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Kind of resource this is.
+ * @property {string} nextPageToken Token used to access next page of this result.
+ * @property {string} trigger_event Event that triggered this response (only used in case of Push Response)
+ * @property {admin(directory_v1).User[]} users List of user objects.
+ */
+/**
+ * @typedef VerificationCode
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind The type of the resource. This is always admin#directory#verificationCode.
+ * @property {string} userId The obfuscated unique ID of the user.
+ * @property {string} verificationCode A current verification code for the user. Invalidated or used verification codes are not returned as part of the result.
+ */
+/**
+ * @typedef VerificationCodes
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} etag ETag of the resource.
+ * @property {admin(directory_v1).VerificationCode[]} items A list of verification code resources.
+ * @property {string} kind The type of the resource. This is always admin#directory#verificationCodesList.
+ */
 module.exports = Admin;

@@ -140,7 +140,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(datatransfer_v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {admin(datatransfer_v1).DataTransfer} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -195,4 +195,60 @@ function Admin(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Application
+ * @memberOf! admin(datatransfer_v1)
+ * @type object
+ * @property {string} etag Etag of the resource.
+ * @property {string} id The application&#39;s ID.
+ * @property {string} kind Identifies the resource as a DataTransfer Application Resource.
+ * @property {string} name The application&#39;s name.
+ * @property {admin(datatransfer_v1).ApplicationTransferParam[]} transferParams The list of all possible transfer parameters for this application. These parameters can be used to select the data of the user in this application to be transfered.
+ */
+/**
+ * @typedef ApplicationDataTransfer
+ * @memberOf! admin(datatransfer_v1)
+ * @type object
+ * @property {string} applicationId The application&#39;s ID.
+ * @property {admin(datatransfer_v1).ApplicationTransferParam[]} applicationTransferParams The transfer parameters for the application. These parameters are used to select the data which will get transfered in context of this application.
+ * @property {string} applicationTransferStatus Current status of transfer for this application. (Read-only)
+ */
+/**
+ * @typedef ApplicationTransferParam
+ * @memberOf! admin(datatransfer_v1)
+ * @type object
+ * @property {string} key The type of the transfer parameter. eg: &#39;PRIVACY_LEVEL&#39;
+ * @property {string[]} value The value of the coressponding transfer parameter. eg: &#39;PRIVATE&#39; or &#39;SHARED&#39;
+ */
+/**
+ * @typedef ApplicationsListResponse
+ * @memberOf! admin(datatransfer_v1)
+ * @type object
+ * @property {admin(datatransfer_v1).Application[]} applications List of applications that support data transfer and are also installed for the customer.
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Identifies the resource as a collection of Applications.
+ * @property {string} nextPageToken Continuation token which will be used to specify next page in list API.
+ */
+/**
+ * @typedef DataTransfer
+ * @memberOf! admin(datatransfer_v1)
+ * @type object
+ * @property {admin(datatransfer_v1).ApplicationDataTransfer[]} applicationDataTransfers List of per application data transfer resources. It contains data transfer details of the applications associated with this transfer resource. Note that this list is also used to specify the applications for which data transfer has to be done at the time of the transfer resource creation.
+ * @property {string} etag ETag of the resource.
+ * @property {string} id The transfer&#39;s ID (Read-only).
+ * @property {string} kind Identifies the resource as a DataTransfer request.
+ * @property {string} newOwnerUserId ID of the user to whom the data is being transfered.
+ * @property {string} oldOwnerUserId ID of the user whose data is being transfered.
+ * @property {string} overallTransferStatusCode Overall transfer status (Read-only).
+ * @property {string} requestTime The time at which the data transfer was requested (Read-only).
+ */
+/**
+ * @typedef DataTransfersListResponse
+ * @memberOf! admin(datatransfer_v1)
+ * @type object
+ * @property {admin(datatransfer_v1).DataTransfer[]} dataTransfers List of data transfer requests.
+ * @property {string} etag ETag of the resource.
+ * @property {string} kind Identifies the resource as a collection of data transfer requests.
+ * @property {string} nextPageToken Continuation token which will be used to specify next page in list API.
+ */
 module.exports = Admin;

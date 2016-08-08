@@ -145,7 +145,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {object} params.resource Request body data
+     * @param {youtubeAnalytics(v1beta1).GroupItem} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -236,7 +236,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {object} params.resource Request body data
+     * @param {youtubeAnalytics(v1beta1).Group} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -296,7 +296,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {object} params.resource Request body data
+     * @param {youtubeAnalytics(v1beta1).Group} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -359,4 +359,84 @@ function Youtubeanalytics(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef BatchReport
+ * @memberOf! youtubeAnalytics(v1beta1)
+ * @type object
+ * @property {string} id The ID that YouTube assigns and uses to uniquely identify the report.
+ * @property {string} kind This value specifies the type of data of this item. For batch report the kind property value is youtubeAnalytics#batchReport.
+ * @property {object[]} outputs Report outputs.
+ * @property {string} reportId The ID of the the report definition.
+ * @property {object} timeSpan Period included in the report. For reports containing all entities endTime is not set. Both startTime and endTime are inclusive.
+ * @property {string} timeUpdated The time when the report was updated.
+ */
+/**
+ * @typedef BatchReportDefinition
+ * @memberOf! youtubeAnalytics(v1beta1)
+ * @type object
+ * @property {string} id The ID that YouTube assigns and uses to uniquely identify the report definition.
+ * @property {string} kind This value specifies the type of data of this item. For batch report definition the kind property value is youtubeAnalytics#batchReportDefinition.
+ * @property {string} name Name of the report definition.
+ * @property {string} status Status of the report definition.
+ * @property {string} type Type of the report definition.
+ */
+/**
+ * @typedef BatchReportDefinitionList
+ * @memberOf! youtubeAnalytics(v1beta1)
+ * @type object
+ * @property {youtubeAnalytics(v1beta1).BatchReportDefinition[]} items A list of batchReportDefinition resources that match the request criteria.
+ * @property {string} kind This value specifies the type of data included in the API response. For the list method, the kind property value is youtubeAnalytics#batchReportDefinitionList.
+ */
+/**
+ * @typedef BatchReportList
+ * @memberOf! youtubeAnalytics(v1beta1)
+ * @type object
+ * @property {youtubeAnalytics(v1beta1).BatchReport[]} items A list of batchReport resources that match the request criteria.
+ * @property {string} kind This value specifies the type of data included in the API response. For the list method, the kind property value is youtubeAnalytics#batchReportList.
+ */
+/**
+ * @typedef Group
+ * @memberOf! youtubeAnalytics(v1beta1)
+ * @type object
+ * @property {object} contentDetails 
+ * @property {string} etag 
+ * @property {string} id 
+ * @property {string} kind 
+ * @property {object} snippet 
+ */
+/**
+ * @typedef GroupItem
+ * @memberOf! youtubeAnalytics(v1beta1)
+ * @type object
+ * @property {string} etag 
+ * @property {string} groupId 
+ * @property {string} id 
+ * @property {string} kind 
+ * @property {object} resource 
+ */
+/**
+ * @typedef GroupItemListResponse
+ * @memberOf! youtubeAnalytics(v1beta1)
+ * @type object
+ * @property {string} etag 
+ * @property {youtubeAnalytics(v1beta1).GroupItem[]} items 
+ * @property {string} kind 
+ */
+/**
+ * @typedef GroupListResponse
+ * @memberOf! youtubeAnalytics(v1beta1)
+ * @type object
+ * @property {string} etag 
+ * @property {youtubeAnalytics(v1beta1).Group[]} items 
+ * @property {string} kind 
+ * @property {string} nextPageToken 
+ */
+/**
+ * @typedef ResultTable
+ * @memberOf! youtubeAnalytics(v1beta1)
+ * @type object
+ * @property {object[]} columnHeaders This value specifies information about the data returned in the rows fields. Each item in the columnHeaders list identifies a field returned in the rows value, which contains a list of comma-delimited data. The columnHeaders list will begin with the dimensions specified in the API request, which will be followed by the metrics specified in the API request. The order of both dimensions and metrics will match the ordering in the API request. For example, if the API request contains the parameters dimensions=ageGroup,gender&amp;metrics=viewerPercentage, the API response will return columns in this order: ageGroup,gender,viewerPercentage.
+ * @property {string} kind This value specifies the type of data included in the API response. For the query method, the kind property value will be youtubeAnalytics#resultTable.
+ * @property {array[]} rows The list contains all rows of the result table. Each item in the list is an array that contains comma-delimited data corresponding to a single row of data. The order of the comma-delimited data fields will match the order of the columns listed in the columnHeaders field. If no data is available for the given query, the rows element will be omitted from the response. The response for a query with the day dimension will not contain rows for the most recent days.
+ */
 module.exports = Youtubeanalytics;

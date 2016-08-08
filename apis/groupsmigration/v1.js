@@ -76,4 +76,11 @@ function Groupsmigration(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Groups
+ * @memberOf! groupsmigration(v1)
+ * @type object
+ * @property {string} kind The kind of insert resource this is.
+ * @property {string} responseCode The status of the insert request.
+ */
 module.exports = Groupsmigration;

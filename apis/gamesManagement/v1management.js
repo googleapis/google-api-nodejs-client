@@ -160,7 +160,7 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {gamesManagement(v1management).AchievementResetMultipleForAllRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -336,7 +336,7 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {gamesManagement(v1management).EventsResetMultipleForAllRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -540,7 +540,7 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {gamesManagement(v1management).QuestsResetMultipleForAllRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -740,7 +740,7 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {gamesManagement(v1management).ScoresResetMultipleForAllRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -820,4 +820,135 @@ function Gamesmanagement(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef AchievementResetAllResponse
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetAllResponse.
+ * @property {gamesManagement(v1management).AchievementResetResponse[]} results The achievement reset results.
+ */
+/**
+ * @typedef AchievementResetMultipleForAllRequest
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {string[]} achievement_ids The IDs of achievements to reset.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetMultipleForAllRequest.
+ */
+/**
+ * @typedef AchievementResetResponse
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+* @property {string} currentState The current state of the achievement. This is the same as the initial state of the achievement.
+Possible values are:  
+- &quot;HIDDEN&quot;- Achievement is hidden. 
+- &quot;REVEALED&quot; - Achievement is revealed. 
+- &quot;UNLOCKED&quot; - Achievement is unlocked.
+* @property {string} definitionId The ID of an achievement for which player state has been updated.
+* @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#achievementResetResponse.
+* @property {boolean} updateOccurred Flag to indicate if the requested update actually occurred.
+*/
+/**
+ * @typedef EventsResetMultipleForAllRequest
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {string[]} event_ids The IDs of events to reset.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#eventsResetMultipleForAllRequest.
+ */
+/**
+ * @typedef GamesPlayedResource
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {boolean} autoMatched True if the player was auto-matched with the currently authenticated user.
+ * @property {string} timeMillis The last time the player played the game in milliseconds since the epoch in UTC.
+ */
+/**
+ * @typedef GamesPlayerExperienceInfoResource
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {string} currentExperiencePoints The current number of experience points for the player.
+ * @property {gamesManagement(v1management).GamesPlayerLevelResource} currentLevel The current level of the player.
+ * @property {string} lastLevelUpTimestampMillis The timestamp when the player was leveled up, in millis since Unix epoch UTC.
+ * @property {gamesManagement(v1management).GamesPlayerLevelResource} nextLevel The next level of the player. If the current level is the maximum level, this should be same as the current level.
+ */
+/**
+ * @typedef GamesPlayerLevelResource
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {integer} level The level for the user.
+ * @property {string} maxExperiencePoints The maximum experience points for this level.
+ * @property {string} minExperiencePoints The minimum experience points for this level.
+ */
+/**
+ * @typedef HiddenPlayer
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {string} hiddenTimeMillis The time this player was hidden.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#hiddenPlayer.
+ * @property {gamesManagement(v1management).Player} player The player information.
+ */
+/**
+ * @typedef HiddenPlayerList
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {gamesManagement(v1management).HiddenPlayer[]} items The players.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#hiddenPlayerList.
+ * @property {string} nextPageToken The pagination token for the next page of results.
+ */
+/**
+ * @typedef Player
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {string} avatarImageUrl The base URL for the image that represents the player.
+ * @property {string} bannerUrlLandscape The url to the landscape mode player banner image.
+ * @property {string} bannerUrlPortrait The url to the portrait mode player banner image.
+ * @property {string} displayName The name to display for the player.
+ * @property {gamesManagement(v1management).GamesPlayerExperienceInfoResource} experienceInfo An object to represent Play Game experience information for the player.
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#player.
+ * @property {gamesManagement(v1management).GamesPlayedResource} lastPlayedWith Details about the last time this player played a multiplayer game with the currently authenticated player. Populated for PLAYED_WITH player collection members.
+ * @property {object} name An object representation of the individual components of the player&#39;s name. For some players, these fields may not be present.
+ * @property {string} originalPlayerId The player ID that was used for this player the first time they signed into the game in question. This is only populated for calls to player.get for the requesting player, only if the player ID has subsequently changed, and only to clients that support remapping player IDs.
+ * @property {string} playerId The ID of the player.
+ * @property {gamesManagement(v1management).ProfileSettings} profileSettings The player&#39;s profile settings. Controls whether or not the player&#39;s profile is visible to other players.
+ * @property {string} title The player&#39;s title rewarded for their game activities.
+ */
+/**
+ * @typedef PlayerScoreResetAllResponse
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#playerScoreResetResponse.
+ * @property {gamesManagement(v1management).PlayerScoreResetResponse[]} results The leaderboard reset results.
+ */
+/**
+ * @typedef PlayerScoreResetResponse
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+* @property {string} definitionId The ID of an leaderboard for which player state has been updated.
+* @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#playerScoreResetResponse.
+* @property {string[]} resetScoreTimeSpans The time spans of the updated score.
+Possible values are:  
+- &quot;ALL_TIME&quot; - The score is an all-time score. 
+- &quot;WEEKLY&quot; - The score is a weekly score. 
+- &quot;DAILY&quot; - The score is a daily score.
+*/
+/**
+ * @typedef ProfileSettings
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#profileSettings.
+ * @property {boolean} profileVisible The player&#39;s current profile visibility. This field is visible to both 1P and 3P APIs.
+ */
+/**
+ * @typedef QuestsResetMultipleForAllRequest
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#questsResetMultipleForAllRequest.
+ * @property {string[]} quest_ids The IDs of quests to reset.
+ */
+/**
+ * @typedef ScoresResetMultipleForAllRequest
+ * @memberOf! gamesManagement(v1management)
+ * @type object
+ * @property {string} kind Uniquely identifies the type of this resource. Value is always the fixed string gamesManagement#scoresResetMultipleForAllRequest.
+ * @property {string[]} leaderboard_ids The IDs of leaderboards to reset.
+ */
 module.exports = Gamesmanagement;

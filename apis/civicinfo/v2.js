@@ -199,4 +199,234 @@ function Civicinfo(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef AdministrationRegion
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {civicinfo(v2).AdministrativeBody} electionAdministrationBody The election administration body for this area.
+ * @property {string} id An ID for this object. IDs may change in future requests and should not be cached. Access to this field requires special access that can be requested from the Request more link on the Quotas page.
+ * @property {civicinfo(v2).AdministrationRegion} local_jurisdiction The city or county that provides election information for this voter. This object can have the same elements as state.
+ * @property {string} name The name of the jurisdiction.
+ * @property {civicinfo(v2).Source[]} sources A list of sources for this area. If multiple sources are listed the data has been aggregated from those sources.
+ */
+/**
+ * @typedef AdministrativeBody
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} absenteeVotingInfoUrl A URL provided by this administrative body for information on absentee voting.
+ * @property {string[]} addressLines 
+ * @property {string} ballotInfoUrl A URL provided by this administrative body to give contest information to the voter.
+ * @property {civicinfo(v2).SimpleAddressType} correspondenceAddress The mailing address of this administrative body.
+ * @property {string} electionInfoUrl A URL provided by this administrative body for looking up general election information.
+ * @property {civicinfo(v2).ElectionOfficial[]} electionOfficials The election officials for this election administrative body.
+ * @property {string} electionRegistrationConfirmationUrl A URL provided by this administrative body for confirming that the voter is registered to vote.
+ * @property {string} electionRegistrationUrl A URL provided by this administrative body for looking up how to register to vote.
+ * @property {string} electionRulesUrl A URL provided by this administrative body describing election rules to the voter.
+ * @property {string} hoursOfOperation A description of the hours of operation for this administrative body.
+ * @property {string} name The name of this election administrative body.
+ * @property {civicinfo(v2).SimpleAddressType} physicalAddress The physical address of this administrative body.
+ * @property {string[]} voter_services A description of the services this administrative body may provide.
+ * @property {string} votingLocationFinderUrl A URL provided by this administrative body for looking up where to vote.
+ */
+/**
+ * @typedef Candidate
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} candidateUrl The URL for the candidate&#39;s campaign web site.
+ * @property {civicinfo(v2).Channel[]} channels A list of known (social) media channels for this candidate.
+ * @property {string} email The email address for the candidate&#39;s campaign.
+ * @property {string} name The candidate&#39;s name.
+ * @property {string} orderOnBallot The order the candidate appears on the ballot for this contest.
+ * @property {string} party The full name of the party the candidate is a member of.
+ * @property {string} phone The voice phone number for the candidate&#39;s campaign office.
+ * @property {string} photoUrl A URL for a photo of the candidate.
+ */
+/**
+ * @typedef Channel
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} id The unique public identifier for the candidate&#39;s channel.
+ * @property {string} type The type of channel. The following is a list of types of channels, but is not exhaustive. More channel types may be added at a later time. One of: GooglePlus, YouTube, Facebook, Twitter
+ */
+/**
+ * @typedef Contest
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} ballotPlacement A number specifying the position of this contest on the voter&#39;s ballot.
+ * @property {civicinfo(v2).Candidate[]} candidates The candidate choices for this contest.
+ * @property {civicinfo(v2).ElectoralDistrict} district Information about the electoral district that this contest is in.
+ * @property {string} electorateSpecifications A description of any additional eligibility requirements for voting in this contest.
+ * @property {string} id An ID for this object. IDs may change in future requests and should not be cached. Access to this field requires special access that can be requested from the Request more link on the Quotas page.
+ * @property {string[]} level The levels of government of the office for this contest. There may be more than one in cases where a jurisdiction effectively acts at two different levels of government; for example, the mayor of the District of Columbia acts at &quot;locality&quot; level, but also effectively at both &quot;administrative-area-2&quot; and &quot;administrative-area-1&quot;.
+ * @property {string} numberElected The number of candidates that will be elected to office in this contest.
+ * @property {string} numberVotingFor The number of candidates that a voter may vote for in this contest.
+ * @property {string} office The name of the office for this contest.
+ * @property {string} primaryParty If this is a partisan election, the name of the party it is for.
+ * @property {string[]} referendumBallotResponses The set of ballot responses for the referendum. A ballot response represents a line on the ballot. Common examples might include &quot;yes&quot; or &quot;no&quot; for referenda, or a judge&#39;s name for a retention contest. This field is only populated for contests of type &#39;Referendum&#39;.
+ * @property {string} referendumBrief Specifies a short summary of the referendum that is typically on the ballot below the title but above the text. This field is only populated for contests of type &#39;Referendum&#39;.
+ * @property {string} referendumConStatement A statement in opposition to the referendum. It does not necessarily appear on the ballot. This field is only populated for contests of type &#39;Referendum&#39;.
+ * @property {string} referendumEffectOfAbstain Specifies what effect abstaining (not voting) on the proposition will have (i.e. whether abstaining is considered a vote against it). This field is only populated for contests of type &#39;Referendum&#39;.
+ * @property {string} referendumPassageThreshold The threshold of votes that the referendum needs in order to pass, e.g. &quot;two-thirds&quot;. This field is only populated for contests of type &#39;Referendum&#39;.
+ * @property {string} referendumProStatement A statement in favor of the referendum. It does not necessarily appear on the ballot. This field is only populated for contests of type &#39;Referendum&#39;.
+ * @property {string} referendumSubtitle A brief description of the referendum. This field is only populated for contests of type &#39;Referendum&#39;.
+ * @property {string} referendumText The full text of the referendum. This field is only populated for contests of type &#39;Referendum&#39;.
+ * @property {string} referendumTitle The title of the referendum (e.g. &#39;Proposition 42&#39;). This field is only populated for contests of type &#39;Referendum&#39;.
+ * @property {string} referendumUrl A link to the referendum. This field is only populated for contests of type &#39;Referendum&#39;.
+ * @property {string[]} roles The roles which this office fulfills.
+ * @property {civicinfo(v2).Source[]} sources A list of sources for this contest. If multiple sources are listed, the data has been aggregated from those sources.
+ * @property {string} special &quot;Yes&quot; or &quot;No&quot; depending on whether this a contest being held outside the normal election cycle.
+ * @property {string} type The type of contest. Usually this will be &#39;General&#39;, &#39;Primary&#39;, or &#39;Run-off&#39; for contests with candidates. For referenda this will be &#39;Referendum&#39;.
+ */
+/**
+ * @typedef DivisionSearchResponse
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#divisionSearchResponse&quot;.
+ * @property {civicinfo(v2).DivisionSearchResult[]} results 
+ */
+/**
+ * @typedef DivisionSearchResult
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string[]} aliases Other Open Civic Data identifiers that refer to the same division -- for example, those that refer to other political divisions whose boundaries are defined to be coterminous with this one. For example, ocd-division/country:us/state:wy will include an alias of ocd-division/country:us/state:wy/cd:1, since Wyoming has only one Congressional district.
+ * @property {string} name The name of the division.
+ * @property {string} ocdId The unique Open Civic Data identifier for this division.
+ */
+/**
+ * @typedef Election
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} electionDay Day of the election in YYYY-MM-DD format.
+ * @property {string} id The unique ID of this election.
+ * @property {string} name A displayable name for the election.
+ * @property {string} ocdDivisionId The political division of the election. Represented as an OCD Division ID. Voters within these political jurisdictions are covered by this election. This is typically a state such as ocd-division/country:us/state:ca or for the midterms or general election the entire US (i.e. ocd-division/country:us).
+ */
+/**
+ * @typedef ElectionOfficial
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} emailAddress The email address of the election official.
+ * @property {string} faxNumber The fax number of the election official.
+ * @property {string} name The full name of the election official.
+ * @property {string} officePhoneNumber The office phone number of the election official.
+ * @property {string} title The title of the election official.
+ */
+/**
+ * @typedef ElectionsQueryResponse
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {civicinfo(v2).Election[]} elections A list of available elections
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#electionsQueryResponse&quot;.
+ */
+/**
+ * @typedef ElectoralDistrict
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} id An identifier for this district, relative to its scope. For example, the 34th State Senate district would have id &quot;34&quot; and a scope of stateUpper.
+ * @property {string} name The name of the district.
+ * @property {string} scope The geographic scope of this district. If unspecified the district&#39;s geography is not known. One of: national, statewide, congressional, stateUpper, stateLower, countywide, judicial, schoolBoard, cityWide, township, countyCouncil, cityCouncil, ward, special
+ */
+/**
+ * @typedef GeographicDivision
+ * @memberOf! civicinfo(v2)
+ * @type object
+* @property {string[]} alsoKnownAs Any other valid OCD IDs that refer to the same division.
+
+Because OCD IDs are meant to be human-readable and at least somewhat predictable, there are occasionally several identifiers for a single division. These identifiers are defined to be equivalent to one another, and one is always indicated as the primary identifier. The primary identifier will be returned in ocd_id above, and any other equivalent valid identifiers will be returned in this list.
+
+For example, if this division&#39;s OCD ID is ocd-division/country:us/district:dc, this will contain ocd-division/country:us/state:dc.
+* @property {string} name The name of the division.
+* @property {integer[]} officeIndices List of indices in the offices array, one for each office elected from this division. Will only be present if includeOffices was true (or absent) in the request.
+*/
+/**
+ * @typedef Office
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} divisionId The OCD ID of the division with which this office is associated.
+ * @property {string[]} levels The levels of government of which this office is part. There may be more than one in cases where a jurisdiction effectively acts at two different levels of government; for example, the mayor of the District of Columbia acts at &quot;locality&quot; level, but also effectively at both &quot;administrative-area-2&quot; and &quot;administrative-area-1&quot;.
+ * @property {string} name The human-readable name of the office.
+ * @property {integer[]} officialIndices List of indices in the officials array of people who presently hold this office.
+ * @property {string[]} roles The roles which this office fulfills. Roles are not meant to be exhaustive, or to exactly specify the entire set of responsibilities of a given office, but are meant to be rough categories that are useful for general selection from or sorting of a list of offices.
+ * @property {civicinfo(v2).Source[]} sources A list of sources for this office. If multiple sources are listed, the data has been aggregated from those sources.
+ */
+/**
+ * @typedef Official
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {civicinfo(v2).SimpleAddressType[]} address Addresses at which to contact the official.
+ * @property {civicinfo(v2).Channel[]} channels A list of known (social) media channels for this official.
+ * @property {string[]} emails The direct email addresses for the official.
+ * @property {string} name The official&#39;s name.
+ * @property {string} party The full name of the party the official belongs to.
+ * @property {string[]} phones The official&#39;s public contact phone numbers.
+ * @property {string} photoUrl A URL for a photo of the official.
+ * @property {string[]} urls The official&#39;s public website URLs.
+ */
+/**
+ * @typedef PollingLocation
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {civicinfo(v2).SimpleAddressType} address The address of the location.
+ * @property {string} endDate The last date that this early vote site or drop off location may be used. This field is not populated for polling locations.
+ * @property {string} id An ID for this object. IDs may change in future requests and should not be cached. Access to this field requires special access that can be requested from the Request more link on the Quotas page.
+ * @property {string} name The name of the early vote site or drop off location. This field is not populated for polling locations.
+ * @property {string} notes Notes about this location (e.g. accessibility ramp or entrance to use).
+ * @property {string} pollingHours A description of when this location is open.
+ * @property {civicinfo(v2).Source[]} sources A list of sources for this location. If multiple sources are listed the data has been aggregated from those sources.
+ * @property {string} startDate The first date that this early vote site or drop off location may be used. This field is not populated for polling locations.
+ * @property {string} voterServices The services provided by this early vote site or drop off location. This field is not populated for polling locations.
+ */
+/**
+ * @typedef RepresentativeInfoData
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {object} divisions Political geographic divisions that contain the requested address.
+ * @property {civicinfo(v2).Office[]} offices Elected offices referenced by the divisions listed above. Will only be present if includeOffices was true in the request.
+ * @property {civicinfo(v2).Official[]} officials Officials holding the offices listed above. Will only be present if includeOffices was true in the request.
+ */
+/**
+ * @typedef RepresentativeInfoResponse
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {object} divisions Political geographic divisions that contain the requested address.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#representativeInfoResponse&quot;.
+ * @property {civicinfo(v2).SimpleAddressType} normalizedInput The normalized version of the requested address
+ * @property {civicinfo(v2).Office[]} offices Elected offices referenced by the divisions listed above. Will only be present if includeOffices was true in the request.
+ * @property {civicinfo(v2).Official[]} officials Officials holding the offices listed above. Will only be present if includeOffices was true in the request.
+ */
+/**
+ * @typedef SimpleAddressType
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} city The city or town for the address.
+ * @property {string} line1 The street name and number of this address.
+ * @property {string} line2 The second line the address, if needed.
+ * @property {string} line3 The third line of the address, if needed.
+ * @property {string} locationName The name of the location.
+ * @property {string} state The US two letter state abbreviation of the address.
+ * @property {string} zip The US Postal Zip Code of the address.
+ */
+/**
+ * @typedef Source
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} name The name of the data source.
+ * @property {boolean} official Whether this data comes from an official government source.
+ */
+/**
+ * @typedef VoterInfoResponse
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {civicinfo(v2).Contest[]} contests Contests that will appear on the voter&#39;s ballot.
+ * @property {civicinfo(v2).PollingLocation[]} dropOffLocations Locations where a voter is eligible to drop off a completed ballot. The voter must have received and completed a ballot prior to arriving at the location. The location may not have ballots available on the premises. These locations could be open on or before election day as indicated in the pollingHours field.
+ * @property {civicinfo(v2).PollingLocation[]} earlyVoteSites Locations where the voter is eligible to vote early, prior to election day.
+ * @property {civicinfo(v2).Election} election The election that was queried.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;civicinfo#voterInfoResponse&quot;.
+ * @property {boolean} mailOnly Specifies whether voters in the precinct vote only by mailing their ballots (with the possible option of dropping off their ballots as well).
+ * @property {civicinfo(v2).SimpleAddressType} normalizedInput The normalized version of the requested address
+ * @property {civicinfo(v2).Election[]} otherElections If no election ID was specified in the query, and there was more than one election with data for the given voter, this will contain information about the other elections that could apply.
+ * @property {civicinfo(v2).PollingLocation[]} pollingLocations Locations where the voter is eligible to vote on election day.
+ * @property {string} precinctId 
+ * @property {civicinfo(v2).AdministrationRegion[]} state Local Election Information for the state that the voter votes in. For the US, there will only be one element in this array.
+ */
 module.exports = Civicinfo;

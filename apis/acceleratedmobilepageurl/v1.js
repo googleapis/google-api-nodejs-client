@@ -51,7 +51,7 @@ function Acceleratedmobilepageurl(options) { // eslint-disable-line
      * @memberOf! acceleratedmobilepageurl(v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {acceleratedmobilepageurl(v1).BatchGetAmpUrlsRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -73,4 +73,39 @@ function Acceleratedmobilepageurl(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef AmpUrl
+ * @memberOf! acceleratedmobilepageurl(v1)
+ * @type object
+ * @property {string} ampUrl The AMP URL pointing to the publisher&#39;s web server.
+ * @property {string} originalUrl The original non-AMP URL.
+ * @property {string} cdnAmpUrl The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to the cached document in the Google AMP Cache.
+ */
+/**
+ * @typedef AmpUrlError
+ * @memberOf! acceleratedmobilepageurl(v1)
+ * @type object
+ * @property {string} originalUrl The original non-AMP URL.
+ * @property {string} errorCode The error code of an API call.
+ * @property {string} errorMessage An optional descriptive error message.
+ */
+/**
+ * @typedef BatchGetAmpUrlsRequest
+ * @memberOf! acceleratedmobilepageurl(v1)
+ * @type object
+* @property {string} lookupStrategy The lookup_strategy being requested.
+* @property {string[]} urls List of URLs to look up for the paired AMP URLs.
+The URLs are case-sensitive. Up to 50 URLs per lookup
+(see [Usage Limits](/amp/cache/reference/limits)).
+*/
+/**
+ * @typedef BatchGetAmpUrlsResponse
+ * @memberOf! acceleratedmobilepageurl(v1)
+ * @type object
+* @property {acceleratedmobilepageurl(v1).AmpUrlError[]} urlErrors The errors for requested URLs that have no AMP URL.
+* @property {acceleratedmobilepageurl(v1).AmpUrl[]} ampUrls For each URL in BatchAmpUrlsRequest, the URL response. The response might
+not be in the same order as URLs in the batch request.
+If BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated
+only once.
+*/
 module.exports = Acceleratedmobilepageurl;

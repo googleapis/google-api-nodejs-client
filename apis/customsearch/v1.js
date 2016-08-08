@@ -103,4 +103,97 @@ function Customsearch(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Context
+ * @memberOf! customsearch(v1)
+ * @type object
+ * @property {array[]} facets 
+ * @property {string} title 
+ */
+/**
+ * @typedef Promotion
+ * @memberOf! customsearch(v1)
+ * @type object
+ * @property {object[]} bodyLines 
+ * @property {string} displayLink 
+ * @property {string} htmlTitle 
+ * @property {object} image 
+ * @property {string} link 
+ * @property {string} title 
+ */
+/**
+ * @typedef Query
+ * @memberOf! customsearch(v1)
+ * @type object
+ * @property {integer} count 
+ * @property {string} cr 
+ * @property {string} cref 
+ * @property {string} cx 
+ * @property {string} dateRestrict 
+ * @property {string} disableCnTwTranslation 
+ * @property {string} exactTerms 
+ * @property {string} excludeTerms 
+ * @property {string} fileType 
+ * @property {string} filter 
+ * @property {string} gl 
+ * @property {string} googleHost 
+ * @property {string} highRange 
+ * @property {string} hl 
+ * @property {string} hq 
+ * @property {string} imgColorType 
+ * @property {string} imgDominantColor 
+ * @property {string} imgSize 
+ * @property {string} imgType 
+ * @property {string} inputEncoding 
+ * @property {string} language 
+ * @property {string} linkSite 
+ * @property {string} lowRange 
+ * @property {string} orTerms 
+ * @property {string} outputEncoding 
+ * @property {string} relatedSite 
+ * @property {string} rights 
+ * @property {string} safe 
+ * @property {string} searchTerms 
+ * @property {string} searchType 
+ * @property {string} siteSearch 
+ * @property {string} siteSearchFilter 
+ * @property {string} sort 
+ * @property {integer} startIndex 
+ * @property {integer} startPage 
+ * @property {string} title 
+ * @property {string} totalResults 
+ */
+/**
+ * @typedef Result
+ * @memberOf! customsearch(v1)
+ * @type object
+ * @property {string} cacheId 
+ * @property {string} displayLink 
+ * @property {string} fileFormat 
+ * @property {string} formattedUrl 
+ * @property {string} htmlFormattedUrl 
+ * @property {string} htmlSnippet 
+ * @property {string} htmlTitle 
+ * @property {object} image 
+ * @property {string} kind 
+ * @property {object[]} labels 
+ * @property {string} link 
+ * @property {string} mime 
+ * @property {object} pagemap 
+ * @property {string} snippet 
+ * @property {string} title 
+ */
+/**
+ * @typedef Search
+ * @memberOf! customsearch(v1)
+ * @type object
+ * @property {customsearch(v1).Context} context 
+ * @property {customsearch(v1).Result[]} items 
+ * @property {string} kind 
+ * @property {customsearch(v1).Promotion[]} promotions 
+ * @property {object} queries 
+ * @property {object} searchInformation 
+ * @property {object} spelling 
+ * @property {object} url 
+ */
 module.exports = Customsearch;

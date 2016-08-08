@@ -498,7 +498,7 @@ function Blogger(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.blogId ID of the blog to add the page to.
      * @param {boolean=} params.isDraft Whether to create the page as a draft (default: false).
-     * @param {object} params.resource Request body data
+     * @param {blogger(v3).Page} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -563,7 +563,7 @@ function Blogger(options) { // eslint-disable-line
      * @param {string} params.pageId The ID of the Page.
      * @param {boolean=} params.publish Whether a publish action should be performed when the page is updated (default: false).
      * @param {boolean=} params.revert Whether a revert action should be performed when the page is updated (default: false).
-     * @param {object} params.resource Request body data
+     * @param {blogger(v3).Page} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -653,7 +653,7 @@ function Blogger(options) { // eslint-disable-line
      * @param {string} params.pageId The ID of the Page.
      * @param {boolean=} params.publish Whether a publish action should be performed when the page is updated (default: false).
      * @param {boolean=} params.revert Whether a revert action should be performed when the page is updated (default: false).
-     * @param {object} params.resource Request body data
+     * @param {blogger(v3).Page} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -855,7 +855,7 @@ function Blogger(options) { // eslint-disable-line
      * @param {boolean=} params.fetchBody Whether the body content of the post is included with the result (default: true).
      * @param {boolean=} params.fetchImages Whether image URL metadata for each post is included in the returned result (default: false).
      * @param {boolean=} params.isDraft Whether to create the post as a draft (default: false).
-     * @param {object} params.resource Request body data
+     * @param {blogger(v3).Post} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -928,7 +928,7 @@ function Blogger(options) { // eslint-disable-line
      * @param {string} params.postId The ID of the Post.
      * @param {boolean=} params.publish Whether a publish action should be performed when the post is updated (default: false).
      * @param {boolean=} params.revert Whether a revert action should be performed when the post is updated (default: false).
-     * @param {object} params.resource Request body data
+     * @param {blogger(v3).Post} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1053,7 +1053,7 @@ function Blogger(options) { // eslint-disable-line
      * @param {string} params.postId The ID of the Post.
      * @param {boolean=} params.publish Whether a publish action should be performed when the post is updated (default: false).
      * @param {boolean=} params.revert Whether a revert action should be performed when the post is updated (default: false).
-     * @param {object} params.resource Request body data
+     * @param {blogger(v3).Post} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1107,4 +1107,182 @@ function Blogger(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Blog
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {string} customMetaData The JSON custom meta-data for the Blog
+ * @property {string} description The description of this blog. This is displayed underneath the title.
+ * @property {string} id The identifier for this resource.
+ * @property {string} kind The kind of this entry. Always blogger#blog
+ * @property {object} locale The locale this Blog is set to.
+ * @property {string} name The name of this blog. This is displayed as the title.
+ * @property {object} pages The container of pages in this blog.
+ * @property {object} posts The container of posts in this blog.
+ * @property {string} published RFC 3339 date-time when this blog was published.
+ * @property {string} selfLink The API REST URL to fetch this resource from.
+ * @property {string} status The status of the blog.
+ * @property {string} updated RFC 3339 date-time when this blog was last updated.
+ * @property {string} url The URL where this blog is published.
+ */
+/**
+ * @typedef BlogList
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {blogger(v3).BlogUserInfo[]} blogUserInfos Admin level list of blog per-user information
+ * @property {blogger(v3).Blog[]} items The list of Blogs this user has Authorship or Admin rights over.
+ * @property {string} kind The kind of this entity. Always blogger#blogList
+ */
+/**
+ * @typedef BlogPerUserInfo
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {string} blogId ID of the Blog resource
+ * @property {boolean} hasAdminAccess True if the user has Admin level access to the blog.
+ * @property {string} kind The kind of this entity. Always blogger#blogPerUserInfo
+ * @property {string} photosAlbumKey The Photo Album Key for the user when adding photos to the blog
+ * @property {string} role Access permissions that the user has for the blog (ADMIN, AUTHOR, or READER).
+ * @property {string} userId ID of the User
+ */
+/**
+ * @typedef BlogUserInfo
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {blogger(v3).Blog} blog The Blog resource.
+ * @property {blogger(v3).BlogPerUserInfo} blog_user_info Information about a User for the Blog.
+ * @property {string} kind The kind of this entity. Always blogger#blogUserInfo
+ */
+/**
+ * @typedef Comment
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {object} author The author of this Comment.
+ * @property {object} blog Data about the blog containing this comment.
+ * @property {string} content The actual content of the comment. May include HTML markup.
+ * @property {string} id The identifier for this resource.
+ * @property {object} inReplyTo Data about the comment this is in reply to.
+ * @property {string} kind The kind of this entry. Always blogger#comment
+ * @property {object} post Data about the post containing this comment.
+ * @property {string} published RFC 3339 date-time when this comment was published.
+ * @property {string} selfLink The API REST URL to fetch this resource from.
+ * @property {string} status The status of the comment (only populated for admin users)
+ * @property {string} updated RFC 3339 date-time when this comment was last updated.
+ */
+/**
+ * @typedef CommentList
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {string} etag Etag of the response.
+ * @property {blogger(v3).Comment[]} items The List of Comments for a Post.
+ * @property {string} kind The kind of this entry. Always blogger#commentList
+ * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
+ * @property {string} prevPageToken Pagination token to fetch the previous page, if one exists.
+ */
+/**
+ * @typedef Page
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {object} author The author of this Page.
+ * @property {object} blog Data about the blog containing this Page.
+ * @property {string} content The body content of this Page, in HTML.
+ * @property {string} etag Etag of the resource.
+ * @property {string} id The identifier for this resource.
+ * @property {string} kind The kind of this entity. Always blogger#page
+ * @property {string} published RFC 3339 date-time when this Page was published.
+ * @property {string} selfLink The API REST URL to fetch this resource from.
+ * @property {string} status The status of the page for admin resources (either LIVE or DRAFT).
+ * @property {string} title The title of this entity. This is the name displayed in the Admin user interface.
+ * @property {string} updated RFC 3339 date-time when this Page was last updated.
+ * @property {string} url The URL that this Page is displayed at.
+ */
+/**
+ * @typedef PageList
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {string} etag Etag of the response.
+ * @property {blogger(v3).Page[]} items The list of Pages for a Blog.
+ * @property {string} kind The kind of this entity. Always blogger#pageList
+ * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
+ */
+/**
+ * @typedef Pageviews
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {string} blogId Blog Id
+ * @property {object[]} counts The container of posts in this blog.
+ * @property {string} kind The kind of this entry. Always blogger#page_views
+ */
+/**
+ * @typedef Post
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {object} author The author of this Post.
+ * @property {object} blog Data about the blog containing this Post.
+ * @property {string} content The content of the Post. May contain HTML markup.
+ * @property {string} customMetaData The JSON meta-data for the Post.
+ * @property {string} etag Etag of the resource.
+ * @property {string} id The identifier of this Post.
+ * @property {object[]} images Display image for the Post.
+ * @property {string} kind The kind of this entity. Always blogger#post
+ * @property {string[]} labels The list of labels this Post was tagged with.
+ * @property {object} location The location for geotagged posts.
+ * @property {string} published RFC 3339 date-time when this Post was published.
+ * @property {string} readerComments Comment control and display setting for readers of this post.
+ * @property {object} replies The container of comments on this Post.
+ * @property {string} selfLink The API REST URL to fetch this resource from.
+ * @property {string} status Status of the post. Only set for admin-level requests
+ * @property {string} title The title of the Post.
+ * @property {string} titleLink The title link URL, similar to atom&#39;s related link.
+ * @property {string} updated RFC 3339 date-time when this Post was last updated.
+ * @property {string} url The URL where this Post is displayed.
+ */
+/**
+ * @typedef PostList
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {string} etag Etag of the response.
+ * @property {blogger(v3).Post[]} items The list of Posts for this Blog.
+ * @property {string} kind The kind of this entity. Always blogger#postList
+ * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
+ */
+/**
+ * @typedef PostPerUserInfo
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {string} blogId ID of the Blog that the post resource belongs to.
+ * @property {boolean} hasEditAccess True if the user has Author level access to the post.
+ * @property {string} kind The kind of this entity. Always blogger#postPerUserInfo
+ * @property {string} postId ID of the Post resource.
+ * @property {string} userId ID of the User.
+ */
+/**
+ * @typedef PostUserInfo
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {string} kind The kind of this entity. Always blogger#postUserInfo
+ * @property {blogger(v3).Post} post The Post resource.
+ * @property {blogger(v3).PostPerUserInfo} post_user_info Information about a User for the Post.
+ */
+/**
+ * @typedef PostUserInfosList
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {blogger(v3).PostUserInfo[]} items The list of Posts with User information for the post, for this Blog.
+ * @property {string} kind The kind of this entity. Always blogger#postList
+ * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
+ */
+/**
+ * @typedef User
+ * @memberOf! blogger(v3)
+ * @type object
+ * @property {string} about Profile summary information.
+ * @property {object} blogs The container of blogs for this user.
+ * @property {string} created The timestamp of when this profile was created, in seconds since epoch.
+ * @property {string} displayName The display name.
+ * @property {string} id The identifier for this User.
+ * @property {string} kind The kind of this entity. Always blogger#user
+ * @property {object} locale This user&#39;s locale
+ * @property {string} selfLink The API REST URL to fetch this resource from.
+ * @property {string} url The user&#39;s profile page.
+ */
 module.exports = Blogger;

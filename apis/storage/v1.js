@@ -251,7 +251,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).BucketAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -403,7 +403,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).BucketAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -483,7 +483,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).BucketAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -714,7 +714,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
      * @param {string} params.project A valid API project identifier.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).Bucket} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -877,7 +877,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
      * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).Bucket} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -957,7 +957,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
      * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).Bucket} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1032,7 +1032,7 @@ function Storage(options) { // eslint-disable-line
      * @memberOf! storage(v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).Channel} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1265,7 +1265,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1419,7 +1419,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1499,7 +1499,7 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1750,7 +1750,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1914,7 +1914,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2000,7 +2000,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).ObjectAccessControl} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2087,7 +2087,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).ComposeRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2189,7 +2189,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
      * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      * @param {string} params.sourceObject Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).Object} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2619,7 +2619,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).Object} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2723,7 +2723,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
      * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      * @param {string} params.sourceObject Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).Object} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2810,7 +2810,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).Object} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2891,7 +2891,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
      * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
-     * @param {object} params.resource Request body data
+     * @param {storage(v1).Channel} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2913,4 +2913,180 @@ function Storage(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Bucket
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {storage(v1).BucketAccessControl[]} acl Access controls on the bucket.
+ * @property {object[]} cors The bucket&#39;s Cross-Origin Resource Sharing (CORS) configuration.
+ * @property {storage(v1).ObjectAccessControl[]} defaultObjectAcl Default access controls to apply to new objects when no ACL is provided.
+ * @property {string} etag HTTP 1.1 Entity tag for the bucket.
+ * @property {string} id The ID of the bucket.
+ * @property {string} kind The kind of item this is. For buckets, this is always storage#bucket.
+ * @property {object} lifecycle The bucket&#39;s lifecycle configuration. See lifecycle management for more information.
+ * @property {string} location The location of the bucket. Object data for objects in the bucket resides in physical storage within this region. Defaults to US. See the developer&#39;s guide for the authoritative list.
+ * @property {object} logging The bucket&#39;s logging configuration, which defines the destination bucket and optional name prefix for the current bucket&#39;s logs.
+ * @property {string} metageneration The metadata generation of this bucket.
+ * @property {string} name The name of the bucket.
+ * @property {object} owner The owner of the bucket. This is always the project team&#39;s owner group.
+ * @property {string} projectNumber The project number of the project the bucket belongs to.
+ * @property {string} selfLink The URI of this bucket.
+ * @property {string} storageClass The bucket&#39;s storage class. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include STANDARD, NEARLINE and DURABLE_REDUCED_AVAILABILITY. Defaults to STANDARD. For more information, see storage classes.
+ * @property {string} timeCreated The creation time of the bucket in RFC 3339 format.
+ * @property {string} updated The modification time of the bucket in RFC 3339 format.
+ * @property {object} versioning The bucket&#39;s versioning configuration.
+ * @property {object} website The bucket&#39;s website configuration, controlling how the service behaves when accessing bucket contents as a web site. See the Static Website Examples for more information.
+ */
+/**
+ * @typedef BucketAccessControl
+ * @memberOf! storage(v1)
+ * @type object
+* @property {string} bucket The name of the bucket.
+* @property {string} domain The domain associated with the entity, if any.
+* @property {string} email The email address associated with the entity, if any.
+* @property {string} entity The entity holding the permission, in one of the following forms: 
+- user-userId 
+- user-email 
+- group-groupId 
+- group-email 
+- domain-domain 
+- project-team-projectId 
+- allUsers 
+- allAuthenticatedUsers Examples: 
+- The user liz@example.com would be user-liz@example.com. 
+- The group example@googlegroups.com would be group-example@googlegroups.com. 
+- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+* @property {string} entityId The ID for the entity, if any.
+* @property {string} etag HTTP 1.1 Entity tag for the access-control entry.
+* @property {string} id The ID of the access-control entry.
+* @property {string} kind The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.
+* @property {object} projectTeam The project team associated with the entity, if any.
+* @property {string} role The access permission for the entity.
+* @property {string} selfLink The link to this access-control entry.
+*/
+/**
+ * @typedef BucketAccessControls
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {storage(v1).BucketAccessControl[]} items The list of items.
+ * @property {string} kind The kind of item this is. For lists of bucket access control entries, this is always storage#bucketAccessControls.
+ */
+/**
+ * @typedef Buckets
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {storage(v1).Bucket[]} items The list of items.
+ * @property {string} kind The kind of item this is. For lists of buckets, this is always storage#buckets.
+ * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+ */
+/**
+ * @typedef Channel
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {string} address The address where notifications are delivered for this channel.
+ * @property {string} expiration Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
+ * @property {string} id A UUID or similar unique string that identifies this channel.
+ * @property {string} kind Identifies this as a notification channel used to watch for changes to a resource. Value: the fixed string &quot;api#channel&quot;.
+ * @property {object} params Additional parameters controlling delivery channel behavior. Optional.
+ * @property {boolean} payload A Boolean value to indicate whether payload is wanted. Optional.
+ * @property {string} resourceId An opaque ID that identifies the resource being watched on this channel. Stable across different API versions.
+ * @property {string} resourceUri A version-specific identifier for the watched resource.
+ * @property {string} token An arbitrary string delivered to the target address with each notification delivered over this channel. Optional.
+ * @property {string} type The type of delivery mechanism used for this channel.
+ */
+/**
+ * @typedef ComposeRequest
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {storage(v1).Object} destination Properties of the resulting object.
+ * @property {string} kind The kind of item this is.
+ * @property {object[]} sourceObjects The list of source objects that will be concatenated into a single object.
+ */
+/**
+ * @typedef Object
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {storage(v1).ObjectAccessControl[]} acl Access controls on the object.
+ * @property {string} bucket The name of the bucket containing this object.
+ * @property {string} cacheControl Cache-Control directive for the object data. If omitted, and the object is accessible to all anonymous users, the default will be public, max-age=3600.
+ * @property {integer} componentCount Number of underlying components that make up this object. Components are accumulated by compose operations.
+ * @property {string} contentDisposition Content-Disposition of the object data.
+ * @property {string} contentEncoding Content-Encoding of the object data.
+ * @property {string} contentLanguage Content-Language of the object data.
+ * @property {string} contentType Content-Type of the object data. If contentType is not specified, object downloads will be served as application/octet-stream.
+ * @property {string} crc32c CRC32c checksum, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. For more information about using the CRC32c checksum, see Hashes and ETags: Best Practices.
+ * @property {object} customerEncryption Metadata of customer-supplied encryption key, if the object is encrypted by such a key.
+ * @property {string} etag HTTP 1.1 Entity tag for the object.
+ * @property {string} generation The content generation of this object. Used for object versioning.
+ * @property {string} id The ID of the object.
+ * @property {string} kind The kind of item this is. For objects, this is always storage#object.
+ * @property {string} md5Hash MD5 hash of the data; encoded using base64. For more information about using the MD5 hash, see Hashes and ETags: Best Practices.
+ * @property {string} mediaLink Media download link.
+ * @property {object} metadata User-provided metadata, in key/value pairs.
+ * @property {string} metageneration The version of the metadata for this object at this generation. Used for preconditions and for detecting changes in metadata. A metageneration number is only meaningful in the context of a particular generation of a particular object.
+ * @property {string} name The name of this object. Required if not specified by URL parameter.
+ * @property {object} owner The owner of the object. This will always be the uploader of the object.
+ * @property {string} selfLink The link to this object.
+ * @property {string} size Content-Length of the data in bytes.
+ * @property {string} storageClass Storage class of the object.
+ * @property {string} timeCreated The creation time of the object in RFC 3339 format.
+ * @property {string} timeDeleted The deletion time of the object in RFC 3339 format. Will be returned if and only if this version of the object has been deleted.
+ * @property {string} updated The modification time of the object metadata in RFC 3339 format.
+ */
+/**
+ * @typedef ObjectAccessControl
+ * @memberOf! storage(v1)
+ * @type object
+* @property {string} bucket The name of the bucket.
+* @property {string} domain The domain associated with the entity, if any.
+* @property {string} email The email address associated with the entity, if any.
+* @property {string} entity The entity holding the permission, in one of the following forms: 
+- user-userId 
+- user-email 
+- group-groupId 
+- group-email 
+- domain-domain 
+- project-team-projectId 
+- allUsers 
+- allAuthenticatedUsers Examples: 
+- The user liz@example.com would be user-liz@example.com. 
+- The group example@googlegroups.com would be group-example@googlegroups.com. 
+- To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+* @property {string} entityId The ID for the entity, if any.
+* @property {string} etag HTTP 1.1 Entity tag for the access-control entry.
+* @property {string} generation The content generation of the object.
+* @property {string} id The ID of the access-control entry.
+* @property {string} kind The kind of item this is. For object access control entries, this is always storage#objectAccessControl.
+* @property {string} object The name of the object.
+* @property {object} projectTeam The project team associated with the entity, if any.
+* @property {string} role The access permission for the entity.
+* @property {string} selfLink The link to this access-control entry.
+*/
+/**
+ * @typedef ObjectAccessControls
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {any[]} items The list of items.
+ * @property {string} kind The kind of item this is. For lists of object access control entries, this is always storage#objectAccessControls.
+ */
+/**
+ * @typedef Objects
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {storage(v1).Object[]} items The list of items.
+ * @property {string} kind The kind of item this is. For lists of objects, this is always storage#objects.
+ * @property {string} nextPageToken The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+ * @property {string[]} prefixes The list of prefixes of objects matching-but-not-listed up to and including the requested delimiter.
+ */
+/**
+ * @typedef RewriteResponse
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {boolean} done true if the copy is finished; otherwise, false if the copy is in progress. This property is always present in the response.
+ * @property {string} kind The kind of item this is.
+ * @property {string} objectSize The total size of the object being copied in bytes. This property is always present in the response.
+ * @property {storage(v1).Object} resource A resource containing the metadata for the copied-to object. This property is present in the response only when copying completes.
+ * @property {string} rewriteToken A token to use in subsequent requests to continue copying data. This token is present in the response only when there is more data to copy.
+ * @property {string} totalBytesRewritten The total bytes written so far, which can be used to provide a waiting user with a progress indicator. This property is always present in the response.
+ */
 module.exports = Storage;

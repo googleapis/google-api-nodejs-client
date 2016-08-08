@@ -138,4 +138,27 @@ function Androidpublisher(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef InappPurchase
+ * @memberOf! androidpublisher(v1.1)
+ * @type object
+* @property {integer} consumptionState The consumption state of the inapp product. Possible values are:  
+- Yet to be consumed 
+- Consumed
+* @property {string} developerPayload A developer-specified string that contains supplemental information about an order.
+* @property {string} kind This kind represents an inappPurchase object in the androidpublisher service.
+* @property {integer} purchaseState The purchase state of the order. Possible values are:  
+- Purchased 
+- Cancelled
+* @property {string} purchaseTime The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).
+*/
+/**
+ * @typedef SubscriptionPurchase
+ * @memberOf! androidpublisher(v1.1)
+ * @type object
+ * @property {boolean} autoRenewing Whether the subscription will automatically be renewed when it reaches its current expiry time.
+ * @property {string} initiationTimestampMsec Time at which the subscription was granted, in milliseconds since the Epoch.
+ * @property {string} kind This kind represents a subscriptionPurchase object in the androidpublisher service.
+ * @property {string} validUntilTimestampMsec Time at which the subscription will expire, in milliseconds since the Epoch.
+ */
 module.exports = Androidpublisher;

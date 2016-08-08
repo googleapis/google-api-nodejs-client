@@ -53,7 +53,7 @@ function Cloudbuild(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.projectId ID of the project.
-       * @param {object} params.resource Request body data
+       * @param {cloudbuild(v1).Build} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -142,7 +142,7 @@ function Cloudbuild(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId ID of the project.
        * @param {string} params.id ID of the build.
-       * @param {object} params.resource Request body data
+       * @param {cloudbuild(v1).CancelBuildRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -227,4 +227,210 @@ function Cloudbuild(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Status
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+*/
+/**
+ * @typedef BuildOperationMetadata
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {cloudbuild(v1).Build} build The build that the operation is tracking.
+ */
+/**
+ * @typedef Source
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {cloudbuild(v1).StorageSource} storageSource If provided, get the source from this location in in Google Cloud
+Storage.
+* @property {cloudbuild(v1).RepoSource} repoSource If provided, get source from this location in a Cloud Repo.
+*/
+/**
+ * @typedef SourceProvenance
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {cloudbuild(v1).RepoSource} resolvedRepoSource A copy of the build&#39;s source.repo_source, if exists, with any
+revisions resolved.
+* @property {cloudbuild(v1).StorageSource} resolvedStorageSource A copy of the build&#39;s source.storage_source, if exists, with any
+generations resolved.
+* @property {object} fileHashes Hash(es) of the build source, which can be used to verify that the original
+source integrity was maintained in the build. Note that FileHashes will
+only be populated if BuildOptions has requested a SourceProvenanceHash.
+
+The keys to this map are file paths used as build source and the values
+contain the hash values for those files.
+
+If the build source came in a single package such as a gzipped tarfile
+(.tar.gz), the FileHash will be for the single path to that file.
+@OutputOnly
+*/
+/**
+ * @typedef Operation
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {cloudbuild(v1).Status} error The error result of the operation in case of failure.
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
+* @property {object} metadata Service-specific metadata associated with the operation.  It typically
+contains progress information and common metadata such as create time.
+Some services might not provide such metadata.  Any method that returns a
+long-running operation should document the metadata type, if any.
+* @property {object} response The normal response of the operation in case of success.  If the original
+method returns no data on success, such as `Delete`, the response is
+`google.protobuf.Empty`.  If the original method is standard
+`Get`/`Create`/`Update`, the response should be the resource.  For other
+methods, the response should have the type `XxxResponse`, where `Xxx`
+is the original method name.  For example, if the original method name
+is `TakeSnapshot()`, the inferred response type is
+`TakeSnapshotResponse`.
+* @property {string} name The server-assigned name, which is only unique within the same service that
+originally returns it. If you use the default HTTP mapping, the
+`name` should have the format of `operations/some/unique/name`.
+*/
+/**
+ * @typedef BuiltImage
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {string} digest Docker Registry 2.0 digest.
+* @property {string} name Name used to push the container image to Google Container Registry, as
+presented to `docker push`.
+*/
+/**
+ * @typedef Hash
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {string} value The hash value.
+ * @property {string} type The type of hash that was performed.
+ */
+/**
+ * @typedef StorageSource
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {string} bucket Google Cloud Storage bucket containing source (see
+[Bucket Name
+Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+* @property {string} generation Google Cloud Storage generation for the object. If the generation is
+omitted, the latest generation will be used.
+* @property {string} object Google Cloud Storage object containing source.
+
+This object must be a gzipped archive file (.tar.gz) containing source to
+build.
+*/
+/**
+ * @typedef Results
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {cloudbuild(v1).BuiltImage[]} images Images that were built as a part of the build.
+ * @property {string[]} buildStepImages List of build step digests, in order corresponding to build step indices.
+ */
+/**
+ * @typedef Build
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {string} id Unique identifier of the build.
+@OutputOnly
+* @property {cloudbuild(v1).SourceProvenance} sourceProvenance A permanent fixed identifier for source.
+@OutputOnly
+* @property {cloudbuild(v1).Results} results Results of the build.
+@OutputOnly
+* @property {string} status Status of the build.
+@OutputOnly
+* @property {cloudbuild(v1).BuildOptions} options Special options for this build.
+* @property {string} finishTime Time at which execution of the build was finished.
+@OutputOnly
+* @property {string} timeout Amount of time that this build should be allowed to run, to second
+granularity. If this amount of time elapses, work on the build will cease
+and the build status will be TIMEOUT.
+
+Default time is ten minutes.
+* @property {cloudbuild(v1).BuildStep[]} steps Describes the operations to be performed on the workspace.
+* @property {cloudbuild(v1).Source} source Describes where to find the source files to build.
+* @property {string} createTime Time at which the build was created.
+@OutputOnly
+* @property {string} logUrl URL to logs for this build in Google Cloud Logging.
+@OutputOnly
+* @property {string} statusDetail Customer-readable message about the current status.
+@OutputOnly
+* @property {string[]} images List of images expected to be built and pushed to Google Container
+Registry. If an image is listed here and the image is not produced by
+one of the build steps, the build will fail. Any images present when
+the build steps are complete will be pushed to Container Registry.
+* @property {string} startTime Time at which execution of the build was started.
+@OutputOnly
+* @property {string} logsBucket Google Cloud Storage bucket where logs should be written (see
+[Bucket Name
+Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.
+* @property {string} projectId ID of the project.
+@OutputOnly.
+*/
+/**
+ * @typedef CancelBuildRequest
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ */
+/**
+ * @typedef FileHashes
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {cloudbuild(v1).Hash[]} fileHash Collection of file hashes.
+ */
+/**
+ * @typedef ListOperationsResponse
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {cloudbuild(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+/**
+ * @typedef RepoSource
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {string} repoName Name of the repo. If omitted, the name &quot;default&quot; is assumed.
+* @property {string} tagName Name of the tag to build.
+* @property {string} projectId ID of the project that owns the repo. If omitted, the project ID requesting
+the build is assumed.
+* @property {string} branchName Name of the branch to build.
+* @property {string} commitSha Explicit commit SHA to build.
+*/
+/**
+ * @typedef BuildStep
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {string} id Optional unique identifier for this build step, used in wait_for to
+reference this build step as a dependency.
+* @property {string[]} env Additional environment variables to set for this step&#39;s container.
+* @property {string[]} waitFor The ID(s) of the step(s) that this build step depends on.
+This build step will not start until all the build steps in wait_for
+have completed successfully. If wait_for is empty, this build step will
+start when all previous build steps in the Build.Steps list have completed
+successfully.
+* @property {string[]} args Command-line arguments to use when running this step&#39;s container.
+* @property {string} name Name of the container image to use for creating this stage in the
+pipeline, as presented to `docker pull`.
+* @property {string} dir Working directory (relative to project source root) to use when running
+this operation&#39;s container.
+*/
+/**
+ * @typedef BuildOptions
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {string[]} sourceProvenanceHash Requested hash for SourceProvenance.
+ * @property {string} requestedVerifyOption Options for a verifiable build with details uploaded to the Analysis API.
+ */
+/**
+ * @typedef ListBuildsResponse
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {string} nextPageToken Token to receive the next page of results.
+ * @property {cloudbuild(v1).Build[]} builds Builds will be sorted by create_time, descending.
+ */
 module.exports = Cloudbuild;

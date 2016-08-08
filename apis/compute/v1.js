@@ -343,7 +343,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Address} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -754,7 +754,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Autoscaler} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -923,7 +923,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.autoscaler Name of the autoscaler to update.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Autoscaler} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1003,7 +1003,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.autoscaler Name of the autoscaler to update.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Autoscaler} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1238,7 +1238,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendService Name of the BackendService resource to which the queried instance belongs.
      * @param {string} params.project 
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).ResourceGroupReference} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1313,7 +1313,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).BackendService} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1474,7 +1474,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendService Name of the BackendService resource to update.
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).BackendService} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1553,7 +1553,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendService Name of the BackendService resource to update.
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).BackendService} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1974,7 +1974,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.disk Name of the persistent disk to snapshot.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Snapshot} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2214,7 +2214,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.sourceImage Optional. Source image to restore onto a disk.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Disk} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2383,7 +2383,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.disk The name of the persistent disk.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).DisksResizeRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2614,7 +2614,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Firewall} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2775,7 +2775,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.firewall Name of the firewall rule to update.
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Firewall} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -2854,7 +2854,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.firewall Name of the firewall rule to update.
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Firewall} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3179,7 +3179,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).ForwardingRule} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3348,7 +3348,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.forwardingRule Name of the ForwardingRule resource in which target is to be set.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetReference} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3579,7 +3579,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Address} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -3892,7 +3892,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).ForwardingRule} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4053,7 +4053,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.forwardingRule Name of the ForwardingRule resource in which target is to be set.
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetReference} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4604,7 +4604,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).HttpHealthCheck} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4765,7 +4765,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).HttpHealthCheck} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -4844,7 +4844,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).HttpHealthCheck} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5075,7 +5075,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).HttpsHealthCheck} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5236,7 +5236,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).HttpsHealthCheck} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5315,7 +5315,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).HttpsHealthCheck} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5474,7 +5474,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.image Image name.
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).DeprecationStatus} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5701,7 +5701,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Image} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -5870,7 +5870,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceGroupManagersAbandonInstancesRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6115,7 +6115,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceGroupManagersDeleteInstancesRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6274,7 +6274,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where you want to create the managed instance group.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceGroupManager} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6523,7 +6523,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceGroupManagersRecreateInstancesRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6692,7 +6692,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceGroupManagersSetInstanceTemplateRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6775,7 +6775,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceGroupManagersSetTargetPoolsRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -6862,7 +6862,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroup The name of the instance group where you are adding instances.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceGroupsAddInstancesRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7183,7 +7183,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where you want to create the instance group.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceGroup} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7362,7 +7362,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceGroupsListInstancesRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7445,7 +7445,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroup The name of the instance group where the specified instances will be removed.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceGroupsRemoveInstancesRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7528,7 +7528,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroup The name of the instance group where the named ports are updated.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceGroupsSetNamedPortsRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7759,7 +7759,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceTemplate} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -7932,7 +7932,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.networkInterface The name of the network interface to add to this instance.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).AccessConfig} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8097,7 +8097,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance The instance name for this request.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).AttachedDisk} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8589,7 +8589,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Instance} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -8926,7 +8926,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstancesSetMachineTypeRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9009,7 +9009,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Metadata} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9092,7 +9092,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Instance name.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Scheduling} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9175,7 +9175,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Tags} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9338,7 +9338,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance resource to start.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstancesStartWithEncryptionKeyRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -9981,7 +9981,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Network} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10214,7 +10214,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).DiskMoveRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10289,7 +10289,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceMoveRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10364,7 +10364,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Metadata} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -10439,7 +10439,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).UsageExportLocation} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11256,7 +11256,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Router} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11425,7 +11425,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to update.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Router} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11456,7 +11456,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to query.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Router} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11539,7 +11539,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to update.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Router} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -11770,7 +11770,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Route} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -12321,7 +12321,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).SslCertificate} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -12728,7 +12728,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).Subnetwork} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13045,7 +13045,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetHttpProxy} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13206,7 +13206,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpProxy Name of the TargetHttpProxy to set a URL map for.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).UrlMapReference} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13437,7 +13437,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetHttpsProxy} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13598,7 +13598,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetHttpsProxiesSetSslCertificatesRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -13677,7 +13677,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource whose URL map is to be set.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).UrlMapReference} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14002,7 +14002,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone scoping this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetInstance} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14175,7 +14175,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the target pool to add a health check to.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetPoolsAddHealthCheckRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14258,7 +14258,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to add instances to.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetPoolsAddInstanceRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14583,7 +14583,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to which the queried instance belongs.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).InstanceReference} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14662,7 +14662,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetPool} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14831,7 +14831,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.targetPool Name of the target pool to remove health checks from.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetPoolsRemoveHealthCheckRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14914,7 +14914,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to remove instances from.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetPoolsRemoveInstanceRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -14998,7 +14998,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to set a backup pool for.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetReference} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15323,7 +15323,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).TargetVpnGateway} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15640,7 +15640,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).UrlMap} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15719,7 +15719,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap scoping this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).CacheInvalidationRule} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15880,7 +15880,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to update.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).UrlMap} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -15959,7 +15959,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to update.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).UrlMap} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -16038,7 +16038,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to be validated as.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).UrlMapsValidateRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -16363,7 +16363,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
-     * @param {object} params.resource Request body data
+     * @param {compute(v1).VpnTunnel} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -16883,4 +16883,1917 @@ function Compute(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef AccessConfig
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} kind [Output Only] Type of the resource. Always compute#accessConfig for access configs.
+ * @property {string} name Name of this access configuration.
+ * @property {string} natIP An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
+ * @property {string} type The type of configuration. The default and only option is ONE_TO_ONE_NAT.
+ */
+/**
+ * @typedef Address
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} address The static external IP address represented by this resource.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#address for addresses.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} status [Output Only] The status of the address, which can be either IN_USE or RESERVED. An address that is RESERVED is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
+ * @property {string[]} users [Output Only] The URLs of the resources that are using this address.
+ */
+/**
+ * @typedef AddressAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items [Output Only] A map of scoped address lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#addressAggregatedList for aggregated lists of addresses.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef AddressList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Address[]} items [Output Only] A list of addresses.
+ * @property {string} kind [Output Only] Type of resource. Always compute#addressList for lists of addresses.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef AddressesScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).Address[]} addresses [Output Only] List of addresses contained in this scope.
+ * @property {object} warning [Output Only] Informational warning which replaces the list of addresses when the list is empty.
+ */
+/**
+ * @typedef AttachedDisk
+ * @memberOf! compute(v1)
+ * @type object
+* @property {boolean} autoDelete Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
+* @property {boolean} boot Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
+* @property {string} deviceName Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance.
+
+If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disks-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
+* @property {compute(v1).CustomerEncryptionKey} diskEncryptionKey Encrypts or decrypts a disk using a customer-supplied encryption key.
+
+If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key.
+
+If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance.
+
+If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
+
+Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
+* @property {integer} index Assigns a zero-based index to this disk, where 0 is reserved for the boot disk. For example, if you have many disks attached to an instance, each disk would have a unique index number. If not specified, the server will choose an appropriate value.
+* @property {compute(v1).AttachedDiskInitializeParams} initializeParams [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance.
+
+This property is mutually exclusive with the source property; you can only define one or the other, but not both.
+* @property {string} interface Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
+* @property {string} kind [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
+* @property {string[]} licenses [Output Only] Any valid publicly visible licenses.
+* @property {string} mode The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
+* @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks. Note that for InstanceTemplate, it is just disk name, not URL for the disk.
+* @property {string} type Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT.
+*/
+/**
+ * @typedef AttachedDiskInitializeParams
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} diskName Specifies the disk name. If not specified, the default is to use the name of the instance.
+* @property {string} diskSizeGb Specifies the size of the disk in base-2 GB.
+* @property {string} diskType Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example:
+
+https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard 
+
+Other values include pd-ssd and local-ssd. If you define this field, you can provide either the full or partial URL. For example, the following are valid values:  
+- https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType 
+- projects/project/zones/zone/diskTypes/diskType 
+- zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
+* @property {string} sourceImage The source image used to create this disk. If the source image is deleted, this field will not be set.
+
+To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:
+
+projects/debian-cloud/global/images/family/debian-8 
+
+Alternatively, use a specific version of a public operating system image:
+
+projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD 
+
+To create a disk with a private image that you created, specify the image name in the following format:
+
+global/images/my-private-image 
+
+You can also specify a private image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
+
+global/images/family/my-private-family
+* @property {compute(v1).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
+
+Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
+*/
+/**
+ * @typedef Autoscaler
+ * @memberOf! compute(v1)
+ * @type object
+* @property {compute(v1).AutoscalingPolicy} autoscalingPolicy The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
+
+If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.8 or 80%.
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output Only] Type of the resource. Always compute#autoscaler for autoscalers.
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} target URL of the managed instance group that this autoscaler will scale.
+* @property {string} zone [Output Only] URL of the zone where the instance group resides.
+*/
+/**
+ * @typedef AutoscalerAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items A map of scoped autoscaler lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#autoscalerAggregatedList for aggregated lists of autoscalers.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef AutoscalerList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Autoscaler[]} items A list of Autoscaler resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#autoscalerList for lists of autoscalers.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef AutoscalersScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).Autoscaler[]} autoscalers [Output Only] List of autoscalers contained in this scope.
+ * @property {object} warning [Output Only] Informational warning which replaces the list of autoscalers when the list is empty.
+ */
+/**
+ * @typedef AutoscalingPolicy
+ * @memberOf! compute(v1)
+ * @type object
+* @property {integer} coolDownPeriodSec The number of seconds that the autoscaler should wait before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds.
+
+Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
+* @property {compute(v1).AutoscalingPolicyCpuUtilization} cpuUtilization Defines the CPU utilization policy that allows the autoscaler to scale based on the average CPU utilization of a managed instance group.
+* @property {compute(v1).AutoscalingPolicyCustomMetricUtilization[]} customMetricUtilizations Configuration parameters of autoscaling based on a custom metric.
+* @property {compute(v1).AutoscalingPolicyLoadBalancingUtilization} loadBalancingUtilization Configuration parameters of autoscaling based on load balancer.
+* @property {integer} maxNumReplicas The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas.
+* @property {integer} minNumReplicas The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. If not provided, autoscaler will choose a default value depending on maximum number of instances allowed.
+*/
+/**
+ * @typedef AutoscalingPolicyCpuUtilization
+ * @memberOf! compute(v1)
+ * @type object
+* @property {number} utilizationTarget The target CPU utilization that the autoscaler should maintain. Must be a float value in the range (0, 1]. If not specified, the default is 0.8.
+
+If the CPU level is below the target utilization, the autoscaler scales down the number of instances until it reaches the minimum number of instances you specified or until the average CPU of your instances reaches the target utilization.
+
+If the average CPU is above the target utilization, the autoscaler scales up until it reaches the maximum number of instances you specified or until the average utilization reaches the target utilization.
+*/
+/**
+ * @typedef AutoscalingPolicyCustomMetricUtilization
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} metric The identifier of the Cloud Monitoring metric. The metric cannot have negative values and should be a utilization metric, which means that the number of virtual machines handling requests should increase or decrease proportionally to the metric. The metric must also have a label of compute.googleapis.com/resource_id with the value of the instance&#39;s unique ID, although this alone does not guarantee that the metric is valid.
+
+For example, the following is a valid metric:
+compute.googleapis.com/instance/network/received_bytes_count
+
+
+The following is not a valid metric because it does not increase or decrease based on usage:
+compute.googleapis.com/instance/cpu/reserved_cores
+* @property {number} utilizationTarget Target value of the metric which autoscaler should maintain. Must be a positive value.
+* @property {string} utilizationTargetType Defines how target utilization value is expressed for a Cloud Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE. If not specified, the default is GAUGE.
+*/
+/**
+ * @typedef AutoscalingPolicyLoadBalancingUtilization
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {number} utilizationTarget Fraction of backend capacity utilization (set in HTTP(s) load balancing configuration) that autoscaler should maintain. Must be a positive float value. If not defined, the default is 0.8.
+ */
+/**
+ * @typedef Backend
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} balancingMode Specifies the balancing mode for this backend. For global HTTP(S) load balancing, the default is UTILIZATION. Valid values are UTILIZATION and RATE.
+
+This cannot be used for internal load balancing.
+* @property {number} capacityScaler A multiplier applied to the group&#39;s maximum servicing capacity (either UTILIZATION or RATE). Default value is 1, which means the group will serve up to 100% of its configured CPU or RPS (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available CPU or RPS. Valid range is [0.0,1.0].
+
+This cannot be used for internal load balancing.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} group The fully-qualified URL of a zonal Instance Group resource. This instance group defines the list of instances that serve traffic. Member virtual machine instances from each instance group must live in the same zone as the instance group itself. No two backends in a backend service are allowed to use same Instance Group resource.
+
+Note that you must specify an Instance Group resource using the fully-qualified URL, rather than a partial URL.
+
+When the BackendService has load balancing scheme INTERNAL, the instance group must be in a zone within the same region as the BackendService.
+* @property {integer} maxRate The max requests per second (RPS) of the group. Can be used with either RATE or UTILIZATION balancing modes, but required if RATE mode. For RATE mode, either maxRate or maxRatePerInstance must be set.
+
+This cannot be used for internal load balancing.
+* @property {number} maxRatePerInstance The max requests per second (RPS) that a single backend instance can handle.This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerInstance must be set.
+
+This cannot be used for internal load balancing.
+* @property {number} maxUtilization Used when balancingMode is UTILIZATION. This ratio defines the CPU utilization target for the group. The default is 0.8. Valid range is [0.0, 1.0].
+
+This cannot be used for internal load balancing.
+*/
+/**
+ * @typedef BackendService
+ * @memberOf! compute(v1)
+ * @type object
+* @property {integer} affinityCookieTtlSec Lifetime of cookies in seconds if session_affinity is GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts only until the end of the browser session (or equivalent). The maximum allowed value for TTL is one day.
+
+When the load balancing scheme is INTERNAL, this field is not used.
+* @property {compute(v1).Backend[]} backends The list of backends that serve this BackendService.
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {boolean} enableCDN If true, enable Cloud CDN for this BackendService.
+
+When the load balancing scheme is INTERNAL, this field is not used.
+* @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a BackendService. An up-to-date fingerprint must be provided in order to update the BackendService.
+* @property {string[]} healthChecks The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required.
+
+For internal load balancing, a URL to a HealthCheck resource must be specified instead.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output Only] Type of resource. Always compute#backendService for backend services.
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {integer} port Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.
+
+This cannot be used for internal load balancing.
+* @property {string} portName Name of backend port. The same name should appear in the instance groups referenced by this service. Required when the load balancing scheme is EXTERNAL.
+
+When the load balancing scheme is INTERNAL, this field is not used.
+* @property {string} protocol The protocol this BackendService uses to communicate with backends.
+
+Possible values are HTTP, HTTPS, HTTP2, TCP and SSL. The default is HTTP.
+
+For internal load balancing, the possible values are TCP and UDP, and the default is TCP.
+* @property {string} region [Output Only] URL of the region where the regional backend service resides. This field is not applicable to global backend services.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} sessionAffinity Type of session affinity to use. The default is NONE.
+
+When the load balancing scheme is EXTERNAL, can be NONE, CLIENT_IP, or GENERATED_COOKIE.
+
+When the load balancing scheme is INTERNAL, can be NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.
+
+When the protocol is UDP, this field is not used.
+* @property {integer} timeoutSec How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds.
+*/
+/**
+ * @typedef BackendServiceGroupHealth
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).HealthStatus[]} healthStatus 
+ * @property {string} kind [Output Only] Type of resource. Always compute#backendServiceGroupHealth for the health of backend services.
+ */
+/**
+ * @typedef BackendServiceList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).BackendService[]} items A list of BackendService resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#backendServiceList for lists of backend services.
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef CacheInvalidationRule
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} path 
+ */
+/**
+ * @typedef CustomerEncryptionKey
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} rawKey Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.
+ * @property {string} sha256 [Output only] The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource.
+ */
+/**
+ * @typedef CustomerEncryptionKeyProtectedDisk
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).CustomerEncryptionKey} diskEncryptionKey Decrypts data associated with the disk with a customer-supplied encryption key.
+ * @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks.
+ */
+/**
+ * @typedef DeprecationStatus
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} deleted An optional RFC3339 timestamp on or after which the deprecation state of this resource will be changed to DELETED.
+ * @property {string} deprecated An optional RFC3339 timestamp on or after which the deprecation state of this resource will be changed to DEPRECATED.
+ * @property {string} obsolete An optional RFC3339 timestamp on or after which the deprecation state of this resource will be changed to OBSOLETE.
+ * @property {string} replacement The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
+ * @property {string} state The deprecation state of this resource. This can be DEPRECATED, OBSOLETE, or DELETED. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
+ */
+/**
+ * @typedef Disk
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {compute(v1).CustomerEncryptionKey} diskEncryptionKey Encrypts the disk using a customer-supplied encryption key.
+
+After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot or an image, or to attach the disk to a virtual machine).
+
+Customer-supplied encryption keys do not protect access to metadata of the disk.
+
+If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output Only] Type of the resource. Always compute#disk for disks.
+* @property {string} lastAttachTimestamp [Output Only] Last attach timestamp in RFC3339 text format.
+* @property {string} lastDetachTimestamp [Output Only] Last detach timestamp in RFC3339 text format.
+* @property {string[]} licenses Any applicable publicly visible licenses.
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} options Internal use only.
+* @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
+* @property {string} sizeGb Size of the persistent disk, specified in GB. You can specify this field when creating a persistent disk using the sourceImage or sourceSnapshot parameter, or specify it alone to create an empty persistent disk.
+
+If you specify this field along with sourceImage or sourceSnapshot, the value of sizeGb must not be less than the size of the sourceImage or the size of the snapshot.
+* @property {string} sourceImage The source image used to create this disk. If the source image is deleted, this field will not be set.
+
+To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:
+
+projects/debian-cloud/global/images/family/debian-8 
+
+Alternatively, use a specific version of a public operating system image:
+
+projects/debian-cloud/global/images/debian-8-jessie-vYYYYMMDD 
+
+To create a disk with a private image that you created, specify the image name in the following format:
+
+global/images/my-private-image 
+
+You can also specify a private image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
+
+global/images/family/my-private-family
+* @property {compute(v1).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
+* @property {string} sourceImageId [Output Only] The ID value of the image used to create this disk. This value identifies the exact image that was used to create this persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated under the same name, the source image ID would identify the exact version of the image that was used.
+* @property {string} sourceSnapshot The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values:  
+- https://www.googleapis.com/compute/v1/projects/project/global/snapshots/snapshot 
+- projects/project/global/snapshots/snapshot 
+- global/snapshots/snapshot
+* @property {compute(v1).CustomerEncryptionKey} sourceSnapshotEncryptionKey The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.
+* @property {string} sourceSnapshotId [Output Only] The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
+* @property {string} status [Output Only] The status of disk creation. Applicable statuses includes: CREATING, FAILED, READY, RESTORING.
+* @property {string} type URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk.
+* @property {string[]} users [Output Only] Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
+* @property {string} zone [Output Only] URL of the zone where the disk resides.
+*/
+/**
+ * @typedef DiskAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items [Output Only] A map of scoped disk lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#diskAggregatedList for aggregated lists of persistent disks.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef DiskList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Disk[]} items [Output Only] A list of persistent disks.
+ * @property {string} kind [Output Only] Type of resource. Always compute#diskList for lists of disks.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef DiskMoveRequest
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} destinationZone The URL of the destination zone to move the disk. This can be a full or partial URL. For example, the following are all valid URLs to a zone:  
+- https://www.googleapis.com/compute/v1/projects/project/zones/zone 
+- projects/project/zones/zone 
+- zones/zone
+* @property {string} targetDisk The URL of the target disk to move. This can be a full or partial URL. For example, the following are all valid URLs to a disk:  
+- https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk 
+- projects/project/zones/zone/disks/disk 
+- zones/zone/disks/disk
+*/
+/**
+ * @typedef DiskType
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} defaultDiskSizeGb [Output Only] Server-defined default disk size in GB.
+ * @property {compute(v1).DeprecationStatus} deprecated [Output Only] The deprecation status associated with this disk type.
+ * @property {string} description [Output Only] An optional description of this resource.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#diskType for disk types.
+ * @property {string} name [Output Only] Name of the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} validDiskSize [Output Only] An optional textual description of the valid disk size, such as &quot;10GB-10TB&quot;.
+ * @property {string} zone [Output Only] URL of the zone where the disk type resides.
+ */
+/**
+ * @typedef DiskTypeAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items [Output Only] A map of scoped disk type lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#diskTypeAggregatedList.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef DiskTypeList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).DiskType[]} items [Output Only] A list of Disk Type resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#diskTypeList for disk types.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef DiskTypesScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).DiskType[]} diskTypes [Output Only] List of disk types contained in this scope.
+ * @property {object} warning [Output Only] Informational warning which replaces the list of disk types when the list is empty.
+ */
+/**
+ * @typedef DisksResizeRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} sizeGb The new size of the persistent disk, which is specified in GB.
+ */
+/**
+ * @typedef DisksScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).Disk[]} disks [Output Only] List of disks contained in this scope.
+ * @property {object} warning [Output Only] Informational warning which replaces the list of disks when the list is empty.
+ */
+/**
+ * @typedef Firewall
+ * @memberOf! compute(v1)
+ * @type object
+* @property {object[]} allowed The list of ALLOW rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output Ony] Type of the resource. Always compute#firewall for firewall rules.
+* @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} network URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used:
+global/networks/default
+If you choose to specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs:  
+- https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network 
+- projects/myproject/global/networks/my-network 
+- global/networks/default
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string[]} sourceRanges If source ranges are specified, the firewall will apply only to traffic that has source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
+* @property {string[]} sourceTags If source tags are specified, the firewall will apply only to traffic with source IP that belongs to a tag listed in source tags. Source tags cannot be used to control traffic to an instance&#39;s external IP address. Because tags are associated with an instance, not an IP address. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
+* @property {string[]} targetTags A list of instance tags indicating sets of instances located in the network that may make network connections as specified in allowed[]. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
+*/
+/**
+ * @typedef FirewallList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Firewall[]} items [Output Only] A list of Firewall resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#firewallList for lists of firewalls.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef ForwardingRule
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} IPAddress The IP address that this forwarding rule is serving on behalf of.
+
+For global forwarding rules, the address must be a global IP; for regional forwarding rules, the address must live in the same region as the forwarding rule. By default, this field is empty and an ephemeral IP from the same scope (global or regional) will be assigned.
+
+When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP address belonging to the network/subnetwork configured for the forwarding rule. A reserved address cannot be used. If the field is empty, the IP address will be automatically allocated from the internal IP range of the subnetwork or network configured for this forwarding rule.
+* @property {string} IPProtocol The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP.
+
+When the load balancing scheme is INTERNAL&lt;/code, only TCP and UDP are valid.
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output Only] Type of the resource. Always compute#forwardingRule for Forwarding Rule resources.
+* @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} portRange Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
+
+This field is not used for internal load balancing.
+* @property {string} region [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} target The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global TargetHttpProxy or TargetHttpsProxy resource. The forwarded traffic must be of a type appropriate to the target object. For example, TargetHttpProxy requires HTTP traffic, and TargetHttpsProxy requires HTTPS traffic.
+
+This field is not used for internal load balancing.
+*/
+/**
+ * @typedef ForwardingRuleAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items A map of scoped forwarding rule lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#forwardingRuleAggregatedList for lists of forwarding rules.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef ForwardingRuleList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource. Set by the server.
+ * @property {compute(v1).ForwardingRule[]} items A list of ForwardingRule resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef ForwardingRulesScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).ForwardingRule[]} forwardingRules List of forwarding rules contained in this scope.
+ * @property {object} warning Informational warning which replaces the list of forwarding rules when the list is empty.
+ */
+/**
+ * @typedef HealthCheckReference
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} healthCheck 
+ */
+/**
+ * @typedef HealthStatus
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} healthState Health state of the instance.
+ * @property {string} instance URL of the instance resource.
+ * @property {string} ipAddress The IP address represented by this resource.
+ * @property {integer} port The port on the instance.
+ */
+/**
+ * @typedef HostRule
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string[]} hosts The list of host patterns to match. They must be valid hostnames, except * will match any string of ([a-z0-9-.]*). In that case, * must be the first character and must be followed in the pattern by either - or ..
+ * @property {string} pathMatcher The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL&#39;s host portion.
+ */
+/**
+ * @typedef HttpHealthCheck
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {integer} checkIntervalSec How often (in seconds) to send a health check. The default value is 5 seconds.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {integer} healthyThreshold A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+ * @property {string} host The value of the host header in the HTTP health check request. If left empty (default value), the public IP on behalf of which this health check is performed will be used.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#httpHealthCheck for HTTP health checks.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {integer} port The TCP port number for the HTTP health check request. The default value is 80.
+ * @property {string} requestPath The request path of the HTTP health check request. The default value is /.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {integer} timeoutSec How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
+ * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
+ */
+/**
+ * @typedef HttpHealthCheckList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
+ * @property {compute(v1).HttpHealthCheck[]} items A list of HttpHealthCheck resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef HttpsHealthCheck
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {integer} checkIntervalSec How often (in seconds) to send a health check. The default value is 5 seconds.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {integer} healthyThreshold A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+ * @property {string} host The value of the host header in the HTTPS health check request. If left empty (default value), the public IP on behalf of which this health check is performed will be used.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind Type of the resource.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {integer} port The TCP port number for the HTTPS health check request. The default value is 443.
+ * @property {string} requestPath The request path of the HTTPS health check request. The default value is &quot;/&quot;.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {integer} timeoutSec How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have a greater value than checkIntervalSec.
+ * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
+ */
+/**
+ * @typedef HttpsHealthCheckList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).HttpsHealthCheck[]} items A list of HttpsHealthCheck resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef Image
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} archiveSizeBytes Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {compute(v1).DeprecationStatus} deprecated The deprecation status associated with this image.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
+* @property {string} family The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {compute(v1).CustomerEncryptionKey} imageEncryptionKey Encrypts the image using a customer-supplied encryption key.
+
+After you encrypt an image with a customer-supplied key, you must provide the same key if you use the image later (e.g. to create a disk from the image).
+
+Customer-supplied encryption keys do not protect access to metadata of the disk.
+
+If you do not provide an encryption key when creating the image, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the image later.
+* @property {string} kind [Output Only] Type of the resource. Always compute#image for images.
+* @property {string[]} licenses Any applicable license URI.
+* @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {object} rawDisk The parameters of the raw disk image.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} sourceDisk URL of the The source disk used to create this image. This can be a full or valid partial URL. You must provide either this property or the rawDisk.source property but not both to create an image. For example, the following are valid values:  
+- https://www.googleapis.com/compute/v1/projects/project/zones/zone/disk/disk 
+- projects/project/zones/zone/disk/disk 
+- zones/zone/disks/disk
+* @property {compute(v1).CustomerEncryptionKey} sourceDiskEncryptionKey The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
+* @property {string} sourceDiskId The ID value of the disk used to create this image. This value may be used to determine whether the image was taken from the current or a previous instance of a given disk name.
+* @property {string} sourceType The type of the image used to create this disk. The default and only value is RAW
+* @property {string} status [Output Only] The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.
+*/
+/**
+ * @typedef ImageList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Image[]} items [Output Only] A list of Image resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef Instance
+ * @memberOf! compute(v1)
+ * @type object
+* @property {boolean} canIpForward Allows this instance to send and receive packets with non-matching destination or source IPs. This is required if you plan to use this instance to forward routes. For more information, see Enabling IP Forwarding.
+* @property {string} cpuPlatform [Output Only] The CPU platform used by this instance.
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {compute(v1).AttachedDisk[]} disks Array of disks associated with this instance. Persistent disks must be created before you can assign them.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output Only] Type of the resource. Always compute#instance for instances.
+* @property {string} machineType Full or partial URL of the machine type resource to use for this instance, in the format: zones/zone/machineTypes/machine-type. This is provided by the client when the instance is created. For example, the following is a valid partial url to a predefined machine type:
+
+zones/us-central1-f/machineTypes/n1-standard-1 
+
+To create a custom machine type, provide a URL to a machine type in the following format, where CPUS is 1 or an even number up to 32 (2, 4, 6, ... 24, etc), and MEMORY is the total memory for this instance. Memory must be a multiple of 256 MB and must be supplied in MB (e.g. 5 GB of memory is 5120 MB):
+
+zones/zone/machineTypes/custom-CPUS-MEMORY 
+
+For example: zones/us-central1-f/machineTypes/custom-4-5120 
+
+For a full list of restrictions, read the Specifications for custom machine types.
+* @property {compute(v1).Metadata} metadata The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
+* @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {compute(v1).NetworkInterface[]} networkInterfaces An array of configurations for this interface. This specifies how this interface is configured to interact with other network services, such as connecting to the internet. Only one interface is supported per instance.
+* @property {compute(v1).Scheduling} scheduling Scheduling options for this instance.
+* @property {string} selfLink [Output Only] Server-defined URL for this resource.
+* @property {compute(v1).ServiceAccount[]} serviceAccounts A list of service accounts, with their specified scopes, authorized for this instance. Service accounts generate access tokens that can be accessed through the metadata server and used to authenticate applications on the instance. See Service Accounts for more information.
+* @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDED, SUSPENDING, and TERMINATED.
+* @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
+* @property {compute(v1).Tags} tags A list of tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation. The tags can be later modified by the setTags method. Each tag within the list must comply with RFC1035.
+* @property {string} zone [Output Only] URL of the zone where the instance resides.
+*/
+/**
+ * @typedef InstanceAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items [Output Only] A map of scoped instance lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#instanceAggregatedList for aggregated lists of Instance resources.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef InstanceGroup
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} creationTimestamp [Output Only] The creation timestamp for this instance group in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} fingerprint [Output Only] The fingerprint of the named ports. The system uses this fingerprint to detect conflicts when multiple users change the named ports concurrently.
+* @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
+* @property {string} kind [Output Only] The resource type, which is always compute#instanceGroup for instance groups.
+* @property {string} name The name of the instance group. The name must be 1-63 characters long, and comply with RFC1035.
+* @property {compute(v1).NamedPort[]} namedPorts Assigns a name to a port number. For example: {name: &quot;http&quot;, port: 80}
+
+This allows the system to reference ports by the assigned name instead of a port number. Named ports can also contain multiple ports. For example: [{name: &quot;http&quot;, port: 80},{name: &quot;http&quot;, port: 8080}] 
+
+Named ports apply to all instances in this instance group.
+* @property {string} network The URL of the network to which all instances in the instance group belong.
+* @property {string} selfLink [Output Only] The URL for this instance group. The server generates this URL.
+* @property {integer} size [Output Only] The total number of instances in the instance group.
+* @property {string} subnetwork The URL of the subnetwork to which all instances in the instance group belong.
+* @property {string} zone [Output Only] The URL of the zone where the instance group is located.
+*/
+/**
+ * @typedef InstanceGroupAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] A unique identifier for this aggregated list of instance groups. The server generates this identifier.
+ * @property {object} items A map of scoped instance group lists.
+ * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupAggregatedList for aggregated lists of instance groups.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ */
+/**
+ * @typedef InstanceGroupList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] A unique identifier for this list of instance groups. The server generates this identifier.
+ * @property {compute(v1).InstanceGroup[]} items A list of instance groups.
+ * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupList for instance group lists.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ */
+/**
+ * @typedef InstanceGroupManager
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} baseInstanceName The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
+ * @property {string} creationTimestamp [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
+ * @property {compute(v1).InstanceGroupManagerActionsSummary} currentActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} fingerprint [Output Only] The fingerprint of the resource data. You can use this optional field for optimistic locking when you update the resource.
+ * @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
+ * @property {string} instanceGroup [Output Only] The URL of the Instance Group resource.
+ * @property {string} instanceTemplate The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group.
+ * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
+ * @property {string} name The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
+ * @property {compute(v1).NamedPort[]} namedPorts Named ports configured for the Instance Groups complementary to this Instance Group Manager.
+ * @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
+ * @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
+ * @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
+ * @property {string} zone The name of the zone where the managed instance group is located.
+ */
+/**
+ * @typedef InstanceGroupManagerActionsSummary
+ * @memberOf! compute(v1)
+ * @type object
+* @property {integer} abandoning [Output Only] The total number of instances in the managed instance group that are scheduled to be abandoned. Abandoning an instance removes it from the managed instance group without deleting it.
+* @property {integer} creating [Output Only] The number of instances in the managed instance group that are scheduled to be created or are currently being created. If the group fails to create any of these instances, it tries again until it creates the instance successfully.
+
+If you have disabled creation retries, this field will not be populated; instead, the creatingWithoutRetries field will be populated.
+* @property {integer} deleting [Output Only] The number of instances in the managed instance group that are scheduled to be deleted or are currently being deleted.
+* @property {integer} none [Output Only] The number of instances in the managed instance group that are running and have no scheduled actions.
+* @property {integer} recreating [Output Only] The number of instances in the managed instance group that are scheduled to be recreated or are currently being being recreated. Recreating an instance deletes the existing root persistent disk and creates a new disk from the image that is defined in the instance template.
+* @property {integer} refreshing [Output Only] The number of instances in the managed instance group that are being reconfigured with properties that do not require a restart or a recreate action. For example, setting or removing target pools for the instance.
+* @property {integer} restarting [Output Only] The number of instances in the managed instance group that are scheduled to be restarted or are currently being restarted.
+*/
+/**
+ * @typedef InstanceGroupManagerAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] A unique identifier for this aggregated list of managed instance groups. The server generates this identifier.
+ * @property {object} items [Output Only] A map of filtered managed instance group lists.
+ * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerAggregatedList for an aggregated list of managed instance groups.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ */
+/**
+ * @typedef InstanceGroupManagerList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
+ * @property {compute(v1).InstanceGroupManager[]} items [Output Only] A list of managed instance groups.
+ * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerList for a list of managed instance groups.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ */
+/**
+ * @typedef InstanceGroupManagersAbandonInstancesRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string[]} instances The URL for one or more instances to abandon from the managed instance group.
+ */
+/**
+ * @typedef InstanceGroupManagersDeleteInstancesRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string[]} instances The list of instances to delete from this managed instance group. Specify one or more instance URLs.
+ */
+/**
+ * @typedef InstanceGroupManagersListManagedInstancesResponse
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).ManagedInstance[]} managedInstances [Output Only] The list of instances in the managed instance group.
+ */
+/**
+ * @typedef InstanceGroupManagersRecreateInstancesRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string[]} instances The URL for one or more instances to recreate.
+ */
+/**
+ * @typedef InstanceGroupManagersScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).InstanceGroupManager[]} instanceGroupManagers [Output Only] The list of managed instance groups that are contained in the specified project and zone.
+ * @property {object} warning [Output Only] The warning that replaces the list of managed instance groups when the list is empty.
+ */
+/**
+ * @typedef InstanceGroupManagersSetInstanceTemplateRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} instanceTemplate The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group.
+ */
+/**
+ * @typedef InstanceGroupManagersSetTargetPoolsRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} fingerprint The fingerprint of the target pools information. Use this optional property to prevent conflicts when multiple users change the target pools settings concurrently. Obtain the fingerprint with the instanceGroupManagers.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
+ * @property {string[]} targetPools The list of target pool URLs that instances in this managed instance group belong to. The managed instance group applies these target pools to all of the instances in the group. Existing instances and new instances in the group all receive these target pool settings.
+ */
+/**
+ * @typedef InstanceGroupsAddInstancesRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).InstanceReference[]} instances The list of instances to add to the instance group.
+ */
+/**
+ * @typedef InstanceGroupsListInstances
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] A unique identifier for this list of instances in the specified instance group. The server generates this identifier.
+ * @property {compute(v1).InstanceWithNamedPorts[]} items [Output Only] A list of instances and any named ports that are assigned to those instances.
+ * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupsListInstances for the list of instances in the specified instance group.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] The URL for this list of instances in the specified instance groups. The server generates this URL.
+ */
+/**
+ * @typedef InstanceGroupsListInstancesRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} instanceState A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
+ */
+/**
+ * @typedef InstanceGroupsRemoveInstancesRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).InstanceReference[]} instances The list of instances to remove from the instance group.
+ */
+/**
+ * @typedef InstanceGroupsScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).InstanceGroup[]} instanceGroups [Output Only] The list of instance groups that are contained in this scope.
+ * @property {object} warning [Output Only] An informational warning that replaces the list of instance groups when the list is empty.
+ */
+/**
+ * @typedef InstanceGroupsSetNamedPortsRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} fingerprint The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
+ * @property {compute(v1).NamedPort[]} namedPorts The list of named ports to set for this instance group.
+ */
+/**
+ * @typedef InstanceList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Instance[]} items [Output Only] A list of instances.
+ * @property {string} kind [Output Only] Type of resource. Always compute#instanceList for lists of Instance resources.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef InstanceMoveRequest
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} destinationZone The URL of the destination zone to move the instance. This can be a full or partial URL. For example, the following are all valid URLs to a zone:  
+- https://www.googleapis.com/compute/v1/projects/project/zones/zone 
+- projects/project/zones/zone 
+- zones/zone
+* @property {string} targetInstance The URL of the target instance to move. This can be a full or partial URL. For example, the following are all valid URLs to an instance:  
+- https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance 
+- projects/project/zones/zone/instances/instance 
+- zones/zone/instances/instance
+*/
+/**
+ * @typedef InstanceProperties
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {boolean} canIpForward Enables instances created based on this template to send packets with source IP addresses other than their own and receive packets with destination IP addresses other than their own. If these instances will be used as an IP gateway or it will be set as the next-hop in a Route resource, specify true. If unsure, leave this set to false. See the Enable IP forwarding for instances documentation for more information.
+ * @property {string} description An optional text description for the instances that are created from this instance template.
+ * @property {compute(v1).AttachedDisk[]} disks An array of disks that are associated with the instances that are created from this template.
+ * @property {string} machineType The machine type to use for instances that are created from this template.
+ * @property {compute(v1).Metadata} metadata The metadata key/value pairs to assign to instances that are created from this template. These pairs can consist of custom metadata or predefined keys. See Project and instance metadata for more information.
+ * @property {compute(v1).NetworkInterface[]} networkInterfaces An array of network access configurations for this interface.
+ * @property {compute(v1).Scheduling} scheduling Specifies the scheduling options for the instances that are created from this template.
+ * @property {compute(v1).ServiceAccount[]} serviceAccounts A list of service accounts with specified scopes. Access tokens for these service accounts are available to the instances that are created from this template. Use metadata queries to obtain the access tokens for these instances.
+ * @property {compute(v1).Tags} tags A list of tags to apply to the instances that are created from this template. The tags identify valid sources or targets for network firewalls. The setTags method can modify this list of tags. Each tag within the list must comply with RFC1035.
+ */
+/**
+ * @typedef InstanceReference
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} instance The URL for a specific instance.
+ */
+/**
+ * @typedef InstanceTemplate
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] The creation timestamp for this instance template in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} id [Output Only] A unique identifier for this instance template. The server defines this identifier.
+ * @property {string} kind [Output Only] The resource type, which is always compute#instanceTemplate for instance templates.
+ * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {compute(v1).InstanceProperties} properties The instance properties for this instance template.
+ * @property {string} selfLink [Output Only] The URL for this instance template. The server defines this URL.
+ */
+/**
+ * @typedef InstanceTemplateList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] A unique identifier for this instance template. The server defines this identifier.
+ * @property {compute(v1).InstanceTemplate[]} items [Output Only] list of InstanceTemplate resources.
+ * @property {string} kind [Output Only] The resource type, which is always compute#instanceTemplatesListResponse for instance template lists.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] The URL for this instance template list. The server defines this URL.
+ */
+/**
+ * @typedef InstanceWithNamedPorts
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} instance [Output Only] The URL of the instance.
+ * @property {compute(v1).NamedPort[]} namedPorts [Output Only] The named ports that belong to this instance group.
+ * @property {string} status [Output Only] The status of the instance.
+ */
+/**
+ * @typedef InstancesScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).Instance[]} instances [Output Only] List of instances contained in this scope.
+ * @property {object} warning [Output Only] Informational warning which replaces the list of instances when the list is empty.
+ */
+/**
+ * @typedef InstancesSetMachineTypeRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} machineType Full or partial URL of the machine type resource. See Machine Types for a full list of machine types. For example: zones/us-central1-f/machineTypes/n1-standard-1
+ */
+/**
+ * @typedef InstancesStartWithEncryptionKeyRequest
+ * @memberOf! compute(v1)
+ * @type object
+* @property {compute(v1).CustomerEncryptionKeyProtectedDisk[]} disks Array of disks associated with this instance that are protected with a customer-supplied encryption key.
+
+In order to start the instance, the disk url and its corresponding key must be provided.
+
+If the disk is not protected with a customer-supplied encryption key it should not be specified.
+*/
+/**
+ * @typedef License
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {boolean} chargesUseFee [Output Only] If true, the customer will be charged license fee for running software that contains this license on an instance.
+ * @property {string} kind [Output Only] Type of resource. Always compute#license for licenses.
+ * @property {string} name [Output Only] Name of the resource. The name is 1-63 characters long and complies with RFC1035.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef MachineType
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {compute(v1).DeprecationStatus} deprecated [Output Only] The deprecation status associated with this machine type.
+ * @property {string} description [Output Only] An optional textual description of the resource.
+ * @property {integer} guestCpus [Output Only] The number of virtual CPUs that are available to the instance.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {integer} imageSpaceGb [Deprecated] This property is deprecated and will never be populated with any relevant values.
+ * @property {boolean} isSharedCpu [Output Only] Whether this machine type has a shared CPU. See Shared-core machine types for more information.
+ * @property {string} kind [Output Only] The type of the resource. Always compute#machineType for machine types.
+ * @property {integer} maximumPersistentDisks [Output Only] Maximum persistent disks allowed.
+ * @property {string} maximumPersistentDisksSizeGb [Output Only] Maximum total persistent disks size (GB) allowed.
+ * @property {integer} memoryMb [Output Only] The amount of physical memory available to the instance, defined in MB.
+ * @property {string} name [Output Only] Name of the resource.
+ * @property {object[]} scratchDisks [Output Only] List of extended scratch disks assigned to the instance.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} zone [Output Only] The name of the zone where the machine type resides, such as us-central1-a.
+ */
+/**
+ * @typedef MachineTypeAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items [Output Only] A map of scoped machine type lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#machineTypeAggregatedList for aggregated lists of machine types.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef MachineTypeList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).MachineType[]} items [Output Only] A list of Machine Type resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#machineTypeList for lists of machine types.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef MachineTypesScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).MachineType[]} machineTypes [Output Only] List of machine types contained in this scope.
+ * @property {object} warning [Output Only] An informational warning that appears when the machine types list is empty.
+ */
+/**
+ * @typedef ManagedInstance
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} currentAction [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values: 
+- NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance. 
+- CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful. 
+- CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group&#39;s targetSize value is decreased instead. 
+- RECREATING The managed instance group is recreating this instance. 
+- DELETING The managed instance group is permanently deleting this instance. 
+- ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group. 
+- RESTARTING The managed instance group is restarting the instance. 
+- REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.
+* @property {string} id [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
+* @property {string} instance [Output Only] The URL of the instance. The URL can exist even if the instance has not yet been created.
+* @property {string} instanceStatus [Output Only] The status of the instance. This field is empty when the instance does not exist.
+* @property {compute(v1).ManagedInstanceLastAttempt} lastAttempt [Output Only] Information about the last attempt to create or delete the instance.
+*/
+/**
+ * @typedef ManagedInstanceLastAttempt
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {object} errors [Output Only] Encountered errors during the last attempt to create or delete the instance.
+ */
+/**
+ * @typedef Metadata
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} fingerprint Specifies a fingerprint for this request, which is essentially a hash of the metadata&#39;s contents and used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update metadata. You must always provide an up-to-date fingerprint hash in order to update or change metadata.
+ * @property {object[]} items Array of key/value pairs. The total size of all keys and values must be less than 512 KB.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#metadata for metadata.
+ */
+/**
+ * @typedef NamedPort
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} name The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
+ * @property {integer} port The port number, which can be a value between 1 and 65535.
+ */
+/**
+ * @typedef Network
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} IPv4Range The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
+* @property {boolean} autoCreateSubnetworks When set to true, the network is created in &quot;auto subnet mode&quot;. When set to false, the network is in &quot;custom subnet mode&quot;.
+
+In &quot;auto subnet mode&quot;, a newly created network is assigned the default CIDR of 10.128.0.0/9 and it automatically creates one subnetwork per region.
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} gatewayIPv4 A gateway address for default routing to other networks. This value is read only and is selected by the Google Compute Engine, typically as the first usable address in the IPv4Range.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output Only] Type of the resource. Always compute#network for networks.
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string[]} subnetworks [Output Only] Server-defined fully-qualified URLs for all subnetworks in this network.
+*/
+/**
+ * @typedef NetworkInterface
+ * @memberOf! compute(v1)
+ * @type object
+* @property {compute(v1).AccessConfig[]} accessConfigs An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If there are no accessConfigs specified, then this instance will have no external internet access.
+* @property {string} name [Output Only] The name of the network interface, generated by the server. For network devices, these are eth0, eth1, etc.
+* @property {string} network URL of the network resource for this instance. This is required for creating an instance but optional when creating a firewall rule. If not specified when creating a firewall rule, the default network is used:
+
+global/networks/default 
+
+If you specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs:  
+- https://www.googleapis.com/compute/v1/projects/project/global/networks/network 
+- projects/project/global/networks/network 
+- global/networks/default
+* @property {string} networkIP An IPv4 internal network address to assign to the instance for this network interface. If not specified by the user, an unused internal IP is assigned by the system.
+* @property {string} subnetwork The URL of the Subnetwork resource for this instance. If the network resource is in legacy mode, do not provide this property. If the network is in auto subnet mode, providing the subnetwork is optional. If the network is in custom subnet mode, then this field should be specified. If you specify this property, you can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs:  
+- https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork 
+- regions/region/subnetworks/subnetwork
+*/
+/**
+ * @typedef NetworkList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Network[]} items [Output Only] A list of Network resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#networkList for lists of networks.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource .
+ */
+/**
+ * @typedef Operation
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} clientOperationId [Output Only] Reserved for future use.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description [Output Only] A textual description of the operation, which is set when the operation is created.
+ * @property {string} endTime [Output Only] The time that this operation was completed. This value is in RFC3339 text format.
+ * @property {object} error [Output Only] If errors are generated during processing of the operation, this field will be populated.
+ * @property {string} httpErrorMessage [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as NOT FOUND.
+ * @property {integer} httpErrorStatusCode [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a 404 means the resource was not found.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} insertTime [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#operation for Operation resources.
+ * @property {string} name [Output Only] Name of the resource.
+ * @property {string} operationType [Output Only] The type of operation, such as insert, update, or delete, and so on.
+ * @property {integer} progress [Output Only] An optional progress indicator that ranges from 0 to 100. There is no requirement that this be linear or support any granularity of operations. This should not be used to guess when the operation will be complete. This number should monotonically increase as the operation progresses.
+ * @property {string} region [Output Only] The URL of the region where the operation resides. Only available when performing regional operations.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} startTime [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
+ * @property {string} status [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
+ * @property {string} statusMessage [Output Only] An optional textual description of the current status of the operation.
+ * @property {string} targetId [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
+ * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies.
+ * @property {string} user [Output Only] User who requested the operation, for example: user@example.com.
+ * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
+ * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
+ */
+/**
+ * @typedef OperationAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items [Output Only] A map of scoped operation lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#operationAggregatedList for aggregated lists of operations.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef OperationList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Operation[]} items [Output Only] A list of Operation resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#operations for Operations resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef OperationsScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).Operation[]} operations [Output Only] List of operations contained in this scope.
+ * @property {object} warning [Output Only] Informational warning which replaces the list of operations when the list is empty.
+ */
+/**
+ * @typedef PathMatcher
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} defaultService The full or partial URL to the BackendService resource. This will be used if none of the pathRules defined by this PathMatcher is matched by the URL&#39;s path portion. For example, the following are all valid URLs to a BackendService resource:  
+- https://www.googleapis.com/compute/v1/projects/project/global/backendServices/backendService 
+- compute/v1/projects/project/global/backendServices/backendService 
+- global/backendServices/backendService
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} name The name to which this PathMatcher is referred by the HostRule.
+* @property {compute(v1).PathRule[]} pathRules The list of path rules.
+*/
+/**
+ * @typedef PathRule
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string[]} paths The list of path patterns to match. Each must start with / and the only place a * is allowed is at the end following a /. The string fed to the path matcher does not include any text after the first ? or #, and those chars are not allowed here.
+ * @property {string} service The URL of the BackendService resource if this rule is matched.
+ */
+/**
+ * @typedef Project
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).Metadata} commonInstanceMetadata Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} defaultServiceAccount [Output Only] Default service account used by VMs running in this project.
+ * @property {string} description An optional textual description of the resource.
+ * @property {string[]} enabledFeatures Restricted features enabled for use on this project.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#project for projects.
+ * @property {string} name The project ID. For example: my-example-project. Use the project ID to make requests to Compute Engine.
+ * @property {compute(v1).Quota[]} quotas [Output Only] Quotas assigned to this project.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {compute(v1).UsageExportLocation} usageExportLocation The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+ */
+/**
+ * @typedef Quota
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {number} limit [Output Only] Quota limit for this metric.
+ * @property {string} metric [Output Only] Name of the quota metric.
+ * @property {number} usage [Output Only] Current usage of this metric.
+ */
+/**
+ * @typedef Region
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {compute(v1).DeprecationStatus} deprecated [Output Only] The deprecation status associated with this region.
+ * @property {string} description [Output Only] Textual description of the resource.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#region for regions.
+ * @property {string} name [Output Only] Name of the resource.
+ * @property {compute(v1).Quota[]} quotas [Output Only] Quotas assigned to this region.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} status [Output Only] Status of the region, either UP or DOWN.
+ * @property {string[]} zones [Output Only] A list of zones available in this region, in the form of resource URLs.
+ */
+/**
+ * @typedef RegionList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Region[]} items [Output Only] A list of Region resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#regionList for lists of regions.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef ResourceGroupReference
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} group A URI referencing one of the resource views listed in the backend service.
+ */
+/**
+ * @typedef Route
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} destRange The destination range of outgoing packets that this route applies to.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output Only] Type of this resource. Always compute#routes for Route resources.
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} network Fully-qualified URL of the network that this route applies to.
+* @property {string} nextHopGateway The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL:  projects/&lt;project-id&gt;/global/gateways/default-internet-gateway
+* @property {string} nextHopInstance The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example:
+https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
+* @property {string} nextHopIp The network IP address of an instance that should handle matching packets.
+* @property {string} nextHopNetwork The URL of the local network if it should handle matching packets.
+* @property {string} nextHopVpnTunnel The URL to a VpnTunnel that should handle matching packets.
+* @property {integer} priority The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In the case of two routes with equal prefix length, the one with the lowest-numbered priority value wins. Default value is 1000. Valid range is 0 through 65535.
+* @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
+* @property {string[]} tags A list of instance tags to which this route applies.
+* @property {object[]} warnings [Output Only] If potential misconfigurations are detected for this route, this field will be populated with warning messages.
+*/
+/**
+ * @typedef RouteList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
+ * @property {compute(v1).Route[]} items [Output Only] A list of Route resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef Router
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).RouterBgp} bgp BGP information specific to this router.
+ * @property {compute(v1).RouterBgpPeer[]} bgpPeers BGP information that needs to be configured into the routing stack to establish the BGP peering. It must specify peer ASN and either interface name, IP, or peer IP. Please refer to RFC4273.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).RouterInterface[]} interfaces Router interfaces. Each interface requires either one linked resource (e.g. linkedVpnTunnel) or IP address and IP address range (e.g. ipRange).
+ * @property {string} kind [Output Only] Type of resource. Always compute#router for routers.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} network URI of the network to which this router belongs.
+ * @property {string} region [Output Only] URI of the region where the router resides.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef RouterAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items A map of scoped router lists.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef RouterBgp
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {integer} asn Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
+ */
+/**
+ * @typedef RouterBgpPeer
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {integer} advertisedRoutePriority The priority of routes advertised to this BGP peer. In the case where there is more than one matching route of maximum length, the routes with lowest priority value win.
+ * @property {string} interfaceName Name of the interface the BGP peer is associated with.
+ * @property {string} ipAddress IP address of the interface inside Google Cloud Platform.
+ * @property {string} name Name of this BGP peer. The name must be 1-63 characters long and comply with RFC1035.
+ * @property {integer} peerAsn Peer BGP Autonomous System Number (ASN). For VPN use case, this value can be different for every tunnel.
+ * @property {string} peerIpAddress IP address of the BGP interface outside Google cloud.
+ */
+/**
+ * @typedef RouterInterface
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} ipRange IP address and range of the interface. The IP range must be in the RFC3927 link-local IP space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
+ * @property {string} linkedVpnTunnel URI of linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource.
+ * @property {string} name Name of this interface entry. The name must be 1-63 characters long and comply with RFC1035.
+ */
+/**
+ * @typedef RouterList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Router[]} items A list of Router resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#router for routers.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef RouterStatus
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).Route[]} bestRoutes Best routes for this router&#39;s network.
+ * @property {compute(v1).RouterStatusBgpPeerStatus[]} bgpPeerStatus 
+ * @property {string} network URI of the network to which this router belongs.
+ */
+/**
+ * @typedef RouterStatusBgpPeerStatus
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).Route[]} advertisedRoutes Routes that were advertised to the remote BGP peer
+ * @property {string} ipAddress IP address of the local BGP interface.
+ * @property {string} linkedVpnTunnel URL of the VPN tunnel that this BGP peer controls.
+ * @property {string} name Name of this BGP peer. Unique within the Routers resource.
+ * @property {integer} numLearnedRoutes Number of routes learned from the remote BGP Peer.
+ * @property {string} peerIpAddress IP address of the remote BGP interface.
+ * @property {string} state BGP state as specified in RFC1771.
+ * @property {string} status Status of the BGP peer: {UP, DOWN}
+ * @property {string} uptime Time this session has been up. Format: 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
+ * @property {string} uptimeSeconds Time this session has been up, in seconds. Format: 145
+ */
+/**
+ * @typedef RouterStatusResponse
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} kind Type of resource.
+ * @property {compute(v1).RouterStatus} result 
+ */
+/**
+ * @typedef RoutersPreviewResponse
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).Router} resource Preview of given router.
+ */
+/**
+ * @typedef RoutersScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).Router[]} routers List of routers contained in this scope.
+ * @property {object} warning Informational warning which replaces the list of routers when the list is empty.
+ */
+/**
+ * @typedef Scheduling
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {boolean} automaticRestart Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted.
+ * @property {string} onHostMaintenance Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Setting Instance Scheduling Options.
+ * @property {boolean} preemptible Whether the instance is preemptible.
+ */
+/**
+ * @typedef SerialPortOutput
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} contents [Output Only] The contents of the console output.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#serialPortOutput for serial port output.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef ServiceAccount
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} email Email address of the service account.
+ * @property {string[]} scopes The list of scopes to be made available for this service account.
+ */
+/**
+ * @typedef Snapshot
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} diskSizeGb [Output Only] Size of the snapshot, specified in GB.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output Only] Type of the resource. Always compute#snapshot for Snapshot resources.
+* @property {string[]} licenses [Output Only] A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses attached (such as a Windows image).
+* @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {compute(v1).CustomerEncryptionKey} snapshotEncryptionKey Encrypts the snapshot using a customer-supplied encryption key.
+
+After you encrypt a snapshot using a customer-supplied key, you must provide the same key if you use the image later For example, you must provide the encryption key when you create a disk from the encrypted snapshot in a future request.
+
+Customer-supplied encryption keys do not protect access to metadata of the disk.
+
+If you do not provide an encryption key when creating the snapshot, then the snapshot will be encrypted using an automatically generated key and you do not need to provide a key to use the snapshot later.
+* @property {string} sourceDisk [Output Only] The source disk used to create this snapshot.
+* @property {compute(v1).CustomerEncryptionKey} sourceDiskEncryptionKey The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
+* @property {string} sourceDiskId [Output Only] The ID value of the disk used to create this snapshot. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given disk name.
+* @property {string} status [Output Only] The status of the snapshot. This can be CREATING, DELETING, FAILED, READY, or UPLOADING.
+* @property {string} storageBytes [Output Only] A size of the the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
+* @property {string} storageBytesStatus [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
+*/
+/**
+ * @typedef SnapshotList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Snapshot[]} items [Output Only] A list of Snapshot resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef SslCertificate
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} certificate A local certificate file. The certificate must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} privateKey A write-only private key in PEM format. Only insert RPCs will include this field.
+ * @property {string} selfLink [Output only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef SslCertificateList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
+ * @property {compute(v1).SslCertificate[]} items A list of SslCertificate resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef Subnetwork
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} gatewayAddress [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} ipCidrRange The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.
+ * @property {string} name The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} network The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks.
+ * @property {string} region URL of the region where the Subnetwork resides.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef SubnetworkAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items [Output] A map of scoped Subnetwork lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#subnetworkAggregatedList for aggregated lists of subnetworks.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef SubnetworkList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Subnetwork[]} items The Subnetwork resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#subnetworkList for lists of subnetworks.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef SubnetworksScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).Subnetwork[]} subnetworks List of subnetworks contained in this scope.
+ * @property {object} warning An informational warning that appears when the list of addresses is empty.
+ */
+/**
+ * @typedef Tags
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} fingerprint Specifies a fingerprint for this request, which is essentially a hash of the metadata&#39;s contents and used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update metadata. You must always provide an up-to-date fingerprint hash in order to update or change metadata.
+
+To see the latest fingerprint, make get() request to the instance.
+* @property {string[]} items An array of tags. Each tag must be 1-63 characters long, and comply with RFC1035.
+*/
+/**
+ * @typedef TargetHttpProxy
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of resource. Always compute#targetHttpProxy for target HTTP proxies.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} urlMap URL to the UrlMap resource that defines the mapping from URL to the BackendService.
+ */
+/**
+ * @typedef TargetHttpProxyList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).TargetHttpProxy[]} items A list of TargetHttpProxy resources.
+ * @property {string} kind Type of resource. Always compute#targetHttpProxyList for lists of target HTTP proxies.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef TargetHttpsProxiesSetSslCertificatesRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string[]} sslCertificates New set of SslCertificate resources to associate with this TargetHttpsProxy resource. Currently exactly one SslCertificate resource must be specified.
+ */
+/**
+ * @typedef TargetHttpsProxy
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output Only] Type of resource. Always compute#targetHttpsProxy for target HTTPS proxies.
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string[]} sslCertificates URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. Currently, exactly one SSL certificate must be specified.
+* @property {string} urlMap A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map:  
+- https://www.googleapis.compute/v1/projects/project/global/urlMaps/url-map 
+- projects/project/global/urlMaps/url-map 
+- global/urlMaps/url-map
+*/
+/**
+ * @typedef TargetHttpsProxyList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).TargetHttpsProxy[]} items A list of TargetHttpsProxy resources.
+ * @property {string} kind Type of resource. Always compute#targetHttpsProxyList for lists of target HTTPS proxies.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef TargetInstance
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} instance A URL to the virtual machine instance that handles traffic for this target instance. When creating a target instance, you can provide the fully-qualified URL or a valid partial URL to the desired virtual machine. For example, the following are all valid URLs: 
+- https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance 
+- projects/project/zones/zone/instances/instance 
+- zones/zone/instances/instance
+* @property {string} kind [Output Only] The type of the resource. Always compute#targetInstance for target instances.
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} natPolicy NAT option controlling how IPs are NAT&#39;ed to the instance. Currently only NO_NAT (default value) is supported.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} zone [Output Only] URL of the zone where the target instance resides.
+*/
+/**
+ * @typedef TargetInstanceAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A map of scoped target instance lists.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef TargetInstanceList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).TargetInstance[]} items A list of TargetInstance resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef TargetInstancesScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).TargetInstance[]} targetInstances List of target instances contained in this scope.
+ * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
+ */
+/**
+ * @typedef TargetPool
+ * @memberOf! compute(v1)
+ * @type object
+* @property {string} backupPool This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool, and its failoverRatio field is properly set to a value between [0, 1].
+
+backupPool and failoverRatio together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below failoverRatio, traffic arriving at the load-balanced IP will be directed to the backup pool.
+
+In case where failoverRatio and backupPool are not set, or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the &quot;force&quot; mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {number} failoverRatio This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool (i.e., not as a backup pool to some other target pool). The value of the field must be in [0, 1].
+
+If set, backupPool must also be set. They together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below this number, traffic arriving at the load-balanced IP will be directed to the backup pool.
+
+In case where failoverRatio is not set or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the &quot;force&quot; mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
+* @property {string[]} healthChecks A list of URLs to the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if all specified health checks pass. An empty list means all member instances will be considered healthy at all times.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string[]} instances A list of resource URLs to the virtual machine instances serving this pool. They must live in zones contained in the same region as this pool.
+* @property {string} kind [Output Only] Type of the resource. Always compute#targetPool for target pools.
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} region [Output Only] URL of the region where the target pool resides.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} sessionAffinity Sesssion affinity option, must be one of the following values:
+NONE: Connections from the same client IP may go to any instance in the pool.
+CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy.
+CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
+*/
+/**
+ * @typedef TargetPoolAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
+ * @property {object} items [Output Only] A map of scoped target pool lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#targetPoolAggregatedList for aggregated lists of target pools.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef TargetPoolInstanceHealth
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).HealthStatus[]} healthStatus 
+ * @property {string} kind [Output Only] Type of resource. Always compute#targetPoolInstanceHealth when checking the health of an instance.
+ */
+/**
+ * @typedef TargetPoolList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
+ * @property {compute(v1).TargetPool[]} items A list of TargetPool resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#targetPoolList for lists of target pools.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef TargetPoolsAddHealthCheckRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).HealthCheckReference[]} healthChecks A list of HttpHealthCheck resources to add to the target pool.
+ */
+/**
+ * @typedef TargetPoolsAddInstanceRequest
+ * @memberOf! compute(v1)
+ * @type object
+* @property {compute(v1).InstanceReference[]} instances A full or partial URL to an instance to add to this target pool. This can be a full or partial URL. For example, the following are valid URLs:  
+- https://www.googleapis.com/compute/v1/projects/project-id/zones/zone/instances/instance-name 
+- projects/project-id/zones/zone/instances/instance-name 
+- zones/zone/instances/instance-name
+*/
+/**
+ * @typedef TargetPoolsRemoveHealthCheckRequest
+ * @memberOf! compute(v1)
+ * @type object
+* @property {compute(v1).HealthCheckReference[]} healthChecks Health check URL to be removed. This can be a full or valid partial URL. For example, the following are valid URLs:  
+- https://www.googleapis.com/compute/beta/projects/project/global/httpHealthChecks/health-check 
+- projects/project/global/httpHealthChecks/health-check 
+- global/httpHealthChecks/health-check
+*/
+/**
+ * @typedef TargetPoolsRemoveInstanceRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).InstanceReference[]} instances URLs of the instances to be removed from target pool.
+ */
+/**
+ * @typedef TargetPoolsScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).TargetPool[]} targetPools List of target pools contained in this scope.
+ * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
+ */
+/**
+ * @typedef TargetReference
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} target 
+ */
+/**
+ * @typedef TargetVpnGateway
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string[]} forwardingRules [Output Only] A list of URLs to the ForwardingRule resources. ForwardingRules are created using compute.forwardingRules.insert and associated to a VPN gateway.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} network URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
+ * @property {string} region [Output Only] URL of the region where the target VPN gateway resides.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} status [Output Only] The status of the VPN gateway.
+ * @property {string[]} tunnels [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are created using compute.vpntunnels.insert method and associated to a VPN gateway.
+ */
+/**
+ * @typedef TargetVpnGatewayAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items A map of scoped target vpn gateway lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef TargetVpnGatewayList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).TargetVpnGateway[]} items [Output Only] A list of TargetVpnGateway resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef TargetVpnGatewaysScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).TargetVpnGateway[]} targetVpnGateways [Output Only] List of target vpn gateways contained in this scope.
+ * @property {object} warning [Output Only] Informational warning which replaces the list of addresses when the list is empty.
+ */
+/**
+ * @typedef TestFailure
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} actualService 
+ * @property {string} expectedService 
+ * @property {string} host 
+ * @property {string} path 
+ */
+/**
+ * @typedef UrlMap
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} defaultService The URL of the BackendService resource if none of the hostRules match.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a UrlMap. An up-to-date fingerprint must be provided in order to update the UrlMap.
+ * @property {compute(v1).HostRule[]} hostRules The list of HostRules to use against the URL.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#urlMaps for url maps.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {compute(v1).PathMatcher[]} pathMatchers The list of named PathMatchers to use against the URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {compute(v1).UrlMapTest[]} tests The list of expected URL mappings. Request to update this UrlMap will succeed only if all of the test cases pass.
+ */
+/**
+ * @typedef UrlMapList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource. Set by the server.
+ * @property {compute(v1).UrlMap[]} items A list of UrlMap resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef UrlMapReference
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} urlMap 
+ */
+/**
+ * @typedef UrlMapTest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} description Description of this test case.
+ * @property {string} host Host portion of the URL.
+ * @property {string} path Path portion of the URL.
+ * @property {string} service Expected BackendService resource the given URL should be mapped to.
+ */
+/**
+ * @typedef UrlMapValidationResult
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string[]} loadErrors 
+ * @property {boolean} loadSucceeded Whether the given UrlMap can be successfully loaded. If false, &#39;loadErrors&#39; indicates the reasons.
+ * @property {compute(v1).TestFailure[]} testFailures 
+ * @property {boolean} testPassed If successfully loaded, this field indicates whether the test passed. If false, &#39;testFailures&#39;s indicate the reason of failure.
+ */
+/**
+ * @typedef UrlMapsValidateRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).UrlMap} resource Content of the UrlMap to be validated.
+ */
+/**
+ * @typedef UrlMapsValidateResponse
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).UrlMapValidationResult} result 
+ */
+/**
+ * @typedef UsageExportLocation
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} bucketName The name of an existing bucket in Cloud Storage where the usage report object is stored. The Google Service Account is granted write access to this bucket. This can either be the bucket name by itself, such as example-bucket, or the bucket name with gs:// or https://storage.googleapis.com/ in front of it, such as gs://example-bucket.
+ * @property {string} reportNamePrefix An optional prefix for the name of the usage report object stored in bucketName. If not supplied, defaults to usage. The report is stored as a CSV file named report_name_prefix_gce_YYYYMMDD.csv where YYYYMMDD is the day of the usage according to Pacific Time. If you supply a prefix, it should conform to Cloud Storage object naming conventions.
+ */
+/**
+ * @typedef VpnTunnel
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} detailedStatus [Output Only] Detailed status message for the VPN tunnel.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {integer} ikeVersion IKE protocol version to use when establishing the VPN tunnel with peer VPN gateway. Acceptable IKE versions are 1 or 2. Default version is 2.
+ * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
+ * @property {string[]} localTrafficSelector Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} peerIp IP address of the peer VPN gateway.
+ * @property {string} region [Output Only] URL of the region where the VPN tunnel resides.
+ * @property {string[]} remoteTrafficSelector Remote traffic selectors to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint.
+ * @property {string} router URL of router resource to be used for dynamic routing.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} sharedSecret Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
+ * @property {string} sharedSecretHash Hash of the shared secret.
+ * @property {string} status [Output Only] The status of the VPN tunnel.
+ * @property {string} targetVpnGateway URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
+ */
+/**
+ * @typedef VpnTunnelAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items [Output Only] A map of scoped vpn tunnel lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef VpnTunnelList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).VpnTunnel[]} items [Output Only] A list of VpnTunnel resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef VpnTunnelsScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).VpnTunnel[]} vpnTunnels List of vpn tunnels contained in this scope.
+ * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
+ */
+/**
+ * @typedef Zone
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {compute(v1).DeprecationStatus} deprecated [Output Only] The deprecation status associated with this zone.
+ * @property {string} description [Output Only] Textual description of the resource.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#zone for zones.
+ * @property {string} name [Output Only] Name of the resource.
+ * @property {string} region [Output Only] Full URL reference to the region which hosts the zone.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} status [Output Only] Status of the zone, either UP or DOWN.
+ */
+/**
+ * @typedef ZoneList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(v1).Zone[]} items [Output Only] A list of Zone resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
 module.exports = Compute;

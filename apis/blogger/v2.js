@@ -328,4 +328,113 @@ function Blogger(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Blog
+ * @memberOf! blogger(v2)
+ * @type object
+ * @property {string} description The description of this blog. This is displayed underneath the title.
+ * @property {string} id The identifier for this resource.
+ * @property {string} kind The kind of this entry. Always blogger#blog
+ * @property {object} locale The locale this Blog is set to.
+ * @property {string} name The name of this blog. This is displayed as the title.
+ * @property {object} pages The container of pages in this blog.
+ * @property {object} posts The container of posts in this blog.
+ * @property {string} published RFC 3339 date-time when this blog was published.
+ * @property {string} selfLink The API REST URL to fetch this resource from.
+ * @property {string} updated RFC 3339 date-time when this blog was last updated.
+ * @property {string} url The URL where this blog is published.
+ */
+/**
+ * @typedef BlogList
+ * @memberOf! blogger(v2)
+ * @type object
+ * @property {blogger(v2).Blog[]} items The list of Blogs this user has Authorship or Admin rights over.
+ * @property {string} kind The kind of this entity. Always blogger#blogList
+ */
+/**
+ * @typedef Comment
+ * @memberOf! blogger(v2)
+ * @type object
+ * @property {object} author The author of this Comment.
+ * @property {object} blog Data about the blog containing this comment.
+ * @property {string} content The actual content of the comment. May include HTML markup.
+ * @property {string} id The identifier for this resource.
+ * @property {object} inReplyTo Data about the comment this is in reply to.
+ * @property {string} kind The kind of this entry. Always blogger#comment
+ * @property {object} post Data about the post containing this comment.
+ * @property {string} published RFC 3339 date-time when this comment was published.
+ * @property {string} selfLink The API REST URL to fetch this resource from.
+ * @property {string} updated RFC 3339 date-time when this comment was last updated.
+ */
+/**
+ * @typedef CommentList
+ * @memberOf! blogger(v2)
+ * @type object
+ * @property {blogger(v2).Comment[]} items The List of Comments for a Post.
+ * @property {string} kind The kind of this entry. Always blogger#commentList
+ * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
+ * @property {string} prevPageToken Pagination token to fetch the previous page, if one exists.
+ */
+/**
+ * @typedef Page
+ * @memberOf! blogger(v2)
+ * @type object
+ * @property {object} author The author of this Page.
+ * @property {object} blog Data about the blog containing this Page.
+ * @property {string} content The body content of this Page, in HTML.
+ * @property {string} id The identifier for this resource.
+ * @property {string} kind The kind of this entity. Always blogger#page
+ * @property {string} published RFC 3339 date-time when this Page was published.
+ * @property {string} selfLink The API REST URL to fetch this resource from.
+ * @property {string} title The title of this entity. This is the name displayed in the Admin user interface.
+ * @property {string} updated RFC 3339 date-time when this Page was last updated.
+ * @property {string} url The URL that this Page is displayed at.
+ */
+/**
+ * @typedef PageList
+ * @memberOf! blogger(v2)
+ * @type object
+ * @property {blogger(v2).Page[]} items The list of Pages for a Blog.
+ * @property {string} kind The kind of this entity. Always blogger#pageList
+ */
+/**
+ * @typedef Post
+ * @memberOf! blogger(v2)
+ * @type object
+ * @property {object} author The author of this Post.
+ * @property {object} blog Data about the blog containing this Post.
+ * @property {string} content The content of the Post. May contain HTML markup.
+ * @property {string} id The identifier of this Post.
+ * @property {string} kind The kind of this entity. Always blogger#post
+ * @property {string[]} labels The list of labels this Post was tagged with.
+ * @property {string} published RFC 3339 date-time when this Post was published.
+ * @property {object} replies The container of comments on this Post.
+ * @property {string} selfLink The API REST URL to fetch this resource from.
+ * @property {string} title The title of the Post.
+ * @property {string} updated RFC 3339 date-time when this Post was last updated.
+ * @property {string} url The URL where this Post is displayed.
+ */
+/**
+ * @typedef PostList
+ * @memberOf! blogger(v2)
+ * @type object
+ * @property {blogger(v2).Post[]} items The list of Posts for this Blog.
+ * @property {string} kind The kind of this entity. Always blogger#postList
+ * @property {string} nextPageToken Pagination token to fetch the next page, if one exists.
+ * @property {string} prevPageToken Pagination token to fetch the previous page, if one exists.
+ */
+/**
+ * @typedef User
+ * @memberOf! blogger(v2)
+ * @type object
+ * @property {string} about Profile summary information.
+ * @property {object} blogs The container of blogs for this user.
+ * @property {string} created The timestamp of when this profile was created, in seconds since epoch.
+ * @property {string} displayName The display name.
+ * @property {string} id The identifier for this User.
+ * @property {string} kind The kind of this entity. Always blogger#user
+ * @property {object} locale This user&#39;s locale
+ * @property {string} selfLink The API REST URL to fetch this resource from.
+ * @property {string} url The user&#39;s profile page.
+ */
 module.exports = Blogger;

@@ -97,7 +97,7 @@ function Cloudtrace(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
-     * @param {object} params.resource Request body data
+     * @param {cloudtrace(v1).Traces} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -283,4 +283,42 @@ function Cloudtrace(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef ListTracesResponse
+ * @memberOf! cloudtrace(v1)
+ * @type object
+ * @property {cloudtrace(v1).Trace[]} traces List of trace records returned.
+ * @property {string} nextPageToken If defined, indicates that there are more traces that match the request and that this value should be passed to the next request to continue retrieving additional traces.
+ */
+/**
+ * @typedef Trace
+ * @memberOf! cloudtrace(v1)
+ * @type object
+ * @property {string} projectId Project ID of the Cloud project where the trace data is stored.
+ * @property {string} traceId Globally unique identifier for the trace. This identifier is a 128-bit numeric value formatted as a 32-byte hex string.
+ * @property {cloudtrace(v1).TraceSpan[]} spans Collection of spans in the trace.
+ */
+/**
+ * @typedef TraceSpan
+ * @memberOf! cloudtrace(v1)
+ * @type object
+ * @property {string} spanId Identifier for the span. This identifier must be unique within a trace.
+ * @property {string} kind Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `RPC_CLIENT` and `RPC_SERVER` to identify queueing latency associated with the span.
+ * @property {string} name Name of the trace. The trace name is sanitized and displayed in the Stackdriver Trace tool in the {% dynamic print site_values.console_name %}. The name may be a method name or some other per-call site name. For the same executable and the same call point, a best practice is to use a consistent name, which makes it easier to correlate cross-trace spans.
+ * @property {string} startTime Start time of the span in nanoseconds from the UNIX epoch.
+ * @property {string} endTime End time of the span in nanoseconds from the UNIX epoch.
+ * @property {string} parentSpanId ID of the parent span, if any. Optional.
+ * @property {object} labels Collection of labels associated with the span.
+ */
+/**
+ * @typedef Traces
+ * @memberOf! cloudtrace(v1)
+ * @type object
+ * @property {cloudtrace(v1).Trace[]} traces List of traces.
+ */
+/**
+ * @typedef Empty
+ * @memberOf! cloudtrace(v1)
+ * @type object
+ */
 module.exports = Cloudtrace;

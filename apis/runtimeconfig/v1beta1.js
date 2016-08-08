@@ -54,7 +54,7 @@ function Runtimeconfig(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The name of the RuntimeConfig resource to update, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
-       * @param {object} params.resource Request body data
+       * @param {runtimeconfig(v1beta1).RuntimeConfig} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -111,7 +111,7 @@ function Runtimeconfig(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.parent The [project ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848) for this request, in the format `projects/[PROJECT_ID]`.
-       * @param {object} params.resource Request body data
+       * @param {runtimeconfig(v1beta1).RuntimeConfig} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -200,7 +200,7 @@ function Runtimeconfig(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.name The name of the variable to watch, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
-         * @param {object} params.resource Request body data
+         * @param {runtimeconfig(v1beta1).WatchVariableRequest} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -288,7 +288,7 @@ function Runtimeconfig(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.parent The path to the RutimeConfig resource that this variable should belong to. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
-         * @param {object} params.resource Request body data
+         * @param {runtimeconfig(v1beta1).Variable} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -317,7 +317,7 @@ function Runtimeconfig(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.name The name of the variable to update, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
-         * @param {object} params.resource Request body data
+         * @param {runtimeconfig(v1beta1).Variable} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -406,7 +406,7 @@ function Runtimeconfig(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.parent The path to the configuration that will own the waiter. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`.
-         * @param {object} params.resource Request body data
+         * @param {runtimeconfig(v1beta1).Waiter} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -518,4 +518,192 @@ function Runtimeconfig(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Status
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+*/
+/**
+ * @typedef ListConfigsResponse
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+* @property {string} nextPageToken This token allows you to get the next page of results for list requests.
+If the number of results is larger than `pageSize`, use the `nextPageToken`
+as a value for the query parameter `pageToken` in the next list request.
+Subsequent list requests will have their own `nextPageToken` to continue
+paging through the results
+* @property {runtimeconfig(v1beta1).RuntimeConfig[]} configs A list of the configurations in the project. The order of returned
+objects is arbitrary; that is, it is not ordered in any particular way.
+*/
+/**
+ * @typedef Variable
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+* @property {string} value The binary value of the variable. The length of the value must be less
+than 4096 bytes. Empty values are also accepted. The value must be
+Base64 encoded.
+NB: Only one of value and string_value can be set at the same time.
+* @property {string} text The textual value of the variable. The length of the value must be less
+than 4096 bytes. Empty values are also accepted.
+NB: Only one of value and string_value can be set at the same time.
+* @property {string} updateTime [Output Only] The time of the last variable update.
+* @property {string} state [Ouput only] The current state of the variable. The variable state indicates
+the outcome of the `variables().watch` call and is visible through the
+`get` and `list` calls.
+* @property {string} name The name of the variable resource, in the format:
+
+    projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]
+
+The `[PROJECT_ID]` must be a valid project ID, `[CONFIG_NAME]` must be a
+valid RuntimeConfig reource and `[VARIABLE_NAME]` follows Unix file system
+file path naming.
+
+The `[VARIABLE_NAME]` can contain ASCII letters, numbers, slashes and
+dashes. Slashes are used as path element separators and are not part of the
+`[VARIABLE_NAME]` itself, so `[VARIABLE_NAME]` must contain at least one
+non-slash character. Multiple slashes are coalesced into single slash
+character. Each path segment should follow RFC 1035 segment specification.
+The length of a `[VARIABLE_NAME]` must be less than 256 bytes.
+
+Once you create a variable, you cannot change the variable name.
+*/
+/**
+ * @typedef Operation
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+* @property {runtimeconfig(v1beta1).Status} error The error result of the operation in case of failure.
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
+* @property {object} metadata Service-specific metadata associated with the operation.  It typically
+contains progress information and common metadata such as create time.
+Some services might not provide such metadata.  Any method that returns a
+long-running operation should document the metadata type, if any.
+* @property {object} response The normal response of the operation in case of success.  If the original
+method returns no data on success, such as `Delete`, the response is
+`google.protobuf.Empty`.  If the original method is standard
+`Get`/`Create`/`Update`, the response should be the resource.  For other
+methods, the response should have the type `XxxResponse`, where `Xxx`
+is the original method name.  For example, if the original method name
+is `TakeSnapshot()`, the inferred response type is
+`TakeSnapshotResponse`.
+* @property {string} name The server-assigned name, which is only unique within the same service that
+originally returns it. If you use the default HTTP mapping, the
+`name` should have the format of `operations/some/unique/name`.
+*/
+/**
+ * @typedef Waiter
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+* @property {string} timeout [Required] Specifies the timeout of the waiter in seconds, beginning from
+the instant that `waiters().create` method is called. If this time elapses
+before the success or failure conditions are met, the waiter fails and sets
+the `error` code to `DEADLINE_EXCEEDED`.
+* @property {runtimeconfig(v1beta1).EndCondition} success [Required] The success condition. If this condition is met, `done` will be
+set to `true` and the `error` value will remain unset. The failure condition
+takes precedence over the success condition. If both conditions are met, a
+failure will be indicated.
+* @property {runtimeconfig(v1beta1).EndCondition} failure [Optional] The failure condition of this waiter. If this condition is met,
+`done` will be set to `true` and the `error` code will be set to `ABORTED`.
+The failure condition takes precedence over the success condition. If both
+conditions are met, a failure will be indicated. This value is optional; if
+no failure condition is set, the only failure scenario will be a timeout.
+* @property {string} createTime [Output Only] The instant at which this Waiter resource was created. Adding
+the value of `timeout` to this instant yields the timeout deadline for the
+waiter.
+* @property {string} name The name of the Waiter resource, in the format:
+
+    projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]
+
+The `[PROJECT_ID]` must be a valid Google Cloud project ID,
+the `[CONFIG_NAME]` must be a valid RuntimeConfig resource, the
+`[WAITER_NAME]` must match RFC 1035 segment specification, and the length
+of `[WAITER_NAME]` must be less than 64 bytes.
+
+After you create a Waiter resource, you cannot change the resource name.
+* @property {runtimeconfig(v1beta1).Status} error [Output Only] If the waiter ended due to a failure or timeout, this value
+will be set.
+* @property {boolean} done [Output Only] If the value is `false`, it means the waiter is still waiting
+for one of its conditions to be met.
+
+If true, the waiter has finished. If the waiter finished due to a timeout
+or failure, `error` will be set.
+*/
+/**
+ * @typedef RuntimeConfig
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+* @property {string} description An optional description of the RuntimeConfig object.
+The length of the description must be less than 256 bytes.
+* @property {string} name The resource name of a runtime config. The name must have the format:
+
+    projects/[PROJECT_ID]/configs/[CONFIG_NAME]
+
+The `[PROJECT_ID]` must be a valid project ID, and `[CONFIG_NAME]` is an
+arbitrary name that matches RFC 1035 segment specification. The length of
+`[CONFIG_NAME]` must be less than 64 bytes.
+
+You pick the RuntimeConfig resource name, but the server will validate that
+the name adheres to this format. After you create the resource, you cannot
+change the resource&#39;s name.
+*/
+/**
+ * @typedef ListWaitersResponse
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+* @property {string} nextPageToken This token allows you to get the next page of results for list requests.
+If the number of results is larger than `pageSize`, use the `nextPageToken`
+as a value for the query parameter `pageToken` in the next list request.
+Subsequent list requests will have their own `nextPageToken` to continue
+paging through the results
+* @property {runtimeconfig(v1beta1).Waiter[]} waiters Found waiters in the project.
+*/
+/**
+ * @typedef EndCondition
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+ * @property {runtimeconfig(v1beta1).Cardinality} cardinality The cardinality of the `EndCondition`.
+ */
+/**
+ * @typedef Cardinality
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+* @property {string} path The root of the variable subtree to monitor. For example, `/foo`.
+* @property {integer} number The number variables under the `path` that must exist to meet this
+condition. Defaults to 1 if not specified.
+*/
+/**
+ * @typedef Empty
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+ */
+/**
+ * @typedef WatchVariableRequest
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+* @property {string} newerThan If specified, checks the current timestamp of the variable and if the
+current timestamp is newer than `newerThan` timestamp, the method returns
+immediately.
+
+If not specified or the variable has an older timestamp, the watcher waits
+for a the value to change before returning.
+*/
+/**
+ * @typedef ListVariablesResponse
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+* @property {runtimeconfig(v1beta1).Variable[]} variables A list of variables and their values. The order of returned variable
+objects is arbitrary.
+* @property {string} nextPageToken This token allows you to get the next page of results for list requests.
+If the number of results is larger than `pageSize`, use the `nextPageToken`
+as a value for the query parameter `pageToken` in the next list request.
+Subsequent list requests will have their own `nextPageToken` to continue
+paging through the results
+*/
 module.exports = Runtimeconfig;

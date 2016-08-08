@@ -207,7 +207,7 @@ function Books(options) { // eslint-disable-line
      * @memberOf! books(v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {books(v1).BooksCloudloadingResource} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -620,7 +620,7 @@ function Books(options) { // eslint-disable-line
      * @memberOf! books(v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {books(v1).Usersettings} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -686,7 +686,7 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
        * @param {boolean=} params.showOnlySummaryInResponse Requests that only the summary of the specified layer be provided in the response.
        * @param {string=} params.source String to identify the originator of this request.
-       * @param {object} params.resource Request body data
+       * @param {books(v1).Annotation} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -782,7 +782,7 @@ function Books(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.annotationId The ID for the annotation to update.
        * @param {string=} params.source String to identify the originator of this request.
-       * @param {object} params.resource Request body data
+       * @param {books(v1).Annotation} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -1642,4 +1642,368 @@ function Books(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Annotation
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} afterSelectedText Anchor text after excerpt. For requests, if the user bookmarked a screen that has no flowing text on it, then this field should be empty.
+ * @property {string} beforeSelectedText Anchor text before excerpt. For requests, if the user bookmarked a screen that has no flowing text on it, then this field should be empty.
+ * @property {object} clientVersionRanges Selection ranges sent from the client.
+ * @property {string} created Timestamp for the created time of this annotation.
+ * @property {object} currentVersionRanges Selection ranges for the most recent content version.
+ * @property {string} data User-created data for this annotation.
+ * @property {boolean} deleted Indicates that this annotation is deleted.
+ * @property {string} highlightStyle The highlight style for this annotation.
+ * @property {string} id Id of this annotation, in the form of a GUID.
+ * @property {string} kind Resource type.
+ * @property {string} layerId The layer this annotation is for.
+ * @property {object} layerSummary 
+ * @property {string[]} pageIds Pages that this annotation spans.
+ * @property {string} selectedText Excerpt from the volume.
+ * @property {string} selfLink URL to this resource.
+ * @property {string} updated Timestamp for the last time this annotation was modified.
+ * @property {string} volumeId The volume that this annotation belongs to.
+ */
+/**
+ * @typedef Annotationdata
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} annotationType The type of annotation this data is for.
+ * @property {any} data 
+ * @property {string} encoded_data Base64 encoded data for this annotation data.
+ * @property {string} id Unique id for this annotation data.
+ * @property {string} kind Resource Type
+ * @property {string} layerId The Layer id for this data. *
+ * @property {string} selfLink URL for this resource. *
+ * @property {string} updated Timestamp for the last time this data was updated. (RFC 3339 UTC date-time format).
+ * @property {string} volumeId The volume id for this data. *
+ */
+/**
+ * @typedef Annotations
+ * @memberOf! books(v1)
+ * @type object
+ * @property {books(v1).Annotation[]} items A list of annotations.
+ * @property {string} kind Resource type.
+ * @property {string} nextPageToken Token to pass in for pagination for the next page. This will not be present if this request does not have more results.
+ * @property {integer} totalItems Total number of annotations found. This may be greater than the number of notes returned in this response if results have been paginated.
+ */
+/**
+ * @typedef AnnotationsSummary
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} kind 
+ * @property {object[]} layers 
+ */
+/**
+ * @typedef Annotationsdata
+ * @memberOf! books(v1)
+ * @type object
+ * @property {books(v1).Annotationdata[]} items A list of Annotation Data.
+ * @property {string} kind Resource type
+ * @property {string} nextPageToken Token to pass in for pagination for the next page. This will not be present if this request does not have more results.
+ * @property {integer} totalItems The total number of volume annotations found.
+ */
+/**
+ * @typedef BooksAnnotationsRange
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} endOffset The offset from the ending position.
+ * @property {string} endPosition The ending position for the range.
+ * @property {string} startOffset The offset from the starting position.
+ * @property {string} startPosition The starting position for the range.
+ */
+/**
+ * @typedef BooksCloudloadingResource
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} author 
+ * @property {string} processingState 
+ * @property {string} title 
+ * @property {string} volumeId 
+ */
+/**
+ * @typedef BooksVolumesRecommendedRateResponse
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} consistency_token 
+ */
+/**
+ * @typedef Bookshelf
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} access Whether this bookshelf is PUBLIC or PRIVATE.
+ * @property {string} created Created time for this bookshelf (formatted UTC timestamp with millisecond resolution).
+ * @property {string} description Description of this bookshelf.
+ * @property {integer} id Id of this bookshelf, only unique by user.
+ * @property {string} kind Resource type for bookshelf metadata.
+ * @property {string} selfLink URL to this resource.
+ * @property {string} title Title of this bookshelf.
+ * @property {string} updated Last modified time of this bookshelf (formatted UTC timestamp with millisecond resolution).
+ * @property {integer} volumeCount Number of volumes in this bookshelf.
+ * @property {string} volumesLastUpdated Last time a volume was added or removed from this bookshelf (formatted UTC timestamp with millisecond resolution).
+ */
+/**
+ * @typedef Bookshelves
+ * @memberOf! books(v1)
+ * @type object
+ * @property {books(v1).Bookshelf[]} items A list of bookshelves.
+ * @property {string} kind Resource type.
+ */
+/**
+ * @typedef Category
+ * @memberOf! books(v1)
+ * @type object
+ * @property {object[]} items A list of onboarding categories.
+ * @property {string} kind Resource type.
+ */
+/**
+ * @typedef ConcurrentAccessRestriction
+ * @memberOf! books(v1)
+ * @type object
+ * @property {boolean} deviceAllowed Whether access is granted for this (user, device, volume).
+ * @property {string} kind Resource type.
+ * @property {integer} maxConcurrentDevices The maximum number of concurrent access licenses for this volume.
+ * @property {string} message Error/warning message.
+ * @property {string} nonce Client nonce for verification. Download access and client-validation only.
+ * @property {string} reasonCode Error/warning reason code.
+ * @property {boolean} restricted Whether this volume has any concurrent access restrictions.
+ * @property {string} signature Response signature.
+ * @property {string} source Client app identifier for verification. Download access and client-validation only.
+ * @property {integer} timeWindowSeconds Time in seconds for license auto-expiration.
+ * @property {string} volumeId Identifies the volume for which this entry applies.
+ */
+/**
+ * @typedef Dictlayerdata
+ * @memberOf! books(v1)
+ * @type object
+ * @property {object} common 
+ * @property {object} dict 
+ * @property {string} kind 
+ */
+/**
+ * @typedef Discoveryclusters
+ * @memberOf! books(v1)
+ * @type object
+ * @property {object[]} clusters 
+ * @property {string} kind Resorce type.
+ * @property {integer} totalClusters 
+ */
+/**
+ * @typedef DownloadAccessRestriction
+ * @memberOf! books(v1)
+ * @type object
+ * @property {boolean} deviceAllowed If restricted, whether access is granted for this (user, device, volume).
+ * @property {integer} downloadsAcquired If restricted, the number of content download licenses already acquired (including the requesting client, if licensed).
+ * @property {boolean} justAcquired If deviceAllowed, whether access was just acquired with this request.
+ * @property {string} kind Resource type.
+ * @property {integer} maxDownloadDevices If restricted, the maximum number of content download licenses for this volume.
+ * @property {string} message Error/warning message.
+ * @property {string} nonce Client nonce for verification. Download access and client-validation only.
+ * @property {string} reasonCode Error/warning reason code. Additional codes may be added in the future. 0 OK 100 ACCESS_DENIED_PUBLISHER_LIMIT 101 ACCESS_DENIED_LIMIT 200 WARNING_USED_LAST_ACCESS
+ * @property {boolean} restricted Whether this volume has any download access restrictions.
+ * @property {string} signature Response signature.
+ * @property {string} source Client app identifier for verification. Download access and client-validation only.
+ * @property {string} volumeId Identifies the volume for which this entry applies.
+ */
+/**
+ * @typedef DownloadAccesses
+ * @memberOf! books(v1)
+ * @type object
+ * @property {books(v1).DownloadAccessRestriction[]} downloadAccessList A list of download access responses.
+ * @property {string} kind Resource type.
+ */
+/**
+ * @typedef Geolayerdata
+ * @memberOf! books(v1)
+ * @type object
+ * @property {object} common 
+ * @property {object} geo 
+ * @property {string} kind 
+ */
+/**
+ * @typedef Layersummaries
+ * @memberOf! books(v1)
+ * @type object
+ * @property {books(v1).Layersummary[]} items A list of layer summary items.
+ * @property {string} kind Resource type.
+ * @property {integer} totalItems The total number of layer summaries found.
+ */
+/**
+ * @typedef Layersummary
+ * @memberOf! books(v1)
+ * @type object
+ * @property {integer} annotationCount The number of annotations for this layer.
+ * @property {string[]} annotationTypes The list of annotation types contained for this layer.
+ * @property {string} annotationsDataLink Link to get data for this annotation.
+ * @property {string} annotationsLink The link to get the annotations for this layer.
+ * @property {string} contentVersion The content version this resource is for.
+ * @property {integer} dataCount The number of data items for this layer.
+ * @property {string} id Unique id of this layer summary.
+ * @property {string} kind Resource Type
+ * @property {string} layerId The layer id for this summary.
+ * @property {string} selfLink URL to this resource.
+ * @property {string} updated Timestamp for the last time an item in this layer was updated. (RFC 3339 UTC date-time format).
+ * @property {string} volumeAnnotationsVersion The current version of this layer&#39;s volume annotations. Note that this version applies only to the data in the books.layers.volumeAnnotations.* responses. The actual annotation data is versioned separately.
+ * @property {string} volumeId The volume id this resource is for.
+ */
+/**
+ * @typedef Metadata
+ * @memberOf! books(v1)
+ * @type object
+ * @property {object[]} items A list of offline dictionary metadata.
+ * @property {string} kind Resource type.
+ */
+/**
+ * @typedef Notification
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} body 
+ * @property {string[]} crmExperimentIds The list of crm experiment ids.
+ * @property {string} doc_id 
+ * @property {string} doc_type 
+ * @property {boolean} dont_show_notification 
+ * @property {string} iconUrl 
+ * @property {string} kind Resource type.
+ * @property {string} notification_type 
+ * @property {string} pcampaign_id 
+ * @property {string} reason 
+ * @property {boolean} show_notification_settings_action 
+ * @property {string} targetUrl 
+ * @property {string} title 
+ */
+/**
+ * @typedef Offers
+ * @memberOf! books(v1)
+ * @type object
+ * @property {object[]} items A list of offers.
+ * @property {string} kind Resource type.
+ */
+/**
+ * @typedef ReadingPosition
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} epubCfiPosition Position in an EPUB as a CFI.
+ * @property {string} gbImagePosition Position in a volume for image-based content.
+ * @property {string} gbTextPosition Position in a volume for text-based content.
+ * @property {string} kind Resource type for a reading position.
+ * @property {string} pdfPosition Position in a PDF file.
+ * @property {string} updated Timestamp when this reading position was last updated (formatted UTC timestamp with millisecond resolution).
+ * @property {string} volumeId Volume id associated with this reading position.
+ */
+/**
+ * @typedef RequestAccess
+ * @memberOf! books(v1)
+ * @type object
+ * @property {books(v1).ConcurrentAccessRestriction} concurrentAccess A concurrent access response.
+ * @property {books(v1).DownloadAccessRestriction} downloadAccess A download access response.
+ * @property {string} kind Resource type.
+ */
+/**
+ * @typedef Review
+ * @memberOf! books(v1)
+ * @type object
+ * @property {object} author Author of this review.
+ * @property {string} content Review text.
+ * @property {string} date Date of this review.
+ * @property {string} fullTextUrl URL for the full review text, for reviews gathered from the web.
+ * @property {string} kind Resource type for a review.
+ * @property {string} rating Star rating for this review. Possible values are ONE, TWO, THREE, FOUR, FIVE or NOT_RATED.
+ * @property {object} source Information regarding the source of this review, when the review is not from a Google Books user.
+ * @property {string} title Title for this review.
+ * @property {string} type Source type for this review. Possible values are EDITORIAL, WEB_USER or GOOGLE_USER.
+ * @property {string} volumeId Volume that this review is for.
+ */
+/**
+ * @typedef Series
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} kind Resource type.
+ * @property {object[]} series 
+ */
+/**
+ * @typedef Seriesmembership
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} kind Resorce type.
+ * @property {books(v1).Volume[]} member 
+ * @property {string} nextPageToken 
+ */
+/**
+ * @typedef Usersettings
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} kind Resource type.
+ * @property {object} notesExport User settings in sub-objects, each for different purposes.
+ * @property {object} notification 
+ */
+/**
+ * @typedef Volume
+ * @memberOf! books(v1)
+ * @type object
+ * @property {object} accessInfo Any information about a volume related to reading or obtaining that volume text. This information can depend on country (books may be public domain in one country but not in another, e.g.).
+ * @property {string} etag Opaque identifier for a specific version of a volume resource. (In LITE projection)
+ * @property {string} id Unique identifier for a volume. (In LITE projection.)
+ * @property {string} kind Resource type for a volume. (In LITE projection.)
+ * @property {object} layerInfo What layers exist in this volume and high level information about them.
+ * @property {object} recommendedInfo Recommendation related information for this volume.
+ * @property {object} saleInfo Any information about a volume related to the eBookstore and/or purchaseability. This information can depend on the country where the request originates from (i.e. books may not be for sale in certain countries).
+ * @property {object} searchInfo Search result information related to this volume.
+ * @property {string} selfLink URL to this resource. (In LITE projection.)
+ * @property {object} userInfo User specific information related to this volume. (e.g. page this user last read or whether they purchased this book)
+ * @property {object} volumeInfo General volume information.
+ */
+/**
+ * @typedef Volume2
+ * @memberOf! books(v1)
+ * @type object
+ * @property {books(v1).Volume[]} items A list of volumes.
+ * @property {string} kind Resource type.
+ * @property {string} nextPageToken 
+ */
+/**
+ * @typedef Volumeannotation
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} annotationDataId The annotation data id for this volume annotation.
+ * @property {string} annotationDataLink Link to get data for this annotation.
+ * @property {string} annotationType The type of annotation this is.
+ * @property {object} contentRanges The content ranges to identify the selected text.
+ * @property {string} data Data for this annotation.
+ * @property {boolean} deleted Indicates that this annotation is deleted.
+ * @property {string} id Unique id of this volume annotation.
+ * @property {string} kind Resource Type
+ * @property {string} layerId The Layer this annotation is for.
+ * @property {string[]} pageIds Pages the annotation spans.
+ * @property {string} selectedText Excerpt from the volume.
+ * @property {string} selfLink URL to this resource.
+ * @property {string} updated Timestamp for the last time this anntoation was updated. (RFC 3339 UTC date-time format).
+ * @property {string} volumeId The Volume this annotation is for.
+ */
+/**
+ * @typedef Volumeannotations
+ * @memberOf! books(v1)
+ * @type object
+ * @property {books(v1).Volumeannotation[]} items A list of volume annotations.
+ * @property {string} kind Resource type
+ * @property {string} nextPageToken Token to pass in for pagination for the next page. This will not be present if this request does not have more results.
+ * @property {integer} totalItems The total number of volume annotations found.
+ * @property {string} version The version string for all of the volume annotations in this layer (not just the ones in this response). Note: the version string doesn&#39;t apply to the annotation data, just the information in this response (e.g. the location of annotations in the book).
+ */
+/**
+ * @typedef Volumes
+ * @memberOf! books(v1)
+ * @type object
+ * @property {books(v1).Volume[]} items A list of volumes.
+ * @property {string} kind Resource type.
+ * @property {integer} totalItems Total number of volumes found. This might be greater than the number of volumes returned in this response if results have been paginated.
+ */
+/**
+ * @typedef Volumeseriesinfo
+ * @memberOf! books(v1)
+ * @type object
+ * @property {string} bookDisplayNumber The display number string. This should be used only for display purposes and the actual sequence should be inferred from the below orderNumber.
+ * @property {string} kind Resource type.
+ * @property {string} shortSeriesBookTitle Short book title in the context of the series.
+ * @property {object[]} volumeSeries 
+ */
 module.exports = Books;

@@ -50,7 +50,7 @@ function Classroom(options) { // eslint-disable-line
      * @memberOf! classroom(v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {classroom(v1).Course} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -107,7 +107,7 @@ function Classroom(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
-     * @param {object} params.resource Request body data
+     * @param {classroom(v1).Course} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -137,7 +137,7 @@ function Classroom(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
      * @param {string=} params.updateMask Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `name` * `section` * `descriptionHeading` * `description` * `room` * `courseState` When set in a query parameter, this field should be specified as `updateMask=,,...`
-     * @param {object} params.resource Request body data
+     * @param {classroom(v1).Course} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -227,7 +227,7 @@ function Classroom(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course to alias. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param {object} params.resource Request body data
+       * @param {classroom(v1).CourseAlias} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -318,7 +318,7 @@ function Classroom(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param {object} params.resource Request body data
+       * @param {classroom(v1).Teacher} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -439,7 +439,7 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {string=} params.enrollmentCode Enrollment code of the course to create the student in. This code is required if userId corresponds to the requesting user; it may be omitted if the requesting user has administrative permissions to create students for any user.
-       * @param {object} params.resource Request body data
+       * @param {classroom(v1).Student} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -559,7 +559,7 @@ function Classroom(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-       * @param {object} params.resource Request body data
+       * @param {classroom(v1).CourseWork} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -684,7 +684,7 @@ function Classroom(options) { // eslint-disable-line
          * @param {string} params.courseWorkId Identifier of the course work.
          * @param {string} params.id Identifier of the student submission.
          * @param {string=} params.updateMask Mask that identifies which fields on the student submission to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields may be specified by teachers: * `draft_grade` * `assigned_grade`
-         * @param {object} params.resource Request body data
+         * @param {classroom(v1).StudentSubmission} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -749,7 +749,7 @@ function Classroom(options) { // eslint-disable-line
          * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
          * @param {string} params.courseWorkId Identifier of the course work.
          * @param {string} params.id Identifier of the student submission.
-         * @param {object} params.resource Request body data
+         * @param {classroom(v1).TurnInStudentSubmissionRequest} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -780,7 +780,7 @@ function Classroom(options) { // eslint-disable-line
          * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
          * @param {string} params.courseWorkId Identifier of the course work.
          * @param {string} params.id Identifier of the student submission.
-         * @param {object} params.resource Request body data
+         * @param {classroom(v1).ReclaimStudentSubmissionRequest} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -811,7 +811,7 @@ function Classroom(options) { // eslint-disable-line
          * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
          * @param {string} params.courseWorkId Identifier of the course work.
          * @param {string} params.id Identifier of the student submission.
-         * @param {object} params.resource Request body data
+         * @param {classroom(v1).ReturnStudentSubmissionRequest} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -842,7 +842,7 @@ function Classroom(options) { // eslint-disable-line
          * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
          * @param {string} params.courseWorkId Identifier of the course work.
          * @param {string} params.id Identifier of the student submission.
-         * @param {object} params.resource Request body data
+         * @param {classroom(v1).ModifyAttachmentsRequest} params.resource Request body data
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
@@ -875,7 +875,7 @@ function Classroom(options) { // eslint-disable-line
      * @memberOf! classroom(v1)
      *
      * @param {object} params Parameters for request
-     * @param {object} params.resource Request body data
+     * @param {classroom(v1).Invitation} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -1044,4 +1044,330 @@ function Classroom(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Course
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} id Identifier for this course assigned by Classroom. When creating a course, you may optionally set this identifier to an alias string in the request to create a corresponding alias. The `id` is still assigned by Classroom and cannot be updated after the course is created. Specifying this field in a course update mask results in an error.
+ * @property {string} name Name of the course. For example, &quot;10th Grade Biology&quot;. The name is required. It must be between 1 and 750 characters and a valid UTF-8 string.
+ * @property {string} section Section of the course. For example, &quot;Period 2&quot;. If set, this field must be a valid UTF-8 string and no longer than 2800 characters.
+ * @property {string} descriptionHeading Optional heading for the description. For example, &quot;Welcome to 10th Grade Biology.&quot; If set, this field must be a valid UTF-8 string and no longer than 3600 characters.
+ * @property {string} description Optional description. For example, &quot;We&#39;ll be learning about the structure of living creatures from a combination of textbooks, guest lectures, and lab work. Expect to be excited!&quot; If set, this field must be a valid UTF-8 string and no longer than 30,000 characters.
+ * @property {string} room Optional room location. For example, &quot;301&quot;. If set, this field must be a valid UTF-8 string and no longer than 650 characters.
+ * @property {string} ownerId The identifier of the owner of a course. When specified as a parameter of a create course request, this field is required. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user This must be set in a create request. Specifying this field in a course update mask results in an `INVALID_ARGUMENT` error.
+ * @property {string} creationTime Creation time of the course. Specifying this field in a course update mask results in an error. Read-only.
+ * @property {string} updateTime Time of the most recent update to this course. Specifying this field in a course update mask results in an error. Read-only.
+ * @property {string} enrollmentCode Enrollment code to use when joining this course. Specifying this field in a course update mask results in an error. Read-only.
+ * @property {string} courseState State of the course. If unspecified, the default state is `PROVISIONED`.
+ * @property {string} alternateLink Absolute link to this course in the Classroom web UI. Read-only.
+ * @property {string} teacherGroupEmail The email address of a Google group containing all teachers of the course. This group does not accept email and can only be used for permissions. Read-only.
+ * @property {string} courseGroupEmail The email address of a Google group containing all members of the course. This group does not accept email and can only be used for permissions. Read-only.
+ * @property {classroom(v1).DriveFolder} teacherFolder Information about a Drive Folder that is shared with all teachers of the course. This field will only be set for teachers of the course and domain administrators. Read-only.
+ * @property {classroom(v1).CourseMaterialSet[]} courseMaterialSets Sets of materials that appear on the &quot;about&quot; page of this course. Read-only.
+ */
+/**
+ * @typedef DriveFolder
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} id Drive API resource ID.
+ * @property {string} title Title of the Drive folder. Read-only.
+ * @property {string} alternateLink URL that can be used to access the Drive folder. Read-only.
+ */
+/**
+ * @typedef CourseMaterialSet
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} title Title for this set.
+ * @property {classroom(v1).CourseMaterial[]} materials Materials attached to this set.
+ */
+/**
+ * @typedef CourseMaterial
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).DriveFile} driveFile Google Drive file attachment.
+ * @property {classroom(v1).YouTubeVideo} youTubeVideo Youtube video attachment.
+ * @property {classroom(v1).Link} link Link atatchment.
+ * @property {classroom(v1).Form} form Google Forms attachment.
+ */
+/**
+ * @typedef DriveFile
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} id Drive API resource ID.
+ * @property {string} title Title of the Drive item. Read-only.
+ * @property {string} alternateLink URL that can be used to access the Drive item. Read-only.
+ * @property {string} thumbnailUrl URL of a thumbnail image of the Drive item. Read-only.
+ */
+/**
+ * @typedef YouTubeVideo
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} id YouTube API resource ID.
+ * @property {string} title Title of the YouTube video. Read-only.
+ * @property {string} alternateLink URL that can be used to view the YouTube video. Read-only.
+ * @property {string} thumbnailUrl URL of a thumbnail image of the YouTube video. Read-only.
+ */
+/**
+ * @typedef Link
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} url URL to link to. This must be a valid UTF-8 string containing between 1 and 2024 characters.
+ * @property {string} title Title of the target of the URL. Read-only.
+ * @property {string} thumbnailUrl URL of a thumbnail image of the target URL. Read-only.
+ */
+/**
+ * @typedef Form
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} formUrl URL of the form.
+ * @property {string} responseUrl URL of the form responses document. Only set if respsonses have been recorded and only when the requesting user is an editor of the form. Read-only.
+ * @property {string} title Title of the Form. Read-only.
+ * @property {string} thumbnailUrl URL of a thumbnail image of the Form. Read-only.
+ */
+/**
+ * @typedef Empty
+ * @memberOf! classroom(v1)
+ * @type object
+ */
+/**
+ * @typedef ListCoursesResponse
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).Course[]} courses Courses that match the list request.
+ * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
+ */
+/**
+ * @typedef CourseAlias
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} alias Alias string. The format of the string indicates the desired alias scoping. * `d:` indicates a domain-scoped alias. Example: `d:math_101` * `p:` indicates a project-scoped alias. Example: `p:abc123` This field has a maximum length of 256 characters.
+ */
+/**
+ * @typedef ListCourseAliasesResponse
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).CourseAlias[]} aliases The course aliases.
+ * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
+ */
+/**
+ * @typedef Invitation
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} id Identifier assigned by Classroom. Read-only.
+ * @property {string} userId Identifier of the invited user. When specified as a parameter of a request, this identifier can be set to one of the following: * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user
+ * @property {string} courseId Identifier of the course to invite the user to.
+ * @property {string} role Role to invite the user to have. Must not be `COURSE_ROLE_UNSPECIFIED`.
+ */
+/**
+ * @typedef ListInvitationsResponse
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).Invitation[]} invitations Invitations that match the list request.
+ * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
+ */
+/**
+ * @typedef UserProfile
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} id Identifier of the user. Read-only.
+ * @property {classroom(v1).Name} name Name of the user. Read-only.
+ * @property {string} emailAddress Email address of the user. Read-only.
+ * @property {string} photoUrl URL of user&#39;s profile photo. Read-only.
+ * @property {classroom(v1).GlobalPermission[]} permissions Global permissions of the user. Read-only.
+ */
+/**
+ * @typedef Name
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} givenName The user&#39;s first name. Read-only.
+ * @property {string} familyName The user&#39;s last name. Read-only.
+ * @property {string} fullName The user&#39;s full name formed by concatenating the first and last name values. Read-only.
+ */
+/**
+ * @typedef GlobalPermission
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} permission Permission value.
+ */
+/**
+ * @typedef Teacher
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} courseId Identifier of the course. Read-only.
+ * @property {string} userId Identifier of the user. When specified as a parameter of a request, this identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user
+ * @property {classroom(v1).UserProfile} profile Global user information for the teacher. Read-only.
+ */
+/**
+ * @typedef ListTeachersResponse
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).Teacher[]} teachers Teachers who match the list request.
+ * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
+ */
+/**
+ * @typedef Student
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} courseId Identifier of the course. Read-only.
+ * @property {string} userId Identifier of the user. When specified as a parameter of a request, this identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user
+ * @property {classroom(v1).UserProfile} profile Global user information for the student. Read-only.
+ * @property {classroom(v1).DriveFolder} studentWorkFolder Information about a Drive Folder for this student&#39;s work in this course. Only visible to the student and domain administrators. Read-only.
+ */
+/**
+ * @typedef ListStudentsResponse
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).Student[]} students Students who match the list request.
+ * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
+ */
+/**
+ * @typedef CourseWork
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} courseId Identifier of the course. Read-only.
+ * @property {string} id Classroom-assigned identifier of this course work, unique per course. Read-only.
+ * @property {string} title Title of this course work. The title must be a valid UTF-8 string containing between 1 and 3000 characters.
+ * @property {string} description Optional description of this course work. If set, the description must be a valid UTF-8 string containing no more than 30,000 characters.
+ * @property {classroom(v1).Material[]} materials Additional materials.
+ * @property {string} state Status of this course work.. If unspecified, the default state is `DRAFT`.
+ * @property {string} alternateLink Absolute link to this course work in the Classroom web UI. This is only populated if `state` is `PUBLISHED`. Read-only.
+ * @property {string} creationTime Timestamp when this course work was created. Read-only.
+ * @property {string} updateTime Timestamp of the most recent change to this course work. Read-only.
+ * @property {classroom(v1).Date} dueDate Optional date, in UTC, that submissions for this this course work are due. This must be specified if `due_time` is specified.
+ * @property {classroom(v1).TimeOfDay} dueTime Optional time of day, in UTC, that submissions for this this course work are due. This must be specified if `due_date` is specified.
+ * @property {number} maxPoints Maximum grade for this course work. If zero or unspecified, this assignment is considered ungraded. This must be an integer value.
+ * @property {string} workType Type of this course work. The type is set when the course work is created and cannot be changed. When creating course work, this must be `ASSIGNMENT`.
+ * @property {boolean} associatedWithDeveloper Whether this course work item is associated with the Developer Console project making the request. See google.classroom.Work.CreateCourseWork for more details. Read-only.
+ * @property {string} submissionModificationMode Setting to determine when students are allowed to modify submissions. If unspecified, the default value is `MODIFIABLE_UNTIL_TURNED_IN`.
+ * @property {classroom(v1).Assignment} assignment Assignment details. This is populated only when `work_type` is `ASSIGNMENT`.
+ * @property {classroom(v1).MultipleChoiceQuestion} multipleChoiceQuestion Multiple choice question details. This is populated only when `work_type` is `MULTIPLE_CHOICE_QUESTION`.
+ */
+/**
+ * @typedef Material
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).SharedDriveFile} driveFile Google Drive file material.
+ * @property {classroom(v1).YouTubeVideo} youtubeVideo YouTube video material.
+ * @property {classroom(v1).Link} link Link material.
+ * @property {classroom(v1).Form} form Google Forms material.
+ */
+/**
+ * @typedef SharedDriveFile
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).DriveFile} driveFile Drive file details.
+ * @property {string} shareMode Mechanism by which students access the Drive item.
+ */
+/**
+ * @typedef Date
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {integer} year Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+ * @property {integer} month Month of year. Must be from 1 to 12.
+ * @property {integer} day Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year/month where the day is not significant.
+ */
+/**
+ * @typedef TimeOfDay
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {integer} hours Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+ * @property {integer} minutes Minutes of hour of day. Must be from 0 to 59.
+ * @property {integer} seconds Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+ * @property {integer} nanos Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+ */
+/**
+ * @typedef Assignment
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).DriveFolder} studentWorkFolder Drive folder where attachments from student submissions are placed. This is only populated for course teachers.
+ */
+/**
+ * @typedef MultipleChoiceQuestion
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string[]} choices Possible choices.
+ */
+/**
+ * @typedef ListCourseWorkResponse
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).CourseWork[]} courseWork Course work items that match the request.
+ * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
+ */
+/**
+ * @typedef StudentSubmission
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} courseId Identifier of the course. Read-only.
+ * @property {string} courseWorkId Identifier for the course work this corresponds to. Read-only.
+ * @property {string} id Classroom-assigned Identifier for the student submission. This is unique among submissions for the relevant course work. Read-only.
+ * @property {string} userId Identifier for the student that owns this submission. Read-only.
+ * @property {string} creationTime Creation time of this submission.. This may be unset if the student has not accessed this item. Read-only.
+ * @property {string} updateTime Last update time of this submission. This may be unset if the student has not accessed this item. Read-only.
+ * @property {string} state State of this submission. Read-only.
+ * @property {boolean} late Whether this submission is late. Read-only.
+ * @property {number} draftGrade Optional pending grade. If unset, no grade was set. This must be an integer value. This is only visible to and modifiable by course teachers.
+ * @property {number} assignedGrade Optional grade. If unset, no grade was set. This must be an integer value. This may be modified only by course teachers.
+ * @property {string} alternateLink Absolute link to the submission in the Classroom web UI. Read-only.
+ * @property {string} courseWorkType Type of course work this submission is for. Read-only.
+ * @property {boolean} associatedWithDeveloper Whether this student submission is associated with the Developer Console project making the request. See google.classroom.Work.CreateCourseWork for more details. Read-only.
+ * @property {classroom(v1).AssignmentSubmission} assignmentSubmission Submission content when course_work_type is ASSIGNMENT .
+ * @property {classroom(v1).ShortAnswerSubmission} shortAnswerSubmission Submission content when course_work_type is SHORT_ANSWER_QUESTION.
+ * @property {classroom(v1).MultipleChoiceSubmission} multipleChoiceSubmission Submission content when course_work_type is MUTIPLE_CHOICE_QUESTION.
+ */
+/**
+ * @typedef AssignmentSubmission
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).Attachment[]} attachments Attachments added by the student. Drive files that correspond to materials with a share mode of SUBMISSION_COPY may not exist yet if the student has not accessed the assignment in Classroom. Some attachment metadata is only populated if the requesting user has permission to access it. Identifier and alternate_link fields are available, but others (e.g. title) may not be.
+ */
+/**
+ * @typedef Attachment
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).DriveFile} driveFile Google Drive file attachment.
+ * @property {classroom(v1).YouTubeVideo} youTubeVideo Youtube video attachment.
+ * @property {classroom(v1).Link} link Link attachment.
+ * @property {classroom(v1).Form} form Google Forms attachment.
+ */
+/**
+ * @typedef ShortAnswerSubmission
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} answer Student response to a short-answer question.
+ */
+/**
+ * @typedef MultipleChoiceSubmission
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} answer Student&#39;s select choice.
+ */
+/**
+ * @typedef ListStudentSubmissionsResponse
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).StudentSubmission[]} studentSubmissions Student work that matches the request.
+ * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
+ */
+/**
+ * @typedef TurnInStudentSubmissionRequest
+ * @memberOf! classroom(v1)
+ * @type object
+ */
+/**
+ * @typedef ReclaimStudentSubmissionRequest
+ * @memberOf! classroom(v1)
+ * @type object
+ */
+/**
+ * @typedef ReturnStudentSubmissionRequest
+ * @memberOf! classroom(v1)
+ * @type object
+ */
+/**
+ * @typedef ModifyAttachmentsRequest
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).Attachment[]} addAttachments Attachments to add. This may only contain link attachments.
+ */
 module.exports = Classroom;
