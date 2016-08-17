@@ -1800,6 +1800,7 @@ function Genomics(options) { // eslint-disable-line
  * @memberOf! genomics(v1)
  * @type object
  * @property {genomics(v1).Annotation[]} annotations The annotations to be created. At most 4096 can be specified in a single request.
+ * @property {string} requestId A unique request ID which enables the server to detect duplicated requests. If provided, duplicated requests will result in the same response; if not provided, duplicated requests may result in duplicated data. For a given annotation set, callers should not reuse `request_id`s when writing different batches of annotations - behavior in this case is undefined. A common approach is to use a UUID. For batch jobs where worker crashes are a possibility, consider using some unique variant of a worker or run ID.
  */
 /**
  * @typedef BatchCreateAnnotationsResponse

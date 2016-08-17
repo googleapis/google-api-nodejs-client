@@ -713,7 +713,7 @@ function Classroom(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-         * @param {string} params.courseWorkId Identifer of the student work to request. If `user_id` is specified, this may be set to the string literal `"-"` to request student work for all course work in the specified course.
+         * @param {string} params.courseWorkId Identifer of the student work to request. This may be set to the string literal `"-"` to request student work for all course work in the specified course.
          * @param {string=} params.userId Optional argument to restrict returned student work to those owned by the student with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
          * @param {string=} params.states Requested submission states. If specified, returned student submissions match one of the specified submission states.
          * @param {string=} params.late Requested lateness value. If specified, returned student submissions are restricted by the requested value. If unspecified, submissions are returned regardless of `late` value.
@@ -864,6 +864,253 @@ function Classroom(options) { // eslint-disable-line
     }
   };
 
+  self.userProfiles = {
+
+    /**
+     * classroom.userProfiles.get
+     *
+     * @desc Returns a user profile. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access this user profile or if no profile exists with the requested ID or for access errors.
+     *
+     * @alias classroom.userProfiles.get
+     * @memberOf! classroom(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.userId Identifier of the profile to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://classroom.googleapis.com/v1/userProfiles/{userId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    guardianInvitations: {
+
+      /**
+       * classroom.userProfiles.guardianInvitations.list
+       *
+       * @desc Returns a list of guardian invitations that the requesting user is permitted to view, filtered by the parameters provided. This method returns the following error codes: * `PERMISSION_DENIED` if a `student_id` is specified, and the requesting user is not permitted to view guardian invitations for that student, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). May also be returned if an invalid `page_token` or `state` is provided. * `NOT_FOUND` if a `student_id` is specified, and its format can be recognized, but Classroom has no record of that student.
+       *
+       * @alias classroom.userProfiles.guardianInvitations.list
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.studentId The ID of the student whose guardian invitations are to be returned. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {string=} params.invitedEmailAddress If specified, only results with the specified `invited_email_address` will be returned.
+       * @param {string=} params.states If specified, only results with the specified `state` values will be returned. Otherwise, results with a `state` of `PENDING` will be returned.
+       * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+       * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['studentId'],
+          pathParams: ['studentId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.userProfiles.guardianInvitations.get
+       *
+       * @desc Returns a specific guardian invitation. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to view guardian invitations for the student identified by the `student_id`, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). * `NOT_FOUND` if Classroom cannot find any record of the given student or `invitation_id`. May also be returned if the student exists, but the requesting user does not have access to see that student.
+       *
+       * @alias classroom.userProfiles.guardianInvitations.get
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.studentId The ID of the student whose guardian invitation is being requested.
+       * @param {string} params.invitationId The `id` field of the `GuardianInvitation` being requested.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['studentId', 'invitationId'],
+          pathParams: ['studentId', 'invitationId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.userProfiles.guardianInvitations.create
+       *
+       * @desc Creates a guardian invitation, and sends an email to the guardian asking them to confirm that they are the student's guardian. Once the guardian accepts the invitation, their `state` will change to `COMPLETED` and they will start receiving guardian notifications. A `Guardian` resource will also be created to represent the active guardian. The request object must have the `student_id` and `invited_email_address` fields set. Failing to set these fields, or setting any other fields in the request, will result in an error. This method returns the following error codes: * `PERMISSION_DENIED` if the current user does not have permission to manage guardians, if the guardian in question has already rejected too many requests for that student, if guardians are not enabled for the domain in question, or for other access errors. * `RESOURCE_EXHAUSTED` if the student or guardian has exceeded the guardian link limit. * `INVALID_ARGUMENT` if the guardian email address is not valid (for example, if it is too long), or if the format of the student ID provided cannot be recognized (it is not an email address, nor a `user_id` from this API). This error will also be returned if read-only fields are set, or if the `state` field is set to to a value other than `PENDING`. * `NOT_FOUND` if the student ID provided is a valid student ID, but Classroom has no record of that student. * `ALREADY_EXISTS` if there is already a pending guardian invitation for the student and `invited_email_address` provided, or if the provided `invited_email_address` matches the Google account of an existing `Guardian` for this user.
+       *
+       * @alias classroom.userProfiles.guardianInvitations.create
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.studentId ID of the student (in standard format)
+       * @param {classroom(v1).GuardianInvitation} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['studentId'],
+          pathParams: ['studentId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.userProfiles.guardianInvitations.patch
+       *
+       * @desc Modifies a guardian invitation. Currently, the only valid modification is to change the `state` from `PENDING` to `COMPLETE`. This has the effect of withdrawing the invitation. This method returns the following error codes: * `PERMISSION_DENIED` if the current user does not have permission to manage guardians, if guardians are not enabled for the domain in question or for other access errors. * `FAILED_PRECONDITION` if the guardian link is not in the `PENDING` state. * `INVALID_ARGUMENT` if the format of the student ID provided cannot be recognized (it is not an email address, nor a `user_id` from this API), or if the passed `GuardianInvitation` has a `state` other than `COMPLETE`, or if it modifies fields other than `state`. * `NOT_FOUND` if the student ID provided is a valid student ID, but Classroom has no record of that student, or if the `id` field does not refer to a guardian invitation known to Classroom.
+       *
+       * @alias classroom.userProfiles.guardianInvitations.patch
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.studentId The ID of the student whose guardian invitation is to be modified.
+       * @param {string} params.invitationId The `id` field of the `GuardianInvitation` to be modified.
+       * @param {string=} params.updateMask Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `state` When set in a query parameter, this field should be specified as `updateMask=,,...`
+       * @param {classroom(v1).GuardianInvitation} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['studentId', 'invitationId'],
+          pathParams: ['studentId', 'invitationId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    guardians: {
+
+      /**
+       * classroom.userProfiles.guardians.list
+       *
+       * @desc Returns a list of guardians that the requesting user is permitted to view, restricted to those that match the request. This method returns the following error codes: * `PERMISSION_DENIED` if a `student_id` is specified, and the requesting user is not permitted to view guardian information for that student, if guardians are not enabled for the domain in question, if the `invited_email_address` filter is set by a user who is not a domain administrator, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). May also be returned if an invalid `page_token` is provided. * `NOT_FOUND` if a `student_id` is specified, and its format can be recognized, but Classroom has no record of that student.
+       *
+       * @alias classroom.userProfiles.guardians.list
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.studentId Filter results by the student who the guardian is linked to. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {string=} params.invitedEmailAddress Filter results by the email address that the original invitation was sent to, resulting in this guardian link. This filter can only be used by domain administrators.
+       * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+       * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['studentId'],
+          pathParams: ['studentId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.userProfiles.guardians.get
+       *
+       * @desc Returns a specific guardian. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to view guardian information for the student identified by the `student_id`, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). * `NOT_FOUND` if Classroom cannot find any record of the given student or `guardian_id`, or if the guardian has been disabled.
+       *
+       * @alias classroom.userProfiles.guardians.get
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.studentId The student whose guardian is being requested. One of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {string} params.guardianId The `id` field from a `Guardian`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['studentId', 'guardianId'],
+          pathParams: ['studentId', 'guardianId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.userProfiles.guardians.delete
+       *
+       * @desc Deletes a guardian. The guardian will no longer receive guardian notifications and the guardian will no longer be accessible via the API. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to manage guardians for the student identified by the `student_id`, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API). * `NOT_FOUND` if Classroom cannot find any record of the given `student_id` or `guardian_id`, or if the guardian has already been disabled.
+       *
+       * @alias classroom.userProfiles.guardians.delete
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.studentId The student whose guardian is to be deleted. One of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {string} params.guardianId The `id` field from a `Guardian`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['studentId', 'guardianId'],
+          pathParams: ['studentId', 'guardianId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
+  };
+
   self.invitations = {
 
     /**
@@ -1010,38 +1257,6 @@ function Classroom(options) { // eslint-disable-line
     }
 
   };
-
-  self.userProfiles = {
-
-    /**
-     * classroom.userProfiles.get
-     *
-     * @desc Returns a user profile. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access this user profile or if no profile exists with the requested ID or for access errors.
-     *
-     * @alias classroom.userProfiles.get
-     * @memberOf! classroom(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId Identifier of the profile to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, callback) {
-      var parameters = {
-        options: {
-          url: 'https://classroom.googleapis.com/v1/userProfiles/{userId}',
-          method: 'GET'
-        },
-        params: params,
-        requiredParams: ['userId'],
-        pathParams: ['userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
 }
 
 /**
@@ -1150,20 +1365,37 @@ function Classroom(options) { // eslint-disable-line
  * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
  */
 /**
- * @typedef Invitation
+ * @typedef ListGuardianInvitationsResponse
  * @memberOf! classroom(v1)
  * @type object
- * @property {string} id Identifier assigned by Classroom. Read-only.
- * @property {string} userId Identifier of the invited user. When specified as a parameter of a request, this identifier can be set to one of the following: * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user
- * @property {string} courseId Identifier of the course to invite the user to.
- * @property {string} role Role to invite the user to have. Must not be `COURSE_ROLE_UNSPECIFIED`.
+ * @property {classroom(v1).GuardianInvitation[]} guardianInvitations Guardian invitations that matched the list request.
+ * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
  */
 /**
- * @typedef ListInvitationsResponse
+ * @typedef GuardianInvitation
  * @memberOf! classroom(v1)
  * @type object
- * @property {classroom(v1).Invitation[]} invitations Invitations that match the list request.
+ * @property {string} studentId ID of the student (in standard format)
+ * @property {string} invitationId Unique identifier for this invitation. Read-only.
+ * @property {string} invitedEmailAddress Email address that the invitation was sent to. This field is only visible to domain administrators.
+ * @property {string} state The state that this invitation is in.
+ * @property {string} creationTime The time that this invitation was created. Read-only.
+ */
+/**
+ * @typedef ListGuardiansResponse
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).Guardian[]} guardians Guardians on this page of results that met the criteria specified in the request.
  * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
+ */
+/**
+ * @typedef Guardian
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} studentId Identifier for the student to whom the guardian relationship applies.
+ * @property {string} guardianId Identifier for the guardian.
+ * @property {classroom(v1).UserProfile} guardianProfile User profile for the guardian.
+ * @property {string} invitedEmailAddress The email address to which the initial guardian invitation was sent. This field is only visible to domain administrators.
  */
 /**
  * @typedef UserProfile
@@ -1221,6 +1453,22 @@ function Classroom(options) { // eslint-disable-line
  * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
  */
 /**
+ * @typedef Invitation
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} id Identifier assigned by Classroom. Read-only.
+ * @property {string} userId Identifier of the invited user. When specified as a parameter of a request, this identifier can be set to one of the following: * the numeric identifier for the user * the email address of the user * the string literal `&quot;me&quot;`, indicating the requesting user
+ * @property {string} courseId Identifier of the course to invite the user to.
+ * @property {string} role Role to invite the user to have. Must not be `COURSE_ROLE_UNSPECIFIED`.
+ */
+/**
+ * @typedef ListInvitationsResponse
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).Invitation[]} invitations Invitations that match the list request.
+ * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
+ */
+/**
  * @typedef CourseWork
  * @memberOf! classroom(v1)
  * @type object
@@ -1228,14 +1476,14 @@ function Classroom(options) { // eslint-disable-line
  * @property {string} id Classroom-assigned identifier of this course work, unique per course. Read-only.
  * @property {string} title Title of this course work. The title must be a valid UTF-8 string containing between 1 and 3000 characters.
  * @property {string} description Optional description of this course work. If set, the description must be a valid UTF-8 string containing no more than 30,000 characters.
- * @property {classroom(v1).Material[]} materials Additional materials.
- * @property {string} state Status of this course work.. If unspecified, the default state is `DRAFT`.
+ * @property {classroom(v1).Material[]} materials Additional materials. CourseWork must have no more than 20 material items.
+ * @property {string} state Status of this course work. If unspecified, the default state is `DRAFT`.
  * @property {string} alternateLink Absolute link to this course work in the Classroom web UI. This is only populated if `state` is `PUBLISHED`. Read-only.
  * @property {string} creationTime Timestamp when this course work was created. Read-only.
  * @property {string} updateTime Timestamp of the most recent change to this course work. Read-only.
  * @property {classroom(v1).Date} dueDate Optional date, in UTC, that submissions for this this course work are due. This must be specified if `due_time` is specified.
  * @property {classroom(v1).TimeOfDay} dueTime Optional time of day, in UTC, that submissions for this this course work are due. This must be specified if `due_date` is specified.
- * @property {number} maxPoints Maximum grade for this course work. If zero or unspecified, this assignment is considered ungraded. This must be an integer value.
+ * @property {number} maxPoints Maximum grade for this course work. If zero or unspecified, this assignment is considered ungraded. This must be a non-negative integer value.
  * @property {string} workType Type of this course work. The type is set when the course work is created and cannot be changed. When creating course work, this must be `ASSIGNMENT`.
  * @property {boolean} associatedWithDeveloper Whether this course work item is associated with the Developer Console project making the request. See google.classroom.Work.CreateCourseWork for more details. Read-only.
  * @property {string} submissionModificationMode Setting to determine when students are allowed to modify submissions. If unspecified, the default value is `MODIFIABLE_UNTIL_TURNED_IN`.
@@ -1302,18 +1550,18 @@ function Classroom(options) { // eslint-disable-line
  * @property {string} courseWorkId Identifier for the course work this corresponds to. Read-only.
  * @property {string} id Classroom-assigned Identifier for the student submission. This is unique among submissions for the relevant course work. Read-only.
  * @property {string} userId Identifier for the student that owns this submission. Read-only.
- * @property {string} creationTime Creation time of this submission.. This may be unset if the student has not accessed this item. Read-only.
+ * @property {string} creationTime Creation time of this submission. This may be unset if the student has not accessed this item. Read-only.
  * @property {string} updateTime Last update time of this submission. This may be unset if the student has not accessed this item. Read-only.
  * @property {string} state State of this submission. Read-only.
  * @property {boolean} late Whether this submission is late. Read-only.
- * @property {number} draftGrade Optional pending grade. If unset, no grade was set. This must be an integer value. This is only visible to and modifiable by course teachers.
- * @property {number} assignedGrade Optional grade. If unset, no grade was set. This must be an integer value. This may be modified only by course teachers.
+ * @property {number} draftGrade Optional pending grade. If unset, no grade was set. This must be a non-negative integer value. This is only visible to and modifiable by course teachers.
+ * @property {number} assignedGrade Optional grade. If unset, no grade was set. This must be a non-negative integer value. This may be modified only by course teachers.
  * @property {string} alternateLink Absolute link to the submission in the Classroom web UI. Read-only.
  * @property {string} courseWorkType Type of course work this submission is for. Read-only.
  * @property {boolean} associatedWithDeveloper Whether this student submission is associated with the Developer Console project making the request. See google.classroom.Work.CreateCourseWork for more details. Read-only.
  * @property {classroom(v1).AssignmentSubmission} assignmentSubmission Submission content when course_work_type is ASSIGNMENT .
  * @property {classroom(v1).ShortAnswerSubmission} shortAnswerSubmission Submission content when course_work_type is SHORT_ANSWER_QUESTION.
- * @property {classroom(v1).MultipleChoiceSubmission} multipleChoiceSubmission Submission content when course_work_type is MUTIPLE_CHOICE_QUESTION.
+ * @property {classroom(v1).MultipleChoiceSubmission} multipleChoiceSubmission Submission content when course_work_type is MULTIPLE_CHOICE_QUESTION.
  */
 /**
  * @typedef AssignmentSubmission
@@ -1368,6 +1616,6 @@ function Classroom(options) { // eslint-disable-line
  * @typedef ModifyAttachmentsRequest
  * @memberOf! classroom(v1)
  * @type object
- * @property {classroom(v1).Attachment[]} addAttachments Attachments to add. This may only contain link attachments.
+ * @property {classroom(v1).Attachment[]} addAttachments Attachments to add. A student submission may not have more than 20 attachments. This may only contain link attachments.
  */
 module.exports = Classroom;

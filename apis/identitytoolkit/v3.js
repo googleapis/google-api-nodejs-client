@@ -585,6 +585,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {string} appId The app ID of the mobile app, base64(CERT_SHA1):PACKAGE_NAME for Android, BUNDLE_ID for iOS.
+ * @property {string} authFlowType Explicitly specify the auth flow type. Currently only support &quot;CODE_FLOW&quot; type. The field is only used for Google provider.
  * @property {string} clientId The relying party OAuth client ID.
  * @property {string} context The opaque value used by the client to maintain context info between the authentication request and the IDP callback.
  * @property {string} continueUri The URI to which the IDP redirects the user after the federated login flow.
@@ -595,6 +596,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} openidRealm Optional realm for OpenID protocol. The sub string &quot;scheme://domain:port&quot; of the param &quot;continueUri&quot; is used if this is not set.
  * @property {string} otaApp The native app package for OTA installation.
  * @property {string} providerId The IdP ID. For white listed IdPs it&#39;s a short domain name e.g. google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it&#39;s the OP identifier.
+ * @property {string} sessionId The session_id passed by client.
  */
 /**
  * @typedef IdentitytoolkitRelyingpartyDeleteAccountRequest
@@ -855,6 +857,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} photoUrl The URL of the user profile photo.
  * @property {object[]} providerUserInfo The IDP of the user.
  * @property {string} salt The user&#39;s password salt.
+ * @property {string} screenName User&#39;s screen name at Twitter.
  * @property {string} validSince Timestamp in seconds for valid login token.
  * @property {integer} version Version of the user&#39;s password.
  */

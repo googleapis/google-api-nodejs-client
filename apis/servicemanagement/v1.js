@@ -137,7 +137,7 @@ function Servicemanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string=} params.configId 
-     * @param {string} params.serviceName The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -165,7 +165,7 @@ function Servicemanagement(options) { // eslint-disable-line
      * @memberOf! servicemanagement(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service. See the `ServiceManager` overview for naming requirements. For example: `example.googleapis.com`.
+     * @param {string} params.serviceName The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -337,7 +337,7 @@ function Servicemanagement(options) { // eslint-disable-line
      * @memberOf! servicemanagement(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
+     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -397,7 +397,7 @@ function Servicemanagement(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.rolloutId The id of the rollout resource.
-       * @param {string} params.serviceName The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
+       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -425,7 +425,7 @@ function Servicemanagement(options) { // eslint-disable-line
        * @memberOf! servicemanagement(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.serviceName The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
+       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {servicemanagement(v1).Rollout} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -455,7 +455,7 @@ function Servicemanagement(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {integer=} params.pageSize The max number of items to include in the response list.
-       * @param {string} params.serviceName The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
+       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {string=} params.pageToken The token of the page to retrieve.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -487,7 +487,7 @@ function Servicemanagement(options) { // eslint-disable-line
        * @memberOf! servicemanagement(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.serviceName The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
+       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {servicemanagement(v1).SubmitConfigSourceRequest} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -517,7 +517,7 @@ function Servicemanagement(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.configId 
-       * @param {string} params.serviceName The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
+       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
@@ -545,7 +545,7 @@ function Servicemanagement(options) { // eslint-disable-line
        * @memberOf! servicemanagement(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.serviceName The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
+       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {servicemanagement(v1).Service} params.resource Request body data
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -575,7 +575,7 @@ function Servicemanagement(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {integer=} params.pageSize The max number of items to include in the response list.
-       * @param {string} params.serviceName The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
+       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {string=} params.pageToken The token of the page to retrieve.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -678,11 +678,6 @@ methods in all APIs.
 
 Refer to selector for syntax details.
 */
-/**
- * @typedef ConfigOptions
- * @memberOf! servicemanagement(v1)
- * @type object
- */
 /**
  * @typedef Diagnostic
  * @memberOf! servicemanagement(v1)
@@ -917,8 +912,6 @@ one consumer destination.
 * @property {string} producerProjectId ID of the project that produces and owns this service.
 * @property {string} serviceName The name of the service. See the [overview](/service-management/overview)
 for naming requirements.
-This name must match `google.api.Service.name` in the
-`service_config` field.
 */
 /**
  * @typedef ConfigFile
@@ -1048,8 +1041,6 @@ An example of the generated rollout_id is &#39;2016-02-16r1&#39;
  * @type object
 * @property {servicemanagement(v1).ConfigFile[]} files Set of source configuration files that are used to generate a service
 configuration (`google.api.Service`).
-* @property {servicemanagement(v1).ConfigOptions} options Options to cover use of source configuration within ServiceManager and
-tools
 * @property {string} id A unique ID for a specific instance of this message, typically assigned
 by the client for tracking purpose. If empty, the server may choose to
 generate one instead.
@@ -1409,6 +1400,16 @@ different monitored resource type. A log can be used in at most
 one consumer destination.
 */
 /**
+ * @typedef Enum
+ * @memberOf! servicemanagement(v1)
+ * @type object
+ * @property {string} syntax The source syntax.
+ * @property {servicemanagement(v1).EnumValue[]} enumvalue Enum value definitions.
+ * @property {servicemanagement(v1).Option[]} options Protocol buffer options.
+ * @property {servicemanagement(v1).SourceContext} sourceContext The source context.
+ * @property {string} name Enum type name.
+ */
+/**
  * @typedef SystemParameter
  * @memberOf! servicemanagement(v1)
  * @type object
@@ -1419,16 +1420,6 @@ and etc. It is case sensitive.
 * @property {string} httpHeader Define the HTTP header name to use for the parameter. It is case
 insensitive.
 */
-/**
- * @typedef Enum
- * @memberOf! servicemanagement(v1)
- * @type object
- * @property {string} syntax The source syntax.
- * @property {servicemanagement(v1).EnumValue[]} enumvalue Enum value definitions.
- * @property {servicemanagement(v1).Option[]} options Protocol buffer options.
- * @property {servicemanagement(v1).SourceContext} sourceContext The source context.
- * @property {string} name Enum type name.
- */
 /**
  * @typedef GenerateConfigReportResponse
  * @memberOf! servicemanagement(v1)

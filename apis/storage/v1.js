@@ -2087,6 +2087,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
+     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      * @param {storage(v1).ComposeRequest} params.resource Request body data
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2440,6 +2441,7 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
+     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      * @param {string=} params.name Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
@@ -2707,6 +2709,7 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.destinationBucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
+     * @param {string=} params.destinationKmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
      * @param {string} params.destinationObject Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
      * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the destination object's current generation matches the given value.
@@ -2920,6 +2923,7 @@ function Storage(options) { // eslint-disable-line
  * @property {storage(v1).BucketAccessControl[]} acl Access controls on the bucket.
  * @property {object[]} cors The bucket&#39;s Cross-Origin Resource Sharing (CORS) configuration.
  * @property {storage(v1).ObjectAccessControl[]} defaultObjectAcl Default access controls to apply to new objects when no ACL is provided.
+ * @property {object} encryption Encryption configuration used by default for newly inserted objects, when no encryption config is specified.
  * @property {string} etag HTTP 1.1 Entity tag for the bucket.
  * @property {string} id The ID of the bucket.
  * @property {string} kind The kind of item this is. For buckets, this is always storage#bucket.
@@ -3020,6 +3024,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} generation The content generation of this object. Used for object versioning.
  * @property {string} id The ID of the object.
  * @property {string} kind The kind of item this is. For objects, this is always storage#object.
+ * @property {string} kmsKeyName Cloud KMS Key used to encrypt this object, if the object is encrypted by such a key.
  * @property {string} md5Hash MD5 hash of the data; encoded using base64. For more information about using the MD5 hash, see Hashes and ETags: Best Practices.
  * @property {string} mediaLink Media download link.
  * @property {object} metadata User-provided metadata, in key/value pairs.

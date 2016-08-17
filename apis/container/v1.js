@@ -48,6 +48,55 @@ function Container(options) { // eslint-disable-line
        *
        * @desc Returns configuration info about the Container Engine service.
        *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Container Engine API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/container
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk/ and run
+       * //    'gcloud beta auth application-default login'
+       * // 3. Install the Node.js client library and Application Default Credentials
+       * //    library by running 'npm install googleapis --save'
+       * var google = require('googleapis');
+       * var container = google.container('v1');
+       *
+       * google.auth.getApplicationDefault(function(err, authClient) {
+       *   if (err) {
+       *     console.log('Authentication failed because of ', err);
+       *     return;
+       *   }
+       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *     authClient = authClient.createScoped(scopes);
+       *   }
+       *
+       *   var request = {
+       *     // TODO: Change placeholders below to appropriate parameter values for the 'getServerconfig' method:
+       *
+       *     // * The Google Developers Console [project ID or project
+       *     //   number](https://support.google.com/cloud/answer/6158840).
+       *     projectId: "",
+       *
+       *     // * The name of the Google Compute Engine [zone](/compute/docs/zones#available)
+       *     //   to return operations for.
+       *     zone: "",
+       *
+       *     // Auth client
+       *     auth: authClient
+       *   };
+       *
+       *   container.projects.zones.getServerconfig(request, function(err, result) {
+       *     if (err) {
+       *       console.log(err);
+       *     } else {
+       *       console.log(result);
+       *     }
+       *   });
+       * });
+       *
        * @alias container.projects.zones.getServerconfig
        * @memberOf! container(v1)
        *
@@ -79,6 +128,56 @@ function Container(options) { // eslint-disable-line
          *
          * @desc Lists all clusters owned by a project in either the specified zone or all zones.
          *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Google Container Engine API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/container
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run
+         * //    'gcloud beta auth application-default login'
+         * // 3. Install the Node.js client library and Application Default Credentials
+         * //    library by running 'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var container = google.container('v1');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+         *
+         *     // * The Google Developers Console [project ID or project
+         *     //   number](https://support.google.com/cloud/answer/6158840).
+         *     projectId: "",
+         *
+         *     // * The name of the Google Compute Engine
+         *     //   [zone](/compute/docs/zones#available) in which the cluster
+         *     //   resides, or "-" for all zones.
+         *     zone: "",
+         *
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   container.projects.zones.clusters.list(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
+         *
          * @alias container.projects.zones.clusters.list
          * @memberOf! container(v1)
          *
@@ -107,6 +206,59 @@ function Container(options) { // eslint-disable-line
          * container.projects.zones.clusters.get
          *
          * @desc Gets the details of a specific cluster.
+         *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Google Container Engine API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/container
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run
+         * //    'gcloud beta auth application-default login'
+         * // 3. Install the Node.js client library and Application Default Credentials
+         * //    library by running 'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var container = google.container('v1');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+         *
+         *     // * The Google Developers Console [project ID or project
+         *     //   number](https://support.google.com/cloud/answer/6158840).
+         *     projectId: "",
+         *
+         *     // * The name of the Google Compute Engine
+         *     //   [zone](/compute/docs/zones#available) in which the cluster
+         *     //   resides.
+         *     zone: "",
+         *
+         *     // * The name of the cluster to retrieve.
+         *     clusterId: "",
+         *
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   container.projects.zones.clusters.get(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
          *
          * @alias container.projects.zones.clusters.get
          * @memberOf! container(v1)
@@ -138,6 +290,58 @@ function Container(options) { // eslint-disable-line
          *
          * @desc Creates a cluster, consisting of the specified number and type of Google Compute Engine instances. By default, the cluster is created in the project's [default network](/compute/docs/networks-and-firewalls#networks). One firewall is added for the cluster. After cluster creation, the cluster creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster. Finally, an entry is added to the project's global metadata indicating which CIDR range is being used by the cluster.
          *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Google Container Engine API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/container
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run
+         * //    'gcloud beta auth application-default login'
+         * // 3. Install the Node.js client library and Application Default Credentials
+         * //    library by running 'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var container = google.container('v1');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+         *
+         *     // * The Google Developers Console [project ID or project
+         *     //   number](https://support.google.com/cloud/answer/6158840).
+         *     projectId: "",
+         *
+         *     // * The name of the Google Compute Engine
+         *     //   [zone](/compute/docs/zones#available) in which the cluster
+         *     //   resides.
+         *     zone: "",
+         *
+         *     resource: {},
+         *
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   container.projects.zones.clusters.create(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
+         *
          * @alias container.projects.zones.clusters.create
          * @memberOf! container(v1)
          *
@@ -167,6 +371,61 @@ function Container(options) { // eslint-disable-line
          * container.projects.zones.clusters.update
          *
          * @desc Updates the settings of a specific cluster.
+         *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Google Container Engine API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/container
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run
+         * //    'gcloud beta auth application-default login'
+         * // 3. Install the Node.js client library and Application Default Credentials
+         * //    library by running 'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var container = google.container('v1');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+         *
+         *     // * The Google Developers Console [project ID or project
+         *     //   number](https://support.google.com/cloud/answer/6158840).
+         *     projectId: "",
+         *
+         *     // * The name of the Google Compute Engine
+         *     //   [zone](/compute/docs/zones#available) in which the cluster
+         *     //   resides.
+         *     zone: "",
+         *
+         *     // * The name of the cluster to upgrade.
+         *     clusterId: "",
+         *
+         *     resource: {},
+         *
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   container.projects.zones.clusters.update(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
          *
          * @alias container.projects.zones.clusters.update
          * @memberOf! container(v1)
@@ -198,6 +457,59 @@ function Container(options) { // eslint-disable-line
          * container.projects.zones.clusters.delete
          *
          * @desc Deletes the cluster, including the Kubernetes endpoint and all worker nodes. Firewalls and routes that were configured during cluster creation are also deleted. Other Google Compute Engine resources that might be in use by the cluster (e.g. load balancer resources) will not be deleted if they weren't present at the initial create time.
+         *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Google Container Engine API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/container
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run
+         * //    'gcloud beta auth application-default login'
+         * // 3. Install the Node.js client library and Application Default Credentials
+         * //    library by running 'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var container = google.container('v1');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+         *
+         *     // * The Google Developers Console [project ID or project
+         *     //   number](https://support.google.com/cloud/answer/6158840).
+         *     projectId: "",
+         *
+         *     // * The name of the Google Compute Engine
+         *     //   [zone](/compute/docs/zones#available) in which the cluster
+         *     //   resides.
+         *     zone: "",
+         *
+         *     // * The name of the cluster to delete.
+         *     clusterId: "",
+         *
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   container.projects.zones.clusters.delete(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
          *
          * @alias container.projects.zones.clusters.delete
          * @memberOf! container(v1)
@@ -231,6 +543,59 @@ function Container(options) { // eslint-disable-line
            *
            * @desc Lists the node pools for a cluster.
            *
+           * @example
+           * // BEFORE RUNNING:
+           * // ---------------
+           * // 1. If not already done, enable the Google Container Engine API
+           * //    and check the quota for your project at
+           * //    https://console.developers.google.com/apis/api/container
+           * // 2. This sample uses Application Default Credentials for authentication.
+           * //    If not already done, install the gcloud CLI from
+           * //    https://cloud.google.com/sdk/ and run
+           * //    'gcloud beta auth application-default login'
+           * // 3. Install the Node.js client library and Application Default Credentials
+           * //    library by running 'npm install googleapis --save'
+           * var google = require('googleapis');
+           * var container = google.container('v1');
+           *
+           * google.auth.getApplicationDefault(function(err, authClient) {
+           *   if (err) {
+           *     console.log('Authentication failed because of ', err);
+           *     return;
+           *   }
+           *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+           *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+           *     authClient = authClient.createScoped(scopes);
+           *   }
+           *
+           *   var request = {
+           *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+           *
+           *     // * The Google Developers Console [project ID or project
+           *     //   number](https://developers.google.com/console/help/new/#projectnumber).
+           *     projectId: "",
+           *
+           *     // * The name of the Google Compute Engine
+           *     //   [zone](/compute/docs/zones#available) in which the cluster
+           *     //   resides.
+           *     zone: "",
+           *
+           *     // * The name of the cluster.
+           *     clusterId: "",
+           *
+           *     // Auth client
+           *     auth: authClient
+           *   };
+           *
+           *   container.projects.zones.clusters.nodePools.list(request, function(err, result) {
+           *     if (err) {
+           *       console.log(err);
+           *     } else {
+           *       console.log(result);
+           *     }
+           *   });
+           * });
+           *
            * @alias container.projects.zones.clusters.nodePools.list
            * @memberOf! container(v1)
            *
@@ -260,6 +625,62 @@ function Container(options) { // eslint-disable-line
            * container.projects.zones.clusters.nodePools.get
            *
            * @desc Retrieves the node pool requested.
+           *
+           * @example
+           * // BEFORE RUNNING:
+           * // ---------------
+           * // 1. If not already done, enable the Google Container Engine API
+           * //    and check the quota for your project at
+           * //    https://console.developers.google.com/apis/api/container
+           * // 2. This sample uses Application Default Credentials for authentication.
+           * //    If not already done, install the gcloud CLI from
+           * //    https://cloud.google.com/sdk/ and run
+           * //    'gcloud beta auth application-default login'
+           * // 3. Install the Node.js client library and Application Default Credentials
+           * //    library by running 'npm install googleapis --save'
+           * var google = require('googleapis');
+           * var container = google.container('v1');
+           *
+           * google.auth.getApplicationDefault(function(err, authClient) {
+           *   if (err) {
+           *     console.log('Authentication failed because of ', err);
+           *     return;
+           *   }
+           *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+           *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+           *     authClient = authClient.createScoped(scopes);
+           *   }
+           *
+           *   var request = {
+           *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+           *
+           *     // * The Google Developers Console [project ID or project
+           *     //   number](https://developers.google.com/console/help/new/#projectnumber).
+           *     projectId: "",
+           *
+           *     // * The name of the Google Compute Engine
+           *     //   [zone](/compute/docs/zones#available) in which the cluster
+           *     //   resides.
+           *     zone: "",
+           *
+           *     // * The name of the cluster.
+           *     clusterId: "",
+           *
+           *     // * The name of the node pool.
+           *     nodePoolId: "",
+           *
+           *     // Auth client
+           *     auth: authClient
+           *   };
+           *
+           *   container.projects.zones.clusters.nodePools.get(request, function(err, result) {
+           *     if (err) {
+           *       console.log(err);
+           *     } else {
+           *       console.log(result);
+           *     }
+           *   });
+           * });
            *
            * @alias container.projects.zones.clusters.nodePools.get
            * @memberOf! container(v1)
@@ -292,6 +713,61 @@ function Container(options) { // eslint-disable-line
            *
            * @desc Creates a node pool for a cluster.
            *
+           * @example
+           * // BEFORE RUNNING:
+           * // ---------------
+           * // 1. If not already done, enable the Google Container Engine API
+           * //    and check the quota for your project at
+           * //    https://console.developers.google.com/apis/api/container
+           * // 2. This sample uses Application Default Credentials for authentication.
+           * //    If not already done, install the gcloud CLI from
+           * //    https://cloud.google.com/sdk/ and run
+           * //    'gcloud beta auth application-default login'
+           * // 3. Install the Node.js client library and Application Default Credentials
+           * //    library by running 'npm install googleapis --save'
+           * var google = require('googleapis');
+           * var container = google.container('v1');
+           *
+           * google.auth.getApplicationDefault(function(err, authClient) {
+           *   if (err) {
+           *     console.log('Authentication failed because of ', err);
+           *     return;
+           *   }
+           *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+           *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+           *     authClient = authClient.createScoped(scopes);
+           *   }
+           *
+           *   var request = {
+           *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+           *
+           *     // * The Google Developers Console [project ID or project
+           *     //   number](https://developers.google.com/console/help/new/#projectnumber).
+           *     projectId: "",
+           *
+           *     // * The name of the Google Compute Engine
+           *     //   [zone](/compute/docs/zones#available) in which the cluster
+           *     //   resides.
+           *     zone: "",
+           *
+           *     // * The name of the cluster.
+           *     clusterId: "",
+           *
+           *     resource: {},
+           *
+           *     // Auth client
+           *     auth: authClient
+           *   };
+           *
+           *   container.projects.zones.clusters.nodePools.create(request, function(err, result) {
+           *     if (err) {
+           *       console.log(err);
+           *     } else {
+           *       console.log(result);
+           *     }
+           *   });
+           * });
+           *
            * @alias container.projects.zones.clusters.nodePools.create
            * @memberOf! container(v1)
            *
@@ -322,6 +798,62 @@ function Container(options) { // eslint-disable-line
            * container.projects.zones.clusters.nodePools.delete
            *
            * @desc Deletes a node pool from a cluster.
+           *
+           * @example
+           * // BEFORE RUNNING:
+           * // ---------------
+           * // 1. If not already done, enable the Google Container Engine API
+           * //    and check the quota for your project at
+           * //    https://console.developers.google.com/apis/api/container
+           * // 2. This sample uses Application Default Credentials for authentication.
+           * //    If not already done, install the gcloud CLI from
+           * //    https://cloud.google.com/sdk/ and run
+           * //    'gcloud beta auth application-default login'
+           * // 3. Install the Node.js client library and Application Default Credentials
+           * //    library by running 'npm install googleapis --save'
+           * var google = require('googleapis');
+           * var container = google.container('v1');
+           *
+           * google.auth.getApplicationDefault(function(err, authClient) {
+           *   if (err) {
+           *     console.log('Authentication failed because of ', err);
+           *     return;
+           *   }
+           *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+           *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+           *     authClient = authClient.createScoped(scopes);
+           *   }
+           *
+           *   var request = {
+           *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+           *
+           *     // * The Google Developers Console [project ID or project
+           *     //   number](https://developers.google.com/console/help/new/#projectnumber).
+           *     projectId: "",
+           *
+           *     // * The name of the Google Compute Engine
+           *     //   [zone](/compute/docs/zones#available) in which the cluster
+           *     //   resides.
+           *     zone: "",
+           *
+           *     // * The name of the cluster.
+           *     clusterId: "",
+           *
+           *     // * The name of the node pool to delete.
+           *     nodePoolId: "",
+           *
+           *     // Auth client
+           *     auth: authClient
+           *   };
+           *
+           *   container.projects.zones.clusters.nodePools.delete(request, function(err, result) {
+           *     if (err) {
+           *       console.log(err);
+           *     } else {
+           *       console.log(result);
+           *     }
+           *   });
+           * });
            *
            * @alias container.projects.zones.clusters.nodePools.delete
            * @memberOf! container(v1)
@@ -358,6 +890,55 @@ function Container(options) { // eslint-disable-line
          *
          * @desc Lists all operations in a project in a specific zone or all zones.
          *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Google Container Engine API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/container
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run
+         * //    'gcloud beta auth application-default login'
+         * // 3. Install the Node.js client library and Application Default Credentials
+         * //    library by running 'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var container = google.container('v1');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+         *
+         *     // * The Google Developers Console [project ID or project
+         *     //   number](https://support.google.com/cloud/answer/6158840).
+         *     projectId: "",
+         *
+         *     // * The name of the Google Compute Engine [zone](/compute/docs/zones#available)
+         *     //   to return operations for, or `-` for all zones.
+         *     zone: "",
+         *
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   container.projects.zones.operations.list(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
+         *
          * @alias container.projects.zones.operations.list
          * @memberOf! container(v1)
          *
@@ -386,6 +967,59 @@ function Container(options) { // eslint-disable-line
          * container.projects.zones.operations.get
          *
          * @desc Gets the specified operation.
+         *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Google Container Engine API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/container
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run
+         * //    'gcloud beta auth application-default login'
+         * // 3. Install the Node.js client library and Application Default Credentials
+         * //    library by running 'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var container = google.container('v1');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+         *
+         *     // * The Google Developers Console [project ID or project
+         *     //   number](https://support.google.com/cloud/answer/6158840).
+         *     projectId: "",
+         *
+         *     // * The name of the Google Compute Engine
+         *     //   [zone](/compute/docs/zones#available) in which the cluster
+         *     //   resides.
+         *     zone: "",
+         *
+         *     // * The server-assigned `name` of the operation.
+         *     operationId: "",
+         *
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   container.projects.zones.operations.get(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
          *
          * @alias container.projects.zones.operations.get
          * @memberOf! container(v1)

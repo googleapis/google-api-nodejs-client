@@ -11449,6 +11449,58 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Preview fields auto-generated during router create and update operations. Calling this method does NOT create or update the router.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk/ and run
+     * //    'gcloud auth application-default login'
+     * // 3. Install the Node.js client library and Application Default Credentials
+     * //    library by running 'npm install googleapis --save'
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * google.auth.getApplicationDefault(function(err, authClient) {
+     *   if (err) {
+     *     console.log('Authentication failed because of ', err);
+     *     return;
+     *   }
+     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *     authClient = authClient.createScoped(scopes);
+     *   }
+     *
+     *   var request = {
+     *     // TODO: Change placeholders below to appropriate parameter values for the 'preview' method:
+     *
+     *     // * Project ID for this request.
+     *     project: "",
+     *
+     *     // * Name of the region for this request.
+     *     region: "",
+     *
+     *     // * Name of the Router resource to query.
+     *     router: "",
+     *
+     *     resource: {},
+     *
+     *     // Auth client
+     *     auth: authClient
+     *   };
+     *
+     *   compute.routers.preview(request, function(err, result) {
+     *     if (err) {
+     *       console.log(err);
+     *     } else {
+     *       console.log(result);
+     *     }
+     *   });
+     * });
+     *
      * @alias compute.routers.preview
      * @memberOf! compute(v1)
      *
@@ -17004,7 +17056,7 @@ Instance templates do not store customer-supplied encryption keys, so you cannot
  * @type object
 * @property {compute(v1).AutoscalingPolicy} autoscalingPolicy The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
 
-If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.8 or 80%.
+If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -17012,7 +17064,7 @@ If none of these are specified, the default will be to autoscale based on cpuUti
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string} target URL of the managed instance group that this autoscaler will scale.
-* @property {string} zone [Output Only] URL of the zone where the instance group resides.
+* @property {string} zone [Output Only] URL of the zone where the instance group resides (for autoscalers living in zonal scope).
 */
 /**
  * @typedef AutoscalerAggregatedList
@@ -17058,7 +17110,7 @@ Virtual machine initialization times might vary because of numerous factors. We 
  * @typedef AutoscalingPolicyCpuUtilization
  * @memberOf! compute(v1)
  * @type object
-* @property {number} utilizationTarget The target CPU utilization that the autoscaler should maintain. Must be a float value in the range (0, 1]. If not specified, the default is 0.8.
+* @property {number} utilizationTarget The target CPU utilization that the autoscaler should maintain. Must be a float value in the range (0, 1]. If not specified, the default is 0.6.
 
 If the CPU level is below the target utilization, the autoscaler scales down the number of instances until it reaches the minimum number of instances you specified or until the average CPU of your instances reaches the target utilization.
 
@@ -17609,7 +17661,7 @@ Named ports apply to all instances in this instance group.
 * @property {string} selfLink [Output Only] The URL for this instance group. The server generates this URL.
 * @property {integer} size [Output Only] The total number of instances in the instance group.
 * @property {string} subnetwork The URL of the subnetwork to which all instances in the instance group belong.
-* @property {string} zone [Output Only] The URL of the zone where the instance group is located.
+* @property {string} zone [Output Only] The URL of the zone where the instance group is located (for zonal resources).
 */
 /**
  * @typedef InstanceGroupAggregatedList
@@ -17649,7 +17701,7 @@ Named ports apply to all instances in this instance group.
  * @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
  * @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
  * @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
- * @property {string} zone The name of the zone where the managed instance group is located.
+ * @property {string} zone [Output Only] The URL of the zone where the managed instance group is located (for zonal resources).
  */
 /**
  * @typedef InstanceGroupManagerActionsSummary
@@ -17659,6 +17711,7 @@ Named ports apply to all instances in this instance group.
 * @property {integer} creating [Output Only] The number of instances in the managed instance group that are scheduled to be created or are currently being created. If the group fails to create any of these instances, it tries again until it creates the instance successfully.
 
 If you have disabled creation retries, this field will not be populated; instead, the creatingWithoutRetries field will be populated.
+* @property {integer} creatingWithoutRetries [Output Only] The number of instances that the managed instance group will attempt to create. The group attempts to create each instance only once. If the group fails to create any of these instances, it decreases the group&#39;s target_size value accordingly.
 * @property {integer} deleting [Output Only] The number of instances in the managed instance group that are scheduled to be deleted or are currently being deleted.
 * @property {integer} none [Output Only] The number of instances in the managed instance group that are running and have no scheduled actions.
 * @property {integer} recreating [Output Only] The number of instances in the managed instance group that are scheduled to be recreated or are currently being being recreated. Recreating an instance deletes the existing root persistent disk and creates a new disk from the image that is defined in the instance template.
