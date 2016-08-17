@@ -41,6 +41,154 @@ function Cloudbuild(options) { // eslint-disable-line
 
   self.projects = {
 
+    triggers: {
+
+      /**
+       * cloudbuild.projects.triggers.create
+       *
+       * @desc Creates a new BuildTrigger.  This API is experimental.
+       *
+       * @alias cloudbuild.projects.triggers.create
+       * @memberOf! cloudbuild(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the project for which to configure automatic builds.
+       * @param {cloudbuild(v1).BuildTrigger} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * cloudbuild.projects.triggers.get
+       *
+       * @desc Gets information about a BuildTrigger.  This API is experimental.
+       *
+       * @alias cloudbuild.projects.triggers.get
+       * @memberOf! cloudbuild(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the project that owns the trigger.
+       * @param {string} params.triggerId ID of the BuildTrigger to get.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers/{triggerId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['projectId', 'triggerId'],
+          pathParams: ['projectId', 'triggerId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * cloudbuild.projects.triggers.list
+       *
+       * @desc Lists existing BuildTrigger.  This API is experimental.
+       *
+       * @alias cloudbuild.projects.triggers.list
+       * @memberOf! cloudbuild(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the project for which to list BuildTriggers.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * cloudbuild.projects.triggers.delete
+       *
+       * @desc Deletes an BuildTrigger by its project ID and trigger ID.  This API is experimental.
+       *
+       * @alias cloudbuild.projects.triggers.delete
+       * @memberOf! cloudbuild(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the project that owns the trigger.
+       * @param {string} params.triggerId ID of the BuildTrigger to delete.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers/{triggerId}',
+            method: 'DELETE'
+          },
+          params: params,
+          requiredParams: ['projectId', 'triggerId'],
+          pathParams: ['projectId', 'triggerId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * cloudbuild.projects.triggers.patch
+       *
+       * @desc Updates an BuildTrigger by its project ID and trigger ID.  This API is experimental.
+       *
+       * @alias cloudbuild.projects.triggers.patch
+       * @memberOf! cloudbuild(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the project that owns the trigger.
+       * @param {string} params.triggerId ID of the BuildTrigger to update.
+       * @param {cloudbuild(v1).BuildTrigger} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers/{triggerId}',
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['projectId', 'triggerId'],
+          pathParams: ['projectId', 'triggerId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
     builds: {
 
       /**
@@ -296,6 +444,23 @@ originally returns it. If you use the default HTTP mapping, the
 `name` should have the format of `operations/some/unique/name`.
 */
 /**
+ * @typedef BuildTrigger
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {cloudbuild(v1).RepoSource} triggerTemplate Template describing the types of source changes to trigger a build.
+
+Branch and tag names in trigger templates are interpreted as regular
+expressions. Any branch or tag change that matches that regular expression
+will trigger a build.
+* @property {cloudbuild(v1).Build} build Contents of the build template.
+* @property {string} createTime Time when the trigger was created.
+
+@OutputOnly
+* @property {string} id Unique identifier of the trigger.
+
+@OutputOnly
+*/
+/**
  * @typedef BuiltImage
  * @memberOf! cloudbuild(v1)
  * @type object
@@ -373,6 +538,12 @@ Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.
 @OutputOnly.
 */
 /**
+ * @typedef ListBuildTriggersResponse
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {cloudbuild(v1).BuildTrigger[]} triggers BuildTriggers for the project, sorted by create_time descending.
+ */
+/**
  * @typedef CancelBuildRequest
  * @memberOf! cloudbuild(v1)
  * @type object
@@ -419,6 +590,11 @@ pipeline, as presented to `docker pull`.
 * @property {string} dir Working directory (relative to project source root) to use when running
 this operation&#39;s container.
 */
+/**
+ * @typedef Empty
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ */
 /**
  * @typedef BuildOptions
  * @memberOf! cloudbuild(v1)

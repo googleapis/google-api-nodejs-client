@@ -1738,6 +1738,163 @@ function Analytics(options) { // eslint-disable-line
       }
     },
 
+    remarketingAudience: {
+
+      /**
+       * analytics.management.remarketingAudience.get
+       *
+       * @desc Gets remarketing audiences to which the user has access.
+       *
+       * @alias analytics.management.remarketingAudience.get
+       * @memberOf! analytics(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account ID for the remarketing audience to retrieve.
+       * @param {string} params.remarketingAudienceId The ID to retrieve the Remarketing Audience for.
+       * @param {string} params.webPropertyId Web property ID for the remarketing audience to retrieve.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
+          pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.remarketingAudience.insert
+       *
+       * @desc Creates a new remarketing audiences.
+       *
+       * @alias analytics.management.remarketingAudience.insert
+       * @memberOf! analytics(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account ID to create the remarketing audience for.
+       * @param {string} params.webPropertyId Web property ID to create the remarketing audience for.
+       * @param {analytics(v3).RemarketingAudience} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      insert: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences',
+            method: 'POST'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.remarketingAudience.list
+       *
+       * @desc Lists remarketing audiences to which the user has access.
+       *
+       * @alias analytics.management.remarketingAudience.list
+       * @memberOf! analytics(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account ID for the remarketing audience to retrieve.
+       * @param {integer=} params.max-results The maximum number of remarketing audiences to include in this response.
+       * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {string=} params.type 
+       * @param {string} params.webPropertyId Web property ID for the remarketing audience to retrieve.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences',
+            method: 'GET'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId'],
+          pathParams: ['accountId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.remarketingAudience.patch
+       *
+       * @desc Updates an existing remarketing audiences. This method supports patch semantics.
+       *
+       * @alias analytics.management.remarketingAudience.patch
+       * @memberOf! analytics(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account ID for the remarketing audience to update.
+       * @param {string} params.remarketingAudienceId Remarketing audience ID of the remarketing audience to update.
+       * @param {string} params.webPropertyId Web property ID for the remarketing audience to update.
+       * @param {analytics(v3).RemarketingAudience} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
+            method: 'PATCH'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
+          pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * analytics.management.remarketingAudience.update
+       *
+       * @desc Updates an existing remarketing audiences.
+       *
+       * @alias analytics.management.remarketingAudience.update
+       * @memberOf! analytics(v3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId Account ID for the remarketing audience to update.
+       * @param {string} params.remarketingAudienceId Remarketing audience ID of the remarketing audience to update.
+       * @param {string} params.webPropertyId Web property ID for the remarketing audience to update.
+       * @param {analytics(v3).RemarketingAudience} params.resource Request body data
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function (params, callback) {
+        var parameters = {
+          options: {
+            url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
+            method: 'PUT'
+          },
+          params: params,
+          requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
+          pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
     segments: {
 
       /**
@@ -3051,6 +3208,31 @@ function Analytics(options) { // eslint-disable-line
  * @property {string} username Email ID of the authenticated user
  */
 /**
+ * @typedef IncludeConditions
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {integer} daysToLookBack The look-back window lets you specify a time frame for evaluating the behavior that qualifies users for your audience. For example, if your filters include users from Central Asia, and Transactions Greater than 2, and you set the look-back window to 14 days, then any user from Central Asia whose cumulative transactions exceed 2 during the last 14 days is added to the audience.
+ * @property {boolean} isSmartList Boolean indicating whether this segment is a smart list. https://support.google.com/analytics/answer/4628577
+ * @property {string} kind Resource type for include conditions.
+ * @property {integer} membershipDurationDays Number of days a user remains in the audience. Use any integer from 1-540. In remarketing audiences for search ads, membership duration is truncated to 180 days.
+ * @property {string} segment The segment condition that will cause a user to be added to an audience.
+ */
+/**
+ * @typedef LinkedForeignAccount
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account ID to which this linked foreign account belongs.
+ * @property {boolean} eligibleForSearch Boolean indicating whether this is eligible for search.
+ * @property {string} id Entity ad account link ID.
+ * @property {string} internalWebPropertyId Internal ID for the web property to which this linked foreign account belongs.
+ * @property {string} kind Resource type for linked foreign account.
+ * @property {string} linkedAccountId The foreign account ID. For example the an AdWords `linkedAccountId` has the following format XXX-XXX-XXXX.
+ * @property {string} remarketingAudienceId Remarketing audience ID to which this linked foreign account belongs.
+ * @property {string} status The status of this foreign account link.
+ * @property {string} type The type of the foreign account. For example `ADWORDS_LINKS`.
+ * @property {string} webPropertyId Web property ID of the form UA-XXXXX-YY to which this linked foreign account belongs.
+ */
+/**
  * @typedef McfData
  * @memberOf! analytics(v3)
  * @type object
@@ -3176,6 +3358,38 @@ For write (i.e., create, update, or delete) operations, you may specify a value 
  * @property {string} selfLink Link to this page.
  * @property {integer} totalResults The total number of rows for the query, regardless of the number of rows in the response.
  * @property {object} totalsForAllResults Total values for the requested metrics over all the results, not just the results returned in this response. The order of the metric totals is same as the metric order specified in the request.
+ */
+/**
+ * @typedef RemarketingAudience
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {string} accountId Account ID to which this remarketing audience belongs.
+ * @property {object} audienceDefinition The simple audience definition that will cause a user to be added to an audience.
+ * @property {string} audienceType The type of audience, either SIMPLE or STATE_BASED.
+ * @property {string} created Time this remarketing audience was created.
+ * @property {string} description The description of this remarketing audience.
+ * @property {string} id Remarketing Audience ID.
+ * @property {string} internalWebPropertyId Internal ID for the web property to which this remarketing audience belongs.
+ * @property {string} kind Collection type.
+ * @property {analytics(v3).LinkedForeignAccount[]} linkedAdAccounts The linked ad accounts associated with this remarketing audience. A remarketing audience can have only one linkedAdAccount currently.
+ * @property {string[]} linkedViews The views (profiles) that this remarketing audience is linked to.
+ * @property {string} name The name of this remarketing audience.
+ * @property {object} stateBasedAudienceDefinition A state based audience definition that will cause a user to be added or removed from an audience.
+ * @property {string} updated Time this remarketing audience was last modified.
+ * @property {string} webPropertyId Web property ID of the form UA-XXXXX-YY to which this remarketing audience belongs.
+ */
+/**
+ * @typedef RemarketingAudiences
+ * @memberOf! analytics(v3)
+ * @type object
+ * @property {analytics(v3).RemarketingAudience[]} items A list of remarketing audiences.
+ * @property {integer} itemsPerPage The maximum number of resources the response can contain, regardless of the actual number of resources returned. Its value ranges from 1 to 1000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
+ * @property {string} kind Collection type.
+ * @property {string} nextLink Link to next page for this remarketing audience collection.
+ * @property {string} previousLink Link to previous page for this view (profile) collection.
+ * @property {integer} startIndex The starting index of the resources, which is 1 by default or otherwise specified by the start-index query parameter.
+ * @property {integer} totalResults The total number of results for the query, regardless of the number of results in the response.
+ * @property {string} username Email ID of the authenticated user
  */
 /**
  * @typedef Segment

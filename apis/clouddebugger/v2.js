@@ -21,7 +21,7 @@
 var createAPIRequest = require('../../lib/apirequest');
 
 /**
- * Google Cloud Debugger API
+ * Stackdriver Debugger API
  *
  * Examines the call stack and variables of a running application without stopping or slowing it down.
  *

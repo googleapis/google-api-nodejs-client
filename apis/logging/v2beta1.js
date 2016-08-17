@@ -152,7 +152,7 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
        *
-       *     // * Required. The resource name containing the sinks.
+       *     // * Required. The cloud resource containing the sinks.
        *     //   Example: `"projects/my-logging-project"`.
        *     parent: "projects/{MY-PROJECT}",
        *
@@ -234,7 +234,7 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
        *
-       *     // * The resource name of the sink to return.
+       *     // * Required. The resource name of the sink to return.
        *     //   Example: `"projects/my-project-id/sinks/my-sink-id"`.
        *     sinkName: "projects/{MY-PROJECT}/sinks/{MY-SINK}",
        *
@@ -307,7 +307,7 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
        *
-       *     // * The resource in which to create the sink.
+       *     // * Required. The resource in which to create the sink.
        *     //   Example: `"projects/my-project-id"`.
        *     //   The new sink must be provided in the request.
        *     parent: "projects/{MY-PROJECT}",
@@ -384,11 +384,9 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
        *
-       *     // * The resource name of the sink to update.
-       *     //   Example: `"projects/my-project-id/sinks/my-sink-id"`.
-       *     //   The updated sink must be provided in the request and have the
-       *     //   same name that is specified in `sinkName`.  If the sink does not
-       *     //   exist, it is created.
+       *     // * Required. The resource name of the sink to update, including the parent
+       *     //   resource and the sink identifier.  If the sink does not exist, this method
+       *     //   creates the sink.  Example: `"projects/my-project-id/sinks/my-sink-id"`.
        *     sinkName: "projects/{MY-PROJECT}/sinks/{MY-SINK}",
        *
        *     resource: {},
@@ -463,8 +461,10 @@ function Logging(options) { // eslint-disable-line
        *   var request = {
        *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
        *
-       *     // * The resource name of the sink to delete.
-       *     //   Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       *     // * Required. The resource name of the sink to delete, including the parent
+       *     //   resource and the sink identifier.  Example:
+       *     //   `"projects/my-project-id/sinks/my-sink-id"`.  It is an error if the sink
+       *     //   does not exist.
        *     sinkName: "projects/{MY-PROJECT}/sinks/{MY-SINK}",
        *
        *     // Auth client

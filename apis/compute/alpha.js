@@ -756,6 +756,38 @@ function Compute(options) { // eslint-disable-line
   self.backendServices = {
 
     /**
+     * compute.backendServices.aggregatedList
+     *
+     * @desc Retrieves the list of all BackendService resources, regional and global, available to the specified project.
+     *
+     * @alias compute.backendServices.aggregatedList
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/backendServices',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.backendServices.delete
      *
      * @desc Deletes the specified BackendService resource.
@@ -6642,6 +6674,37 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.regionInstanceGroupManagers.patch
+     *
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports patch semantics.
+     *
+     * @alias compute.regionInstanceGroupManagers.patch
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(alpha).InstanceGroupManager} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.regionInstanceGroupManagers.recreateInstances
      *
      * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.
@@ -6821,6 +6884,37 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroupManagers.update
+     *
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method.
+     *
+     * @alias compute.regionInstanceGroupManagers.update
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(alpha).InstanceGroupManager} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
 
@@ -10361,7 +10455,7 @@ Instance templates do not store customer-supplied encryption keys, so you cannot
  * @type object
 * @property {compute(alpha).AutoscalingPolicy} autoscalingPolicy The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
 
-If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.8 or 80%.
+If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -10372,7 +10466,7 @@ If none of these are specified, the default will be to autoscale based on cpuUti
 * @property {string} status [Output Only] The status of the autoscaler configuration.
 * @property {compute(alpha).AutoscalerStatusDetails[]} statusDetails [Output Only] Human-readable details about the current state of the autoscaler. Examples: ?Error when fetching replicas: Replica Pool xxx doesn?t exist.? ?Autoscaling capped at min_num_replicas: 2.?
 * @property {string} target URL of the managed instance group that this autoscaler will scale.
-* @property {string} zone [Output Only] URL of the zone where the instance group resides.
+* @property {string} zone [Output Only] URL of the zone where the instance group resides (for autoscalers living in zonal scope).
 */
 /**
  * @typedef AutoscalerAggregatedList
@@ -10426,7 +10520,7 @@ Virtual machine initialization times might vary because of numerous factors. We 
  * @typedef AutoscalingPolicyCpuUtilization
  * @memberOf! compute(alpha)
  * @type object
-* @property {number} utilizationTarget The target CPU utilization that the autoscaler should maintain. Must be a float value in the range (0, 1]. If not specified, the default is 0.8.
+* @property {number} utilizationTarget The target CPU utilization that the autoscaler should maintain. Must be a float value in the range (0, 1]. If not specified, the default is 0.6.
 
 If the CPU level is below the target utilization, the autoscaler scales down the number of instances until it reaches the minimum number of instances you specified or until the average CPU of your instances reaches the target utilization.
 
@@ -10576,6 +10670,16 @@ When the protocol is UDP, this field is not used.
 * @property {integer} timeoutSec How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds.
 */
 /**
+ * @typedef BackendServiceAggregatedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A map of scoped BackendService lists.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
  * @typedef BackendServiceGroupHealth
  * @memberOf! compute(alpha)
  * @type object
@@ -10600,6 +10704,13 @@ When the protocol is UDP, this field is not used.
  * @property {string} kind [Output Only] Type of resource. Always compute#backendServiceList for lists of backend services.
  * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef BackendServicesScopedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).BackendService[]} backendServices List of BackendServices contained in this scope.
+ * @property {object} warning Informational warning which replaces the list of backend services when the list is empty.
  */
 /**
  * @typedef Binding
@@ -11204,11 +11315,11 @@ This allows the system to reference ports by the assigned name instead of a port
 
 Named ports apply to all instances in this instance group.
 * @property {string} network The URL of the network to which all instances in the instance group belong.
-* @property {string} region The URL of the region where the instance group is located.
+* @property {string} region The URL of the region where the instance group is located (for regional resources).
 * @property {string} selfLink [Output Only] The URL for this instance group. The server generates this URL.
 * @property {integer} size [Output Only] The total number of instances in the instance group.
 * @property {string} subnetwork The URL of the subnetwork to which all instances in the instance group belong.
-* @property {string} zone [Output Only] The URL of the zone where the instance group is located.
+* @property {string} zone [Output Only] The URL of the zone where the instance group is located (for zonal resources).
 */
 /**
  * @typedef InstanceGroupAggregatedList
@@ -11248,13 +11359,13 @@ Named ports apply to all instances in this instance group.
  * @property {string} name The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
  * @property {compute(alpha).NamedPort[]} namedPorts Named ports configured for the Instance Groups complementary to this Instance Group Manager.
  * @property {compute(alpha).InstanceGroupManagerPendingActionsSummary} pendingActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are pending for each of those actions.
- * @property {string} region [Output Only] URL of the region where the managed instance group resides.
+ * @property {string} region [Output Only] The URL of the region where the managed instance group resides (for regional resources).
  * @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
  * @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
  * @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
  * @property {compute(alpha).InstanceGroupManagerUpdatePolicy} updatePolicy The update policy for this managed instance group.
  * @property {compute(alpha).InstanceGroupManagerVersion[]} versions Versions supported by this IGM. User should set this field if they need fine-grained control over how many instances in each version are run by this IGM. Versions are keyed by instanceTemplate. Every instanceTemplate can appear at most once. This field overrides instanceTemplate field. If both instanceTemplate and versions are set, the user receives a warning. &quot;instanceTemplate: X&quot; is semantically equivalent to &quot;versions [ { instanceTemplate: X } ]&quot;. Exactly one version must have targetSize field left unset. Size of such a version will be calculated automatically.
- * @property {string} zone The name of the zone where the managed instance group is located.
+ * @property {string} zone [Output Only] The URL of the zone where the managed instance group is located (for zonal resources).
  */
 /**
  * @typedef InstanceGroupManagerActionsSummary

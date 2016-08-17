@@ -4733,6 +4733,35 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.networks.switchToCustomMode
+     *
+     * @desc Switches the network mode from auto subnet mode to custom subnet mode.
+     *
+     * @alias compute.networks.switchToCustomMode
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.network Name of the network to be updated.
+     * @param {string} params.project Project ID for this request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    switchToCustomMode: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/networks/{network}/switchToCustomMode',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.networks.testIamPermissions
      *
      * @desc Returns permissions that a caller has on the specified resource.
@@ -6690,6 +6719,37 @@ function Compute(options) { // eslint-disable-line
         options: {
           url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
           method: 'DELETE'
+        },
+        params: params,
+        requiredParams: ['project', 'region', 'subnetwork'],
+        pathParams: ['project', 'region', 'subnetwork'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.subnetworks.expandIpCidrRange
+     *
+     * @desc Expands the IP CIDR range of the subnetwork to a specified value.
+     *
+     * @alias compute.subnetworks.expandIpCidrRange
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.subnetwork Name of the Subnetwork resource to update.
+     * @param {compute(beta).SubnetworksExpandIpCidrRangeRequest} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    expandIpCidrRange: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{subnetwork}/expandIpCidrRange',
+          method: 'POST'
         },
         params: params,
         requiredParams: ['project', 'region', 'subnetwork'],
@@ -8970,7 +9030,7 @@ Instance templates do not store customer-supplied encryption keys, so you cannot
  * @type object
 * @property {compute(beta).AutoscalingPolicy} autoscalingPolicy The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
 
-If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.8 or 80%.
+If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -8978,8 +9038,10 @@ If none of these are specified, the default will be to autoscale based on cpuUti
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {string} region [Output Only] URL of the region where the instance group resides (for autoscalers living in regional scope).
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} status [Output Only] The status of the autoscaler configuration.
+* @property {compute(beta).AutoscalerStatusDetails[]} statusDetails [Output Only] Human-readable details about the current state of the autoscaler. Examples: ?Error when fetching replicas: Replica Pool xxx doesn?t exist.? ?Autoscaling capped at min_num_replicas: 2.?
 * @property {string} target URL of the managed instance group that this autoscaler will scale.
-* @property {string} zone [Output Only] URL of the zone where the instance group resides.
+* @property {string} zone [Output Only] URL of the zone where the instance group resides (for autoscalers living in zonal scope).
 */
 /**
  * @typedef AutoscalerAggregatedList
@@ -9000,6 +9062,13 @@ If none of these are specified, the default will be to autoscale based on cpuUti
  * @property {string} kind [Output Only] Type of resource. Always compute#autoscalerList for lists of autoscalers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef AutoscalerStatusDetails
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} message 
+ * @property {string} type 
  */
 /**
  * @typedef AutoscalersScopedList
@@ -9025,7 +9094,7 @@ Virtual machine initialization times might vary because of numerous factors. We 
  * @typedef AutoscalingPolicyCpuUtilization
  * @memberOf! compute(beta)
  * @type object
-* @property {number} utilizationTarget The target CPU utilization that the autoscaler should maintain. Must be a float value in the range (0, 1]. If not specified, the default is 0.8.
+* @property {number} utilizationTarget The target CPU utilization that the autoscaler should maintain. Must be a float value in the range (0, 1]. If not specified, the default is 0.6.
 
 If the CPU level is below the target utilization, the autoscaler scales down the number of instances until it reaches the minimum number of instances you specified or until the average CPU of your instances reaches the target utilization.
 
@@ -9673,11 +9742,11 @@ This allows the system to reference ports by the assigned name instead of a port
 
 Named ports apply to all instances in this instance group.
 * @property {string} network The URL of the network to which all instances in the instance group belong.
-* @property {string} region The URL of the region where the instance group is located.
+* @property {string} region The URL of the region where the instance group is located (for regional resources).
 * @property {string} selfLink [Output Only] The URL for this instance group. The server generates this URL.
 * @property {integer} size [Output Only] The total number of instances in the instance group.
 * @property {string} subnetwork The URL of the subnetwork to which all instances in the instance group belong.
-* @property {string} zone [Output Only] The URL of the zone where the instance group is located.
+* @property {string} zone [Output Only] The URL of the zone where the instance group is located (for zonal resources).
 */
 /**
  * @typedef InstanceGroupAggregatedList
@@ -9716,11 +9785,11 @@ Named ports apply to all instances in this instance group.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
  * @property {string} name The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
  * @property {compute(beta).NamedPort[]} namedPorts Named ports configured for the Instance Groups complementary to this Instance Group Manager.
- * @property {string} region [Output Only] URL of the region where the managed instance group resides.
+ * @property {string} region [Output Only] The URL of the region where the managed instance group resides (for regional resources).
  * @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
  * @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
  * @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
- * @property {string} zone The name of the zone where the managed instance group is located.
+ * @property {string} zone [Output Only] The URL of the zone where the managed instance group is located (for zonal resources).
  */
 /**
  * @typedef InstanceGroupManagerActionsSummary
@@ -10608,6 +10677,12 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} kind [Output Only] Type of resource. Always compute#subnetworkList for lists of subnetworks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef SubnetworksExpandIpCidrRangeRequest
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} ipCidrRange The IP (in CIDR format or netmask) of internal addresses that are legal on this Subnetwork. This range should be disjoint from other subnetworks within this network. This range can only be larger than (i.e. a superset of) the range previously defined before the update.
  */
 /**
  * @typedef SubnetworksScopedList

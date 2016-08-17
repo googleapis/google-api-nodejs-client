@@ -422,9 +422,10 @@ combined with `AND` operator.
  * @memberOf! analyticsreporting(v4)
  * @type object
 * @property {analyticsreporting(v4).Dimension[]} dimensions A list of dimensions to show as pivot columns. A Pivot can have a maximum
-of 4 dimensions.
+of 4 dimensions. Pivot dimensions are part of the restriction on the
+total number of dimensions allowed in the request.
 * @property {analyticsreporting(v4).Metric[]} metrics The pivot metrics. Pivot metrics are part of the
-restriction on total number of metrics in the request.
+restriction on total number of metrics allowed in the request.
 * @property {integer} maxGroupCount Specifies the maximum number of groups to return.
 The default value is 10, also the maximum value is 1,000.
 * @property {analyticsreporting(v4).DimensionFilterClause[]} dimensionFilterClauses DimensionFilterClauses are logically combined with an `AND` operator: only

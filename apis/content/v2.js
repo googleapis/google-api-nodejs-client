@@ -1745,6 +1745,188 @@ function Content(options) { // eslint-disable-line
     }
 
   };
+
+  self.shippingsettings = {
+
+    /**
+     * content.shippingsettings.custombatch
+     *
+     * @desc Retrieves and updates the shipping settings of multiple accounts in a single request.
+     *
+     * @alias content.shippingsettings.custombatch
+     * @memberOf! content(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {content(v2).ShippingsettingsCustomBatchRequest} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    custombatch: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/shippingsettings/batch',
+          method: 'POST'
+        },
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.shippingsettings.get
+     *
+     * @desc Retrieves the shipping settings of the account.
+     *
+     * @alias content.shippingsettings.get
+     * @memberOf! content(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings/{accountId}',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.shippingsettings.getsupportedcarriers
+     *
+     * @desc Retrieves supported carriers and carrier services for an account.
+     *
+     * @alias content.shippingsettings.getsupportedcarriers
+     * @memberOf! content(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.merchantId The ID of the account for which to retrieve the supported carriers.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getsupportedcarriers: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/supportedCarriers',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.shippingsettings.list
+     *
+     * @desc Lists the shipping settings of the sub-accounts in your Merchant Center account.
+     *
+     * @alias content.shippingsettings.list
+     * @memberOf! content(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {integer=} params.maxResults The maximum number of shipping settings to return in the response, used for paging.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings',
+          method: 'GET'
+        },
+        params: params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.shippingsettings.patch
+     *
+     * @desc Updates the shipping settings of the account. This method supports patch semantics.
+     *
+     * @alias content.shippingsettings.patch
+     * @memberOf! content(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {content(v2).ShippingSettings} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings/{accountId}',
+          method: 'PATCH'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * content.shippingsettings.update
+     *
+     * @desc Updates the shipping settings of the account.
+     *
+     * @alias content.shippingsettings.update
+     * @memberOf! content(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
+     * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
+     * @param {string} params.merchantId The ID of the managing account.
+     * @param {content(v2).ShippingSettings} params.resource Request body data
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, callback) {
+      var parameters = {
+        options: {
+          url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings/{accountId}',
+          method: 'PUT'
+        },
+        params: params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
 
 /**
@@ -2099,6 +2281,25 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).AccountTax[]} resources 
  */
 /**
+ * @typedef CarrierRate
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} carrierName Carrier service, such as &quot;UPS&quot; or &quot;Fedex&quot;. The list of supported carriers can be retrieved via the getSupportedCarriers method. Required.
+ * @property {string} carrierService Carrier service, such as &quot;ground&quot; or &quot;2 days&quot;. The list of supported services for a carrier can be retrieved via the getSupportedCarriers method. Required.
+ * @property {content(v2).Price} flatAdjustment Additive shipping rate modifier. Can be negative. For example { &quot;value&quot;: &quot;1&quot;, &quot;currency&quot; : &quot;USD&quot; } adds $1 to the rate, { &quot;value&quot;: &quot;-3&quot;, &quot;currency&quot; : &quot;USD&quot; } removes $3 from the rate. Optional.
+ * @property {string} name Name of the carrier rate. Must be unique per rate group. Required.
+ * @property {string} originPostalCode Shipping origin for this carrier rate. Required.
+ * @property {string} percentageAdjustment Multiplicative shipping rate modifier as a number in decimal notation. Can be negative. For example &quot;5.4&quot; increases the rate by 5.4%, &quot;-3&quot; decreases the rate by 3%. Optional.
+ */
+/**
+ * @typedef CarriersCarrier
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} country The CLDR country code of the carrier (e.g., &quot;US&quot;). Always present.
+ * @property {string} name The name of the carrier (e.g., &quot;UPS&quot;). Always present.
+ * @property {string[]} services A list of supported services (e.g., &quot;ground&quot;) for that carrier. Contains at least one service.
+ */
+/**
  * @typedef Datafeed
  * @memberOf! content(v2)
  * @type object
@@ -2243,6 +2444,13 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).DatafeedStatus[]} resources 
  */
 /**
+ * @typedef DeliveryTime
+ * @memberOf! content(v2)
+ * @type object
+ * @property {integer} maxTransitTimeInDays Maximum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Must be greater than or equal to minTransitTimeInDays. Required.
+ * @property {integer} minTransitTimeInDays Minimum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Required.
+ */
+/**
  * @typedef Error
  * @memberOf! content(v2)
  * @type object
@@ -2257,6 +2465,16 @@ function Content(options) { // eslint-disable-line
  * @property {integer} code The HTTP status of the first error in errors.
  * @property {content(v2).Error[]} errors A list of errors.
  * @property {string} message The message of the first error in errors.
+ */
+/**
+ * @typedef Headers
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).LocationIdSet[]} locations A list of location ID sets. Must be non-empty. Can only be set if all other fields are not set.
+ * @property {string[]} numberOfItems A list of inclusive number of items upper bounds. The last value can be &quot;infinity&quot;. For example [&quot;10&quot;, &quot;50&quot;, &quot;infinity&quot;] represents the headers &quot;&lt;= 10 items&quot;, &quot; 50 items&quot;. Must be non-empty. Can only be set if all other fields are not set.
+ * @property {string[]} postalCodeGroupNames A list of postal group names. The last value can be &quot;all other locations&quot;. Example: [&quot;zone 1&quot;, &quot;zone 2&quot;, &quot;all other locations&quot;]. The referred postal code groups must match the delivery country of the service. Must be non-empty. Can only be set if all other fields are not set.
+ * @property {content(v2).Price[]} prices be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;500&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;currency&quot;: &quot;USD&quot;}] represents the headers &quot;&lt;= $10&quot;, &quot; $500&quot;. All prices within a service must have the same currency. Must be non-empty. Can only be set if all other fields are not set.
+ * @property {content(v2).Weight[]} weights be &quot;infinity&quot;. For example [{&quot;value&quot;: &quot;10&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;50&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;unit&quot;: &quot;kg&quot;}] represents the headers &quot;&lt;= 10kg&quot;, &quot; 50kg&quot;. All weights within a service must have the same unit. Must be non-empty. Can only be set if all other fields are not set.
  */
 /**
  * @typedef Installment
@@ -2328,6 +2546,12 @@ function Content(options) { // eslint-disable-line
  * @memberOf! content(v2)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#inventorySetResponse&quot;.
+ */
+/**
+ * @typedef LocationIdSet
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string[]} locationIds A non-empty list of location IDs. They must all be of the same location type (e.g., state).
  */
 /**
  * @typedef LoyaltyPoints
@@ -2809,6 +3033,21 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateShipmentResponse&quot;.
  */
 /**
+ * @typedef PostalCodeGroup
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} country The CLDR territory code of the country the postal code group applies to. Required.
+ * @property {string} name The name of the postal code group, referred to in headers. Required.
+ * @property {content(v2).PostalCodeRange[]} postalCodeRanges A range of postal codes. Required.
+ */
+/**
+ * @typedef PostalCodeRange
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} postalCodeRangeBegin A postal code or a pattern of the form prefix* denoting the inclusive lower bound of the range defining the area. Examples values: &quot;94108&quot;, &quot;9410*&quot;, &quot;9*&quot;. Required.
+ * @property {string} postalCodeRangeEnd A postal code or a pattern of the form prefix* denoting the inclusive upper bound of the range defining the area. It must have the same length as postalCodeRangeBegin: if postalCodeRangeBegin is a postal code then postalCodeRangeEnd must be a postal code too; if postalCodeRangeBegin is a pattern then postalCodeRangeEnd must be a pattern with the same prefix length. Optional: if not set, then the area is defined as being all the postal codes matching postalCodeRangeBegin.
+ */
+/**
  * @typedef Price
  * @memberOf! content(v2)
  * @type object
@@ -3093,6 +3332,97 @@ Acceptable values are:
  * @property {content(v2).ProductStatus[]} resources 
  */
 /**
+ * @typedef RateGroup
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string[]} applicableShippingLabels A list of shipping labels defining the products to which this rate group applies to. This is a disjunction: only one of the labels has to match for the rate group to apply. May only be empty for the last rate group of a service. Required.
+ * @property {content(v2).CarrierRate[]} carrierRates A list of carrier rates that can be referred to by mainTable or singleValue.
+ * @property {content(v2).Table} mainTable A table defining the rate group, when singleValue is not expressive enough. Can only be set if singleValue is not set.
+ * @property {content(v2).Value} singleValue The value of the rate group (e.g. flat rate $10). Can only be set if mainTable and subtables are not set.
+ * @property {content(v2).Table[]} subtables A list of subtables referred to by mainTable. Can only be set if mainTable is set.
+ */
+/**
+ * @typedef Row
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).Value[]} cells The list of cells that constitute the row. Must have the same length as columnHeaders for two-dimensional tables, a length of 1 for one-dimensional tables. Required.
+ */
+/**
+ * @typedef Service
+ * @memberOf! content(v2)
+ * @type object
+ * @property {boolean} active A boolean exposing the active status of the shipping service. Required.
+ * @property {string} currency The CLDR code of the currency to which this service applies. Must match that of the prices in rate groups.
+ * @property {string} deliveryCountry The CLDR territory code of the country to which the service applies. Required.
+ * @property {content(v2).DeliveryTime} deliveryTime Time spent in various aspects from order to the delivery of the product. Required.
+ * @property {string} name Free-form name of the service. Must be unique within target account. Required.
+ * @property {content(v2).RateGroup[]} rateGroups Shipping rate group definitions. Only the last one is allowed to have an empty applicableShippingLabels, which means &quot;everything else&quot;. The other applicableShippingLabels must not overlap.
+ */
+/**
+ * @typedef ShippingSettings
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} accountId The ID of the account to which these account shipping settings belong. Ignored upon update, always present in get request responses.
+ * @property {content(v2).PostalCodeGroup[]} postalCodeGroups A list of postal code groups that can be referred to in services. Optional.
+ * @property {content(v2).Service[]} services The target account&#39;s list of services. Optional.
+ */
+/**
+ * @typedef ShippingsettingsCustomBatchRequest
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).ShippingsettingsCustomBatchRequestEntry[]} entries The request entries to be processed in the batch.
+ */
+/**
+ * @typedef ShippingsettingsCustomBatchRequestEntry
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} accountId The ID of the account for which to get/update account shipping settings.
+ * @property {integer} batchId An entry ID, unique within the batch request.
+ * @property {string} merchantId The ID of the managing account.
+ * @property {string} method 
+ * @property {content(v2).ShippingSettings} shippingSettings The account shipping settings to update. Only defined if the method is update.
+ */
+/**
+ * @typedef ShippingsettingsCustomBatchResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).ShippingsettingsCustomBatchResponseEntry[]} entries The result of the execution of the batch requests.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsCustomBatchResponse&quot;.
+ */
+/**
+ * @typedef ShippingsettingsCustomBatchResponseEntry
+ * @memberOf! content(v2)
+ * @type object
+ * @property {integer} batchId The ID of the request entry to which this entry responds.
+ * @property {content(v2).Errors} errors A list of errors defined if, and only if, the request failed.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsCustomBatchResponseEntry&quot;.
+ * @property {content(v2).ShippingSettings} shippingSettings The retrieved or updated account shipping settings.
+ */
+/**
+ * @typedef ShippingsettingsGetSupportedCarriersResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).CarriersCarrier[]} carriers A list of supported carriers. May be empty.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedCarriersResponse&quot;.
+ */
+/**
+ * @typedef ShippingsettingsListResponse
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsListResponse&quot;.
+ * @property {string} nextPageToken The token for the retrieval of the next page of shipping settings.
+ * @property {content(v2).ShippingSettings[]} resources 
+ */
+/**
+ * @typedef Table
+ * @memberOf! content(v2)
+ * @type object
+ * @property {content(v2).Headers} columnHeaders Headers of the table&#39;s columns. Optional: if not set then the table has only one dimension.
+ * @property {string} name Name of the table. Required for subtables, ignored for the main table.
+ * @property {content(v2).Headers} rowHeaders Headers of the table&#39;s rows. Required.
+ * @property {content(v2).Row[]} rows The list of rows that constitute the table. Must have the same length as rowHeaders. Required.
+ */
+/**
  * @typedef TestOrder
  * @memberOf! content(v2)
  * @type object
@@ -3151,6 +3481,16 @@ Acceptable values are:
  * @property {string} lastFourDigits The last four digits of the card number.
  * @property {string} predefinedBillingAddress The billing address.
  * @property {string} type The type of instrument. Note that real orders might have different values than the four values accepted by createTestOrder.
+ */
+/**
+ * @typedef Value
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} carrierRateName The name of a carrier rate referring to a carrier rate defined in the same rate group. Can only be set if all other fields are not set.
+ * @property {content(v2).Price} flatRate A flat rate. Can only be set if all other fields are not set.
+ * @property {boolean} noShipping If true, then the product can&#39;t ship. Must be true when set, can only be set if all other fields are not set.
+ * @property {string} pricePercentage A percentage of the price represented as a number in decimal notation (e.g., &quot;5.4&quot;). Can only be set if all other fields are not set.
+ * @property {string} subtableName The name of a subtable. Can only be set in table cells (i.e., not for single values), and only if all other fields are not set.
  */
 /**
  * @typedef Weight

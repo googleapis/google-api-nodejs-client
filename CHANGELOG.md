@@ -1,3 +1,36 @@
+##### 12.3.0 - 17 August 2016
+
+###### Backwards compatible changes
+- Added `management.remarketingAudience.get` to `analytics` `v3` API
+- Added `management.remarketingAudience.insert` to `analytics` `v3` API
+- Added `management.remarketingAudience.list` to `analytics` `v3` API
+- Added `management.remarketingAudience.patch` to `analytics` `v3` API
+- Added `management.remarketingAudience.update` to `analytics` `v3` API
+- Added `userProfiles.guardianInvitations.list` to `classroom` `v1` API
+- Added `userProfiles.guardianInvitations.get` to `classroom` `v1` API
+- Added `userProfiles.guardianInvitations.create` to `classroom` `v1` API
+- Added `userProfiles.guardianInvitations.patch` to `classroom` `v1` API
+- Added `userProfiles.guardians.list` to `classroom` `v1` API
+- Added `userProfiles.guardians.get` to `classroom` `v1` API
+- Added `userProfiles.guardians.delete` to `classroom` `v1` API
+- Added `projects.triggers.create` to `cloudbuild` `v1` API
+- Added `projects.triggers.get` to `cloudbuild` `v1` API
+- Added `projects.triggers.list` to `cloudbuild` `v1` API
+- Added `projects.triggers.delete` to `cloudbuild` `v1` API
+- Added `projects.triggers.patch` to `cloudbuild` `v1` API
+- Added `backendServices.aggregatedList` to `compute` `alpha` API
+- Added `regionInstanceGroupManagers.patch` to `compute` `alpha` API
+- Added `regionInstanceGroupManagers.update` to `compute` `alpha` API
+- Added `networks.switchToCustomMode` to `compute` `beta` API
+- Added `subnetworks.expandIpCidrRange` to `compute` `beta` API
+- Added `shippingsettings.custombatch` to `content` `v2` API
+- Added `shippingsettings.get` to `content` `v2` API
+- Added `shippingsettings.getsupportedcarriers` to `content` `v2` API
+- Added `shippingsettings.list` to `content` `v2` API
+- Added `shippingsettings.patch` to `content` `v2` API
+- Added `shippingsettings.update` to `content` `v2` API
+- Added `datastore` `v1` API
+
 ##### 12.2.0 - 08 August 2016
 
 ###### Backwards compatible changes
