@@ -35,7 +35,7 @@ function callOnce (callback) {
   }
 }
 
-function handler(request, response, server, callback) {
+function handler (request, response, server, callback) {
   var self = this;
   var qs = querystring.parse(url.parse(request.url).query);
   self.oAuth2Client.getToken(qs.code, function (err, tokens) {

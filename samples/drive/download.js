@@ -43,7 +43,7 @@ function download (fileId, tokens) {
       fileId: fileId,
       alt: 'media'
     })
-    .on('error', function(err) {
+    .on('error', function (err) {
       console.log('Error downloading file', err);
       process.exit();
     })
@@ -58,7 +58,7 @@ function download (fileId, tokens) {
         console.log('Error writing file', err);
         process.exit();
       });
-  })
+  });
 }
 
 var scopes = [
