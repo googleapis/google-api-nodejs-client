@@ -546,6 +546,7 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.acknowledgeAbuse Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
      * @param {string} params.fileId The ID of the file.
+     * @param {string} params.encoding The encoding of the file to be downloaded (default: utf-8)
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
@@ -560,6 +561,10 @@ function Drive(options) { // eslint-disable-line
         pathParams: ['fileId'],
         context: self
       };
+      
+      if(typeof params.encoding !== 'undefined') {
+        parameters.options.encoding = params.encoding;
+      }
 
       return createAPIRequest(parameters, callback);
     },
