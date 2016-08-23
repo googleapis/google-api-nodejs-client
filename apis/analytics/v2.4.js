@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Analytics API
@@ -60,15 +61,22 @@ function Analytics(options) { // eslint-disable-line
      * @param {string=} params.sort A comma-separated list of dimensions or metrics that determine the sort order for the report data.
      * @param {string} params.start-date Start date for fetching report data. All requests should specify a start date formatted as YYYY-MM-DD.
      * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/analytics/v2.4/data',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],
@@ -95,15 +103,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object=} params Parameters for request
        * @param {integer=} params.max-results The maximum number of accounts to include in this response.
        * @param {integer=} params.start-index An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v2.4/management/accounts',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -130,15 +145,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
        * @param {integer=} params.start-index An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -164,15 +186,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {integer=} params.max-results The maximum number of views (profiles) to include in this response.
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -196,15 +225,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object=} params Parameters for request
        * @param {integer=} params.max-results The maximum number of advanced segments to include in this response.
        * @param {integer=} params.start-index An index of the first advanced segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v2.4/management/segments',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -229,15 +265,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
        * @param {integer=} params.max-results The maximum number of web properties to include in this response.
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v2.4/management/accounts/{accountId}/webproperties',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],

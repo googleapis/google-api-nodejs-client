@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Gmail API
@@ -51,15 +52,22 @@ function Gmail(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getProfile: function (params, callback) {
+    getProfile: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/gmail/v1/users/{userId}/profile',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
@@ -79,15 +87,22 @@ function Gmail(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function (params, callback) {
+    stop: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/gmail/v1/users/{userId}/stop',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
@@ -108,15 +123,22 @@ function Gmail(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
      * @param {gmail(v1).WatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function (params, callback) {
+    watch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/gmail/v1/users/{userId}/watch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
@@ -142,15 +164,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params.media Media object
        * @param {string} params.media.mimeType Media mime-type
        * @param {string|object} params.media.body Media body contents
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts',
             method: 'POST'
-          },
+          }, options),
           params: params,
           mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/drafts',
           requiredParams: ['userId'],
@@ -172,15 +201,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.id The ID of the draft to delete.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/{id}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -202,15 +238,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {string=} params.format The format to return the draft in.
        * @param {string} params.id The ID of the draft to retrieve.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/{id}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -234,15 +277,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
        * @param {string=} params.q Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread".
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -266,15 +316,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params.media Media object
        * @param {string} params.media.mimeType Media mime-type
        * @param {string|object} params.media.body Media body contents
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      send: function (params, callback) {
+      send: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/send',
             method: 'POST'
-          },
+          }, options),
           params: params,
           mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/drafts/send',
           requiredParams: ['userId'],
@@ -300,15 +357,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params.media Media object
        * @param {string} params.media.mimeType Media mime-type
        * @param {string|object} params.media.body Media body contents
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/{id}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/drafts/{id}',
           requiredParams: ['userId', 'id'],
@@ -336,15 +400,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
        * @param {string=} params.startHistoryId Required. Returns history records after the specified startHistoryId. The supplied startHistoryId should be obtained from the historyId of a message, thread, or previous list response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date startHistoryId typically returns an HTTP 404 error code. A historyId is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an HTTP 404 error response, your application should perform a full sync. If you receive no nextPageToken in the response, there are no updates to retrieve and you can store the returned historyId for a future request.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/history',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -368,15 +439,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
        * @param {gmail(v1).Label} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -397,15 +475,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.id The ID of the label to delete.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -426,15 +511,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.id The ID of the label to retrieve.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -454,15 +546,22 @@ function Gmail(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -484,15 +583,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {string} params.id The ID of the label to update.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
        * @param {gmail(v1).Label} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -514,15 +620,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {string} params.id The ID of the label to update.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
        * @param {gmail(v1).Label} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -546,15 +659,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
        * @param {gmail(v1).BatchDeleteMessagesRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      batchDelete: function (params, callback) {
+      batchDelete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/batchDelete',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -575,15 +695,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.id The ID of the message to delete.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -606,15 +733,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {string} params.id The ID of the message to retrieve.
        * @param {string=} params.metadataHeaders When given and format is METADATA, only include headers specified.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -642,15 +776,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params.media Media object
        * @param {string} params.media.mimeType Media mime-type
        * @param {string|object} params.media.body Media body contents
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      import: function (params, callback) {
+      import: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/import',
             method: 'POST'
-          },
+          }, options),
           params: params,
           mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/messages/import',
           requiredParams: ['userId'],
@@ -677,15 +818,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params.media Media object
        * @param {string} params.media.mimeType Media mime-type
        * @param {string|object} params.media.body Media body contents
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages',
             method: 'POST'
-          },
+          }, options),
           params: params,
           mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/messages',
           requiredParams: ['userId'],
@@ -711,15 +859,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
        * @param {string=} params.q Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread".
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -741,15 +896,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {string} params.id The ID of the message to modify.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
        * @param {gmail(v1).ModifyMessageRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      modify: function (params, callback) {
+      modify: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}/modify',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -773,15 +935,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params.media Media object
        * @param {string} params.media.mimeType Media mime-type
        * @param {string|object} params.media.body Media body contents
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      send: function (params, callback) {
+      send: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/send',
             method: 'POST'
-          },
+          }, options),
           params: params,
           mediaUrl: 'https://www.googleapis.com/upload/gmail/v1/users/{userId}/messages/send',
           requiredParams: ['userId'],
@@ -803,15 +972,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.id The ID of the message to Trash.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      trash: function (params, callback) {
+      trash: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}/trash',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -832,15 +1008,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.id The ID of the message to remove from Trash.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      untrash: function (params, callback) {
+      untrash: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}/untrash',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -864,15 +1047,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {string} params.id The ID of the attachment.
          * @param {string} params.messageId The ID of the message containing the attachment.
          * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'messageId', 'id'],
             pathParams: ['id', 'messageId', 'userId'],
@@ -896,15 +1086,22 @@ function Gmail(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getAutoForwarding: function (params, callback) {
+      getAutoForwarding: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/autoForwarding',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -924,15 +1121,22 @@ function Gmail(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getImap: function (params, callback) {
+      getImap: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/imap',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -952,15 +1156,22 @@ function Gmail(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getPop: function (params, callback) {
+      getPop: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/pop',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -980,15 +1191,22 @@ function Gmail(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getVacation: function (params, callback) {
+      getVacation: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/vacation',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -1009,15 +1227,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
        * @param {gmail(v1).AutoForwarding} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      updateAutoForwarding: function (params, callback) {
+      updateAutoForwarding: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/autoForwarding',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -1038,15 +1263,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
        * @param {gmail(v1).ImapSettings} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      updateImap: function (params, callback) {
+      updateImap: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/imap',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -1067,15 +1299,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
        * @param {gmail(v1).PopSettings} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      updatePop: function (params, callback) {
+      updatePop: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/pop',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -1096,15 +1335,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
        * @param {gmail(v1).VacationSettings} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      updateVacation: function (params, callback) {
+      updateVacation: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/vacation',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -1127,15 +1373,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
          * @param {gmail(v1).Filter} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId'],
             pathParams: ['userId'],
@@ -1156,15 +1409,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.id The ID of the filter to be deleted.
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters/{id}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'id'],
             pathParams: ['id', 'userId'],
@@ -1185,15 +1445,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.id The ID of the filter to be fetched.
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters/{id}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'id'],
             pathParams: ['id', 'userId'],
@@ -1213,15 +1480,22 @@ function Gmail(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId'],
             pathParams: ['userId'],
@@ -1245,15 +1519,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
          * @param {gmail(v1).ForwardingAddress} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId'],
             pathParams: ['userId'],
@@ -1274,15 +1555,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.forwardingEmail The forwarding address to be deleted.
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'forwardingEmail'],
             pathParams: ['forwardingEmail', 'userId'],
@@ -1303,15 +1591,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.forwardingEmail The forwarding address to be retrieved.
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'forwardingEmail'],
             pathParams: ['forwardingEmail', 'userId'],
@@ -1331,15 +1626,22 @@ function Gmail(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId'],
             pathParams: ['userId'],
@@ -1363,15 +1665,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
          * @param {gmail(v1).SendAs} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId'],
             pathParams: ['userId'],
@@ -1392,15 +1701,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.sendAsEmail The send-as alias to be deleted.
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'sendAsEmail'],
             pathParams: ['sendAsEmail', 'userId'],
@@ -1421,15 +1737,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.sendAsEmail The send-as alias to be retrieved.
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'sendAsEmail'],
             pathParams: ['sendAsEmail', 'userId'],
@@ -1449,15 +1772,22 @@ function Gmail(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId'],
             pathParams: ['userId'],
@@ -1479,15 +1809,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {string} params.sendAsEmail The send-as alias to be updated.
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
          * @param {gmail(v1).SendAs} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        patch: function (params, callback) {
+        patch: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
               method: 'PATCH'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'sendAsEmail'],
             pathParams: ['sendAsEmail', 'userId'],
@@ -1509,15 +1846,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {string} params.sendAsEmail The send-as alias to be updated.
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
          * @param {gmail(v1).SendAs} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'sendAsEmail'],
             pathParams: ['sendAsEmail', 'userId'],
@@ -1538,15 +1882,22 @@ function Gmail(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.sendAsEmail The send-as alias to be verified.
          * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        verify: function (params, callback) {
+        verify: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'sendAsEmail'],
             pathParams: ['sendAsEmail', 'userId'],
@@ -1571,15 +1922,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.id ID of the Thread to delete.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -1602,15 +1960,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {string} params.id The ID of the thread to retrieve.
        * @param {string=} params.metadataHeaders When given and format is METADATA, only include headers specified.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -1635,15 +2000,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
        * @param {string=} params.q Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread".
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -1665,15 +2037,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {string} params.id The ID of the thread to modify.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
        * @param {gmail(v1).ModifyThreadRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      modify: function (params, callback) {
+      modify: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}/modify',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -1694,15 +2073,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.id The ID of the thread to Trash.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      trash: function (params, callback) {
+      trash: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}/trash',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],
@@ -1723,15 +2109,22 @@ function Gmail(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.id The ID of the thread to remove from Trash.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      untrash: function (params, callback) {
+      untrash: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}/untrash',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'id'],
           pathParams: ['id', 'userId'],

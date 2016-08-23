@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Identity and Access Management API
@@ -55,15 +56,22 @@ function Iam(options) { // eslint-disable-line
        * @param {string} params.name Required. The resource name of the project associated with the service accounts, such as "projects/123"
        * @param {integer=} params.pageSize Optional limit on the number of service accounts to include in the response. Further accounts can subsequently be obtained by including the [ListServiceAccountsResponse.next_page_token] in a subsequent request.
        * @param {string=} params.pageToken Optional pagination token returned in an earlier [ListServiceAccountsResponse.next_page_token].
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://iam.googleapis.com/v1/{name}/serviceAccounts',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -83,15 +91,22 @@ function Iam(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The resource name of the service account in the format "projects/{project}/serviceAccounts/{account}". Using '-' as a wildcard for the project, will infer the project from the account. The account value can be the email address or the unique_id of the service account.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://iam.googleapis.com/v1/{name}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -112,15 +127,22 @@ function Iam(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name Required. The resource name of the project associated with the service accounts, such as "projects/123"
        * @param {iam(v1).CreateServiceAccountRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://iam.googleapis.com/v1/{name}/serviceAccounts',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -141,15 +163,22 @@ function Iam(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name The resource name of the service account in the format "projects/{project}/serviceAccounts/{account}". In requests using '-' as a wildcard for the project, will infer the project from the account and the account value can be the email address or the unique_id of the service account. In responses the resource name will always be in the format "projects/{project}/serviceAccounts/{email}".
        * @param {iam(v1).ServiceAccount} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://iam.googleapis.com/v1/{name}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -169,15 +198,22 @@ function Iam(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The resource name of the service account in the format "projects/{project}/serviceAccounts/{account}". Using '-' as a wildcard for the project, will infer the project from the account. The account value can be the email address or the unique_id of the service account.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://iam.googleapis.com/v1/{name}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -198,15 +234,22 @@ function Iam(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name The resource name of the service account in the format "projects/{project}/serviceAccounts/{account}". Using '-' as a wildcard for the project, will infer the project from the account. The account value can be the email address or the unique_id of the service account.
        * @param {iam(v1).SignBlobRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      signBlob: function (params, callback) {
+      signBlob: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://iam.googleapis.com/v1/{name}:signBlob',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -226,15 +269,22 @@ function Iam(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getIamPolicy: function (params, callback) {
+      getIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://iam.googleapis.com/v1/{resource}:getIamPolicy',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
@@ -255,15 +305,22 @@ function Iam(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
        * @param {iam(v1).SetIamPolicyRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      setIamPolicy: function (params, callback) {
+      setIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://iam.googleapis.com/v1/{resource}:setIamPolicy',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
@@ -284,15 +341,22 @@ function Iam(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
        * @param {iam(v1).TestIamPermissionsRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      testIamPermissions: function (params, callback) {
+      testIamPermissions: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://iam.googleapis.com/v1/{resource}:testIamPermissions',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
@@ -315,15 +379,22 @@ function Iam(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.name The resource name of the service account in the format "projects/{project}/serviceAccounts/{account}". Using '-' as a wildcard for the project, will infer the project from the account. The account value can be the email address or the unique_id of the service account.
          * @param {string=} params.keyTypes The type of keys the user wants to list. If empty, all key types are included in the response. Duplicate key types are not allowed.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://iam.googleapis.com/v1/{name}/keys',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['name'],
             pathParams: ['name'],
@@ -343,15 +414,22 @@ function Iam(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.name The resource name of the service account key in the format "projects/{project}/serviceAccounts/{account}/keys/{key}". Using '-' as a wildcard for the project will infer the project from the account. The account value can be the email address or the unique_id of the service account.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://iam.googleapis.com/v1/{name}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['name'],
             pathParams: ['name'],
@@ -372,15 +450,22 @@ function Iam(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.name The resource name of the service account in the format "projects/{project}/serviceAccounts/{account}". Using '-' as a wildcard for the project, will infer the project from the account. The account value can be the email address or the unique_id of the service account.
          * @param {iam(v1).CreateServiceAccountKeyRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://iam.googleapis.com/v1/{name}/keys',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['name'],
             pathParams: ['name'],
@@ -400,15 +485,22 @@ function Iam(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.name The resource name of the service account key in the format "projects/{project}/serviceAccounts/{account}/keys/{key}". Using '-' as a wildcard for the project will infer the project from the account. The account value can be the email address or the unique_id of the service account.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://iam.googleapis.com/v1/{name}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['name'],
             pathParams: ['name'],

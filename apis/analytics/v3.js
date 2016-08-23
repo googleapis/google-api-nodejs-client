@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Analytics API
@@ -65,15 +66,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string=} params.sort A comma-separated list of dimensions or metrics that determine the sort order for Analytics data.
        * @param {string} params.start-date Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/data/ga',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
           pathParams: [],
@@ -105,15 +113,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string=} params.sort A comma-separated list of dimensions or metrics that determine the sort order for the Analytics data.
        * @param {string} params.start-date Start date for fetching Analytics data. Requests can specify a start date formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday, or 7daysAgo). The default value is 7daysAgo.
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/data/mcf',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
           pathParams: [],
@@ -141,15 +156,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {integer=} params.max-results The maximum number of entries to include in this feed.
        * @param {string} params.metrics A comma-separated list of real time metrics. E.g., 'rt:activeUsers'. At least one metric must be specified.
        * @param {string=} params.sort A comma-separated list of dimensions or metrics that determine the sort order for real time data.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/data/realtime',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['ids', 'metrics'],
           pathParams: [],
@@ -176,15 +198,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object=} params Parameters for request
        * @param {integer=} params.max-results The maximum number of account summaries to include in this response, where the largest acceptable value is 1000.
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accountSummaries',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -208,15 +237,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to delete the user link for.
        * @param {string} params.linkId Link ID to delete the user link for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'linkId'],
           pathParams: ['accountId', 'linkId'],
@@ -237,15 +273,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to create the user link for.
        * @param {analytics(v3).EntityUserLink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -267,15 +310,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to retrieve the user links for.
        * @param {integer=} params.max-results The maximum number of account-user links to include in this response.
        * @param {integer=} params.start-index An index of the first account-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -297,15 +347,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to update the account-user link for.
        * @param {string} params.linkId Link ID to update the account-user link for.
        * @param {analytics(v3).EntityUserLink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'linkId'],
           pathParams: ['accountId', 'linkId'],
@@ -329,15 +386,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object=} params Parameters for request
        * @param {integer=} params.max-results The maximum number of accounts to include in this response.
        * @param {integer=} params.start-index An index of the first account to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -363,15 +427,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {integer=} params.max-results The maximum number of custom data sources to include in this response.
        * @param {integer=} params.start-index A 1-based index of the first custom data source to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web property Id for the custom data sources to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -396,15 +467,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID for the custom dimension to retrieve.
        * @param {string} params.customDimensionId The ID of the custom dimension to retrieve.
        * @param {string} params.webPropertyId Web property ID for the custom dimension to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
           pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
@@ -426,15 +504,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID for the custom dimension to create.
        * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
        * @param {analytics(v3).CustomDimension} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -457,15 +542,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {integer=} params.max-results The maximum number of custom dimensions to include in this response.
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web property ID for the custom dimensions to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -489,15 +581,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
        * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
        * @param {analytics(v3).CustomDimension} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
           pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
@@ -521,15 +620,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom dimension being linked to a custom data source / data set.
        * @param {string} params.webPropertyId Web property ID for the custom dimension to update.
        * @param {analytics(v3).CustomDimension} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
           pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
@@ -554,15 +660,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID for the custom metric to retrieve.
        * @param {string} params.customMetricId The ID of the custom metric to retrieve.
        * @param {string} params.webPropertyId Web property ID for the custom metric to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
           pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
@@ -584,15 +697,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID for the custom metric to create.
        * @param {string} params.webPropertyId Web property ID for the custom dimension to create.
        * @param {analytics(v3).CustomMetric} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -615,15 +735,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {integer=} params.max-results The maximum number of custom metrics to include in this response.
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web property ID for the custom metrics to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -647,15 +774,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
        * @param {string} params.webPropertyId Web property ID for the custom metric to update.
        * @param {analytics(v3).CustomMetric} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
           pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
@@ -679,15 +813,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {boolean=} params.ignoreCustomDataSourceLinks Force the update and ignore any warnings related to the custom metric being linked to a custom data source / data set.
        * @param {string} params.webPropertyId Web property ID for the custom metric to update.
        * @param {analytics(v3).CustomMetric} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
           pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
@@ -713,15 +854,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.experimentId ID of the experiment to delete
        * @param {string} params.profileId View (Profile) ID to which the experiment belongs
        * @param {string} params.webPropertyId Web property ID to which the experiment belongs
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
           pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
@@ -744,15 +892,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.experimentId Experiment ID to retrieve the experiment for.
        * @param {string} params.profileId View (Profile) ID to retrieve the experiment for.
        * @param {string} params.webPropertyId Web property ID to retrieve the experiment for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
           pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
@@ -775,15 +930,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to create the experiment for.
        * @param {string} params.webPropertyId Web property ID to create the experiment for.
        * @param {analytics(v3).Experiment} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -807,15 +969,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to retrieve experiments for.
        * @param {integer=} params.start-index An index of the first experiment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web property ID to retrieve experiments for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -839,15 +1008,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID of the experiment to update.
        * @param {string} params.webPropertyId Web property ID of the experiment to update.
        * @param {analytics(v3).Experiment} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
           pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
@@ -871,15 +1047,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID of the experiment to update.
        * @param {string} params.webPropertyId Web property ID of the experiment to update.
        * @param {analytics(v3).Experiment} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
           pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
@@ -903,15 +1086,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to delete the filter for.
        * @param {string} params.filterId ID of the filter to be deleted.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'filterId'],
           pathParams: ['accountId', 'filterId'],
@@ -932,15 +1122,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to retrieve filters for.
        * @param {string} params.filterId Filter ID to retrieve filters for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'filterId'],
           pathParams: ['accountId', 'filterId'],
@@ -961,15 +1158,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to create filter for.
        * @param {analytics(v3).Filter} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -991,15 +1195,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to retrieve filters for.
        * @param {integer=} params.max-results The maximum number of filters to include in this response.
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -1021,15 +1232,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to which the filter belongs.
        * @param {string} params.filterId ID of the filter to be updated.
        * @param {analytics(v3).Filter} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'filterId'],
           pathParams: ['accountId', 'filterId'],
@@ -1051,15 +1269,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to which the filter belongs.
        * @param {string} params.filterId ID of the filter to be updated.
        * @param {analytics(v3).Filter} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'filterId'],
           pathParams: ['accountId', 'filterId'],
@@ -1085,15 +1310,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.goalId Goal ID to retrieve the goal for.
        * @param {string} params.profileId View (Profile) ID to retrieve the goal for.
        * @param {string} params.webPropertyId Web property ID to retrieve the goal for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
           pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
@@ -1116,15 +1348,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to create the goal for.
        * @param {string} params.webPropertyId Web property ID to create the goal for.
        * @param {analytics(v3).Goal} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -1148,15 +1387,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to retrieve goals for. Can either be a specific view (profile) ID or '~all', which refers to all the views (profiles) that user has access to.
        * @param {integer=} params.start-index An index of the first goal to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web property ID to retrieve goals for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -1180,15 +1426,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to update the goal.
        * @param {string} params.webPropertyId Web property ID to update the goal.
        * @param {analytics(v3).Goal} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
           pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
@@ -1212,15 +1465,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to update the goal.
        * @param {string} params.webPropertyId Web property ID to update the goal.
        * @param {analytics(v3).Goal} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
           pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
@@ -1246,15 +1506,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.linkId ID of the profile filter link to delete.
        * @param {string} params.profileId Profile ID to which the filter link belongs.
        * @param {string} params.webPropertyId Web property Id to which the profile filter link belongs.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
           pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
@@ -1277,15 +1544,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.linkId ID of the profile filter link.
        * @param {string} params.profileId Profile ID to retrieve filter link for.
        * @param {string} params.webPropertyId Web property Id to retrieve profile filter link for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
           pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
@@ -1308,15 +1582,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId Profile ID to create filter link for.
        * @param {string} params.webPropertyId Web property Id to create profile filter link for.
        * @param {analytics(v3).ProfileFilterLink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -1340,15 +1621,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId Profile ID to retrieve filter links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web property Id for profile filter links for. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -1372,15 +1660,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId Profile ID to which filter link belongs
        * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
        * @param {analytics(v3).ProfileFilterLink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
           pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
@@ -1404,15 +1699,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId Profile ID to which filter link belongs
        * @param {string} params.webPropertyId Web property Id to which profile filter link belongs
        * @param {analytics(v3).ProfileFilterLink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
           pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
@@ -1438,15 +1740,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.linkId Link ID to delete the user link for.
        * @param {string} params.profileId View (Profile) ID to delete the user link for.
        * @param {string} params.webPropertyId Web Property ID to delete the user link for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
           pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
@@ -1469,15 +1778,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to create the user link for.
        * @param {string} params.webPropertyId Web Property ID to create the user link for.
        * @param {analytics(v3).EntityUserLink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -1501,15 +1817,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to retrieve the profile-user links for. Can either be a specific profile ID or '~all', which refers to all the profiles that user has access to.
        * @param {integer=} params.start-index An index of the first profile-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web Property ID which the given view (profile) belongs to. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -1533,15 +1856,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile ID) to update the user link for.
        * @param {string} params.webPropertyId Web Property ID to update the user link for.
        * @param {analytics(v3).EntityUserLink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
           pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
@@ -1566,15 +1896,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to delete the view (profile) for.
        * @param {string} params.profileId ID of the view (profile) to be deleted.
        * @param {string} params.webPropertyId Web property ID to delete the view (profile) for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -1596,15 +1933,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to retrieve the view (profile) for.
        * @param {string} params.profileId View (Profile) ID to retrieve the view (profile) for.
        * @param {string} params.webPropertyId Web property ID to retrieve the view (profile) for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -1626,15 +1970,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to create the view (profile) for.
        * @param {string} params.webPropertyId Web property ID to create the view (profile) for.
        * @param {analytics(v3).Profile} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -1657,15 +2008,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {integer=} params.max-results The maximum number of views (profiles) to include in this response.
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web property ID for the views (profiles) to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties to which the user has access.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -1688,15 +2046,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId ID of the view (profile) to be updated.
        * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
        * @param {analytics(v3).Profile} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -1719,15 +2084,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId ID of the view (profile) to be updated.
        * @param {string} params.webPropertyId Web property ID to which the view (profile) belongs
        * @param {analytics(v3).Profile} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -1752,15 +2124,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID for the remarketing audience to retrieve.
        * @param {string} params.remarketingAudienceId The ID to retrieve the Remarketing Audience for.
        * @param {string} params.webPropertyId Web property ID for the remarketing audience to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
           pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
@@ -1782,15 +2161,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to create the remarketing audience for.
        * @param {string} params.webPropertyId Web property ID to create the remarketing audience for.
        * @param {analytics(v3).RemarketingAudience} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -1814,15 +2200,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string=} params.type 
        * @param {string} params.webPropertyId Web property ID for the remarketing audience to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -1845,15 +2238,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.remarketingAudienceId Remarketing audience ID of the remarketing audience to update.
        * @param {string} params.webPropertyId Web property ID for the remarketing audience to update.
        * @param {analytics(v3).RemarketingAudience} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
           pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
@@ -1876,15 +2276,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.remarketingAudienceId Remarketing audience ID of the remarketing audience to update.
        * @param {string} params.webPropertyId Web property ID for the remarketing audience to update.
        * @param {analytics(v3).RemarketingAudience} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
           pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
@@ -1908,15 +2315,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object=} params Parameters for request
        * @param {integer=} params.max-results The maximum number of segments to include in this response.
        * @param {integer=} params.start-index An index of the first segment to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/segments',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -1942,15 +2356,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to delete the unsampled report for.
        * @param {string} params.unsampledReportId ID of the unsampled report to be deleted.
        * @param {string} params.webPropertyId Web property ID to delete the unsampled reports for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
           pathParams: ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
@@ -1973,15 +2394,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to retrieve unsampled report for.
        * @param {string} params.unsampledReportId ID of the unsampled report to retrieve.
        * @param {string} params.webPropertyId Web property ID to retrieve unsampled reports for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
           pathParams: ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
@@ -2004,15 +2432,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to create the unsampled report for.
        * @param {string} params.webPropertyId Web property ID to create the unsampled report for.
        * @param {analytics(v3).UnsampledReport} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -2036,15 +2471,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.profileId View (Profile) ID to retrieve unsampled reports for. Must be a specific view (profile) ID, ~all is not supported.
        * @param {integer=} params.start-index An index of the first unsampled report to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web property ID to retrieve unsampled reports for. Must be a specific web property ID, ~all is not supported.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'profileId'],
           pathParams: ['accountId', 'profileId', 'webPropertyId'],
@@ -2070,15 +2512,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.customDataSourceId Custom data source Id for the uploads to be deleted.
        * @param {string} params.webPropertyId Web property Id for the uploads to be deleted.
        * @param {analytics(v3).AnalyticsDataimportDeleteUploadDataRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      deleteUploadData: function (params, callback) {
+      deleteUploadData: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
           pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
@@ -2101,15 +2550,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.customDataSourceId Custom data source Id for upload to retrieve.
        * @param {string} params.uploadId Upload Id to retrieve.
        * @param {string} params.webPropertyId Web property Id for the upload to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId', 'uploadId'],
           pathParams: ['accountId', 'customDataSourceId', 'uploadId', 'webPropertyId'],
@@ -2133,15 +2589,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {integer=} params.max-results The maximum number of uploads to include in this response.
        * @param {integer=} params.start-index A 1-based index of the first upload to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web property Id for the uploads to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
           pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
@@ -2166,15 +2629,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params.media Media object
        * @param {string} params.media.mimeType Media mime-type
        * @param {string|object} params.media.body Media body contents
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      uploadData: function (params, callback) {
+      uploadData: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads',
             method: 'POST'
-          },
+          }, options),
           params: params,
           mediaUrl: 'https://www.googleapis.com/upload/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads',
           requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
@@ -2200,15 +2670,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId ID of the account which the given web property belongs to.
        * @param {string} params.webPropertyAdWordsLinkId Web property AdWords link ID.
        * @param {string} params.webPropertyId Web property ID to delete the AdWords link for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
           pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
@@ -2230,15 +2707,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId ID of the account which the given web property belongs to.
        * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
        * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
           pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
@@ -2260,15 +2744,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId ID of the Google Analytics account to create the link for.
        * @param {string} params.webPropertyId Web property ID to create the link for.
        * @param {analytics(v3).EntityAdWordsLink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -2291,15 +2782,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {integer=} params.max-results The maximum number of webProperty-AdWords links to include in this response.
        * @param {integer=} params.start-index An index of the first webProperty-AdWords link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web property ID to retrieve the AdWords links for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -2322,15 +2820,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
        * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
        * @param {analytics(v3).EntityAdWordsLink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
           pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
@@ -2353,15 +2858,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.webPropertyAdWordsLinkId Web property-AdWords link ID.
        * @param {string} params.webPropertyId Web property ID to retrieve the AdWords link for.
        * @param {analytics(v3).EntityAdWordsLink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
           pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
@@ -2385,15 +2897,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to retrieve the web property for.
        * @param {string} params.webPropertyId ID to retrieve the web property for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -2414,15 +2933,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account ID to create the web property for.
        * @param {analytics(v3).Webproperty} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -2444,15 +2970,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to retrieve web properties for. Can either be a specific account ID or '~all', which refers to all the accounts that user has access to.
        * @param {integer=} params.max-results The maximum number of web properties to include in this response.
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -2474,15 +3007,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to which the web property belongs
        * @param {string} params.webPropertyId Web property ID
        * @param {analytics(v3).Webproperty} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -2504,15 +3044,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to which the web property belongs
        * @param {string} params.webPropertyId Web property ID
        * @param {analytics(v3).Webproperty} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -2537,15 +3084,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to delete the user link for.
        * @param {string} params.linkId Link ID to delete the user link for.
        * @param {string} params.webPropertyId Web Property ID to delete the user link for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'linkId'],
           pathParams: ['accountId', 'linkId', 'webPropertyId'],
@@ -2567,15 +3121,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.accountId Account ID to create the user link for.
        * @param {string} params.webPropertyId Web Property ID to create the user link for.
        * @param {analytics(v3).EntityUserLink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -2598,15 +3159,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {integer=} params.max-results The maximum number of webProperty-user Links to include in this response.
        * @param {integer=} params.start-index An index of the first webProperty-user link to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string} params.webPropertyId Web Property ID for the webProperty-user links to retrieve. Can either be a specific web property ID or '~all', which refers to all the web properties that user has access to.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId'],
           pathParams: ['accountId', 'webPropertyId'],
@@ -2629,15 +3197,22 @@ function Analytics(options) { // eslint-disable-line
        * @param {string} params.linkId Link ID to update the account-user link for.
        * @param {string} params.webPropertyId Web property ID to update the account-user link for.
        * @param {analytics(v3).EntityUserLink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'webPropertyId', 'linkId'],
           pathParams: ['accountId', 'linkId', 'webPropertyId'],
@@ -2663,15 +3238,22 @@ function Analytics(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.reportType Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core Reporting API
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/metadata/{reportType}/columns',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['reportType'],
           pathParams: ['reportType'],
@@ -2695,15 +3277,22 @@ function Analytics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {analytics(v3).AccountTicket} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createAccountTicket: function (params, callback) {
+    createAccountTicket: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/analytics/v3/provisioning/createAccountTicket',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

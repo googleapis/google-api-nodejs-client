@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * TaskQueue API
@@ -53,15 +54,22 @@ function Taskqueue(options) { // eslint-disable-line
      * @param {boolean=} params.getStats Whether to get stats. Optional.
      * @param {string} params.project The project under which the queue lies.
      * @param {string} params.taskqueue The id of the taskqueue to get the properties of.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'taskqueue'],
         pathParams: ['project', 'taskqueue'],
@@ -87,15 +95,22 @@ function Taskqueue(options) { // eslint-disable-line
      * @param {string} params.project The project under which the queue lies.
      * @param {string} params.task The id of the task to delete.
      * @param {string} params.taskqueue The taskqueue to delete a task from.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'taskqueue', 'task'],
         pathParams: ['project', 'task', 'taskqueue'],
@@ -117,15 +132,22 @@ function Taskqueue(options) { // eslint-disable-line
      * @param {string} params.project The project under which the queue lies.
      * @param {string} params.task The task to get properties of.
      * @param {string} params.taskqueue The taskqueue in which the task belongs.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'taskqueue', 'task'],
         pathParams: ['project', 'task', 'taskqueue'],
@@ -147,15 +169,22 @@ function Taskqueue(options) { // eslint-disable-line
      * @param {string} params.project The project under which the queue lies
      * @param {string} params.taskqueue The taskqueue to insert the task into
      * @param {taskqueue(v1beta2).Task} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'taskqueue'],
         pathParams: ['project', 'taskqueue'],
@@ -180,15 +209,22 @@ function Taskqueue(options) { // eslint-disable-line
      * @param {string} params.project The project under which the queue lies.
      * @param {string=} params.tag The tag allowed for tasks in the response. Must only be specified if group_by_tag is true. If group_by_tag is true and tag is not specified the tag will be that of the oldest task by eta, i.e. the first available tag
      * @param {string} params.taskqueue The taskqueue to lease a task from.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    lease: function (params, callback) {
+    lease: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/lease',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'taskqueue', 'numTasks', 'leaseSecs'],
         pathParams: ['project', 'taskqueue'],
@@ -209,15 +245,22 @@ function Taskqueue(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project The project under which the queue lies.
      * @param {string} params.taskqueue The id of the taskqueue to list tasks from.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'taskqueue'],
         pathParams: ['project', 'taskqueue'],
@@ -241,15 +284,22 @@ function Taskqueue(options) { // eslint-disable-line
      * @param {string} params.task 
      * @param {string} params.taskqueue 
      * @param {taskqueue(v1beta2).Task} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'taskqueue', 'task', 'newLeaseSeconds'],
         pathParams: ['project', 'task', 'taskqueue'],
@@ -273,15 +323,22 @@ function Taskqueue(options) { // eslint-disable-line
      * @param {string} params.task 
      * @param {string} params.taskqueue 
      * @param {taskqueue(v1beta2).Task} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'taskqueue', 'task', 'newLeaseSeconds'],
         pathParams: ['project', 'task', 'taskqueue'],

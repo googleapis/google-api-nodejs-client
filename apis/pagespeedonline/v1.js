@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * PageSpeed Insights API
@@ -56,15 +57,22 @@ function Pagespeedonline(options) { // eslint-disable-line
      * @param {boolean=} params.screenshot Indicates if binary data containing a screenshot should be included
      * @param {string=} params.strategy The analysis strategy to use
      * @param {string} params.url The URL to fetch and analyze
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runpagespeed: function (params, callback) {
+    runpagespeed: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/pagespeedonline/v1/runPagespeed',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['url'],
         pathParams: [],

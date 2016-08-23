@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Fitness
@@ -54,15 +55,22 @@ function Fitness(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.userId Create the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
        * @param {fitness(v1).DataSource} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -83,15 +91,22 @@ function Fitness(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.dataSourceId The data stream ID of the data source to delete.
        * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'dataSourceId'],
           pathParams: ['dataSourceId', 'userId'],
@@ -112,15 +127,22 @@ function Fitness(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.dataSourceId The data stream ID of the data source to retrieve.
        * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'dataSourceId'],
           pathParams: ['dataSourceId', 'userId'],
@@ -141,15 +163,22 @@ function Fitness(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string=} params.dataTypeName The names of data types to include in the list. If not specified, all data sources will be returned.
        * @param {string} params.userId List data sources for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -171,15 +200,22 @@ function Fitness(options) { // eslint-disable-line
        * @param {string} params.dataSourceId The data stream ID of the data source to update.
        * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
        * @param {fitness(v1).DataSource} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'dataSourceId'],
           pathParams: ['dataSourceId', 'userId'],
@@ -201,15 +237,22 @@ function Fitness(options) { // eslint-disable-line
        * @param {string} params.dataSourceId The data stream ID of the data source to update.
        * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
        * @param {fitness(v1).DataSource} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'dataSourceId'],
           pathParams: ['dataSourceId', 'userId'],
@@ -235,15 +278,22 @@ function Fitness(options) { // eslint-disable-line
          * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
          * @param {string=} params.modifiedTimeMillis When the operation was performed on the client.
          * @param {string} params.userId Delete a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'dataSourceId', 'datasetId'],
             pathParams: ['dataSourceId', 'datasetId', 'userId'],
@@ -267,15 +317,22 @@ function Fitness(options) { // eslint-disable-line
          * @param {integer=} params.limit If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response.
          * @param {string=} params.pageToken The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of nextPageToken from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
          * @param {string} params.userId Retrieve a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'dataSourceId', 'datasetId'],
             pathParams: ['dataSourceId', 'datasetId', 'userId'],
@@ -299,15 +356,22 @@ function Fitness(options) { // eslint-disable-line
          * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
          * @param {string} params.userId Patch a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
          * @param {fitness(v1).Dataset} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        patch: function (params, callback) {
+        patch: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}',
               method: 'PATCH'
-            },
+            }, options),
             params: params,
             requiredParams: ['userId', 'dataSourceId', 'datasetId'],
             pathParams: ['dataSourceId', 'datasetId', 'userId'],
@@ -332,15 +396,22 @@ function Fitness(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.userId Aggregate data for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
        * @param {fitness(v1).AggregateRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      aggregate: function (params, callback) {
+      aggregate: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataset:aggregate',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -365,15 +436,22 @@ function Fitness(options) { // eslint-disable-line
        * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
        * @param {string} params.sessionId The ID of the session to be deleted.
        * @param {string} params.userId Delete a session for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/sessions/{sessionId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'sessionId'],
           pathParams: ['sessionId', 'userId'],
@@ -397,15 +475,22 @@ function Fitness(options) { // eslint-disable-line
        * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
        * @param {string=} params.startTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response.
        * @param {string} params.userId List sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/sessions',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],
@@ -428,15 +513,22 @@ function Fitness(options) { // eslint-disable-line
        * @param {string} params.sessionId The ID of the session to be created.
        * @param {string} params.userId Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
        * @param {fitness(v1).Session} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/sessions/{sessionId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'sessionId'],
           pathParams: ['sessionId', 'userId'],

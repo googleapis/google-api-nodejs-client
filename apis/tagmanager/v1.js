@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Tag Manager API
@@ -51,15 +52,22 @@ function Tagmanager(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The GTM Account ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
@@ -78,15 +86,22 @@ function Tagmanager(options) { // eslint-disable-line
      * @memberOf! tagmanager(v1)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tagmanager/v1/accounts',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -108,15 +123,22 @@ function Tagmanager(options) { // eslint-disable-line
      * @param {string} params.accountId The GTM Account ID.
      * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the account in storage.
      * @param {tagmanager(v1).Account} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
@@ -139,15 +161,22 @@ function Tagmanager(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId The GTM Account ID.
        * @param {tagmanager(v1).Container} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -168,15 +197,22 @@ function Tagmanager(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId The GTM Account ID.
        * @param {string} params.containerId The GTM Container ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'containerId'],
           pathParams: ['accountId', 'containerId'],
@@ -197,15 +233,22 @@ function Tagmanager(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId The GTM Account ID.
        * @param {string} params.containerId The GTM Container ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'containerId'],
           pathParams: ['accountId', 'containerId'],
@@ -225,15 +268,22 @@ function Tagmanager(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.accountId The GTM Account ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -256,15 +306,22 @@ function Tagmanager(options) { // eslint-disable-line
        * @param {string} params.containerId The GTM Container ID.
        * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container in storage.
        * @param {tagmanager(v1).Container} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'containerId'],
           pathParams: ['accountId', 'containerId'],
@@ -288,15 +345,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {tagmanager(v1).Environment} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId'],
             pathParams: ['accountId', 'containerId'],
@@ -318,15 +382,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.environmentId The GTM Environment ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'environmentId'],
             pathParams: ['accountId', 'containerId', 'environmentId'],
@@ -348,15 +419,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.environmentId The GTM Environment ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'environmentId'],
             pathParams: ['accountId', 'containerId', 'environmentId'],
@@ -377,15 +455,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId'],
             pathParams: ['accountId', 'containerId'],
@@ -409,15 +494,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.environmentId The GTM Environment ID.
          * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
          * @param {tagmanager(v1).Environment} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        patch: function (params, callback) {
+        patch: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
               method: 'PATCH'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'environmentId'],
             pathParams: ['accountId', 'containerId', 'environmentId'],
@@ -441,15 +533,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.environmentId The GTM Environment ID.
          * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the environment in storage.
          * @param {tagmanager(v1).Environment} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'environmentId'],
             pathParams: ['accountId', 'containerId', 'environmentId'],
@@ -474,15 +573,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {tagmanager(v1).Folder} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId'],
             pathParams: ['accountId', 'containerId'],
@@ -504,15 +610,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.folderId The GTM Folder ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'folderId'],
             pathParams: ['accountId', 'containerId', 'folderId'],
@@ -534,15 +647,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.folderId The GTM Folder ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'folderId'],
             pathParams: ['accountId', 'containerId', 'folderId'],
@@ -563,15 +683,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId'],
             pathParams: ['accountId', 'containerId'],
@@ -595,15 +722,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the folder in storage.
          * @param {string} params.folderId The GTM Folder ID.
          * @param {tagmanager(v1).Folder} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'folderId'],
             pathParams: ['accountId', 'containerId', 'folderId'],
@@ -627,15 +761,22 @@ function Tagmanager(options) { // eslint-disable-line
            * @param {string} params.accountId The GTM Account ID.
            * @param {string} params.containerId The GTM Container ID.
            * @param {string} params.folderId The GTM Folder ID.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          list: function (params, callback) {
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}/entities',
                 method: 'GET'
-              },
+              }, options),
               params: params,
               requiredParams: ['accountId', 'containerId', 'folderId'],
               pathParams: ['accountId', 'containerId', 'folderId'],
@@ -665,15 +806,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string=} params.triggerId The triggers to be moved to the folder.
          * @param {string=} params.variableId The variables to be moved to the folder.
          * @param {tagmanager(v1).Folder} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/move_folders/{folderId}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'folderId'],
             pathParams: ['accountId', 'containerId', 'folderId'],
@@ -699,15 +847,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.environmentId The GTM Environment ID.
          * @param {tagmanager(v1).Environment} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/reauthorize_environments/{environmentId}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'environmentId'],
             pathParams: ['accountId', 'containerId', 'environmentId'],
@@ -732,15 +887,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {tagmanager(v1).Tag} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId'],
             pathParams: ['accountId', 'containerId'],
@@ -762,15 +924,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.tagId The GTM Tag ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'tagId'],
             pathParams: ['accountId', 'containerId', 'tagId'],
@@ -792,15 +961,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.tagId The GTM Tag ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'tagId'],
             pathParams: ['accountId', 'containerId', 'tagId'],
@@ -821,15 +997,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId'],
             pathParams: ['accountId', 'containerId'],
@@ -853,15 +1036,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the tag in storage.
          * @param {string} params.tagId The GTM Tag ID.
          * @param {tagmanager(v1).Tag} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'tagId'],
             pathParams: ['accountId', 'containerId', 'tagId'],
@@ -886,15 +1076,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {tagmanager(v1).Trigger} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId'],
             pathParams: ['accountId', 'containerId'],
@@ -916,15 +1113,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.triggerId The GTM Trigger ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'triggerId'],
             pathParams: ['accountId', 'containerId', 'triggerId'],
@@ -946,15 +1150,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.triggerId The GTM Trigger ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'triggerId'],
             pathParams: ['accountId', 'containerId', 'triggerId'],
@@ -975,15 +1186,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId'],
             pathParams: ['accountId', 'containerId'],
@@ -1007,15 +1225,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the trigger in storage.
          * @param {string} params.triggerId The GTM Trigger ID.
          * @param {tagmanager(v1).Trigger} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'triggerId'],
             pathParams: ['accountId', 'containerId', 'triggerId'],
@@ -1040,15 +1265,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {tagmanager(v1).Variable} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId'],
             pathParams: ['accountId', 'containerId'],
@@ -1070,15 +1302,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.variableId The GTM Variable ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'variableId'],
             pathParams: ['accountId', 'containerId', 'variableId'],
@@ -1100,15 +1339,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.variableId The GTM Variable ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'variableId'],
             pathParams: ['accountId', 'containerId', 'variableId'],
@@ -1129,15 +1375,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId'],
             pathParams: ['accountId', 'containerId'],
@@ -1161,15 +1414,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the variable in storage.
          * @param {string} params.variableId The GTM Variable ID.
          * @param {tagmanager(v1).Variable} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'variableId'],
             pathParams: ['accountId', 'containerId', 'variableId'],
@@ -1194,15 +1454,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {tagmanager(v1).CreateContainerVersionRequestVersionOptions} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId'],
             pathParams: ['accountId', 'containerId'],
@@ -1224,15 +1491,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.containerVersionId The GTM Container Version ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'containerVersionId'],
             pathParams: ['accountId', 'containerId', 'containerVersionId'],
@@ -1254,15 +1528,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.containerVersionId The GTM Container Version ID. Specify published to retrieve the currently published version.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'containerVersionId'],
             pathParams: ['accountId', 'containerId', 'containerVersionId'],
@@ -1285,15 +1566,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.containerId The GTM Container ID.
          * @param {boolean=} params.headers Retrieve headers only when true.
          * @param {boolean=} params.includeDeleted Also retrieve deleted (archived) versions when true.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId'],
             pathParams: ['accountId', 'containerId'],
@@ -1316,15 +1604,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.containerVersionId The GTM Container Version ID.
          * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        publish: function (params, callback) {
+        publish: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/publish',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'containerVersionId'],
             pathParams: ['accountId', 'containerId', 'containerVersionId'],
@@ -1346,15 +1641,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.containerVersionId The GTM Container Version ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        restore: function (params, callback) {
+        restore: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/restore',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'containerVersionId'],
             pathParams: ['accountId', 'containerId', 'containerVersionId'],
@@ -1376,15 +1678,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.accountId The GTM Account ID.
          * @param {string} params.containerId The GTM Container ID.
          * @param {string} params.containerVersionId The GTM Container Version ID.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        undelete: function (params, callback) {
+        undelete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/undelete',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'containerVersionId'],
             pathParams: ['accountId', 'containerId', 'containerVersionId'],
@@ -1408,15 +1717,22 @@ function Tagmanager(options) { // eslint-disable-line
          * @param {string} params.containerVersionId The GTM Container Version ID.
          * @param {string=} params.fingerprint When provided, this fingerprint must match the fingerprint of the container version in storage.
          * @param {tagmanager(v1).ContainerVersion} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'containerId', 'containerVersionId'],
             pathParams: ['accountId', 'containerId', 'containerVersionId'],
@@ -1441,15 +1757,22 @@ function Tagmanager(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId The GTM Account ID.
        * @param {tagmanager(v1).UserAccess} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -1470,15 +1793,22 @@ function Tagmanager(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId The GTM Account ID.
        * @param {string} params.permissionId The GTM User ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'permissionId'],
           pathParams: ['accountId', 'permissionId'],
@@ -1499,15 +1829,22 @@ function Tagmanager(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId The GTM Account ID.
        * @param {string} params.permissionId The GTM User ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'permissionId'],
           pathParams: ['accountId', 'permissionId'],
@@ -1527,15 +1864,22 @@ function Tagmanager(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.accountId The GTM Account ID. @required tagmanager.accounts.permissions.list
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -1557,15 +1901,22 @@ function Tagmanager(options) { // eslint-disable-line
        * @param {string} params.accountId The GTM Account ID.
        * @param {string} params.permissionId The GTM User ID.
        * @param {tagmanager(v1).UserAccess} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'permissionId'],
           pathParams: ['accountId', 'permissionId'],

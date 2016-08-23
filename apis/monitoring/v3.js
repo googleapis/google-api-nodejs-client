@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Monitoring API
@@ -95,15 +96,22 @@ function Monitoring(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name The project in which to create the time series. The format is `"projects/PROJECT_ID_OR_NUMBER"`.
        * @param {monitoring(v3).CreateCollectdTimeSeriesRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}/collectdTimeSeries',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -178,15 +186,22 @@ function Monitoring(options) { // eslint-disable-line
        * @param {string=} params.descendantsOfGroup A group name: `"projects/{project_id_or_number}/groups/{group_id}"`. Returns the descendants of the specified group. This is a superset of the results returned by the `childrenOfGroup` filter, and includes children-of-children, and so forth.
        * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
        * @param {string=} params.pageToken If this field is not empty then it must contain the `nextPageToken` value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}/groups',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -246,15 +261,22 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The group to retrieve. The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -317,15 +339,22 @@ function Monitoring(options) { // eslint-disable-line
        * @param {string} params.name The project in which to create the group. The format is `"projects/{project_id_or_number}"`.
        * @param {boolean=} params.validateOnly If true, validate this request but do not create the group.
        * @param {monitoring(v3).Group} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}/groups',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -391,15 +420,22 @@ function Monitoring(options) { // eslint-disable-line
        * @param {string} params.name The name of this group. The format is `"projects/{project_id_or_number}/groups/{group_id}"`. When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to `CreateGroup` and a unique `{group_id}` that is generated automatically. @OutputOnly
        * @param {boolean=} params.validateOnly If true, validate this request but do not update the existing group.
        * @param {monitoring(v3).Group} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -459,15 +495,22 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The group to delete. The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -542,15 +585,22 @@ function Monitoring(options) { // eslint-disable-line
          * @param {string=} params.filter An optional [list filter](/monitoring/api/learn_more#filtering) describing the members to be returned. The filter may reference the type, labels, and metadata of monitored resources that comprise the group. For example, to return only resources representing Compute Engine VM instances, use this filter: resource.type = "gce_instance"
          * @param {string=} params.interval.endTime Required. The end of the interval. The interval includes this time.
          * @param {string=} params.interval.startTime If this value is omitted, the interval is a point in time, `endTime`. If `startTime` is present, it must be earlier than (less than) `endTime`. The interval begins after `startTime`—it does not include `startTime`.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://monitoring.googleapis.com/v3/{name}/members',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['name'],
             pathParams: ['name'],
@@ -624,15 +674,22 @@ function Monitoring(options) { // eslint-disable-line
        * @param {string=} params.filter An optional [filter](/monitoring/api/v3/filters) describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an `id` label: resource.type = starts_with("gce_") AND resource.label:id
        * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
        * @param {string=} params.pageToken If this field is not empty then it must contain the `nextPageToken` value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}/monitoredResourceDescriptors',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -694,15 +751,22 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The monitored resource descriptor to get. The format is `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`. The `{resource_type}` is a predefined type, such as `cloudsql_database`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -775,15 +839,22 @@ function Monitoring(options) { // eslint-disable-line
        * @param {string=} params.filter If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the [filter](/monitoring/api/v3/filters) specifies which metric descriptors are to be returned. For example, the following filter matches all [custom metrics](/monitoring/custom-metrics): metric.type = starts_with("custom.googleapis.com/")
        * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
        * @param {string=} params.pageToken If this field is not empty then it must contain the `nextPageToken` value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}/metricDescriptors',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -845,15 +916,22 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The metric descriptor on which to execute the request. The format is `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`. An example value of `{metric_id}` is `"compute.googleapis.com/instance/disk/read_bytes_count"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -915,15 +993,22 @@ function Monitoring(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name The project on which to execute the request. The format is `"projects/{project_id_or_number}"`.
        * @param {monitoring(v3).MetricDescriptor} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}/metricDescriptors',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -985,15 +1070,22 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The metric descriptor on which to execute the request. The format is `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`. An example of `{metric_id}` is: `"custom.googleapis.com/my_test_metric"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -1074,15 +1166,22 @@ function Monitoring(options) { // eslint-disable-line
        * @param {string=} params.view Specifies which information is returned about the time series.
        * @param {integer=} params.pageSize A positive number that is the maximum number of results to return. When `view` field sets to `FULL`, it limits the number of `Points` server will return; if `view` field is `HEADERS`, it limits the number of `TimeSeries` server will return.
        * @param {string=} params.pageToken If this field is not empty then it must contain the `nextPageToken` value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}/timeSeries',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -1144,15 +1243,22 @@ function Monitoring(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name The project on which to execute the request. The format is `"projects/{project_id_or_number}"`.
        * @param {monitoring(v3).CreateTimeSeriesRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://monitoring.googleapis.com/v3/{name}/timeSeries',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],

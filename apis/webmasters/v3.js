@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Search Console API
@@ -52,15 +53,22 @@ function Webmasters(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
      * @param {webmasters(v3).SearchAnalyticsQueryRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function (params, callback) {
+    query: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/searchAnalytics/query',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
@@ -85,15 +93,22 @@ function Webmasters(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.feedpath The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
      * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
@@ -114,15 +129,22 @@ function Webmasters(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.feedpath The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
      * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
@@ -143,15 +165,22 @@ function Webmasters(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
      * @param {string=} params.sitemapIndex A URL of a site's sitemap index. For example: http://www.example.com/sitemapindex.xml
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
@@ -172,15 +201,22 @@ function Webmasters(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.feedpath The URL of the sitemap to add. For example: http://www.example.com/sitemap.xml
      * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    submit: function (params, callback) {
+    submit: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['siteUrl', 'feedpath'],
         pathParams: ['feedpath', 'siteUrl'],
@@ -204,15 +240,22 @@ function Webmasters(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.siteUrl The URL of the site to add.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    add: function (params, callback) {
+    add: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
@@ -232,15 +275,22 @@ function Webmasters(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.siteUrl The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
@@ -260,15 +310,22 @@ function Webmasters(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.siteUrl The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
@@ -287,15 +344,22 @@ function Webmasters(options) { // eslint-disable-line
      * @memberOf! webmasters(v3)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -322,15 +386,22 @@ function Webmasters(options) { // eslint-disable-line
      * @param {boolean=} params.latestCountsOnly If true, returns only the latest crawl error counts.
      * @param {string=} params.platform The user agent type (platform) that made the request. For example: web. If not specified, returns results for all platforms.
      * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function (params, callback) {
+    query: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsCounts/query',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['siteUrl'],
         pathParams: ['siteUrl'],
@@ -357,15 +428,22 @@ function Webmasters(options) { // eslint-disable-line
      * @param {string} params.platform The user agent type (platform) that made the request. For example: web
      * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
      * @param {string} params.url The relative path (without the site) of the sample URL. It must be one of the URLs returned by list(). For example, for the URL https://www.example.com/pagename on the site https://www.example.com/, the url value is pagename
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['siteUrl', 'url', 'category', 'platform'],
         pathParams: ['siteUrl', 'url'],
@@ -387,15 +465,22 @@ function Webmasters(options) { // eslint-disable-line
      * @param {string} params.category The crawl error category. For example: authPermissions
      * @param {string} params.platform The user agent type (platform) that made the request. For example: web
      * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['siteUrl', 'category', 'platform'],
         pathParams: ['siteUrl'],
@@ -418,15 +503,22 @@ function Webmasters(options) { // eslint-disable-line
      * @param {string} params.platform The user agent type (platform) that made the request. For example: web
      * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
      * @param {string} params.url The relative path (without the site) of the sample URL. It must be one of the URLs returned by list(). For example, for the URL https://www.example.com/pagename on the site https://www.example.com/, the url value is pagename
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    markAsFixed: function (params, callback) {
+    markAsFixed: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['siteUrl', 'url', 'category', 'platform'],
         pathParams: ['siteUrl', 'url'],

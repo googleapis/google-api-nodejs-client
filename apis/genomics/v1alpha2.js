@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Genomics API
@@ -51,15 +52,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://genomics.googleapis.com/v1alpha2/{name}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],
@@ -82,15 +90,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
      * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
      * @param {string=} params.pageToken The standard list page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://genomics.googleapis.com/v1alpha2/{name}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],
@@ -111,15 +126,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
      * @param {genomics(v1alpha2).CancelOperationRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function (params, callback) {
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://genomics.googleapis.com/v1alpha2/{name}:cancel',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],
@@ -143,15 +165,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1alpha2).Pipeline} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -171,15 +200,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1alpha2).RunPipelineRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run: function (params, callback) {
+    run: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines:run',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -199,15 +235,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.pipelineId Caller must have READ access to the project in which this pipeline is defined.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines/{pipelineId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['pipelineId'],
         pathParams: ['pipelineId'],
@@ -230,15 +273,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {string=} params.namePrefix Pipelines with names that match this prefix should be returned. If unspecified, all pipelines in the project, up to `pageSize`, will be returned.
      * @param {integer=} params.pageSize Number of pipelines to return at once. Defaults to 256, and max is 2048.
      * @param {string=} params.pageToken Token to use to indicate where to start getting results. If unspecified, returns the first page of results.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -258,15 +308,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.pipelineId Caller must have WRITE access to the project in which this pipeline is defined.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines/{pipelineId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['pipelineId'],
         pathParams: ['pipelineId'],
@@ -287,15 +344,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {string=} params.operationId The operation to retrieve controller configuration for.
      * @param {string=} params.validationToken 
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getControllerConfig: function (params, callback) {
+    getControllerConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines:getControllerConfig',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -315,15 +379,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1alpha2).SetOperationStatusRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setOperationStatus: function (params, callback) {
+    setOperationStatus: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://genomics.googleapis.com/v1alpha2/pipelines:setOperationStatus',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -417,6 +488,7 @@ function Genomics(options) { // eslint-disable-line
  * @property {genomics(v1alpha2).Disk[]} disks Disks to attach.
  * @property {string[]} zones List of Google Compute Engine availability zones to which resource creation will restricted. If empty, any zone may be chosen.
  * @property {integer} bootDiskSizeGb The size of the boot disk. Defaults to 10 (GB).
+ * @property {boolean} noAddress Whether to assign an external IP to the instance. Defaults to false. Corresponds to `--no_address` flag for [gcloud compute instances create] (https://cloud.google.com/sdk/gcloud/reference/compute/instances/create). Cannot be true at run time if false at create time.
  */
 /**
  * @typedef Disk

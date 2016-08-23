@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Civic Information API
@@ -51,15 +52,22 @@ function Civicinfo(options) { // eslint-disable-line
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.query The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, callback) {
+    search: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/civicinfo/v2/divisions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -82,15 +90,22 @@ function Civicinfo(options) { // eslint-disable-line
      * @memberOf! civicinfo(v2)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    electionQuery: function (params, callback) {
+    electionQuery: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/civicinfo/v2/elections',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -112,15 +127,22 @@ function Civicinfo(options) { // eslint-disable-line
      * @param {string} params.address The registered address of the voter to look up.
      * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections
      * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    voterInfoQuery: function (params, callback) {
+    voterInfoQuery: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/civicinfo/v2/voterinfo',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['address'],
         pathParams: [],
@@ -147,15 +169,22 @@ function Civicinfo(options) { // eslint-disable-line
      * @param {boolean=} params.includeOffices Whether to return information about offices and officials. If false, only the top-level district information will be returned.
      * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
      * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    representativeInfoByAddress: function (params, callback) {
+    representativeInfoByAddress: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/civicinfo/v2/representatives',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -178,15 +207,22 @@ function Civicinfo(options) { // eslint-disable-line
      * @param {string} params.ocdId The Open Civic Data division identifier of the division to look up.
      * @param {boolean=} params.recursive If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
      * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    representativeInfoByDivision: function (params, callback) {
+    representativeInfoByDivision: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/civicinfo/v2/representatives/{ocdId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['ocdId'],
         pathParams: ['ocdId'],

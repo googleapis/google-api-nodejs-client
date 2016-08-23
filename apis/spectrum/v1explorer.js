@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Spectrum Database API
@@ -51,15 +52,22 @@ function Spectrum(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {spectrum(v1explorer).PawsGetSpectrumRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSpectrum: function (params, callback) {
+    getSpectrum: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/getSpectrum',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -79,15 +87,22 @@ function Spectrum(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {spectrum(v1explorer).PawsGetSpectrumBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSpectrumBatch: function (params, callback) {
+    getSpectrumBatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/getSpectrumBatch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -107,15 +122,22 @@ function Spectrum(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {spectrum(v1explorer).PawsInitRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    init: function (params, callback) {
+    init: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/init',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -135,15 +157,22 @@ function Spectrum(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {spectrum(v1explorer).PawsNotifySpectrumUseRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    notifySpectrumUse: function (params, callback) {
+    notifySpectrumUse: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/notifySpectrumUse',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -163,15 +192,22 @@ function Spectrum(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {spectrum(v1explorer).PawsRegisterRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    register: function (params, callback) {
+    register: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/register',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -191,15 +227,22 @@ function Spectrum(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {spectrum(v1explorer).PawsVerifyDeviceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verifyDevice: function (params, callback) {
+    verifyDevice: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/verifyDevice',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

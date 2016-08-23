@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Container Engine API
@@ -103,15 +104,22 @@ function Container(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
        * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getServerconfig: function (params, callback) {
+      getServerconfig: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/serverconfig',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'zone'],
           pathParams: ['projectId', 'zone'],
@@ -184,15 +192,22 @@ function Container(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
          * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides, or "-" for all zones.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'zone'],
             pathParams: ['projectId', 'zone'],
@@ -267,15 +282,22 @@ function Container(options) { // eslint-disable-line
          * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
          * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
          * @param {string} params.clusterId The name of the cluster to retrieve.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'zone', 'clusterId'],
             pathParams: ['projectId', 'zone', 'clusterId'],
@@ -349,15 +371,22 @@ function Container(options) { // eslint-disable-line
          * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
          * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
          * @param {container(v1).CreateClusterRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'zone'],
             pathParams: ['projectId', 'zone'],
@@ -435,15 +464,22 @@ function Container(options) { // eslint-disable-line
          * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
          * @param {string} params.clusterId The name of the cluster to upgrade.
          * @param {container(v1).UpdateClusterRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'zone', 'clusterId'],
             pathParams: ['projectId', 'zone', 'clusterId'],
@@ -518,15 +554,22 @@ function Container(options) { // eslint-disable-line
          * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
          * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
          * @param {string} params.clusterId The name of the cluster to delete.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'zone', 'clusterId'],
             pathParams: ['projectId', 'zone', 'clusterId'],
@@ -603,15 +646,22 @@ function Container(options) { // eslint-disable-line
            * @param {string} params.projectId The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber).
            * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
            * @param {string} params.clusterId The name of the cluster.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          list: function (params, callback) {
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools',
                 method: 'GET'
-              },
+              }, options),
               params: params,
               requiredParams: ['projectId', 'zone', 'clusterId'],
               pathParams: ['projectId', 'zone', 'clusterId'],
@@ -690,15 +740,22 @@ function Container(options) { // eslint-disable-line
            * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
            * @param {string} params.clusterId The name of the cluster.
            * @param {string} params.nodePoolId The name of the node pool.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          get: function (params, callback) {
+          get: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}',
                 method: 'GET'
-              },
+              }, options),
               params: params,
               requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
               pathParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
@@ -776,15 +833,22 @@ function Container(options) { // eslint-disable-line
            * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
            * @param {string} params.clusterId The name of the cluster.
            * @param {container(v1).CreateNodePoolRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create: function (params, callback) {
+          create: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools',
                 method: 'POST'
-              },
+              }, options),
               params: params,
               requiredParams: ['projectId', 'zone', 'clusterId'],
               pathParams: ['projectId', 'zone', 'clusterId'],
@@ -863,15 +927,22 @@ function Container(options) { // eslint-disable-line
            * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
            * @param {string} params.clusterId The name of the cluster.
            * @param {string} params.nodePoolId The name of the node pool to delete.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete: function (params, callback) {
+          delete: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}',
                 method: 'DELETE'
-              },
+              }, options),
               params: params,
               requiredParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
               pathParams: ['projectId', 'zone', 'clusterId', 'nodePoolId'],
@@ -945,15 +1016,22 @@ function Container(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
          * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) to return operations for, or `-` for all zones.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/operations',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'zone'],
             pathParams: ['projectId', 'zone'],
@@ -1028,15 +1106,22 @@ function Container(options) { // eslint-disable-line
          * @param {string} params.projectId The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
          * @param {string} params.zone The name of the Google Compute Engine [zone](/compute/docs/zones#available) in which the cluster resides.
          * @param {string} params.operationId The server-assigned `name` of the operation.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://container.googleapis.com/v1/projects/{projectId}/zones/{zone}/operations/{operationId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'zone', 'operationId'],
             pathParams: ['projectId', 'zone', 'operationId'],

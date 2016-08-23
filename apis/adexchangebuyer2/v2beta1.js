@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Ad Exchange Buyer API II
@@ -55,15 +56,22 @@ function Adexchangebuyer2(options) { // eslint-disable-line
        * @param {string} params.clientAccountId Unique numerical account ID of the client to update. (required)
        * @param {string} params.accountId Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to update a client for. (required)
        * @param {adexchangebuyer2(v2beta1).Client} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'clientAccountId'],
           pathParams: ['clientAccountId', 'accountId'],
@@ -84,15 +92,22 @@ function Adexchangebuyer2(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.clientAccountId Numerical account ID of the client buyer to retrieve. (required)
        * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'clientAccountId'],
           pathParams: ['clientAccountId', 'accountId'],
@@ -113,15 +128,22 @@ function Adexchangebuyer2(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Unique numerical account ID for the buyer of which the client buyer is a customer; the sponsor buyer to create a client for. (required)
        * @param {adexchangebuyer2(v2beta1).Client} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -143,15 +165,22 @@ function Adexchangebuyer2(options) { // eslint-disable-line
        * @param {integer=} params.pageSize Requested page size. The server may return fewer clients than requested. If unspecified, the server will pick an appropriate default.
        * @param {string} params.accountId Unique numerical account ID of the sponsor buyer to list the clients for.
        * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientsResponse.nextPageToken returned from the previous call to the accounts.clients.list method.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -176,15 +205,22 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @param {string} params.userId Numerical identifier of the user to retrieve. (required)
          * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
          * @param {adexchangebuyer2(v2beta1).ClientUser} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users/{userId}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'clientAccountId', 'userId'],
             pathParams: ['clientAccountId', 'userId', 'accountId'],
@@ -206,15 +242,22 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
          * @param {string} params.userId Numerical identifier of the user to retrieve. (required)
          * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users/{userId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'clientAccountId', 'userId'],
             pathParams: ['clientAccountId', 'userId', 'accountId'],
@@ -237,15 +280,22 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @param {integer=} params.pageSize Requested page size. The server may return fewer clients than requested. If unspecified, the server will pick an appropriate default.
          * @param {string} params.accountId Numerical account ID of the sponsor buyer of the client to list users for. (required)
          * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientUsersResponse.nextPageToken returned from the previous call to the accounts.clients.users.list method.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'clientAccountId'],
             pathParams: ['clientAccountId', 'accountId'],
@@ -270,15 +320,22 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user should be associated with. (required)
          * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
          * @param {adexchangebuyer2(v2beta1).ClientUserInvitation} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'clientAccountId'],
             pathParams: ['clientAccountId', 'accountId'],
@@ -300,15 +357,22 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user invitation to be retrieved is associated with. (required)
          * @param {string} params.invitationId Numerical identifier of the user invitation to retrieve. (required)
          * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations/{invitationId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'clientAccountId', 'invitationId'],
             pathParams: ['clientAccountId', 'invitationId', 'accountId'],
@@ -331,15 +395,22 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @param {integer=} params.pageSize Requested page size. Server may return fewer clients than requested. If unspecified, server will pick an appropriate default.
          * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
          * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientUserInvitationsResponse.nextPageToken returned from the previous call to the clients.invitations.list method.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'clientAccountId'],
             pathParams: ['clientAccountId', 'accountId'],

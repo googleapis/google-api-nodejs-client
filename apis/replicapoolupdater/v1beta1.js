@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Compute Engine Instance Group Updater API
@@ -53,15 +54,22 @@ function Replicapoolupdater(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.rollingUpdate The name of the update.
      * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function (params, callback) {
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates/{rollingUpdate}/cancel',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
@@ -83,15 +91,22 @@ function Replicapoolupdater(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.rollingUpdate The name of the update.
      * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates/{rollingUpdate}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
@@ -113,15 +128,22 @@ function Replicapoolupdater(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.zone The name of the zone in which the update's target resides.
      * @param {replicapoolupdater(v1beta1).RollingUpdate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -145,15 +167,22 @@ function Replicapoolupdater(options) { // eslint-disable-line
      * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -178,15 +207,22 @@ function Replicapoolupdater(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.rollingUpdate The name of the update.
      * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listInstanceUpdates: function (params, callback) {
+    listInstanceUpdates: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates/{rollingUpdate}/instanceUpdates',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
@@ -208,15 +244,22 @@ function Replicapoolupdater(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.rollingUpdate The name of the update.
      * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    pause: function (params, callback) {
+    pause: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates/{rollingUpdate}/pause',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
@@ -238,15 +281,22 @@ function Replicapoolupdater(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.rollingUpdate The name of the update.
      * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resume: function (params, callback) {
+    resume: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates/{rollingUpdate}/resume',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
@@ -268,15 +318,22 @@ function Replicapoolupdater(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.rollingUpdate The name of the update.
      * @param {string} params.zone The name of the zone in which the update's target resides.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rollback: function (params, callback) {
+    rollback: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/rollingUpdates/{rollingUpdate}/rollback',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'rollingUpdate'],
         pathParams: ['project', 'rollingUpdate', 'zone'],
@@ -302,15 +359,22 @@ function Replicapoolupdater(options) { // eslint-disable-line
      * @param {string} params.operation Name of the operation resource to return.
      * @param {string} params.project Name of the project scoping this request.
      * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
@@ -334,15 +398,22 @@ function Replicapoolupdater(options) { // eslint-disable-line
      * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param {string} params.project Name of the project scoping this request.
      * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapoolupdater/v1beta1/projects/{project}/zones/{zone}/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],

@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * YouTube Analytics API
@@ -51,15 +52,22 @@ function Youtubeanalytics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.onBehalfOfContentOwner The onBehalfOfContentOwner parameter identifies the content owner that the user is acting on behalf of.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1/batchReportDefinitions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['onBehalfOfContentOwner'],
         pathParams: [],
@@ -84,15 +92,22 @@ function Youtubeanalytics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.batchReportDefinitionId The batchReportDefinitionId parameter specifies the ID of the batch reportort definition for which you are retrieving reports.
      * @param {string} params.onBehalfOfContentOwner The onBehalfOfContentOwner parameter identifies the content owner that the user is acting on behalf of.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1/batchReports',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['batchReportDefinitionId', 'onBehalfOfContentOwner'],
         pathParams: [],
@@ -117,15 +132,22 @@ function Youtubeanalytics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id The id parameter specifies the YouTube group item ID for the group that is being deleted.
      * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1/groupItems',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: [],
@@ -146,15 +168,22 @@ function Youtubeanalytics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {youtubeAnalytics(v1).GroupItem} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1/groupItems',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -175,15 +204,22 @@ function Youtubeanalytics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupId The id parameter specifies the unique ID of the group for which you want to retrieve group items.
      * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1/groupItems',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupId'],
         pathParams: [],
@@ -208,15 +244,22 @@ function Youtubeanalytics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id The id parameter specifies the YouTube group ID for the group that is being deleted.
      * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1/groups',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: [],
@@ -237,15 +280,22 @@ function Youtubeanalytics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {youtubeAnalytics(v1).Group} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1/groups',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -268,15 +318,22 @@ function Youtubeanalytics(options) { // eslint-disable-line
      * @param {boolean=} params.mine Set this parameter's value to true to instruct the API to only return groups owned by the authenticated user.
      * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identifies the next page that can be retrieved.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1/groups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -297,15 +354,22 @@ function Youtubeanalytics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {youtubeAnalytics(v1).Group} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1/groups',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -338,15 +402,22 @@ function Youtubeanalytics(options) { // eslint-disable-line
      * @param {string=} params.sort A comma-separated list of dimensions or metrics that determine the sort order for YouTube Analytics data. By default the sort order is ascending. The '-' prefix causes descending sort order.
      * @param {string} params.start-date The start date for fetching YouTube Analytics data. The value should be in YYYY-MM-DD format.
      * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter (one-based, inclusive).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function (params, callback) {
+    query: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1/reports',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
         pathParams: [],

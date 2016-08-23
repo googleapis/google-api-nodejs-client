@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Safe Browsing APIs
@@ -51,15 +52,22 @@ function Safebrowsing(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {safebrowsing(v4).FindThreatMatchesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    find: function (params, callback) {
+    find: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://safebrowsing.googleapis.com/v4/threatMatches:find',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -83,15 +91,22 @@ function Safebrowsing(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {safebrowsing(v4).FetchThreatListUpdatesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    fetch: function (params, callback) {
+    fetch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -115,15 +130,22 @@ function Safebrowsing(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {safebrowsing(v4).FindFullHashesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    find: function (params, callback) {
+    find: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://safebrowsing.googleapis.com/v4/fullHashes:find',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -146,15 +168,22 @@ function Safebrowsing(options) { // eslint-disable-line
      * @memberOf! safebrowsing(v4)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://safebrowsing.googleapis.com/v4/threatLists',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

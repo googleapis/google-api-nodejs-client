@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google App Engine Admin API
@@ -51,15 +52,22 @@ function Appengine(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {appengine(v1beta4).Application} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://appengine.googleapis.com/v1beta4/apps',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -80,15 +88,22 @@ function Appengine(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.appsId Part of `name`. Name of the application to get. Example: `apps/myapp`.
      * @param {boolean=} params.ensureResourcesExist Certain resources associated with an application are created on-demand. Controls whether these resources should be created when performing the `GET` operation. If specified and any resources could not be created, the request will fail with an error code. Additionally, this parameter can cause the request to take longer to complete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['appsId'],
         pathParams: ['appsId'],
@@ -111,15 +126,22 @@ function Appengine(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/modules/default`.
        * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['appsId', 'modulesId'],
           pathParams: ['appsId', 'modulesId'],
@@ -140,15 +162,22 @@ function Appengine(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/modules/default`.
        * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['appsId', 'modulesId'],
           pathParams: ['appsId', 'modulesId'],
@@ -170,15 +199,22 @@ function Appengine(options) { // eslint-disable-line
        * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp`.
        * @param {integer=} params.pageSize Maximum results to return per page.
        * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
@@ -202,15 +238,22 @@ function Appengine(options) { // eslint-disable-line
        * @param {string=} params.mask Standard field mask for the set of fields to be updated.
        * @param {boolean=} params.migrateTraffic Set to `true` to gradually shift traffic from one version to another single version. By default, traffic is shifted immediately. For gradual traffic migration, the target version must be located within instances that are configured for both [warmup requests](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#inboundservicetype) and [automatic scaling](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules.versions#automaticscaling). You must specify the [`shardBy`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta4/apps.modules#shardby) field in the Module resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see [Migrating and Splitting Traffic](https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
        * @param {appengine(v1beta4).Module} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['appsId', 'modulesId'],
           pathParams: ['appsId', 'modulesId'],
@@ -234,15 +277,22 @@ function Appengine(options) { // eslint-disable-line
          * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: `apps/myapp/modules/default`.
          * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
          * @param {appengine(v1beta4).Version} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['appsId', 'modulesId'],
             pathParams: ['appsId', 'modulesId'],
@@ -264,15 +314,22 @@ function Appengine(options) { // eslint-disable-line
          * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: `apps/myapp/modules/default/versions/v1`.
          * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
          * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['appsId', 'modulesId', 'versionsId'],
             pathParams: ['appsId', 'modulesId', 'versionsId'],
@@ -295,15 +352,22 @@ function Appengine(options) { // eslint-disable-line
          * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
          * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
          * @param {string=} params.view Controls the set of fields returned in the `Get` response.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['appsId', 'modulesId', 'versionsId'],
             pathParams: ['appsId', 'modulesId', 'versionsId'],
@@ -327,15 +391,22 @@ function Appengine(options) { // eslint-disable-line
          * @param {string=} params.view Controls the set of fields returned in the `List` response.
          * @param {integer=} params.pageSize Maximum results to return per page.
          * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['appsId', 'modulesId'],
             pathParams: ['appsId', 'modulesId'],
@@ -359,15 +430,22 @@ function Appengine(options) { // eslint-disable-line
          * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
          * @param {string=} params.mask Standard field mask for the set of fields to be updated.
          * @param {appengine(v1beta4).Version} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        patch: function (params, callback) {
+        patch: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}',
               method: 'PATCH'
-            },
+            }, options),
             params: params,
             requiredParams: ['appsId', 'modulesId', 'versionsId'],
             pathParams: ['appsId', 'modulesId', 'versionsId'],
@@ -392,15 +470,22 @@ function Appengine(options) { // eslint-disable-line
            * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
            * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
            * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          delete: function (params, callback) {
+          delete: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}',
                 method: 'DELETE'
-              },
+              }, options),
               params: params,
               requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
               pathParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
@@ -423,15 +508,22 @@ function Appengine(options) { // eslint-disable-line
            * @param {string} params.modulesId Part of `name`. See documentation of `appsId`.
            * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
            * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          get: function (params, callback) {
+          get: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}',
                 method: 'GET'
-              },
+              }, options),
               params: params,
               requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
               pathParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
@@ -455,15 +547,22 @@ function Appengine(options) { // eslint-disable-line
            * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
            * @param {integer=} params.pageSize Maximum results to return per page.
            * @param {string=} params.pageToken Continuation token for fetching the next page of results.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          list: function (params, callback) {
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances',
                 method: 'GET'
-              },
+              }, options),
               params: params,
               requiredParams: ['appsId', 'modulesId', 'versionsId'],
               pathParams: ['appsId', 'modulesId', 'versionsId'],
@@ -487,15 +586,22 @@ function Appengine(options) { // eslint-disable-line
            * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
            * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
            * @param {appengine(v1beta4).DebugInstanceRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          debug: function (params, callback) {
+          debug: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/modules/{modulesId}/versions/{versionsId}/instances/{instancesId}:debug',
                 method: 'POST'
-              },
+              }, options),
               params: params,
               requiredParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
               pathParams: ['appsId', 'modulesId', 'versionsId', 'instancesId'],
@@ -521,15 +627,22 @@ function Appengine(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.appsId Part of `name`. The name of the operation resource.
        * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/operations/{operationsId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['appsId', 'operationsId'],
           pathParams: ['appsId', 'operationsId'],
@@ -552,15 +665,22 @@ function Appengine(options) { // eslint-disable-line
        * @param {string=} params.filter The standard list filter.
        * @param {integer=} params.pageSize The standard list page size.
        * @param {string=} params.pageToken The standard list page token.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/operations',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
@@ -586,15 +706,22 @@ function Appengine(options) { // eslint-disable-line
        * @param {string=} params.filter The standard list filter.
        * @param {integer=} params.pageSize The standard list page size.
        * @param {string=} params.pageToken The standard list page token.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/locations',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
@@ -615,15 +742,22 @@ function Appengine(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.appsId Part of `name`. Resource name for the location.
        * @param {string} params.locationsId Part of `name`. See documentation of `appsId`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://appengine.googleapis.com/v1beta4/apps/{appsId}/locations/{locationsId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['appsId', 'locationsId'],
           pathParams: ['appsId', 'locationsId'],

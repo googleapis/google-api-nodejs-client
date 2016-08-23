@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Dataflow API
@@ -52,15 +53,22 @@ function Dataflow(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.projectId The project to send the WorkerMessages to.
      * @param {dataflow(v1b3).SendWorkerMessagesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    workerMessages: function (params, callback) {
+    workerMessages: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/WorkerMessages',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -85,15 +93,22 @@ function Dataflow(options) { // eslint-disable-line
        * @param {string=} params.view Level of information requested in response.
        * @param {string=} params.replaceJobId DEPRECATED. This field is now on the Job message.
        * @param {dataflow(v1b3).Job} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -115,15 +130,22 @@ function Dataflow(options) { // eslint-disable-line
        * @param {string} params.projectId The project which owns the job.
        * @param {string} params.jobId Identifies a single job.
        * @param {string=} params.view Level of information requested in response.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'jobId'],
           pathParams: ['projectId', 'jobId'],
@@ -145,15 +167,22 @@ function Dataflow(options) { // eslint-disable-line
        * @param {string} params.projectId The project which owns the job.
        * @param {string} params.jobId Identifies a single job.
        * @param {dataflow(v1b3).Job} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'jobId'],
           pathParams: ['projectId', 'jobId'],
@@ -177,15 +206,22 @@ function Dataflow(options) { // eslint-disable-line
        * @param {string=} params.view Level of information requested in response. Default is SUMMARY.
        * @param {integer=} params.pageSize If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
        * @param {string=} params.pageToken Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -207,15 +243,22 @@ function Dataflow(options) { // eslint-disable-line
        * @param {string} params.projectId A project id.
        * @param {string} params.jobId The job to get messages for.
        * @param {string=} params.startTime Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getMetrics: function (params, callback) {
+      getMetrics: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/metrics',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'jobId'],
           pathParams: ['projectId', 'jobId'],
@@ -239,15 +282,22 @@ function Dataflow(options) { // eslint-disable-line
          * @param {string} params.projectId The project id.
          * @param {string} params.jobId The job id.
          * @param {dataflow(v1b3).GetDebugConfigRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        getConfig: function (params, callback) {
+        getConfig: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/debug/getConfig',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'jobId'],
             pathParams: ['projectId', 'jobId'],
@@ -269,15 +319,22 @@ function Dataflow(options) { // eslint-disable-line
          * @param {string} params.projectId The project id.
          * @param {string} params.jobId The job id.
          * @param {dataflow(v1b3).SendDebugCaptureRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        sendCapture: function (params, callback) {
+        sendCapture: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/debug/sendCapture',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'jobId'],
             pathParams: ['projectId', 'jobId'],
@@ -306,15 +363,22 @@ function Dataflow(options) { // eslint-disable-line
          * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
          * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
          * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/messages',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'jobId'],
             pathParams: ['projectId', 'jobId'],
@@ -339,15 +403,22 @@ function Dataflow(options) { // eslint-disable-line
          * @param {string} params.projectId The project which owns the WorkItem's job.
          * @param {string} params.jobId The job which the WorkItem is part of.
          * @param {dataflow(v1b3).ReportWorkItemStatusRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        reportStatus: function (params, callback) {
+        reportStatus: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'jobId'],
             pathParams: ['projectId', 'jobId'],
@@ -369,15 +440,22 @@ function Dataflow(options) { // eslint-disable-line
          * @param {string} params.projectId Identifies the project this worker belongs to.
          * @param {string} params.jobId Identifies the workflow job this worker belongs to.
          * @param {dataflow(v1b3).LeaseWorkItemRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        lease: function (params, callback) {
+        lease: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'jobId'],
             pathParams: ['projectId', 'jobId'],
@@ -402,15 +480,22 @@ function Dataflow(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId The project which owns the job.
        * @param {dataflow(v1b3).CreateJobFromTemplateRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/templates',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],

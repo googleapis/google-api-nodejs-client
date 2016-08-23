@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Tasks API
@@ -51,15 +52,22 @@ function Tasks(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
@@ -79,15 +87,22 @@ function Tasks(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
@@ -107,15 +122,22 @@ function Tasks(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {tasks(v1).TaskList} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -136,15 +158,22 @@ function Tasks(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {string=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 100.
      * @param {string=} params.pageToken Token specifying the result page to return. Optional.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -165,15 +194,22 @@ function Tasks(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
      * @param {tasks(v1).TaskList} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
@@ -194,15 +230,22 @@ function Tasks(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
      * @param {tasks(v1).TaskList} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
@@ -226,15 +269,22 @@ function Tasks(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.tasklist Task list identifier.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clear: function (params, callback) {
+    clear: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/clear',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
@@ -255,15 +305,22 @@ function Tasks(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
@@ -284,15 +341,22 @@ function Tasks(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
@@ -315,15 +379,22 @@ function Tasks(options) { // eslint-disable-line
      * @param {string=} params.previous Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
      * @param {string} params.tasklist Task list identifier.
      * @param {tasks(v1).Task} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
@@ -353,15 +424,22 @@ function Tasks(options) { // eslint-disable-line
      * @param {boolean=} params.showHidden Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
      * @param {string} params.tasklist Task list identifier.
      * @param {string=} params.updatedMin Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['tasklist'],
         pathParams: ['tasklist'],
@@ -384,15 +462,22 @@ function Tasks(options) { // eslint-disable-line
      * @param {string=} params.previous New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. Optional.
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    move: function (params, callback) {
+    move: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}/move',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
@@ -414,15 +499,22 @@ function Tasks(options) { // eslint-disable-line
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
      * @param {tasks(v1).Task} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],
@@ -444,15 +536,22 @@ function Tasks(options) { // eslint-disable-line
      * @param {string} params.task Task identifier.
      * @param {string} params.tasklist Task list identifier.
      * @param {tasks(v1).Task} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['tasklist', 'task'],
         pathParams: ['task', 'tasklist'],

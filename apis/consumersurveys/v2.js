@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Consumer Surveys API
@@ -51,15 +52,22 @@ function Consumersurveys(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.panelId External URL ID for the panel.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/mobileAppPanels/{panelId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['panelId'],
         pathParams: ['panelId'],
@@ -81,15 +89,22 @@ function Consumersurveys(options) { // eslint-disable-line
      * @param {integer=} params.maxResults 
      * @param {integer=} params.startIndex 
      * @param {string=} params.token 
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/mobileAppPanels',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -110,15 +125,22 @@ function Consumersurveys(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.panelId External URL ID for the panel.
      * @param {consumersurveys(v2).MobileAppPanel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/mobileAppPanels/{panelId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['panelId'],
         pathParams: ['panelId'],
@@ -143,15 +165,22 @@ function Consumersurveys(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.surveyUrlId External URL ID for the survey.
      * @param {consumersurveys(v2).ResultsGetRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{surveyUrlId}/results',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
@@ -175,15 +204,22 @@ function Consumersurveys(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.surveyUrlId External URL ID for the survey.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{surveyUrlId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
@@ -203,15 +239,22 @@ function Consumersurveys(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.surveyUrlId External URL ID for the survey.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{surveyUrlId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],
@@ -231,15 +274,22 @@ function Consumersurveys(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {consumersurveys(v2).Survey} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -261,15 +311,22 @@ function Consumersurveys(options) { // eslint-disable-line
      * @param {integer=} params.maxResults 
      * @param {integer=} params.startIndex 
      * @param {string=} params.token 
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -290,15 +347,22 @@ function Consumersurveys(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.resourceId 
      * @param {consumersurveys(v2).SurveysStartRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    start: function (params, callback) {
+    start: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{resourceId}/start',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['resourceId'],
         pathParams: ['resourceId'],
@@ -318,15 +382,22 @@ function Consumersurveys(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.resourceId 
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function (params, callback) {
+    stop: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{resourceId}/stop',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['resourceId'],
         pathParams: ['resourceId'],
@@ -347,15 +418,22 @@ function Consumersurveys(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.surveyUrlId External URL ID for the survey.
      * @param {consumersurveys(v2).Survey} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{surveyUrlId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['surveyUrlId'],
         pathParams: ['surveyUrlId'],

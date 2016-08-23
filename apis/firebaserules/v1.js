@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Firebase Rules API
@@ -53,15 +54,22 @@ function Firebaserules(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.name Name of the project.  Format: `projects/{project_id}`
      * @param {firebaserules(v1).TestRulesetRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    test: function (params, callback) {
+    test: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://firebaserules.googleapis.com/v1/{name}:test',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],
@@ -84,15 +92,22 @@ function Firebaserules(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name Resource name for Project which owns this `Ruleset`.  Format: `projects/{project_id}`
        * @param {firebaserules(v1).Ruleset} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}/rulesets',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -112,15 +127,22 @@ function Firebaserules(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name Resource name for the ruleset to get.  Format: `projects/{project_id}/rulesets/{ruleset_id}`
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -142,15 +164,22 @@ function Firebaserules(options) { // eslint-disable-line
        * @param {integer=} params.pageSize Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.
        * @param {string} params.name Resource name for the project.  Format: `projects/{project_id}`
        * @param {string=} params.pageToken Next page token for loading the next batch of `Ruleset` instances.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}/rulesets',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -170,15 +199,22 @@ function Firebaserules(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name Resource name for the ruleset to delete.  Format: `projects/{project_id}/rulesets/{ruleset_id}`
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -202,15 +238,22 @@ function Firebaserules(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name Resource name for the `Release`.  `Release` names may be structured `app1/prod/v2` or flat `app1_prod_v2` which affords developers a great deal of flexibility in mapping the name to the style that best fits their existing development practices. For example, a name could refer to an environment, an app, a version, or some combination of three.  In the table below, for the project name `projects/foo`, the following relative release paths show how flat and structured names might be chosen to match a desired development / deployment strategy.  Use Case     | Flat Name           | Structured Name -------------|---------------------|---------------- Environments | releases/qa         | releases/qa Apps         | releases/app1_qa    | releases/app1/qa Versions     | releases/app1_v2_qa | releases/app1/v2/qa  The delimiter between the release name path elements can be almost anything and it should work equally well with the release name list filter, but in many ways the structured paths provide a clearer picture of the relationship between `Release` instances.  Format: `projects/{project_id}/releases/{release_id}`
        * @param {firebaserules(v1).Release} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -231,15 +274,22 @@ function Firebaserules(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name Resource name for the project which owns this `Release`.  Format: `projects/{project_id}`
        * @param {firebaserules(v1).Release} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}/releases',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -259,15 +309,22 @@ function Firebaserules(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name Resource name of the `Release`.   Format: `projects/{project_id}/releases/{release_id}`
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -290,15 +347,22 @@ function Firebaserules(options) { // eslint-disable-line
        * @param {string=} params.filter `Release` filter. The list method supports filters with restrictions on the `Release` `name` and also on the `Ruleset` `ruleset_name`.  Example 1) A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v2 | projects/foo/rulesets/uuid8888  Example 2) A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/1234  In the examples, the filter parameters refer to the search filters for release and ruleset names are relative to the project releases and rulesets collections. Fully qualified prefixed may also be used. e.g. `name=projects/foo/releases/prod* ruleset_name=projects/foo/rulesets/uuid1`
        * @param {string} params.name Resource name for the project.  Format: `projects/{project_id}`
        * @param {string=} params.pageToken Next page token for the next batch of `Release` instances.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}/releases',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -318,15 +382,22 @@ function Firebaserules(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name Resource name for the `Release` to delete.  Format: `projects/{project_id}/releases/{release_id}`
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],

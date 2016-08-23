@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Cloud Billing API
@@ -55,7 +56,7 @@ function Cloudbilling(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -96,15 +97,22 @@ function Cloudbilling(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the billing account to retrieve. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://cloudbilling.googleapis.com/v1/{name}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],
@@ -128,7 +136,7 @@ function Cloudbilling(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -173,15 +181,22 @@ function Cloudbilling(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {integer=} params.pageSize Requested page size. The maximum page size is 100; this is also the default.
      * @param {string=} params.pageToken A token identifying a page of results to return. This should be a `next_page_token` value returned from a previous `ListBillingAccounts` call. If unspecified, the first page of results is returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://cloudbilling.googleapis.com/v1/billingAccounts',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -207,7 +222,7 @@ function Cloudbilling(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -257,15 +272,22 @@ function Cloudbilling(options) { // eslint-disable-line
        * @param {string} params.name The resource name of the billing account associated with the projects that you want to list. For example, `billingAccounts/012345-567890-ABCDEF`.
        * @param {integer=} params.pageSize Requested page size. The maximum page size is 100; this is also the default.
        * @param {string=} params.pageToken A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous `ListProjectBillingInfo` call. If unspecified, the first page of results is returned.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://cloudbilling.googleapis.com/v1/{name}/projects',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -293,7 +315,7 @@ function Cloudbilling(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -334,15 +356,22 @@ function Cloudbilling(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the project for which billing information is retrieved. For example, `projects/tokyo-rain-123`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getBillingInfo: function (params, callback) {
+    getBillingInfo: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://cloudbilling.googleapis.com/v1/{name}/billingInfo',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],
@@ -366,7 +395,7 @@ function Cloudbilling(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -410,15 +439,22 @@ function Cloudbilling(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.name The resource name of the project associated with the billing information that you want to update. For example, `projects/tokyo-rain-123`.
      * @param {cloudbilling(v1).ProjectBillingInfo} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateBillingInfo: function (params, callback) {
+    updateBillingInfo: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://cloudbilling.googleapis.com/v1/{name}/billingInfo',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],

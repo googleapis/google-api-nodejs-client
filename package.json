@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "12.3.0",
+  "version": "12.4.0",
   "author": "Google Inc.",
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
@@ -68,7 +68,7 @@
   "devDependencies": {
     "codecov": "^1.0.1",
     "ink-docstrap": "1.2.1",
-    "istanbul": "^0.4.4",
+    "istanbul": "^0.4.5",
     "js-beautify": "^1.6.3",
     "jsdoc": "^3.4.0",
     "minimist": "^1.2.0",

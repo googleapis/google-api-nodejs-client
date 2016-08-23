@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Play Developer API
@@ -53,15 +54,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
      * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function (params, callback) {
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],
@@ -83,15 +91,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
      * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
      * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName', 'subscriptionId', 'token'],
         pathParams: ['packageName', 'subscriptionId', 'token'],

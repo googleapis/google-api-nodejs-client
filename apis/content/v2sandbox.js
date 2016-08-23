@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Content API for Shopping
@@ -53,15 +54,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2sandbox).OrdersAcknowledgeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledge: function (params, callback) {
+    acknowledge: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/acknowledge',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -82,15 +90,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the test order to modify.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    advancetestorder: function (params, callback) {
+    advancetestorder: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/testorders/{orderId}/advance',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -112,15 +127,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order to cancel.
      * @param {content(v2sandbox).OrdersCancelRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function (params, callback) {
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/cancel',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -142,15 +164,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2sandbox).OrdersCancelLineItemRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancellineitem: function (params, callback) {
+    cancellineitem: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/cancelLineItem',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -171,15 +200,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the managing account.
      * @param {content(v2sandbox).OrdersCreateTestOrderRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createtestorder: function (params, callback) {
+    createtestorder: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/testorders',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -199,15 +235,22 @@ function Content(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {content(v2sandbox).OrdersCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function (params, callback) {
+    custombatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/orders/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -228,15 +271,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -257,15 +307,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.merchantOrderId The merchant order id to be looked for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getbymerchantorderid: function (params, callback) {
+    getbymerchantorderid: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/ordersbymerchantid/{merchantOrderId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'merchantOrderId'],
         pathParams: ['merchantId', 'merchantOrderId'],
@@ -286,15 +343,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.templateName The name of the template to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    gettestordertemplate: function (params, callback) {
+    gettestordertemplate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/testordertemplates/{templateName}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'templateName'],
         pathParams: ['merchantId', 'templateName'],
@@ -321,15 +385,22 @@ function Content(options) { // eslint-disable-line
      * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
      * @param {string=} params.placedDateStart Obtains orders placed after this date (inclusively), in ISO 8601 format.
      * @param {string=} params.statuses Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -351,15 +422,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order to refund.
      * @param {content(v2sandbox).OrdersRefundRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    refund: function (params, callback) {
+    refund: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/refund',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -381,15 +459,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2sandbox).OrdersReturnLineItemRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    returnlineitem: function (params, callback) {
+    returnlineitem: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/returnLineItem',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -411,15 +496,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2sandbox).OrdersShipLineItemsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    shiplineitems: function (params, callback) {
+    shiplineitems: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/shipLineItems',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -441,15 +533,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2sandbox).OrdersUpdateMerchantOrderIdRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updatemerchantorderid: function (params, callback) {
+    updatemerchantorderid: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/updateMerchantOrderId',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -471,15 +570,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2sandbox).OrdersUpdateShipmentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateshipment: function (params, callback) {
+    updateshipment: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2sandbox/{merchantId}/orders/{orderId}/updateShipment',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],

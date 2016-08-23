@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Ad Exchange Buyer API
@@ -51,15 +52,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -78,15 +86,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @memberOf! adexchangebuyer(v1.3)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -107,15 +122,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
      * @param {adexchangebuyer(v1.3).Account} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/{id}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -136,15 +158,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {integer} params.id The account id
      * @param {adexchangebuyer(v1.3).Account} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/{id}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -168,15 +197,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {integer} params.accountId The account id.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/{accountId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
@@ -195,15 +231,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @memberOf! adexchangebuyer(v1.3)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -228,15 +271,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to get the budget information for.
      * @param {string} params.billingId The billing id to get the budget information for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId', 'billingId'],
         pathParams: ['accountId', 'billingId'],
@@ -258,15 +308,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {string} params.accountId The account id associated with the budget being updated.
      * @param {string} params.billingId The billing id associated with the budget being updated.
      * @param {adexchangebuyer(v1.3).Budget} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId', 'billingId'],
         pathParams: ['accountId', 'billingId'],
@@ -288,15 +345,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {string} params.accountId The account id associated with the budget being updated.
      * @param {string} params.billingId The billing id associated with the budget being updated.
      * @param {adexchangebuyer(v1.3).Budget} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId', 'billingId'],
         pathParams: ['accountId', 'billingId'],
@@ -321,15 +385,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {integer} params.accountId The id for the account that will serve this creative.
      * @param {string} params.buyerCreativeId The buyer-specific id for this creative.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives/{accountId}/{buyerCreativeId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId', 'buyerCreativeId'],
         pathParams: ['accountId', 'buyerCreativeId'],
@@ -349,15 +420,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {adexchangebuyer(v1.3).Creative} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -381,15 +459,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
      * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
      * @param {string=} params.statusFilter When specified, only creatives having the given status are returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -413,15 +498,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The direct deal id
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/directdeals/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -440,15 +532,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @memberOf! adexchangebuyer(v1.3)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/directdeals',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -476,15 +575,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
      * @param {string=} params.pageToken A continuation token, used to page through performance reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
      * @param {string} params.startDateTime The start time of the report in ISO 8601 timestamp format using UTC.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/performancereport',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId', 'endDateTime', 'startDateTime'],
         pathParams: [],
@@ -509,15 +615,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to delete the pretargeting config for.
      * @param {string} params.configId The specific id of the configuration to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
@@ -538,15 +651,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to get the pretargeting config for.
      * @param {string} params.configId The specific id of the configuration to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
@@ -567,15 +687,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to insert the pretargeting config for.
      * @param {adexchangebuyer(v1.3).PretargetingConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
@@ -595,15 +722,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId The account id to get the pretargeting configs for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
@@ -625,15 +759,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {string} params.accountId The account id to update the pretargeting config for.
      * @param {string} params.configId The specific id of the configuration to update.
      * @param {adexchangebuyer(v1.3).PretargetingConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],
@@ -655,15 +796,22 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {string} params.accountId The account id to update the pretargeting config for.
      * @param {string} params.configId The specific id of the configuration to update.
      * @param {adexchangebuyer(v1.3).PretargetingConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId', 'configId'],
         pathParams: ['accountId', 'configId'],

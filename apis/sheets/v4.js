@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Sheets API
@@ -51,15 +52,22 @@ function Sheets(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {sheets(v4).Spreadsheet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://sheets.googleapis.com/v4/spreadsheets',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -81,15 +89,22 @@ function Sheets(options) { // eslint-disable-line
      * @param {string} params.spreadsheetId The spreadsheet to request.
      * @param {string=} params.ranges The ranges to retrieve from the spreadsheet.
      * @param {boolean=} params.includeGridData True if grid data should be returned. This parameter is ignored if a field mask was set in the request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['spreadsheetId'],
         pathParams: ['spreadsheetId'],
@@ -110,15 +125,22 @@ function Sheets(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.spreadsheetId The spreadsheet to apply the updates to.
      * @param {sheets(v4).BatchUpdateSpreadsheetRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchUpdate: function (params, callback) {
+    batchUpdate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}:batchUpdate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['spreadsheetId'],
         pathParams: ['spreadsheetId'],
@@ -144,15 +166,22 @@ function Sheets(options) { // eslint-disable-line
        * @param {string=} params.insertDataOption How the input data should be inserted.
        * @param {string} params.range The A1 notation of a range to search for a logical table of data. Values will be appended after the last row of the table.
        * @param {sheets(v4).ValueRange} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      append: function (params, callback) {
+      append: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}:append',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['spreadsheetId', 'range'],
           pathParams: ['spreadsheetId', 'range'],
@@ -175,15 +204,22 @@ function Sheets(options) { // eslint-disable-line
        * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
        * @param {string} params.range The A1 notation of the values to update.
        * @param {sheets(v4).ValueRange} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['spreadsheetId', 'range'],
           pathParams: ['spreadsheetId', 'range'],
@@ -207,15 +243,22 @@ function Sheets(options) { // eslint-disable-line
        * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE.
        * @param {string} params.range The A1 notation of the values to retrieve.
        * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['spreadsheetId', 'range'],
           pathParams: ['spreadsheetId', 'range'],
@@ -239,15 +282,22 @@ function Sheets(options) { // eslint-disable-line
        * @param {string=} params.valueRenderOption How values should be represented in the output.
        * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE.
        * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      batchGet: function (params, callback) {
+      batchGet: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values:batchGet',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['spreadsheetId'],
           pathParams: ['spreadsheetId'],
@@ -268,15 +318,22 @@ function Sheets(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
        * @param {sheets(v4).BatchUpdateValuesRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      batchUpdate: function (params, callback) {
+      batchUpdate: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values:batchUpdate',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['spreadsheetId'],
           pathParams: ['spreadsheetId'],
@@ -301,15 +358,22 @@ function Sheets(options) { // eslint-disable-line
        * @param {integer} params.sheetId The ID of the sheet to copy.
        * @param {string} params.spreadsheetId The ID of the spreadsheet containing the sheet to copy.
        * @param {sheets(v4).CopySheetToAnotherSpreadsheetRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      copyTo: function (params, callback) {
+      copyTo: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/sheets/{sheetId}:copyTo',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['spreadsheetId', 'sheetId'],
           pathParams: ['sheetId', 'spreadsheetId'],

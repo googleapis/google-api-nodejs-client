@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Play Game Services Management API
@@ -51,15 +52,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function (params, callback) {
+    reset: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/achievements/{achievementId}/reset',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
@@ -78,15 +86,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll: function (params, callback) {
+    resetAll: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/achievements/reset',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -105,15 +120,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAllForAllPlayers: function (params, callback) {
+    resetAllForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/achievements/resetAllForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -133,15 +155,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers: function (params, callback) {
+    resetForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/achievements/{achievementId}/resetForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
@@ -161,15 +190,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {gamesManagement(v1management).AchievementResetMultipleForAllRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetMultipleForAllPlayers: function (params, callback) {
+    resetMultipleForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/achievements/resetMultipleForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -195,15 +231,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @param {string} params.applicationId The application ID from the Google Play developer console.
      * @param {integer=} params.maxResults The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listHidden: function (params, callback) {
+    listHidden: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
@@ -227,15 +270,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.eventId The ID of the event.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function (params, callback) {
+    reset: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/events/{eventId}/reset',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['eventId'],
         pathParams: ['eventId'],
@@ -254,15 +304,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll: function (params, callback) {
+    resetAll: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/events/reset',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -281,15 +338,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAllForAllPlayers: function (params, callback) {
+    resetAllForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/events/resetAllForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -309,15 +373,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.eventId The ID of the event.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers: function (params, callback) {
+    resetForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/events/{eventId}/resetForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['eventId'],
         pathParams: ['eventId'],
@@ -337,15 +408,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {gamesManagement(v1management).EventsResetMultipleForAllRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetMultipleForAllPlayers: function (params, callback) {
+    resetMultipleForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/events/resetMultipleForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -370,15 +448,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
      * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    hide: function (params, callback) {
+    hide: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden/{playerId}',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['applicationId', 'playerId'],
         pathParams: ['applicationId', 'playerId'],
@@ -399,15 +484,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
      * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    unhide: function (params, callback) {
+    unhide: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden/{playerId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['applicationId', 'playerId'],
         pathParams: ['applicationId', 'playerId'],
@@ -431,15 +523,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.questId The ID of the quest.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function (params, callback) {
+    reset: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/quests/{questId}/reset',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
@@ -458,15 +557,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll: function (params, callback) {
+    resetAll: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/quests/reset',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -485,15 +591,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAllForAllPlayers: function (params, callback) {
+    resetAllForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/quests/resetAllForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -513,15 +626,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.questId The ID of the quest.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers: function (params, callback) {
+    resetForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/quests/{questId}/resetForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
@@ -541,15 +661,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {gamesManagement(v1management).QuestsResetMultipleForAllRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetMultipleForAllPlayers: function (params, callback) {
+    resetMultipleForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/quests/resetMultipleForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -572,15 +699,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function (params, callback) {
+    reset: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/rooms/reset',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -599,15 +733,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers: function (params, callback) {
+    resetForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/rooms/resetForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -631,15 +772,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.leaderboardId The ID of the leaderboard.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function (params, callback) {
+    reset: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/leaderboards/{leaderboardId}/scores/reset',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
@@ -658,15 +806,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAll: function (params, callback) {
+    resetAll: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/scores/reset',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -685,15 +840,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetAllForAllPlayers: function (params, callback) {
+    resetAllForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/scores/resetAllForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -713,15 +875,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.leaderboardId The ID of the leaderboard.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers: function (params, callback) {
+    resetForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
@@ -741,15 +910,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {gamesManagement(v1management).ScoresResetMultipleForAllRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetMultipleForAllPlayers: function (params, callback) {
+    resetMultipleForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/scores/resetMultipleForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -772,15 +948,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function (params, callback) {
+    reset: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/turnbasedmatches/reset',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -799,15 +982,22 @@ function Gamesmanagement(options) { // eslint-disable-line
      * @memberOf! gamesManagement(v1management)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetForAllPlayers: function (params, callback) {
+    resetForAllPlayers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1management/turnbasedmatches/resetForAllPlayers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

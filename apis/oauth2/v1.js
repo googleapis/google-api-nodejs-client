@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google OAuth2 API
@@ -48,15 +49,22 @@ function Oauth2(options) { // eslint-disable-line
    * @memberOf! oauth2(v1)
    *
    * @param {object=} params Parameters for request
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getCertForOpenIdConnect = function (params, callback) {
+  this.getCertForOpenIdConnect = function (params, options, callback) {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    options || (options = {});
+
     var parameters = {
-      options: {
+      options: utils.extend({
         url: 'https://www.googleapis.com/oauth2/v1/certs',
         method: 'GET'
-      },
+      }, options),
       params: params,
       requiredParams: [],
       pathParams: [],
@@ -75,15 +83,22 @@ function Oauth2(options) { // eslint-disable-line
    * @memberOf! oauth2(v1)
    *
    * @param {object=} params Parameters for request
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getCertForOpenIdConnectRaw = function (params, callback) {
+  this.getCertForOpenIdConnectRaw = function (params, options, callback) {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    options || (options = {});
+
     var parameters = {
-      options: {
+      options: utils.extend({
         url: 'https://www.googleapis.com/oauth2/v1/raw_public_keys',
         method: 'GET'
-      },
+      }, options),
       params: params,
       requiredParams: [],
       pathParams: [],
@@ -103,15 +118,22 @@ function Oauth2(options) { // eslint-disable-line
    *
    * @param {object} params Parameters for request
    * @param {string} params.robotEmail The email of robot account.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getRobotJwk = function (params, callback) {
+  this.getRobotJwk = function (params, options, callback) {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    options || (options = {});
+
     var parameters = {
-      options: {
+      options: utils.extend({
         url: 'https://www.googleapis.com/service_accounts/v1/jwk/{robotEmail}',
         method: 'GET'
-      },
+      }, options),
       params: params,
       requiredParams: ['robotEmail'],
       pathParams: ['robotEmail'],
@@ -131,15 +153,22 @@ function Oauth2(options) { // eslint-disable-line
    *
    * @param {object} params Parameters for request
    * @param {string} params.robotEmail The email of robot account.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getRobotMetadataRaw = function (params, callback) {
+  this.getRobotMetadataRaw = function (params, options, callback) {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    options || (options = {});
+
     var parameters = {
-      options: {
+      options: utils.extend({
         url: 'https://www.googleapis.com/service_accounts/v1/metadata/raw/{robotEmail}',
         method: 'GET'
-      },
+      }, options),
       params: params,
       requiredParams: ['robotEmail'],
       pathParams: ['robotEmail'],
@@ -159,15 +188,22 @@ function Oauth2(options) { // eslint-disable-line
    *
    * @param {object} params Parameters for request
    * @param {string} params.robotEmail The email of robot account.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.getRobotMetadataX509 = function (params, callback) {
+  this.getRobotMetadataX509 = function (params, options, callback) {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    options || (options = {});
+
     var parameters = {
-      options: {
+      options: utils.extend({
         url: 'https://www.googleapis.com/service_accounts/v1/metadata/x509/{robotEmail}',
         method: 'GET'
-      },
+      }, options),
       params: params,
       requiredParams: ['robotEmail'],
       pathParams: ['robotEmail'],
@@ -188,15 +224,22 @@ function Oauth2(options) { // eslint-disable-line
    * @param {object=} params Parameters for request
    * @param {string=} params.access_token The oauth2 access token
    * @param {string=} params.id_token The ID token
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.tokeninfo = function (params, callback) {
+  this.tokeninfo = function (params, options, callback) {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    options || (options = {});
+
     var parameters = {
-      options: {
+      options: utils.extend({
         url: 'https://www.googleapis.com/oauth2/v1/tokeninfo',
         method: 'POST'
-      },
+      }, options),
       params: params,
       requiredParams: [],
       pathParams: [],
@@ -217,15 +260,22 @@ function Oauth2(options) { // eslint-disable-line
      * @memberOf! oauth2(v1)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/oauth2/v1/userinfo',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -248,15 +298,22 @@ function Oauth2(options) { // eslint-disable-line
          * @memberOf! oauth2(v1)
          *
          * @param {object=} params Parameters for request
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/userinfo/v2/me',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: [],
             pathParams: [],

@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Play EMM API
@@ -52,15 +53,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.collectionId The ID of the collection.
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'collectionId'],
         pathParams: ['collectionId', 'enterpriseId'],
@@ -81,15 +89,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.collectionId The ID of the collection.
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'collectionId'],
         pathParams: ['collectionId', 'enterpriseId'],
@@ -110,15 +125,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {androidenterprise(v1).Collection} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -138,15 +160,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -168,15 +197,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.collectionId The ID of the collection.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {androidenterprise(v1).Collection} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'collectionId'],
         pathParams: ['collectionId', 'enterpriseId'],
@@ -198,15 +234,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.collectionId The ID of the collection.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {androidenterprise(v1).Collection} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'collectionId'],
         pathParams: ['collectionId', 'enterpriseId'],
@@ -232,15 +275,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.collectionId The ID of the collection.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'collectionId', 'userId'],
         pathParams: ['collectionId', 'enterpriseId', 'userId'],
@@ -262,15 +312,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.collectionId The ID of the collection.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'collectionId', 'userId'],
         pathParams: ['collectionId', 'enterpriseId', 'userId'],
@@ -291,15 +348,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.collectionId The ID of the collection.
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'collectionId'],
         pathParams: ['collectionId', 'enterpriseId'],
@@ -322,15 +386,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).User} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'collectionId', 'userId'],
         pathParams: ['collectionId', 'enterpriseId', 'userId'],
@@ -353,15 +424,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).User} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'collectionId', 'userId'],
         pathParams: ['collectionId', 'enterpriseId', 'userId'],
@@ -387,15 +465,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.deviceId The ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
@@ -417,15 +502,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.deviceId The ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getState: function (params, callback) {
+    getState: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
@@ -446,15 +538,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
@@ -477,15 +576,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).DeviceState} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setState: function (params, callback) {
+    setState: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
@@ -509,15 +615,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.notificationSetId The notification set ID as returned by Enterprises.PullNotificationSet. This must be provided.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledgeNotificationSet: function (params, callback) {
+    acknowledgeNotificationSet: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/acknowledgeNotificationSet',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -538,15 +651,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {string=} params.completionToken The Completion token initially returned by GenerateSignupUrl.
      * @param {string=} params.enterpriseToken The Enterprise token appended to the Callback URL.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    completeSignup: function (params, callback) {
+    completeSignup: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/completeSignup',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -566,15 +686,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -595,15 +722,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.token The token provided by the enterprise to register the EMM.
      * @param {androidenterprise(v1).Enterprise} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    enroll: function (params, callback) {
+    enroll: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/enroll',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['token'],
         pathParams: [],
@@ -623,15 +757,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.callbackUrl The callback URL to which the Admin will be redirected after successfully creating an enterprise. Before redirecting there the system will add a single query parameter to this URL named "enterpriseToken" which will contain an opaque token to be used for the CompleteSignup request. Beware that this means that the URL will be parsed, the parameter added and then a new URL formatted, i.e. there may be some minor formatting changes and, more importantly, the URL must be well-formed so that it can be parsed.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generateSignupUrl: function (params, callback) {
+    generateSignupUrl: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/signupUrl',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -651,15 +792,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -680,15 +828,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string=} params.keyType The type of credential to return with the service account. Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getServiceAccount: function (params, callback) {
+    getServiceAccount: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccount',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -708,15 +863,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getStoreLayout: function (params, callback) {
+    getStoreLayout: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -737,15 +899,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.token The token provided by the enterprise to register the EMM.
      * @param {androidenterprise(v1).Enterprise} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['token'],
         pathParams: [],
@@ -765,15 +934,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.domain The exact primary domain name of the enterprise to look up.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['domain'],
         pathParams: [],
@@ -793,15 +969,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.requestMode The request mode for pulling notifications. If omitted, defaults to WAIT_FOR_NOTIFCATIONS. If this is set to WAIT_FOR_NOTIFCATIONS, the request will eventually timeout, in which case it should be retried.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    pullNotificationSet: function (params, callback) {
+    pullNotificationSet: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/pullNotificationSet',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -821,15 +1004,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sendTestPushNotification: function (params, callback) {
+    sendTestPushNotification: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/sendTestPushNotification',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -850,15 +1040,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {androidenterprise(v1).EnterpriseAccount} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setAccount: function (params, callback) {
+    setAccount: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/account',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -879,15 +1076,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {androidenterprise(v1).StoreLayout} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setStoreLayout: function (params, callback) {
+    setStoreLayout: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -907,15 +1111,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    unenroll: function (params, callback) {
+    unenroll: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/unenroll',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -941,15 +1152,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
@@ -971,15 +1189,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.entitlementId The ID of the entitlement (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
@@ -1000,15 +1225,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
@@ -1032,15 +1264,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {boolean=} params.install Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).Entitlement} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
@@ -1064,15 +1303,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {boolean=} params.install Set to true to also install the product on all the user's devices where possible. Failure to install on one or more devices will not prevent this operation from returning successfully, as long as the entitlement was successfully assigned to the user.
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).Entitlement} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'entitlementId'],
         pathParams: ['enterpriseId', 'entitlementId', 'userId'],
@@ -1097,15 +1343,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.groupLicenseId The ID of the product the group license is for, e.g. "app:com.google.android.gm".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'groupLicenseId'],
         pathParams: ['enterpriseId', 'groupLicenseId'],
@@ -1125,15 +1378,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -1158,15 +1418,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.groupLicenseId The ID of the product the group license is for, e.g. "app:com.google.android.gm".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'groupLicenseId'],
         pathParams: ['enterpriseId', 'groupLicenseId'],
@@ -1193,15 +1460,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
@@ -1224,15 +1498,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
@@ -1254,15 +1535,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.deviceId The Android ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
@@ -1286,15 +1574,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).Install} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
@@ -1318,15 +1613,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.installId The ID of the product represented by the install, e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).Install} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'installId'],
         pathParams: ['deviceId', 'enterpriseId', 'installId', 'userId'],
@@ -1353,15 +1655,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'managedConfigurationForDeviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'managedConfigurationForDeviceId', 'userId'],
@@ -1384,15 +1693,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'managedConfigurationForDeviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'managedConfigurationForDeviceId', 'userId'],
@@ -1414,15 +1730,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.deviceId The Android ID of the device.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'userId'],
@@ -1446,15 +1769,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).ManagedConfiguration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'managedConfigurationForDeviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'managedConfigurationForDeviceId', 'userId'],
@@ -1478,15 +1808,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.managedConfigurationForDeviceId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).ManagedConfiguration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'deviceId', 'managedConfigurationForDeviceId'],
         pathParams: ['deviceId', 'enterpriseId', 'managedConfigurationForDeviceId', 'userId'],
@@ -1512,15 +1849,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
@@ -1542,15 +1886,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
@@ -1571,15 +1922,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
@@ -1602,15 +1960,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).ManagedConfiguration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
@@ -1633,15 +1998,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.managedConfigurationForUserId The ID of the managed configuration (a product ID), e.g. "app:com.google.android.gm".
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).ManagedConfiguration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId', 'managedConfigurationForUserId'],
         pathParams: ['enterpriseId', 'managedConfigurationForUserId', 'userId'],
@@ -1666,15 +2038,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de")
      * @param {string} params.permissionId The ID of the permission.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/permissions/{permissionId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['permissionId'],
         pathParams: ['permissionId'],
@@ -1700,15 +2079,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.productId The ID of the product.
      * @param {androidenterprise(v1).ProductsApproveRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    approve: function (params, callback) {
+    approve: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/approve',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
@@ -1730,15 +2116,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string=} params.languageCode The BCP 47 language code used for permission names and descriptions in the returned iframe, for instance "en-US".
      * @param {string} params.productId The ID of the product.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generateApprovalUrl: function (params, callback) {
+    generateApprovalUrl: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
@@ -1760,15 +2153,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
      * @param {string} params.productId The ID of the product, e.g. "app:com.google.android.gm".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
@@ -1790,15 +2190,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
      * @param {string} params.productId The ID of the product.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAppRestrictionsSchema: function (params, callback) {
+    getAppRestrictionsSchema: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
@@ -1819,15 +2226,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.productId The ID of the product.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getPermissions: function (params, callback) {
+    getPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
@@ -1852,15 +2266,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Specifies the maximum number of products that can be returned per request. If not specified, uses a default value of 100, which is also the maximum retrievable within a single response.
      * @param {string=} params.query The search query as typed in the Google Play Store search box. If omitted, all approved apps will be returned (using the pagination parameters), including apps that are not available in the store (e.g. unpublished apps).
      * @param {string=} params.token A pagination token is contained in a requests response when there are more products. The token can be used in a subsequent request to obtain more products, and so forth. This parameter cannot be used in the initial request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -1881,15 +2302,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.productId The ID of the product.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    unapprove: function (params, callback) {
+    unapprove: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/unapprove',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
@@ -1911,15 +2339,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.productId The ID of the product.
      * @param {androidenterprise(v1).ProductPermissions} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updatePermissions: function (params, callback) {
+    updatePermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
         pathParams: ['enterpriseId', 'productId'],
@@ -1944,15 +2379,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.keyId The ID of the key.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys/{keyId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'keyId'],
         pathParams: ['enterpriseId', 'keyId'],
@@ -1973,15 +2415,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {androidenterprise(v1).ServiceAccountKey} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -2001,15 +2450,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -2035,15 +2491,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.clusterId The ID of the cluster.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
@@ -2065,15 +2528,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.clusterId The ID of the cluster.
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
@@ -2095,15 +2565,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
      * @param {androidenterprise(v1).StoreCluster} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
@@ -2124,15 +2601,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
@@ -2155,15 +2639,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
      * @param {androidenterprise(v1).StoreCluster} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
@@ -2186,15 +2677,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
      * @param {androidenterprise(v1).StoreCluster} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'pageId', 'clusterId'],
         pathParams: ['clusterId', 'enterpriseId', 'pageId'],
@@ -2219,15 +2717,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
@@ -2248,15 +2753,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
@@ -2277,15 +2789,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {androidenterprise(v1).StorePage} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -2305,15 +2824,22 @@ function Androidenterprise(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -2335,15 +2861,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
      * @param {androidenterprise(v1).StorePage} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
@@ -2365,15 +2898,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.pageId The ID of the page.
      * @param {androidenterprise(v1).StorePage} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'pageId'],
         pathParams: ['enterpriseId', 'pageId'],
@@ -2398,15 +2938,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
@@ -2427,15 +2974,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generateAuthenticationToken: function (params, callback) {
+    generateAuthenticationToken: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/authenticationToken',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
@@ -2456,15 +3010,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generateToken: function (params, callback) {
+    generateToken: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
@@ -2485,15 +3046,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
@@ -2514,15 +3082,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAvailableProductSet: function (params, callback) {
+    getAvailableProductSet: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
@@ -2543,15 +3118,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {androidenterprise(v1).User} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId'],
         pathParams: ['enterpriseId'],
@@ -2572,15 +3154,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.email The exact primary email address of the user to look up.
      * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'email'],
         pathParams: ['enterpriseId'],
@@ -2602,15 +3191,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).User} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
@@ -2631,15 +3227,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    revokeToken: function (params, callback) {
+    revokeToken: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
@@ -2661,15 +3264,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).ProductSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setAvailableProductSet: function (params, callback) {
+    setAvailableProductSet: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
@@ -2691,15 +3301,22 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string} params.userId The ID of the user.
      * @param {androidenterprise(v1).User} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['enterpriseId', 'userId'],
         pathParams: ['enterpriseId', 'userId'],
@@ -2811,10 +3428,15 @@ The &quot;allUsers&quot; setting is deprecated, and will be removed.
  * @typedef Device
  * @memberOf! androidenterprise(v1)
  * @type object
- * @property {string} androidId The Google Play Services Android ID for the device encoded as a lowercase hex string, e.g. &quot;123456789abcdef0&quot;.
- * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#device&quot;.
- * @property {string} managementType The mechanism by which this device is managed by the EMM. &quot;managedDevice&quot; means that the EMM&#39;s app is a device owner. &quot;managedProfile&quot; means that the EMM&#39;s app is the profile owner (and there is a separate personal profile which is not managed). &quot;containerApp&quot; means that the EMM&#39;s app is managing the Android for Work container app on the device.
- */
+* @property {string} androidId The Google Play Services Android ID for the device encoded as a lowercase hex string, e.g. &quot;123456789abcdef0&quot;.
+* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#device&quot;.
+* @property {string} managementType Identifies the extent to which the device is controlled by an Android for Work EMM in various deployment configurations.
+Possible values include: 
+- &quot;managedDevice&quot;—A device that has the EMM&#39;s device policy controller (DPC) as the device owner.
+- &quot;managedProfile&quot;—A device that has a work profile managed by the DPC (DPC is profile owner) in addition to a separate, personal profile that is unavailable to the DPC.
+- &quot;containerApp&quot;—A device running the Android for Work App. The Android for Work App is managed by the DPC.
+- &quot;unmanagedProfile&quot;—A device that has been allowed (by the domain&#39;s admin, using the Admin Console to enable the privilege) to use Android for Work apps or Google Apps for Work, but the profile is itself not owned by a DPC.
+*/
 /**
  * @typedef DeviceState
  * @memberOf! androidenterprise(v1)

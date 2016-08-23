@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Genomics API
@@ -51,15 +52,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).AnnotationSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -79,15 +87,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.annotationSetId The ID of the annotation set to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/{annotationSetId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['annotationSetId'],
         pathParams: ['annotationSetId'],
@@ -107,15 +122,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.annotationSetId The ID of the annotation set to be retrieved.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/{annotationSetId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['annotationSetId'],
         pathParams: ['annotationSetId'],
@@ -136,15 +158,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.annotationSetId The ID of the annotation set to be updated.
      * @param {genomics(v1beta2).AnnotationSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/{annotationSetId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['annotationSetId'],
         pathParams: ['annotationSetId'],
@@ -164,15 +193,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).SearchAnnotationSetsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, callback) {
+    search: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/search',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -193,15 +229,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.annotationSetId The ID of the annotation set to be updated.
      * @param {genomics(v1beta2).AnnotationSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotationSets/{annotationSetId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['annotationSetId'],
         pathParams: ['annotationSetId'],
@@ -225,15 +268,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).BatchCreateAnnotationsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchCreate: function (params, callback) {
+    batchCreate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations:batchCreate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -253,15 +303,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).Annotation} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -281,15 +338,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.annotationId The ID of the annotation to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations/{annotationId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
@@ -309,15 +373,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.annotationId The ID of the annotation to be retrieved.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations/{annotationId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
@@ -338,15 +409,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.annotationId The ID of the annotation to be updated.
      * @param {genomics(v1beta2).Annotation} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations/{annotationId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
@@ -366,15 +444,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).SearchAnnotationsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, callback) {
+    search: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations/search',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -395,15 +480,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.annotationId The ID of the annotation to be updated.
      * @param {genomics(v1beta2).Annotation} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/annotations/{annotationId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['annotationId'],
         pathParams: ['annotationId'],
@@ -427,15 +519,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).CallSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/callsets',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -455,15 +554,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.callSetId The ID of the call set to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/callsets/{callSetId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['callSetId'],
         pathParams: ['callSetId'],
@@ -483,15 +589,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.callSetId The ID of the call set.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/callsets/{callSetId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['callSetId'],
         pathParams: ['callSetId'],
@@ -512,15 +625,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.callSetId The ID of the call set to be updated.
      * @param {genomics(v1beta2).CallSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/callsets/{callSetId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['callSetId'],
         pathParams: ['callSetId'],
@@ -540,15 +660,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).SearchCallSetsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, callback) {
+    search: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/callsets/search',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -569,15 +696,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.callSetId The ID of the call set to be updated.
      * @param {genomics(v1beta2).CallSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/callsets/{callSetId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['callSetId'],
         pathParams: ['callSetId'],
@@ -601,15 +735,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).Dataset} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -629,15 +770,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.datasetId The ID of the dataset to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
@@ -657,15 +805,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.datasetId The ID of the dataset.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
@@ -687,15 +842,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {integer=} params.pageSize The maximum number of results to return in a single page. If unspecified, defaults to 50. The maximum value is 1024.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
      * @param {string=} params.projectNumber Required. The project to list datasets for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -716,15 +878,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datasetId The ID of the dataset to be updated.
      * @param {genomics(v1beta2).Dataset} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
@@ -744,15 +913,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.datasetId The ID of the dataset to be undeleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete: function (params, callback) {
+    undelete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}/undelete',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
@@ -773,15 +949,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datasetId The ID of the dataset to be updated.
      * @param {genomics(v1beta2).Dataset} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/datasets/{datasetId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
@@ -807,15 +990,22 @@ function Genomics(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {genomics(v1beta2).ExperimentalCreateJobRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/genomics/v1beta2/experimental/jobs/create',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -839,15 +1029,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The ID of the job.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function (params, callback) {
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/jobs/{jobId}/cancel',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
@@ -867,15 +1064,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.jobId Required. The ID of the job.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/jobs/{jobId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
@@ -895,15 +1099,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).SearchJobsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, callback) {
+    search: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/jobs/search',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -927,15 +1138,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.readGroupSetId The ID of the read group set to be deleted. The caller must have WRITE permissions to the dataset associated with this read group set.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['readGroupSetId'],
         pathParams: ['readGroupSetId'],
@@ -955,15 +1173,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).ExportReadGroupSetsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export: function (params, callback) {
+    export: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/export',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -983,15 +1208,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.readGroupSetId The ID of the read group set.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['readGroupSetId'],
         pathParams: ['readGroupSetId'],
@@ -1011,15 +1243,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).ImportReadGroupSetsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    import: function (params, callback) {
+    import: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/import',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1040,15 +1279,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.readGroupSetId The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
      * @param {genomics(v1beta2).ReadGroupSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['readGroupSetId'],
         pathParams: ['readGroupSetId'],
@@ -1068,15 +1314,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).SearchReadGroupSetsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, callback) {
+    search: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/search',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1097,15 +1350,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.readGroupSetId The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
      * @param {genomics(v1beta2).ReadGroupSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['readGroupSetId'],
         pathParams: ['readGroupSetId'],
@@ -1133,15 +1393,22 @@ function Genomics(options) { // eslint-disable-line
        * @param {string=} params.range.start The start position of the range on the reference, 0-based inclusive. If specified, referenceName must also be specified.
        * @param {string} params.readGroupSetId Required. The ID of the read group set over which coverage is requested.
        * @param {string=} params.targetBucketWidth The desired width of each reported coverage bucket in base pairs. This will be rounded down to the nearest precomputed bucket width; the value of which is returned as bucketWidth in the response. Defaults to infinity (each bucket spans an entire reference sequence) or the length of the target range, if specified. The smallest precomputed bucketWidth is currently 2048 base pairs; this is subject to change.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/genomics/v1beta2/readgroupsets/{readGroupSetId}/coveragebuckets',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['readGroupSetId'],
           pathParams: ['readGroupSetId'],
@@ -1165,15 +1432,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).SearchReadsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, callback) {
+    search: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/reads/search',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1197,15 +1471,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.referenceId The ID of the reference.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/references/{referenceId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['referenceId'],
         pathParams: ['referenceId'],
@@ -1225,15 +1506,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).SearchReferencesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, callback) {
+    search: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/references/search',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1259,15 +1547,22 @@ function Genomics(options) { // eslint-disable-line
        * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
        * @param {string} params.referenceId The ID of the reference.
        * @param {string=} params.start The start position (0-based) of this query. Defaults to 0.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/genomics/v1beta2/references/{referenceId}/bases',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['referenceId'],
           pathParams: ['referenceId'],
@@ -1291,15 +1586,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.referenceSetId The ID of the reference set.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/referencesets/{referenceSetId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['referenceSetId'],
         pathParams: ['referenceSetId'],
@@ -1319,15 +1621,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).SearchReferenceSetsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, callback) {
+    search: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/referencesets/search',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1351,15 +1660,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).Variant} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variants',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1379,15 +1695,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.variantId The ID of the variant to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variants/{variantId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['variantId'],
         pathParams: ['variantId'],
@@ -1407,15 +1730,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.variantId Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variants/{variantId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['variantId'],
         pathParams: ['variantId'],
@@ -1435,15 +1765,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).SearchVariantsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, callback) {
+    search: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variants/search',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1464,15 +1801,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.variantId The ID of the variant to be updated.
      * @param {genomics(v1beta2).Variant} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variants/{variantId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['variantId'],
         pathParams: ['variantId'],
@@ -1496,15 +1840,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).VariantSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1524,15 +1875,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.variantSetId The ID of the variant set to be deleted. Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['variantSetId'],
         pathParams: ['variantSetId'],
@@ -1553,15 +1911,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.variantSetId The ID of the variant set that contains variant data which should be exported. Required. The caller must have READ access to this variant set.
      * @param {genomics(v1beta2).ExportVariantSetRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export: function (params, callback) {
+    export: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}/export',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['variantSetId'],
         pathParams: ['variantSetId'],
@@ -1581,15 +1946,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.variantSetId The ID of the variant set. Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['variantSetId'],
         pathParams: ['variantSetId'],
@@ -1610,15 +1982,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.variantSetId Required. The variant set to which variant data should be imported.
      * @param {genomics(v1beta2).ImportVariantsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    importVariants: function (params, callback) {
+    importVariants: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}/importVariants',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['variantSetId'],
         pathParams: ['variantSetId'],
@@ -1639,15 +2018,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.variantSetId The destination variant set.
      * @param {genomics(v1beta2).MergeVariantsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    mergeVariants: function (params, callback) {
+    mergeVariants: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}/mergeVariants',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['variantSetId'],
         pathParams: ['variantSetId'],
@@ -1668,15 +2054,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.variantSetId The ID of the variant set to be updated (must already exist).
      * @param {genomics(v1beta2).VariantSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['variantSetId'],
         pathParams: ['variantSetId'],
@@ -1696,15 +2089,22 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {genomics(v1beta2).SearchVariantSetsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, callback) {
+    search: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/search',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1725,15 +2125,22 @@ function Genomics(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.variantSetId The ID of the variant set to be updated (must already exist).
      * @param {genomics(v1beta2).VariantSet} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/genomics/v1beta2/variantsets/{variantSetId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['variantSetId'],
         pathParams: ['variantSetId'],

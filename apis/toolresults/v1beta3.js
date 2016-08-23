@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Cloud Tool Results API
@@ -51,15 +52,22 @@ function Toolresults(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId A Project id.  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSettings: function (params, callback) {
+    getSettings: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/settings',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -79,15 +87,22 @@ function Toolresults(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectId A Project id.  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    initializeSettings: function (params, callback) {
+    initializeSettings: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}:initializeSettings',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -111,15 +126,22 @@ function Toolresults(options) { // eslint-disable-line
        * @param {string} params.projectId A Project id.  Required.
        * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
        * @param {toolresults(v1beta3).History} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -140,15 +162,22 @@ function Toolresults(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.historyId A History id.  Required.
        * @param {string} params.projectId A Project id.  Required.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'historyId'],
           pathParams: ['historyId', 'projectId'],
@@ -171,15 +200,22 @@ function Toolresults(options) { // eslint-disable-line
        * @param {integer=} params.pageSize The maximum number of Histories to fetch.  Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100.  Optional.
        * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
        * @param {string} params.projectId A Project id.  Required.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -204,15 +240,22 @@ function Toolresults(options) { // eslint-disable-line
          * @param {string} params.projectId A Project id.  Required.
          * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
          * @param {toolresults(v1beta3).Execution} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'historyId'],
             pathParams: ['historyId', 'projectId'],
@@ -234,15 +277,22 @@ function Toolresults(options) { // eslint-disable-line
          * @param {string} params.executionId An Execution id.  Required.
          * @param {string} params.historyId A History id.  Required.
          * @param {string} params.projectId A Project id.  Required.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'historyId', 'executionId'],
             pathParams: ['executionId', 'historyId', 'projectId'],
@@ -265,15 +315,22 @@ function Toolresults(options) { // eslint-disable-line
          * @param {integer=} params.pageSize The maximum number of Executions to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
          * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
          * @param {string} params.projectId A Project id.  Required.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'historyId'],
             pathParams: ['historyId', 'projectId'],
@@ -297,15 +354,22 @@ function Toolresults(options) { // eslint-disable-line
          * @param {string} params.projectId A Project id. Required.
          * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
          * @param {toolresults(v1beta3).Execution} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        patch: function (params, callback) {
+        patch: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}',
               method: 'PATCH'
-            },
+            }, options),
             params: params,
             requiredParams: ['projectId', 'historyId', 'executionId'],
             pathParams: ['executionId', 'historyId', 'projectId'],
@@ -331,15 +395,22 @@ function Toolresults(options) { // eslint-disable-line
            * @param {string} params.projectId A Project id.  Required.
            * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
            * @param {toolresults(v1beta3).Step} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          create: function (params, callback) {
+          create: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps',
                 method: 'POST'
-              },
+              }, options),
               params: params,
               requiredParams: ['projectId', 'historyId', 'executionId'],
               pathParams: ['executionId', 'historyId', 'projectId'],
@@ -362,15 +433,22 @@ function Toolresults(options) { // eslint-disable-line
            * @param {string} params.historyId A History id.  Required.
            * @param {string} params.projectId A Project id.  Required.
            * @param {string} params.stepId A Step id.  Required.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          get: function (params, callback) {
+          get: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}',
                 method: 'GET'
-              },
+              }, options),
               params: params,
               requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
               pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
@@ -394,15 +472,22 @@ function Toolresults(options) { // eslint-disable-line
            * @param {integer=} params.pageSize The maximum number of Steps to fetch.  Default value: 25. The server will use this default if the field is not set or has a value of 0.  Optional.
            * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
            * @param {string} params.projectId A Project id.  Required.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          list: function (params, callback) {
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps',
                 method: 'GET'
-              },
+              }, options),
               params: params,
               requiredParams: ['projectId', 'historyId', 'executionId'],
               pathParams: ['executionId', 'historyId', 'projectId'],
@@ -427,15 +512,22 @@ function Toolresults(options) { // eslint-disable-line
            * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID.  Optional, but strongly recommended.
            * @param {string} params.stepId A Step id.  Required.
            * @param {toolresults(v1beta3).Step} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          patch: function (params, callback) {
+          patch: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}',
                 method: 'PATCH'
-              },
+              }, options),
               params: params,
               requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
               pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
@@ -459,15 +551,22 @@ function Toolresults(options) { // eslint-disable-line
            * @param {string} params.projectId A Project id.  Required.
            * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep.  Required.
            * @param {toolresults(v1beta3).PublishXunitXmlFilesRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
            */
-          publishXunitXmlFiles: function (params, callback) {
+          publishXunitXmlFiles: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
             var parameters = {
-              options: {
+              options: utils.extend({
                 url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles',
                 method: 'POST'
-              },
+              }, options),
               params: params,
               requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
               pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
@@ -494,15 +593,22 @@ function Toolresults(options) { // eslint-disable-line
              * @param {string=} params.pageToken A continuation token to resume the query at the next item.  Optional.
              * @param {string} params.projectId A Project id.  Required.
              * @param {string} params.stepId A Step id.  Required.
+             * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
              * @param {callback} callback The callback that handles the response.
              * @return {object} Request object
              */
-            list: function (params, callback) {
+            list: function (params, options, callback) {
+              if (typeof options === 'function') {
+                callback = options;
+                options = {};
+              }
+              options || (options = {});
+
               var parameters = {
-                options: {
+                options: utils.extend({
                   url: 'https://www.googleapis.com/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails',
                   method: 'GET'
-                },
+                }, options),
                 params: params,
                 requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
                 pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],

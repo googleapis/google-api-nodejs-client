@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Cloud Monitoring API
@@ -52,15 +53,22 @@ function Cloudmonitoring(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project The project id. The value can be the numeric project ID or string-based project name.
      * @param {cloudmonitoring(v2beta2).MetricDescriptor} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -81,15 +89,22 @@ function Cloudmonitoring(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.metric Name of the metric.
      * @param {string} params.project The project ID to which the metric belongs.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors/{metric}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'metric'],
         pathParams: ['metric', 'project'],
@@ -113,15 +128,22 @@ function Cloudmonitoring(options) { // eslint-disable-line
      * @param {string} params.project The project id. The value can be the numeric project ID or string-based project name.
      * @param {string=} params.query The query used to search against existing metrics. Separate keywords with a space; the service joins all keywords with AND, meaning that all keywords must match for a metric to be returned. If this field is omitted, all metrics are returned. If an empty string is passed with this field, no metrics are returned.
      * @param {cloudmonitoring(v2beta2).ListMetricDescriptorsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -155,15 +177,22 @@ function Cloudmonitoring(options) { // eslint-disable-line
      * @param {string=} params.window The sampling window. At most one data point will be returned for each window in the requested time interval. This parameter is only valid for non-cumulative metric types. Units:   - m: minute  - h: hour  - d: day  - w: week  Examples: 3m, 4w. Only one unit is allowed, for example: 2w3d is not allowed; you should use 17d instead.
      * @param {string} params.youngest End of the time interval (inclusive), which is expressed as an RFC 3339 timestamp.
      * @param {cloudmonitoring(v2beta2).ListTimeseriesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/timeseries/{metric}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'metric', 'youngest'],
         pathParams: ['metric', 'project'],
@@ -184,15 +213,22 @@ function Cloudmonitoring(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project The project ID. The value can be the numeric project ID or string-based project name.
      * @param {cloudmonitoring(v2beta2).WriteTimeseriesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    write: function (params, callback) {
+    write: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/timeseries:write',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -226,15 +262,22 @@ function Cloudmonitoring(options) { // eslint-disable-line
      * @param {string=} params.window The sampling window. At most one data point will be returned for each window in the requested time interval. This parameter is only valid for non-cumulative metric types. Units:   - m: minute  - h: hour  - d: day  - w: week  Examples: 3m, 4w. Only one unit is allowed, for example: 2w3d is not allowed; you should use 17d instead.
      * @param {string} params.youngest End of the time interval (inclusive), which is expressed as an RFC 3339 timestamp.
      * @param {cloudmonitoring(v2beta2).ListTimeseriesDescriptorsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/timeseriesDescriptors/{metric}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'metric', 'youngest'],
         pathParams: ['metric', 'project'],

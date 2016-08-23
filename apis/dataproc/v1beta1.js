@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Cloud Dataproc API
@@ -54,15 +55,22 @@ function Dataproc(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
        * @param {dataproc(v1beta1).Cluster} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/clusters',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -85,15 +93,22 @@ function Dataproc(options) { // eslint-disable-line
        * @param {string} params.clusterName [Required] The cluster name.
        * @param {string=} params.updateMask [Required] Specifies the path, relative to Cluster, of the field to update. For example, to change the number of workers in a cluster to 5, the update_mask parameter would be specified as configuration.worker_configuration.num_instances, and the `PATCH` request body would specify the new value, as follows: { "configuration":{ "workerConfiguration":{ "numInstances":"5" } } } Similarly, to change the number of preemptible workers in a cluster to 5, the update_mask parameter would be config.secondary_worker_config.num_instances, and the `PATCH` request body would be set as follows: { "config":{ "secondaryWorkerConfig":{ "numInstances":"5" } } } Note: Currently, config.worker_config.num_instances and config.secondary_worker_config.num_instances are the only fields that can be updated.
        * @param {dataproc(v1beta1).Cluster} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/clusters/{clusterName}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'clusterName'],
           pathParams: ['projectId', 'clusterName'],
@@ -114,15 +129,22 @@ function Dataproc(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
        * @param {string} params.clusterName [Required] The cluster name.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/clusters/{clusterName}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'clusterName'],
           pathParams: ['projectId', 'clusterName'],
@@ -143,15 +165,22 @@ function Dataproc(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
        * @param {string} params.clusterName [Required] The cluster name.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/clusters/{clusterName}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'clusterName'],
           pathParams: ['projectId', 'clusterName'],
@@ -173,15 +202,22 @@ function Dataproc(options) { // eslint-disable-line
        * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
        * @param {integer=} params.pageSize The standard List page size.
        * @param {string=} params.pageToken The standard List page token.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/clusters',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -203,15 +239,22 @@ function Dataproc(options) { // eslint-disable-line
        * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
        * @param {string} params.clusterName [Required] The cluster name.
        * @param {dataproc(v1beta1).DiagnoseClusterRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      diagnose: function (params, callback) {
+      diagnose: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/clusters/{clusterName}:diagnose',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'clusterName'],
           pathParams: ['projectId', 'clusterName'],
@@ -235,15 +278,22 @@ function Dataproc(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
        * @param {dataproc(v1beta1).SubmitJobRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      submit: function (params, callback) {
+      submit: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/jobs:submit',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -264,15 +314,22 @@ function Dataproc(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
        * @param {string} params.jobId [Required] The job ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/jobs/{jobId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'jobId'],
           pathParams: ['projectId', 'jobId'],
@@ -296,15 +353,22 @@ function Dataproc(options) { // eslint-disable-line
        * @param {string=} params.pageToken [Optional] The page token, returned by a previous call, to request the next page of results.
        * @param {string=} params.clusterName [Optional] If set, the returned jobs list includes only jobs that were submitted to the named cluster.
        * @param {string=} params.jobStateMatcher [Optional] Specifies enumerated categories of jobs to list.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/jobs',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -326,15 +390,22 @@ function Dataproc(options) { // eslint-disable-line
        * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
        * @param {string} params.jobId [Required] The job ID.
        * @param {dataproc(v1beta1).CancelJobRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      cancel: function (params, callback) {
+      cancel: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/jobs/{jobId}:cancel',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'jobId'],
           pathParams: ['projectId', 'jobId'],
@@ -355,15 +426,22 @@ function Dataproc(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
        * @param {string} params.jobId [Required] The job ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://dataproc.googleapis.com/v1beta1/projects/{projectId}/jobs/{jobId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'jobId'],
           pathParams: ['projectId', 'jobId'],
@@ -387,15 +465,22 @@ function Dataproc(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://dataproc.googleapis.com/v1beta1/{name}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],
@@ -418,15 +503,22 @@ function Dataproc(options) { // eslint-disable-line
      * @param {string=} params.filter The standard list filter.
      * @param {integer=} params.pageSize The standard list page size.
      * @param {string=} params.pageToken The standard list page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://dataproc.googleapis.com/v1beta1/{name}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],
@@ -447,15 +539,22 @@ function Dataproc(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be cancelled.
      * @param {dataproc(v1beta1).CancelOperationRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function (params, callback) {
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://dataproc.googleapis.com/v1beta1/{name}:cancel',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],
@@ -475,15 +574,22 @@ function Dataproc(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://dataproc.googleapis.com/v1beta1/{name}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],

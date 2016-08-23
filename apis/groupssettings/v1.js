@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Groups Settings API
@@ -51,15 +52,22 @@ function Groupssettings(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupUniqueId The resource ID
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
@@ -80,15 +88,22 @@ function Groupssettings(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupUniqueId The resource ID
      * @param {groupssettings(v1).Groups} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],
@@ -109,15 +124,22 @@ function Groupssettings(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupUniqueId The resource ID
      * @param {groupssettings(v1).Groups} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupUniqueId'],
         pathParams: ['groupUniqueId'],

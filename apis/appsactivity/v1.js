@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Apps Activity API
@@ -57,15 +58,22 @@ function Appsactivity(options) { // eslint-disable-line
      * @param {string=} params.pageToken A token to retrieve a specific page of results.
      * @param {string=} params.source The Google service from which to return activities. Possible values of source are:  - drive.google.com
      * @param {string=} params.userId Indicates the user to return activity for. Use the special value me to indicate the currently authenticated user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/appsactivity/v1/activities',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

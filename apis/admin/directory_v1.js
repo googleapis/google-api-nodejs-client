@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Admin Directory API
@@ -52,15 +53,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {integer} params.codeId The unique ID of the ASP to be deleted.
      * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps/{codeId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey', 'codeId'],
         pathParams: ['codeId', 'userKey'],
@@ -81,15 +89,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {integer} params.codeId The unique ID of the ASP.
      * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps/{codeId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey', 'codeId'],
         pathParams: ['codeId', 'userKey'],
@@ -109,15 +124,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
@@ -141,15 +163,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {admin(directory_v1).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function (params, callback) {
+    stop: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/admin/directory_v1/channels/stop',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -175,15 +204,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.deviceId Immutable id of Chrome OS Device
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'deviceId'],
         pathParams: ['customerId', 'deviceId'],
@@ -209,15 +245,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
      * @param {string=} params.query Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?hl=en&answer=1698333
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
@@ -240,15 +283,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.deviceId Immutable id of Chrome OS Device
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
      * @param {admin(directory_v1).ChromeOsDevice} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'deviceId'],
         pathParams: ['customerId', 'deviceId'],
@@ -271,15 +321,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.deviceId Immutable id of Chrome OS Device
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
      * @param {admin(directory_v1).ChromeOsDevice} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'deviceId'],
         pathParams: ['customerId', 'deviceId'],
@@ -303,15 +360,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerKey Id of the customer to be retrieved
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerKey'],
         pathParams: ['customerKey'],
@@ -332,15 +396,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerKey Id of the customer to be updated
      * @param {admin(directory_v1).Customer} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerKey'],
         pathParams: ['customerKey'],
@@ -361,15 +432,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerKey Id of the customer to be updated
      * @param {admin(directory_v1).Customer} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerKey'],
         pathParams: ['customerKey'],
@@ -394,15 +472,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable id of the Google Apps account.
      * @param {string} params.domainAliasName Name of domain alias to be retrieved.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'domainAliasName'],
         pathParams: ['customer', 'domainAliasName'],
@@ -423,15 +508,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable id of the Google Apps account.
      * @param {string} params.domainAliasName Name of domain alias to be retrieved.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'domainAliasName'],
         pathParams: ['customer', 'domainAliasName'],
@@ -452,15 +544,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable id of the Google Apps account.
      * @param {admin(directory_v1).DomainAlias} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
@@ -481,15 +580,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable id of the Google Apps account.
      * @param {string=} params.parentDomainName Name of the parent domain for which domain aliases are to be fetched.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
@@ -514,15 +620,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable id of the Google Apps account.
      * @param {string} params.domainName Name of domain to be deleted
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'domainName'],
         pathParams: ['customer', 'domainName'],
@@ -543,15 +656,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable id of the Google Apps account.
      * @param {string} params.domainName Name of domain to be retrieved
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'domainName'],
         pathParams: ['customer', 'domainName'],
@@ -572,15 +692,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable id of the Google Apps account.
      * @param {admin(directory_v1).Domains} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
@@ -600,15 +727,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
@@ -632,15 +766,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
@@ -660,15 +801,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable Id of the group
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
@@ -688,15 +836,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {admin(directory_v1).Group} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -720,15 +875,22 @@ function Admin(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.userKey Email or immutable Id of the user if only those groups are to be listed, the given user is a member of. If Id, it should match with id of user object
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -749,15 +911,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
      * @param {admin(directory_v1).Group} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
@@ -778,15 +947,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
      * @param {admin(directory_v1).Group} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
@@ -809,15 +985,22 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.alias The alias to be removed
        * @param {string} params.groupKey Email or immutable Id of the group
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases/{alias}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['groupKey', 'alias'],
           pathParams: ['alias', 'groupKey'],
@@ -838,15 +1021,22 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.groupKey Email or immutable Id of the group
        * @param {admin(directory_v1).Alias} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['groupKey'],
           pathParams: ['groupKey'],
@@ -866,15 +1056,22 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.groupKey Email or immutable Id of the group
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['groupKey'],
           pathParams: ['groupKey'],
@@ -899,15 +1096,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable Id of the group
      * @param {string} params.memberKey Email or immutable Id of the member
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupKey', 'memberKey'],
         pathParams: ['groupKey', 'memberKey'],
@@ -928,15 +1132,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable Id of the group
      * @param {string} params.memberKey Email or immutable Id of the member
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupKey', 'memberKey'],
         pathParams: ['groupKey', 'memberKey'],
@@ -957,15 +1168,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupKey Email or immutable Id of the group
      * @param {admin(directory_v1).Member} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
@@ -988,15 +1206,22 @@ function Admin(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
      * @param {string=} params.pageToken Token to specify next page in the list
      * @param {string=} params.roles Comma separated role values to filter list results on.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupKey'],
         pathParams: ['groupKey'],
@@ -1018,15 +1243,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
      * @param {string} params.memberKey Email or immutable Id of the user. If Id, it should match with id of member object
      * @param {admin(directory_v1).Member} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupKey', 'memberKey'],
         pathParams: ['groupKey', 'memberKey'],
@@ -1048,15 +1280,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.groupKey Email or immutable Id of the group. If Id, it should match with id of group object
      * @param {string} params.memberKey Email or immutable Id of the user. If Id, it should match with id of member object
      * @param {admin(directory_v1).Member} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['groupKey', 'memberKey'],
         pathParams: ['groupKey', 'memberKey'],
@@ -1082,15 +1321,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.resourceId Immutable id of Mobile Device
      * @param {admin(directory_v1).MobileDeviceAction} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    action: function (params, callback) {
+    action: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}/action',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'resourceId'],
         pathParams: ['customerId', 'resourceId'],
@@ -1111,15 +1357,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.resourceId Immutable id of Mobile Device
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'resourceId'],
         pathParams: ['customerId', 'resourceId'],
@@ -1141,15 +1394,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
      * @param {string} params.resourceId Immutable id of Mobile Device
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'resourceId'],
         pathParams: ['customerId', 'resourceId'],
@@ -1175,15 +1435,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
      * @param {string=} params.query Search string in the format given at http://support.google.com/a/bin/answer.py?hl=en&answer=1408863#search
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
@@ -1208,15 +1475,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer The unique ID for the customer's Google account. The customerId is also returned as part of the Users resource.
      * @param {string} params.notificationId The unique ID of the notification.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'notificationId'],
         pathParams: ['customer', 'notificationId'],
@@ -1237,15 +1511,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer The unique ID for the customer's Google account. The customerId is also returned as part of the Users resource.
      * @param {string} params.notificationId The unique ID of the notification.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'notificationId'],
         pathParams: ['customer', 'notificationId'],
@@ -1268,15 +1549,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.language The ISO 639-1 code of the language notifications are returned in. The default is English (en).
      * @param {integer=} params.maxResults Maximum number of notifications to return per page. The default is 100.
      * @param {string=} params.pageToken The token to specify the page of results to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
@@ -1298,15 +1586,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customer The unique ID for the customer's Google account.
      * @param {string} params.notificationId The unique ID of the notification.
      * @param {admin(directory_v1).Notification} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'notificationId'],
         pathParams: ['customer', 'notificationId'],
@@ -1328,15 +1623,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customer The unique ID for the customer's Google account.
      * @param {string} params.notificationId The unique ID of the notification.
      * @param {admin(directory_v1).Notification} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'notificationId'],
         pathParams: ['customer', 'notificationId'],
@@ -1361,15 +1663,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.orgUnitPath Full path of the organization unit or its Id
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId', 'orgUnitPath'],
@@ -1390,15 +1699,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.orgUnitPath Full path of the organization unit or its Id
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId', 'orgUnitPath'],
@@ -1419,15 +1735,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {admin(directory_v1).OrgUnit} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
@@ -1449,15 +1772,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string=} params.orgUnitPath the URL-encoded organization unit's path or its Id
      * @param {string=} params.type Whether to return all sub-organizations or just immediate children
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
@@ -1479,15 +1809,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.orgUnitPath Full path of the organization unit or its Id
      * @param {admin(directory_v1).OrgUnit} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId', 'orgUnitPath'],
@@ -1509,15 +1846,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.orgUnitPath Full path of the organization unit or its Id
      * @param {admin(directory_v1).OrgUnit} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'orgUnitPath'],
         pathParams: ['customerId', 'orgUnitPath'],
@@ -1541,15 +1885,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/ALL/privileges',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
@@ -1576,15 +1927,22 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.calendarResourceId The unique ID of the calendar resource to delete.
        * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['customer', 'calendarResourceId'],
           pathParams: ['calendarResourceId', 'customer'],
@@ -1605,15 +1963,22 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.calendarResourceId The unique ID of the calendar resource to retrieve.
        * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['customer', 'calendarResourceId'],
           pathParams: ['calendarResourceId', 'customer'],
@@ -1634,15 +1999,22 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
        * @param {admin(directory_v1).CalendarResource} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['customer'],
           pathParams: ['customer'],
@@ -1664,15 +2036,22 @@ function Admin(options) { // eslint-disable-line
        * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
        * @param {integer=} params.maxResults Maximum number of results to return.
        * @param {string=} params.pageToken Token to specify the next page in the list.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['customer'],
           pathParams: ['customer'],
@@ -1694,15 +2073,22 @@ function Admin(options) { // eslint-disable-line
        * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
        * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
        * @param {admin(directory_v1).CalendarResource} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['customer', 'calendarResourceId'],
           pathParams: ['calendarResourceId', 'customer'],
@@ -1724,15 +2110,22 @@ function Admin(options) { // eslint-disable-line
        * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
        * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
        * @param {admin(directory_v1).CalendarResource} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['customer', 'calendarResourceId'],
           pathParams: ['calendarResourceId', 'customer'],
@@ -1757,15 +2150,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the Google Apps account.
      * @param {string} params.roleAssignmentId Immutable ID of the role assignment.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'roleAssignmentId'],
         pathParams: ['customer', 'roleAssignmentId'],
@@ -1786,15 +2186,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the Google Apps account.
      * @param {string} params.roleAssignmentId Immutable ID of the role assignment.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'roleAssignmentId'],
         pathParams: ['customer', 'roleAssignmentId'],
@@ -1815,15 +2222,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the Google Apps account.
      * @param {admin(directory_v1).RoleAssignment} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
@@ -1847,15 +2261,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.pageToken Token to specify the next page in the list.
      * @param {string=} params.roleId Immutable ID of a role. If included in the request, returns only role assignments containing this role ID.
      * @param {string=} params.userKey The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
@@ -1880,15 +2301,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the Google Apps account.
      * @param {string} params.roleId Immutable ID of the role.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'roleId'],
         pathParams: ['customer', 'roleId'],
@@ -1909,15 +2337,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the Google Apps account.
      * @param {string} params.roleId Immutable ID of the role.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'roleId'],
         pathParams: ['customer', 'roleId'],
@@ -1938,15 +2373,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customer Immutable ID of the Google Apps account.
      * @param {admin(directory_v1).Role} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
@@ -1968,15 +2410,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customer Immutable id of the Google Apps account.
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken Token to specify the next page in the list.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer'],
         pathParams: ['customer'],
@@ -1998,15 +2447,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customer Immutable ID of the Google Apps account.
      * @param {string} params.roleId Immutable ID of the role.
      * @param {admin(directory_v1).Role} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'roleId'],
         pathParams: ['customer', 'roleId'],
@@ -2028,15 +2484,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customer Immutable ID of the Google Apps account.
      * @param {string} params.roleId Immutable ID of the role.
      * @param {admin(directory_v1).Role} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['customer', 'roleId'],
         pathParams: ['customer', 'roleId'],
@@ -2061,15 +2524,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.schemaKey Name or immutable Id of the schema
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'schemaKey'],
         pathParams: ['customerId', 'schemaKey'],
@@ -2090,15 +2560,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.schemaKey Name or immutable Id of the schema
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'schemaKey'],
         pathParams: ['customerId', 'schemaKey'],
@@ -2119,15 +2596,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {admin(directory_v1).Schema} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
@@ -2147,15 +2631,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
@@ -2177,15 +2668,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.schemaKey Name or immutable Id of the schema.
      * @param {admin(directory_v1).Schema} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'schemaKey'],
         pathParams: ['customerId', 'schemaKey'],
@@ -2207,15 +2705,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.customerId Immutable id of the Google Apps account
      * @param {string} params.schemaKey Name or immutable Id of the schema.
      * @param {admin(directory_v1).Schema} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'schemaKey'],
         pathParams: ['customerId', 'schemaKey'],
@@ -2240,15 +2745,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.clientId The Client ID of the application the token is issued to.
      * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens/{clientId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey', 'clientId'],
         pathParams: ['clientId', 'userKey'],
@@ -2269,15 +2781,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.clientId The Client ID of the application the token is issued to.
      * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens/{clientId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey', 'clientId'],
         pathParams: ['clientId', 'userKey'],
@@ -2297,15 +2816,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
@@ -2329,15 +2855,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable Id of the user
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
@@ -2360,15 +2893,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.projection What subset of fields to fetch for this user.
      * @param {string} params.userKey Email or immutable Id of the user
      * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
@@ -2388,15 +2928,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {admin(directory_v1).User} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -2427,15 +2974,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.showDeleted If set to true retrieves the list of deleted users. Default is false
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
      * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -2456,15 +3010,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable Id of the user as admin
      * @param {admin(directory_v1).UserMakeAdmin} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    makeAdmin: function (params, callback) {
+    makeAdmin: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/makeAdmin',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
@@ -2485,15 +3046,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable Id of the user. If Id, it should match with id of user object
      * @param {admin(directory_v1).User} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
@@ -2514,15 +3082,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.userKey The immutable id of the user
      * @param {admin(directory_v1).UserUndelete} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete: function (params, callback) {
+    undelete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/undelete',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
@@ -2543,15 +3118,22 @@ function Admin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable Id of the user. If Id, it should match with id of user object
      * @param {admin(directory_v1).User} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
@@ -2583,15 +3165,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
      * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
      * @param {admin(directory_v1).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function (params, callback) {
+    watch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/watch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -2614,15 +3203,22 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.alias The alias to be removed
        * @param {string} params.userKey Email or immutable Id of the user
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases/{alias}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['userKey', 'alias'],
           pathParams: ['alias', 'userKey'],
@@ -2643,15 +3239,22 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.userKey Email or immutable Id of the user
        * @param {admin(directory_v1).Alias} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['userKey'],
           pathParams: ['userKey'],
@@ -2672,15 +3275,22 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string=} params.event Event on which subscription is intended (if subscribing)
        * @param {string} params.userKey Email or immutable Id of the user
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userKey'],
           pathParams: ['userKey'],
@@ -2702,15 +3312,22 @@ function Admin(options) { // eslint-disable-line
        * @param {string=} params.event Event on which subscription is intended (if subscribing)
        * @param {string} params.userKey Email or immutable Id of the user
        * @param {admin(directory_v1).Channel} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      watch: function (params, callback) {
+      watch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases/watch',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['userKey'],
           pathParams: ['userKey'],
@@ -2733,15 +3350,22 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userKey Email or immutable Id of the user
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['userKey'],
           pathParams: ['userKey'],
@@ -2761,15 +3385,22 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userKey Email or immutable Id of the user
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userKey'],
           pathParams: ['userKey'],
@@ -2790,15 +3421,22 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.userKey Email or immutable Id of the user
        * @param {admin(directory_v1).UserPhoto} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['userKey'],
           pathParams: ['userKey'],
@@ -2819,15 +3457,22 @@ function Admin(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.userKey Email or immutable Id of the user
        * @param {admin(directory_v1).UserPhoto} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['userKey'],
           pathParams: ['userKey'],
@@ -2851,15 +3496,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable Id of the user
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate: function (params, callback) {
+    generate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes/generate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
@@ -2879,15 +3531,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Email or immutable Id of the user
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    invalidate: function (params, callback) {
+    invalidate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes/invalidate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],
@@ -2907,15 +3566,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey'],
         pathParams: ['userKey'],

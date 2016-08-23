@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Play Game Services Publishing API
@@ -51,15 +52,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/achievements/{achievementId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
@@ -79,15 +87,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/achievements/{achievementId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
@@ -108,15 +123,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
      * @param {gamesConfiguration(v1configuration).AchievementConfiguration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/applications/{applicationId}/achievements',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
@@ -138,15 +160,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      * @param {string} params.applicationId The application ID from the Google Play developer console.
      * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/applications/{applicationId}/achievements',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
@@ -167,15 +196,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
      * @param {gamesConfiguration(v1configuration).AchievementConfiguration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/achievements/{achievementId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
@@ -196,15 +232,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
      * @param {gamesConfiguration(v1configuration).AchievementConfiguration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/achievements/{achievementId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
@@ -232,15 +275,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    upload: function (params, callback) {
+    upload: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/images/{resourceId}/imageType/{imageType}',
           method: 'POST'
-        },
+        }, options),
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/games/v1configuration/images/{resourceId}/imageType/{imageType}',
         requiredParams: ['resourceId', 'imageType'],
@@ -265,15 +315,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.leaderboardId The ID of the leaderboard.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/leaderboards/{leaderboardId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
@@ -293,15 +350,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.leaderboardId The ID of the leaderboard.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/leaderboards/{leaderboardId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
@@ -322,15 +386,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
      * @param {gamesConfiguration(v1configuration).LeaderboardConfiguration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/applications/{applicationId}/leaderboards',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
@@ -352,15 +423,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      * @param {string} params.applicationId The application ID from the Google Play developer console.
      * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/applications/{applicationId}/leaderboards',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
@@ -381,15 +459,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.leaderboardId The ID of the leaderboard.
      * @param {gamesConfiguration(v1configuration).LeaderboardConfiguration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/leaderboards/{leaderboardId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
@@ -410,15 +495,22 @@ function Gamesconfiguration(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.leaderboardId The ID of the leaderboard.
      * @param {gamesConfiguration(v1configuration).LeaderboardConfiguration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/leaderboards/{leaderboardId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],

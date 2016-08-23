@@ -1,3 +1,8 @@
+##### 12.4.0 - 23 August 2016
+
+###### Backwards compatible changes
+- #623 - Add support for overriding request options.
+
 ##### 12.3.0 - 17 August 2016
 
 ###### Backwards compatible changes

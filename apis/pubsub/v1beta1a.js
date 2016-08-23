@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Cloud Pub/Sub API
@@ -51,15 +52,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {pubsub(v1beta1a).Topic} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/topics',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -79,15 +87,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {pubsub(v1beta1a).PublishRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    publish: function (params, callback) {
+    publish: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/topics/publish',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -107,15 +122,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {pubsub(v1beta1a).PublishBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    publishBatch: function (params, callback) {
+    publishBatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/topics/publishBatch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -135,15 +157,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.topic The name of the topic to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/topics/{topic}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
@@ -165,15 +194,22 @@ function Pubsub(options) { // eslint-disable-line
      * @param {string=} params.query A valid label query expression.
      * @param {integer=} params.maxResults Maximum number of topics to return.
      * @param {string=} params.pageToken The value obtained in the last ListTopicsResponse for continuation.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/topics',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -193,15 +229,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.topic Name of the topic to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/topics/{topic}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['topic'],
         pathParams: ['topic'],
@@ -225,15 +268,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {pubsub(v1beta1a).Subscription} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -253,15 +303,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.subscription The name of the subscription to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/{subscription}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
@@ -283,15 +340,22 @@ function Pubsub(options) { // eslint-disable-line
      * @param {string=} params.query A valid label query expression.
      * @param {integer=} params.maxResults Maximum number of subscriptions to return.
      * @param {string=} params.pageToken The value obtained in the last ListSubscriptionsResponse for continuation.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -311,15 +375,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.subscription The subscription to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/{subscription}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['subscription'],
         pathParams: ['subscription'],
@@ -339,15 +410,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {pubsub(v1beta1a).ModifyPushConfigRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    modifyPushConfig: function (params, callback) {
+    modifyPushConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/modifyPushConfig',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -367,15 +445,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {pubsub(v1beta1a).PullRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    pull: function (params, callback) {
+    pull: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/pull',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -395,15 +480,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {pubsub(v1beta1a).PullBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    pullBatch: function (params, callback) {
+    pullBatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/pullBatch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -423,15 +515,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {pubsub(v1beta1a).ModifyAckDeadlineRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    modifyAckDeadline: function (params, callback) {
+    modifyAckDeadline: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/modifyAckDeadline',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -451,15 +550,22 @@ function Pubsub(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {pubsub(v1beta1a).AcknowledgeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledge: function (params, callback) {
+    acknowledge: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://pubsub.googleapis.com/v1beta1a/subscriptions/acknowledge',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

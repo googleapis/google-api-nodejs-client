@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * YouTube Reporting API
@@ -51,15 +52,22 @@ function Youtubereporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.resourceName Name of the media that is being downloaded. See ReadRequest.resource_name.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    download: function (params, callback) {
+    download: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://youtubereporting.googleapis.com/v1/media/{resourceName}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['resourceName'],
         pathParams: ['resourceName'],
@@ -86,15 +94,22 @@ function Youtubereporting(options) { // eslint-disable-line
      * @param {integer=} params.pageSize Requested page size. Server may return fewer report types than requested. If unspecified, server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListReportTypes` method.
      * @param {boolean=} params.includeSystemManaged If set to true, also system-managed report types will be returned; otherwise only the report types that can be used to create new reporting jobs will be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://youtubereporting.googleapis.com/v1/reportTypes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -119,15 +134,22 @@ function Youtubereporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      * @param {youtubereporting(v1).Job} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://youtubereporting.googleapis.com/v1/jobs',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -150,15 +172,22 @@ function Youtubereporting(options) { // eslint-disable-line
      * @param {integer=} params.pageSize Requested page size. Server may return fewer jobs than requested. If unspecified, server will pick an appropriate default.
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListJobs` method.
      * @param {boolean=} params.includeSystemManaged If set to true, also system-managed jobs will be returned; otherwise only user-created jobs will be returned. System-managed jobs can neither be modified nor deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://youtubereporting.googleapis.com/v1/jobs',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -179,15 +208,22 @@ function Youtubereporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.jobId The ID of the job to retrieve.
      * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://youtubereporting.googleapis.com/v1/jobs/{jobId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
@@ -208,15 +244,22 @@ function Youtubereporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.jobId The ID of the job to delete.
      * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://youtubereporting.googleapis.com/v1/jobs/{jobId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['jobId'],
         pathParams: ['jobId'],
@@ -244,15 +287,22 @@ function Youtubereporting(options) { // eslint-disable-line
        * @param {string=} params.createdAfter If set, only reports created after the specified date/time are returned.
        * @param {string=} params.startTimeAtOrAfter If set, only reports whose start time is greater than or equal the specified date/time are returned.
        * @param {string=} params.startTimeBefore If set, only reports whose start time is smaller than the specified date/time are returned.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://youtubereporting.googleapis.com/v1/jobs/{jobId}/reports',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['jobId'],
           pathParams: ['jobId'],
@@ -274,15 +324,22 @@ function Youtubereporting(options) { // eslint-disable-line
        * @param {string} params.jobId The ID of the job.
        * @param {string} params.reportId The ID of the report to retrieve.
        * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://youtubereporting.googleapis.com/v1/jobs/{jobId}/reports/{reportId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['jobId', 'reportId'],
           pathParams: ['jobId', 'reportId'],

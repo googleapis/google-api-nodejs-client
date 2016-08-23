@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Freebase Search
@@ -54,15 +55,22 @@ function Freebase(options) { // eslint-disable-line
    * @param {integer=} params.limit Maximum number of candidates to return.
    * @param {string=} params.name Name of entity.
    * @param {string=} params.prop Property values for entity formatted as :
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.reconcile = function (params, callback) {
+  this.reconcile = function (params, options, callback) {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    options || (options = {});
+
     var parameters = {
-      options: {
+      options: utils.extend({
         url: 'https://www.googleapis.com/freebase/v1/reconcile',
         method: 'GET'
-      },
+      }, options),
       params: params,
       requiredParams: [],
       pathParams: [],
@@ -104,15 +112,22 @@ function Freebase(options) { // eslint-disable-line
    * @param {string=} params.type Restrict to topics with this Freebase type id.
    * @param {string=} params.with A rule to match against.
    * @param {string=} params.without A rule to not match against.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.search = function (params, callback) {
+  this.search = function (params, options, callback) {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    options || (options = {});
+
     var parameters = {
-      options: {
+      options: utils.extend({
         url: 'https://www.googleapis.com/freebase/v1/search',
         method: 'GET'
-      },
+      }, options),
       params: params,
       requiredParams: [],
       pathParams: [],

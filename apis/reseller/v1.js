@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Enterprise Apps Reseller API
@@ -51,15 +52,22 @@ function Reseller(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.customerId Id of the Customer
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
@@ -80,15 +88,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.customerAuthToken An auth token needed for inserting a customer for which domain already exists. Can be generated at https://admin.google.com/TransferToken. Optional.
      * @param {reseller(v1).Customer} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -109,15 +124,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Id of the Customer
      * @param {reseller(v1).Customer} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
@@ -138,15 +160,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Id of the Customer
      * @param {reseller(v1).Customer} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
@@ -171,15 +200,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Id of the Customer
      * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    activate: function (params, callback) {
+    activate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/activate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
@@ -201,15 +237,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {string} params.customerId Id of the Customer
      * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
      * @param {reseller(v1).ChangePlanRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    changePlan: function (params, callback) {
+    changePlan: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changePlan',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
@@ -231,15 +274,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {string} params.customerId Id of the Customer
      * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
      * @param {reseller(v1).RenewalSettings} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    changeRenewalSettings: function (params, callback) {
+    changeRenewalSettings: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeRenewalSettings',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
@@ -261,15 +311,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {string} params.customerId Id of the Customer
      * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
      * @param {reseller(v1).Seats} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    changeSeats: function (params, callback) {
+    changeSeats: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/changeSeats',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
@@ -291,15 +348,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {string} params.customerId Id of the Customer
      * @param {string} params.deletionType Whether the subscription is to be fully cancelled or downgraded
      * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'subscriptionId', 'deletionType'],
         pathParams: ['customerId', 'subscriptionId'],
@@ -320,15 +384,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Id of the Customer
      * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
@@ -350,15 +421,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {string=} params.customerAuthToken An auth token needed for transferring a subscription. Can be generated at https://www.google.com/a/cpanel/customer-domain/TransferToken. Optional.
      * @param {string} params.customerId Id of the Customer
      * @param {reseller(v1).Subscription} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId'],
         pathParams: ['customerId'],
@@ -382,15 +460,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {string=} params.customerNamePrefix Prefix of the customer's domain name by which the subscriptions should be filtered. Optional
      * @param {integer=} params.maxResults Maximum number of results to return
      * @param {string=} params.pageToken Token to specify next page in the list
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/subscriptions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -411,15 +496,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Id of the Customer
      * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    startPaidService: function (params, callback) {
+    startPaidService: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/startPaidService',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],
@@ -440,15 +532,22 @@ function Reseller(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.customerId Id of the Customer
      * @param {string} params.subscriptionId Id of the subscription, which is unique for a customer
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    suspend: function (params, callback) {
+    suspend: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/apps/reseller/v1/customers/{customerId}/subscriptions/{subscriptionId}/suspend',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['customerId', 'subscriptionId'],
         pathParams: ['customerId', 'subscriptionId'],

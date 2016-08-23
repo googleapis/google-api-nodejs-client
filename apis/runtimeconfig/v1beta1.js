@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Cloud RuntimeConfig API
@@ -55,15 +56,22 @@ function Runtimeconfig(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name The name of the RuntimeConfig resource to update, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
        * @param {runtimeconfig(v1beta1).RuntimeConfig} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -83,15 +91,22 @@ function Runtimeconfig(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The name of the RuntimeConfig resource to retrieve, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -112,15 +127,22 @@ function Runtimeconfig(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.parent The [project ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848) for this request, in the format `projects/[PROJECT_ID]`.
        * @param {runtimeconfig(v1beta1).RuntimeConfig} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/configs',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['parent'],
           pathParams: ['parent'],
@@ -142,15 +164,22 @@ function Runtimeconfig(options) { // eslint-disable-line
        * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
        * @param {string} params.parent The [project ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848) for this request, in the format `projects/[PROJECT_ID]`.
        * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/configs',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['parent'],
           pathParams: ['parent'],
@@ -170,15 +199,22 @@ function Runtimeconfig(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.name The RuntimeConfig resource to delete, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -201,15 +237,22 @@ function Runtimeconfig(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.name The name of the variable to watch, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
          * @param {runtimeconfig(v1beta1).WatchVariableRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        watch: function (params, callback) {
+        watch: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}:watch',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['name'],
             pathParams: ['name'],
@@ -232,15 +275,22 @@ function Runtimeconfig(options) { // eslint-disable-line
          * @param {string=} params.filter Filters variables by matching the specified filter. For example:  `projects/example-project/config/[CONFIG_NAME]/variables/example-variable`.
          * @param {string} params.parent The path to the RuntimeConfig resource for which you want to list variables. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
          * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/variables',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['parent'],
             pathParams: ['parent'],
@@ -260,15 +310,22 @@ function Runtimeconfig(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.name The name of the variable to return, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIBLE_NAME]`
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['name'],
             pathParams: ['name'],
@@ -289,15 +346,22 @@ function Runtimeconfig(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.parent The path to the RutimeConfig resource that this variable should belong to. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
          * @param {runtimeconfig(v1beta1).Variable} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/variables',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['parent'],
             pathParams: ['parent'],
@@ -318,15 +382,22 @@ function Runtimeconfig(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.name The name of the variable to update, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
          * @param {runtimeconfig(v1beta1).Variable} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['name'],
             pathParams: ['name'],
@@ -347,15 +418,22 @@ function Runtimeconfig(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {boolean=} params.recursive Set to `true` to recursively delete multiple variables with the same prefix.
          * @param {string} params.name The name of the variable to delete, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['name'],
             pathParams: ['name'],
@@ -378,15 +456,22 @@ function Runtimeconfig(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.name The fully-qualified name of the Waiter resource object to retrieve, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['name'],
             pathParams: ['name'],
@@ -407,15 +492,22 @@ function Runtimeconfig(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.parent The path to the configuration that will own the waiter. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`.
          * @param {runtimeconfig(v1beta1).Waiter} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        create: function (params, callback) {
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/waiters',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['parent'],
             pathParams: ['parent'],
@@ -437,15 +529,22 @@ function Runtimeconfig(options) { // eslint-disable-line
          * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
          * @param {string} params.parent The path to the configuration for which you want to get a list of waiters. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
          * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/waiters',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['parent'],
             pathParams: ['parent'],
@@ -465,15 +564,22 @@ function Runtimeconfig(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.name The Waiter resource to delete, in the format:   `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['name'],
             pathParams: ['name'],
@@ -496,15 +602,22 @@ function Runtimeconfig(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.name The name of the operation resource.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['name'],
             pathParams: ['name'],

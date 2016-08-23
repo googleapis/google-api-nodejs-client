@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Prediction API
@@ -50,15 +51,22 @@ function Prediction(options) { // eslint-disable-line
    * @param {object} params Parameters for request
    * @param {string} params.data mybucket%2Fmydata resource in Google Storage
    * @param {prediction(v1.2).Input} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  this.predict = function (params, callback) {
+  this.predict = function (params, options, callback) {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    options || (options = {});
+
     var parameters = {
-      options: {
+      options: utils.extend({
         url: 'https://www.googleapis.com/prediction/v1.2/training/{data}/predict',
         method: 'POST'
-      },
+      }, options),
       params: params,
       requiredParams: ['data'],
       pathParams: ['data'],
@@ -81,15 +89,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.hostedModelName The name of a hosted model
      * @param {prediction(v1.2).Input} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    predict: function (params, callback) {
+    predict: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.2/hostedmodels/{hostedModelName}/predict',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['hostedModelName'],
         pathParams: ['hostedModelName'],
@@ -113,15 +128,22 @@ function Prediction(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.data mybucket/mydata resource in Google Storage
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.2/training/{data}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['data'],
         pathParams: ['data'],
@@ -141,15 +163,22 @@ function Prediction(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.data mybucket/mydata resource in Google Storage
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.2/training/{data}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['data'],
         pathParams: ['data'],
@@ -170,15 +199,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.data mybucket/mydata resource in Google Storage
      * @param {prediction(v1.2).Training} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.2/training',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -199,15 +235,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.data mybucket/mydata resource in Google Storage
      * @param {prediction(v1.2).Update} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.2/training/{data}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['data'],
         pathParams: ['data'],

@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * BigQuery API
@@ -55,7 +56,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -100,15 +101,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {string} params.datasetId Dataset ID of dataset being deleted
      * @param {boolean=} params.deleteContents If True, delete all the tables in the dataset. If False and the dataset contains tables, the request will fail. Default is False
      * @param {string} params.projectId Project ID of the dataset being deleted
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
@@ -132,7 +140,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -176,15 +184,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the requested dataset
      * @param {string} params.projectId Project ID of the requested dataset
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
@@ -208,7 +223,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -251,15 +266,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.projectId Project ID of the new dataset
      * @param {bigquery(v2).Dataset} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -283,7 +305,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -334,15 +356,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results to return
      * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
      * @param {string} params.projectId Project ID of the datasets to be listed
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -366,7 +395,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -413,15 +442,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {string} params.datasetId Dataset ID of the dataset being updated
      * @param {string} params.projectId Project ID of the dataset being updated
      * @param {bigquery(v2).Dataset} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
@@ -445,7 +481,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -492,15 +528,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {string} params.datasetId Dataset ID of the dataset being updated
      * @param {string} params.projectId Project ID of the dataset being updated
      * @param {bigquery(v2).Dataset} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
@@ -528,7 +571,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -572,15 +615,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the job to cancel
      * @param {string} params.projectId [Required] Project ID of the job to cancel
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function (params, callback) {
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/project/{projectId}/jobs/{jobId}/cancel',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
@@ -604,7 +654,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -648,15 +698,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.jobId [Required] Job ID of the requested job
      * @param {string} params.projectId [Required] Project ID of the requested job
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs/{jobId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
@@ -680,7 +737,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -728,15 +785,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {string} params.projectId [Required] Project ID of the query job
      * @param {string=} params.startIndex Zero-based index of the starting row
      * @param {integer=} params.timeoutMs How long to wait for the query to complete, in milliseconds, before returning. Default is 10 seconds. If the timeout passes before the job completes, the 'jobComplete' field in the response will be false
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getQueryResults: function (params, callback) {
+    getQueryResults: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/queries/{jobId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'jobId'],
         pathParams: ['jobId', 'projectId'],
@@ -760,7 +824,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -811,15 +875,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs',
           method: 'POST'
-        },
+        }, options),
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/bigquery/v2/projects/{projectId}/jobs',
         requiredParams: ['projectId'],
@@ -844,7 +915,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -896,15 +967,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {string} params.projectId Project ID of the jobs to list
      * @param {string=} params.projection Restrict information returned to a set of selected fields
      * @param {string=} params.stateFilter Filter for job state
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -928,7 +1006,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -971,15 +1049,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.projectId Project ID of the project billed for the query
      * @param {bigquery(v2).QueryRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function (params, callback) {
+    query: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/queries',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -1007,7 +1092,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1052,15 +1137,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return
      * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1088,7 +1180,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1139,15 +1231,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {string} params.projectId Project ID of the destination table.
      * @param {string} params.tableId Table ID of the destination table.
      * @param {bigquery(v2).TableDataInsertAllRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insertAll: function (params, callback) {
+    insertAll: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
@@ -1171,7 +1270,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1222,15 +1321,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {string} params.projectId Project ID of the table to read
      * @param {string=} params.startIndex Zero-based index of the starting row to read
      * @param {string} params.tableId Table ID of the table to read
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
@@ -1258,7 +1364,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1306,15 +1412,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {string} params.datasetId Dataset ID of the table to delete
      * @param {string} params.projectId Project ID of the table to delete
      * @param {string} params.tableId Table ID of the table to delete
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
@@ -1338,7 +1451,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1386,15 +1499,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {string} params.datasetId Dataset ID of the requested table
      * @param {string} params.projectId Project ID of the requested table
      * @param {string} params.tableId Table ID of the requested table
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
@@ -1418,7 +1538,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1465,15 +1585,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {string} params.datasetId Dataset ID of the new table
      * @param {string} params.projectId Project ID of the new table
      * @param {bigquery(v2).Table} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
@@ -1497,7 +1624,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1550,15 +1677,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of results to return
      * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
      * @param {string} params.projectId Project ID of the tables to list
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'datasetId'],
         pathParams: ['datasetId', 'projectId'],
@@ -1582,7 +1716,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1633,15 +1767,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {string} params.projectId Project ID of the table to update
      * @param {string} params.tableId Table ID of the table to update
      * @param {bigquery(v2).Table} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
@@ -1665,7 +1806,7 @@ function Bigquery(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1716,15 +1857,22 @@ function Bigquery(options) { // eslint-disable-line
      * @param {string} params.projectId Project ID of the table to update
      * @param {string} params.tableId Table ID of the table to update
      * @param {bigquery(v2).Table} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId', 'datasetId', 'tableId'],
         pathParams: ['datasetId', 'projectId', 'tableId'],
@@ -1944,6 +2092,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).TableSchema} schema [Optional] The schema for the destination table. The schema can be omitted if the destination table already exists, or if you&#39;re loading data from Google Cloud Datastore.
  * @property {string} schemaInline [Deprecated] The inline schema. For CSV schemas, specify as &quot;Field1:Type1[,Field2:Type2]*&quot;. For example, &quot;foo:STRING, bar:INTEGER, baz:FLOAT&quot;.
  * @property {string} schemaInlineFormat [Deprecated] The format of the schemaInline property.
+ * @property {string[]} schemaUpdateOptions [Experimental] Allows the schema of the desitination table to be updated as a side effect of the load job. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
  * @property {integer} skipLeadingRows [Optional] The number of rows at the top of a CSV file that BigQuery will skip when loading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped.
  * @property {string} sourceFormat [Optional] The format of the data files. For CSV files, specify &quot;CSV&quot;. For datastore backups, specify &quot;DATASTORE_BACKUP&quot;. For newline-delimited JSON, specify &quot;NEWLINE_DELIMITED_JSON&quot;. For Avro, specify &quot;AVRO&quot;. The default value is CSV.
  * @property {string[]} sourceUris [Required] The fully-qualified URIs that point to your data in Google Cloud Storage. Each URI can contain one &#39;*&#39; wildcard character and it must come after the &#39;bucket&#39; name.
@@ -1963,6 +2112,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} preserveNulls [Deprecated] This property is deprecated.
  * @property {string} priority [Optional] Specifies a priority for the query. Possible values include INTERACTIVE and BATCH. The default value is INTERACTIVE.
  * @property {string} query [Required] BigQuery SQL query to execute.
+ * @property {string[]} schemaUpdateOptions [Experimental] Allows the schema of the desitination table to be updated as a side effect of the query job. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
  * @property {object} tableDefinitions [Optional] If querying an external data source outside of BigQuery, describes the data format, location and other properties of the data source. By defining these properties, the data source can then be queried as if it were a standard BigQuery table.
  * @property {boolean} useLegacySql [Experimental] Specifies whether to use BigQuery&#39;s legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the values of allowLargeResults and flattenResults are ignored; query will be run as if allowLargeResults is true and flattenResults is false.
  * @property {boolean} useQueryCache [Optional] Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. Moreover, the query cache is only available when a query does not have a destination table specified. The default value is true.

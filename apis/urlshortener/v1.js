@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * URL Shortener API
@@ -52,15 +53,22 @@ function Urlshortener(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.projection Additional information to return.
      * @param {string} params.shortUrl The short URL, including the protocol.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/urlshortener/v1/url',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['shortUrl'],
         pathParams: [],
@@ -80,15 +88,22 @@ function Urlshortener(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {urlshortener(v1).Url} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/urlshortener/v1/url',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -109,15 +124,22 @@ function Urlshortener(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {string=} params.projection Additional information to return.
      * @param {string=} params.start-token Token for requesting successive pages of results.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/urlshortener/v1/url/history',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

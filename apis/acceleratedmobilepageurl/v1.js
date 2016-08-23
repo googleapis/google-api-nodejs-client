@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Accelerated Mobile Pages (AMP) URL API
@@ -52,15 +53,22 @@ function Acceleratedmobilepageurl(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {acceleratedmobilepageurl(v1).BatchGetAmpUrlsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchGet: function (params, callback) {
+    batchGet: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://acceleratedmobilepageurl.googleapis.com/v1/ampUrls:batchGet',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

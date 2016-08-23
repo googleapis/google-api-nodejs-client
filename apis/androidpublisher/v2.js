@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Play Developer API
@@ -52,15 +53,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    commit: function (params, callback) {
+    commit: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}:commit',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
@@ -81,15 +89,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
@@ -110,15 +125,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
@@ -139,15 +161,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
      * @param {androidpublisher(v2).AppEdit} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
@@ -168,15 +197,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.editId Unique identifier for this edit.
      * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    validate: function (params, callback) {
+    validate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}:validate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName', 'editId'],
         pathParams: ['editId', 'packageName'],
@@ -201,15 +237,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
           pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
@@ -231,15 +274,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      deleteall: function (params, callback) {
+      deleteall: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'apkVersionCode'],
           pathParams: ['apkVersionCode', 'editId', 'packageName'],
@@ -262,15 +312,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
           pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
@@ -292,15 +349,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {integer} params.apkVersionCode The APK version code whose APK-specific listings should be read or modified.
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'apkVersionCode'],
           pathParams: ['apkVersionCode', 'editId', 'packageName'],
@@ -324,15 +388,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {androidpublisher(v2).ApkListing} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
           pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
@@ -356,15 +427,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.language The language code (a BCP-47 language tag) of the APK-specific localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {androidpublisher(v2).ApkListing} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
           pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
@@ -389,15 +467,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {androidpublisher(v2).ApksAddExternallyHostedRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      addexternallyhosted: function (params, callback) {
+      addexternallyhosted: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/externallyHosted',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId'],
           pathParams: ['editId', 'packageName'],
@@ -418,15 +503,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId'],
           pathParams: ['editId', 'packageName'],
@@ -450,15 +542,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {object} params.media Media object
        * @param {string} params.media.mimeType Media mime-type
        * @param {string|object} params.media.body Media body contents
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      upload: function (params, callback) {
+      upload: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks',
             method: 'POST'
-          },
+          }, options),
           params: params,
           mediaUrl: 'https://www.googleapis.com/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks',
           requiredParams: ['packageName', 'editId'],
@@ -483,15 +582,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/details',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId'],
           pathParams: ['editId', 'packageName'],
@@ -513,15 +619,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {androidpublisher(v2).AppDetails} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/details',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId'],
           pathParams: ['editId', 'packageName'],
@@ -543,15 +656,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {androidpublisher(v2).AppDetails} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/details',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId'],
           pathParams: ['editId', 'packageName'],
@@ -577,15 +697,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.expansionFileType 
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
           pathParams: ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
@@ -609,15 +736,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.expansionFileType 
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {androidpublisher(v2).ExpansionFile} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
           pathParams: ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
@@ -641,15 +775,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.expansionFileType 
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {androidpublisher(v2).ExpansionFile} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
           pathParams: ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
@@ -675,15 +816,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {object} params.media Media object
        * @param {string} params.media.mimeType Media mime-type
        * @param {string|object} params.media.body Media body contents
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      upload: function (params, callback) {
+      upload: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
             method: 'POST'
-          },
+          }, options),
           params: params,
           mediaUrl: 'https://www.googleapis.com/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}',
           requiredParams: ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
@@ -711,15 +859,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.imageType 
        * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'language', 'imageType', 'imageId'],
           pathParams: ['editId', 'imageId', 'imageType', 'language', 'packageName'],
@@ -742,15 +897,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.imageType 
        * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      deleteall: function (params, callback) {
+      deleteall: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'language', 'imageType'],
           pathParams: ['editId', 'imageType', 'language', 'packageName'],
@@ -773,15 +935,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.imageType 
        * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing whose images are to read or modified. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'language', 'imageType'],
           pathParams: ['editId', 'imageType', 'language', 'packageName'],
@@ -807,15 +976,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {object} params.media Media object
        * @param {string} params.media.mimeType Media mime-type
        * @param {string|object} params.media.body Media body contents
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      upload: function (params, callback) {
+      upload: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
             method: 'POST'
-          },
+          }, options),
           params: params,
           mediaUrl: 'https://www.googleapis.com/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}',
           requiredParams: ['packageName', 'editId', 'language', 'imageType'],
@@ -841,15 +1017,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'language'],
           pathParams: ['editId', 'language', 'packageName'],
@@ -870,15 +1053,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      deleteall: function (params, callback) {
+      deleteall: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId'],
           pathParams: ['editId', 'packageName'],
@@ -900,15 +1090,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'language'],
           pathParams: ['editId', 'language', 'packageName'],
@@ -929,15 +1126,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId'],
           pathParams: ['editId', 'packageName'],
@@ -960,15 +1164,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {androidpublisher(v2).Listing} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'language'],
           pathParams: ['editId', 'language', 'packageName'],
@@ -991,15 +1202,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.language The language code (a BCP-47 language tag) of the localized listing to read or modify. For example, to select Austrian German, pass "de-AT".
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {androidpublisher(v2).Listing} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'language'],
           pathParams: ['editId', 'language', 'packageName'],
@@ -1024,15 +1242,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {string} params.track 
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'track'],
           pathParams: ['editId', 'packageName', 'track'],
@@ -1055,15 +1280,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {string} params.track 
        * @param {androidpublisher(v2).Testers} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'track'],
           pathParams: ['editId', 'packageName', 'track'],
@@ -1086,15 +1318,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {string} params.track 
        * @param {androidpublisher(v2).Testers} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'track'],
           pathParams: ['editId', 'packageName', 'track'],
@@ -1119,15 +1358,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {string} params.track The track type to read or modify.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'track'],
           pathParams: ['editId', 'packageName', 'track'],
@@ -1148,15 +1394,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.editId Unique identifier for this edit.
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId'],
           pathParams: ['editId', 'packageName'],
@@ -1179,15 +1432,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {string} params.track The track type to read or modify.
        * @param {androidpublisher(v2).Track} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'track'],
           pathParams: ['editId', 'packageName', 'track'],
@@ -1210,15 +1470,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.packageName Unique identifier for the Android app that is being updated; for example, "com.spiffygame".
        * @param {string} params.track The track type to read or modify.
        * @param {androidpublisher(v2).Track} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'editId', 'track'],
           pathParams: ['editId', 'packageName', 'track'],
@@ -1246,15 +1513,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {string=} params.productId The product id of the inapp product (for example, 'sku1'). This can be used to restrict the result set.
      * @param {integer=} params.startIndex 
      * @param {string=} params.token 
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/entitlements',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
@@ -1278,15 +1552,22 @@ function Androidpublisher(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {androidpublisher(v2).InappproductsBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batch: function (params, callback) {
+    batch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/inappproducts/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1307,15 +1588,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
      * @param {string} params.sku Unique identifier for the in-app product.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
@@ -1336,15 +1624,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.packageName 
      * @param {string} params.sku Unique identifier for the in-app product.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
@@ -1366,15 +1661,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {boolean=} params.autoConvertMissingPrices If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      * @param {string} params.packageName Unique identifier for the Android app; for example, "com.spiffygame".
      * @param {androidpublisher(v2).InAppProduct} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
@@ -1397,15 +1699,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {string} params.packageName Unique identifier for the Android app with in-app products; for example, "com.spiffygame".
      * @param {integer=} params.startIndex 
      * @param {string=} params.token 
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
@@ -1428,15 +1737,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
      * @param {string} params.sku Unique identifier for the in-app product.
      * @param {androidpublisher(v2).InAppProduct} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
@@ -1459,15 +1775,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {string} params.packageName Unique identifier for the Android app with the in-app product; for example, "com.spiffygame".
      * @param {string} params.sku Unique identifier for the in-app product.
      * @param {androidpublisher(v2).InAppProduct} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName', 'sku'],
         pathParams: ['packageName', 'sku'],
@@ -1495,15 +1818,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.packageName The package name of the application the inapp product was sold in (for example, 'com.some.thing').
        * @param {string} params.productId The inapp product SKU (for example, 'com.some.thing.inapp1').
        * @param {string} params.token The token provided to the user's device when the inapp product was purchased.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/products/{productId}/tokens/{token}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'productId', 'token'],
           pathParams: ['packageName', 'productId', 'token'],
@@ -1528,15 +1858,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
        * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
        * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      cancel: function (params, callback) {
+      cancel: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'subscriptionId', 'token'],
           pathParams: ['packageName', 'subscriptionId', 'token'],
@@ -1559,15 +1896,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
        * @param {string} params.token The token provided to the user's device when the subscription was purchased.
        * @param {androidpublisher(v2).SubscriptionPurchasesDeferRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      defer: function (params, callback) {
+      defer: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'subscriptionId', 'token'],
           pathParams: ['packageName', 'subscriptionId', 'token'],
@@ -1589,15 +1933,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
        * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
        * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'subscriptionId', 'token'],
           pathParams: ['packageName', 'subscriptionId', 'token'],
@@ -1619,15 +1970,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
        * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
        * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      refund: function (params, callback) {
+      refund: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'subscriptionId', 'token'],
           pathParams: ['packageName', 'subscriptionId', 'token'],
@@ -1649,15 +2007,22 @@ function Androidpublisher(options) { // eslint-disable-line
        * @param {string} params.packageName The package name of the application for which this subscription was purchased (for example, 'com.some.thing').
        * @param {string} params.subscriptionId The purchased subscription ID (for example, 'monthly001').
        * @param {string} params.token The token provided to the user's device when the subscription was purchased.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      revoke: function (params, callback) {
+      revoke: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['packageName', 'subscriptionId', 'token'],
           pathParams: ['packageName', 'subscriptionId', 'token'],
@@ -1682,15 +2047,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
      * @param {string} params.reviewId 
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/reviews/{reviewId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName', 'reviewId'],
         pathParams: ['packageName', 'reviewId'],
@@ -1713,15 +2085,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
      * @param {integer=} params.startIndex 
      * @param {string=} params.token 
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/reviews',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName'],
         pathParams: ['packageName'],
@@ -1743,15 +2122,22 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
      * @param {string} params.reviewId 
      * @param {androidpublisher(v2).ReviewsReplyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reply: function (params, callback) {
+    reply: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/reviews/{reviewId}:reply',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['packageName', 'reviewId'],
         pathParams: ['packageName', 'reviewId'],

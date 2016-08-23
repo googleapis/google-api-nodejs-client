@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google+ Domains API
@@ -51,15 +52,22 @@ function Plusdomains(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.activityId The ID of the activity to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
@@ -81,15 +89,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {boolean=} params.preview If "true", extract the potential media attachments for a URL. The response will include all possible attachments for a URL, including video, photos, and articles based on the content of the page.
      * @param {string} params.userId The ID of the user to create the activity on behalf of. Its value should be "me", to indicate the authenticated user.
      * @param {plusDomains(v1).Activity} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/activities',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
@@ -112,15 +127,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of activities to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {string} params.userId The ID of the user to get activities for. The special value "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/activities/{collection}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
@@ -146,15 +168,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of circles to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {string} params.userId The ID of the user to get audiences for. The special value "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/audiences',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
@@ -180,15 +209,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {string} params.circleId The ID of the circle to add the person to.
      * @param {string=} params.email Email of the people to add to the circle. Optional, can be repeated.
      * @param {string=} params.userId IDs of the people to add to the circle. Optional, can be repeated.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addPeople: function (params, callback) {
+    addPeople: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
@@ -208,15 +244,22 @@ function Plusdomains(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.circleId The ID of the circle to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
@@ -237,15 +280,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.userId The ID of the user to create the circle on behalf of. The value "me" can be used to indicate the authenticated user.
      * @param {plusDomains(v1).Circle} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/circles',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
@@ -267,15 +317,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of circles to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {string} params.userId The ID of the user to get circles for. The special value "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/circles',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
@@ -296,15 +353,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.circleId The ID of the circle to update.
      * @param {plusDomains(v1).Circle} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
@@ -324,15 +388,22 @@ function Plusdomains(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.circleId The ID of the circle to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    remove: function (params, callback) {
+    remove: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
@@ -354,15 +425,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {string} params.circleId The ID of the circle to remove the person from.
      * @param {string=} params.email Email of the people to add to the circle. Optional, can be repeated.
      * @param {string=} params.userId IDs of the people to remove from the circle. Optional, can be repeated.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removePeople: function (params, callback) {
+    removePeople: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
@@ -383,15 +461,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.circleId The ID of the circle to update.
      * @param {plusDomains(v1).Circle} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],
@@ -415,15 +500,22 @@ function Plusdomains(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/comments/{commentId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['commentId'],
         pathParams: ['commentId'],
@@ -444,15 +536,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.activityId The ID of the activity to reply to.
      * @param {plusDomains(v1).Comment} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/comments',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
@@ -475,15 +574,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of comments to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {string=} params.sortOrder The order in which to sort the list of comments.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/comments',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['activityId'],
         pathParams: ['activityId'],
@@ -512,15 +618,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/media/{collection}',
           method: 'POST'
-        },
+        }, options),
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/plusDomains/v1/people/{userId}/media/{collection}',
         requiredParams: ['userId', 'collection'],
@@ -545,15 +658,22 @@ function Plusdomains(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId The ID of the person to get the profile for. The special value "me" can be used to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
@@ -577,15 +697,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {string=} params.orderBy The order to return people in.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {string} params.userId Get the collection of people for the person identified. Use "me" to indicate the authenticated user.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/people/{userId}/people/{collection}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId', 'collection'],
         pathParams: ['collection', 'userId'],
@@ -608,15 +735,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {string} params.collection The collection of people to list.
      * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listByActivity: function (params, callback) {
+    listByActivity: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/activities/{activityId}/people/{collection}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['activityId', 'collection'],
         pathParams: ['activityId', 'collection'],
@@ -638,15 +772,22 @@ function Plusdomains(options) { // eslint-disable-line
      * @param {string} params.circleId The ID of the circle to get the members of.
      * @param {integer=} params.maxResults The maximum number of people to include in the response, which is used for paging. For any response, the actual number returned might be less than the specified maxResults.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listByCircle: function (params, callback) {
+    listByCircle: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/plusDomains/v1/circles/{circleId}/people',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['circleId'],
         pathParams: ['circleId'],

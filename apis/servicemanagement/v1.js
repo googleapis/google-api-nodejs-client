@@ -19,11 +19,12 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Service Management API
  *
- * The service management API for Google Cloud Platform
+ * Google Service Management allows service producers to publish their services on Google Cloud Platform so that they can be discovered and used by service consumers.
  *
  * @example
  * var google = require('googleapis');
@@ -52,15 +53,22 @@ function Servicemanagement(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
      * @param {servicemanagement(v1).GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy: function (params, callback) {
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/{resource}:getIamPolicy',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
@@ -81,15 +89,22 @@ function Servicemanagement(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.serviceName Name of the service to disable. Specifying an unknown service name will cause the request to fail.
      * @param {servicemanagement(v1).DisableServiceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    disable: function (params, callback) {
+    disable: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}:disable',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
@@ -109,15 +124,22 @@ function Servicemanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {servicemanagement(v1).GenerateConfigReportRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generateConfigReport: function (params, callback) {
+    generateConfigReport: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/services:generateConfigReport',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -138,15 +160,22 @@ function Servicemanagement(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.configId 
      * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getConfig: function (params, callback) {
+    getConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/config',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
@@ -166,15 +195,22 @@ function Servicemanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.serviceName The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete: function (params, callback) {
+    undelete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}:undelete',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
@@ -194,15 +230,22 @@ function Servicemanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.serviceName The name of the service.  See the `ServiceManager` overview for naming requirements.  For example: `example.googleapis.com`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
@@ -224,15 +267,22 @@ function Servicemanagement(options) { // eslint-disable-line
      * @param {integer=} params.pageSize Requested size of the next page of data.
      * @param {string=} params.producerProjectId Include services produced by the specified project.
      * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/services',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -252,15 +302,22 @@ function Servicemanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {servicemanagement(v1).ManagedService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/services',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -273,7 +330,7 @@ function Servicemanagement(options) { // eslint-disable-line
     /**
      * servicemanagement.services.enable
      *
-     * @desc Enable a managed service for a project with default setting.  Operation<response: EnableServiceResponse>
+     * @desc Enable a managed service for a project with default setting.  Operation<response: EnableServiceResponse>  google.rpc.Status errors may contain a google.rpc.PreconditionFailure error detail.
      *
      * @alias servicemanagement.services.enable
      * @memberOf! servicemanagement(v1)
@@ -281,15 +338,22 @@ function Servicemanagement(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.serviceName Name of the service to enable. Specifying an unknown service name will cause the request to fail.
      * @param {servicemanagement(v1).EnableServiceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    enable: function (params, callback) {
+    enable: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}:enable',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
@@ -310,15 +374,22 @@ function Servicemanagement(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
      * @param {servicemanagement(v1).SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy: function (params, callback) {
+    setIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/{resource}:setIamPolicy',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
@@ -338,15 +409,22 @@ function Servicemanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
@@ -367,15 +445,22 @@ function Servicemanagement(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
      * @param {servicemanagement(v1).TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/{resource}:testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['resource'],
         pathParams: ['resource'],
@@ -398,15 +483,22 @@ function Servicemanagement(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.rolloutId The id of the rollout resource.
        * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/rollouts/{rolloutId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['serviceName', 'rolloutId'],
           pathParams: ['rolloutId', 'serviceName'],
@@ -419,7 +511,7 @@ function Servicemanagement(options) { // eslint-disable-line
       /**
        * servicemanagement.services.rollouts.create
        *
-       * @desc Creates a new service configuration rollout. Based on rollout, the Google Service Management will roll out the service configurations to different backend services. For example, the logging configuration will be pushed to Google Cloud Logging.  Operation<response: Rollout>
+       * @desc Creates a new service configuration rollout. Based on rollout, the Google Service Management will roll out the service configurations to different backend services. For example, the logging configuration will be pushed to Google Cloud Logging.  Please note that any previous pending and running Rollouts and associated Operations will be automatically cancelled so that the latest Rollout will not be blocked by previous Rollouts.  Operation<response: Rollout>
        *
        * @alias servicemanagement.services.rollouts.create
        * @memberOf! servicemanagement(v1)
@@ -427,15 +519,22 @@ function Servicemanagement(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {servicemanagement(v1).Rollout} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/rollouts',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['serviceName'],
           pathParams: ['serviceName'],
@@ -457,15 +556,22 @@ function Servicemanagement(options) { // eslint-disable-line
        * @param {integer=} params.pageSize The max number of items to include in the response list.
        * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {string=} params.pageToken The token of the page to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/rollouts',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['serviceName'],
           pathParams: ['serviceName'],
@@ -489,15 +595,22 @@ function Servicemanagement(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {servicemanagement(v1).SubmitConfigSourceRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      submit: function (params, callback) {
+      submit: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/configs:submit',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['serviceName'],
           pathParams: ['serviceName'],
@@ -518,15 +631,22 @@ function Servicemanagement(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.configId 
        * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/configs/{configId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['serviceName', 'configId'],
           pathParams: ['configId', 'serviceName'],
@@ -547,15 +667,22 @@ function Servicemanagement(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {servicemanagement(v1).Service} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/configs',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['serviceName'],
           pathParams: ['serviceName'],
@@ -577,15 +704,22 @@ function Servicemanagement(options) { // eslint-disable-line
        * @param {integer=} params.pageSize The max number of items to include in the response list.
        * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {string=} params.pageToken The token of the page to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/configs',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['serviceName'],
           pathParams: ['serviceName'],
@@ -609,15 +743,22 @@ function Servicemanagement(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/{name}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],
@@ -701,7 +842,9 @@ Example: visibility.rules[selector=&#39;LibraryService.CreateBook&#39;].restrict
  * @memberOf! servicemanagement(v1)
  * @type object
 * @property {string} displayName Optional. A concise name for the monitored resource type that might be
-displayed in user interfaces. For example, `&quot;Google Cloud SQL Database&quot;`.
+displayed in user interfaces. It should be a Title Cased Noun Phrase,
+without any article or other determiners. For example,
+`&quot;Google Cloud SQL Database&quot;`.
 * @property {string} description Optional. A detailed description of the monitored resource type that might
 be used in documentation.
 * @property {servicemanagement(v1).LabelDescriptor[]} labels Required. A set of labels used to describe instances of this monitored
@@ -1379,8 +1522,13 @@ but the generated config and the sources will NOT be persisted.
  * @memberOf! servicemanagement(v1)
  * @type object
 * @property {servicemanagement(v1).OAuthRequirements} oauth The requirements for OAuth credentials.
-* @property {boolean} allowWithoutCredential Whether to allow requests without a credential.  If quota is enabled, an
-API key is required for such request to pass the quota check.
+* @property {boolean} allowWithoutCredential Whether to allow requests without a credential. The credential can be
+an OAuth token, Google cookies (first-party auth) or EndUserCreds.
+
+For requests without credentials, if the service control environment is
+specified, each incoming request **must** be associated with a service
+consumer. This can be done by passing an API key that belongs to a consumer
+project.
 * @property {servicemanagement(v1).AuthRequirement[]} requirements Requirements for additional authentication providers.
 * @property {string} selector Selects the methods to which this rule applies.
 

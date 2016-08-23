@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Cloud Trace API
@@ -55,7 +56,7 @@ function Cloudtrace(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -98,15 +99,22 @@ function Cloudtrace(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
      * @param {cloudtrace(v1).Traces} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patchTraces: function (params, callback) {
+    patchTraces: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://cloudtrace.googleapis.com/v1/projects/{projectId}/traces',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -132,7 +140,7 @@ function Cloudtrace(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -186,15 +194,22 @@ function Cloudtrace(options) { // eslint-disable-line
        * @param {string=} params.endTime Start of the time interval (inclusive) during which the trace data was collected from the application.
        * @param {string=} params.filter An optional filter for the request.
        * @param {string=} params.orderBy Field used to sort the returned traces. Optional. Can be one of the following: * `trace_id` * `name` (`name` field of root span in the trace) * `duration` (difference between `end_time` and `start_time` fields of the root span) * `start` (`start_time` field of the root span) Descending order can be specified by appending `desc` to the sort field (for example, `name desc`). Only one sort field is permitted.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://cloudtrace.googleapis.com/v1/projects/{projectId}/traces',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -218,7 +233,7 @@ function Cloudtrace(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -262,15 +277,22 @@ function Cloudtrace(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
        * @param {string} params.traceId ID of the trace to return.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://cloudtrace.googleapis.com/v1/projects/{projectId}/traces/{traceId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'traceId'],
           pathParams: ['projectId', 'traceId'],

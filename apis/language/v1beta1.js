@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Cloud Natural Language API
@@ -51,15 +52,22 @@ function Language(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {language(v1beta1).AnalyzeSentimentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    analyzeSentiment: function (params, callback) {
+    analyzeSentiment: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://language.googleapis.com/v1beta1/documents:analyzeSentiment',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -79,15 +87,22 @@ function Language(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {language(v1beta1).AnnotateTextRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    annotateText: function (params, callback) {
+    annotateText: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://language.googleapis.com/v1beta1/documents:annotateText',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -107,15 +122,22 @@ function Language(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {language(v1beta1).AnalyzeEntitiesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    analyzeEntities: function (params, callback) {
+    analyzeEntities: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://language.googleapis.com/v1beta1/documents:analyzeEntities',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
