@@ -26,6 +26,30 @@ var url = require('url');
 var querystring = require('querystring');
 var secrets = require('./secrets.json');
 
+var called = false;
+
+function callOnce (callback) {
+  if (!called) {
+    called = true;
+    callback();
+  }
+}
+
+function handler (request, response, server, callback) {
+  var self = this;
+  var qs = querystring.parse(url.parse(request.url).query);
+  self.oAuth2Client.getToken(qs.code, function (err, tokens) {
+    if (err) {
+      console.error('Error getting oAuth tokens: ' + err);
+    }
+    self.oAuth2Client.setCredentials(tokens);
+    self.isAuthenticated = true;
+    response.end('Authentication successful! Please return to the console.');
+    callback(tokens);
+    server.close();
+  });
+}
+
 function SampleClient (options) {
   var self = this;
   self.isAuthenticated = false;
@@ -48,16 +72,8 @@ function SampleClient (options) {
       scope: scopes.join(' ')
     });
     var server = http.createServer(function (request, response) {
-      var qs = querystring.parse(url.parse(request.url).query);
-      self.oAuth2Client.getToken(qs.code, function (err, tokens) {
-        if (err) {
-          console.error('Error getting oAuth tokens: ' + err);
-        }
-        self.oAuth2Client.setCredentials(tokens);
-        self.isAuthenticated = true;
-        response.end('Authentication successful! Please return to the console.');
-        callback.apply();
-        server.close();
+      callOnce(function () {
+        handler.call(self, request, response, server, callback);
       });
     }).listen(8080, function () {
       // open the browser to the authorize url to start the workflow
