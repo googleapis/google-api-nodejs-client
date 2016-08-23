@@ -101,6 +101,14 @@ describe('Options', function () {
     assert.equal(req.uri.query, 'key=apikey3');
   });
 
+  it('should allow overriding endpoint options', function () {
+    var google = new googleapis.GoogleApis();
+    var drive = google.drive('v3');
+    var req = drive.files.get({ fileId: 'woot' }, { url: 'https://myproxy.com/drive/v3/files/{fileId}', encoding: null }, utils.noop);
+    assert.equal(req.url, 'https://myproxy.com/drive/v3/files/woot', 'Request used overridden url.');
+    assert.equal(req.encoding, null, 'Request used overridden encoding.');
+  });
+
   it('should apply endpoint options like proxy to oauth transporter', function () {
     var google = new googleapis.GoogleApis();
     var OAuth2 = google.auth.OAuth2;

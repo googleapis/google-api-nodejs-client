@@ -500,7 +500,7 @@ google.auth.getApplicationDefault(function (err, authClient) {
   var request = {
     projectId: '<your-project-id>',
     datasetId: '<your-dataset-id>',
-    
+
     // This is a "request-level" option
     auth: authClient
   };
@@ -512,6 +512,22 @@ google.auth.getApplicationDefault(function (err, authClient) {
       console.log(result);
     }
   });
+});
+```
+
+You can also override *request* options per request, such as `url`, `method`,
+and `encoding`.
+
+For example:
+
+```js
+drive.files.export({
+  fileId: 'asxKJod9s79', // A Google Doc
+  mimeType: 'application/pdf'
+}, {
+  encoding: null // Make sure we get the binary data
+}, function (err, buffer) {
+  // ...
 });
 ```
 
