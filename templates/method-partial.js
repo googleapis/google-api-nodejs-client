@@ -32,15 +32,22 @@
  * @param {object} params.resource Request body data
 {% endif -%}
 {% endif -%}
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-{% if globalmethods %}this.{{ mname }} ={% else %}{{ mname }}:{% endif %} function (params, callback) {
+{% if globalmethods %}this.{{ mname }} ={% else %}{{ mname }}:{% endif %} function (params, options, callback) {
+  if (typeof options === 'function') {
+    callback = options;
+    options = {};
+  }
+  options || (options = {});
+
   var parameters = {
-    options: {
+    options: utils.extend({
       url: {{ (rootUrl + servicePath + m.path)|buildurl }},
       method: '{{ m.httpMethod }}'
-    },
+    }, options),
     params: params,
     {%- if m.mediaUpload.protocols.simple.path -%}mediaUrl: {{ [rootUrl, m.mediaUpload.protocols.simple.path]|join('')|buildurl }},{%- endif -%}
     requiredParams: [{%- if m.parameterOrder.length -%}'{{ m.parameterOrder|join("', '")|safe }}'{%- endif -%}],

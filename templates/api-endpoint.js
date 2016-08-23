@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 {% set Name = name|capitalize %}
 {% set Version = version|replace('\.', '_')|capitalize %}
