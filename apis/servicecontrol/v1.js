@@ -19,11 +19,12 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Service Control API
  *
- * The Service Control API
+ * Google Service Control provides control plane functionality to managed services, such as logging, monitoring, and status checks.
  *
  * @example
  * var google = require('googleapis');
@@ -52,15 +53,22 @@ function Servicecontrol(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
      * @param {servicecontrol(v1).CheckRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    check: function (params, callback) {
+    check: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicecontrol.googleapis.com/v1/services/{serviceName}:check',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
@@ -81,15 +89,22 @@ function Servicecontrol(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.serviceName The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
      * @param {servicecontrol(v1).ReportRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    report: function (params, callback) {
+    report: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://servicecontrol.googleapis.com/v1/services/{serviceName}:report',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['serviceName'],
         pathParams: ['serviceName'],
@@ -175,7 +190,7 @@ but optional when the operation is used in ServiceController.Check.
        used to handle the API request (e.g. ESP),
     - `servicecontrol.googleapis.com/platform` describing the platform
        where the API is served (e.g. GAE, GCE, GKE).
-* @property {string} importance The importance of the data contained in the operation.
+* @property {string} importance DO NOT USE. This is an experimental field.
 * @property {string} consumerId Identity of the consumer who is using the service.
 This field should be filled in for the operations initiated by a
 consumer, but not for service-initiated operations that are
@@ -273,6 +288,7 @@ Otherwise the service should use the list of errors to determine the
 appropriate action.
 * @property {string} operationId The same operation_id value used in the CheckRequest.
 Used for logging and diagnostics purposes.
+* @property {string} serviceConfigId The actual config id used to process the request.
 */
 /**
  * @typedef ReportResponse
@@ -291,6 +307,7 @@ processing. There are three possible combinations of the RPC status:
    in this list.
 3. A failed RPC status indicates a complete failure where none of the
    `Operations` in the request succeeded.
+* @property {string} serviceConfigId The actual config id used to process the request.
 */
 /**
  * @typedef Distribution

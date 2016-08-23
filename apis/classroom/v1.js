@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Classroom API
@@ -51,15 +52,22 @@ function Classroom(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {classroom(v1).Course} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://classroom.googleapis.com/v1/courses',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -79,15 +87,22 @@ function Classroom(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Identifier of the course to return. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://classroom.googleapis.com/v1/courses/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -108,15 +123,22 @@ function Classroom(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
      * @param {classroom(v1).Course} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://classroom.googleapis.com/v1/courses/{id}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -138,15 +160,22 @@ function Classroom(options) { // eslint-disable-line
      * @param {string} params.id Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
      * @param {string=} params.updateMask Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `name` * `section` * `descriptionHeading` * `description` * `room` * `courseState` When set in a query parameter, this field should be specified as `updateMask=,,...`
      * @param {classroom(v1).Course} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://classroom.googleapis.com/v1/courses/{id}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -166,15 +195,22 @@ function Classroom(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Identifier of the course to delete. This identifier can be either the Classroom-assigned identifier or an alias.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://classroom.googleapis.com/v1/courses/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -197,15 +233,22 @@ function Classroom(options) { // eslint-disable-line
      * @param {string=} params.teacherId Restricts returned courses to those having a teacher with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
      * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://classroom.googleapis.com/v1/courses',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -228,15 +271,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course to alias. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {classroom(v1).CourseAlias} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId'],
           pathParams: ['courseId'],
@@ -257,15 +307,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course whose alias should be deleted. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {string} params.alias Alias to delete. This may not be the Classroom-assigned identifier.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases/{alias}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId', 'alias'],
           pathParams: ['courseId', 'alias'],
@@ -287,15 +344,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {string} params.courseId The identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
        * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId'],
           pathParams: ['courseId'],
@@ -319,15 +383,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {classroom(v1).Teacher} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId'],
           pathParams: ['courseId'],
@@ -348,15 +419,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {string} params.userId Identifier of the teacher to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId', 'userId'],
           pathParams: ['courseId', 'userId'],
@@ -377,15 +455,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {string} params.userId Identifier of the teacher to delete. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId', 'userId'],
           pathParams: ['courseId', 'userId'],
@@ -407,15 +492,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum. The server may return fewer than the specified number of results.
        * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId'],
           pathParams: ['courseId'],
@@ -440,15 +532,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {string} params.courseId Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {string=} params.enrollmentCode Enrollment code of the course to create the student in. This code is required if userId corresponds to the requesting user; it may be omitted if the requesting user has administrative permissions to create students for any user.
        * @param {classroom(v1).Student} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId'],
           pathParams: ['courseId'],
@@ -469,15 +568,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {string} params.userId Identifier of the student to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students/{userId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId', 'userId'],
           pathParams: ['courseId', 'userId'],
@@ -498,15 +604,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {string} params.userId Identifier of the student to delete. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students/{userId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId', 'userId'],
           pathParams: ['courseId', 'userId'],
@@ -528,15 +641,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum. The server may return fewer than the specified number of results.
        * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId'],
           pathParams: ['courseId'],
@@ -560,15 +680,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {classroom(v1).CourseWork} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId'],
           pathParams: ['courseId'],
@@ -589,15 +716,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
        * @param {string} params.id Identifier of the course work.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{id}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId', 'id'],
           pathParams: ['courseId', 'id'],
@@ -621,15 +755,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {string=} params.orderBy Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported fields are `updateTime` and `dueDate`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `dueDate asc,updateTime desc`, `updateTime,dueDate desc`
        * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
        * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['courseId'],
           pathParams: ['courseId'],
@@ -653,15 +794,22 @@ function Classroom(options) { // eslint-disable-line
          * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
          * @param {string} params.courseWorkId Identifier of the course work.
          * @param {string} params.id Identifier of the student submission.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['courseId', 'courseWorkId', 'id'],
             pathParams: ['courseId', 'courseWorkId', 'id'],
@@ -685,15 +833,22 @@ function Classroom(options) { // eslint-disable-line
          * @param {string} params.id Identifier of the student submission.
          * @param {string=} params.updateMask Mask that identifies which fields on the student submission to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields may be specified by teachers: * `draft_grade` * `assigned_grade`
          * @param {classroom(v1).StudentSubmission} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        patch: function (params, callback) {
+        patch: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
               method: 'PATCH'
-            },
+            }, options),
             params: params,
             requiredParams: ['courseId', 'courseWorkId', 'id'],
             pathParams: ['courseId', 'courseWorkId', 'id'],
@@ -719,15 +874,22 @@ function Classroom(options) { // eslint-disable-line
          * @param {string=} params.late Requested lateness value. If specified, returned student submissions are restricted by the requested value. If unspecified, submissions are returned regardless of `late` value.
          * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
          * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['courseId', 'courseWorkId'],
             pathParams: ['courseId', 'courseWorkId'],
@@ -750,15 +912,22 @@ function Classroom(options) { // eslint-disable-line
          * @param {string} params.courseWorkId Identifier of the course work.
          * @param {string} params.id Identifier of the student submission.
          * @param {classroom(v1).TurnInStudentSubmissionRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        turnIn: function (params, callback) {
+        turnIn: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['courseId', 'courseWorkId', 'id'],
             pathParams: ['courseId', 'courseWorkId', 'id'],
@@ -781,15 +950,22 @@ function Classroom(options) { // eslint-disable-line
          * @param {string} params.courseWorkId Identifier of the course work.
          * @param {string} params.id Identifier of the student submission.
          * @param {classroom(v1).ReclaimStudentSubmissionRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        reclaim: function (params, callback) {
+        reclaim: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['courseId', 'courseWorkId', 'id'],
             pathParams: ['courseId', 'courseWorkId', 'id'],
@@ -812,15 +988,22 @@ function Classroom(options) { // eslint-disable-line
          * @param {string} params.courseWorkId Identifier of the course work.
          * @param {string} params.id Identifier of the student submission.
          * @param {classroom(v1).ReturnStudentSubmissionRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        return: function (params, callback) {
+        return: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['courseId', 'courseWorkId', 'id'],
             pathParams: ['courseId', 'courseWorkId', 'id'],
@@ -843,15 +1026,22 @@ function Classroom(options) { // eslint-disable-line
          * @param {string} params.courseWorkId Identifier of the course work.
          * @param {string} params.id Identifier of the student submission.
          * @param {classroom(v1).ModifyAttachmentsRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        modifyAttachments: function (params, callback) {
+        modifyAttachments: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['courseId', 'courseWorkId', 'id'],
             pathParams: ['courseId', 'courseWorkId', 'id'],
@@ -876,15 +1066,22 @@ function Classroom(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId Identifier of the profile to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://classroom.googleapis.com/v1/userProfiles/{userId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
@@ -910,15 +1107,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {string=} params.states If specified, only results with the specified `state` values will be returned. Otherwise, results with a `state` of `PENDING` will be returned.
        * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
        * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['studentId'],
           pathParams: ['studentId'],
@@ -939,15 +1143,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.studentId The ID of the student whose guardian invitation is being requested.
        * @param {string} params.invitationId The `id` field of the `GuardianInvitation` being requested.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['studentId', 'invitationId'],
           pathParams: ['studentId', 'invitationId'],
@@ -968,15 +1179,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.studentId ID of the student (in standard format)
        * @param {classroom(v1).GuardianInvitation} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['studentId'],
           pathParams: ['studentId'],
@@ -999,15 +1217,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {string} params.invitationId The `id` field of the `GuardianInvitation` to be modified.
        * @param {string=} params.updateMask Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `state` When set in a query parameter, this field should be specified as `updateMask=,,...`
        * @param {classroom(v1).GuardianInvitation} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['studentId', 'invitationId'],
           pathParams: ['studentId', 'invitationId'],
@@ -1033,15 +1258,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {string=} params.invitedEmailAddress Filter results by the email address that the original invitation was sent to, resulting in this guardian link. This filter can only be used by domain administrators.
        * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
        * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['studentId'],
           pathParams: ['studentId'],
@@ -1062,15 +1294,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.studentId The student whose guardian is being requested. One of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
        * @param {string} params.guardianId The `id` field from a `Guardian`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['studentId', 'guardianId'],
           pathParams: ['studentId', 'guardianId'],
@@ -1091,15 +1330,22 @@ function Classroom(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.studentId The student whose guardian is to be deleted. One of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
        * @param {string} params.guardianId The `id` field from a `Guardian`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['studentId', 'guardianId'],
           pathParams: ['studentId', 'guardianId'],
@@ -1123,15 +1369,22 @@ function Classroom(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {classroom(v1).Invitation} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://classroom.googleapis.com/v1/invitations',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1151,15 +1404,22 @@ function Classroom(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Identifier of the invitation to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://classroom.googleapis.com/v1/invitations/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -1179,15 +1439,22 @@ function Classroom(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Identifier of the invitation to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://classroom.googleapis.com/v1/invitations/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -1210,15 +1477,22 @@ function Classroom(options) { // eslint-disable-line
      * @param {string=} params.courseId Restricts returned invitations to those for a course with the specified identifier.
      * @param {integer=} params.pageSize Maximum number of items to return. Zero means no maximum. The server may return fewer than the specified number of results.
      * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://classroom.googleapis.com/v1/invitations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1238,15 +1512,22 @@ function Classroom(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Identifier of the invitation to accept.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept: function (params, callback) {
+    accept: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://classroom.googleapis.com/v1/invitations/{id}:accept',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],

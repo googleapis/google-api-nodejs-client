@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * CustomSearch API
@@ -82,15 +83,22 @@ function Customsearch(options) { // eslint-disable-line
      * @param {string=} params.siteSearchFilter Controls whether to include or exclude results from the site named in the as_sitesearch parameter
      * @param {string=} params.sort The sort expression to apply to the results
      * @param {integer=} params.start The index of the first result to return
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/customsearch/v1',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['q'],
         pathParams: [],

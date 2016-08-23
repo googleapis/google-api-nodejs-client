@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Fusion Tables API
@@ -52,15 +53,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.columnId Name or identifier for the column being deleted.
      * @param {string} params.tableId Table from which the column is being deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns/{columnId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
@@ -81,15 +89,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.columnId Name or identifier for the column that is being requested.
      * @param {string} params.tableId Table to which the column belongs.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns/{columnId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
@@ -110,15 +125,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table for which a new column is being added.
      * @param {fusiontables(v2).Column} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
@@ -140,15 +162,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of columns to return. Default is 5.
      * @param {string=} params.pageToken Continuation token specifying which result page to return.
      * @param {string} params.tableId Table whose columns are being listed.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
@@ -170,15 +199,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {string} params.columnId Name or identifier for the column that is being updated.
      * @param {string} params.tableId Table for which the column is being updated.
      * @param {fusiontables(v2).Column} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns/{columnId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
@@ -200,15 +236,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {string} params.columnId Name or identifier for the column that is being updated.
      * @param {string} params.tableId Table for which the column is being updated.
      * @param {fusiontables(v2).Column} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/columns/{columnId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'columnId'],
         pathParams: ['columnId', 'tableId'],
@@ -234,15 +277,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {boolean=} params.hdrs Whether column names are included in the first row. Default is true.
      * @param {string} params.sql A Fusion Tables SQL statement, which can be any of  - SELECT - INSERT - UPDATE - DELETE - SHOW - DESCRIBE - CREATE
      * @param {boolean=} params.typed Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sql: function (params, callback) {
+    sql: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/query',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['sql'],
         pathParams: [],
@@ -264,15 +314,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {boolean=} params.hdrs Whether column names are included (in the first row). Default is true.
      * @param {string} params.sql A SQL statement which can be any of  - SELECT - SHOW - DESCRIBE
      * @param {boolean=} params.typed Whether typed values are returned in the (JSON) response: numbers for numeric values and parsed geometries for KML values. Default is true.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sqlGet: function (params, callback) {
+    sqlGet: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/query',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['sql'],
         pathParams: [],
@@ -297,15 +354,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {integer} params.styleId Identifier (within a table) for the style being deleted
      * @param {string} params.tableId Table from which the style is being deleted
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles/{styleId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
@@ -326,15 +390,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {integer} params.styleId Identifier (integer) for a specific style in a table
      * @param {string} params.tableId Table to which the requested style belongs
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles/{styleId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
@@ -355,15 +426,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table for which a new style is being added
      * @param {fusiontables(v2).StyleSetting} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
@@ -385,15 +463,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of styles to return. Optional. Default is 5.
      * @param {string=} params.pageToken Continuation token specifying which result page to return. Optional.
      * @param {string} params.tableId Table whose styles are being listed
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
@@ -415,15 +500,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {integer} params.styleId Identifier (within a table) for the style being updated.
      * @param {string} params.tableId Table whose style is being updated.
      * @param {fusiontables(v2).StyleSetting} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles/{styleId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
@@ -445,15 +537,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {integer} params.styleId Identifier (within a table) for the style being updated.
      * @param {string} params.tableId Table whose style is being updated.
      * @param {fusiontables(v2).StyleSetting} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/styles/{styleId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'styleId'],
         pathParams: ['styleId', 'tableId'],
@@ -478,15 +577,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.copyPresentation Whether to also copy tabs, styles, and templates. Default is false.
      * @param {string} params.tableId ID of the table that is being copied.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy: function (params, callback) {
+    copy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/copy',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
@@ -506,15 +612,22 @@ function Fusiontables(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.tableId ID of the table to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
@@ -534,15 +647,22 @@ function Fusiontables(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.tableId Identifier for the table being requested.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
@@ -570,15 +690,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    importRows: function (params, callback) {
+    importRows: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/import',
           method: 'POST'
-        },
+        }, options),
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v2/tables/{tableId}/import',
         requiredParams: ['tableId'],
@@ -604,15 +731,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    importTable: function (params, callback) {
+    importTable: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/import',
           method: 'POST'
-        },
+        }, options),
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v2/tables/import',
         requiredParams: ['name'],
@@ -633,15 +767,22 @@ function Fusiontables(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {fusiontables(v2).Table} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -662,15 +803,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of tables to return. Default is 5.
      * @param {string=} params.pageToken Continuation token specifying which result page to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -692,15 +840,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {boolean=} params.replaceViewDefinition Whether the view definition is also updated. The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      * @param {string} params.tableId ID of the table that is being updated.
      * @param {fusiontables(v2).Table} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
@@ -728,15 +883,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    replaceRows: function (params, callback) {
+    replaceRows: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/replace',
           method: 'POST'
-        },
+        }, options),
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/fusiontables/v2/tables/{tableId}/replace',
         requiredParams: ['tableId'],
@@ -759,15 +921,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {boolean=} params.replaceViewDefinition Whether the view definition is also updated. The specified view definition replaces the existing one. Only a view can be updated with a new definition.
      * @param {string} params.tableId ID of the table that is being updated.
      * @param {fusiontables(v2).Table} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
@@ -792,15 +961,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table from which the task is being deleted.
      * @param {string} params.taskId The identifier of the task to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/tasks/{taskId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'taskId'],
         pathParams: ['tableId', 'taskId'],
@@ -821,15 +997,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table to which the task belongs.
      * @param {string} params.taskId The identifier of the task to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/tasks/{taskId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'taskId'],
         pathParams: ['tableId', 'taskId'],
@@ -852,15 +1035,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {string=} params.pageToken Continuation token specifying which result page to return.
      * @param {integer=} params.startIndex Index of the first result returned in the current page.
      * @param {string} params.tableId Table whose tasks are being listed.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/tasks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
@@ -885,15 +1075,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table from which the template is being deleted
      * @param {integer} params.templateId Identifier for the template which is being deleted
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates/{templateId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
@@ -914,15 +1111,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table to which the template belongs
      * @param {integer} params.templateId Identifier for the template that is being requested
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates/{templateId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
@@ -943,15 +1147,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.tableId Table for which a new template is being created
      * @param {fusiontables(v2).Template} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
@@ -973,15 +1184,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of templates to return. Optional. Default is 5.
      * @param {string=} params.pageToken Continuation token specifying which results page to return. Optional.
      * @param {string} params.tableId Identifier for the table whose templates are being requested
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId'],
         pathParams: ['tableId'],
@@ -1003,15 +1221,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {string} params.tableId Table to which the updated template belongs
      * @param {integer} params.templateId Identifier for the template that is being updated
      * @param {fusiontables(v2).Template} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates/{templateId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],
@@ -1033,15 +1258,22 @@ function Fusiontables(options) { // eslint-disable-line
      * @param {string} params.tableId Table to which the updated template belongs
      * @param {integer} params.templateId Identifier for the template that is being updated
      * @param {fusiontables(v2).Template} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v2/tables/{tableId}/templates/{templateId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['tableId', 'templateId'],
         pathParams: ['tableId', 'templateId'],

@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Cloud Deployment Manager API
@@ -55,7 +56,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -102,15 +103,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
      * @param {deploymentmanager(v2).DeploymentsCancelPreviewRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancelPreview: function (params, callback) {
+    cancelPreview: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/cancelPreview',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
@@ -134,7 +142,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -178,15 +186,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
@@ -210,7 +225,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -254,15 +269,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
@@ -286,7 +308,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -330,15 +352,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {boolean=} params.preview If set to true, creates a deployment and creates "shell" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the update() method or you can use the cancelPreview() method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      * @param {string} params.project The project ID for this request.
      * @param {deploymentmanager(v2).Deployment} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -362,7 +391,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -412,15 +441,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -444,7 +480,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -494,15 +530,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      * @param {string} params.project The project ID for this request.
      * @param {deploymentmanager(v2).Deployment} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
@@ -526,7 +569,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -573,15 +616,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
      * @param {deploymentmanager(v2).DeploymentsStopRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function (params, callback) {
+    stop: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/stop',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
@@ -605,7 +655,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -655,15 +705,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a target.config with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the update() or you can cancelPreview() to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
      * @param {string} params.project The project ID for this request.
      * @param {deploymentmanager(v2).Deployment} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
@@ -691,7 +748,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -739,15 +796,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.manifest The name of the manifest for this request.
      * @param {string} params.project The project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests/{manifest}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'deployment', 'manifest'],
         pathParams: ['deployment', 'manifest', 'project'],
@@ -771,7 +835,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -825,15 +889,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
@@ -861,7 +932,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -905,15 +976,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.operation The name of the operation for this request.
      * @param {string} params.project The project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/operations/{operation}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
@@ -937,7 +1015,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -987,15 +1065,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1023,7 +1108,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1071,15 +1156,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
      * @param {string} params.resource_ The name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources/{resource}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'deployment', 'resource'],
         pathParams: ['deployment', 'project', 'resource'],
@@ -1103,7 +1195,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1157,15 +1249,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
@@ -1193,7 +1292,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1243,15 +1342,22 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/types',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1382,7 +1488,7 @@ The fingerprint is initially generated by Deployment Manager and changes after e
  * @property {string} status [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
  * @property {string} statusMessage [Output Only] An optional textual description of the current status of the operation.
  * @property {string} targetId [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
- * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies.
+ * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies. If creating a persistent disk snapshot, this points to the persistent disk that the snapshot was created from.
  * @property {string} user [Output Only] User who requested the operation, for example: user@example.com.
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
  * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
@@ -1404,7 +1510,7 @@ The fingerprint is initially generated by Deployment Manager and changes after e
  * @property {string} manifest [Output Only] URL of the manifest representing the current configuration of this resource.
  * @property {string} name [Output Only] The name of the resource as it appears in the YAML config.
  * @property {string} properties [Output Only] The current properties of the resource before any references have been filled in. Returned as serialized YAML.
- * @property {string} type [Output Only] The type of the resource, for example compute.v1.instance, or replicaPools.v1beta2.instanceGroupManager.
+ * @property {string} type [Output Only] The type of the resource, for example compute.v1.instance, or cloudfunctions.v1beta1.function.
  * @property {deploymentmanager(v2).ResourceUpdate} update [Output Only] If Deployment Manager is currently updating or previewing an update to this resource, the updated configuration appears here.
  * @property {string} updateTime [Output Only] Timestamp when the resource was updated, in RFC3339 text format .
  * @property {string} url [Output Only] The URL of the actual resource.

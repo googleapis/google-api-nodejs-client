@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * AdSense Host API
@@ -51,15 +52,22 @@ function Adsensehost(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account to get information about.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
@@ -79,15 +87,22 @@ function Adsensehost(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.filterAdClientId Ad clients to list accounts for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/accounts',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['filterAdClientId'],
         pathParams: [],
@@ -110,15 +125,22 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account which contains the ad client.
        * @param {string} params.adClientId Ad client to get.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'adClientId'],
           pathParams: ['accountId', 'adClientId'],
@@ -140,15 +162,22 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {string} params.accountId Account for which to list ad clients.
        * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
        * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -173,15 +202,22 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {string} params.accountId Account which contains the ad unit.
        * @param {string} params.adClientId Ad client for which to get ad unit.
        * @param {string} params.adUnitId Ad unit to delete.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'adClientId', 'adUnitId'],
           pathParams: ['accountId', 'adClientId', 'adUnitId'],
@@ -203,15 +239,22 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {string} params.accountId Account which contains the ad unit.
        * @param {string} params.adClientId Ad client for which to get ad unit.
        * @param {string} params.adUnitId Ad unit to get.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'adClientId', 'adUnitId'],
           pathParams: ['accountId', 'adClientId', 'adUnitId'],
@@ -234,15 +277,22 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {string} params.adClientId Ad client with contains the ad unit.
        * @param {string} params.adUnitId Ad unit to get the code for.
        * @param {string=} params.hostCustomChannelId Host custom channel to attach to the ad code.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getAdCode: function (params, callback) {
+      getAdCode: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'adClientId', 'adUnitId'],
           pathParams: ['accountId', 'adClientId', 'adUnitId'],
@@ -264,15 +314,22 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {string} params.accountId Account which will contain the ad unit.
        * @param {string} params.adClientId Ad client into which to insert the ad unit.
        * @param {adsensehost(v4.1).AdUnit} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'adClientId'],
           pathParams: ['accountId', 'adClientId'],
@@ -296,15 +353,22 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
        * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
        * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'adClientId'],
           pathParams: ['accountId', 'adClientId'],
@@ -327,15 +391,22 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {string} params.adClientId Ad client which contains the ad unit.
        * @param {string} params.adUnitId Ad unit to get.
        * @param {adsensehost(v4.1).AdUnit} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'adClientId', 'adUnitId'],
           pathParams: ['accountId', 'adClientId'],
@@ -357,15 +428,22 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {string} params.accountId Account which contains the ad client.
        * @param {string} params.adClientId Ad client which contains the ad unit.
        * @param {adsensehost(v4.1).AdUnit} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'adClientId'],
           pathParams: ['accountId', 'adClientId'],
@@ -397,15 +475,22 @@ function Adsensehost(options) { // eslint-disable-line
        * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
        * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
        * @param {integer=} params.startIndex Index of the first row of report data to return.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      generate: function (params, callback) {
+      generate: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/reports',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'startDate', 'endDate'],
           pathParams: ['accountId'],
@@ -429,15 +514,22 @@ function Adsensehost(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
@@ -458,15 +550,22 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
      * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -493,15 +592,22 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {string=} params.userLocale The preferred locale of the user.
      * @param {string=} params.websiteLocale The locale of the user's hosted website.
      * @param {string} params.websiteUrl The URL of the user's hosted website.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    start: function (params, callback) {
+    start: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/associationsessions/start',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['productCode', 'websiteUrl'],
         pathParams: [],
@@ -521,15 +627,22 @@ function Adsensehost(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.token The token returned to the association callback URL.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verify: function (params, callback) {
+    verify: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/associationsessions/verify',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['token'],
         pathParams: [],
@@ -554,15 +667,22 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client from which to delete the custom channel.
      * @param {string} params.customChannelId Custom channel to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
@@ -583,15 +703,22 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client from which to get the custom channel.
      * @param {string} params.customChannelId Custom channel to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId', 'customChannelId'],
@@ -612,15 +739,22 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client to which the new custom channel will be added.
      * @param {adsensehost(v4.1).CustomChannel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
@@ -642,15 +776,22 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {string} params.adClientId Ad client for which to list custom channels.
      * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
      * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
@@ -672,15 +813,22 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {string} params.adClientId Ad client in which the custom channel will be updated.
      * @param {string} params.customChannelId Custom channel to get.
      * @param {adsensehost(v4.1).CustomChannel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['adClientId', 'customChannelId'],
         pathParams: ['adClientId'],
@@ -701,15 +849,22 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client in which the custom channel will be updated.
      * @param {adsensehost(v4.1).CustomChannel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
@@ -741,15 +896,22 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
      * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      * @param {integer=} params.startIndex Index of the first row of report data to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate: function (params, callback) {
+    generate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/reports',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['startDate', 'endDate'],
         pathParams: [],
@@ -774,15 +936,22 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client from which to delete the URL channel.
      * @param {string} params.urlChannelId URL channel to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/urlchannels/{urlChannelId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['adClientId', 'urlChannelId'],
         pathParams: ['adClientId', 'urlChannelId'],
@@ -803,15 +972,22 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.adClientId Ad client to which the new URL channel will be added.
      * @param {adsensehost(v4.1).UrlChannel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/urlchannels',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],
@@ -833,15 +1009,22 @@ function Adsensehost(options) { // eslint-disable-line
      * @param {string} params.adClientId Ad client for which to list URL channels.
      * @param {integer=} params.maxResults The maximum number of URL channels to include in the response, used for paging.
      * @param {string=} params.pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/urlchannels',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['adClientId'],
         pathParams: ['adClientId'],

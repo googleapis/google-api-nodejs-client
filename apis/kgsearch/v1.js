@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Knowledge Graph Search API
@@ -57,15 +58,22 @@ function Kgsearch(options) { // eslint-disable-line
      * @param {boolean=} params.indent Enables indenting of json results.
      * @param {boolean=} params.prefix Enables prefix match against names and aliases of entities
      * @param {integer=} params.limit Limits the number of entities to be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search: function (params, callback) {
+    search: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://kgsearch.googleapis.com/v1/entities:search',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

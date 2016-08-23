@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Cloud SQL Administration API
@@ -53,15 +54,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.id The ID of the Backup Run to delete. To find a Backup Run ID, use the list method.
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance', 'id'],
         pathParams: ['id', 'instance', 'project'],
@@ -83,15 +91,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.id The ID of this Backup Run.
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance', 'id'],
         pathParams: ['id', 'instance', 'project'],
@@ -113,15 +128,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {sqladmin(v1beta4).BackupRun} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -144,15 +166,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of backup runs per response.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/backupRuns',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -178,15 +207,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.database Name of the database to be deleted in the instance.
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
@@ -208,15 +244,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.database Name of the database in the instance.
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
@@ -238,15 +281,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {sqladmin(v1beta4).Database} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -267,15 +317,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -298,15 +355,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {sqladmin(v1beta4).Database} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
@@ -329,15 +393,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {sqladmin(v1beta4).Database} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/databases/{database}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance', 'database'],
         pathParams: ['database', 'instance', 'project'],
@@ -360,15 +431,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @memberOf! sqladmin(v1beta4)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/flags',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -394,15 +472,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
      * @param {string} params.project Project ID of the source as well as the clone Cloud SQL instance.
      * @param {sqladmin(v1beta4).InstancesCloneRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clone: function (params, callback) {
+    clone: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/clone',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -423,15 +508,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -453,15 +545,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance to be exported.
      * @param {sqladmin(v1beta4).InstancesExportRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export: function (params, callback) {
+    export: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/export',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -483,15 +582,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project ID of the project that contains the read replica.
      * @param {sqladmin(v1beta4).InstancesFailoverRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    failover: function (params, callback) {
+    failover: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/failover',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -512,15 +618,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -542,15 +655,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {sqladmin(v1beta4).InstancesImportRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    import: function (params, callback) {
+    import: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/import',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -571,15 +691,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
      * @param {sqladmin(v1beta4).DatabaseInstance} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -601,15 +728,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results to return per response.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -631,15 +765,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {sqladmin(v1beta4).DatabaseInstance} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -660,15 +801,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL read replica instance name.
      * @param {string} params.project ID of the project that contains the read replica.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    promoteReplica: function (params, callback) {
+    promoteReplica: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/promoteReplica',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -689,15 +837,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetSslConfig: function (params, callback) {
+    resetSslConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/resetSslConfig',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -718,15 +873,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance to be restarted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    restart: function (params, callback) {
+    restart: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/restart',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -748,15 +910,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {sqladmin(v1beta4).InstancesRestoreBackupRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    restoreBackup: function (params, callback) {
+    restoreBackup: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/restoreBackup',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -777,15 +946,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL read replica instance name.
      * @param {string} params.project ID of the project that contains the read replica.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    startReplica: function (params, callback) {
+    startReplica: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/startReplica',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -806,15 +982,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL read replica instance name.
      * @param {string} params.project ID of the project that contains the read replica.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stopReplica: function (params, callback) {
+    stopReplica: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/stopReplica',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -836,15 +1019,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {sqladmin(v1beta4).DatabaseInstance} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -869,15 +1059,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.operation Instance operation ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/operations/{operation}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
@@ -900,15 +1097,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of operations per response.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['project'],
@@ -934,15 +1138,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the Cloud SQL project.
      * @param {sqladmin(v1beta4).SslCertsCreateEphemeralRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createEphemeral: function (params, callback) {
+    createEphemeral: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/createEphemeral',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -964,15 +1175,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance to be deleted.
      * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance', 'sha1Fingerprint'],
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
@@ -994,15 +1212,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance', 'sha1Fingerprint'],
         pathParams: ['instance', 'project', 'sha1Fingerprint'],
@@ -1024,15 +1249,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
      * @param {sqladmin(v1beta4).SslCertsInsertRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -1053,15 +1285,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/sslCerts',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -1085,15 +1324,22 @@ function Sqladmin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID of the project for which to list tiers.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/tiers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1120,15 +1366,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.name Name of the user in the instance.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance', 'host', 'name'],
         pathParams: ['instance', 'project'],
@@ -1150,15 +1403,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {sqladmin(v1beta4).User} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -1179,15 +1439,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instance Database instance ID. This does not include the project ID.
      * @param {string} params.project Project ID of the project that contains the instance.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance'],
         pathParams: ['instance', 'project'],
@@ -1211,15 +1478,22 @@ function Sqladmin(options) { // eslint-disable-line
      * @param {string} params.name Name of the user in the instance.
      * @param {string} params.project Project ID of the project that contains the instance.
      * @param {sqladmin(v1beta4).User} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/users',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instance', 'host', 'name'],
         pathParams: ['instance', 'project'],

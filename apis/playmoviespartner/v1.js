@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Play Movies Partner API
@@ -54,15 +55,22 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
        * @param {string} params.availId REQUIRED. Avail ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/avails/{availId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'availId'],
           pathParams: ['accountId', 'availId'],
@@ -91,15 +99,22 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @param {string=} params.altId Filter Avails that match a case-insensitive, partner-specific custom id. NOTE: this field is deprecated and will be removed on V2; `alt_ids` should be used instead.
        * @param {string=} params.videoIds Filter Avails that match any of the given `video_id`s.
        * @param {string=} params.altIds Filter Avails that match (case-insensitive) any of the given partner-specific custom ids.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/avails',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -123,15 +138,22 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
        * @param {string} params.orderId REQUIRED. Order ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/orders/{orderId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'orderId'],
           pathParams: ['accountId', 'orderId'],
@@ -159,15 +181,22 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @param {string=} params.status Filter Orders that match one of the given status.
        * @param {string=} params.customId Filter Orders that match a case-insensitive, partner-specific custom id.
        * @param {string=} params.videoIds Filter Orders that match any of the given `video_id`s.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/orders',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -191,15 +220,22 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
        * @param {string} params.elId REQUIRED. ExperienceLocale ID, as defined by Google.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/experienceLocales/{elId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'elId'],
           pathParams: ['accountId', 'elId'],
@@ -228,15 +264,22 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @param {string=} params.status Filter ExperienceLocales that match one of the given status.
        * @param {string=} params.customId Filter ExperienceLocales that match a case-insensitive, partner-specific custom id.
        * @param {string=} params.altCutId Filter ExperienceLocales that match a case-insensitive, partner-specific Alternative Cut ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/experienceLocales',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -273,15 +316,22 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @param {string=} params.elId Experience ID, as defined by Google.
        * @param {string=} params.altCutId Filter Components that match a case-insensitive, partner-specific Alternative Cut ID.
        * @param {string=} params.filename Filter Components that match a case-insensitive substring of the physical name of the delivered file.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/components',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -305,15 +355,22 @@ function Playmoviespartner(options) { // eslint-disable-line
          * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
          * @param {string} params.componentId REQUIRED. Component ID.
          * @param {string} params.type REQUIRED. Component Type.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/components/{componentId}/type/{type}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'componentId', 'type'],
             pathParams: ['accountId', 'componentId', 'type'],
@@ -347,15 +404,22 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @param {string=} params.videoIds Filter StoreInfos that match any of the given `video_id`s.
        * @param {string=} params.mids Filter StoreInfos that match any of the given `mid`s.
        * @param {string=} params.seasonIds Filter StoreInfos that match any of the given `season_id`s.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/storeInfos',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -379,15 +443,22 @@ function Playmoviespartner(options) { // eslint-disable-line
          * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
          * @param {string} params.videoId REQUIRED. Video ID.
          * @param {string} params.country REQUIRED. Edit country.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/storeInfos/{videoId}/country/{country}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'videoId', 'country'],
             pathParams: ['accountId', 'videoId', 'country'],

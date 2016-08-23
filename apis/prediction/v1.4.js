@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Prediction API
@@ -52,15 +53,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.hostedModelName The name of a hosted model.
      * @param {prediction(v1.4).Input} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    predict: function (params, callback) {
+    predict: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.4/hostedmodels/{hostedModelName}/predict',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['hostedModelName'],
         pathParams: ['hostedModelName'],
@@ -84,15 +92,22 @@ function Prediction(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The unique name for the predictive model.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -112,15 +127,22 @@ function Prediction(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The unique name for the predictive model.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -140,15 +162,22 @@ function Prediction(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {prediction(v1.4).Training} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -169,15 +198,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id The unique name for the predictive model.
      * @param {prediction(v1.4).Input} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    predict: function (params, callback) {
+    predict: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/{id}/predict',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],
@@ -198,15 +234,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id The unique name for the predictive model.
      * @param {prediction(v1.4).Update} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.4/trainedmodels/{id}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['id'],
         pathParams: ['id'],

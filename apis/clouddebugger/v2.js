@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Stackdriver Debugger API
@@ -51,13 +52,13 @@ function Clouddebugger(options) { // eslint-disable-line
        * @example
        * // BEFORE RUNNING:
        * // ---------------
-       * // 1. If not already done, enable the Google Cloud Debugger API
+       * // 1. If not already done, enable the Stackdriver Debugger API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/clouddebugger
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -96,15 +97,22 @@ function Clouddebugger(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {clouddebugger(v2).RegisterDebuggeeRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      register: function (params, callback) {
+      register: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://clouddebugger.googleapis.com/v2/controller/debuggees/register',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -124,13 +132,13 @@ function Clouddebugger(options) { // eslint-disable-line
          * @example
          * // BEFORE RUNNING:
          * // ---------------
-         * // 1. If not already done, enable the Google Cloud Debugger API
+         * // 1. If not already done, enable the Stackdriver Debugger API
          * //    and check the quota for your project at
          * //    https://console.developers.google.com/apis/api/clouddebugger
          * // 2. This sample uses Application Default Credentials for authentication.
          * //    If not already done, install the gcloud CLI from
          * //    https://cloud.google.com/sdk/ and run
-         * //    'gcloud auth application-default login'
+         * //    'gcloud beta auth application-default login'
          * // 3. Install the Node.js client library and Application Default Credentials
          * //    library by running 'npm install googleapis --save'
          * var google = require('googleapis');
@@ -172,15 +180,22 @@ function Clouddebugger(options) { // eslint-disable-line
          * @param {string} params.debuggeeId Identifies the debuggee.
          * @param {string=} params.waitToken A wait token that, if specified, blocks the method call until the list of active breakpoints has changed, or a server selected timeout has expired. The value should be set from the last returned response.
          * @param {boolean=} params.successOnTimeout If set to `true`, returns `google.rpc.Code.OK` status and sets the `wait_expired` response field to `true` when the server-selected timeout has expired (recommended). If set to `false`, returns `google.rpc.Code.ABORTED` status when the server-selected timeout has expired (deprecated).
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://clouddebugger.googleapis.com/v2/controller/debuggees/{debuggeeId}/breakpoints',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['debuggeeId'],
             pathParams: ['debuggeeId'],
@@ -198,13 +213,13 @@ function Clouddebugger(options) { // eslint-disable-line
          * @example
          * // BEFORE RUNNING:
          * // ---------------
-         * // 1. If not already done, enable the Google Cloud Debugger API
+         * // 1. If not already done, enable the Stackdriver Debugger API
          * //    and check the quota for your project at
          * //    https://console.developers.google.com/apis/api/clouddebugger
          * // 2. This sample uses Application Default Credentials for authentication.
          * //    If not already done, install the gcloud CLI from
          * //    https://cloud.google.com/sdk/ and run
-         * //    'gcloud auth application-default login'
+         * //    'gcloud beta auth application-default login'
          * // 3. Install the Node.js client library and Application Default Credentials
          * //    library by running 'npm install googleapis --save'
          * var google = require('googleapis');
@@ -251,15 +266,22 @@ function Clouddebugger(options) { // eslint-disable-line
          * @param {string} params.debuggeeId Identifies the debuggee being debugged.
          * @param {string} params.id Breakpoint identifier, unique in the scope of the debuggee.
          * @param {clouddebugger(v2).UpdateActiveBreakpointRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        update: function (params, callback) {
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://clouddebugger.googleapis.com/v2/controller/debuggees/{debuggeeId}/breakpoints/{id}',
               method: 'PUT'
-            },
+            }, options),
             params: params,
             requiredParams: ['debuggeeId', 'id'],
             pathParams: ['debuggeeId', 'id'],
@@ -284,13 +306,13 @@ function Clouddebugger(options) { // eslint-disable-line
        * @example
        * // BEFORE RUNNING:
        * // ---------------
-       * // 1. If not already done, enable the Google Cloud Debugger API
+       * // 1. If not already done, enable the Stackdriver Debugger API
        * //    and check the quota for your project at
        * //    https://console.developers.google.com/apis/api/clouddebugger
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -329,15 +351,22 @@ function Clouddebugger(options) { // eslint-disable-line
        * @param {string=} params.project Project number of a Google Cloud project whose debuggees to list.
        * @param {boolean=} params.includeInactive When set to `true`, the result includes all debuggees. Otherwise, the result includes only debuggees that are active.
        * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://clouddebugger.googleapis.com/v2/debugger/debuggees',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -357,13 +386,13 @@ function Clouddebugger(options) { // eslint-disable-line
          * @example
          * // BEFORE RUNNING:
          * // ---------------
-         * // 1. If not already done, enable the Google Cloud Debugger API
+         * // 1. If not already done, enable the Stackdriver Debugger API
          * //    and check the quota for your project at
          * //    https://console.developers.google.com/apis/api/clouddebugger
          * // 2. This sample uses Application Default Credentials for authentication.
          * //    If not already done, install the gcloud CLI from
          * //    https://cloud.google.com/sdk/ and run
-         * //    'gcloud auth application-default login'
+         * //    'gcloud beta auth application-default login'
          * // 3. Install the Node.js client library and Application Default Credentials
          * //    library by running 'npm install googleapis --save'
          * var google = require('googleapis');
@@ -407,15 +436,22 @@ function Clouddebugger(options) { // eslint-disable-line
          * @param {string} params.debuggeeId ID of the debuggee where the breakpoint is to be set.
          * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
          * @param {clouddebugger(v2).Breakpoint} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        set: function (params, callback) {
+        set: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://clouddebugger.googleapis.com/v2/debugger/debuggees/{debuggeeId}/breakpoints/set',
               method: 'POST'
-            },
+            }, options),
             params: params,
             requiredParams: ['debuggeeId'],
             pathParams: ['debuggeeId'],
@@ -433,13 +469,13 @@ function Clouddebugger(options) { // eslint-disable-line
          * @example
          * // BEFORE RUNNING:
          * // ---------------
-         * // 1. If not already done, enable the Google Cloud Debugger API
+         * // 1. If not already done, enable the Stackdriver Debugger API
          * //    and check the quota for your project at
          * //    https://console.developers.google.com/apis/api/clouddebugger
          * // 2. This sample uses Application Default Credentials for authentication.
          * //    If not already done, install the gcloud CLI from
          * //    https://cloud.google.com/sdk/ and run
-         * //    'gcloud auth application-default login'
+         * //    'gcloud beta auth application-default login'
          * // 3. Install the Node.js client library and Application Default Credentials
          * //    library by running 'npm install googleapis --save'
          * var google = require('googleapis');
@@ -484,15 +520,22 @@ function Clouddebugger(options) { // eslint-disable-line
          * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to get.
          * @param {string} params.breakpointId ID of the breakpoint to get.
          * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        get: function (params, callback) {
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://clouddebugger.googleapis.com/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['debuggeeId', 'breakpointId'],
             pathParams: ['debuggeeId', 'breakpointId'],
@@ -510,13 +553,13 @@ function Clouddebugger(options) { // eslint-disable-line
          * @example
          * // BEFORE RUNNING:
          * // ---------------
-         * // 1. If not already done, enable the Google Cloud Debugger API
+         * // 1. If not already done, enable the Stackdriver Debugger API
          * //    and check the quota for your project at
          * //    https://console.developers.google.com/apis/api/clouddebugger
          * // 2. This sample uses Application Default Credentials for authentication.
          * //    If not already done, install the gcloud CLI from
          * //    https://cloud.google.com/sdk/ and run
-         * //    'gcloud auth application-default login'
+         * //    'gcloud beta auth application-default login'
          * // 3. Install the Node.js client library and Application Default Credentials
          * //    library by running 'npm install googleapis --save'
          * var google = require('googleapis');
@@ -561,15 +604,22 @@ function Clouddebugger(options) { // eslint-disable-line
          * @param {string} params.debuggeeId ID of the debuggee whose breakpoint to delete.
          * @param {string} params.breakpointId ID of the breakpoint to delete.
          * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        delete: function (params, callback) {
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://clouddebugger.googleapis.com/v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}',
               method: 'DELETE'
-            },
+            }, options),
             params: params,
             requiredParams: ['debuggeeId', 'breakpointId'],
             pathParams: ['debuggeeId', 'breakpointId'],
@@ -587,13 +637,13 @@ function Clouddebugger(options) { // eslint-disable-line
          * @example
          * // BEFORE RUNNING:
          * // ---------------
-         * // 1. If not already done, enable the Google Cloud Debugger API
+         * // 1. If not already done, enable the Stackdriver Debugger API
          * //    and check the quota for your project at
          * //    https://console.developers.google.com/apis/api/clouddebugger
          * // 2. This sample uses Application Default Credentials for authentication.
          * //    If not already done, install the gcloud CLI from
          * //    https://cloud.google.com/sdk/ and run
-         * //    'gcloud auth application-default login'
+         * //    'gcloud beta auth application-default login'
          * // 3. Install the Node.js client library and Application Default Credentials
          * //    library by running 'npm install googleapis --save'
          * var google = require('googleapis');
@@ -639,15 +689,22 @@ function Clouddebugger(options) { // eslint-disable-line
          * @param {boolean=} params.stripResults When set to `true`, the response breakpoints are stripped of the results fields: `stack_frames`, `evaluated_expressions` and `variable_table`.
          * @param {string=} params.waitToken A wait token that, if specified, blocks the call until the breakpoints list has changed, or a server selected timeout has expired. The value should be set from the last response. The error code `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be called again with the same `wait_token`.
          * @param {string=} params.clientVersion The client version making the call. Following: `domain/type/version` (e.g., `google.com/intellij/v1`).
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://clouddebugger.googleapis.com/v2/debugger/debuggees/{debuggeeId}/breakpoints',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['debuggeeId'],
             pathParams: ['debuggeeId'],

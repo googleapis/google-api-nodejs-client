@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Compute Engine Instance Group Manager API
@@ -54,15 +55,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.zone The name of the zone in which the instance group manager resides.
      * @param {replicapool(v1beta2).InstanceGroupManagersAbandonInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    abandonInstances: function (params, callback) {
+    abandonInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -84,15 +92,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager Name of the Instance Group Manager resource to delete.
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -115,15 +130,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.zone The name of the zone in which the instance group manager resides.
      * @param {replicapool(v1beta2).InstanceGroupManagersDeleteInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteInstances: function (params, callback) {
+    deleteInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -145,15 +167,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager Name of the instance resource to return.
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -176,15 +205,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {integer} params.size Number of instances that should exist.
      * @param {string} params.zone The name of the zone in which the instance group manager resides.
      * @param {replicapool(v1beta2).InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'size'],
         pathParams: ['project', 'zone'],
@@ -208,15 +244,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -239,15 +282,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.zone The name of the zone in which the instance group manager resides.
      * @param {replicapool(v1beta2).InstanceGroupManagersRecreateInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    recreateInstances: function (params, callback) {
+    recreateInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -270,15 +320,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {integer} params.size Number of instances that should exist in this Instance Group Manager.
      * @param {string} params.zone The name of the zone in which the instance group manager resides.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize: function (params, callback) {
+    resize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resize',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager', 'size'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -301,15 +358,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.zone The name of the zone in which the instance group manager resides.
      * @param {replicapool(v1beta2).InstanceGroupManagersSetInstanceTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setInstanceTemplate: function (params, callback) {
+    setInstanceTemplate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -332,15 +396,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.project The Google Developers Console project name.
      * @param {string} params.zone The name of the zone in which the instance group manager resides.
      * @param {replicapool(v1beta2).InstanceGroupManagersSetTargetPoolsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTargetPools: function (params, callback) {
+    setTargetPools: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -366,15 +437,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.operation Name of the operation resource to return.
      * @param {string} params.project Name of the project scoping this request.
      * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
@@ -398,15 +476,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param {string} params.project Name of the project scoping this request.
      * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],

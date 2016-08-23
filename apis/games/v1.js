@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Play Game Services API
@@ -54,15 +55,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {integer=} params.maxResults The maximum number of achievement resources to return in the response, used for paging. For any response, the actual number of achievement resources returned may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/achievements',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -89,15 +97,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.requestId A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
      * @param {integer} params.stepsToIncrement The number of steps to increment.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    increment: function (params, callback) {
+    increment: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/increment',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['achievementId', 'stepsToIncrement'],
         pathParams: ['achievementId'],
@@ -122,15 +137,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
      * @param {string=} params.state Tells the server to return only achievements with the specified state. If this parameter isn't specified, all achievements are returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/{playerId}/achievements',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
@@ -151,15 +173,22 @@ function Games(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reveal: function (params, callback) {
+    reveal: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/reveal',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
@@ -181,15 +210,22 @@ function Games(options) { // eslint-disable-line
      * @param {string} params.achievementId The ID of the achievement used by this method.
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {integer} params.steps The minimum value to set the steps to.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setStepsAtLeast: function (params, callback) {
+    setStepsAtLeast: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/setStepsAtLeast',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['achievementId', 'steps'],
         pathParams: ['achievementId'],
@@ -210,15 +246,22 @@ function Games(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.achievementId The ID of the achievement used by this method.
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    unlock: function (params, callback) {
+    unlock: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/unlock',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['achievementId'],
         pathParams: ['achievementId'],
@@ -239,15 +282,22 @@ function Games(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {games(v1).AchievementUpdateMultipleRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateMultiple: function (params, callback) {
+    updateMultiple: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/achievements/updateMultiple',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -274,15 +324,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string=} params.platformType Restrict application details returned to the specific platform.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/applications/{applicationId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
@@ -302,15 +359,22 @@ function Games(options) { // eslint-disable-line
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    played: function (params, callback) {
+    played: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/applications/played',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -331,15 +395,22 @@ function Games(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.applicationId The application ID from the Google Play developer console.
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verify: function (params, callback) {
+    verify: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/applications/{applicationId}/verify',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
@@ -366,15 +437,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {integer=} params.maxResults The maximum number of events to return in the response, used for paging. For any response, the actual number of events to return may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listByPlayer: function (params, callback) {
+    listByPlayer: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/events',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -397,15 +475,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {integer=} params.maxResults The maximum number of event definitions to return in the response, used for paging. For any response, the actual number of event definitions to return may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listDefinitions: function (params, callback) {
+    listDefinitions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/eventDefinitions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -427,15 +512,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {games(v1).EventRecordRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    record: function (params, callback) {
+    record: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/events',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -461,15 +553,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.leaderboardId The ID of the leaderboard.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['leaderboardId'],
         pathParams: ['leaderboardId'],
@@ -492,15 +591,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {integer=} params.maxResults The maximum number of leaderboards to return in the response. For any response, the actual number of leaderboards returned may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/leaderboards',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -524,15 +630,22 @@ function Games(options) { // eslint-disable-line
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getMetagameConfig: function (params, callback) {
+    getMetagameConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/metagameConfig',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -557,15 +670,22 @@ function Games(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of category resources to return in the response, used for paging. For any response, the actual number of category resources returned may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listCategoriesByPlayer: function (params, callback) {
+    listCategoriesByPlayer: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/{playerId}/categories/{collection}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['playerId', 'collection'],
         pathParams: ['collection', 'playerId'],
@@ -591,15 +711,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/{playerId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
@@ -623,15 +750,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {integer=} params.maxResults The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/me/players/{collection}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['collection'],
         pathParams: ['collection'],
@@ -656,15 +790,22 @@ function Games(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {games(v1).PushTokenId} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    remove: function (params, callback) {
+    remove: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/pushtokens/remove',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -685,15 +826,22 @@ function Games(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {games(v1).PushToken} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/pushtokens',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -720,15 +868,22 @@ function Games(options) { // eslint-disable-line
      * @param {string} params.milestoneId The ID of the milestone.
      * @param {string} params.questId The ID of the quest.
      * @param {string} params.requestId A numeric ID to ensure that the request is handled correctly across retries. Your client application must generate this ID randomly.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    claim: function (params, callback) {
+    claim: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/quests/{questId}/milestones/{milestoneId}/claim',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['questId', 'milestoneId', 'requestId'],
         pathParams: ['milestoneId', 'questId'],
@@ -754,15 +909,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.questId The ID of the quest.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept: function (params, callback) {
+    accept: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/quests/{questId}/accept',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['questId'],
         pathParams: ['questId'],
@@ -786,15 +948,22 @@ function Games(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of quest resources to return in the response, used for paging. For any response, the actual number of quest resources returned may be less than the specified maxResults. Acceptable values are 1 to 50, inclusive. (Default: 50).
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/{playerId}/quests',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
@@ -819,15 +988,22 @@ function Games(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.clientRevision The revision of the client SDK used by your application. Format: [PLATFORM_TYPE]:[VERSION_NUMBER]. Possible values of PLATFORM_TYPE are:   - "ANDROID" - Client is running the Android SDK.  - "IOS" - Client is running the iOS SDK.  - "WEB_APP" - Client is running as a Web App.
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    check: function (params, callback) {
+    check: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/revisions/check',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['clientRevision'],
         pathParams: [],
@@ -853,15 +1029,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {games(v1).RoomCreateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/create',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -883,15 +1066,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.roomId The ID of the room.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    decline: function (params, callback) {
+    decline: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/decline',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
@@ -912,15 +1102,22 @@ function Games(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string} params.roomId The ID of the room.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    dismiss: function (params, callback) {
+    dismiss: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/dismiss',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
@@ -942,15 +1139,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.roomId The ID of the room.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/{roomId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
@@ -973,15 +1177,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.roomId The ID of the room.
      * @param {games(v1).RoomJoinRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    join: function (params, callback) {
+    join: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/join',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
@@ -1004,15 +1215,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.roomId The ID of the room.
      * @param {games(v1).RoomLeaveRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    leave: function (params, callback) {
+    leave: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/leave',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
@@ -1035,15 +1253,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {integer=} params.maxResults The maximum number of rooms to return in the response, used for paging. For any response, the actual number of rooms to return may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1066,15 +1291,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.roomId The ID of the room.
      * @param {games(v1).RoomP2PStatuses} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reportStatus: function (params, callback) {
+    reportStatus: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/reportstatus',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['roomId'],
         pathParams: ['roomId'],
@@ -1105,15 +1337,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
      * @param {string} params.timeSpan The time span for the scores and ranks you're requesting.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['playerId', 'leaderboardId', 'timeSpan'],
         pathParams: ['leaderboardId', 'playerId', 'timeSpan'],
@@ -1139,15 +1378,22 @@ function Games(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of leaderboard scores to return in the response. For any response, the actual number of leaderboard scores returned may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string} params.timeSpan The time span for the scores and ranks you're requesting.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}/scores/{collection}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
         pathParams: ['collection', 'leaderboardId'],
@@ -1175,15 +1421,22 @@ function Games(options) { // eslint-disable-line
      * @param {integer=} params.resultsAbove The preferred number of scores to return above the player's score. More scores may be returned if the player is at the bottom of the leaderboard; fewer may be returned if the player is at the top. Must be less than or equal to maxResults.
      * @param {boolean=} params.returnTopIfAbsent True if the top scores should be returned when the player is not in the leaderboard. Defaults to true.
      * @param {string} params.timeSpan The time span for the scores and ranks you're requesting.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listWindow: function (params, callback) {
+    listWindow: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}/window/{collection}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['leaderboardId', 'collection', 'timeSpan'],
         pathParams: ['collection', 'leaderboardId'],
@@ -1207,15 +1460,22 @@ function Games(options) { // eslint-disable-line
      * @param {string} params.leaderboardId The ID of the leaderboard.
      * @param {string} params.score The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
      * @param {string=} params.scoreTag Additional information about the score you're submitting. Values must contain no more than 64 URI-safe characters as defined by section 2.3 of RFC 3986.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    submit: function (params, callback) {
+    submit: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}/scores',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['leaderboardId', 'score'],
         pathParams: ['leaderboardId'],
@@ -1237,15 +1497,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {games(v1).PlayerScoreSubmissionList} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    submitMultiple: function (params, callback) {
+    submitMultiple: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/leaderboards/scores',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1271,15 +1538,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.snapshotId The ID of the snapshot.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/snapshots/{snapshotId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['snapshotId'],
         pathParams: ['snapshotId'],
@@ -1303,15 +1577,22 @@ function Games(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of snapshot resources to return in the response, used for paging. For any response, the actual number of snapshot resources returned may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
      * @param {string} params.playerId A player ID. A value of me may be used in place of the authenticated player's ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/{playerId}/snapshots',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['playerId'],
         pathParams: ['playerId'],
@@ -1336,15 +1617,22 @@ function Games(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string} params.matchId The ID of the match.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function (params, callback) {
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/cancel',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
@@ -1366,15 +1654,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {games(v1).TurnBasedMatchCreateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create: function (params, callback) {
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/create',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1396,15 +1691,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.matchId The ID of the match.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    decline: function (params, callback) {
+    decline: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/decline',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
@@ -1425,15 +1727,22 @@ function Games(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string} params.matchId The ID of the match.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    dismiss: function (params, callback) {
+    dismiss: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/dismiss',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
@@ -1456,15 +1765,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.matchId The ID of the match.
      * @param {games(v1).TurnBasedMatchResults} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    finish: function (params, callback) {
+    finish: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/finish',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
@@ -1487,15 +1803,22 @@ function Games(options) { // eslint-disable-line
      * @param {boolean=} params.includeMatchData Get match data along with metadata.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.matchId The ID of the match.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
@@ -1517,15 +1840,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.matchId The ID of the match.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    join: function (params, callback) {
+    join: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/join',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
@@ -1547,15 +1877,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.consistencyToken The last-seen mutation timestamp.
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.matchId The ID of the match.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    leave: function (params, callback) {
+    leave: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/leave',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
@@ -1579,15 +1916,22 @@ function Games(options) { // eslint-disable-line
      * @param {string} params.matchId The ID of the match.
      * @param {integer} params.matchVersion The version of the match being updated.
      * @param {string=} params.pendingParticipantId The ID of another participant who should take their turn next. If not set, the match will wait for other player(s) to join via automatching; this is only valid if automatch criteria is set on the match with remaining slots for automatched players.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    leaveTurn: function (params, callback) {
+    leaveTurn: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/leaveTurn',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['matchId', 'matchVersion'],
         pathParams: ['matchId'],
@@ -1612,15 +1956,22 @@ function Games(options) { // eslint-disable-line
      * @param {integer=} params.maxCompletedMatches The maximum number of completed or canceled matches to return in the response. If not set, all matches returned could be completed or canceled.
      * @param {integer=} params.maxResults The maximum number of matches to return in the response, used for paging. For any response, the actual number of matches to return may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1643,15 +1994,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.matchId The ID of the match.
      * @param {string=} params.requestId A randomly generated numeric ID for each request specified by the caller. This number is used at the server to ensure that the request is handled correctly across retries.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rematch: function (params, callback) {
+    rematch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/rematch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],
@@ -1676,15 +2034,22 @@ function Games(options) { // eslint-disable-line
      * @param {integer=} params.maxCompletedMatches The maximum number of completed or canceled matches to return in the response. If not set, all matches returned could be completed or canceled.
      * @param {integer=} params.maxResults The maximum number of matches to return in the response, used for paging. For any response, the actual number of matches to return may be less than the specified maxResults.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sync: function (params, callback) {
+    sync: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/sync',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1707,15 +2072,22 @@ function Games(options) { // eslint-disable-line
      * @param {string=} params.language The preferred language to use for strings returned by this method.
      * @param {string} params.matchId The ID of the match.
      * @param {games(v1).TurnBasedMatchTurn} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    takeTurn: function (params, callback) {
+    takeTurn: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/turn',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['matchId'],
         pathParams: ['matchId'],

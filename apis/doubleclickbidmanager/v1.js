@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * DoubleClick Bid Manager API
@@ -51,15 +52,22 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {doubleclickbidmanager(v1).DownloadLineItemsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    downloadlineitems: function (params, callback) {
+    downloadlineitems: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/lineitems/downloadlineitems',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -79,15 +87,22 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {doubleclickbidmanager(v1).UploadLineItemsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    uploadlineitems: function (params, callback) {
+    uploadlineitems: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/lineitems/uploadlineitems',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -111,15 +126,22 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {doubleclickbidmanager(v1).Query} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createquery: function (params, callback) {
+    createquery: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -139,15 +161,22 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.queryId Query ID to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deletequery: function (params, callback) {
+    deletequery: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
@@ -167,15 +196,22 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.queryId Query ID to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getquery: function (params, callback) {
+    getquery: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
@@ -194,15 +230,22 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
      * @memberOf! doubleclickbidmanager(v1)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listqueries: function (params, callback) {
+    listqueries: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -223,15 +266,22 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.queryId Query ID to run.
      * @param {doubleclickbidmanager(v1).RunQueryRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runquery: function (params, callback) {
+    runquery: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
@@ -255,15 +305,22 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.queryId Query ID with which the reports are associated.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listreports: function (params, callback) {
+    listreports: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries/{queryId}/reports',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['queryId'],
         pathParams: ['queryId'],
@@ -287,15 +344,22 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {doubleclickbidmanager(v1).NotifyProposalChangeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    notifyproposalchange: function (params, callback) {
+    notifyproposalchange: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/rubicon/notifyproposalchange',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

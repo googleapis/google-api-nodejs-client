@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Cloud Pub/Sub API
@@ -54,15 +55,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
        * @param {pubsub(v1beta2).SetIamPolicyRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      setIamPolicy: function (params, callback) {
+      setIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{resource}:setIamPolicy',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
@@ -82,15 +90,22 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getIamPolicy: function (params, callback) {
+      getIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{resource}:getIamPolicy',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
@@ -111,15 +126,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
        * @param {pubsub(v1beta2).TestIamPermissionsRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      testIamPermissions: function (params, callback) {
+      testIamPermissions: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{resource}:testIamPermissions',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
@@ -140,15 +162,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
        * @param {pubsub(v1beta2).Topic} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{name}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -169,15 +198,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.topic The messages in the request will be published on this topic.
        * @param {pubsub(v1beta2).PublishRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      publish: function (params, callback) {
+      publish: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{topic}:publish',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['topic'],
           pathParams: ['topic'],
@@ -197,15 +233,22 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.topic The name of the topic to get.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{topic}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['topic'],
           pathParams: ['topic'],
@@ -227,15 +270,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {string} params.project The name of the cloud project that topics belong to.
        * @param {integer=} params.pageSize Maximum number of topics to return.
        * @param {string=} params.pageToken The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{project}/topics',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['project'],
           pathParams: ['project'],
@@ -255,15 +305,22 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.topic Name of the topic to delete.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{topic}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['topic'],
           pathParams: ['topic'],
@@ -287,15 +344,22 @@ function Pubsub(options) { // eslint-disable-line
          * @param {string} params.topic The name of the topic that subscriptions are attached to.
          * @param {integer=} params.pageSize Maximum number of subscription names to return.
          * @param {string=} params.pageToken The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://pubsub.googleapis.com/v1beta2/{topic}/subscriptions',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['topic'],
             pathParams: ['topic'],
@@ -320,15 +384,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
        * @param {pubsub(v1beta2).SetIamPolicyRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      setIamPolicy: function (params, callback) {
+      setIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{resource}:setIamPolicy',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
@@ -348,15 +419,22 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      getIamPolicy: function (params, callback) {
+      getIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{resource}:getIamPolicy',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
@@ -377,15 +455,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
        * @param {pubsub(v1beta2).TestIamPermissionsRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      testIamPermissions: function (params, callback) {
+      testIamPermissions: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{resource}:testIamPermissions',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
@@ -406,15 +491,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
        * @param {pubsub(v1beta2).Subscription} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{name}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -434,15 +526,22 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.subscription The name of the subscription to get.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{subscription}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['subscription'],
           pathParams: ['subscription'],
@@ -464,15 +563,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {string} params.project The name of the cloud project that subscriptions belong to.
        * @param {integer=} params.pageSize Maximum number of subscriptions to return.
        * @param {string=} params.pageToken The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{project}/subscriptions',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['project'],
           pathParams: ['project'],
@@ -492,15 +598,22 @@ function Pubsub(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.subscription The subscription to delete.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{subscription}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['subscription'],
           pathParams: ['subscription'],
@@ -521,15 +634,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.subscription The name of the subscription.
        * @param {pubsub(v1beta2).ModifyAckDeadlineRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      modifyAckDeadline: function (params, callback) {
+      modifyAckDeadline: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:modifyAckDeadline',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['subscription'],
           pathParams: ['subscription'],
@@ -550,15 +670,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.subscription The subscription whose message is being acknowledged.
        * @param {pubsub(v1beta2).AcknowledgeRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      acknowledge: function (params, callback) {
+      acknowledge: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:acknowledge',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['subscription'],
           pathParams: ['subscription'],
@@ -579,15 +706,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.subscription The subscription from which messages should be pulled.
        * @param {pubsub(v1beta2).PullRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      pull: function (params, callback) {
+      pull: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:pull',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['subscription'],
           pathParams: ['subscription'],
@@ -608,15 +742,22 @@ function Pubsub(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.subscription The name of the subscription.
        * @param {pubsub(v1beta2).ModifyPushConfigRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      modifyPushConfig: function (params, callback) {
+      modifyPushConfig: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:modifyPushConfig',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['subscription'],
           pathParams: ['subscription'],

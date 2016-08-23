@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * APIs Discovery Service
@@ -52,15 +53,22 @@ function Discovery(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.api The name of the API.
      * @param {string} params.version The version of the API.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getRest: function (params, callback) {
+    getRest: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/discovery/v1/apis/{api}/{version}/rest',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['api', 'version'],
         pathParams: ['api', 'version'],
@@ -81,15 +89,22 @@ function Discovery(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {string=} params.name Only include APIs with the given name.
      * @param {boolean=} params.preferred Return only the preferred version of an API.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/discovery/v1/apis',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

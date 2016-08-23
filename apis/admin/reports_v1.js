@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Admin Reports API
@@ -60,15 +61,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.pageToken Token to specify next page.
      * @param {string=} params.startTime Return events which occured at or after this time.
      * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
@@ -98,15 +106,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.startTime Return events which occured at or after this time.
      * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered. When 'all' is specified as the userKey, it returns usageReports for all users.
      * @param {admin(reports_v1).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function (params, callback) {
+    watch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey', 'applicationName'],
         pathParams: ['applicationName', 'userKey'],
@@ -130,15 +145,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {admin(reports_v1).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function (params, callback) {
+    stop: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/reports/v1/admin/reports_v1/channels/stop',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -165,15 +187,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string} params.date Represents the date in yyyy-mm-dd format for which the data is to be fetched.
      * @param {string=} params.pageToken Token to specify next page.
      * @param {string=} params.parameters Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/reports/v1/usage/dates/{date}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['date'],
         pathParams: ['date'],
@@ -203,15 +232,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.pageToken Token to specify next page.
      * @param {string=} params.parameters Represents the application name, parameter name pairs to fetch in csv as app_name1:param_name1, app_name2:param_name2.
      * @param {string} params.userKey Represents the profile id or the user email for which the data should be filtered.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/reports/v1/usage/users/{userKey}/dates/{date}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userKey', 'date'],
         pathParams: ['date', 'userKey'],

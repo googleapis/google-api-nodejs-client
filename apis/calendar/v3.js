@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Calendar API
@@ -52,15 +53,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.ruleId ACL rule identifier.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
@@ -81,15 +89,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.ruleId ACL rule identifier.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
@@ -110,15 +125,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {calendar(v3).AclRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -142,15 +164,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string=} params.pageToken Token specifying which result page to return. Optional.
      * @param {boolean=} params.showDeleted Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
      * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -172,15 +201,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.ruleId ACL rule identifier.
      * @param {calendar(v3).AclRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
@@ -202,15 +238,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.ruleId ACL rule identifier.
      * @param {calendar(v3).AclRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId', 'ruleId'],
         pathParams: ['calendarId', 'ruleId'],
@@ -235,15 +278,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {boolean=} params.showDeleted Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
      * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
      * @param {calendar(v3).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function (params, callback) {
+    watch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/watch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -267,15 +317,22 @@ function Calendar(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -295,15 +352,22 @@ function Calendar(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -324,15 +388,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.colorRgbFormat Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
      * @param {calendar(v3).CalendarListEntry} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -357,15 +428,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {boolean=} params.showDeleted Whether to include deleted calendar list entries in the result. Optional. The default is False.
      * @param {boolean=} params.showHidden Whether to show hidden entries. Optional. The default is False.
      * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -387,15 +465,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {boolean=} params.colorRgbFormat Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
      * @param {calendar(v3).CalendarListEntry} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -417,15 +502,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {boolean=} params.colorRgbFormat Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
      * @param {calendar(v3).CalendarListEntry} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -451,15 +543,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {boolean=} params.showHidden Whether to show hidden entries. Optional. The default is False.
      * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
      * @param {calendar(v3).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function (params, callback) {
+    watch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/watch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -483,15 +582,22 @@ function Calendar(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clear: function (params, callback) {
+    clear: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/clear',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -511,15 +617,22 @@ function Calendar(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -539,15 +652,22 @@ function Calendar(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -567,15 +687,22 @@ function Calendar(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {calendar(v3).Calendar} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -596,15 +723,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {calendar(v3).Calendar} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -625,15 +759,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {calendar(v3).Calendar} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -657,15 +798,22 @@ function Calendar(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {calendar(v3).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function (params, callback) {
+    stop: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/channels/stop',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -688,15 +836,22 @@ function Calendar(options) { // eslint-disable-line
      * @memberOf! calendar(v3)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/colors',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -722,15 +877,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {string} params.eventId Event identifier.
      * @param {boolean=} params.sendNotifications Whether to send notifications about the deletion of the event. Optional. The default is False.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
@@ -754,15 +916,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string} params.eventId Event identifier.
      * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
      * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
@@ -784,15 +953,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param {calendar(v3).Event} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    import: function (params, callback) {
+    import: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/import',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -816,15 +992,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the new event. Optional. The default is False.
      * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param {calendar(v3).Event} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -854,15 +1037,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset.
      * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset.
      * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    instances: function (params, callback) {
+    instances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/instances',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
@@ -899,15 +1089,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, e.g., 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but will be ignored.
      * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
      * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -930,15 +1127,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string} params.destination Calendar identifier of the target calendar where the event is to be moved to.
      * @param {string} params.eventId Event identifier.
      * @param {boolean=} params.sendNotifications Whether to send notifications about the change of the event's organizer. Optional. The default is False.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    move: function (params, callback) {
+    move: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/move',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId', 'eventId', 'destination'],
         pathParams: ['calendarId', 'eventId'],
@@ -964,15 +1168,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
      * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param {calendar(v3).Event} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
@@ -994,15 +1205,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
      * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the event. Optional. The default is False.
      * @param {string} params.text The text describing the event to be created.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    quickAdd: function (params, callback) {
+    quickAdd: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/quickAdd',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId', 'text'],
         pathParams: ['calendarId'],
@@ -1028,15 +1246,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {boolean=} params.sendNotifications Whether to send notifications about the event update (e.g. attendee's responses, title changes, etc.). Optional. The default is False.
      * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
      * @param {calendar(v3).Event} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId', 'eventId'],
         pathParams: ['calendarId', 'eventId'],
@@ -1074,15 +1299,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
      * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
      * @param {calendar(v3).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function (params, callback) {
+    watch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/watch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['calendarId'],
         pathParams: ['calendarId'],
@@ -1106,15 +1338,22 @@ function Calendar(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {calendar(v3).FreeBusyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function (params, callback) {
+    query: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/freeBusy',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1138,15 +1377,22 @@ function Calendar(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.setting The id of the user setting.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/users/me/settings/{setting}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['setting'],
         pathParams: ['setting'],
@@ -1168,15 +1414,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
      * @param {string=} params.pageToken Token specifying which result page to return. Optional.
      * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/users/me/settings',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1199,15 +1452,22 @@ function Calendar(options) { // eslint-disable-line
      * @param {string=} params.pageToken Token specifying which result page to return. Optional.
      * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
      * @param {calendar(v3).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function (params, callback) {
+    watch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/calendar/v3/users/me/settings/watch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

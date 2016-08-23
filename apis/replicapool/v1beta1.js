@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Replica Pool API
@@ -54,15 +55,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
      * @param {replicapool(v1beta1).PoolsDeleteRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
@@ -84,15 +92,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.poolName The name of the replica pool for this request.
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
@@ -114,15 +129,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
      * @param {replicapool(v1beta1).Pool} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectName', 'zone'],
         pathParams: ['projectName', 'zone'],
@@ -145,15 +167,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string=} params.pageToken Set this to the nextPageToken value returned by a previous list request to obtain the next page of results from the previous list request.
      * @param {string} params.projectName The project ID for this request.
      * @param {string} params.zone The zone for this replica pool.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectName', 'zone'],
         pathParams: ['projectName', 'zone'],
@@ -176,15 +205,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.poolName The name of the replica pool for this request.
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize: function (params, callback) {
+    resize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/resize',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
@@ -207,15 +243,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.projectName The project ID for this replica pool.
      * @param {string} params.zone The zone for this replica pool.
      * @param {replicapool(v1beta1).Template} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updatetemplate: function (params, callback) {
+    updatetemplate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/updateTemplate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
@@ -243,15 +286,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.replicaName The name of the replica for this request.
      * @param {string} params.zone The zone where the replica lives.
      * @param {replicapool(v1beta1).ReplicasDeleteRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
@@ -274,15 +324,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.projectName The project ID for this request.
      * @param {string} params.replicaName The name of the replica for this request.
      * @param {string} params.zone The zone where the replica lives.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],
@@ -306,15 +363,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.poolName The replica pool name for this request.
      * @param {string} params.projectName The project ID for this request.
      * @param {string} params.zone The zone where the replica pool lives.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectName', 'zone', 'poolName'],
         pathParams: ['poolName', 'projectName', 'zone'],
@@ -337,15 +401,22 @@ function Replicapool(options) { // eslint-disable-line
      * @param {string} params.projectName The project ID for this request.
      * @param {string} params.replicaName The name of the replica for this request.
      * @param {string} params.zone The zone where the replica lives.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    restart: function (params, callback) {
+    restart: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/replicapool/v1beta1/projects/{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}/restart',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectName', 'zone', 'poolName', 'replicaName'],
         pathParams: ['poolName', 'projectName', 'replicaName', 'zone'],

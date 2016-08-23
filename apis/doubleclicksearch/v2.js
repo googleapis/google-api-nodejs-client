@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * DoubleClick Search API
@@ -61,15 +62,22 @@ function Doubleclicksearch(options) { // eslint-disable-line
      * @param {integer} params.rowCount The number of conversions to return per call.
      * @param {integer} params.startDate First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
      * @param {integer} params.startRow The 0-based starting index for retrieving conversions results.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['agencyId', 'advertiserId', 'engineAccountId', 'endDate', 'rowCount', 'startDate', 'startRow'],
         pathParams: ['advertiserId', 'agencyId', 'engineAccountId'],
@@ -89,15 +97,22 @@ function Doubleclicksearch(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {doubleclicksearch(v2).ConversionList} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -124,15 +139,22 @@ function Doubleclicksearch(options) { // eslint-disable-line
      * @param {integer} params.startDate First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
      * @param {integer} params.startRow The 0-based starting index for retrieving conversions results.
      * @param {doubleclicksearch(v2).ConversionList} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['advertiserId', 'agencyId', 'endDate', 'engineAccountId', 'rowCount', 'startDate', 'startRow'],
         pathParams: [],
@@ -152,15 +174,22 @@ function Doubleclicksearch(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {doubleclicksearch(v2).ConversionList} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -180,15 +209,22 @@ function Doubleclicksearch(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {doubleclicksearch(v2).UpdateAvailabilityRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateAvailability: function (params, callback) {
+    updateAvailability: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion/updateAvailability',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -212,15 +248,22 @@ function Doubleclicksearch(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {doubleclicksearch(v2).ReportRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate: function (params, callback) {
+    generate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/generate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -240,15 +283,22 @@ function Doubleclicksearch(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.reportId ID of the report request being polled.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/{reportId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['reportId'],
         pathParams: ['reportId'],
@@ -269,15 +319,22 @@ function Doubleclicksearch(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {integer} params.reportFragment The index of the report fragment to download.
      * @param {string} params.reportId ID of the report.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getFile: function (params, callback) {
+    getFile: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['reportId', 'reportFragment'],
         pathParams: ['reportFragment', 'reportId'],
@@ -297,15 +354,22 @@ function Doubleclicksearch(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {doubleclicksearch(v2).ReportRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    request: function (params, callback) {
+    request: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/reports',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -330,15 +394,22 @@ function Doubleclicksearch(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId DS ID of the advertiser.
      * @param {string} params.agencyId DS ID of the agency.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['agencyId', 'advertiserId'],
         pathParams: ['advertiserId', 'agencyId'],

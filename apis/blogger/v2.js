@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Blogger API
@@ -51,15 +52,22 @@ function Blogger(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.blogId The ID of the blog to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
@@ -85,15 +93,22 @@ function Blogger(options) { // eslint-disable-line
      * @param {string} params.blogId ID of the blog to containing the comment.
      * @param {string} params.commentId The ID of the comment to get.
      * @param {string} params.postId ID of the post to fetch posts from.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['blogId', 'postId', 'commentId'],
         pathParams: ['blogId', 'commentId', 'postId'],
@@ -118,15 +133,22 @@ function Blogger(options) { // eslint-disable-line
      * @param {string=} params.pageToken Continuation token if request is paged.
      * @param {string} params.postId ID of the post to fetch posts from.
      * @param {string=} params.startDate Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts/{postId}/comments',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
@@ -151,15 +173,22 @@ function Blogger(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.blogId ID of the blog containing the page.
      * @param {string} params.pageId The ID of the page to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/pages/{pageId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['blogId', 'pageId'],
         pathParams: ['blogId', 'pageId'],
@@ -180,15 +209,22 @@ function Blogger(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.blogId ID of the blog to fetch pages from.
      * @param {boolean=} params.fetchBodies Whether to retrieve the Page bodies.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/pages',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
@@ -213,15 +249,22 @@ function Blogger(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.blogId ID of the blog to fetch the post from.
      * @param {string} params.postId The ID of the post
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts/{postId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['blogId', 'postId'],
         pathParams: ['blogId', 'postId'],
@@ -245,15 +288,22 @@ function Blogger(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of posts to fetch.
      * @param {string=} params.pageToken Continuation token if the request is paged.
      * @param {string=} params.startDate Earliest post date to fetch, a date-time with RFC 3339 formatting.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['blogId'],
         pathParams: ['blogId'],
@@ -277,15 +327,22 @@ function Blogger(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.userId The ID of the user to get.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/users/{userId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
@@ -307,15 +364,22 @@ function Blogger(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.userId ID of the user whose blogs are to be fetched. Either the word 'self' (sans quote marks) or the user's profile identifier.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/blogger/v2/users/{userId}/blogs',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId'],
           pathParams: ['userId'],

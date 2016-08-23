@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Compute Engine API
@@ -55,7 +56,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -105,15 +106,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/addresses',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -137,7 +145,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -185,15 +193,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.address Name of the address resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/addresses/{address}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'address'],
         pathParams: ['address', 'project', 'region'],
@@ -217,7 +232,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -265,15 +280,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.address Name of the address resource to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/addresses/{address}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'address'],
         pathParams: ['address', 'project', 'region'],
@@ -297,7 +319,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -344,15 +366,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {compute(v1).Address} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/addresses',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -376,7 +405,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -430,15 +459,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/addresses',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -466,7 +502,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -516,15 +552,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/autoscalers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -548,7 +591,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -596,15 +639,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.autoscaler Name of the autoscaler to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'zone'],
@@ -628,7 +678,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -676,15 +726,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.autoscaler Name of the autoscaler to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'zone'],
@@ -708,7 +765,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -755,15 +812,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
      * @param {compute(v1).Autoscaler} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -787,7 +851,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -841,15 +905,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -873,7 +944,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -924,15 +995,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
      * @param {compute(v1).Autoscaler} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'autoscaler'],
         pathParams: ['project', 'zone'],
@@ -956,7 +1034,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1004,15 +1082,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
      * @param {compute(v1).Autoscaler} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -1040,7 +1125,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1084,15 +1169,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendService Name of the BackendService resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
@@ -1116,7 +1208,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1160,15 +1252,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendService Name of the BackendService resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
@@ -1192,7 +1291,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1239,15 +1338,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendService Name of the BackendService resource to which the queried instance belongs.
      * @param {string} params.project 
      * @param {compute(v1).ResourceGroupReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getHealth: function (params, callback) {
+    getHealth: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}/getHealth',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
@@ -1271,7 +1377,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1314,15 +1420,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1346,7 +1459,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1396,15 +1509,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1428,7 +1548,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1475,15 +1595,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendService Name of the BackendService resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
@@ -1507,7 +1634,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1554,15 +1681,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendService Name of the BackendService resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
@@ -1590,7 +1724,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1640,15 +1774,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/diskTypes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1672,7 +1813,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1720,15 +1861,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.diskType Name of the disk type to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/diskTypes/{diskType}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'diskType'],
         pathParams: ['diskType', 'project', 'zone'],
@@ -1752,7 +1900,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1806,15 +1954,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/diskTypes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -1842,7 +1997,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1892,15 +2047,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/disks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1924,7 +2086,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1975,15 +2137,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).Snapshot} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createSnapshot: function (params, callback) {
+    createSnapshot: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/createSnapshot',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
@@ -2007,7 +2176,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -2055,15 +2224,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.disk Name of the persistent disk to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
@@ -2087,7 +2263,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -2135,15 +2311,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.disk Name of the persistent disk to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
@@ -2167,7 +2350,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -2215,15 +2398,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.sourceImage Optional. Source image to restore onto a disk.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).Disk} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -2247,7 +2437,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -2301,15 +2491,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -2333,7 +2530,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -2384,15 +2581,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).DisksResizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize: function (params, callback) {
+    resize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/resize',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
@@ -2420,7 +2624,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -2464,15 +2668,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.firewall Name of the firewall rule to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls/{firewall}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
@@ -2496,7 +2707,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -2540,15 +2751,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.firewall Name of the firewall rule to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls/{firewall}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
@@ -2572,7 +2790,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -2615,15 +2833,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).Firewall} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2647,7 +2872,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -2697,15 +2922,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2729,7 +2961,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -2776,15 +3008,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.firewall Name of the firewall rule to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).Firewall} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls/{firewall}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
@@ -2808,7 +3047,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -2855,15 +3094,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.firewall Name of the firewall rule to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).Firewall} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls/{firewall}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
@@ -2891,7 +3137,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -2941,15 +3187,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/forwardingRules',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2973,7 +3226,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3021,15 +3274,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.forwardingRule Name of the ForwardingRule resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
@@ -3053,7 +3313,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3101,15 +3361,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.forwardingRule Name of the ForwardingRule resource to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
@@ -3133,7 +3400,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3180,15 +3447,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(v1).ForwardingRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -3212,7 +3486,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3266,15 +3540,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -3298,7 +3579,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3349,15 +3630,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(v1).TargetReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTarget: function (params, callback) {
+    setTarget: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}/setTarget',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
@@ -3385,7 +3673,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3429,15 +3717,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.address Name of the address resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/addresses/{address}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'address'],
         pathParams: ['address', 'project'],
@@ -3461,7 +3756,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3505,15 +3800,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.address Name of the address resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/addresses/{address}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'address'],
         pathParams: ['address', 'project'],
@@ -3537,7 +3839,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3580,15 +3882,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).Address} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/addresses',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -3612,7 +3921,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3662,15 +3971,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/addresses',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -3698,7 +4014,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3742,15 +4058,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.forwardingRule Name of the ForwardingRule resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
@@ -3774,7 +4097,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3818,15 +4141,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.forwardingRule Name of the ForwardingRule resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
@@ -3850,7 +4180,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3893,15 +4223,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).ForwardingRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -3925,7 +4262,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -3975,15 +4312,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -4007,7 +4351,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -4054,15 +4398,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.forwardingRule Name of the ForwardingRule resource in which target is to be set.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).TargetReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTarget: function (params, callback) {
+    setTarget: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}/setTarget',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
@@ -4090,7 +4441,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -4140,15 +4491,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -4172,7 +4530,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -4216,15 +4574,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.operation Name of the Operations resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/operations/{operation}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
@@ -4248,7 +4613,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -4292,15 +4657,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.operation Name of the Operations resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/operations/{operation}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
@@ -4324,7 +4696,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -4374,15 +4746,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -4410,7 +4789,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -4454,15 +4833,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
@@ -4486,7 +4872,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -4530,15 +4916,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
@@ -4562,7 +4955,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -4605,15 +4998,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).HttpHealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -4637,7 +5037,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -4687,15 +5087,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -4719,7 +5126,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -4766,15 +5173,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).HttpHealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
@@ -4798,7 +5212,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -4845,15 +5259,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).HttpHealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
@@ -4881,7 +5302,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -4925,15 +5346,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
@@ -4957,7 +5385,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5001,15 +5429,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
@@ -5033,7 +5468,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5076,15 +5511,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).HttpsHealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5108,7 +5550,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5158,15 +5600,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5190,7 +5639,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5237,15 +5686,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).HttpsHealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
@@ -5269,7 +5725,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5316,15 +5772,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).HttpsHealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
@@ -5352,7 +5815,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5396,15 +5859,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.image Name of the image resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images/{image}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
@@ -5428,7 +5898,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5475,15 +5945,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.image Image name.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).DeprecationStatus} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deprecate: function (params, callback) {
+    deprecate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images/{image}/deprecate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
@@ -5507,7 +5984,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5551,15 +6028,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.image Name of the image resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images/{image}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
@@ -5583,7 +6067,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5627,15 +6111,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.family Name of the image family to search for.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getFromFamily: function (params, callback) {
+    getFromFamily: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images/family/{family}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'family'],
         pathParams: ['family', 'project'],
@@ -5659,7 +6150,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5702,15 +6193,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).Image} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5734,7 +6232,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5784,15 +6282,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5820,7 +6325,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5871,15 +6376,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(v1).InstanceGroupManagersAbandonInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    abandonInstances: function (params, callback) {
+    abandonInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -5903,7 +6415,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -5953,15 +6465,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/instanceGroupManagers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5985,7 +6504,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -6033,15 +6552,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -6065,7 +6591,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -6116,15 +6642,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(v1).InstanceGroupManagersDeleteInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteInstances: function (params, callback) {
+    deleteInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -6148,7 +6681,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -6196,15 +6729,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -6228,7 +6768,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -6275,15 +6815,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where you want to create the managed instance group.
      * @param {compute(v1).InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -6307,7 +6854,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -6361,15 +6908,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -6393,7 +6947,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -6441,15 +6995,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listManagedInstances: function (params, callback) {
+    listManagedInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -6473,7 +7034,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -6524,15 +7085,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(v1).InstanceGroupManagersRecreateInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    recreateInstances: function (params, callback) {
+    recreateInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -6556,7 +7124,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -6610,15 +7178,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {integer} params.size The number of running instances that the managed instance group should maintain at any given time. The group automatically adds or removes instances to maintain the number of instances specified by this parameter.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize: function (params, callback) {
+    resize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resize',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager', 'size'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -6642,7 +7217,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -6693,15 +7268,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(v1).InstanceGroupManagersSetInstanceTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setInstanceTemplate: function (params, callback) {
+    setInstanceTemplate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -6725,7 +7307,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -6776,15 +7358,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(v1).InstanceGroupManagersSetTargetPoolsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTargetPools: function (params, callback) {
+    setTargetPools: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -6812,7 +7401,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -6863,15 +7452,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
      * @param {compute(v1).InstanceGroupsAddInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addInstances: function (params, callback) {
+    addInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/addInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
@@ -6895,7 +7491,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -6945,15 +7541,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/instanceGroups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -6977,7 +7580,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -7025,15 +7628,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroup The name of the instance group to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
@@ -7057,7 +7667,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -7105,15 +7715,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroup The name of the instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
@@ -7137,7 +7754,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -7184,15 +7801,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where you want to create the instance group.
      * @param {compute(v1).InstanceGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -7216,7 +7840,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -7270,15 +7894,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -7302,7 +7933,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -7363,15 +7994,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
      * @param {compute(v1).InstanceGroupsListInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listInstances: function (params, callback) {
+    listInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/listInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
@@ -7395,7 +8033,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -7446,15 +8084,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
      * @param {compute(v1).InstanceGroupsRemoveInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeInstances: function (params, callback) {
+    removeInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/removeInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
@@ -7478,7 +8123,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -7529,15 +8174,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
      * @param {compute(v1).InstanceGroupsSetNamedPortsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setNamedPorts: function (params, callback) {
+    setNamedPorts: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/setNamedPorts',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
@@ -7565,7 +8217,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -7609,15 +8261,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceTemplate The name of the instance template to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates/{instanceTemplate}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instanceTemplate'],
         pathParams: ['instanceTemplate', 'project'],
@@ -7641,7 +8300,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -7685,15 +8344,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceTemplate The name of the instance template.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates/{instanceTemplate}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instanceTemplate'],
         pathParams: ['instanceTemplate', 'project'],
@@ -7717,7 +8383,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -7760,15 +8426,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).InstanceTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -7792,7 +8465,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -7842,15 +8515,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -7878,7 +8558,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -7933,15 +8613,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).AccessConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addAccessConfig: function (params, callback) {
+    addAccessConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/addAccessConfig',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
@@ -7965,7 +8652,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -8015,15 +8702,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/instances',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -8047,7 +8741,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -8098,15 +8792,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).AttachedDisk} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    attachDisk: function (params, callback) {
+    attachDisk: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/attachDisk',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -8130,7 +8831,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -8178,15 +8879,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -8210,7 +8918,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -8266,15 +8974,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.networkInterface The name of the network interface.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteAccessConfig: function (params, callback) {
+    deleteAccessConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/deleteAccessConfig',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance', 'accessConfig', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
@@ -8298,7 +9013,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -8350,15 +9065,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Instance name.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    detachDisk: function (params, callback) {
+    detachDisk: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/detachDisk',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance', 'deviceName'],
         pathParams: ['instance', 'project', 'zone'],
@@ -8382,7 +9104,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -8430,15 +9152,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance resource to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -8462,7 +9191,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -8511,15 +9240,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.port Specifies which COM or serial port to retrieve data from.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSerialPortOutput: function (params, callback) {
+    getSerialPortOutput: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/serialPort',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -8543,7 +9279,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -8590,15 +9326,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).Instance} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -8622,7 +9365,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -8676,15 +9419,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -8708,7 +9458,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -8756,15 +9506,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function (params, callback) {
+    reset: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/reset',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -8788,7 +9545,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -8844,15 +9601,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance The instance name.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setDiskAutoDelete: function (params, callback) {
+    setDiskAutoDelete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setDiskAutoDelete',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance', 'autoDelete', 'deviceName'],
         pathParams: ['instance', 'project', 'zone'],
@@ -8876,7 +9640,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -8927,15 +9691,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).InstancesSetMachineTypeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setMachineType: function (params, callback) {
+    setMachineType: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMachineType',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -8959,7 +9730,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9010,15 +9781,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).Metadata} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setMetadata: function (params, callback) {
+    setMetadata: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMetadata',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -9042,7 +9820,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9093,15 +9871,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).Scheduling} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setScheduling: function (params, callback) {
+    setScheduling: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setScheduling',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -9125,7 +9910,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9176,15 +9961,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).Tags} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTags: function (params, callback) {
+    setTags: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setTags',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -9208,7 +10000,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9256,15 +10048,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance resource to start.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    start: function (params, callback) {
+    start: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/start',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -9288,7 +10087,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9339,15 +10138,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(v1).InstancesStartWithEncryptionKeyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    startWithEncryptionKey: function (params, callback) {
+    startWithEncryptionKey: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/startWithEncryptionKey',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -9371,7 +10177,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9419,15 +10225,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance resource to stop.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function (params, callback) {
+    stop: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/stop',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -9455,7 +10268,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9499,15 +10312,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.license Name of the License resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/licenses/{license}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'license'],
         pathParams: ['license', 'project'],
@@ -9535,7 +10355,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9585,15 +10405,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/machineTypes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -9617,7 +10444,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9665,15 +10492,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.machineType Name of the machine type to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/machineTypes/{machineType}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'machineType'],
         pathParams: ['machineType', 'project', 'zone'],
@@ -9697,7 +10531,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9751,15 +10585,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/machineTypes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -9787,7 +10628,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9831,15 +10672,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.network Name of the network to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
@@ -9863,7 +10711,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9907,15 +10755,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.network Name of the network to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
@@ -9939,7 +10794,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -9982,15 +10837,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).Network} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -10014,7 +10876,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -10064,15 +10926,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -10100,7 +10969,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -10140,15 +11009,22 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -10172,7 +11048,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -10215,15 +11091,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).DiskMoveRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    moveDisk: function (params, callback) {
+    moveDisk: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/moveDisk',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -10247,7 +11130,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -10290,15 +11173,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).InstanceMoveRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    moveInstance: function (params, callback) {
+    moveInstance: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/moveInstance',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -10322,7 +11212,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -10365,15 +11255,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).Metadata} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setCommonInstanceMetadata: function (params, callback) {
+    setCommonInstanceMetadata: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/setCommonInstanceMetadata',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -10397,7 +11294,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -10440,15 +11337,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).UsageExportLocation} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setUsageExportBucket: function (params, callback) {
+    setUsageExportBucket: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/setUsageExportBucket',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -10476,7 +11380,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -10524,15 +11428,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.operation Name of the Operations resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'operation'],
         pathParams: ['operation', 'project', 'region'],
@@ -10556,7 +11467,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -10604,15 +11515,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.operation Name of the Operations resource to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'operation'],
         pathParams: ['operation', 'project', 'region'],
@@ -10636,7 +11554,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -10690,15 +11608,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -10726,7 +11651,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -10770,15 +11695,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -10802,7 +11734,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -10852,15 +11784,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -10888,7 +11827,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -10938,15 +11877,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/routers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -10970,7 +11916,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11018,15 +11964,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
@@ -11050,7 +12003,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11098,15 +12051,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
@@ -11130,7 +12090,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11178,15 +12138,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to query.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getRouterStatus: function (params, callback) {
+    getRouterStatus: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}/getRouterStatus',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
@@ -11210,7 +12177,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11257,15 +12224,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {compute(v1).Router} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -11289,7 +12263,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11343,15 +12317,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -11375,7 +12356,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11426,15 +12407,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to update.
      * @param {compute(v1).Router} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
@@ -11458,7 +12446,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11509,15 +12497,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to query.
      * @param {compute(v1).Router} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    preview: function (params, callback) {
+    preview: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}/preview',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
@@ -11541,7 +12536,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11592,15 +12587,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to update.
      * @param {compute(v1).Router} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
@@ -11628,7 +12630,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11672,15 +12674,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.route Name of the Route resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/routes/{route}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'route'],
         pathParams: ['project', 'route'],
@@ -11704,7 +12713,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11748,15 +12757,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.route Name of the Route resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/routes/{route}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'route'],
         pathParams: ['project', 'route'],
@@ -11780,7 +12796,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11823,15 +12839,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).Route} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/routes',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -11855,7 +12878,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11905,15 +12928,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/routes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -11941,7 +12971,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -11985,15 +13015,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.snapshot Name of the Snapshot resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/snapshots/{snapshot}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'snapshot'],
         pathParams: ['project', 'snapshot'],
@@ -12017,7 +13054,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -12061,15 +13098,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.snapshot Name of the Snapshot resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/snapshots/{snapshot}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'snapshot'],
         pathParams: ['project', 'snapshot'],
@@ -12093,7 +13137,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -12143,15 +13187,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/snapshots',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -12179,7 +13230,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -12223,15 +13274,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.sslCertificate Name of the SslCertificate resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/sslCertificates/{sslCertificate}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'sslCertificate'],
         pathParams: ['project', 'sslCertificate'],
@@ -12255,7 +13313,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -12299,15 +13357,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.sslCertificate Name of the SslCertificate resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/sslCertificates/{sslCertificate}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'sslCertificate'],
         pathParams: ['project', 'sslCertificate'],
@@ -12331,7 +13396,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -12374,15 +13439,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).SslCertificate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/sslCertificates',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -12406,7 +13478,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -12456,15 +13528,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/sslCertificates',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -12492,7 +13571,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -12542,15 +13621,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/subnetworks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -12574,7 +13660,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -12622,15 +13708,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.subnetwork Name of the Subnetwork resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
@@ -12654,7 +13747,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -12702,15 +13795,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.subnetwork Name of the Subnetwork resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
@@ -12734,7 +13834,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -12781,15 +13881,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(v1).Subnetwork} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -12813,7 +13920,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -12867,15 +13974,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -12903,7 +14017,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -12947,15 +14061,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpProxy Name of the TargetHttpProxy resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
@@ -12979,7 +14100,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13023,15 +14144,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpProxy Name of the TargetHttpProxy resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
@@ -13055,7 +14183,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13098,15 +14226,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).TargetHttpProxy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpProxies',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -13130,7 +14265,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13180,15 +14315,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpProxies',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -13212,7 +14354,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13259,15 +14401,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpProxy Name of the TargetHttpProxy to set a URL map for.
      * @param {compute(v1).UrlMapReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setUrlMap: function (params, callback) {
+    setUrlMap: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/targetHttpProxies/{targetHttpProxy}/setUrlMap',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
@@ -13295,7 +14444,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13339,15 +14488,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
@@ -13371,7 +14527,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13415,15 +14571,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
@@ -13447,7 +14610,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13490,15 +14653,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).TargetHttpsProxy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpsProxies',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -13522,7 +14692,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13572,15 +14742,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpsProxies',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -13604,7 +14781,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13651,15 +14828,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
      * @param {compute(v1).TargetHttpsProxiesSetSslCertificatesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setSslCertificates: function (params, callback) {
+    setSslCertificates: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
@@ -13683,7 +14867,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13730,15 +14914,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource whose URL map is to be set.
      * @param {compute(v1).UrlMapReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setUrlMap: function (params, callback) {
+    setUrlMap: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
@@ -13766,7 +14957,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13816,15 +15007,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/targetInstances',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -13848,7 +15046,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13896,15 +15094,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetInstance Name of the TargetInstance resource to delete.
      * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'targetInstance'],
         pathParams: ['project', 'targetInstance', 'zone'],
@@ -13928,7 +15133,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -13976,15 +15181,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetInstance Name of the TargetInstance resource to return.
      * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'targetInstance'],
         pathParams: ['project', 'targetInstance', 'zone'],
@@ -14008,7 +15220,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -14055,15 +15267,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone scoping this request.
      * @param {compute(v1).TargetInstance} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/targetInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -14087,7 +15306,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -14141,15 +15360,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/targetInstances',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -14177,7 +15403,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -14228,15 +15454,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the target pool to add a health check to.
      * @param {compute(v1).TargetPoolsAddHealthCheckRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addHealthCheck: function (params, callback) {
+    addHealthCheck: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/addHealthCheck',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -14260,7 +15493,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -14311,15 +15544,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to add instances to.
      * @param {compute(v1).TargetPoolsAddInstanceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addInstance: function (params, callback) {
+    addInstance: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/addInstance',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -14343,7 +15583,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -14393,15 +15633,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/targetPools',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -14425,7 +15672,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -14473,15 +15720,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -14505,7 +15759,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -14553,15 +15807,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -14585,7 +15846,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -14636,15 +15897,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to which the queried instance belongs.
      * @param {compute(v1).InstanceReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getHealth: function (params, callback) {
+    getHealth: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/getHealth',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -14668,7 +15936,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -14715,15 +15983,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(v1).TargetPool} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -14747,7 +16022,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -14801,15 +16076,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -14833,7 +16115,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -14884,15 +16166,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.targetPool Name of the target pool to remove health checks from.
      * @param {compute(v1).TargetPoolsRemoveHealthCheckRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeHealthCheck: function (params, callback) {
+    removeHealthCheck: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/removeHealthCheck',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -14916,7 +16205,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -14967,15 +16256,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to remove instances from.
      * @param {compute(v1).TargetPoolsRemoveInstanceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeInstance: function (params, callback) {
+    removeInstance: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/removeInstance',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -14999,7 +16295,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -15051,15 +16347,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to set a backup pool for.
      * @param {compute(v1).TargetReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setBackup: function (params, callback) {
+    setBackup: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/setBackup',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -15087,7 +16390,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -15137,15 +16440,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/targetVpnGateways',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -15169,7 +16479,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -15217,15 +16527,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.targetVpnGateway Name of the target VPN gateway to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetVpnGateway'],
         pathParams: ['project', 'region', 'targetVpnGateway'],
@@ -15249,7 +16566,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -15297,15 +16614,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.targetVpnGateway Name of the target VPN gateway to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetVpnGateway'],
         pathParams: ['project', 'region', 'targetVpnGateway'],
@@ -15329,7 +16653,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -15376,15 +16700,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {compute(v1).TargetVpnGateway} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetVpnGateways',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -15408,7 +16739,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -15462,15 +16793,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetVpnGateways',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -15498,7 +16836,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -15542,15 +16880,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
@@ -15574,7 +16919,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -15618,15 +16963,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
@@ -15650,7 +17002,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -15693,15 +17045,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).UrlMap} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -15725,7 +17084,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -15772,15 +17131,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap scoping this request.
      * @param {compute(v1).CacheInvalidationRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    invalidateCache: function (params, callback) {
+    invalidateCache: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}/invalidateCache',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
@@ -15804,7 +17170,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -15854,15 +17220,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -15886,7 +17259,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -15933,15 +17306,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to update.
      * @param {compute(v1).UrlMap} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
@@ -15965,7 +17345,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -16012,15 +17392,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to update.
      * @param {compute(v1).UrlMap} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
@@ -16044,7 +17431,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -16091,15 +17478,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to be validated as.
      * @param {compute(v1).UrlMapsValidateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    validate: function (params, callback) {
+    validate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}/validate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
@@ -16127,7 +17521,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -16177,15 +17571,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/vpnTunnels',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -16209,7 +17610,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -16257,15 +17658,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.vpnTunnel Name of the VpnTunnel resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'vpnTunnel'],
         pathParams: ['project', 'region', 'vpnTunnel'],
@@ -16289,7 +17697,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -16337,15 +17745,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.vpnTunnel Name of the VpnTunnel resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'vpnTunnel'],
         pathParams: ['project', 'region', 'vpnTunnel'],
@@ -16369,7 +17784,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -16416,15 +17831,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {compute(v1).VpnTunnel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/vpnTunnels',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -16448,7 +17870,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -16502,15 +17924,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/vpnTunnels',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -16538,7 +17967,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -16586,15 +18015,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.operation Name of the Operations resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
@@ -16618,7 +18054,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -16666,15 +18102,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.operation Name of the Operations resource to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
@@ -16698,7 +18141,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -16752,15 +18195,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -16788,7 +18238,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -16832,15 +18282,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -16864,7 +18321,7 @@ function Compute(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -16914,15 +18371,22 @@ function Compute(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],

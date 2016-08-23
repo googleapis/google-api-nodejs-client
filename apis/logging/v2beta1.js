@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Cloud Logging API
@@ -57,7 +58,7 @@ function Logging(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -98,15 +99,22 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.logName Required. The resource name of the log to delete. Example: `"projects/my-project/logs/syslog"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://logging.googleapis.com/v2beta1/{logName}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['logName'],
           pathParams: ['logName'],
@@ -133,7 +141,7 @@ function Logging(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -183,15 +191,22 @@ function Logging(options) { // eslint-disable-line
        * @param {string} params.projectName Required. The resource name of the project containing the sinks. Example: `"projects/my-logging-project"`.
        * @param {string=} params.pageToken Optional. If the `pageToken` parameter is supplied, then the next page of results is retrieved. The `pageToken` parameter must be set to the value of the `nextPageToken` from the previous response. The value of `projectName` must be the same as in the previous request.
        * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. You must check for presence of `nextPageToken` to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value as the `pageToken` parameter in the next request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://logging.googleapis.com/v2beta1/{projectName}/sinks',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectName'],
           pathParams: ['projectName'],
@@ -215,7 +230,7 @@ function Logging(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -256,15 +271,22 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.sinkName The resource name of the sink to return. Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://logging.googleapis.com/v2beta1/{sinkName}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['sinkName'],
           pathParams: ['sinkName'],
@@ -288,7 +310,7 @@ function Logging(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -333,15 +355,22 @@ function Logging(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectName The resource name of the project in which to create the sink. Example: `"projects/my-project-id"`. The new sink must be provided in the request.
        * @param {logging(v2beta1).LogSink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://logging.googleapis.com/v2beta1/{projectName}/sinks',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectName'],
           pathParams: ['projectName'],
@@ -365,7 +394,7 @@ function Logging(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -410,15 +439,22 @@ function Logging(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.sinkName The resource name of the sink to update. Example: `"projects/my-project-id/sinks/my-sink-id"`. The updated sink must be provided in the request and have the same name that is specified in `sinkName`. If the sink does not exist, it is created.
        * @param {logging(v2beta1).LogSink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://logging.googleapis.com/v2beta1/{sinkName}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['sinkName'],
           pathParams: ['sinkName'],
@@ -442,7 +478,7 @@ function Logging(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -485,15 +521,22 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.sinkName The resource name of the sink to delete. Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://logging.googleapis.com/v2beta1/{sinkName}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['sinkName'],
           pathParams: ['sinkName'],
@@ -520,7 +563,7 @@ function Logging(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -570,15 +613,22 @@ function Logging(options) { // eslint-disable-line
        * @param {string} params.projectName Required. The resource name of the project containing the metrics. Example: `"projects/my-project-id"`.
        * @param {string=} params.pageToken Optional. If the `pageToken` parameter is supplied, then the next page of results is retrieved. The `pageToken` parameter must be set to the value of the `nextPageToken` from the previous response. The value of `projectName` must be the same as in the previous request.
        * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. You must check for presence of `nextPageToken` to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value as the `pageToken` parameter in the next request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://logging.googleapis.com/v2beta1/{projectName}/metrics',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectName'],
           pathParams: ['projectName'],
@@ -602,7 +652,7 @@ function Logging(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -643,15 +693,22 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.metricName The resource name of the desired metric. Example: `"projects/my-project-id/metrics/my-metric-id"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://logging.googleapis.com/v2beta1/{metricName}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['metricName'],
           pathParams: ['metricName'],
@@ -675,7 +732,7 @@ function Logging(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -720,15 +777,22 @@ function Logging(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectName The resource name of the project in which to create the metric. Example: `"projects/my-project-id"`. The new metric must be provided in the request.
        * @param {logging(v2beta1).LogMetric} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://logging.googleapis.com/v2beta1/{projectName}/metrics',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectName'],
           pathParams: ['projectName'],
@@ -752,7 +816,7 @@ function Logging(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -799,15 +863,22 @@ function Logging(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.metricName The resource name of the metric to update. Example: `"projects/my-project-id/metrics/my-metric-id"`. The updated metric must be provided in the request and have the same identifier that is specified in `metricName`. If the metric does not exist, it is created.
        * @param {logging(v2beta1).LogMetric} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://logging.googleapis.com/v2beta1/{metricName}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['metricName'],
           pathParams: ['metricName'],
@@ -831,7 +902,7 @@ function Logging(options) { // eslint-disable-line
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
        * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud auth application-default login'
+       * //    'gcloud beta auth application-default login'
        * // 3. Install the Node.js client library and Application Default Credentials
        * //    library by running 'npm install googleapis --save'
        * var google = require('googleapis');
@@ -872,15 +943,22 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.metricName The resource name of the metric to delete. Example: `"projects/my-project-id/metrics/my-metric-id"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://logging.googleapis.com/v2beta1/{metricName}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['metricName'],
           pathParams: ['metricName'],
@@ -908,7 +986,7 @@ function Logging(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -947,15 +1025,22 @@ function Logging(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {logging(v2beta1).WriteLogEntriesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    write: function (params, callback) {
+    write: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://logging.googleapis.com/v2beta1/entries:write',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -979,7 +1064,7 @@ function Logging(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1025,15 +1110,22 @@ function Logging(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {logging(v2beta1).ListLogEntriesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://logging.googleapis.com/v2beta1/entries:list',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1061,7 +1153,7 @@ function Logging(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -1106,15 +1198,22 @@ function Logging(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. You must check for presence of `nextPageToken` to determine if additional results are available, which you can retrieve by passing the `nextPageToken` value as the `pageToken` parameter in the next request.
      * @param {string=} params.pageToken Optional. If the `pageToken` parameter is supplied, then the next page of results is retrieved. The `pageToken` parameter must be set to the value of the `nextPageToken` from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://logging.googleapis.com/v2beta1/monitoredResourceDescriptors',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

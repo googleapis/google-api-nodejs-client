@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Admin Data Transfer API
@@ -51,15 +52,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.applicationId ID of the application resource to be retrieved.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/applications/{applicationId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['applicationId'],
         pathParams: ['applicationId'],
@@ -81,15 +89,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.customerId Immutable ID of the Google Apps account.
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 100.
      * @param {string=} params.pageToken Token to specify next page in the list.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/applications',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -113,15 +128,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.dataTransferId ID of the resource to be retrieved. This is returned in the response from the insert method.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers/{dataTransferId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['dataTransferId'],
         pathParams: ['dataTransferId'],
@@ -141,15 +163,22 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {admin(datatransfer_v1).DataTransfer} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -174,15 +203,22 @@ function Admin(options) { // eslint-disable-line
      * @param {string=} params.oldOwnerUserId Source user's profile ID.
      * @param {string=} params.pageToken Token to specify the next page in the list.
      * @param {string=} params.status Status of the transfer.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],

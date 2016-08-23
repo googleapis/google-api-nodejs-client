@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Cloud Container Builder API
@@ -54,15 +55,22 @@ function Cloudbuild(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId ID of the project for which to configure automatic builds.
        * @param {cloudbuild(v1).BuildTrigger} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -83,15 +91,22 @@ function Cloudbuild(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId ID of the project that owns the trigger.
        * @param {string} params.triggerId ID of the BuildTrigger to get.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers/{triggerId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'triggerId'],
           pathParams: ['projectId', 'triggerId'],
@@ -111,15 +126,22 @@ function Cloudbuild(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.projectId ID of the project for which to list BuildTriggers.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -140,15 +162,22 @@ function Cloudbuild(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId ID of the project that owns the trigger.
        * @param {string} params.triggerId ID of the BuildTrigger to delete.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers/{triggerId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'triggerId'],
           pathParams: ['projectId', 'triggerId'],
@@ -170,15 +199,22 @@ function Cloudbuild(options) { // eslint-disable-line
        * @param {string} params.projectId ID of the project that owns the trigger.
        * @param {string} params.triggerId ID of the BuildTrigger to update.
        * @param {cloudbuild(v1).BuildTrigger} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      patch: function (params, callback) {
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers/{triggerId}',
             method: 'PATCH'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'triggerId'],
           pathParams: ['projectId', 'triggerId'],
@@ -202,15 +238,22 @@ function Cloudbuild(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId ID of the project.
        * @param {cloudbuild(v1).Build} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      create: function (params, callback) {
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -231,15 +274,22 @@ function Cloudbuild(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectId ID of the project.
        * @param {string} params.id ID of the build.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds/{id}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'id'],
           pathParams: ['projectId', 'id'],
@@ -261,15 +311,22 @@ function Cloudbuild(options) { // eslint-disable-line
        * @param {integer=} params.pageSize Number of results to return in the list.
        * @param {string} params.projectId ID of the project.
        * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId'],
           pathParams: ['projectId'],
@@ -291,15 +348,22 @@ function Cloudbuild(options) { // eslint-disable-line
        * @param {string} params.projectId ID of the project.
        * @param {string} params.id ID of the build.
        * @param {cloudbuild(v1).CancelBuildRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      cancel: function (params, callback) {
+      cancel: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds/{id}:cancel',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectId', 'id'],
           pathParams: ['projectId', 'id'],
@@ -323,15 +387,22 @@ function Cloudbuild(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://cloudbuild.googleapis.com/v1/{name}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],
@@ -354,15 +425,22 @@ function Cloudbuild(options) { // eslint-disable-line
      * @param {string=} params.filter The standard list filter.
      * @param {string} params.name The name of the operation collection.
      * @param {string=} params.pageToken The standard list page token.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://cloudbuild.googleapis.com/v1/{name}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['name'],
         pathParams: ['name'],

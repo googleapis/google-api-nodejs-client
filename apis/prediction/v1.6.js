@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Prediction API
@@ -55,7 +56,7 @@ function Prediction(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -102,15 +103,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {string} params.hostedModelName The name of a hosted model.
      * @param {string} params.project The project associated with the model.
      * @param {prediction(v1.6).Input} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    predict: function (params, callback) {
+    predict: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/hostedmodels/{hostedModelName}/predict',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'hostedModelName'],
         pathParams: ['hostedModelName', 'project'],
@@ -138,7 +146,7 @@ function Prediction(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -182,15 +190,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id The unique name for the predictive model.
      * @param {string} params.project The project associated with the model.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    analyze: function (params, callback) {
+    analyze: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels/{id}/analyze',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'id'],
         pathParams: ['id', 'project'],
@@ -214,7 +229,7 @@ function Prediction(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -258,15 +273,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id The unique name for the predictive model.
      * @param {string} params.project The project associated with the model.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'id'],
         pathParams: ['id', 'project'],
@@ -290,7 +312,7 @@ function Prediction(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -334,15 +356,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id The unique name for the predictive model.
      * @param {string} params.project The project associated with the model.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'id'],
         pathParams: ['id', 'project'],
@@ -366,7 +395,7 @@ function Prediction(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -409,15 +438,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project The project associated with the model.
      * @param {prediction(v1.6).Insert} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -441,7 +477,7 @@ function Prediction(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -490,15 +526,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken Pagination token.
      * @param {string} params.project The project associated with the model.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels/list',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -522,7 +565,7 @@ function Prediction(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -569,15 +612,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {string} params.id The unique name for the predictive model.
      * @param {string} params.project The project associated with the model.
      * @param {prediction(v1.6).Input} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    predict: function (params, callback) {
+    predict: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels/{id}/predict',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'id'],
         pathParams: ['id', 'project'],
@@ -601,7 +651,7 @@ function Prediction(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud auth application-default login'
+     * //    'gcloud beta auth application-default login'
      * // 3. Install the Node.js client library and Application Default Credentials
      * //    library by running 'npm install googleapis --save'
      * var google = require('googleapis');
@@ -648,15 +698,22 @@ function Prediction(options) { // eslint-disable-line
      * @param {string} params.id The unique name for the predictive model.
      * @param {string} params.project The project associated with the model.
      * @param {prediction(v1.6).Update} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.6/projects/{project}/trainedmodels/{id}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'id'],
         pathParams: ['id', 'project'],

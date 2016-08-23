@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * DCM/DFA Reporting And Trafficking API
@@ -52,15 +53,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.summaryAccountId Account ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'summaryAccountId'],
         pathParams: ['profileId', 'summaryAccountId'],
@@ -85,15 +93,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Account permission group ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accountPermissionGroups/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -113,15 +128,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accountPermissionGroups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -146,15 +168,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Account permission ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accountPermissions/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -174,15 +203,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accountPermissions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -207,15 +243,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id User profile ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accountUserProfiles/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -236,15 +279,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).AccountUserProfile} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accountUserProfiles',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -273,15 +323,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
      * @param {string=} params.subaccountId Select only user profiles with the specified subaccount ID.
      * @param {string=} params.userRoleId Select only user profiles with the specified user role ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accountUserProfiles',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -303,15 +360,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id User profile ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).AccountUserProfile} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accountUserProfiles',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -332,15 +396,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).AccountUserProfile} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accountUserProfiles',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -365,15 +436,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Account ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accounts/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -400,15 +478,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "account*2015" will return objects with names like "account June 2015", "account April 2015", or simply "account 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "account" will match objects with name "my account", "account 2015", or simply "account".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accounts',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -430,15 +515,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Account ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Account} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accounts',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -459,15 +551,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Account} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/accounts',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -492,15 +591,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Ad ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/ads/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -521,15 +627,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Ad} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/ads',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -573,15 +686,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {boolean=} params.sslCompliant Select only ads that are SSL-compliant.
      * @param {boolean=} params.sslRequired Select only ads that require SSL.
      * @param {string=} params.type Select only ads with these types.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/ads',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -603,15 +723,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Ad ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Ad} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/ads',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -632,15 +759,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Ad} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/ads',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -665,15 +799,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser group ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/advertiserGroups/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -694,15 +835,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser group ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/advertiserGroups/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -723,15 +871,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).AdvertiserGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/advertiserGroups',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -757,15 +912,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser group June 2015", "advertiser group April 2015", or simply "advertiser group 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertisergroup" will match objects with name "my advertisergroup", "advertisergroup 2015", or simply "advertisergroup".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/advertiserGroups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -787,15 +949,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Advertiser group ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).AdvertiserGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/advertiserGroups',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -816,15 +985,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).AdvertiserGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/advertiserGroups',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -849,15 +1025,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/advertisers/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -878,15 +1061,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Advertiser} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/advertisers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -918,15 +1108,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
      * @param {string=} params.status Select only advertisers with the specified status.
      * @param {string=} params.subaccountId Select only advertisers with these subaccount IDs.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/advertisers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -948,15 +1145,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Advertiser ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Advertiser} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/advertisers',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -977,15 +1181,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Advertiser} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/advertisers',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -1009,15 +1220,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/browsers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -1043,15 +1261,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.campaignId Campaign ID in this association.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).CampaignCreativeAssociation} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'campaignId'],
         pathParams: ['campaignId', 'profileId'],
@@ -1075,15 +1300,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'campaignId'],
         pathParams: ['campaignId', 'profileId'],
@@ -1108,15 +1340,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Campaign ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -1139,15 +1378,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.defaultLandingPageUrl Default landing page URL for this new campaign.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Campaign} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'defaultLandingPageName', 'defaultLandingPageUrl'],
         pathParams: ['profileId'],
@@ -1180,15 +1426,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
      * @param {string=} params.subaccountId Select only campaigns that belong to this subaccount.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -1210,15 +1463,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Campaign ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Campaign} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -1239,15 +1499,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Campaign} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -1272,15 +1539,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Change log ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/changeLogs/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -1310,15 +1584,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Select only change logs whose object ID, user name, old or new values match the search string.
      * @param {string=} params.userProfileIds Select only change logs with these user profile IDs.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/changeLogs',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -1346,15 +1627,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.namePrefix Select only cities with names starting with this prefix.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.regionDartIds Select only cities from these regions.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/cities',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -1379,15 +1667,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Connection type ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/connectionTypes/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -1407,15 +1702,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/connectionTypes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -1440,15 +1742,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Content category ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/contentCategories/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -1469,15 +1778,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Content category ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/contentCategories/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -1498,15 +1814,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).ContentCategory} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/contentCategories',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -1532,15 +1855,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "contentcategory*2015" will return objects with names like "contentcategory June 2015", "contentcategory April 2015", or simply "contentcategory 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "contentcategory" will match objects with name "my contentcategory", "contentcategory 2015", or simply "contentcategory".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/contentCategories',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -1562,15 +1892,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Content category ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).ContentCategory} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/contentCategories',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -1591,15 +1928,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).ContentCategory} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/contentCategories',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -1624,15 +1968,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.dartId Country DART ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/countries/{dartId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'dartId'],
         pathParams: ['dartId', 'profileId'],
@@ -1652,15 +2003,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/countries',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -1689,15 +2047,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets',
           method: 'POST'
-        },
+        }, options),
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/dfareporting/v2.3/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets',
         requiredParams: ['profileId', 'advertiserId'],
@@ -1724,15 +2089,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.id Creative Field Value ID
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'id', 'profileId'],
@@ -1754,15 +2126,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.id Creative Field Value ID
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'id', 'profileId'],
@@ -1784,15 +2163,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).CreativeFieldValue} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
@@ -1819,15 +2205,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for creative field values by their values. Wildcards (e.g. *) are not allowed.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
@@ -1850,15 +2243,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Creative Field Value ID
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).CreativeFieldValue} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'creativeFieldId', 'id'],
         pathParams: ['creativeFieldId', 'profileId'],
@@ -1880,15 +2280,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).CreativeFieldValue} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'creativeFieldId'],
         pathParams: ['creativeFieldId', 'profileId'],
@@ -1913,15 +2320,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Creative Field ID
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeFields/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -1942,15 +2356,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Creative Field ID
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeFields/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -1971,15 +2392,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).CreativeField} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeFields',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2006,15 +2434,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for creative fields by name or ID. Wildcards (*) are allowed. For example, "creativefield*2015" will return creative fields with names like "creativefield June 2015", "creativefield April 2015", or simply "creativefield 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativefield" will match creative fields with the name "my creativefield", "creativefield 2015", or simply "creativefield".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeFields',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2036,15 +2471,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Creative Field ID
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).CreativeField} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeFields',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -2065,15 +2507,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).CreativeField} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeFields',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2098,15 +2547,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Creative group ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeGroups/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -2127,15 +2583,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).CreativeGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeGroups',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2163,15 +2626,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for creative groups by name or ID. Wildcards (*) are allowed. For example, "creativegroup*2015" will return creative groups with names like "creativegroup June 2015", "creativegroup April 2015", or simply "creativegroup 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativegroup" will match creative groups with the name "my creativegroup", "creativegroup 2015", or simply "creativegroup".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeGroups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2193,15 +2663,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Creative group ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).CreativeGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeGroups',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -2222,15 +2699,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).CreativeGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creativeGroups',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2255,15 +2739,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Creative ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creatives/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -2284,15 +2775,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Creative} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creatives',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2328,15 +2826,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
      * @param {string=} params.studioCreativeId Select only creatives corresponding to this Studio creative ID.
      * @param {string=} params.types Select only creatives with these creative types.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creatives',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2358,15 +2863,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Creative ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Creative} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creatives',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -2387,15 +2899,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Creative} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/creatives',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2422,15 +2941,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.pageToken The value of the nextToken from the previous result page.
      * @param {string} params.profileId The DFA user profile ID.
      * @param {dfareporting(v2.3).DimensionValueRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query: function (params, callback) {
+    query: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/dimensionvalues/query',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2455,15 +2981,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Directory site contact ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/directorySiteContacts/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -2490,15 +3023,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "directory site contact*2015" will return objects with names like "directory site contact June 2015", "directory site contact April 2015", or simply "directory site contact 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site contact" will match objects with name "my directory site contact", "directory site contact 2015", or simply "directory site contact".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/directorySiteContacts',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2523,15 +3063,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Directory site ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/directorySites/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -2552,15 +3099,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).DirectorySite} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/directorySites',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2593,15 +3147,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for objects by name, ID or URL. Wildcards (*) are allowed. For example, "directory site*2015" will return objects with names like "directory site June 2015", "directory site April 2015", or simply "directory site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site" will match objects with name "my directory site", "directory site 2015" or simply, "directory site".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/directorySites',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2626,15 +3187,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Event tag ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/eventTags/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -2655,15 +3223,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Event tag ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/eventTags/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -2684,15 +3259,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).EventTag} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/eventTags',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2722,15 +3304,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "eventtag*2015" will return objects with names like "eventtag June 2015", "eventtag April 2015", or simply "eventtag 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "eventtag" will match objects with name "my eventtag", "eventtag 2015", or simply "eventtag".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/eventTags',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2752,15 +3341,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Event tag ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).EventTag} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/eventTags',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -2781,15 +3377,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).EventTag} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/eventTags',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2814,15 +3417,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the report file.
      * @param {string} params.reportId The ID of the report.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/reports/{reportId}/files/{fileId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['reportId', 'fileId'],
         pathParams: ['fileId', 'reportId'],
@@ -2847,15 +3457,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.scope The scope that defines which results are returned, default is 'MINE'.
      * @param {string=} params.sortField The field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is 'DESCENDING'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/files',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2880,15 +3497,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightActivities/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -2909,15 +3533,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.floodlightActivityId Floodlight activity ID for which we want to generate a tag.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generatetag: function (params, callback) {
+    generatetag: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightActivities/generatetag',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -2938,15 +3569,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightActivities/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -2967,15 +3605,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).FloodlightActivity} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightActivities',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -3008,15 +3653,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
      * @param {string=} params.tagString Select only floodlight activities with the specified tag string.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightActivities',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -3038,15 +3690,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Floodlight activity ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).FloodlightActivity} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightActivities',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -3067,15 +3726,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).FloodlightActivity} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightActivities',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -3100,15 +3766,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity Group ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightActivityGroups/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -3129,15 +3802,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).FloodlightActivityGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -3166,15 +3846,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
      * @param {string=} params.type Select only floodlight activity groups with the specified floodlight activity group type.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -3196,15 +3883,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Floodlight activity Group ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).FloodlightActivityGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -3225,15 +3919,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).FloodlightActivityGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -3258,15 +3959,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight configuration ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightConfigurations/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -3287,15 +3995,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.ids Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightConfigurations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -3317,15 +4032,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Floodlight configuration ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).FloodlightConfiguration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightConfigurations',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -3346,15 +4068,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).FloodlightConfiguration} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/floodlightConfigurations',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -3380,15 +4109,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Inventory item ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.projectId Project ID for order documents.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'projectId', 'id'],
         pathParams: ['id', 'profileId', 'projectId'],
@@ -3417,15 +4153,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.siteId Select only inventory items that are associated with these sites.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/projects/{projectId}/inventoryItems',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'projectId'],
         pathParams: ['profileId', 'projectId'],
@@ -3451,15 +4194,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.campaignId Landing page campaign ID.
      * @param {string} params.id Landing page ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'campaignId', 'id'],
         pathParams: ['campaignId', 'id', 'profileId'],
@@ -3481,15 +4231,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.campaignId Landing page campaign ID.
      * @param {string} params.id Landing page ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'campaignId', 'id'],
         pathParams: ['campaignId', 'id', 'profileId'],
@@ -3511,15 +4268,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.campaignId Landing page campaign ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).LandingPage} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'campaignId'],
         pathParams: ['campaignId', 'profileId'],
@@ -3540,15 +4304,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.campaignId Landing page campaign ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'campaignId'],
         pathParams: ['campaignId', 'profileId'],
@@ -3571,15 +4342,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Landing page ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).LandingPage} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'campaignId', 'id'],
         pathParams: ['campaignId', 'profileId'],
@@ -3601,15 +4379,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.campaignId Landing page campaign ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).LandingPage} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'campaignId'],
         pathParams: ['campaignId', 'profileId'],
@@ -3633,15 +4418,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/metros',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -3666,15 +4458,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Mobile carrier ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/mobileCarriers/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -3694,15 +4493,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/mobileCarriers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -3727,15 +4533,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Operating system version ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/operatingSystemVersions/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -3755,15 +4568,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/operatingSystemVersions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -3788,15 +4608,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.dartId Operating system DART ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/operatingSystems/{dartId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'dartId'],
         pathParams: ['dartId', 'profileId'],
@@ -3816,15 +4643,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/operatingSystems',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -3850,15 +4684,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Order document ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.projectId Project ID for order documents.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'projectId', 'id'],
         pathParams: ['id', 'profileId', 'projectId'],
@@ -3888,15 +4729,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.siteId Select only order documents that are associated with these sites.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/projects/{projectId}/orderDocuments',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'projectId'],
         pathParams: ['profileId', 'projectId'],
@@ -3922,15 +4770,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Order ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.projectId Project ID for orders.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/projects/{projectId}/orders/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'projectId', 'id'],
         pathParams: ['id', 'profileId', 'projectId'],
@@ -3958,15 +4813,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.siteId Select only orders that are associated with these site IDs.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/projects/{projectId}/orders',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'projectId'],
         pathParams: ['profileId', 'projectId'],
@@ -3991,15 +4853,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Placement group ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placementGroups/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -4020,15 +4889,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).PlacementGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placementGroups',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4067,15 +4943,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.siteIds Select only placement groups that are associated with these sites.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placementGroups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4097,15 +4980,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Placement group ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).PlacementGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placementGroups',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -4126,15 +5016,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).PlacementGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placementGroups',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4159,15 +5056,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Placement strategy ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placementStrategies/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -4188,15 +5092,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Placement strategy ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placementStrategies/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -4217,15 +5128,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).PlacementStrategy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placementStrategies',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4251,15 +5169,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "placementstrategy*2015" will return objects with names like "placementstrategy June 2015", "placementstrategy April 2015", or simply "placementstrategy 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementstrategy" will match objects with name "my placementstrategy", "placementstrategy 2015", or simply "placementstrategy".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placementStrategies',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4281,15 +5206,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Placement strategy ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).PlacementStrategy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placementStrategies',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -4310,15 +5242,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).PlacementStrategy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placementStrategies',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4345,15 +5284,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.placementIds Generate tags for these placements.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.tagFormats Tag formats to generate for these placements.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generatetags: function (params, callback) {
+    generatetags: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placements/generatetags',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4374,15 +5320,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Placement ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placements/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -4403,15 +5356,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Placement} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placements',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4453,15 +5413,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.sizeIds Select only placements that are associated with these sizes.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placements',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4483,15 +5450,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Placement ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Placement} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placements',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -4512,15 +5486,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Placement} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/placements',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4545,15 +5526,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Platform type ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/platformTypes/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -4573,15 +5561,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/platformTypes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4606,15 +5601,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.code Postal code ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/postalCodes/{code}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'code'],
         pathParams: ['code', 'profileId'],
@@ -4634,15 +5636,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/postalCodes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4667,15 +5676,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Project ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/projects/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -4702,15 +5718,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, "project*2015" will return projects with names like "project June 2015", "project April 2015", or simply "project 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "project" will match projects with name "my project", "project 2015", or simply "project".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/projects',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4734,15 +5757,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/regions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4767,15 +5797,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.remarketingListId Remarketing list ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/remarketingListShares/{remarketingListId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'remarketingListId'],
         pathParams: ['profileId', 'remarketingListId'],
@@ -4797,15 +5834,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.remarketingListId Remarketing list ID.
      * @param {dfareporting(v2.3).RemarketingListShare} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/remarketingListShares',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'remarketingListId'],
         pathParams: ['profileId'],
@@ -4826,15 +5870,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).RemarketingListShare} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/remarketingListShares',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4859,15 +5910,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Remarketing list ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/remarketingLists/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -4888,15 +5946,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).RemarketingList} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/remarketingLists',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -4924,15 +5989,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/remarketingLists',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['profileId'],
@@ -4954,15 +6026,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Remarketing list ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).RemarketingList} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/remarketingLists',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -4983,15 +6062,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).RemarketingList} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/remarketingLists',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5016,15 +6102,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/reports/{reportId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
@@ -5045,15 +6138,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/reports/{reportId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
@@ -5074,15 +6174,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
      * @param {dfareporting(v2.3).Report} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/reports',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5107,15 +6214,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.scope The scope that defines which results are returned, default is 'MINE'.
      * @param {string=} params.sortField The field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is 'DESCENDING'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/reports',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5137,15 +6251,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
      * @param {dfareporting(v2.3).Report} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/reports/{reportId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
@@ -5167,15 +6288,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId The DFA profile ID.
      * @param {string} params.reportId The ID of the report.
      * @param {boolean=} params.synchronous If set and true, tries to run the report synchronously.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run: function (params, callback) {
+    run: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/reports/{reportId}/run',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
@@ -5197,15 +6325,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
      * @param {dfareporting(v2.3).Report} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/reports/{reportId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'reportId'],
         pathParams: ['profileId', 'reportId'],
@@ -5228,15 +6363,22 @@ function Dfareporting(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.profileId The DFA user profile ID.
        * @param {dfareporting(v2.3).Report} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      query: function (params, callback) {
+      query: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/reports/compatiblefields/query',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['profileId'],
           pathParams: ['profileId'],
@@ -5261,15 +6403,22 @@ function Dfareporting(options) { // eslint-disable-line
        * @param {string} params.fileId The ID of the report file.
        * @param {string} params.profileId The DFA profile ID.
        * @param {string} params.reportId The ID of the report.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/reports/{reportId}/files/{fileId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['profileId', 'reportId', 'fileId'],
           pathParams: ['fileId', 'profileId', 'reportId'],
@@ -5294,15 +6443,22 @@ function Dfareporting(options) { // eslint-disable-line
        * @param {string} params.reportId The ID of the parent report.
        * @param {string=} params.sortField The field by which to sort the list.
        * @param {string=} params.sortOrder Order of sorted results, default is 'DESCENDING'.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/reports/{reportId}/files',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['profileId', 'reportId'],
           pathParams: ['profileId', 'reportId'],
@@ -5327,15 +6483,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Site ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/sites/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -5356,15 +6519,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Site} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/sites',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5399,15 +6569,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
      * @param {string=} params.subaccountId Select only sites with this subaccount ID.
      * @param {boolean=} params.unmappedSite Select only sites that have not been mapped to a directory site.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/sites',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5429,15 +6606,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Site ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Site} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/sites',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -5458,15 +6642,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Site} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/sites',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5491,15 +6682,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Size ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/sizes/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -5520,15 +6718,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Size} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/sizes',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5552,15 +6757,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.ids Select only sizes with these IDs.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {integer=} params.width Select only sizes with this width.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/sizes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5585,15 +6797,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Subaccount ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/subaccounts/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -5614,15 +6833,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Subaccount} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/subaccounts',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5648,15 +6874,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount".
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/subaccounts',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5678,15 +6911,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id Subaccount ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Subaccount} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/subaccounts',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -5707,15 +6947,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).Subaccount} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/subaccounts',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5740,15 +6987,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id Remarketing list ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/targetableRemarketingLists/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -5775,15 +7029,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/targetableRemarketingLists',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['profileId'],
@@ -5807,15 +7068,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId The user profile ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5834,15 +7102,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @memberOf! dfareporting(v2.3)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -5867,15 +7142,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id User role permission group ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/userRolePermissionGroups/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -5895,15 +7177,22 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/userRolePermissionGroups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5928,15 +7217,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id User role permission ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/userRolePermissions/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -5957,15 +7253,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.ids Select only user role permissions with these IDs.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/userRolePermissions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -5990,15 +7293,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id User role ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/userRoles/{id}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -6019,15 +7329,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.id User role ID.
      * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/userRoles/{id}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['id', 'profileId'],
@@ -6048,15 +7365,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).UserRole} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/userRoles',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -6084,15 +7408,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.sortField Field by which to sort the list.
      * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
      * @param {string=} params.subaccountId Select only user roles that belong to this subaccount.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/userRoles',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],
@@ -6114,15 +7445,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.id User role ID.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).UserRole} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/userRoles',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId', 'id'],
         pathParams: ['profileId'],
@@ -6143,15 +7481,22 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {dfareporting(v2.3).UserRole} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/dfareporting/v2.3/userprofiles/{profileId}/userRoles',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['profileId'],
         pathParams: ['profileId'],

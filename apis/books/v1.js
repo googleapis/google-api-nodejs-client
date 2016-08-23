@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Books API
@@ -53,15 +54,22 @@ function Books(options) { // eslint-disable-line
      * @param {string} params.shelf ID of bookshelf to retrieve.
      * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.userId ID of user for whom to retrieve bookshelves.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId', 'shelf'],
         pathParams: ['shelf', 'userId'],
@@ -82,15 +90,22 @@ function Books(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.userId ID of user for whom to retrieve bookshelves.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['userId'],
         pathParams: ['userId'],
@@ -117,15 +132,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.source String to identify the originator of this request.
        * @param {integer=} params.startIndex Index of the first element to return (starts at 0)
        * @param {string} params.userId ID of user for whom to retrieve bookshelf volumes.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}/volumes',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['userId', 'shelf'],
           pathParams: ['shelf', 'userId'],
@@ -152,15 +174,22 @@ function Books(options) { // eslint-disable-line
      * @param {string=} params.mime_type The document MIME type. It can be set only if the drive_document_id is set.
      * @param {string=} params.name The document name. It can be set only if the drive_document_id is set.
      * @param {string=} params.upload_client_token 
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addBook: function (params, callback) {
+    addBook: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/cloudloading/addBook',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -180,15 +209,22 @@ function Books(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.volumeId The id of the book to be removed.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteBook: function (params, callback) {
+    deleteBook: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/cloudloading/deleteBook',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['volumeId'],
         pathParams: [],
@@ -208,15 +244,22 @@ function Books(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {books(v1).BooksCloudloadingResource} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateBook: function (params, callback) {
+    updateBook: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/cloudloading/updateBook',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -240,15 +283,22 @@ function Books(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.cpksver The device/version ID from which to request the data.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listOfflineMetadata: function (params, callback) {
+    listOfflineMetadata: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/dictionary/listOfflineMetadata',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['cpksver'],
         pathParams: [],
@@ -275,15 +325,22 @@ function Books(options) { // eslint-disable-line
      * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.summaryId The ID for the layer to get the summary for.
      * @param {string} params.volumeId The volume to retrieve layers for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layersummary/{summaryId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['volumeId', 'summaryId'],
         pathParams: ['summaryId', 'volumeId'],
@@ -307,15 +364,22 @@ function Books(options) { // eslint-disable-line
      * @param {string=} params.pageToken The value of the nextToken from the previous page.
      * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.volumeId The volume to retrieve layers for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layersummary',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
@@ -346,15 +410,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.source String to identify the originator of this request.
        * @param {string} params.volumeId The volume to retrieve annotations for.
        * @param {integer=} params.w The requested pixel width for any images. If width is provided height must also be provided.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['volumeId', 'layerId', 'annotationDataId', 'contentVersion'],
           pathParams: ['annotationDataId', 'layerId', 'volumeId'],
@@ -386,15 +457,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
        * @param {string} params.volumeId The volume to retrieve annotation data for.
        * @param {integer=} params.w The requested pixel width for any images. If width is provided height must also be provided.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/data',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['volumeId', 'layerId', 'contentVersion'],
           pathParams: ['layerId', 'volumeId'],
@@ -421,15 +499,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
        * @param {string=} params.source String to identify the originator of this request.
        * @param {string} params.volumeId The volume to retrieve annotations for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['volumeId', 'layerId', 'annotationId'],
           pathParams: ['annotationId', 'layerId', 'volumeId'],
@@ -463,15 +548,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
        * @param {string=} params.volumeAnnotationsVersion The version of the volume annotations that you are requesting.
        * @param {string} params.volumeId The volume to retrieve annotations for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['volumeId', 'layerId', 'contentVersion'],
           pathParams: ['layerId', 'volumeId'],
@@ -494,15 +586,22 @@ function Books(options) { // eslint-disable-line
      * @memberOf! books(v1)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getUserSettings: function (params, callback) {
+    getUserSettings: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/myconfig/getUserSettings',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -525,15 +624,22 @@ function Books(options) { // eslint-disable-line
      * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
      * @param {string=} params.source String to identify the originator of this request.
      * @param {string} params.volumeIds The volume(s) to release restrictions for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    releaseDownloadAccess: function (params, callback) {
+    releaseDownloadAccess: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/myconfig/releaseDownloadAccess',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['volumeIds', 'cpksver'],
         pathParams: [],
@@ -558,15 +664,22 @@ function Books(options) { // eslint-disable-line
      * @param {string} params.nonce The client nonce value.
      * @param {string} params.source String to identify the originator of this request.
      * @param {string} params.volumeId The volume to request concurrent/download restrictions for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    requestAccess: function (params, callback) {
+    requestAccess: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/myconfig/requestAccess',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['source', 'volumeId', 'nonce', 'cpksver'],
         pathParams: [],
@@ -593,15 +706,22 @@ function Books(options) { // eslint-disable-line
      * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
      * @param {string} params.source String to identify the originator of this request.
      * @param {string=} params.volumeIds The volume(s) to request download restrictions for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    syncVolumeLicenses: function (params, callback) {
+    syncVolumeLicenses: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/myconfig/syncVolumeLicenses',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['source', 'nonce', 'cpksver'],
         pathParams: [],
@@ -621,15 +741,22 @@ function Books(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {books(v1).Usersettings} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateUserSettings: function (params, callback) {
+    updateUserSettings: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/myconfig/updateUserSettings',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -656,15 +783,22 @@ function Books(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.annotationId The ID for the annotation to delete.
        * @param {string=} params.source String to identify the originator of this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      delete: function (params, callback) {
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
             method: 'DELETE'
-          },
+          }, options),
           params: params,
           requiredParams: ['annotationId'],
           pathParams: ['annotationId'],
@@ -687,15 +821,22 @@ function Books(options) { // eslint-disable-line
        * @param {boolean=} params.showOnlySummaryInResponse Requests that only the summary of the specified layer be provided in the response.
        * @param {string=} params.source String to identify the originator of this request.
        * @param {books(v1).Annotation} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      insert: function (params, callback) {
+      insert: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -724,15 +865,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
        * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
        * @param {string=} params.volumeId The volume to restrict annotations to.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -753,15 +901,22 @@ function Books(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.layerIds Array of layer IDs to get the summary for.
        * @param {string} params.volumeId Volume id to get the summary for.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      summary: function (params, callback) {
+      summary: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/summary',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['layerIds', 'volumeId'],
           pathParams: [],
@@ -783,15 +938,22 @@ function Books(options) { // eslint-disable-line
        * @param {string} params.annotationId The ID for the annotation to update.
        * @param {string=} params.source String to identify the originator of this request.
        * @param {books(v1).Annotation} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['annotationId'],
           pathParams: ['annotationId'],
@@ -817,15 +979,22 @@ function Books(options) { // eslint-disable-line
        * @param {string} params.shelf ID of bookshelf to which to add a volume.
        * @param {string=} params.source String to identify the originator of this request.
        * @param {string} params.volumeId ID of volume to add.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      addVolume: function (params, callback) {
+      addVolume: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/addVolume',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['shelf', 'volumeId'],
           pathParams: ['shelf'],
@@ -846,15 +1015,22 @@ function Books(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.shelf ID of bookshelf from which to remove a volume.
        * @param {string=} params.source String to identify the originator of this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      clearVolumes: function (params, callback) {
+      clearVolumes: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['shelf'],
           pathParams: ['shelf'],
@@ -875,15 +1051,22 @@ function Books(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.shelf ID of bookshelf to retrieve.
        * @param {string=} params.source String to identify the originator of this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['shelf'],
           pathParams: ['shelf'],
@@ -903,15 +1086,22 @@ function Books(options) { // eslint-disable-line
        *
        * @param {object=} params Parameters for request
        * @param {string=} params.source String to identify the originator of this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -934,15 +1124,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.source String to identify the originator of this request.
        * @param {string} params.volumeId ID of volume to move.
        * @param {integer} params.volumePosition Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      moveVolume: function (params, callback) {
+      moveVolume: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/moveVolume',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['shelf', 'volumeId', 'volumePosition'],
           pathParams: ['shelf'],
@@ -965,15 +1162,22 @@ function Books(options) { // eslint-disable-line
        * @param {string} params.shelf ID of bookshelf from which to remove a volume.
        * @param {string=} params.source String to identify the originator of this request.
        * @param {string} params.volumeId ID of volume to remove.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      removeVolume: function (params, callback) {
+      removeVolume: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/removeVolume',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['shelf', 'volumeId'],
           pathParams: ['shelf'],
@@ -1002,15 +1206,22 @@ function Books(options) { // eslint-disable-line
          * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
          * @param {string=} params.source String to identify the originator of this request.
          * @param {integer=} params.startIndex Index of the first element to return (starts at 0)
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/volumes',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['shelf'],
             pathParams: ['shelf'],
@@ -1036,15 +1247,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.contentVersion Volume content version for which this reading position is requested.
        * @param {string=} params.source String to identify the originator of this request.
        * @param {string} params.volumeId ID of volume for which to retrieve a reading position.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/{volumeId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['volumeId'],
           pathParams: ['volumeId'],
@@ -1070,15 +1288,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.source String to identify the originator of this request.
        * @param {string} params.timestamp RFC 3339 UTC format timestamp associated with this reading position.
        * @param {string} params.volumeId ID of volume for which to update the reading position.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      setPosition: function (params, callback) {
+      setPosition: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/{volumeId}/setPosition',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['volumeId', 'timestamp', 'position'],
           pathParams: ['volumeId'],
@@ -1104,15 +1329,22 @@ function Books(options) { // eslint-disable-line
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
      * @param {string} params.notification_id String to identify the notification.
      * @param {string=} params.source String to identify the originator of this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/notification/get',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['notification_id'],
         pathParams: [],
@@ -1136,15 +1368,22 @@ function Books(options) { // eslint-disable-line
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listCategories: function (params, callback) {
+    listCategories: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/onboarding/listCategories',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1168,15 +1407,22 @@ function Books(options) { // eslint-disable-line
      * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
      * @param {integer=} params.pageSize Number of maximum results per page to be included in the response.
      * @param {string=} params.pageToken The value of the nextToken from the previous page.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listCategoryVolumes: function (params, callback) {
+    listCategoryVolumes: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/onboarding/listCategoryVolumes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1202,15 +1448,22 @@ function Books(options) { // eslint-disable-line
      * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
      * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      * @param {string=} params.source String to identify the originator of this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/personalizedstream/get',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1241,15 +1494,22 @@ function Books(options) { // eslint-disable-line
      * @param {string=} params.product device product
      * @param {string=} params.serial device serial
      * @param {string=} params.volumeId Volume id to exercise the offer
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    accept: function (params, callback) {
+    accept: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/promooffer/accept',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1275,15 +1535,22 @@ function Books(options) { // eslint-disable-line
      * @param {string=} params.offerId Offer to dimiss
      * @param {string=} params.product device product
      * @param {string=} params.serial device serial
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    dismiss: function (params, callback) {
+    dismiss: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/promooffer/dismiss',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1308,15 +1575,22 @@ function Books(options) { // eslint-disable-line
      * @param {string=} params.model device model
      * @param {string=} params.product device product
      * @param {string=} params.serial device serial
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/promooffer/get',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1340,15 +1614,22 @@ function Books(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.series_id String that identifies the series
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/series/get',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['series_id'],
         pathParams: [],
@@ -1372,15 +1653,22 @@ function Books(options) { // eslint-disable-line
        * @param {integer=} params.page_size Number of maximum results per page to be included in the response.
        * @param {string=} params.page_token The value of the nextToken from the previous page.
        * @param {string} params.series_id String that identifies the series
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/series/membership/get',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['series_id'],
           pathParams: [],
@@ -1410,15 +1698,22 @@ function Books(options) { // eslint-disable-line
      * @param {string=} params.source String to identify the originator of this request.
      * @param {boolean=} params.user_library_consistent_read 
      * @param {string} params.volumeId ID of volume to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['volumeId'],
         pathParams: ['volumeId'],
@@ -1450,15 +1745,22 @@ function Books(options) { // eslint-disable-line
      * @param {boolean=} params.showPreorders Set to true to show books available for preorder. Defaults to false.
      * @param {string=} params.source String to identify the originator of this request.
      * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/volumes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['q'],
         pathParams: [],
@@ -1484,15 +1786,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
        * @param {string=} params.source String to identify the originator of this request.
        * @param {string} params.volumeId ID of the source volume.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/associated',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['volumeId'],
           pathParams: ['volumeId'],
@@ -1521,15 +1830,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.processingState The processing state of the user uploaded volumes to be returned. Applicable only if the UPLOADED is specified in the acquireMethod.
        * @param {string=} params.source String to identify the originator of this request.
        * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/mybooks',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -1554,15 +1870,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
        * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
        * @param {string=} params.source String to identify the originator of this request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/recommended',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],
@@ -1585,15 +1908,22 @@ function Books(options) { // eslint-disable-line
        * @param {string} params.rating Rating to be given to the volume.
        * @param {string=} params.source String to identify the originator of this request.
        * @param {string} params.volumeId ID of the source volume.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      rate: function (params, callback) {
+      rate: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/recommended/rate',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['rating', 'volumeId'],
           pathParams: [],
@@ -1621,15 +1951,22 @@ function Books(options) { // eslint-disable-line
        * @param {string=} params.source String to identify the originator of this request.
        * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
        * @param {string=} params.volumeId The ids of the volumes to be returned. If not specified all that match the processingState are returned.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/useruploaded',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: [],
           pathParams: [],

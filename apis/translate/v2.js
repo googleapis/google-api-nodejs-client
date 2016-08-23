@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Translate API
@@ -51,15 +52,22 @@ function Translate(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.q The text to detect
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/language/translate/v2/detect',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['q'],
         pathParams: [],
@@ -83,15 +91,22 @@ function Translate(options) { // eslint-disable-line
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.target the language and collation in which the localized results should be returned
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/language/translate/v2/languages',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -119,15 +134,22 @@ function Translate(options) { // eslint-disable-line
      * @param {string} params.q The text to translate
      * @param {string=} params.source The source language of the text
      * @param {string} params.target The target language into which the text should be translated
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/language/translate/v2',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['q', 'target'],
         pathParams: [],

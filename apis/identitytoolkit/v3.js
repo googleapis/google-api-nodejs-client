@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Identity Toolkit API
@@ -51,15 +52,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyCreateAuthUriRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createAuthUri: function (params, callback) {
+    createAuthUri: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/createAuthUri',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -79,15 +87,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyDeleteAccountRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteAccount: function (params, callback) {
+    deleteAccount: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/deleteAccount',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -107,15 +122,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyDownloadAccountRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    downloadAccount: function (params, callback) {
+    downloadAccount: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/downloadAccount',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -135,15 +157,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyGetAccountInfoRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAccountInfo: function (params, callback) {
+    getAccountInfo: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -163,15 +192,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).Relyingparty} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getOobConfirmationCode: function (params, callback) {
+    getOobConfirmationCode: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -192,15 +228,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {string=} params.delegatedProjectNumber Delegated GCP project number of the request.
      * @param {string=} params.projectNumber GCP project number of the request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getProjectConfig: function (params, callback) {
+    getProjectConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getProjectConfig',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -219,15 +262,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      * @memberOf! identitytoolkit(v3)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getPublicKeys: function (params, callback) {
+    getPublicKeys: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/publicKeys',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -246,15 +296,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      * @memberOf! identitytoolkit(v3)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getRecaptchaParam: function (params, callback) {
+    getRecaptchaParam: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getRecaptchaParam',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -274,15 +331,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyResetPasswordRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resetPassword: function (params, callback) {
+    resetPassword: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/resetPassword',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -302,15 +366,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySetAccountInfoRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setAccountInfo: function (params, callback) {
+    setAccountInfo: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setAccountInfo',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -330,15 +401,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySetProjectConfigRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setProjectConfig: function (params, callback) {
+    setProjectConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setProjectConfig',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -358,15 +436,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySignOutUserRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    signOutUser: function (params, callback) {
+    signOutUser: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signOutUser',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -386,15 +471,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartySignupNewUserRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    signupNewUser: function (params, callback) {
+    signupNewUser: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -414,15 +506,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyUploadAccountRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    uploadAccount: function (params, callback) {
+    uploadAccount: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/uploadAccount',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -442,15 +541,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyVerifyAssertionRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verifyAssertion: function (params, callback) {
+    verifyAssertion: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyAssertion',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -470,15 +576,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyVerifyCustomTokenRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verifyCustomToken: function (params, callback) {
+    verifyCustomToken: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -498,15 +611,22 @@ function Identitytoolkit(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {identitytoolkit(v3).IdentitytoolkitRelyingpartyVerifyPasswordRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    verifyPassword: function (params, callback) {
+    verifyPassword: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -748,6 +868,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} pendingIdToken The GITKit token for the non-trusted IDP pending to be confirmed by the user.
  * @property {string} postBody The post body if the request is a HTTP POST.
  * @property {string} requestUri The URI to which the IDP redirects the user back. It may contain federated login result params added by the IDP.
+ * @property {boolean} returnIdpCredential Whether return 200 and IDP credential rather than throw exception when federated id is already linked.
  * @property {boolean} returnRefreshToken Whether to return refresh tokens.
  * @property {boolean} returnSecureToken Whether return sts id token and refresh token instead of gitkit token.
  * @property {string} sessionId Session ID, which should match the one in previous createAuthUri request.
@@ -874,6 +995,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} email The email returned by the IdP. NOTE: The federated login user may not own the email.
  * @property {boolean} emailRecycled It&#39;s true if the email is recycled.
  * @property {boolean} emailVerified The value is true if the IDP is also the email provider. It means the user owns the email.
+ * @property {string} errorMessage Client error code.
  * @property {string} expiresIn If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
  * @property {string} federatedId The unique ID identifies the IdP account.
  * @property {string} firstName The first name of the user.
@@ -897,6 +1019,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} originalEmail The original email stored in the mapping storage. It&#39;s returned when the federated ID is associated to a different email.
  * @property {string} photoUrl The URI of the public accessible profiel picture.
  * @property {string} providerId The IdP ID. For white listed IdPs it&#39;s a short domain name e.g. google.com, aol.com, live.net and yahoo.com. If the &quot;providerId&quot; param is set to OpenID OP identifer other than the whilte listed IdPs the OP identifier is returned. If the &quot;identifier&quot; param is federated ID in the createAuthUri request. The domain part of the federated ID is returned.
+ * @property {string} rawUserInfo Raw IDP-returned user info.
  * @property {string} refreshToken If idToken is STS id token, then this field will be refresh token.
  * @property {string} screenName The screen_name of a Twitter user.
  * @property {string} timeZone The timezone of the user.

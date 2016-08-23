@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Compute Engine Instance Groups API
@@ -53,15 +54,22 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string} params.operation Name of the operation resource to return.
      * @param {string} params.project Name of the project scoping this request.
      * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
@@ -85,15 +93,22 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string=} params.pageToken Optional. Tag returned by a previous list request truncated by maxResults. Used to continue a previous list request.
      * @param {string} params.project Name of the project scoping this request.
      * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -120,15 +135,22 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string} params.resourceView The name of the resource view.
      * @param {string} params.zone The zone name of the resource view.
      * @param {resourceviews(v1beta2).ZoneViewsAddResourcesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addResources: function (params, callback) {
+    addResources: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/addResources',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resourceView'],
         pathParams: ['project', 'resourceView', 'zone'],
@@ -150,15 +172,22 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string} params.project The project name of the resource view.
      * @param {string} params.resourceView The name of the resource view.
      * @param {string} params.zone The zone name of the resource view.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resourceView'],
         pathParams: ['project', 'resourceView', 'zone'],
@@ -180,15 +209,22 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string} params.project The project name of the resource view.
      * @param {string} params.resourceView The name of the resource view.
      * @param {string} params.zone The zone name of the resource view.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resourceView'],
         pathParams: ['project', 'resourceView', 'zone'],
@@ -211,15 +247,22 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string=} params.resourceName The name of the resource if user wants to get the service information of the resource.
      * @param {string} params.resourceView The name of the resource view.
      * @param {string} params.zone The zone name of the resource view.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getService: function (params, callback) {
+    getService: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/getService',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resourceView'],
         pathParams: ['project', 'resourceView', 'zone'],
@@ -241,15 +284,22 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string} params.project The project name of the resource view.
      * @param {string} params.zone The zone name of the resource view.
      * @param {resourceviews(v1beta2).ResourceView} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -272,15 +322,22 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a nextPageToken returned by a previous list request. This token can be used to request the next page of results from a previous list request.
      * @param {string} params.project The project name of the resource view.
      * @param {string} params.zone The zone name of the resource view.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -307,15 +364,22 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string} params.resourceView The name of the resource view.
      * @param {string=} params.serviceName The service name to return in the response. It is optional and if it is not set, all the service end points will be returned.
      * @param {string} params.zone The zone name of the resource view.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listResources: function (params, callback) {
+    listResources: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/resources',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resourceView'],
         pathParams: ['project', 'resourceView', 'zone'],
@@ -338,15 +402,22 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string} params.resourceView The name of the resource view.
      * @param {string} params.zone The zone name of the resource view.
      * @param {resourceviews(v1beta2).ZoneViewsRemoveResourcesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeResources: function (params, callback) {
+    removeResources: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/removeResources',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resourceView'],
         pathParams: ['project', 'resourceView', 'zone'],
@@ -369,15 +440,22 @@ function Resourceviews(options) { // eslint-disable-line
      * @param {string} params.resourceView The name of the resource view.
      * @param {string} params.zone The zone name of the resource view.
      * @param {resourceviews(v1beta2).ZoneViewsSetServiceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setService: function (params, callback) {
+    setService: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/resourceviews/v1beta2/projects/{project}/zones/{zone}/resourceViews/{resourceView}/setService',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resourceView'],
         pathParams: ['project', 'resourceView', 'zone'],

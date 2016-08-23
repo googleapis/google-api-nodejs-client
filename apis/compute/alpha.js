@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Compute Engine API
@@ -55,15 +56,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/addresses',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -85,15 +93,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.address Name of the address resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/addresses/{address}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'address'],
         pathParams: ['address', 'project', 'region'],
@@ -115,15 +130,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.address Name of the address resource to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/addresses/{address}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'address'],
         pathParams: ['address', 'project', 'region'],
@@ -145,15 +167,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {compute(alpha).Address} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/addresses',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -178,15 +207,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/addresses',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -209,15 +245,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/addresses/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -245,15 +288,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/autoscalers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -275,15 +325,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.autoscaler Name of the autoscaler to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'zone'],
@@ -305,15 +362,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.autoscaler Name of the autoscaler to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'zone'],
@@ -335,15 +399,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
      * @param {compute(alpha).Autoscaler} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -368,15 +439,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -399,15 +477,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
      * @param {compute(alpha).Autoscaler} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'autoscaler'],
         pathParams: ['project', 'zone'],
@@ -430,15 +515,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
@@ -461,15 +553,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
      * @param {compute(alpha).Autoscaler} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -494,15 +593,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendBucket Name of the BackendBucket resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
@@ -523,15 +629,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendBucket Name of the BackendBucket resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
@@ -552,15 +665,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy: function (params, callback) {
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{resource}/getIamPolicy',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -581,15 +701,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).BackendBucket} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -613,15 +740,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -643,15 +777,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendBucket Name of the BackendBucket resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).BackendBucket} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
@@ -673,15 +814,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy: function (params, callback) {
+    setIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{resource}/setIamPolicy',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -703,15 +851,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -733,15 +888,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendBucket Name of the BackendBucket resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).BackendBucket} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendBucket'],
         pathParams: ['backendBucket', 'project'],
@@ -769,15 +931,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/backendServices',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -798,15 +967,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendService Name of the BackendService resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
@@ -827,15 +1003,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.backendService Name of the BackendService resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
@@ -857,15 +1040,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendService Name of the BackendService resource to which the queried instance belongs.
      * @param {string} params.project 
      * @param {compute(alpha).ResourceGroupReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getHealth: function (params, callback) {
+    getHealth: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}/getHealth',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
@@ -886,15 +1076,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -918,15 +1115,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -948,15 +1152,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendService Name of the BackendService resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
@@ -978,15 +1189,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -1008,15 +1226,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendService Name of the BackendService resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'backendService'],
         pathParams: ['backendService', 'project'],
@@ -1042,15 +1267,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/clientSslPolicies/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -1078,15 +1310,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/diskTypes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1108,15 +1347,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.diskType Name of the disk type to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/diskTypes/{diskType}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'diskType'],
         pathParams: ['diskType', 'project', 'zone'],
@@ -1141,15 +1387,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/diskTypes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -1177,15 +1430,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/disks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1209,15 +1469,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).Snapshot} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createSnapshot: function (params, callback) {
+    createSnapshot: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{disk}/createSnapshot',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
@@ -1239,15 +1506,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.disk Name of the persistent disk to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{disk}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
@@ -1269,15 +1543,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.disk Name of the persistent disk to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{disk}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
@@ -1300,15 +1581,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.sourceImage Optional. Source image to restore onto a disk.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).Disk} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -1333,15 +1621,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -1364,15 +1659,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).DisksResizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize: function (params, callback) {
+    resize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{disk}/resize',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'disk'],
         pathParams: ['disk', 'project', 'zone'],
@@ -1395,15 +1697,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).ZoneSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setLabels: function (params, callback) {
+    setLabels: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{resource}/setLabels',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
@@ -1426,15 +1735,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
@@ -1459,15 +1775,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.firewall Name of the firewall rule to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls/{firewall}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
@@ -1488,15 +1811,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.firewall Name of the firewall rule to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls/{firewall}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
@@ -1517,15 +1847,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).Firewall} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1549,15 +1886,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1579,15 +1923,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.firewall Name of the firewall rule to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).Firewall} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls/{firewall}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
@@ -1609,15 +1960,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -1639,15 +1997,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.firewall Name of the firewall rule to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).Firewall} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls/{firewall}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'firewall'],
         pathParams: ['firewall', 'project'],
@@ -1675,15 +2040,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/forwardingRules',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1705,15 +2077,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.forwardingRule Name of the ForwardingRule resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
@@ -1735,15 +2114,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.forwardingRule Name of the ForwardingRule resource to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
@@ -1765,15 +2151,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).ForwardingRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -1798,15 +2191,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -1829,15 +2229,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).TargetReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTarget: function (params, callback) {
+    setTarget: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}/setTarget',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project', 'region'],
@@ -1860,15 +2267,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -1893,15 +2307,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.address Name of the address resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/addresses/{address}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'address'],
         pathParams: ['address', 'project'],
@@ -1922,15 +2343,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.address Name of the address resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/addresses/{address}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'address'],
         pathParams: ['address', 'project'],
@@ -1951,15 +2379,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).Address} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/addresses',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -1983,15 +2418,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/addresses',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2013,15 +2455,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/addresses/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -2046,15 +2495,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.forwardingRule Name of the ForwardingRule resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules/{forwardingRule}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
@@ -2075,15 +2531,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.forwardingRule Name of the ForwardingRule resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules/{forwardingRule}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
@@ -2104,15 +2567,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).ForwardingRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2136,15 +2606,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2166,15 +2643,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.forwardingRule Name of the ForwardingRule resource in which target is to be set.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).TargetReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTarget: function (params, callback) {
+    setTarget: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules/{forwardingRule}/setTarget',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'forwardingRule'],
         pathParams: ['forwardingRule', 'project'],
@@ -2196,15 +2680,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -2232,15 +2723,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2261,15 +2759,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.operation Name of the Operations resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/operations/{operation}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
@@ -2290,15 +2795,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.operation Name of the Operations resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/operations/{operation}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
@@ -2322,15 +2834,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2355,15 +2874,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.healthCheck Name of the HealthCheck resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
@@ -2384,15 +2910,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.healthCheck Name of the HealthCheck resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
@@ -2413,15 +2946,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).HealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2445,15 +2985,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2475,15 +3022,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.healthCheck Name of the HealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).HealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
@@ -2505,15 +3059,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -2535,15 +3096,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.healthCheck Name of the HealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).HealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
@@ -2568,15 +3136,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
@@ -2597,15 +3172,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
@@ -2626,15 +3208,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).HttpHealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2658,15 +3247,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2688,15 +3284,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).HttpHealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
@@ -2718,15 +3321,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -2748,15 +3358,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).HttpHealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpHealthCheck'],
         pathParams: ['httpHealthCheck', 'project'],
@@ -2781,15 +3398,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
@@ -2810,15 +3434,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
@@ -2839,15 +3470,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).HttpsHealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2871,15 +3509,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -2901,15 +3546,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).HttpsHealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
@@ -2931,15 +3583,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -2961,15 +3620,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to update.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).HttpsHealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'httpsHealthCheck'],
         pathParams: ['httpsHealthCheck', 'project'],
@@ -2994,15 +3660,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.image Name of the image resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/{image}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
@@ -3024,15 +3697,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.image Image name.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).DeprecationStatus} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deprecate: function (params, callback) {
+    deprecate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/{image}/deprecate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
@@ -3053,15 +3733,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.image Name of the image resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/{image}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'image'],
         pathParams: ['image', 'project'],
@@ -3082,15 +3769,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.family Name of the image family to search for.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getFromFamily: function (params, callback) {
+    getFromFamily: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/family/{family}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'family'],
         pathParams: ['family', 'project'],
@@ -3111,15 +3805,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).Image} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -3143,15 +3844,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -3173,15 +3881,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).GlobalSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setLabels: function (params, callback) {
+    setLabels: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/{resource}/setLabels',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -3203,15 +3918,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -3238,15 +3960,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(alpha).InstanceGroupManagersAbandonInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    abandonInstances: function (params, callback) {
+    abandonInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3270,15 +3999,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/instanceGroupManagers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -3300,15 +4036,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3331,15 +4074,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(alpha).InstanceGroupManagersDeleteInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteInstances: function (params, callback) {
+    deleteInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3361,15 +4111,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3391,15 +4148,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where you want to create the managed instance group.
      * @param {compute(alpha).InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -3424,15 +4188,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -3454,15 +4225,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listManagedInstances: function (params, callback) {
+    listManagedInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3485,15 +4263,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where you want to create the managed instance group.
      * @param {compute(alpha).InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3516,15 +4301,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(alpha).InstanceGroupManagersRecreateInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    recreateInstances: function (params, callback) {
+    recreateInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3547,15 +4339,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {integer} params.size The number of running instances that the managed instance group should maintain at any given time. The group automatically adds or removes instances to maintain the number of instances specified by this parameter.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize: function (params, callback) {
+    resize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resize',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager', 'size'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3578,15 +4377,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(alpha).InstanceGroupManagersResizeAdvancedRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resizeAdvanced: function (params, callback) {
+    resizeAdvanced: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeAdvanced',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3609,15 +4415,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(alpha).InstanceGroupManagersSetAutoHealingRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setAutoHealingPolicies: function (params, callback) {
+    setAutoHealingPolicies: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setAutoHealingPolicies',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3640,15 +4453,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(alpha).InstanceGroupManagersSetInstanceTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setInstanceTemplate: function (params, callback) {
+    setInstanceTemplate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3671,15 +4491,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {compute(alpha).InstanceGroupManagersSetTargetPoolsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTargetPools: function (params, callback) {
+    setTargetPools: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3702,15 +4529,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
@@ -3733,15 +4567,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where you want to create the managed instance group.
      * @param {compute(alpha).InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'zone'],
@@ -3768,15 +4609,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
      * @param {compute(alpha).InstanceGroupsAddInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addInstances: function (params, callback) {
+    addInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/addInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
@@ -3800,15 +4648,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/instanceGroups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -3830,15 +4685,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroup The name of the instance group to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
@@ -3860,15 +4722,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroup The name of the instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
@@ -3890,15 +4759,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where you want to create the instance group.
      * @param {compute(alpha).InstanceGroup} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -3923,15 +4799,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -3958,15 +4841,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
      * @param {compute(alpha).InstanceGroupsListInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listInstances: function (params, callback) {
+    listInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/listInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
@@ -3989,15 +4879,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
      * @param {compute(alpha).InstanceGroupsRemoveInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeInstances: function (params, callback) {
+    removeInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/removeInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
@@ -4020,15 +4917,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the instance group is located.
      * @param {compute(alpha).InstanceGroupsSetNamedPortsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setNamedPorts: function (params, callback) {
+    setNamedPorts: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/setNamedPorts',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'zone'],
@@ -4051,15 +4955,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
@@ -4084,15 +4995,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceTemplate The name of the instance template to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/instanceTemplates/{instanceTemplate}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instanceTemplate'],
         pathParams: ['instanceTemplate', 'project'],
@@ -4113,15 +5031,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.instanceTemplate The name of the instance template.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/instanceTemplates/{instanceTemplate}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'instanceTemplate'],
         pathParams: ['instanceTemplate', 'project'],
@@ -4142,15 +5067,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).InstanceTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/instanceTemplates',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -4174,15 +5106,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/instanceTemplates',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -4204,15 +5143,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/instanceTemplates/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -4240,15 +5186,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).AccessConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addAccessConfig: function (params, callback) {
+    addAccessConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/addAccessConfig',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4272,15 +5225,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/instances',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -4303,15 +5263,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).AttachedDisk} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    attachDisk: function (params, callback) {
+    attachDisk: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/attachDisk',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4333,15 +5300,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4365,15 +5339,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.networkInterface The name of the network interface.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteAccessConfig: function (params, callback) {
+    deleteAccessConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/deleteAccessConfig',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance', 'accessConfig', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4396,15 +5377,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Instance name.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    detachDisk: function (params, callback) {
+    detachDisk: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/detachDisk',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance', 'deviceName'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4426,15 +5414,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance resource to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4456,15 +5451,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy: function (params, callback) {
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{resource}/getIamPolicy',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
@@ -4488,15 +5490,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.start For the initial request, leave this field unspecified. For subsequent calls, this field should be set to the next value that was returned in the previous call.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getSerialPortOutput: function (params, callback) {
+    getSerialPortOutput: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/serialPort',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4518,15 +5527,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).Instance} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -4551,15 +5567,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -4581,15 +5604,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reset: function (params, callback) {
+    reset: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/reset',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4613,15 +5643,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance The instance name.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setDiskAutoDelete: function (params, callback) {
+    setDiskAutoDelete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setDiskAutoDelete',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance', 'autoDelete', 'deviceName'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4644,15 +5681,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy: function (params, callback) {
+    setIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{resource}/setIamPolicy',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
@@ -4675,15 +5719,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).InstancesSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setLabels: function (params, callback) {
+    setLabels: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setLabels',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4706,15 +5757,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).InstancesSetMachineTypeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setMachineType: function (params, callback) {
+    setMachineType: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setMachineType',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4737,15 +5795,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).Metadata} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setMetadata: function (params, callback) {
+    setMetadata: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setMetadata',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4768,15 +5833,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).Scheduling} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setScheduling: function (params, callback) {
+    setScheduling: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setScheduling',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4799,15 +5871,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).InstancesSetServiceAccountRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setServiceAccount: function (params, callback) {
+    setServiceAccount: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setServiceAccount',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4830,15 +5909,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).Tags} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTags: function (params, callback) {
+    setTags: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setTags',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4860,15 +5946,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance resource to start.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    start: function (params, callback) {
+    start: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/start',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4891,15 +5984,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).InstancesStartWithEncryptionKeyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    startWithEncryptionKey: function (params, callback) {
+    startWithEncryptionKey: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/startWithEncryptionKey',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4922,15 +6022,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance resource to stop.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function (params, callback) {
+    stop: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/stop',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4953,15 +6060,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance resource to suspend.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    suspend: function (params, callback) {
+    suspend: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/suspend',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['instance', 'project', 'zone'],
@@ -4984,15 +6098,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
@@ -5017,15 +6138,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.license Name of the License resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/licenses/{license}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'license'],
         pathParams: ['license', 'project'],
@@ -5053,15 +6181,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/machineTypes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5083,15 +6218,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.machineType Name of the machine type to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/machineTypes/{machineType}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'machineType'],
         pathParams: ['machineType', 'project', 'zone'],
@@ -5116,15 +6258,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/machineTypes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -5149,15 +6298,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.network Name of the network to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{network}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
@@ -5178,15 +6334,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.network Name of the network to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{network}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
@@ -5207,15 +6370,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).Network} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5239,15 +6409,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5268,15 +6445,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.network Name of the network to be updated.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    switchToCustomMode: function (params, callback) {
+    switchToCustomMode: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{network}/switchToCustomMode',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'network'],
         pathParams: ['network', 'project'],
@@ -5298,15 +6482,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -5330,15 +6521,22 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    disableXpnHost: function (params, callback) {
+    disableXpnHost: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/disableXpnHost',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5359,15 +6557,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).ProjectsDisableXpnResourceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    disableXpnResource: function (params, callback) {
+    disableXpnResource: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/disableXpnResource',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5387,15 +6592,22 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    enableXpnHost: function (params, callback) {
+    enableXpnHost: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/enableXpnHost',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5416,15 +6628,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).ProjectsEnableXpnResourceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    enableXpnResource: function (params, callback) {
+    enableXpnResource: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/enableXpnResource',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5444,15 +6663,22 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5472,15 +6698,22 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getXpnHost: function (params, callback) {
+    getXpnHost: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/getXpnHost',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5500,15 +6733,22 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getXpnResources: function (params, callback) {
+    getXpnResources: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/getXpnResources',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5529,15 +6769,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).ProjectsListXpnHostsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listXpnHosts: function (params, callback) {
+    listXpnHosts: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/listXpnHosts',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5558,15 +6805,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).DiskMoveRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    moveDisk: function (params, callback) {
+    moveDisk: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/moveDisk',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5587,15 +6841,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).InstanceMoveRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    moveInstance: function (params, callback) {
+    moveInstance: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/moveInstance',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5616,15 +6877,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).Metadata} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setCommonInstanceMetadata: function (params, callback) {
+    setCommonInstanceMetadata: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/setCommonInstanceMetadata',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5645,15 +6913,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).UsageExportLocation} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setUsageExportBucket: function (params, callback) {
+    setUsageExportBucket: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/setUsageExportBucket',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -5679,15 +6954,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.autoscaler Name of the autoscaler to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers/{autoscaler}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'region'],
@@ -5709,15 +6991,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.autoscaler Name of the autoscaler to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers/{autoscaler}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'autoscaler'],
         pathParams: ['autoscaler', 'project', 'region'],
@@ -5739,15 +7028,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).Autoscaler} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -5772,15 +7068,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -5803,15 +7106,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).Autoscaler} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'autoscaler'],
         pathParams: ['project', 'region'],
@@ -5834,15 +7144,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -5865,15 +7182,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).Autoscaler} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -5899,15 +7223,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendService Name of the BackendService resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
@@ -5929,15 +7260,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.backendService Name of the BackendService resource to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
@@ -5960,15 +7298,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project 
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).ResourceGroupReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getHealth: function (params, callback) {
+    getHealth: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}/getHealth',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
@@ -5990,15 +7335,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -6023,15 +7375,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -6054,15 +7413,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
@@ -6085,15 +7451,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -6116,15 +7489,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'backendService'],
         pathParams: ['backendService', 'project', 'region'],
@@ -6150,15 +7530,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.diskType Name of the disk type to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/diskTypes/{diskType}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'diskType'],
         pathParams: ['diskType', 'project', 'region'],
@@ -6183,15 +7570,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/diskTypes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -6219,15 +7613,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {compute(alpha).Snapshot} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createSnapshot: function (params, callback) {
+    createSnapshot: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks/{disk}/createSnapshot',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
@@ -6249,15 +7650,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.disk Name of the regional persistent disk to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks/{disk}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
@@ -6279,15 +7687,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.disk Name of the regional persistent disk to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks/{disk}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
@@ -6310,15 +7725,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region for this request.
      * @param {string=} params.sourceImage Optional. Source image to restore onto a disk.
      * @param {compute(alpha).Disk} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -6343,15 +7765,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -6374,15 +7803,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project The project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {compute(alpha).RegionDisksResizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize: function (params, callback) {
+    resize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks/{disk}/resize',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'disk'],
         pathParams: ['disk', 'project', 'region'],
@@ -6405,15 +7841,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).RegionSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setLabels: function (params, callback) {
+    setLabels: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks/{resource}/setLabels',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -6436,15 +7879,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -6471,15 +7921,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).RegionInstanceGroupManagersAbandonInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    abandonInstances: function (params, callback) {
+    abandonInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
@@ -6501,15 +7958,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager Name of the managed instance group to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
@@ -6532,15 +7996,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).RegionInstanceGroupManagersDeleteInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteInstances: function (params, callback) {
+    deleteInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
@@ -6562,15 +8033,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager Name of the managed instance group to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
@@ -6592,15 +8070,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -6625,15 +8110,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -6655,15 +8147,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroupManager The name of the managed instance group.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listManagedInstances: function (params, callback) {
+    listManagedInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
@@ -6686,15 +8185,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
@@ -6717,15 +8223,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).RegionInstanceGroupManagersRecreateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    recreateInstances: function (params, callback) {
+    recreateInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
@@ -6748,15 +8261,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {integer} params.size Number of instances that should exist in this instance group manager.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resize: function (params, callback) {
+    resize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resize',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroupManager', 'size'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
@@ -6779,15 +8299,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).RegionInstanceGroupManagersSetAutoHealingRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setAutoHealingPolicies: function (params, callback) {
+    setAutoHealingPolicies: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setAutoHealingPolicies',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
@@ -6810,15 +8337,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).RegionInstanceGroupManagersSetTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setInstanceTemplate: function (params, callback) {
+    setInstanceTemplate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
@@ -6841,15 +8375,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).RegionInstanceGroupManagersSetTargetPoolsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setTargetPools: function (params, callback) {
+    setTargetPools: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
@@ -6872,15 +8413,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -6903,15 +8451,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroupManager'],
         pathParams: ['instanceGroupManager', 'project', 'region'],
@@ -6937,15 +8492,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instanceGroup Name of the instance group resource to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'region'],
@@ -6970,15 +8532,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -7005,15 +8574,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).RegionInstanceGroupsListInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listInstances: function (params, callback) {
+    listInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/listInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'region'],
@@ -7036,15 +8612,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).RegionInstanceGroupsSetNamedPortsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setNamedPorts: function (params, callback) {
+    setNamedPorts: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/setNamedPorts',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'instanceGroup'],
         pathParams: ['instanceGroup', 'project', 'region'],
@@ -7067,15 +8650,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroups/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -7101,15 +8691,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.operation Name of the Operations resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/operations/{operation}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'operation'],
         pathParams: ['operation', 'project', 'region'],
@@ -7131,15 +8728,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.operation Name of the Operations resource to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/operations/{operation}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'operation'],
         pathParams: ['operation', 'project', 'region'],
@@ -7164,15 +8768,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -7197,15 +8808,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -7229,15 +8847,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -7265,15 +8890,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/routers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -7295,15 +8927,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
@@ -7325,15 +8964,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
@@ -7355,15 +9001,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to query.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getRouterStatus: function (params, callback) {
+    getRouterStatus: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}/getRouterStatus',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
@@ -7385,15 +9038,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {compute(alpha).Router} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -7418,15 +9078,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -7449,15 +9116,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to update.
      * @param {compute(alpha).Router} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
@@ -7480,15 +9154,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to query.
      * @param {compute(alpha).Router} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    preview: function (params, callback) {
+    preview: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}/preview',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
@@ -7511,15 +9192,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -7542,15 +9230,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.router Name of the Router resource to update.
      * @param {compute(alpha).Router} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'router'],
         pathParams: ['project', 'region', 'router'],
@@ -7575,15 +9270,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.route Name of the Route resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/routes/{route}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'route'],
         pathParams: ['project', 'route'],
@@ -7604,15 +9306,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.route Name of the Route resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/routes/{route}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'route'],
         pathParams: ['project', 'route'],
@@ -7633,15 +9342,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).Route} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/routes',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -7665,15 +9381,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/routes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -7695,15 +9418,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/routes/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -7728,15 +9458,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.snapshot Name of the Snapshot resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/snapshots/{snapshot}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'snapshot'],
         pathParams: ['project', 'snapshot'],
@@ -7757,15 +9494,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.snapshot Name of the Snapshot resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/snapshots/{snapshot}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'snapshot'],
         pathParams: ['project', 'snapshot'],
@@ -7789,15 +9533,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/snapshots',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -7819,15 +9570,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).GlobalSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setLabels: function (params, callback) {
+    setLabels: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/snapshots/{resource}/setLabels',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -7849,15 +9607,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/snapshots/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -7882,15 +9647,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.sslCertificate Name of the SslCertificate resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/sslCertificates/{sslCertificate}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'sslCertificate'],
         pathParams: ['project', 'sslCertificate'],
@@ -7911,15 +9683,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.sslCertificate Name of the SslCertificate resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/sslCertificates/{sslCertificate}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'sslCertificate'],
         pathParams: ['project', 'sslCertificate'],
@@ -7940,15 +9719,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).SslCertificate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/sslCertificates',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -7972,15 +9758,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/sslCertificates',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -8002,15 +9795,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/sslCertificates/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -8038,15 +9838,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/subnetworks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -8068,15 +9875,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.subnetwork Name of the Subnetwork resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
@@ -8099,15 +9913,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.subnetwork Name of the Subnetwork resource to update.
      * @param {compute(alpha).SubnetworksExpandIpCidrRangeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    expandIpCidrRange: function (params, callback) {
+    expandIpCidrRange: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{subnetwork}/expandIpCidrRange',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
@@ -8129,15 +9950,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.subnetwork Name of the Subnetwork resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'subnetwork'],
         pathParams: ['project', 'region', 'subnetwork'],
@@ -8159,15 +9987,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy: function (params, callback) {
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{resource}/getIamPolicy',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -8189,15 +10024,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).Subnetwork} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -8222,15 +10064,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -8253,15 +10102,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy: function (params, callback) {
+    setIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{resource}/setIamPolicy',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -8284,15 +10140,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -8317,15 +10180,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpProxy Name of the TargetHttpProxy resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
@@ -8346,15 +10216,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpProxy Name of the TargetHttpProxy resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
@@ -8375,15 +10252,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).TargetHttpProxy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpProxies',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -8407,15 +10291,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpProxies',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -8437,15 +10328,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpProxy Name of the TargetHttpProxy to set a URL map for.
      * @param {compute(alpha).UrlMapReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setUrlMap: function (params, callback) {
+    setUrlMap: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/targetHttpProxies/{targetHttpProxy}/setUrlMap',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpProxy'],
         pathParams: ['project', 'targetHttpProxy'],
@@ -8467,15 +10365,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpProxies/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -8500,15 +10405,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
@@ -8529,15 +10441,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
@@ -8558,15 +10477,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).TargetHttpsProxy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpsProxies',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -8590,15 +10516,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpsProxies',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -8620,15 +10553,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource to set an SslCertificates resource for.
      * @param {compute(alpha).TargetHttpsProxiesSetSslCertificatesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setSslCertificates: function (params, callback) {
+    setSslCertificates: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
@@ -8650,15 +10590,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetHttpsProxy Name of the TargetHttpsProxy resource whose URL map is to be set.
      * @param {compute(alpha).UrlMapReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setUrlMap: function (params, callback) {
+    setUrlMap: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetHttpsProxy'],
         pathParams: ['project', 'targetHttpsProxy'],
@@ -8680,15 +10627,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpsProxies/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -8716,15 +10670,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/targetInstances',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -8746,15 +10707,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetInstance Name of the TargetInstance resource to delete.
      * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'targetInstance'],
         pathParams: ['project', 'targetInstance', 'zone'],
@@ -8776,15 +10744,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetInstance Name of the TargetInstance resource to return.
      * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'targetInstance'],
         pathParams: ['project', 'targetInstance', 'zone'],
@@ -8806,15 +10781,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone scoping this request.
      * @param {compute(alpha).TargetInstance} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/targetInstances',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -8839,15 +10821,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/targetInstances',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -8870,15 +10859,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/targetInstances/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
@@ -8905,15 +10901,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the target pool to add a health check to.
      * @param {compute(alpha).TargetPoolsAddHealthCheckRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addHealthCheck: function (params, callback) {
+    addHealthCheck: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}/addHealthCheck',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -8936,15 +10939,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to add instances to.
      * @param {compute(alpha).TargetPoolsAddInstanceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addInstance: function (params, callback) {
+    addInstance: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}/addInstance',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -8968,15 +10978,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/targetPools',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -8998,15 +11015,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -9028,15 +11052,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -9059,15 +11090,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to which the queried instance belongs.
      * @param {compute(alpha).InstanceReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getHealth: function (params, callback) {
+    getHealth: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}/getHealth',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -9089,15 +11127,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(alpha).TargetPool} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -9122,15 +11167,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -9153,15 +11205,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.targetPool Name of the target pool to remove health checks from.
      * @param {compute(alpha).TargetPoolsRemoveHealthCheckRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeHealthCheck: function (params, callback) {
+    removeHealthCheck: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}/removeHealthCheck',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -9184,15 +11243,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to remove instances from.
      * @param {compute(alpha).TargetPoolsRemoveInstanceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeInstance: function (params, callback) {
+    removeInstance: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}/removeInstance',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -9216,15 +11282,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region Name of the region scoping this request.
      * @param {string} params.targetPool Name of the TargetPool resource to set a backup pool for.
      * @param {compute(alpha).TargetReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setBackup: function (params, callback) {
+    setBackup: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}/setBackup',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetPool'],
         pathParams: ['project', 'region', 'targetPool'],
@@ -9247,15 +11320,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -9280,15 +11360,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies/{targetSslProxy}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
@@ -9309,15 +11396,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies/{targetSslProxy}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
@@ -9338,15 +11432,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).TargetSslProxy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -9370,15 +11471,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -9400,15 +11508,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose BackendService resource is to be set.
      * @param {compute(alpha).TargetSslProxiesSetBackendServiceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setBackendService: function (params, callback) {
+    setBackendService: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies/{targetSslProxy}/setBackendService',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
@@ -9430,15 +11545,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose ProxyHeader is to be set.
      * @param {compute(alpha).TargetSslProxiesSetProxyHeaderRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setProxyHeader: function (params, callback) {
+    setProxyHeader: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies/{targetSslProxy}/setProxyHeader',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
@@ -9460,15 +11582,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose SslCertificate resource is to be set.
      * @param {compute(alpha).TargetSslProxiesSetSslCertificatesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setSslCertificates: function (params, callback) {
+    setSslCertificates: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslCertificates',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'targetSslProxy'],
         pathParams: ['project', 'targetSslProxy'],
@@ -9490,15 +11619,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -9526,15 +11662,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/targetVpnGateways',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -9556,15 +11699,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.targetVpnGateway Name of the target VPN gateway to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetVpnGateway'],
         pathParams: ['project', 'region', 'targetVpnGateway'],
@@ -9586,15 +11736,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.targetVpnGateway Name of the target VPN gateway to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'targetVpnGateway'],
         pathParams: ['project', 'region', 'targetVpnGateway'],
@@ -9616,15 +11773,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {compute(alpha).TargetVpnGateway} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetVpnGateways',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -9649,15 +11813,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetVpnGateways',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -9680,15 +11851,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetVpnGateways/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -9713,15 +11891,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{urlMap}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
@@ -9742,15 +11927,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{urlMap}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
@@ -9771,15 +11963,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).UrlMap} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -9801,15 +12000,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap scoping this request.
      * @param {compute(alpha).CacheInvalidationRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    invalidateCache: function (params, callback) {
+    invalidateCache: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{urlMap}/invalidateCache',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
@@ -9833,15 +12039,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -9863,15 +12076,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to update.
      * @param {compute(alpha).UrlMap} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{urlMap}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
@@ -9893,15 +12113,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
@@ -9923,15 +12150,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to update.
      * @param {compute(alpha).UrlMap} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{urlMap}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
@@ -9953,15 +12187,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.urlMap Name of the UrlMap resource to be validated as.
      * @param {compute(alpha).UrlMapsValidateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    validate: function (params, callback) {
+    validate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{urlMap}/validate',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'urlMap'],
         pathParams: ['project', 'urlMap'],
@@ -9989,15 +12230,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregatedList: function (params, callback) {
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/vpnTunnels',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -10019,15 +12267,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.vpnTunnel Name of the VpnTunnel resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'vpnTunnel'],
         pathParams: ['project', 'region', 'vpnTunnel'],
@@ -10049,15 +12304,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {string} params.vpnTunnel Name of the VpnTunnel resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'vpnTunnel'],
         pathParams: ['project', 'region', 'vpnTunnel'],
@@ -10079,15 +12341,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
      * @param {compute(alpha).VpnTunnel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/vpnTunnels',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -10112,15 +12381,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/vpnTunnels',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
@@ -10143,15 +12419,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.region The name of the region for this request.
      * @param {string} params.resource_ Name of the resource for this request.
      * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions: function (params, callback) {
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/vpnTunnels/{resource}/testIamPermissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
@@ -10177,15 +12460,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.operation Name of the Operations resource to delete.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
@@ -10207,15 +12497,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.operation Name of the Operations resource to return.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'operation'],
         pathParams: ['operation', 'project', 'zone'],
@@ -10240,15 +12537,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -10273,15 +12577,22 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
@@ -10305,15 +12616,22 @@ function Compute(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],

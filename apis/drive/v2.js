@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Drive API
@@ -53,15 +54,22 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.includeSubscribed When calculating the number of remaining change IDs, whether to include public files the user has opened and shared files. When set to false, this counts only change IDs for owned files and any shared or public files that the user has explicitly added to a folder they own.
      * @param {string=} params.maxChangeIdCount Maximum number of remaining change IDs to count
      * @param {string=} params.startChangeId Change ID to start counting from when calculating number of remaining change IDs
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/about',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -85,15 +93,22 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.appId The ID of the app.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/apps/{appId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['appId'],
         pathParams: ['appId'],
@@ -115,15 +130,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.appFilterExtensions A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
      * @param {string=} params.appFilterMimeTypes A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
      * @param {string=} params.languageCode A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/apps',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -147,15 +169,22 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.changeId The ID of the change.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/changes/{changeId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['changeId'],
         pathParams: ['changeId'],
@@ -180,15 +209,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.pageToken Page token for changes.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Change ID to start listing changes from.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/changes',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -214,15 +250,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Change ID to start listing changes from.
      * @param {drive(v2).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function (params, callback) {
+    watch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/changes/watch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -246,15 +289,22 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {drive(v2).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function (params, callback) {
+    stop: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/channels/stop',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -279,15 +329,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.childId The ID of the child.
      * @param {string} params.folderId The ID of the folder.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children/{childId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['folderId', 'childId'],
         pathParams: ['childId', 'folderId'],
@@ -308,15 +365,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.childId The ID of the child.
      * @param {string} params.folderId The ID of the folder.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children/{childId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['folderId', 'childId'],
         pathParams: ['childId', 'folderId'],
@@ -337,15 +401,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.folderId The ID of the folder.
      * @param {drive(v2).ChildReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['folderId'],
         pathParams: ['folderId'],
@@ -369,15 +440,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      * @param {string=} params.pageToken Page token for children.
      * @param {string=} params.q Query string for searching children.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['folderId'],
         pathParams: ['folderId'],
@@ -402,15 +480,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
@@ -432,15 +517,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted comment, and will include any deleted replies.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
@@ -461,15 +553,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {drive(v2).Comment} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -493,15 +592,22 @@ function Drive(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of discussions to include in the response, used for paging.
      * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {string=} params.updatedMin Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -523,15 +629,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {drive(v2).Comment} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
@@ -553,15 +666,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {drive(v2).Comment} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
@@ -593,15 +713,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.timedTextTrackName The timed text track name.
      * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
      * @param {drive(v2).File} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy: function (params, callback) {
+    copy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/copy',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -621,15 +748,22 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -648,15 +782,22 @@ function Drive(options) { // eslint-disable-line
      * @memberOf! drive(v2)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    emptyTrash: function (params, callback) {
+    emptyTrash: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/trash',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -677,15 +818,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.mimeType The MIME type of the format requested for this export.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export: function (params, callback) {
+    export: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/export',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'mimeType'],
         pathParams: ['fileId'],
@@ -706,15 +854,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of IDs to return.
      * @param {string=} params.space The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generateIds: function (params, callback) {
+    generateIds: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/generateIds',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -738,15 +893,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
      * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -777,15 +939,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files',
           method: 'POST'
-        },
+        }, options),
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files',
         requiredParams: [],
@@ -812,15 +981,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.q Query string for searching files.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -854,15 +1030,22 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
      * @param {drive(v2).File} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -882,15 +1065,22 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to update.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    touch: function (params, callback) {
+    touch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/touch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -910,15 +1100,22 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to trash.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    trash: function (params, callback) {
+    trash: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/trash',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -938,15 +1135,22 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to untrash.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    untrash: function (params, callback) {
+    untrash: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/untrash',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -983,15 +1187,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files/{fileId}',
         requiredParams: ['fileId'],
@@ -1017,15 +1228,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
      * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
      * @param {drive(v2).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch: function (params, callback) {
+    watch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/watch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -1050,15 +1268,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.parentId The ID of the parent.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents/{parentId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'parentId'],
         pathParams: ['fileId', 'parentId'],
@@ -1079,15 +1304,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.parentId The ID of the parent.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents/{parentId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'parentId'],
         pathParams: ['fileId', 'parentId'],
@@ -1108,15 +1340,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {drive(v2).ParentReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -1136,15 +1375,22 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -1169,15 +1415,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.permissionId The ID for the permission.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
@@ -1198,15 +1451,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.permissionId The ID for the permission.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
@@ -1226,15 +1486,22 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.email The email address for which to return a permission ID
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIdForEmail: function (params, callback) {
+    getIdForEmail: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/permissionIds/{email}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['email'],
         pathParams: ['email'],
@@ -1257,15 +1524,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID for the file.
      * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
      * @param {drive(v2).Permission} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -1285,15 +1559,22 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID for the file.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -1317,15 +1598,22 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      * @param {drive(v2).Permission} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
@@ -1349,15 +1637,22 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      * @param {drive(v2).Permission} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'permissionId'],
         pathParams: ['fileId', 'permissionId'],
@@ -1383,15 +1678,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'propertyKey'],
         pathParams: ['fileId', 'propertyKey'],
@@ -1413,15 +1715,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'propertyKey'],
         pathParams: ['fileId', 'propertyKey'],
@@ -1442,15 +1751,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {drive(v2).Property} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -1470,15 +1786,22 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -1501,15 +1824,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
      * @param {drive(v2).Property} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'propertyKey'],
         pathParams: ['fileId', 'propertyKey'],
@@ -1532,15 +1862,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.propertyKey The key of the property.
      * @param {string=} params.visibility The visibility of the property.
      * @param {drive(v2).Property} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'propertyKey'],
         pathParams: ['fileId', 'propertyKey'],
@@ -1565,15 +1902,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file that the Realtime API data model is associated with.
      * @param {integer=} params.revision The revision of the Realtime API data model to export. Revisions start at 1 (the initial empty data model) and are incremented with each change. If this parameter is excluded, the most recent data model will be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/realtime',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -1597,15 +1941,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/realtime',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/drive/v2/files/{fileId}/realtime',
         requiredParams: ['fileId'],
@@ -1632,15 +1983,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
@@ -1663,15 +2021,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID of the file.
      * @param {boolean=} params.includeDeleted If set, this will succeed when retrieving a deleted reply.
      * @param {string} params.replyId The ID of the reply.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
@@ -1693,15 +2058,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.commentId The ID of the comment.
      * @param {string} params.fileId The ID of the file.
      * @param {drive(v2).CommentReply} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
@@ -1725,15 +2097,22 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.includeDeleted If set, all replies, including deleted replies (with content stripped) will be returned.
      * @param {integer=} params.maxResults The maximum number of replies to include in the response, used for paging.
      * @param {string=} params.pageToken The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'commentId'],
         pathParams: ['commentId', 'fileId'],
@@ -1756,15 +2135,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
      * @param {drive(v2).CommentReply} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
@@ -1787,15 +2173,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.replyId The ID of the reply.
      * @param {drive(v2).CommentReply} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'commentId', 'replyId'],
         pathParams: ['commentId', 'fileId', 'replyId'],
@@ -1820,15 +2213,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.revisionId The ID of the revision.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
@@ -1849,15 +2249,22 @@ function Drive(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
      * @param {string} params.revisionId The ID of the revision.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
@@ -1877,15 +2284,22 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId'],
         pathParams: ['fileId'],
@@ -1907,15 +2321,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.revisionId The ID for the revision.
      * @param {drive(v2).Revision} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],
@@ -1937,15 +2358,22 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID for the file.
      * @param {string} params.revisionId The ID for the revision.
      * @param {drive(v2).Revision} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['fileId', 'revisionId'],
         pathParams: ['fileId', 'revisionId'],

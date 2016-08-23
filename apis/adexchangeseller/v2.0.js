@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Ad Exchange Seller API
@@ -51,15 +52,22 @@ function Adexchangeseller(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.accountId Account to get information about. Tip: 'myaccount' is a valid ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['accountId'],
         pathParams: ['accountId'],
@@ -80,15 +88,22 @@ function Adexchangeseller(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {integer=} params.maxResults The maximum number of accounts to include in the response, used for paging.
      * @param {string=} params.pageToken A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -112,15 +127,22 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {string} params.accountId Account to which the ad client belongs.
        * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
        * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/adclients',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -144,15 +166,22 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account owning the alerts.
        * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/alerts',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -177,15 +206,22 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {string} params.accountId Account to which the ad client belongs.
        * @param {string} params.adClientId Ad client which contains the custom channel.
        * @param {string} params.customChannelId Custom channel to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/customchannels/{customChannelId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'adClientId', 'customChannelId'],
           pathParams: ['accountId', 'adClientId', 'customChannelId'],
@@ -208,15 +244,22 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {string} params.adClientId Ad client for which to list custom channels.
        * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
        * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/customchannels',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'adClientId'],
           pathParams: ['accountId', 'adClientId'],
@@ -241,15 +284,22 @@ function Adexchangeseller(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.accountId Account with visibility to the dimensions.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/metadata/dimensions',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId'],
             pathParams: ['accountId'],
@@ -272,15 +322,22 @@ function Adexchangeseller(options) { // eslint-disable-line
          *
          * @param {object} params Parameters for request
          * @param {string} params.accountId Account with visibility to the metrics.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/metadata/metrics',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId'],
             pathParams: ['accountId'],
@@ -305,15 +362,22 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account owning the deal.
        * @param {string} params.dealId Preferred deal to get information about.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/preferreddeals/{dealId}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'dealId'],
           pathParams: ['accountId', 'dealId'],
@@ -333,15 +397,22 @@ function Adexchangeseller(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.accountId Account owning the deals.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/preferreddeals',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId'],
           pathParams: ['accountId'],
@@ -373,15 +444,22 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
        * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
        * @param {integer=} params.startIndex Index of the first row of report data to return.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      generate: function (params, callback) {
+      generate: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/reports',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'startDate', 'endDate'],
           pathParams: ['accountId'],
@@ -407,15 +485,22 @@ function Adexchangeseller(options) { // eslint-disable-line
          * @param {integer=} params.maxResults The maximum number of rows of report data to return.
          * @param {string} params.savedReportId The saved report to retrieve.
          * @param {integer=} params.startIndex Index of the first row of report data to return.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        generate: function (params, callback) {
+        generate: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/reports/{savedReportId}',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId', 'savedReportId'],
             pathParams: ['accountId', 'savedReportId'],
@@ -437,15 +522,22 @@ function Adexchangeseller(options) { // eslint-disable-line
          * @param {string} params.accountId Account owning the saved reports.
          * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
          * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        list: function (params, callback) {
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
           var parameters = {
-            options: {
+            options: utils.extend({
               url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/reports/saved',
               method: 'GET'
-            },
+            }, options),
             params: params,
             requiredParams: ['accountId'],
             pathParams: ['accountId'],
@@ -472,15 +564,22 @@ function Adexchangeseller(options) { // eslint-disable-line
        * @param {string} params.adClientId Ad client for which to list URL channels.
        * @param {integer=} params.maxResults The maximum number of URL channels to include in the response, used for paging.
        * @param {string=} params.pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://www.googleapis.com/adexchangeseller/v2.0/accounts/{accountId}/adclients/{adClientId}/urlchannels',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['accountId', 'adClientId'],
           pathParams: ['accountId', 'adClientId'],

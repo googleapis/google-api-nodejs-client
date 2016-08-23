@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Stackdriver Error Reporting API
@@ -52,15 +53,22 @@ function Clouderrorreporting(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    deleteEvents: function (params, callback) {
+    deleteEvents: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectName'],
         pathParams: ['projectName'],
@@ -88,15 +96,22 @@ function Clouderrorreporting(options) { // eslint-disable-line
        * @param {string=} params.serviceFilter.version [Optional] The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
        * @param {integer=} params.pageSize [Optional] The maximum number of results to return per response.
        * @param {string=} params.pageToken [Optional] A `next_page_token` provided by a previous response.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectName'],
           pathParams: ['projectName'],
@@ -117,15 +132,22 @@ function Clouderrorreporting(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
        * @param {clouderrorreporting(v1beta1).ReportedErrorEvent} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      report: function (params, callback) {
+      report: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events:report',
             method: 'POST'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectName'],
           pathParams: ['projectName'],
@@ -149,15 +171,22 @@ function Clouderrorreporting(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.name The group resource name. Example: <code>projects/my-project-123/groups/my-groupid</code>
        * @param {clouderrorreporting(v1beta1).ErrorGroup} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      update: function (params, callback) {
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://clouderrorreporting.googleapis.com/v1beta1/{name}',
             method: 'PUT'
-          },
+          }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
@@ -177,15 +206,22 @@ function Clouderrorreporting(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.groupName [Required] The group resource name. Written as <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>. Call <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list"> <code>groupStats.list</code></a> to return a list of groups belonging to this project.  Example: <code>projects/my-project-123/groups/my-group</code>
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      get: function (params, callback) {
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://clouderrorreporting.googleapis.com/v1beta1/{groupName}',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['groupName'],
           pathParams: ['groupName'],
@@ -218,15 +254,22 @@ function Clouderrorreporting(options) { // eslint-disable-line
        * @param {integer=} params.pageSize [Optional] The maximum number of results to return per response. Default is 20.
        * @param {string=} params.timedCountDuration [Optional] The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
        * @param {string=} params.pageToken [Optional] A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, callback) {
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
         var parameters = {
-          options: {
+          options: utils.extend({
             url: 'https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/groupStats',
             method: 'GET'
-          },
+          }, options),
           params: params,
           requiredParams: ['projectName'],
           pathParams: ['projectName'],

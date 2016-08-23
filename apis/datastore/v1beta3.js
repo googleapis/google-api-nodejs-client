@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Cloud Datastore API
@@ -53,15 +54,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.projectId The ID of the project against which to make the request.
      * @param {datastore(v1beta3).RunQueryRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runQuery: function (params, callback) {
+    runQuery: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://datastore.googleapis.com/v1beta3/projects/{projectId}:runQuery',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -82,15 +90,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.projectId The ID of the project against which to make the request.
      * @param {datastore(v1beta3).BeginTransactionRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    beginTransaction: function (params, callback) {
+    beginTransaction: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://datastore.googleapis.com/v1beta3/projects/{projectId}:beginTransaction',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -111,15 +126,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.projectId The ID of the project against which to make the request.
      * @param {datastore(v1beta3).AllocateIdsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    allocateIds: function (params, callback) {
+    allocateIds: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://datastore.googleapis.com/v1beta3/projects/{projectId}:allocateIds',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -140,15 +162,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.projectId The ID of the project against which to make the request.
      * @param {datastore(v1beta3).LookupRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    lookup: function (params, callback) {
+    lookup: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://datastore.googleapis.com/v1beta3/projects/{projectId}:lookup',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -169,15 +198,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.projectId The ID of the project against which to make the request.
      * @param {datastore(v1beta3).CommitRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    commit: function (params, callback) {
+    commit: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://datastore.googleapis.com/v1beta3/projects/{projectId}:commit',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -198,15 +234,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.projectId The ID of the project against which to make the request.
      * @param {datastore(v1beta3).RollbackRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rollback: function (params, callback) {
+    rollback: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://datastore.googleapis.com/v1beta3/projects/{projectId}:rollback',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['projectId'],
         pathParams: ['projectId'],
@@ -258,7 +301,7 @@ any additional precision is rounded down.
  * @type object
 * @property {string} transaction The identifier of the transaction in which to read. A
 transaction identifier is returned by a call to
-BeginTransaction.
+Datastore.BeginTransaction.
 * @property {string} readConsistency The non-transactional read consistency to use.
 Cannot be set to `STRONG` for global queries.
 */
@@ -275,7 +318,7 @@ Cannot be set to `STRONG` for global queries.
  * @type object
 * @property {string} transaction The identifier of the transaction associated with the commit. A
 transaction identifier is returned by a call to
-BeginTransaction.
+Datastore.BeginTransaction.
 * @property {string} mode The type of commit to perform. Defaults to `TRANSACTIONAL`.
 * @property {datastore(v1beta3).Mutation[]} mutations The mutations to perform.
 
@@ -321,7 +364,7 @@ Currently at most 1 kind may be specified.
  * @memberOf! datastore(v1beta3)
  * @type object
 * @property {string} transaction The transaction identifier, returned by a call to
-google.datastore.v1beta3.Datastore.BeginTransaction.
+Datastore.BeginTransaction.
 */
 /**
  * @typedef EntityResult
@@ -333,10 +376,12 @@ Set only when the `EntityResult` is part of a `QueryResultBatch` message.
 * @property {string} version The version of the entity, a strictly positive number that monotonically
 increases with changes to the entity.
 
-This field is set for `FULL` entity results.
-For missing entities in
-`LookupResponse`, this is the version of the snapshot that was used to look
-up the entity, and it is always set except for eventually consistent reads.
+This field is set for `FULL` entity
+results.
+
+For missing entities in `LookupResponse`, this
+is the version of the snapshot that was used to look up the entity, and it
+is always set except for eventually consistent reads.
 */
 /**
  * @typedef GqlQueryParameter
@@ -543,20 +588,20 @@ or null if it has no key.
  * @type object
 * @property {string} queryString A string of the format described
 [here](https://cloud.google.com/datastore/docs/apis/gql/gql_reference).
-* @property {object} namedBindings For each non-reserved named binding site in the query string,
-there must be a named parameter with that name,
-but not necessarily the inverse.
+* @property {object} namedBindings For each non-reserved named binding site in the query string, there must be
+a named parameter with that name, but not necessarily the inverse.
+
 Key must match regex `A-Za-z_$*`, must not match regex
 `__.*__`, and must not be `&quot;&quot;`.
-* @property {boolean} allowLiterals When false, the query string must not contain any literals and instead
-must bind all values. For example,
+* @property {boolean} allowLiterals When false, the query string must not contain any literals and instead must
+bind all values. For example,
 `SELECT * FROM Kind WHERE a = &#39;string literal&#39;` is not allowed, while
 `SELECT * FROM Kind WHERE a = @value` is.
 * @property {datastore(v1beta3).GqlQueryParameter[]} positionalBindings Numbered binding site @1 references the first numbered parameter,
 effectively using 1-based indexing, rather than the usual 0.
-For each binding site numbered i in `query_string`,
-there must be an i-th numbered parameter.
-The inverse must also be true.
+
+For each binding site numbered i in `query_string`, there must be an i-th
+numbered parameter. The inverse must also be true.
 */
 /**
  * @typedef Mutation

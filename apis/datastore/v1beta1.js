@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Google Cloud Datastore API
@@ -52,15 +53,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Identifies the dataset.
      * @param {datastore(v1beta1).AllocateIdsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    allocateIds: function (params, callback) {
+    allocateIds: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/allocateIds',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
@@ -81,15 +89,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Identifies the dataset.
      * @param {datastore(v1beta1).BeginTransactionRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    beginTransaction: function (params, callback) {
+    beginTransaction: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/beginTransaction',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
@@ -110,15 +125,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Identifies the dataset.
      * @param {datastore(v1beta1).BlindWriteRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    blindWrite: function (params, callback) {
+    blindWrite: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/blindWrite',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
@@ -139,15 +161,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Identifies the dataset.
      * @param {datastore(v1beta1).CommitRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    commit: function (params, callback) {
+    commit: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/commit',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
@@ -168,15 +197,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Identifies the dataset.
      * @param {datastore(v1beta1).LookupRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    lookup: function (params, callback) {
+    lookup: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/lookup',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
@@ -197,15 +233,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Identifies the dataset.
      * @param {datastore(v1beta1).RollbackRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rollback: function (params, callback) {
+    rollback: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/rollback',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],
@@ -226,15 +269,22 @@ function Datastore(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Identifies the dataset.
      * @param {datastore(v1beta1).RunQueryRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runQuery: function (params, callback) {
+    runQuery: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/datastore/v1beta1/datasets/{datasetId}/runQuery',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['datasetId'],
         pathParams: ['datasetId'],

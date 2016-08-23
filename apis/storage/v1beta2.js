@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Cloud Storage JSON API
@@ -52,15 +53,22 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/acl/{entity}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
@@ -81,15 +89,22 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/acl/{entity}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
@@ -110,15 +125,22 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {storage(v1beta2).BucketAccessControl} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/acl',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
@@ -138,15 +160,22 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/acl',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
@@ -168,15 +197,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {storage(v1beta2).BucketAccessControl} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/acl/{entity}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
@@ -198,15 +234,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {storage(v1beta2).BucketAccessControl} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/acl/{entity}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
@@ -232,15 +275,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
@@ -263,15 +313,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
@@ -293,15 +350,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.project A valid API project identifier.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
      * @param {storage(v1beta2).Bucket} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: [],
@@ -324,15 +388,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string} params.project A valid API project identifier.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: [],
@@ -356,15 +427,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
      * @param {storage(v1beta2).Bucket} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
@@ -388,15 +466,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
      * @param {storage(v1beta2).Bucket} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
@@ -420,15 +505,22 @@ function Storage(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {storage(v1beta2).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop: function (params, callback) {
+    stop: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/channels/stop',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -453,15 +545,22 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
@@ -482,15 +581,22 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
@@ -511,15 +617,22 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.bucket Name of a bucket.
      * @param {storage(v1beta2).ObjectAccessControl} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/defaultObjectAcl',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
@@ -541,15 +654,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.ifMetagenerationMatch If present, only return default ACL listing if the bucket's current metageneration matches this value.
      * @param {string=} params.ifMetagenerationNotMatch If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/defaultObjectAcl',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
@@ -571,15 +691,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {storage(v1beta2).ObjectAccessControl} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
@@ -601,15 +728,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {storage(v1beta2).ObjectAccessControl} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'entity'],
         pathParams: ['bucket', 'entity'],
@@ -636,15 +770,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
@@ -667,15 +808,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
@@ -698,15 +846,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object.
      * @param {storage(v1beta2).ObjectAccessControl} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}/acl',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
@@ -728,15 +883,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.bucket Name of a bucket.
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}/acl',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
@@ -760,15 +922,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object.
      * @param {storage(v1beta2).ObjectAccessControl} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
@@ -792,15 +961,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
      * @param {string} params.object Name of the object.
      * @param {storage(v1beta2).ObjectAccessControl} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'object', 'entity'],
         pathParams: ['bucket', 'entity', 'object'],
@@ -828,15 +1004,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value.
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {storage(v1beta2).ComposeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    compose: function (params, callback) {
+    compose: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{destinationBucket}/o/{destinationObject}/compose',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['destinationBucket', 'destinationObject'],
         pathParams: ['destinationBucket', 'destinationObject'],
@@ -870,15 +1053,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
      * @param {string} params.sourceObject Name of the source object.
      * @param {storage(v1beta2).Object} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy: function (params, callback) {
+    copy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{sourceBucket}/o/{sourceObject}/copyTo/b/{destinationBucket}/o/{destinationObject}',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['sourceBucket', 'sourceObject', 'destinationBucket', 'destinationObject'],
         pathParams: ['destinationBucket', 'destinationObject', 'sourceBucket', 'sourceObject'],
@@ -904,15 +1094,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string} params.object Name of the object.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
@@ -939,15 +1136,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
      * @param {string} params.object Name of the object.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
@@ -977,15 +1181,22 @@ function Storage(options) { // eslint-disable-line
      * @param {object} params.media Media object
      * @param {string} params.media.mimeType Media mime-type
      * @param {string|object} params.media.body Media body contents
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o',
           method: 'POST'
-        },
+        }, options),
         params: params,
         mediaUrl: 'https://www.googleapis.com/upload/storage/v1beta2/b/{bucket}/o',
         requiredParams: ['bucket'],
@@ -1012,15 +1223,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
      * @param {boolean=} params.versions If true, lists all versions of a file as distinct results.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],
@@ -1048,15 +1266,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.object Name of the object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
      * @param {storage(v1beta2).Object} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
@@ -1084,15 +1309,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string} params.object Name of the object.
      * @param {string=} params.projection Set of properties to return. Defaults to full.
      * @param {storage(v1beta2).Object} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/{object}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket', 'object'],
         pathParams: ['bucket', 'object'],
@@ -1119,15 +1351,22 @@ function Storage(options) { // eslint-disable-line
      * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
      * @param {boolean=} params.versions If true, lists all versions of a file as distinct results.
      * @param {storage(v1beta2).Channel} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watchAll: function (params, callback) {
+    watchAll: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta2/b/{bucket}/o/watch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['bucket'],
         pathParams: ['bucket'],

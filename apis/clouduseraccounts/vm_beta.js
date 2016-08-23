@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Cloud User Accounts API
@@ -52,15 +53,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.operation Name of the Operations resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/operations/{operation}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
@@ -81,15 +89,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.operation Name of the Operations resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/operations/{operation}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'operation'],
         pathParams: ['operation', 'project'],
@@ -113,15 +128,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/operations',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -147,15 +169,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {string} params.groupName Name of the group for this request.
      * @param {string} params.project Project ID for this request.
      * @param {clouduseraccounts(vm_beta).GroupsAddMemberRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addMember: function (params, callback) {
+    addMember: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/groups/{groupName}/addMember',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'groupName'],
         pathParams: ['groupName', 'project'],
@@ -176,15 +205,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupName Name of the Group resource to delete.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/groups/{groupName}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'groupName'],
         pathParams: ['groupName', 'project'],
@@ -205,15 +241,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.groupName Name of the Group resource to return.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/groups/{groupName}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'groupName'],
         pathParams: ['groupName', 'project'],
@@ -234,15 +277,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {clouduseraccounts(vm_beta).Group} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/groups',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -266,15 +316,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/groups',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -296,15 +353,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {string} params.groupName Name of the group for this request.
      * @param {string} params.project Project ID for this request.
      * @param {clouduseraccounts(vm_beta).GroupsRemoveMemberRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeMember: function (params, callback) {
+    removeMember: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/groups/{groupName}/removeMember',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'groupName'],
         pathParams: ['groupName', 'project'],
@@ -332,15 +396,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.user The user account for which you want to get a list of authorized public keys.
      * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getAuthorizedKeysView: function (params, callback) {
+    getAuthorizedKeysView: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/zones/{zone}/authorizedKeysView/{user}',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'user', 'instance'],
         pathParams: ['project', 'user', 'zone'],
@@ -366,15 +437,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getLinuxAccountViews: function (params, callback) {
+    getLinuxAccountViews: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/zones/{zone}/linuxAccountViews',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'zone', 'instance'],
         pathParams: ['project', 'zone'],
@@ -400,15 +478,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {string} params.project Project ID for this request.
      * @param {string} params.user Name of the user for this request.
      * @param {clouduseraccounts(vm_beta).PublicKey} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addPublicKey: function (params, callback) {
+    addPublicKey: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/users/{user}/addPublicKey',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'user'],
         pathParams: ['project', 'user'],
@@ -429,15 +514,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.user Name of the user resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/users/{user}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'user'],
         pathParams: ['project', 'user'],
@@ -458,15 +550,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.user Name of the user resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/users/{user}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'user'],
         pathParams: ['project', 'user'],
@@ -487,15 +586,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {clouduseraccounts(vm_beta).User} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/users',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -519,15 +625,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/users',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
@@ -549,15 +662,22 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * @param {string} params.fingerprint The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which is defined by RFC4716 to be the MD5 digest of the public key.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.user Name of the user for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removePublicKey: function (params, callback) {
+    removePublicKey: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/vm_beta/projects/{project}/global/users/{user}/removePublicKey',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['project', 'user', 'fingerprint'],
         pathParams: ['project', 'user'],

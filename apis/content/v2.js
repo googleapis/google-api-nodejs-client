@@ -19,6 +19,7 @@
 'use strict';
 
 var createAPIRequest = require('../../lib/apirequest');
+var utils = require('../../lib/utils');
 
 /**
  * Content API for Shopping
@@ -50,15 +51,22 @@ function Content(options) { // eslint-disable-line
      * @memberOf! content(v2)
      *
      * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    authinfo: function (params, callback) {
+    authinfo: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/accounts/authinfo',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -79,15 +87,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {content(v2).AccountsCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function (params, callback) {
+    custombatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/accounts/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -109,15 +124,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.accountId The ID of the account.
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -138,15 +160,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account.
      * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -168,15 +197,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {content(v2).Account} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -198,15 +234,22 @@ function Content(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of accounts to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -229,15 +272,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {content(v2).Account} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -260,15 +310,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {content(v2).Account} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -293,15 +350,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {content(v2).AccountshippingCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function (params, callback) {
+    custombatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/accountshipping/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -322,15 +386,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update account shipping settings.
      * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountshipping/{accountId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -352,15 +423,22 @@ function Content(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of shipping settings to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountshipping',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -383,15 +461,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {content(v2).AccountShipping} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountshipping/{accountId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -414,15 +499,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {content(v2).AccountShipping} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountshipping/{accountId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -446,15 +538,22 @@ function Content(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {content(v2).AccountstatusesCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function (params, callback) {
+    custombatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/accountstatuses/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -475,15 +574,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account.
      * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountstatuses/{accountId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -505,15 +611,22 @@ function Content(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of account statuses to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountstatuses',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -538,15 +651,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {content(v2).AccounttaxCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function (params, callback) {
+    custombatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/accounttax/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -567,15 +687,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
      * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -597,15 +724,22 @@ function Content(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of tax settings to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -628,15 +762,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {content(v2).AccountTax} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -659,15 +800,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {content(v2).AccountTax} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -692,15 +840,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {content(v2).DatafeedsCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function (params, callback) {
+    custombatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/datafeeds/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -722,15 +877,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.datafeedId 
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId 
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
@@ -751,15 +913,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datafeedId 
      * @param {string} params.merchantId 
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
@@ -781,15 +950,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId 
      * @param {content(v2).Datafeed} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -811,15 +987,22 @@ function Content(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -842,15 +1025,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId 
      * @param {content(v2).Datafeed} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
@@ -873,15 +1063,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId 
      * @param {content(v2).Datafeed} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
@@ -905,15 +1102,22 @@ function Content(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {content(v2).DatafeedstatusesCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function (params, callback) {
+    custombatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/datafeedstatuses/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -934,15 +1138,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datafeedId 
      * @param {string} params.merchantId 
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeedstatuses/{datafeedId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'datafeedId'],
         pathParams: ['datafeedId', 'merchantId'],
@@ -964,15 +1175,22 @@ function Content(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeedstatuses',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -997,15 +1215,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {content(v2).InventoryCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function (params, callback) {
+    custombatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/inventory/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1029,15 +1254,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.productId The ID of the product for which to update price and availability.
      * @param {string} params.storeCode The code of the store for which to update price and availability. Use online to update price and availability of an online product.
      * @param {content(v2).InventorySetRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    set: function (params, callback) {
+    set: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/inventory/{storeCode}/products/{productId}',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'storeCode', 'productId'],
         pathParams: ['merchantId', 'productId', 'storeCode'],
@@ -1063,15 +1295,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2).OrdersAcknowledgeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledge: function (params, callback) {
+    acknowledge: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/acknowledge',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -1092,15 +1331,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the test order to modify.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    advancetestorder: function (params, callback) {
+    advancetestorder: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/testorders/{orderId}/advance',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -1122,15 +1368,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order to cancel.
      * @param {content(v2).OrdersCancelRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel: function (params, callback) {
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/cancel',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -1152,15 +1405,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2).OrdersCancelLineItemRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancellineitem: function (params, callback) {
+    cancellineitem: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/cancelLineItem',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -1181,15 +1441,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the managing account.
      * @param {content(v2).OrdersCreateTestOrderRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createtestorder: function (params, callback) {
+    createtestorder: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/testorders',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -1209,15 +1476,22 @@ function Content(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {content(v2).OrdersCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function (params, callback) {
+    custombatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/orders/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1238,15 +1512,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -1267,15 +1548,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.merchantOrderId The merchant order id to be looked for.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getbymerchantorderid: function (params, callback) {
+    getbymerchantorderid: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/ordersbymerchantid/{merchantOrderId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'merchantOrderId'],
         pathParams: ['merchantId', 'merchantOrderId'],
@@ -1296,15 +1584,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.templateName The name of the template to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    gettestordertemplate: function (params, callback) {
+    gettestordertemplate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/testordertemplates/{templateName}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'templateName'],
         pathParams: ['merchantId', 'templateName'],
@@ -1331,15 +1626,22 @@ function Content(options) { // eslint-disable-line
      * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
      * @param {string=} params.placedDateStart Obtains orders placed after this date (inclusively), in ISO 8601 format.
      * @param {string=} params.statuses Obtains orders that match any of the specified statuses. Multiple values can be specified with comma separation. Additionally, please note that active is a shortcut for pendingShipment and partiallyShipped, and completed is a shortcut for shipped , partiallyDelivered, delivered, partiallyReturned, returned, and canceled.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -1361,15 +1663,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order to refund.
      * @param {content(v2).OrdersRefundRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    refund: function (params, callback) {
+    refund: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/refund',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -1391,15 +1700,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2).OrdersReturnLineItemRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    returnlineitem: function (params, callback) {
+    returnlineitem: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/returnLineItem',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -1421,15 +1737,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2).OrdersShipLineItemsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    shiplineitems: function (params, callback) {
+    shiplineitems: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/shipLineItems',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -1451,15 +1774,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2).OrdersUpdateMerchantOrderIdRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updatemerchantorderid: function (params, callback) {
+    updatemerchantorderid: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/updateMerchantOrderId',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -1481,15 +1811,22 @@ function Content(options) { // eslint-disable-line
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.orderId The ID of the order.
      * @param {content(v2).OrdersUpdateShipmentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateshipment: function (params, callback) {
+    updateshipment: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/updateShipment',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'orderId'],
         pathParams: ['merchantId', 'orderId'],
@@ -1514,15 +1851,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {content(v2).ProductsCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function (params, callback) {
+    custombatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/products/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1544,15 +1888,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.productId The ID of the product.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, callback) {
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/products/{productId}',
           method: 'DELETE'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
@@ -1573,15 +1924,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.productId The ID of the product.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/products/{productId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
@@ -1603,15 +1961,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {content(v2).Product} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert: function (params, callback) {
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/products',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -1634,15 +1999,22 @@ function Content(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/products',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -1666,15 +2038,22 @@ function Content(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {content(v2).ProductstatusesCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function (params, callback) {
+    custombatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/productstatuses/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1695,15 +2074,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string} params.productId The ID of the product.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/productstatuses/{productId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'productId'],
         pathParams: ['merchantId', 'productId'],
@@ -1726,15 +2112,22 @@ function Content(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of product statuses to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/productstatuses',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -1759,15 +2152,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {content(v2).ShippingsettingsCustomBatchRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    custombatch: function (params, callback) {
+    custombatch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/shippingsettings/batch',
           method: 'POST'
-        },
+        }, options),
         params: params,
         requiredParams: [],
         pathParams: [],
@@ -1788,15 +2188,22 @@ function Content(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
      * @param {string} params.merchantId The ID of the managing account.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, callback) {
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings/{accountId}',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -1816,15 +2223,22 @@ function Content(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.merchantId The ID of the account for which to retrieve the supported carriers.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getsupportedcarriers: function (params, callback) {
+    getsupportedcarriers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/supportedCarriers',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -1846,15 +2260,22 @@ function Content(options) { // eslint-disable-line
      * @param {integer=} params.maxResults The maximum number of shipping settings to return in the response, used for paging.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {string=} params.pageToken The token returned by the previous request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, callback) {
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings',
           method: 'GET'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId'],
         pathParams: ['merchantId'],
@@ -1877,15 +2298,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {content(v2).ShippingSettings} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch: function (params, callback) {
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings/{accountId}',
           method: 'PATCH'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
@@ -1908,15 +2336,22 @@ function Content(options) { // eslint-disable-line
      * @param {boolean=} params.dryRun Flag to run the request in dry-run mode.
      * @param {string} params.merchantId The ID of the managing account.
      * @param {content(v2).ShippingSettings} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update: function (params, callback) {
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
       var parameters = {
-        options: {
+        options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings/{accountId}',
           method: 'PUT'
-        },
+        }, options),
         params: params,
         requiredParams: ['merchantId', 'accountId'],
         pathParams: ['accountId', 'merchantId'],
