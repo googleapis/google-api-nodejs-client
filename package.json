@@ -70,7 +70,7 @@
     "ink-docstrap": "1.2.1",
     "istanbul": "^0.4.5",
     "js-beautify": "^1.6.3",
-    "jsdoc": "^3.4.0",
+    "jsdoc": "^3.4.1",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "mocha": "^3.0.2",
