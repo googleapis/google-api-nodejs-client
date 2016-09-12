@@ -120,6 +120,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @memberOf! adexchangebuyer(v1.4)
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.confirmUnsafeAccountChange Confirmation for erasing bidder and cookie matching urls.
      * @param {integer} params.id The account id
      * @param {adexchangebuyer(v1.4).Account} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -156,6 +157,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @memberOf! adexchangebuyer(v1.4)
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.confirmUnsafeAccountChange Confirmation for erasing bidder and cookie matching urls.
      * @param {integer} params.id The account id
      * @param {adexchangebuyer(v1.4).Account} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1246,7 +1248,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.proposalId The proposal id to update.
      * @param {string} params.revisionNumber The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
-     * @param {string} params.updateAction The proposed action to take on the proposal.
+     * @param {string} params.updateAction The proposed action to take on the proposal. This field is required and it must be set when updating a proposal.
      * @param {adexchangebuyer(v1.4).Proposal} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1354,7 +1356,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.proposalId The proposal id to update.
      * @param {string} params.revisionNumber The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
-     * @param {string} params.updateAction The proposed action to take on the proposal.
+     * @param {string} params.updateAction The proposed action to take on the proposal. This field is required and it must be set when updating a proposal.
      * @param {adexchangebuyer(v1.4).Proposal} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1585,6 +1587,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
  * @property {string} brandingType Visibilty of the URL in bid requests.
+ * @property {string} crossListedExternalDealIdType Indicates that this ExternalDealId exists under at least two different AdxInventoryDeals. Currently, the only case that the same ExternalDealId will exist is programmatic cross sell case.
  * @property {string} description Description for the proposed terms of the deal.
  * @property {adexchangebuyer(v1.4).Price} estimatedGrossSpend Non-binding estimate of the estimated gross spend for this deal Can be set by buyer or seller.
  * @property {string} estimatedImpressionsPerDay Non-binding estimate of the impressions served per day Can be set by buyer or seller.

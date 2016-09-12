@@ -24,7 +24,6 @@ var utils = require('./utils');
 describe('Clients', function () {
   var localPlus, remotePlus;
   var localOauth2, remoteOauth2;
-  var localFreebase, remoteFreebase;
 
   before(function (done) {
     nock.cleanAll();
@@ -36,9 +35,6 @@ describe('Clients', function () {
       },
       function (cb) {
         utils.loadApi(google, 'oauth2', 'v2', cb);
-      },
-      function (cb) {
-        utils.loadApi(google, 'freebase', 'v1', cb);
       }
     ], function (err, apis) {
       if (err) {
@@ -46,7 +42,6 @@ describe('Clients', function () {
       }
       remotePlus = apis[0];
       remoteOauth2 = apis[1];
-      remoteFreebase = apis[2];
       nock.disableNetConnect();
       done();
     });
@@ -58,7 +53,6 @@ describe('Clients', function () {
     var google = new googleapis.GoogleApis();
     localPlus = google.plus('v1');
     localOauth2 = google.oauth2('v2');
-    localFreebase = google.freebase('v1');
   });
 
   it('should create request helpers according to resource on discovery API response', function () {
@@ -75,8 +69,6 @@ describe('Clients', function () {
   it('should be able to gen top level methods', function () {
     assert.equal(typeof localOauth2.tokeninfo, 'function');
     assert.equal(typeof remoteOauth2.tokeninfo, 'function');
-    assert.equal(typeof localFreebase.reconcile, 'function');
-    assert.equal(typeof remoteFreebase.reconcile, 'function');
   });
 
   it('should be able to gen top level methods and resources', function () {

@@ -352,7 +352,7 @@ function Bigquery(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.all Whether to list all datasets, including hidden ones
-     * @param {string=} params.filter An expression for filtering the results of the request by label. The syntax is "labels.[:]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See https://cloud.google.com/bigquery/docs/labeling-datasets#filtering_datasets_using_labels for details.
+     * @param {string=} params.filter An expression for filtering the results of the request by label. The syntax is "labels.<name>[:<value>]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See Filtering datasets using labels for details.
      * @param {integer=} params.maxResults The maximum number of results to return
      * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
      * @param {string} params.projectId Project ID of the datasets to be listed
@@ -628,7 +628,7 @@ function Bigquery(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/bigquery/v2/project/{projectId}/jobs/{jobId}/cancel',
+          url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel',
           method: 'POST'
         }, options),
         params: params,
@@ -1938,7 +1938,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} friendlyName [Optional] A descriptive name for the dataset.
  * @property {string} id [Output-only] The fully-qualified unique name of the dataset in the format projectId:datasetId. The dataset name without the project name is given in the datasetId field. When creating a new dataset, leave this field blank, and instead specify the datasetId field.
  * @property {string} kind [Output-only] The resource type.
- * @property {object} labels [Experimental] The labels associated with this dataset. You can use these to organize and group your datasets. You can set this property when inserting or updating a dataset. Label keys and values can be no longer than 63 characters, can only contain letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and must be unique within a dataset. Both keys and values are additionally constrained to be &lt;= 128 bytes in size.
+ * @property {object} labels [Experimental] The labels associated with this dataset. You can use these to organize and group your datasets. You can set this property when inserting or updating a dataset. See Labeling Datasets for more information.
  * @property {string} lastModifiedTime [Output-only] The date when this dataset or any of its tables was last modified, in milliseconds since the epoch.
  * @property {string} location [Experimental] The geographic location where the dataset should reside. Possible values include EU and US. The default value is US.
  * @property {string} selfLink [Output-only] A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.
@@ -2109,9 +2109,11 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} flattenResults [Optional] Flattens all nested and repeated fields in the query results. The default value is true. allowLargeResults must be true if this is set to false.
  * @property {integer} maximumBillingTier [Optional] Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge). If unspecified, this will be set to your project default.
  * @property {string} maximumBytesBilled [Optional] Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge). If unspecified, this will be set to your project default.
+ * @property {string} parameterMode [Experimental] Standard SQL only. Whether to use positional (?) or named (@myparam) query parameters in this query.
  * @property {boolean} preserveNulls [Deprecated] This property is deprecated.
  * @property {string} priority [Optional] Specifies a priority for the query. Possible values include INTERACTIVE and BATCH. The default value is INTERACTIVE.
  * @property {string} query [Required] BigQuery SQL query to execute.
+ * @property {bigquery(v2).QueryParameter[]} queryParameters [Experimental] Query parameters for Standard SQL queries.
  * @property {string[]} schemaUpdateOptions [Experimental] Allows the schema of the desitination table to be updated as a side effect of the query job. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
  * @property {object} tableDefinitions [Optional] If querying an external data source outside of BigQuery, describes the data format, location and other properties of the data source. By defining these properties, the data source can then be queried as if it were a standard BigQuery table.
  * @property {boolean} useLegacySql [Experimental] Specifies whether to use BigQuery&#39;s legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the values of allowLargeResults and flattenResults are ignored; query will be run as if allowLargeResults is true and flattenResults is false.
@@ -2169,6 +2171,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).TableSchema} schema [Output-only, Experimental] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
  * @property {string} totalBytesBilled [Output-only] Total bytes billed for the job.
  * @property {string} totalBytesProcessed [Output-only] Total bytes processed for the job.
+ * @property {bigquery(v2).QueryParameter[]} undeclaredQueryParameters [Output-only, Experimental] Standard SQL only: list of undeclared query parameters detected during a dry run validation.
  */
 /**
  * @typedef JobStatistics3
@@ -2220,6 +2223,30 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} projectId [Required] ID of the project. Can be either the numeric ID or the assigned ID of the project.
  */
 /**
+ * @typedef QueryParameter
+ * @memberOf! bigquery(v2)
+ * @type object
+ * @property {string} name [Optional] If unset, this is a positional parameter. Otherwise, should be unique within a query.
+ * @property {bigquery(v2).QueryParameterType} parameterType [Required] The type of this parameter.
+ * @property {bigquery(v2).QueryParameterValue} parameterValue [Required] The value of this parameter.
+ */
+/**
+ * @typedef QueryParameterType
+ * @memberOf! bigquery(v2)
+ * @type object
+ * @property {bigquery(v2).QueryParameterType} arrayType [Optional] The type of the array&#39;s elements, if this is an array.
+ * @property {object[]} structTypes [Optional] The types of the fields of this struct, in order, if this is a struct.
+ * @property {string} type [Required] The top level type of this field.
+ */
+/**
+ * @typedef QueryParameterValue
+ * @memberOf! bigquery(v2)
+ * @type object
+ * @property {bigquery(v2).QueryParameterValue[]} arrayValues [Optional] The array values, if this is an array type.
+ * @property {object} structValues [Optional] The struct field values, in order of the struct type&#39;s declaration.
+ * @property {string} value [Optional] The value of this value, if a simple scalar type.
+ */
+/**
  * @typedef QueryRequest
  * @memberOf! bigquery(v2)
  * @type object
@@ -2227,8 +2254,10 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} dryRun [Optional] If set to true, BigQuery doesn&#39;t run the job. Instead, if the query is valid, BigQuery returns statistics about the job such as how many bytes would be processed. If the query is invalid, an error returns. The default value is false.
  * @property {string} kind The resource type of the request.
  * @property {integer} maxResults [Optional] The maximum number of rows of data to return per page of results. Setting this flag to a small value such as 1000 and then paging through results might improve reliability when the query result set is large. In addition to this limit, responses are also limited to 10 MB. By default, there is no maximum row count, and only the byte limit applies.
+ * @property {string} parameterMode [Experimental] Standard SQL only. Whether to use positional (?) or named (@myparam) query parameters in this query.
  * @property {boolean} preserveNulls [Deprecated] This property is deprecated.
  * @property {string} query [Required] A query string, following the BigQuery query syntax, of the query to execute. Example: &quot;SELECT count(f1) FROM [myProjectId:myDatasetId.myTableId]&quot;.
+ * @property {bigquery(v2).QueryParameter[]} queryParameters [Experimental] Query parameters for Standard SQL queries.
  * @property {integer} timeoutMs [Optional] How long to wait for the query to complete, in milliseconds, before the request times out and returns. Note that this is only a timeout for the request, not the query. If the query takes longer to run than the timeout value, the call returns without any results and with the &#39;jobComplete&#39; flag set to false. You can call GetQueryResults() to wait for the query to complete and read the results. The default value is 10000 milliseconds (10 seconds).
  * @property {boolean} useLegacySql [Experimental] Specifies whether to use BigQuery&#39;s legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the values of allowLargeResults and flattenResults are ignored; query will be run as if allowLargeResults is true and flattenResults is false.
  * @property {boolean} useQueryCache [Optional] Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. The default value is true.

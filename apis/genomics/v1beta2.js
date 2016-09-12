@@ -623,7 +623,7 @@ function Genomics(options) { // eslint-disable-line
      * @memberOf! genomics(v1beta2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.callSetId The ID of the call set to be updated.
+     * @param {string} params.callSetId Required. The ID of the call set to be updated.
      * @param {genomics(v1beta2).CallSet} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -694,7 +694,7 @@ function Genomics(options) { // eslint-disable-line
      * @memberOf! genomics(v1beta2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.callSetId The ID of the call set to be updated.
+     * @param {string} params.callSetId Required. The ID of the call set to be updated.
      * @param {genomics(v1beta2).CallSet} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.

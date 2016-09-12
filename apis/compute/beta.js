@@ -583,6 +583,45 @@ function Compute(options) { // eslint-disable-line
   self.backendServices = {
 
     /**
+     * compute.backendServices.aggregatedList
+     *
+     * @desc Retrieves the list of all BackendService resources, regional and global, available to the specified project.
+     *
+     * @alias compute.backendServices.aggregatedList
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/aggregated/backendServices',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.backendServices.delete
      *
      * @desc Deletes the specified BackendService resource.
@@ -6317,6 +6356,313 @@ function Compute(options) { // eslint-disable-line
 
   };
 
+  self.regionBackendServices = {
+
+    /**
+     * compute.regionBackendServices.delete
+     *
+     * @desc Deletes the specified regional BackendService resource.
+     *
+     * @alias compute.regionBackendServices.delete
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices/{backendService}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.get
+     *
+     * @desc Returns the specified regional BackendService resource.
+     *
+     * @alias compute.regionBackendServices.get
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices/{backendService}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.getHealth
+     *
+     * @desc Gets the most recent health check results for this regional BackendService.
+     *
+     * @alias compute.regionBackendServices.getHealth
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to which the queried instance belongs.
+     * @param {string} params.project 
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(beta).ResourceGroupReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getHealth: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices/{backendService}/getHealth',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.insert
+     *
+     * @desc Creates a regional BackendService resource in the specified project using the data included in the request. There are several restrictions and guidelines to keep in mind when creating a regional backend service. Read  Restrictions and Guidelines for more information.
+     *
+     * @alias compute.regionBackendServices.insert
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(beta).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.list
+     *
+     * @desc Retrieves the list of regional BackendService resources available to the specified project in the given region.
+     *
+     * @alias compute.regionBackendServices.list
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.patch
+     *
+     * @desc Update the entire content of the regional BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
+     *
+     * @alias compute.regionBackendServices.patch
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(beta).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices/{backendService}',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.regionBackendServices.testIamPermissions
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(beta).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices/{resource}/testIamPermissions',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.update
+     *
+     * @desc Update the entire content of the regional BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
+     *
+     * @alias compute.regionBackendServices.update
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(beta).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/backendServices/{backendService}',
+          method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.regionInstanceGroupManagers = {
 
     /**
@@ -11121,10 +11467,10 @@ compute.googleapis.com/instance/cpu/reserved_cores
  * @typedef Backend
  * @memberOf! compute(beta)
  * @type object
-* @property {string} balancingMode Specifies the balancing mode for this backend. For global HTTP(S) load balancing, the default is UTILIZATION. Valid values are UTILIZATION and RATE.
+* @property {string} balancingMode Specifies the balancing mode for this backend. For global HTTP(S) or TCP/SSL load balancing, the default is UTILIZATION. Valid values are UTILIZATION, RATE (for HTTP(S)) and CONNECTION (for TCP/SSL).
 
 This cannot be used for internal load balancing.
-* @property {number} capacityScaler A multiplier applied to the group&#39;s maximum servicing capacity (either UTILIZATION or RATE). Default value is 1, which means the group will serve up to 100% of its configured CPU or RPS (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available CPU or RPS. Valid range is [0.0,1.0].
+* @property {number} capacityScaler A multiplier applied to the group&#39;s maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION). Default value is 1, which means the group will serve up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available Capacity. Valid range is [0.0,1.0].
 
 This cannot be used for internal load balancing.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
@@ -11169,6 +11515,7 @@ When the load balancing scheme is INTERNAL, this field is not used.
 For internal load balancing, a URL to a HealthCheck resource must be specified instead.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of resource. Always compute#backendService for backend services.
+* @property {string} loadBalancingScheme 
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {integer} port Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.
 
@@ -11193,6 +11540,16 @@ When the protocol is UDP, this field is not used.
 * @property {integer} timeoutSec How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds.
 */
 /**
+ * @typedef BackendServiceAggregatedList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A map of scoped BackendService lists.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
  * @typedef BackendServiceGroupHealth
  * @memberOf! compute(beta)
  * @type object
@@ -11208,6 +11565,13 @@ When the protocol is UDP, this field is not used.
  * @property {string} kind [Output Only] Type of resource. Always compute#backendServiceList for lists of backend services.
  * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef BackendServicesScopedList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {compute(beta).BackendService[]} backendServices List of BackendServices contained in this scope.
+ * @property {object} warning Informational warning which replaces the list of backend services when the list is empty.
  */
 /**
  * @typedef CacheInvalidationRule
@@ -11441,16 +11805,33 @@ When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP addr
 * @property {string} IPProtocol The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP.
 
 When the load balancing scheme is INTERNAL&lt;/code, only TCP and UDP are valid.
+* @property {string} backendService This field is not used for external load balancing.
+
+For internal load balancing, this field identifies the BackendService resource to receive the matched traffic.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of the resource. Always compute#forwardingRule for Forwarding Rule resources.
+* @property {string} loadBalancingScheme This signifies what the ForwardingRule will be used for and can only take the following values: INTERNAL EXTERNAL The value of INTERNAL means that this will be used for Internal Network Load Balancing (TCP, UDP). The value of EXTERNAL means that this will be used for External Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
 * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} network This field is not used for external load balancing.
+
+For internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.
 * @property {string} portRange Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
 
 This field is not used for internal load balancing.
+* @property {string[]} ports This field is not used for external load balancing.
+
+When the load balancing scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule. If the port list is not provided then all ports are allowed to pass through.
+
+You may specify a maximum of up to 5 ports.
 * @property {string} region [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} subnetwork This field is not used for external load balancing.
+
+For internal load balancing, this field identifies the subnetwork that the load balanced IP should belong to for this Forwarding Rule.
+
+If the network specified is in auto subnet mode, this field is optional. However, if the network is in custom subnet mode, a subnetwork must be specified.
 * @property {string} target The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global TargetHttpProxy or TargetHttpsProxy resource. The forwarded traffic must be of a type appropriate to the target object. For example, TargetHttpProxy requires HTTP traffic, and TargetHttpsProxy requires HTTPS traffic.
 
 This field is not used for internal load balancing.
@@ -11488,6 +11869,12 @@ This field is not used for internal load balancing.
  * @type object
  * @property {string} labelFingerprint The fingerprint of the previous set of labels for this resource, used to detect conflicts. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash when updating or changing labels. Make a get() request to the resource to get the latest fingerprint.
  * @property {object} labels A list of labels to apply for this resource. Each label key &amp; value must comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. For example, &quot;webserver-frontend&quot;: &quot;images&quot;. A label value can also be empty (e.g. &quot;my-label&quot;: &quot;&quot;).
+ */
+/**
+ * @typedef GuestOsFeature
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} type The type of supported feature..
  */
 /**
  * @typedef HTTP2HealthCheck
@@ -11634,11 +12021,12 @@ This field is not used for internal load balancing.
  * @memberOf! compute(beta)
  * @type object
 * @property {string} archiveSizeBytes Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
-* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} creationTimestamp Creation timestamp in RFC3339 text format.
 * @property {compute(beta).DeprecationStatus} deprecated The deprecation status associated with this image.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
 * @property {string} family The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
+* @property {compute(beta).GuestOsFeature[]} guestOsFeatures Features of the guest os, valid for bootable images only.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {compute(beta).CustomerEncryptionKey} imageEncryptionKey Encrypts the image using a customer-supplied encryption key.
 
@@ -11707,7 +12095,7 @@ For a full list of restrictions, read the Specifications for custom machine type
 * @property {compute(beta).Scheduling} scheduling Scheduling options for this instance.
 * @property {string} selfLink [Output Only] Server-defined URL for this resource.
 * @property {compute(beta).ServiceAccount[]} serviceAccounts A list of service accounts, with their specified scopes, authorized for this instance. Service accounts generate access tokens that can be accessed through the metadata server and used to authenticate applications on the instance. See Service Accounts for more information.
-* @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDED, SUSPENDING, and TERMINATED.
+* @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, and TERMINATED.
 * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
 * @property {compute(beta).Tags} tags A list of tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation. The tags can be later modified by the setTags method. Each tag within the list must comply with RFC1035.
 * @property {string} zone [Output Only] URL of the zone where the instance resides.
@@ -11729,7 +12117,7 @@ For a full list of restrictions, read the Specifications for custom machine type
 * @property {string} creationTimestamp [Output Only] The creation timestamp for this instance group in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} fingerprint [Output Only] The fingerprint of the named ports. The system uses this fingerprint to detect conflicts when multiple users change the named ports concurrently.
-* @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
+* @property {string} id [Output Only] A unique identifier for this instance group. The server generates this identifier.
 * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroup for instance groups.
 * @property {string} name The name of the instance group. The name must be 1-63 characters long, and comply with RFC1035.
 * @property {compute(beta).NamedPort[]} namedPorts Assigns a name to a port number. For example: {name: &quot;http&quot;, port: 80}

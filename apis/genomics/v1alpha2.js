@@ -483,12 +483,12 @@ function Genomics(options) { // eslint-disable-line
  * @memberOf! genomics(v1alpha2)
  * @type object
  * @property {integer} minimumCpuCores The minimum number of cores to use. Defaults to 1.
- * @property {boolean} preemptible At create time means that preemptible machines may be used for the run. At run time, means they should be used. Cannot be true at run time if false at create time. Defaults to `false`.
+ * @property {boolean} preemptible Whether to use preemptible VMs. Defaults to `false`. In order to use this, must be true for both create time and run time. Cannot be true at run time if false at create time.
  * @property {number} minimumRamGb The minimum amount of RAM to use. Defaults to 3.75 (GB)
  * @property {genomics(v1alpha2).Disk[]} disks Disks to attach.
  * @property {string[]} zones List of Google Compute Engine availability zones to which resource creation will restricted. If empty, any zone may be chosen.
  * @property {integer} bootDiskSizeGb The size of the boot disk. Defaults to 10 (GB).
- * @property {boolean} noAddress Whether to assign an external IP to the instance. Defaults to false. Corresponds to `--no_address` flag for [gcloud compute instances create] (https://cloud.google.com/sdk/gcloud/reference/compute/instances/create). Cannot be true at run time if false at create time.
+ * @property {boolean} noAddress Whether to assign an external IP to the instance. Defaults to false. Corresponds to `--no_address` flag for [gcloud compute instances create] (https://cloud.google.com/sdk/gcloud/reference/compute/instances/create). In order to use this, must be true for both create time and run time. Cannot be true at run time if false at create time. ** Note: To use this option, your project must be in Google Access for Private IPs Early Access Program.**
  */
 /**
  * @typedef Disk

@@ -1348,7 +1348,7 @@ function Drive(options) { // eslint-disable-line
  * @property {object} exportFormats A map of source MIME type to possible targets for all supported exports.
  * @property {string[]} folderColorPalette The currently supported folder colors as RGB hex strings.
  * @property {object} importFormats A map of source MIME type to possible targets for all supported imports.
- * @property {string} kind This is always drive#about.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#about&quot;.
  * @property {object} maxImportSizes A map of maximum import sizes by MIME type, in bytes.
  * @property {string} maxUploadSize The maximum upload size in bytes.
  * @property {object} storageQuota The user&#39;s storage quota limits and usage. All fields are measured in bytes.
@@ -1360,7 +1360,7 @@ function Drive(options) { // eslint-disable-line
  * @type object
  * @property {drive(v3).File} file The updated state of the file. Present if the file has not been removed.
  * @property {string} fileId The ID of the file which has changed.
- * @property {string} kind This is always drive#change.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#change&quot;.
  * @property {boolean} removed Whether the file has been removed from the view of the changes list, for example by deletion or lost access.
  * @property {string} time The time of this change (RFC 3339 date-time).
  */
@@ -1369,7 +1369,7 @@ function Drive(options) { // eslint-disable-line
  * @memberOf! drive(v3)
  * @type object
  * @property {drive(v3).Change[]} changes The page of changes.
- * @property {string} kind This is always drive#changeList.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#changeList&quot;.
  * @property {string} newStartPageToken The starting page token for future changes. This will be present only if the end of the current changes list has been reached.
  * @property {string} nextPageToken The page token for the next page of changes. This will be absent if the end of the current changes list has been reached.
  */
@@ -1399,7 +1399,7 @@ function Drive(options) { // eslint-disable-line
  * @property {boolean} deleted Whether the comment has been deleted. A deleted comment has no content.
  * @property {string} htmlContent The content of the comment with HTML formatting.
  * @property {string} id The ID of the comment.
- * @property {string} kind This is always drive#comment.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#comment&quot;.
  * @property {string} modifiedTime The last time the comment or any of its replies was modified (RFC 3339 date-time).
  * @property {object} quotedFileContent The file content to which the comment refers, typically within the anchor region. For a text file, for example, this would be the text at the location of the comment.
  * @property {drive(v3).Reply[]} replies The full list of replies to the comment in chronological order.
@@ -1410,7 +1410,7 @@ function Drive(options) { // eslint-disable-line
  * @memberOf! drive(v3)
  * @type object
  * @property {drive(v3).Comment[]} comments The page of comments.
- * @property {string} kind This is always drive#commentList.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#commentList&quot;.
  * @property {string} nextPageToken The page token for the next page of comments. This will be absent if the end of the comments list has been reached.
  */
 /**
@@ -1434,7 +1434,7 @@ This is automatically updated when the name field changes, however it is not cle
 * @property {string} id The ID of the file.
 * @property {object} imageMediaMetadata Additional metadata about image media, if available.
 * @property {boolean} isAppAuthorized Whether the file was created or opened by the requesting app.
-* @property {string} kind This is always drive#file.
+* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#file&quot;.
 * @property {drive(v3).User} lastModifyingUser The last user to modify the file.
 * @property {string} md5Checksum The MD5 checksum for the content of the file. This is only applicable to files with binary content in Drive.
 * @property {string} mimeType The MIME type of the file.
@@ -1475,7 +1475,7 @@ Entries with null values are cleared in update and copy requests.
  * @memberOf! drive(v3)
  * @type object
  * @property {drive(v3).File[]} files The page of files.
- * @property {string} kind This is always drive#fileList.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#fileList&quot;.
  * @property {string} nextPageToken The page token for the next page of files. This will be absent if the end of the files list has been reached.
  */
 /**
@@ -1483,7 +1483,7 @@ Entries with null values are cleared in update and copy requests.
  * @memberOf! drive(v3)
  * @type object
  * @property {string[]} ids The IDs generated for the requesting user in the specified space.
- * @property {string} kind This is always drive#generatedIds
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#generatedIds&quot;.
  * @property {string} space The type of file that can be created with these IDs.
  */
 /**
@@ -1496,7 +1496,7 @@ Entries with null values are cleared in update and copy requests.
 * @property {string} emailAddress The email address of the user or group to which this permission refers.
 * @property {string} expirationTime The time at which this permission will expire (RFC 3339 date-time).
 * @property {string} id The ID of this permission. This is a unique identifier for the grantee, and is published in User resources as permissionId.
-* @property {string} kind This is always drive#permission.
+* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#permission&quot;.
 * @property {string} photoLink A link to the user&#39;s profile photo, if available.
 * @property {string} role The role granted by this permission. Valid values are:  
 - owner 
@@ -1513,7 +1513,7 @@ Entries with null values are cleared in update and copy requests.
  * @typedef PermissionList
  * @memberOf! drive(v3)
  * @type object
- * @property {string} kind This is always drive#permissionList.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#permissionList&quot;.
  * @property {drive(v3).Permission[]} permissions The full list of permissions.
  */
 /**
@@ -1529,14 +1529,14 @@ Entries with null values are cleared in update and copy requests.
 * @property {boolean} deleted Whether the reply has been deleted. A deleted reply has no content.
 * @property {string} htmlContent The content of the reply with HTML formatting.
 * @property {string} id The ID of the reply.
-* @property {string} kind This is always drive#reply.
+* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#reply&quot;.
 * @property {string} modifiedTime The last time the reply was modified (RFC 3339 date-time).
 */
 /**
  * @typedef ReplyList
  * @memberOf! drive(v3)
  * @type object
- * @property {string} kind This is always drive#replyList.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#replyList&quot;.
  * @property {string} nextPageToken The page token for the next page of replies. This will be absent if the end of the replies list has been reached.
  * @property {drive(v3).Reply[]} replies The page of replies.
  */
@@ -1547,7 +1547,7 @@ Entries with null values are cleared in update and copy requests.
 * @property {string} id The ID of the revision.
 * @property {boolean} keepForever Whether to keep this revision forever, even if it is no longer the head revision. If not set, the revision will be automatically purged 30 days after newer content is uploaded. This can be set on a maximum of 200 revisions for a file.
 This field is only applicable to files with binary content in Drive.
-* @property {string} kind This is always drive#revision.
+* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#revision&quot;.
 * @property {drive(v3).User} lastModifyingUser The last user to modify this revision.
 * @property {string} md5Checksum The MD5 checksum of the revision&#39;s content. This is only applicable to files with binary content in Drive.
 * @property {string} mimeType The MIME type of the revision.
@@ -1562,14 +1562,14 @@ This field is only applicable to files with binary content in Drive.
  * @typedef RevisionList
  * @memberOf! drive(v3)
  * @type object
- * @property {string} kind This is always drive#revisionList.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#revisionList&quot;.
  * @property {drive(v3).Revision[]} revisions The full list of revisions.
  */
 /**
  * @typedef StartPageToken
  * @memberOf! drive(v3)
  * @type object
- * @property {string} kind This is always drive#startPageToken.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#startPageToken&quot;.
  * @property {string} startPageToken The starting page token for listing changes.
  */
 /**
@@ -1578,7 +1578,7 @@ This field is only applicable to files with binary content in Drive.
  * @type object
  * @property {string} displayName A plain text displayable name for this user.
  * @property {string} emailAddress The email address of the user. This may not be present in certain contexts if the user has not made their email address visible to the requester.
- * @property {string} kind This is always drive#user.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#user&quot;.
  * @property {boolean} me Whether this user is the requesting user.
  * @property {string} permissionId The user&#39;s ID as visible in Permission resources.
  * @property {string} photoLink A link to the user&#39;s profile photo, if available.
