@@ -4773,6 +4773,230 @@ function Compute(options) { // eslint-disable-line
 
   };
 
+  self.healthChecks = {
+
+    /**
+     * compute.healthChecks.delete
+     *
+     * @desc Deletes the specified HealthCheck resource.
+     *
+     * @alias compute.healthChecks.delete
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheck Name of the HealthCheck resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/healthChecks/{healthCheck}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'healthCheck'],
+        pathParams: ['healthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.healthChecks.get
+     *
+     * @desc Returns the specified HealthCheck resource. Get a list of available health checks by making a list() request.
+     *
+     * @alias compute.healthChecks.get
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheck Name of the HealthCheck resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/healthChecks/{healthCheck}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'healthCheck'],
+        pathParams: ['healthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.healthChecks.insert
+     *
+     * @desc Creates a HealthCheck resource in the specified project using the data included in the request.
+     *
+     * @alias compute.healthChecks.insert
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {compute(v1).HealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/healthChecks',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.healthChecks.list
+     *
+     * @desc Retrieves the list of HealthCheck resources available to the specified project.
+     *
+     * @alias compute.healthChecks.list
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/healthChecks',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.healthChecks.patch
+     *
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request. This method supports patch semantics.
+     *
+     * @alias compute.healthChecks.patch
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheck Name of the HealthCheck resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {compute(v1).HealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/healthChecks/{healthCheck}',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'healthCheck'],
+        pathParams: ['healthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.healthChecks.update
+     *
+     * @desc Updates a HealthCheck resource in the specified project using the data included in the request.
+     *
+     * @alias compute.healthChecks.update
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.healthCheck Name of the HealthCheck resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {compute(v1).HealthCheck} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/healthChecks/{healthCheck}',
+          method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'healthCheck'],
+        pathParams: ['healthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.httpHealthChecks = {
 
     /**
@@ -16374,6 +16598,267 @@ function Compute(options) { // eslint-disable-line
 
   };
 
+  self.targetSslProxies = {
+
+    /**
+     * compute.targetSslProxies.delete
+     *
+     * @desc Deletes the specified TargetSslProxy resource.
+     *
+     * @alias compute.targetSslProxies.delete
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetSslProxy Name of the TargetSslProxy resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'targetSslProxy'],
+        pathParams: ['project', 'targetSslProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.get
+     *
+     * @desc Returns the specified TargetSslProxy resource. Get a list of available target SSL proxies by making a list() request.
+     *
+     * @alias compute.targetSslProxies.get
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetSslProxy Name of the TargetSslProxy resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'targetSslProxy'],
+        pathParams: ['project', 'targetSslProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.insert
+     *
+     * @desc Creates a TargetSslProxy resource in the specified project using the data included in the request.
+     *
+     * @alias compute.targetSslProxies.insert
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {compute(v1).TargetSslProxy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.list
+     *
+     * @desc Retrieves the list of TargetSslProxy resources available to the specified project.
+     *
+     * @alias compute.targetSslProxies.list
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.setBackendService
+     *
+     * @desc Changes the BackendService for TargetSslProxy.
+     *
+     * @alias compute.targetSslProxies.setBackendService
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose BackendService resource is to be set.
+     * @param {compute(v1).TargetSslProxiesSetBackendServiceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setBackendService: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setBackendService',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'targetSslProxy'],
+        pathParams: ['project', 'targetSslProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.setProxyHeader
+     *
+     * @desc Changes the ProxyHeaderType for TargetSslProxy.
+     *
+     * @alias compute.targetSslProxies.setProxyHeader
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose ProxyHeader is to be set.
+     * @param {compute(v1).TargetSslProxiesSetProxyHeaderRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setProxyHeader: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setProxyHeader',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'targetSslProxy'],
+        pathParams: ['project', 'targetSslProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetSslProxies.setSslCertificates
+     *
+     * @desc Changes SslCertificates for TargetSslProxy.
+     *
+     * @alias compute.targetSslProxies.setSslCertificates
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetSslProxy Name of the TargetSslProxy resource whose SslCertificate resource is to be set.
+     * @param {compute(v1).TargetSslProxiesSetSslCertificatesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setSslCertificates: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslCertificates',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'targetSslProxy'],
+        pathParams: ['project', 'targetSslProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.targetVpnGateways = {
 
     /**
@@ -18605,10 +19090,10 @@ compute.googleapis.com/instance/cpu/reserved_cores
  * @typedef Backend
  * @memberOf! compute(v1)
  * @type object
-* @property {string} balancingMode Specifies the balancing mode for this backend. For global HTTP(S) load balancing, the default is UTILIZATION. Valid values are UTILIZATION and RATE.
+* @property {string} balancingMode Specifies the balancing mode for this backend. For global HTTP(S) or TCP/SSL load balancing, the default is UTILIZATION. Valid values are UTILIZATION, RATE (for HTTP(S)) and CONNECTION (for TCP/SSL).
 
 This cannot be used for internal load balancing.
-* @property {number} capacityScaler A multiplier applied to the group&#39;s maximum servicing capacity (either UTILIZATION or RATE). Default value is 1, which means the group will serve up to 100% of its configured CPU or RPS (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available CPU or RPS. Valid range is [0.0,1.0].
+* @property {number} capacityScaler A multiplier applied to the group&#39;s maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION). Default value is 1, which means the group will serve up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available Capacity. Valid range is [0.0,1.0].
 
 This cannot be used for internal load balancing.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
@@ -18617,6 +19102,12 @@ This cannot be used for internal load balancing.
 Note that you must specify an Instance Group resource using the fully-qualified URL, rather than a partial URL.
 
 When the BackendService has load balancing scheme INTERNAL, the instance group must be in a zone within the same region as the BackendService.
+* @property {integer} maxConnections The max number of simultaneous connections for the group. Can be used with either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerInstance must be set.
+
+This cannot be used for internal load balancing.
+* @property {integer} maxConnectionsPerInstance The max number of simultaneous connections that a single backend instance can handle. This is used to calculate the capacity of the group. Can be used in either CONNECTION or UTILIZATION balancing modes. For CONNECTION mode, either maxConnections or maxConnectionsPerInstance must be set.
+
+This cannot be used for internal load balancing.
 * @property {integer} maxRate The max requests per second (RPS) of the group. Can be used with either RATE or UTILIZATION balancing modes, but required if RATE mode. For RATE mode, either maxRate or maxRatePerInstance must be set.
 
 This cannot be used for internal load balancing.
@@ -18635,6 +19126,7 @@ This cannot be used for internal load balancing.
 
 When the load balancing scheme is INTERNAL, this field is not used.
 * @property {compute(v1).Backend[]} backends The list of backends that serve this BackendService.
+* @property {compute(v1).ConnectionDraining} connectionDraining 
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {boolean} enableCDN If true, enable Cloud CDN for this BackendService.
@@ -18691,6 +19183,12 @@ When the protocol is UDP, this field is not used.
  * @memberOf! compute(v1)
  * @type object
  * @property {string} path 
+ */
+/**
+ * @typedef ConnectionDraining
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {integer} drainingTimeoutSec Time for which instance will be drained (not accept new connections, but still work to finish started).
  */
 /**
  * @typedef CustomerEncryptionKey
@@ -18943,6 +19441,67 @@ This field is not used for internal load balancing.
  * @property {object} warning Informational warning which replaces the list of forwarding rules when the list is empty.
  */
 /**
+ * @typedef HTTP2HealthCheck
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} host The value of the host header in the HTTP/2 health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
+ * @property {integer} port The TCP port number for the health check request. The default value is 443.
+ * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+ * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+ * @property {string} requestPath The request path of the HTTP/2 health check request. The default value is /.
+ */
+/**
+ * @typedef HTTPHealthCheck
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} host The value of the host header in the HTTP health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
+ * @property {integer} port The TCP port number for the health check request. The default value is 80.
+ * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+ * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+ * @property {string} requestPath The request path of the HTTP health check request. The default value is /.
+ */
+/**
+ * @typedef HTTPSHealthCheck
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} host The value of the host header in the HTTPS health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
+ * @property {integer} port The TCP port number for the health check request. The default value is 443.
+ * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+ * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+ * @property {string} requestPath The request path of the HTTPS health check request. The default value is /.
+ */
+/**
+ * @typedef HealthCheck
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {integer} checkIntervalSec How often (in seconds) to send a health check. The default value is 5 seconds.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in 3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {integer} healthyThreshold A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+ * @property {compute(v1).HTTP2HealthCheck} http2HealthCheck 
+ * @property {compute(v1).HTTPHealthCheck} httpHealthCheck 
+ * @property {compute(v1).HTTPSHealthCheck} httpsHealthCheck 
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind Type of the resource.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {compute(v1).SSLHealthCheck} sslHealthCheck 
+ * @property {compute(v1).TCPHealthCheck} tcpHealthCheck 
+ * @property {integer} timeoutSec How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
+ * @property {string} type Specifies the type of the healthCheck, either TCP, UDP, SSL, HTTP, HTTPS or HTTP2. If not specified, the default is TCP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
+ * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
+ */
+/**
+ * @typedef HealthCheckList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).HealthCheck[]} items A list of HealthCheck resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
  * @typedef HealthCheckReference
  * @memberOf! compute(v1)
  * @type object
@@ -19026,7 +19585,7 @@ This field is not used for internal load balancing.
  * @memberOf! compute(v1)
  * @type object
 * @property {string} archiveSizeBytes Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
-* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} creationTimestamp Creation timestamp in RFC3339 text format.
 * @property {compute(v1).DeprecationStatus} deprecated The deprecation status associated with this image.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
@@ -19091,7 +19650,7 @@ For a full list of restrictions, read the Specifications for custom machine type
 * @property {compute(v1).Scheduling} scheduling Scheduling options for this instance.
 * @property {string} selfLink [Output Only] Server-defined URL for this resource.
 * @property {compute(v1).ServiceAccount[]} serviceAccounts A list of service accounts, with their specified scopes, authorized for this instance. Service accounts generate access tokens that can be accessed through the metadata server and used to authenticate applications on the instance. See Service Accounts for more information.
-* @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDED, SUSPENDING, and TERMINATED.
+* @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, and TERMINATED.
 * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
 * @property {compute(v1).Tags} tags A list of tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation. The tags can be later modified by the setTags method. Each tag within the list must comply with RFC1035.
 * @property {string} zone [Output Only] URL of the zone where the instance resides.
@@ -19113,7 +19672,7 @@ For a full list of restrictions, read the Specifications for custom machine type
 * @property {string} creationTimestamp [Output Only] The creation timestamp for this instance group in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} fingerprint [Output Only] The fingerprint of the named ports. The system uses this fingerprint to detect conflicts when multiple users change the named ports concurrently.
-* @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
+* @property {string} id [Output Only] A unique identifier for this instance group. The server generates this identifier.
 * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroup for instance groups.
 * @property {string} name The name of the instance group. The name must be 1-63 characters long, and comply with RFC1035.
 * @property {compute(v1).NamedPort[]} namedPorts Assigns a name to a port number. For example: {name: &quot;http&quot;, port: 80}
@@ -19791,6 +20350,16 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {object} warning Informational warning which replaces the list of routers when the list is empty.
  */
 /**
+ * @typedef SSLHealthCheck
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {integer} port The TCP port number for the health check request. The default value is 443.
+ * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+ * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+ * @property {string} request The application data to send once the SSL connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
+ * @property {string} response The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
+ */
+/**
  * @typedef Scheduling
  * @memberOf! compute(v1)
  * @type object
@@ -19913,6 +20482,16 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @type object
  * @property {compute(v1).Subnetwork[]} subnetworks List of subnetworks contained in this scope.
  * @property {object} warning An informational warning that appears when the list of addresses is empty.
+ */
+/**
+ * @typedef TCPHealthCheck
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {integer} port The TCP port number for the health check request. The default value is 80.
+ * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+ * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+ * @property {string} request The application data to send once the TCP connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
+ * @property {string} response The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
  */
 /**
  * @typedef Tags
@@ -20118,6 +20697,48 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @memberOf! compute(v1)
  * @type object
  * @property {string} target 
+ */
+/**
+ * @typedef TargetSslProxiesSetBackendServiceRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} service The URL of the new BackendService resource for the targetSslProxy.
+ */
+/**
+ * @typedef TargetSslProxiesSetProxyHeaderRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} proxyHeader The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
+ */
+/**
+ * @typedef TargetSslProxiesSetSslCertificatesRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string[]} sslCertificates New set of URLs to SslCertificate resources to associate with this TargetSslProxy. Currently exactly one ssl certificate must be specified.
+ */
+/**
+ * @typedef TargetSslProxy
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} service URL to the BackendService resource.
+ * @property {string[]} sslCertificates URLs to SslCertificate resources that are used to authenticate connections to Backends. Currently exactly one SSL certificate must be specified.
+ */
+/**
+ * @typedef TargetSslProxyList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).TargetSslProxy[]} items A list of TargetSslProxy resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef TargetVpnGateway

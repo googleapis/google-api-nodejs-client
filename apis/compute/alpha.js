@@ -12884,10 +12884,10 @@ compute.googleapis.com/instance/cpu/reserved_cores
  * @typedef Backend
  * @memberOf! compute(alpha)
  * @type object
-* @property {string} balancingMode Specifies the balancing mode for this backend. For global HTTP(S) load balancing, the default is UTILIZATION. Valid values are UTILIZATION and RATE.
+* @property {string} balancingMode Specifies the balancing mode for this backend. For global HTTP(S) or TCP/SSL load balancing, the default is UTILIZATION. Valid values are UTILIZATION, RATE (for HTTP(S)) and CONNECTION (for TCP/SSL).
 
 This cannot be used for internal load balancing.
-* @property {number} capacityScaler A multiplier applied to the group&#39;s maximum servicing capacity (either UTILIZATION or RATE). Default value is 1, which means the group will serve up to 100% of its configured CPU or RPS (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available CPU or RPS. Valid range is [0.0,1.0].
+* @property {number} capacityScaler A multiplier applied to the group&#39;s maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION). Default value is 1, which means the group will serve up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available Capacity. Valid range is [0.0,1.0].
 
 This cannot be used for internal load balancing.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
@@ -13308,6 +13308,14 @@ When the load balancing scheme is INTERNAL&lt;/code, only TCP and UDP are valid.
 For internal load balancing, this field identifies the BackendService resource to receive the matched traffic.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} dnsLabel An optional prefix to the DNS name for this Forwarding Rule. If specified, will be the first label of the fully qualified domain name.
+
+The label must be 1-63 characters long, and comply with RFC1035. Specifically, the label must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+
+This field is only used for internal load balancing.
+* @property {string} dnsName [Output Only] The internal fully qualified domain name for this Forwarding Rule.
+
+This field is only used for internal load balancing.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of the resource. Always compute#forwardingRule for Forwarding Rule resources.
 * @property {string} loadBalancingScheme This signifies what the ForwardingRule will be used for and can only take the following values: INTERNAL EXTERNAL The value of INTERNAL means that this will be used for Internal Network Load Balancing (TCP, UDP). The value of EXTERNAL means that this will be used for External Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
@@ -13519,7 +13527,7 @@ This field is not used for internal load balancing.
  * @memberOf! compute(alpha)
  * @type object
 * @property {string} archiveSizeBytes Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
-* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} creationTimestamp Creation timestamp in RFC3339 text format.
 * @property {compute(alpha).DeprecationStatus} deprecated The deprecation status associated with this image.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
@@ -13602,7 +13610,7 @@ For a full list of restrictions, read the Specifications for custom machine type
 * @property {compute(alpha).Scheduling} scheduling Scheduling options for this instance.
 * @property {string} selfLink [Output Only] Server-defined URL for this resource.
 * @property {compute(alpha).ServiceAccount[]} serviceAccounts A list of service accounts, with their specified scopes, authorized for this instance. Service accounts generate access tokens that can be accessed through the metadata server and used to authenticate applications on the instance. See Service Accounts for more information.
-* @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDED, SUSPENDING, and TERMINATED.
+* @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, and TERMINATED.
 * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
 * @property {compute(alpha).Tags} tags A list of tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation. The tags can be later modified by the setTags method. Each tag within the list must comply with RFC1035.
 * @property {string} zone [Output Only] URL of the zone where the instance resides.
@@ -13624,7 +13632,7 @@ For a full list of restrictions, read the Specifications for custom machine type
 * @property {string} creationTimestamp [Output Only] The creation timestamp for this instance group in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} fingerprint [Output Only] The fingerprint of the named ports. The system uses this fingerprint to detect conflicts when multiple users change the named ports concurrently.
-* @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
+* @property {string} id [Output Only] A unique identifier for this instance group. The server generates this identifier.
 * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroup for instance groups.
 * @property {string} name The name of the instance group. The name must be 1-63 characters long, and comply with RFC1035.
 * @property {compute(alpha).NamedPort[]} namedPorts Assigns a name to a port number. For example: {name: &quot;http&quot;, port: 80}

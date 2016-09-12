@@ -1,3 +1,32 @@
+##### 13.0.0 - 12 September 2016
+
+###### Breaking changes
+- Removed `freebase` `v1` API
+
+###### Backwards compatible changes
+- Added `backendServices.aggregatedList` to `compute` `beta` API
+- Added `regionBackendServices.delete` to `compute` `beta` API
+- Added `regionBackendServices.get` to `compute` `beta` API
+- Added `regionBackendServices.getHealth` to `compute` `beta` API
+- Added `regionBackendServices.insert` to `compute` `beta` API
+- Added `regionBackendServices.list` to `compute` `beta` API
+- Added `regionBackendServices.patch` to `compute` `beta` API
+- Added `regionBackendServices.testIamPermissions` to `compute` `beta` API
+- Added `regionBackendServices.update` to `compute` `beta` API
+- Added `healthChecks.delete` to `compute` `v1` API
+- Added `healthChecks.get` to `compute` `v1` API
+- Added `healthChecks.insert` to `compute` `v1` API
+- Added `healthChecks.list` to `compute` `v1` API
+- Added `healthChecks.patch` to `compute` `v1` API
+- Added `healthChecks.update` to `compute` `v1` API
+- Added `targetSslProxies.delete` to `compute` `v1` API
+- Added `targetSslProxies.get` to `compute` `v1` API
+- Added `targetSslProxies.insert` to `compute` `v1` API
+- Added `targetSslProxies.list` to `compute` `v1` API
+- Added `targetSslProxies.setBackendService` to `compute` `v1` API
+- Added `targetSslProxies.setProxyHeader` to `compute` `v1` API
+- Added `targetSslProxies.setSslCertificates` to `compute` `v1` API
+
 ##### 12.4.0 - 23 August 2016
 
 ###### Backwards compatible changes

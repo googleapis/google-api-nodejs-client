@@ -448,7 +448,7 @@ function Genomics(options) { // eslint-disable-line
      * @memberOf! genomics(v1)
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.projectId Required. The project to list datasets for.
+     * @param {string=} params.projectId Required. The Google Cloud project ID to list datasets for.
      * @param {integer=} params.pageSize The maximum number of results to return in a single page. If unspecified, defaults to 50. The maximum value is 1024.
      * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of `nextPageToken` from the previous response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2247,7 +2247,7 @@ function Genomics(options) { // eslint-disable-line
  * @memberOf! genomics(v1)
  * @type object
  * @property {string} id The server-generated dataset ID, unique across all datasets.
- * @property {string} projectId The Google Developers Console project ID that this dataset belongs to.
+ * @property {string} projectId The Google Cloud project ID that this dataset belongs to.
  * @property {string} name The dataset name.
  * @property {string} createTime The time this dataset was created, in seconds from the epoch.
  */
@@ -2329,7 +2329,7 @@ function Genomics(options) { // eslint-disable-line
  * @typedef ExportReadGroupSetRequest
  * @memberOf! genomics(v1)
  * @type object
- * @property {string} projectId Required. The Google Developers Console project ID that owns this export. The caller must have WRITE access to this project.
+ * @property {string} projectId Required. The Google Cloud project ID that owns this export. The caller must have WRITE access to this project.
  * @property {string} exportUri Required. A Google Cloud Storage URI for the exported BAM file. The currently authenticated user must have write access to the new file. An error will be returned if the URI already contains data.
  * @property {string[]} referenceNames The reference names to export. If this is not specified, all reference sequences, including unmapped reads, are exported. Use `*` to export only unmapped reads.
  */
@@ -2487,7 +2487,7 @@ function Genomics(options) { // eslint-disable-line
  * @typedef StreamReadsRequest
  * @memberOf! genomics(v1)
  * @type object
- * @property {string} projectId The Google Developers Console project ID or number which will be billed for this access. The caller must have WRITE access to this project. Required.
+ * @property {string} projectId The Google Cloud project ID which will be billed for this access. The caller must have WRITE access to this project. Required.
  * @property {string} readGroupSetId The ID of the read group set from which to stream reads.
  * @property {string} referenceName The reference sequence name, for example `chr1`, `1`, or `chrX`. If set to *, only unmapped reads are returned.
  * @property {string} start The start position of the range on the reference, 0-based inclusive. If specified, `referenceName` must also be specified.
@@ -2723,7 +2723,7 @@ function Genomics(options) { // eslint-disable-line
  * @typedef StreamVariantsRequest
  * @memberOf! genomics(v1)
  * @type object
- * @property {string} projectId The Google Developers Console project ID or number which will be billed for this access. The caller must have WRITE access to this project. Required.
+ * @property {string} projectId The Google Cloud project ID which will be billed for this access. The caller must have WRITE access to this project. Required.
  * @property {string} variantSetId The variant set ID from which to stream variants.
  * @property {string[]} callSetIds Only return variant calls which belong to call sets with these IDs. Leaving this blank returns all variant calls.
  * @property {string} referenceName Required. Only return variants in this reference sequence.

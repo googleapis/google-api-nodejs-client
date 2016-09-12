@@ -309,6 +309,7 @@ function Cloudbuild(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {integer=} params.pageSize Number of results to return in the list.
+       * @param {string=} params.filter The raw filter text to constrain the results.
        * @param {string} params.projectId ID of the project.
        * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -525,18 +526,21 @@ originally returns it. If you use the default HTTP mapping, the
  * @typedef BuildTrigger
  * @memberOf! cloudbuild(v1)
  * @type object
+* @property {string} id Unique identifier of the trigger.
+
+@OutputOnly
 * @property {cloudbuild(v1).RepoSource} triggerTemplate Template describing the types of source changes to trigger a build.
 
 Branch and tag names in trigger templates are interpreted as regular
 expressions. Any branch or tag change that matches that regular expression
 will trigger a build.
-* @property {cloudbuild(v1).Build} build Contents of the build template.
+* @property {boolean} disabled If true, the trigger will never result in a build.
 * @property {string} createTime Time when the trigger was created.
 
 @OutputOnly
-* @property {string} id Unique identifier of the trigger.
-
-@OutputOnly
+* @property {string} filename Path, from the source root, to a file whose contents is used for the
+template.
+* @property {cloudbuild(v1).Build} build Contents of the build template.
 */
 /**
  * @typedef BuiltImage
@@ -678,7 +682,7 @@ this operation&#39;s container.
  * @memberOf! cloudbuild(v1)
  * @type object
  * @property {string[]} sourceProvenanceHash Requested hash for SourceProvenance.
- * @property {string} requestedVerifyOption Options for a verifiable build with details uploaded to the Analysis API.
+ * @property {string} requestedVerifyOption Requested verifiability options.
  */
 /**
  * @typedef ListBuildsResponse

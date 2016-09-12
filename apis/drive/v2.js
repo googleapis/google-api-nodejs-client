@@ -2689,7 +2689,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 * @property {string} emailAddress The email address of the user or group this permission refers to. This is an output-only field which is present when the permission type is user or group.
 * @property {string} etag The ETag of the permission.
 * @property {string} expirationDate The time at which this permission will expire (RFC 3339 date-time).
-* @property {string} id The ID of the user this permission refers to, and identical to the permissionId in the About and Files resources. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified.
+* @property {string} id The ID of the user this permission refers to, and identical to the permissionId in the About and Files resources. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type anyone, in which case both id and value are ignored.
 * @property {string} kind This is always drive#permission.
 * @property {string} name The name for this permission.
 * @property {string} photoLink A link to the profile photo, if available.
@@ -2703,7 +2703,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 - group 
 - domain 
 - anyone
-* @property {string} value The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified.
+* @property {string} value The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type anyone, in which case both id and value are ignored.
 * @property {boolean} withLink Whether the link is required for this permission.
 */
 /**

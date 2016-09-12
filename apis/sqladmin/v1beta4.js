@@ -119,7 +119,7 @@ function Sqladmin(options) { // eslint-disable-line
     /**
      * sql.backupRuns.insert
      *
-     * @desc Creates a new backup run on demand.
+     * @desc Creates a new backup run on demand. This method is applicable only to Second Generation instances.
      *
      * @alias sql.backupRuns.insert
      * @memberOf! sqladmin(v1beta4)

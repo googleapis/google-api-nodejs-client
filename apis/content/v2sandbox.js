@@ -619,6 +619,7 @@ function Content(options) { // eslint-disable-line
  * @memberOf! content(v2sandbox)
  * @type object
  * @property {boolean} acknowledged Whether the order was acknowledged.
+ * @property {string} channelType The channel type of the order: &quot;purchaseOnGoogle&quot; or &quot;googleExpress&quot;.
  * @property {content(v2sandbox).OrderCustomer} customer The details of the customer who placed the order.
  * @property {content(v2sandbox).OrderDeliveryDetails} deliveryDetails The details for the delivery.
  * @property {string} id The REST id of the order. Globally unique.

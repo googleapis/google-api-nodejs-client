@@ -1736,6 +1736,7 @@ function Books(options) { // eslint-disable-line
      * @param {string=} params.filter Filter search results.
      * @param {string=} params.langRestrict Restrict results to books with this language code.
      * @param {string=} params.libraryRestrict Restrict search to this user's library.
+     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.orderBy Sort search results.
      * @param {string=} params.partner Restrict and brand results for partner ID.

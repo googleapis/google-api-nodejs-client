@@ -22,7 +22,7 @@
     "plugins/markdown"
   ],
   "opts": {
-    "template": "./node_modules/jaguarjs-jsdoc-patched",
+    "template": "./node_modules/ink-docstrap/template",
     "destination": "./doc/",
     "recurse": true,
     "verbose": true,
@@ -34,6 +34,9 @@
   "templates": {
     "copyright": "google-api-nodejs-client Copyright © 2012-2016 Google Inc.",
     "outputSourceFiles": false,
-    "linenums": true
+    "linenums": true,
+    "systemName": "googleapis",
+    "theme": "lumen",
+    "search": false
   }
 }

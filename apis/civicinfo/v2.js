@@ -127,6 +127,7 @@ function Civicinfo(options) { // eslint-disable-line
      * @param {string} params.address The registered address of the voter to look up.
      * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections
      * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
+     * @param {boolean=} params.returnAllAvailableData If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -298,7 +299,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} numberVotingFor The number of candidates that a voter may vote for in this contest.
  * @property {string} office The name of the office for this contest.
  * @property {string} primaryParty If this is a partisan election, the name of the party it is for.
- * @property {string[]} referendumBallotResponses The set of ballot responses for the referendum. A ballot response represents a line on the ballot. Common examples might include &quot;yes&quot; or &quot;no&quot; for referenda, or a judge&#39;s name for a retention contest. This field is only populated for contests of type &#39;Referendum&#39;.
+ * @property {string[]} referendumBallotResponses The set of ballot responses for the referendum. A ballot response represents a line on the ballot. Common examples might include &quot;yes&quot; or &quot;no&quot; for referenda. This field is only populated for contests of type &#39;Referendum&#39;.
  * @property {string} referendumBrief Specifies a short summary of the referendum that is typically on the ballot below the title but above the text. This field is only populated for contests of type &#39;Referendum&#39;.
  * @property {string} referendumConStatement A statement in opposition to the referendum. It does not necessarily appear on the ballot. This field is only populated for contests of type &#39;Referendum&#39;.
  * @property {string} referendumEffectOfAbstain Specifies what effect abstaining (not voting) on the proposition will have (i.e. whether abstaining is considered a vote against it). This field is only populated for contests of type &#39;Referendum&#39;.
@@ -311,7 +312,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string[]} roles The roles which this office fulfills.
  * @property {civicinfo(v2).Source[]} sources A list of sources for this contest. If multiple sources are listed, the data has been aggregated from those sources.
  * @property {string} special &quot;Yes&quot; or &quot;No&quot; depending on whether this a contest being held outside the normal election cycle.
- * @property {string} type The type of contest. Usually this will be &#39;General&#39;, &#39;Primary&#39;, or &#39;Run-off&#39; for contests with candidates. For referenda this will be &#39;Referendum&#39;.
+ * @property {string} type The type of contest. Usually this will be &#39;General&#39;, &#39;Primary&#39;, or &#39;Run-off&#39; for contests with candidates. For referenda this will be &#39;Referendum&#39;. For Retention contests this will typically be &#39;Retention&#39;.
  */
 /**
  * @typedef DivisionSearchResponse
@@ -359,6 +360,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @memberOf! civicinfo(v2)
  * @type object
  * @property {string} id An identifier for this district, relative to its scope. For example, the 34th State Senate district would have id &quot;34&quot; and a scope of stateUpper.
+ * @property {string} kgForeignKey 
  * @property {string} name The name of the district.
  * @property {string} scope The geographic scope of this district. If unspecified the district&#39;s geography is not known. One of: national, statewide, congressional, stateUpper, stateLower, countywide, judicial, schoolBoard, cityWide, township, countyCouncil, cityCouncil, ward, special
  */

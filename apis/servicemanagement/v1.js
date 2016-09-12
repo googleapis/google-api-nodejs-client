@@ -295,7 +295,7 @@ function Servicemanagement(options) { // eslint-disable-line
     /**
      * servicemanagement.services.create
      *
-     * @desc Creates a new managed service.  Operation<response: ManagedService>
+     * @desc Creates a new managed service. Please note one producer project can own no more than 20 services.  Operation<response: ManagedService>
      *
      * @alias servicemanagement.services.create
      * @memberOf! servicemanagement(v1)
@@ -916,6 +916,9 @@ normalization process. It is an error to specify an API interface here
 which cannot be resolved against the associated IDL files.
 * @property {servicemanagement(v1).MetricDescriptor[]} metrics Defines the metrics used by this service.
 * @property {servicemanagement(v1).SystemParameters} systemParameters Configuration for system parameters.
+* @property {servicemanagement(v1).Endpoint[]} endpoints Configuration for network endpoints.  If this is empty, then an endpoint
+with the same name as the service is automatically generated to service all
+defined APIs.
 * @property {string} name The DNS address at which this service is available,
 e.g. `calendar.googleapis.com`.
 * @property {string} producerProjectId The id of the Google developer project that owns the service.
@@ -1406,6 +1409,25 @@ user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
 */
 /**
+ * @typedef Endpoint
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string[]} apis The list of APIs served by this endpoint.
+* @property {boolean} allowCors Allowing
+[CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka
+cross-domain traffic, would allow the backends served from this endpoint to
+receive and respond to HTTP OPTIONS requests. The response will be used by
+the browser to determine whether the subsequent cross-origin request is
+allowed to proceed.
+* @property {string} name The canonical name of this endpoint.
+* @property {string[]} aliases DEPRECATED: This field is no longer supported. Instead of using aliases,
+please specify multiple google.api.Endpoint for each of the intented
+alias.
+
+Additional names that this endpoint will be hosted on.
+* @property {string[]} features The list of features enabled on this endpoint.
+*/
+/**
  * @typedef Page
  * @memberOf! servicemanagement(v1)
  * @type object
@@ -1548,16 +1570,6 @@ different monitored resource type. A log can be used in at most
 one consumer destination.
 */
 /**
- * @typedef Enum
- * @memberOf! servicemanagement(v1)
- * @type object
- * @property {string} syntax The source syntax.
- * @property {servicemanagement(v1).EnumValue[]} enumvalue Enum value definitions.
- * @property {servicemanagement(v1).Option[]} options Protocol buffer options.
- * @property {servicemanagement(v1).SourceContext} sourceContext The source context.
- * @property {string} name Enum type name.
- */
-/**
  * @typedef SystemParameter
  * @memberOf! servicemanagement(v1)
  * @type object
@@ -1568,6 +1580,16 @@ and etc. It is case sensitive.
 * @property {string} httpHeader Define the HTTP header name to use for the parameter. It is case
 insensitive.
 */
+/**
+ * @typedef Enum
+ * @memberOf! servicemanagement(v1)
+ * @type object
+ * @property {string} syntax The source syntax.
+ * @property {servicemanagement(v1).EnumValue[]} enumvalue Enum value definitions.
+ * @property {servicemanagement(v1).Option[]} options Protocol buffer options.
+ * @property {servicemanagement(v1).SourceContext} sourceContext The source context.
+ * @property {string} name Enum type name.
+ */
 /**
  * @typedef GenerateConfigReportResponse
  * @memberOf! servicemanagement(v1)

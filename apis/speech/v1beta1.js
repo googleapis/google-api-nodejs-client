@@ -354,6 +354,10 @@ won&#39;t be filtered out.
 16000 is optimal. For best results, set the sampling rate of the audio
 source to 16000 Hz. If that&#39;s not possible, use the native sample rate of
 the audio source (instead of re-sampling).
+* @property {integer} audioChannels [Optional] The number of interleaved channels in the input audio data.
+Valid values for LINEAR16 and FLAC are `1`-`8`.
+Valid values for MULAW, AMR and AMR_WB are only `1`.
+If `0` or omitted, defaults to one channel (mono).
 */
 /**
  * @typedef SyncRecognizeRequest
