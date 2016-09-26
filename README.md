@@ -550,7 +550,7 @@ See [CONTRIBUTING][contributing].
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
 [apiexplorer]: https://developers.google.com/apis-explorer
 [urlshort]: https://developers.google.com/url-shortener/
-[usingkeys]: https://developers.google.com/console/help/#UsingKeys
+[usingkeys]: https://support.google.com/cloud/answer/6158862?hl=en
 [contributing]: https://github.com/google/google-api-nodejs-client/blob/master/.github/CONTRIBUTING.md
 [copying]: https://github.com/google/google-api-nodejs-client/tree/master/COPYING
 [authdocs]: https://developers.google.com/identity/protocols/OpenIDConnect
