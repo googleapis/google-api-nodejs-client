@@ -6243,7 +6243,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionAutoscalers.patch
      *
-     * @desc Updates a autoscaler in the specified project using the data included in the request. This method supports patch semantics.
+     * @desc Updates an autoscaler in the specified project using the data included in the request. This method supports patch semantics.
      *
      * @alias compute.regionAutoscalers.patch
      * @memberOf! compute(beta)
@@ -6319,7 +6319,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionAutoscalers.update
      *
-     * @desc Updates a autoscaler in the specified project using the data included in the request.
+     * @desc Updates an autoscaler in the specified project using the data included in the request.
      *
      * @alias compute.regionAutoscalers.update
      * @memberOf! compute(beta)
@@ -6781,7 +6781,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.get
      *
-     * @desc Returns all of the details for the specified managed instance group.
+     * @desc Returns all of the details about the specified managed instance group.
      *
      * @alias compute.regionInstanceGroupManagers.get
      * @memberOf! compute(beta)
@@ -6930,6 +6930,44 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.regionInstanceGroupManagers.patch
+     *
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports patch semantics.
+     *
+     * @alias compute.regionInstanceGroupManagers.patch
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(beta).InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.regionInstanceGroupManagers.recreateInstances
      *
      * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.
@@ -7046,7 +7084,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.setInstanceTemplate
      *
-     * @desc Sets the instance template to use when creating new instances in this group. Existing instances are not affected.
+     * @desc Sets the instance template to use when creating new instances or recreating instances in this group. Existing instances are not affected.
      *
      * @alias compute.regionInstanceGroupManagers.setInstanceTemplate
      * @memberOf! compute(beta)
@@ -7151,6 +7189,44 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroupManagers.update
+     *
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method.
+     *
+     * @alias compute.regionInstanceGroupManagers.update
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the instance group manager.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(beta).InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
+          method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
         context: self
       };
 
@@ -11381,7 +11457,7 @@ If none of these are specified, the default will be to autoscale based on cpuUti
 * @property {string} region [Output Only] URL of the region where the instance group resides (for autoscalers living in regional scope).
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string} status [Output Only] The status of the autoscaler configuration.
-* @property {compute(beta).AutoscalerStatusDetails[]} statusDetails [Output Only] Human-readable details about the current state of the autoscaler. Examples: ?Error when fetching replicas: Replica Pool xxx doesn?t exist.? ?Autoscaling capped at min_num_replicas: 2.?
+* @property {compute(beta).AutoscalerStatusDetails[]} statusDetails [Output Only] Human-readable details about the current state of the autoscaler. Read the documentation for Commonly returned status messages for examples of status messages you might encounter.
 * @property {string} target URL of the managed instance group that this autoscaler will scale.
 * @property {string} zone [Output Only] URL of the zone where the instance group resides (for autoscalers living in zonal scope).
 */
@@ -11409,8 +11485,8 @@ If none of these are specified, the default will be to autoscale based on cpuUti
  * @typedef AutoscalerStatusDetails
  * @memberOf! compute(beta)
  * @type object
- * @property {string} message 
- * @property {string} type 
+ * @property {string} message The status message.
+ * @property {string} type The type of error returned.
  */
 /**
  * @typedef AutoscalersScopedList
@@ -11446,16 +11522,14 @@ If the average CPU is above the target utilization, the autoscaler scales up unt
  * @typedef AutoscalingPolicyCustomMetricUtilization
  * @memberOf! compute(beta)
  * @type object
-* @property {string} metric The identifier of the Cloud Monitoring metric. The metric cannot have negative values and should be a utilization metric, which means that the number of virtual machines handling requests should increase or decrease proportionally to the metric. The metric must also have a label of compute.googleapis.com/resource_id with the value of the instance&#39;s unique ID, although this alone does not guarantee that the metric is valid.
+* @property {string} metric The identifier of the Stackdriver Monitoring metric. The metric cannot have negative values and should be a utilization metric, which means that the number of virtual machines handling requests should increase or decrease proportionally to the metric. The metric must also have a label of compute.googleapis.com/resource_id with the value of the instance&#39;s unique ID, although this alone does not guarantee that the metric is valid.
 
 For example, the following is a valid metric:
 compute.googleapis.com/instance/network/received_bytes_count
-
-
 The following is not a valid metric because it does not increase or decrease based on usage:
 compute.googleapis.com/instance/cpu/reserved_cores
 * @property {number} utilizationTarget Target value of the metric which autoscaler should maintain. Must be a positive value.
-* @property {string} utilizationTargetType Defines how target utilization value is expressed for a Cloud Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE. If not specified, the default is GAUGE.
+* @property {string} utilizationTargetType Defines how target utilization value is expressed for a Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE. If not specified, the default is GAUGE.
 */
 /**
  * @typedef AutoscalingPolicyLoadBalancingUtilization
@@ -11874,7 +11948,7 @@ This field is not used for internal load balancing.
  * @typedef GuestOsFeature
  * @memberOf! compute(beta)
  * @type object
- * @property {string} type The type of supported feature..
+ * @property {string} type The type of supported feature. Currenty only VIRTIO_SCSI_MULTIQUEUE is supported.
  */
 /**
  * @typedef HTTP2HealthCheck
@@ -12026,7 +12100,7 @@ This field is not used for internal load balancing.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
 * @property {string} family The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
-* @property {compute(beta).GuestOsFeature[]} guestOsFeatures Features of the guest os, valid for bootable images only.
+* @property {compute(beta).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable images only. Currently, only one feature is supported, VIRTIO_SCSCI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows images, you can only enable VIRTIO_SCSCI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux images with kernel versions 3.17 and higher will support VIRTIO_SCSCI_MULTIQUEUE.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {compute(beta).CustomerEncryptionKey} imageEncryptionKey Encrypts the image using a customer-supplied encryption key.
 
@@ -12117,7 +12191,7 @@ For a full list of restrictions, read the Specifications for custom machine type
 * @property {string} creationTimestamp [Output Only] The creation timestamp for this instance group in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} fingerprint [Output Only] The fingerprint of the named ports. The system uses this fingerprint to detect conflicts when multiple users change the named ports concurrently.
-* @property {string} id [Output Only] A unique identifier for this instance group. The server generates this identifier.
+* @property {string} id [Output Only] A unique identifier for this instance group, generated by the server.
 * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroup for instance groups.
 * @property {string} name The name of the instance group. The name must be 1-63 characters long, and comply with RFC1035.
 * @property {compute(beta).NamedPort[]} namedPorts Assigns a name to a port number. For example: {name: &quot;http&quot;, port: 80}
@@ -12590,7 +12664,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} status [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
  * @property {string} statusMessage [Output Only] An optional textual description of the current status of the operation.
  * @property {string} targetId [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
- * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies.
+ * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies. If creating a persistent disk snapshot, this points to the persistent disk that the snapshot was created from.
  * @property {string} user [Output Only] User who requested the operation, for example: user@example.com.
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
  * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
@@ -12656,6 +12730,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {compute(beta).Quota[]} quotas [Output Only] Quotas assigned to this project.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {compute(beta).UsageExportLocation} usageExportLocation The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
+ * @property {string} xpnProjectStatus [Output Only] The role this project has in a Cross Project Network (XPN) configuration. Currently only HOST projects are differentiated.
  */
 /**
  * @typedef Quota
@@ -12791,7 +12866,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @typedef ResourceGroupReference
  * @memberOf! compute(beta)
  * @type object
- * @property {string} group A URI referencing one of the resource views listed in the backend service.
+ * @property {string} group A URI referencing one of the instance groups listed in the backend service.
  */
 /**
  * @typedef Route

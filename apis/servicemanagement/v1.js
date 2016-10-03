@@ -904,9 +904,9 @@ influence interpretation of the configuration, for example, to
 determine defaults. This is documented together with applicable
 options. The current default for the config version itself is `3`.
 * @property {servicemanagement(v1).Backend} backend API backend configuration.
-* @property {servicemanagement(v1).Monitoring} monitoring Monitoring configuration of the service.
+* @property {servicemanagement(v1).Monitoring} monitoring Monitoring configuration.
 * @property {servicemanagement(v1).Visibility} visibility API visibility configuration.
-* @property {servicemanagement(v1).Logging} logging Logging configuration of the service.
+* @property {servicemanagement(v1).Logging} logging Logging configuration.
 * @property {servicemanagement(v1).CustomError} customError Custom error configuration.
 * @property {servicemanagement(v1).Context} context Context configuration.
 * @property {servicemanagement(v1).Api[]} apis A list of API interfaces exported by this service. Only the `name` field
@@ -915,7 +915,7 @@ author, as the remaining fields will be derived from the IDL during the
 normalization process. It is an error to specify an API interface here
 which cannot be resolved against the associated IDL files.
 * @property {servicemanagement(v1).MetricDescriptor[]} metrics Defines the metrics used by this service.
-* @property {servicemanagement(v1).SystemParameters} systemParameters Configuration for system parameters.
+* @property {servicemanagement(v1).SystemParameters} systemParameters System parameter configuration.
 * @property {servicemanagement(v1).Endpoint[]} endpoints Configuration for network endpoints.  If this is empty, then an endpoint
 with the same name as the service is automatically generated to service all
 defined APIs.
@@ -1321,7 +1321,9 @@ metric type. For example, the
 has a label, `loadbalanced`, that specifies whether the traffic was
 received through a load balanced IP address.
 * @property {string} metricKind Whether the metric records instantaneous values, changes to a value, etc.
+Some combinations of `metric_kind` and `value_type` might not be supported.
 * @property {string} valueType Whether the measurement is an integer, a floating-point number, etc.
+Some combinations of `metric_kind` and `value_type` might not be supported.
 * @property {string} displayName A concise name for the metric, which can be displayed in user interfaces.
 Use sentence case without an ending period, for example &quot;Request count&quot;.
 * @property {string} name Resource name. The format of the name may vary between different
@@ -1749,8 +1751,8 @@ Example: 1234567-compute@developer.gserviceaccount.com
  * @typedef VisibilityRule
  * @memberOf! servicemanagement(v1)
  * @type object
-* @property {string} restriction Lists the visibility labels for this rule. Any of the listed labels grants
-visibility to the element.
+* @property {string} restriction A comma-separated list of visibility labels that apply to the `selector`.
+Any of the listed labels can be used to grant the visibility.
 
 If a rule has multiple labels, removing one of the labels but not all of
 them can break clients.

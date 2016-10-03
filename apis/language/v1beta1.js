@@ -80,7 +80,7 @@ function Language(options) { // eslint-disable-line
     /**
      * language.documents.annotateText
      *
-     * @desc Advanced API that analyzes the document and provides a full set of text annotations, including semantic, syntactic, and sentiment information. This API is intended for users who are familiar with machine learning and need in-depth text features to build upon.
+     * @desc A convenience method that provides all the features that analyzeSentiment, analyzeEntities, and analyzeSyntax provide in one call.
      *
      * @alias language.documents.annotateText
      * @memberOf! language(v1beta1)
@@ -267,6 +267,7 @@ AnnotateTextRequest.Features.extract_entities.
 AnnotateTextRequest.Features.extract_document_sentiment.
 * @property {string} language The language of the text, which will be the same as the language specified
 in the request or, if not specified, the automatically-detected language.
+See Document.language field for more details.
 * @property {language(v1beta1).Token[]} tokens Tokens, along with their syntactic information, in the input document.
 Populated if the user enables
 AnnotateTextRequest.Features.extract_syntax.
@@ -319,5 +320,6 @@ of the token.
 * @property {language(v1beta1).Entity[]} entities The recognized entities in the input document.
 * @property {string} language The language of the text, which will be the same as the language specified
 in the request or, if not specified, the automatically-detected language.
+See Document.language field for more details.
 */
 module.exports = Language;

@@ -529,6 +529,7 @@ originally returns it. If you use the default HTTP mapping, the
 * @property {string} id Unique identifier of the trigger.
 
 @OutputOnly
+* @property {string} description Human-readable description of this trigger.
 * @property {cloudbuild(v1).RepoSource} triggerTemplate Template describing the types of source changes to trigger a build.
 
 Branch and tag names in trigger templates are interpreted as regular
@@ -606,10 +607,16 @@ Default time is ten minutes.
 @OutputOnly
 * @property {string} statusDetail Customer-readable message about the current status.
 @OutputOnly
-* @property {string[]} images List of images expected to be built and pushed to Google Container
-Registry. If an image is listed here and the image is not produced by
-one of the build steps, the build will fail. Any images present when
-the build steps are complete will be pushed to Container Registry.
+* @property {string[]} images A list of images to be pushed upon the successful completion of all build
+steps.
+
+The images will be pushed using the builder
+service account&#39;s credentials.
+
+The digests of the pushed images will be stored in the Build resource&#39;s
+results field.
+
+If any of the images fail to be pushed, the build is marked FAILURE.
 * @property {string} startTime Time at which execution of the build was started.
 @OutputOnly
 * @property {string} logsBucket Google Cloud Storage bucket where logs should be written (see
@@ -660,15 +667,38 @@ the build is assumed.
  * @type object
 * @property {string} id Optional unique identifier for this build step, used in wait_for to
 reference this build step as a dependency.
-* @property {string[]} env Additional environment variables to set for this step&#39;s container.
+* @property {string[]} env A list of environment variable definitions to be used when running a step.
+
+The elements are of the form &quot;KEY=VALUE&quot; for the environment variable &quot;KEY&quot;
+being given the value &quot;VALUE&quot;.
 * @property {string[]} waitFor The ID(s) of the step(s) that this build step depends on.
 This build step will not start until all the build steps in wait_for
 have completed successfully. If wait_for is empty, this build step will
 start when all previous build steps in the Build.Steps list have completed
 successfully.
-* @property {string[]} args Command-line arguments to use when running this step&#39;s container.
-* @property {string} name Name of the container image to use for creating this stage in the
-pipeline, as presented to `docker pull`.
+* @property {string[]} args A list of arguments that will be presented to the step when it is started.
+
+If the image used to run the step&#39;s container has an entrypoint, these args
+will be used as arguments to that entrypoint. If the image does not define
+an entrypoint, the first element in args will be used as the entrypoint,
+and the remainder will be used as arguments.
+* @property {string} name The name of the container image that will run this particular build step.
+
+If the image is already available in the host&#39;s
+Docker daemon&#39;s cache, it will be run directly. If not, the host will
+attempt to pull the image first, using the builder service account&#39;s
+credentials if necessary.
+
+The Docker daemon&#39;s cache will already have the latest versions of all of
+the officially supported build steps
+(https://github.com/GoogleCloudPlatform/cloud-builders). The Docker daemon
+will also have cached many of the layers for some popular images, like
+&quot;ubuntu&quot;, &quot;debian&quot;, but they will be refreshed at the time you attempt to
+use them.
+
+If you built an image in a previous build step, it will be stored in the
+host&#39;s Docker daemon&#39;s cache and is available to use as the name for a
+later build step.
 * @property {string} dir Working directory (relative to project source root) to use when running
 this operation&#39;s container.
 */

@@ -1,3 +1,38 @@
+##### 14.0.0 - 03 October 2016
+
+###### Breaking changes
+- Removed `adsense` `v1.2` API
+- Removed `dfareporting` `v2.2` API
+- Removed `dfareporting` `v2.3` API
+- Removed `rubicon.notifyproposalchange` from `doubleclickbidmanager` `v1` API
+
+###### Backwards compatible changes
+- Added `firebasedynamiclinks` `v1` API
+- Added `ml` `v1beta1` API
+- Added `organizations.search` to `cloudresourcemanager` `v1` API
+- Added `organizations.get` to `cloudresourcemanager` `v1` API
+- Added `organizations.setIamPolicy` to `cloudresourcemanager` `v1` API
+- Added `organizations.getIamPolicy` to `cloudresourcemanager` `v1` API
+- Added `organizations.testIamPermissions` to `cloudresourcemanager` `v1` API
+- Added `projects.create` to `cloudresourcemanager` `v1` API
+- Added `projects.setDefaultServiceAccount` to `compute` `alpha` API
+- Added `subnetworks.setPrivateIpGoogleAccess` to `compute` `alpha` API
+- Added `targetTcpProxies.delete` to `compute` `alpha` API
+- Added `targetTcpProxies.get` to `compute` `alpha` API
+- Added `targetTcpProxies.insert` to `compute` `alpha` API
+- Added `targetTcpProxies.list` to `compute` `alpha` API
+- Added `targetTcpProxies.setBackendService` to `compute` `alpha` API
+- Added `targetTcpProxies.setProxyHeader` to `compute` `alpha` API
+- Added `targetTcpProxies.testIamPermissions` to `compute` `alpha` API
+- Added `regionInstanceGroupManagers.update` to `compute` `beta` API
+- Added `deployments.getIamPolicy` to `deploymentmanager` `v2` API
+- Added `deployments.setIamPolicy` to `deploymentmanager` `v2` API
+- Added `deployments.testIamPermissions` to `deploymentmanager` `v2` API
+- Added `sdf.download` to `doubleclickbidmanager` `v1` API
+- Added `roles.queryGrantableRoles` to `iam` `v1` API
+- Added `organizations.logs.delete` to `logging` `v2beta1` API
+- Added `billingAccounts.logs.delete` to `logging` `v2beta1` API
+
 ##### 13.0.0 - 12 September 2016
 
 ###### Breaking changes

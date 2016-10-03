@@ -125,6 +125,7 @@ function Runtimeconfig(options) { // eslint-disable-line
        * @memberOf! runtimeconfig(v1beta1)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.requestId An optional unique request_id. If server receives two Create requests with the same request_id then second request will be ignored and the resource stored in the backend will be returned. Empty request_id fields are ignored. It is responsibility of the client to ensure uniqueness of the request_id strings. The strings are limited to 64 characters.
        * @param {string} params.parent The [project ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848) for this request, in the format `projects/[PROJECT_ID]`.
        * @param {runtimeconfig(v1beta1).RuntimeConfig} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -344,6 +345,7 @@ function Runtimeconfig(options) { // eslint-disable-line
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
+         * @param {string=} params.requestId An optional unique request_id. If server receives two Create requests with the same request_id then second request will be ignored and the resource stored in the backend will be returned. Empty request_id fields are ignored. It is responsibility of the client to ensure uniqueness of the request_id strings. The strings are limited to 64 characters.
          * @param {string} params.parent The path to the RutimeConfig resource that this variable should belong to. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
          * @param {runtimeconfig(v1beta1).Variable} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -490,6 +492,7 @@ function Runtimeconfig(options) { // eslint-disable-line
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
+         * @param {string=} params.requestId An optional unique request_id. If server receives two Create requests with the same request_id then second request will be ignored and information stored in the backend will be returned. Empty request_id fields are ignored. It is responsibility of the client to ensure uniqueness of the request_id strings. The strings are limited to 64 characters.
          * @param {string} params.parent The path to the configuration that will own the waiter. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`.
          * @param {runtimeconfig(v1beta1).Waiter} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.

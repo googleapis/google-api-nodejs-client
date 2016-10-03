@@ -295,6 +295,42 @@ function Deploymentmanager(options) { // eslint-disable-line
     },
 
     /**
+     * deploymentmanager.deployments.getIamPolicy
+     *
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * @alias deploymentmanager.deployments.getIamPolicy
+     * @memberOf! deploymentmanager(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * deploymentmanager.deployments.insert
      *
      * @desc Creates a deployment and all of the resources described by the deployment manifest.
@@ -556,6 +592,43 @@ function Deploymentmanager(options) { // eslint-disable-line
     },
 
     /**
+     * deploymentmanager.deployments.setIamPolicy
+     *
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * @alias deploymentmanager.deployments.setIamPolicy
+     * @memberOf! deploymentmanager(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {deploymentmanager(v2).Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{resource}/setIamPolicy',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * deploymentmanager.deployments.stop
      *
      * @desc Stops an ongoing operation. This does not roll back any work that has already been completed, but prevents any new work from being started.
@@ -635,6 +708,43 @@ function Deploymentmanager(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'deployment'],
         pathParams: ['deployment', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * deploymentmanager.deployments.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias deploymentmanager.deployments.testIamPermissions
+     * @memberOf! deploymentmanager(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {deploymentmanager(v2).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/deploymentmanager/v2/projects/{project}/global/deployments/{resource}/testIamPermissions',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
         context: self
       };
 
@@ -1371,6 +1481,43 @@ function Deploymentmanager(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef AuditConfig
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit logging for the `service` specified above. Follows the same format of Binding.members.
+ * @property {string} service Specifies a service that will be enabled for &quot;data access&quot; audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
+ */
+/**
+ * @typedef Binding
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+* @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:
+
+* `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
+
+* `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.
+
+* `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` or `joe@example.com`.
+
+* `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.
+
+* `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.
+
+* `domain:{domain}`: A Google Apps domain name that represents all the users of that domain. For example, `google.com` or `example.com`.
+* @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+*/
+/**
+ * @typedef Condition
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} iam Trusted attributes supplied by the IAM system.
+ * @property {string} op An operator to apply the subject with.
+ * @property {string} svc Trusted attributes discharged by the service.
+ * @property {string} sys Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
+ * @property {string} value DEPRECATED. Use &#39;values&#39; instead.
+ * @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
+ */
+/**
  * @typedef ConfigFile
  * @memberOf! deploymentmanager(v2)
  * @type object
@@ -1446,6 +1593,19 @@ The fingerprint is initially generated by Deployment Manager and changes after e
  * @property {string} name The name of the file.
  */
 /**
+ * @typedef LogConfig
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {deploymentmanager(v2).LogConfigCounterOptions} counter Counter options.
+ */
+/**
+ * @typedef LogConfigCounterOptions
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} field The field value to attribute.
+ * @property {string} metric The metric to update.
+ */
+/**
  * @typedef Manifest
  * @memberOf! deploymentmanager(v2)
  * @type object
@@ -1501,9 +1661,25 @@ The fingerprint is initially generated by Deployment Manager and changes after e
  * @property {deploymentmanager(v2).Operation[]} operations [Output Only] Operations contained in this list response.
  */
 /**
+ * @typedef Policy
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+* @property {deploymentmanager(v2).AuditConfig[]} auditConfigs Specifies audit logging configs for &quot;data access&quot;. &quot;data access&quot;: generally refers to data reads/writes and admin reads. &quot;admin activity&quot;: generally refers to admin writes.
+
+Note: `AuditConfig` doesn&#39;t apply to &quot;admin activity&quot;, which always enables audit logging.
+* @property {deploymentmanager(v2).Binding[]} bindings Associates a list of `members` to a `role`. Multiple `bindings` must not be specified for the same `role`. `bindings` with no members will result in an error.
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.
+
+If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+* @property {boolean} iamOwned 
+* @property {deploymentmanager(v2).Rule[]} rules If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
+* @property {integer} version Version of the `Policy`. The default version is 0.
+*/
+/**
  * @typedef Resource
  * @memberOf! deploymentmanager(v2)
  * @type object
+ * @property {deploymentmanager(v2).ResourceAccessControl} accessControl The Access Control Policy set on this resource.
  * @property {string} finalProperties [Output Only] The evaluated properties of the resource with references expanded. Returned as serialized YAML.
  * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
  * @property {string} insertTime [Output Only] Timestamp when the resource was created or acquired, in RFC3339 text format .
@@ -1517,9 +1693,16 @@ The fingerprint is initially generated by Deployment Manager and changes after e
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of this resource, this field will be populated.
  */
 /**
+ * @typedef ResourceAccessControl
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} gcpIamPolicy The GCP IAM Policy to set on the resource.
+ */
+/**
  * @typedef ResourceUpdate
  * @memberOf! deploymentmanager(v2)
  * @type object
+ * @property {deploymentmanager(v2).ResourceAccessControl} accessControl The Access Control Policy to set on this resource after updating the resource itself.
  * @property {object} error [Output Only] If errors are generated during update of the resource, this field will be populated.
  * @property {string} finalProperties [Output Only] The expanded properties of the resource with reference values expanded. Returned as serialized YAML.
  * @property {string} intent [Output Only] The intent of the resource: PREVIEW, UPDATE, or CANCEL.
@@ -1536,11 +1719,35 @@ The fingerprint is initially generated by Deployment Manager and changes after e
  * @property {deploymentmanager(v2).Resource[]} resources Resources contained in this list response.
  */
 /**
+ * @typedef Rule
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string} action Required
+ * @property {deploymentmanager(v2).Condition[]} conditions Additional restrictions that must be met
+ * @property {string} description Human-readable description of the rule.
+ * @property {string[]} ins If one or more &#39;in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+ * @property {deploymentmanager(v2).LogConfig[]} logConfigs The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
+ * @property {string[]} notIns If one or more &#39;not_in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+ * @property {string[]} permissions A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
+ */
+/**
  * @typedef TargetConfiguration
  * @memberOf! deploymentmanager(v2)
  * @type object
  * @property {deploymentmanager(v2).ConfigFile} config The configuration to use for this deployment.
  * @property {deploymentmanager(v2).ImportFile[]} imports Specifies any files to import for this configuration. This can be used to import templates or other files. For example, you might import a text file in order to use the file in a template.
+ */
+/**
+ * @typedef TestPermissionsRequest
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string[]} permissions The set of permissions to check for the &#39;resource&#39;. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
+ */
+/**
+ * @typedef TestPermissionsResponse
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
  */
 /**
  * @typedef Type

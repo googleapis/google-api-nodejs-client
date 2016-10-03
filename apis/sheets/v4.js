@@ -1203,6 +1203,8 @@ False to skip cells with formulas.
  * @type object
 * @property {string} pattern Pattern string used for formatting.  If not set, a default pattern based on
 the user&#39;s locale will be used if necessary for the given type.
+See the [Date and Number Formats guide](/sheets/guides/formats) for more
+information about the supported patterns.
 * @property {string} type The type of the number format.
 When writing, this field must be set.
 */

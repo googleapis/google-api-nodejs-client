@@ -703,6 +703,7 @@ Finally, the developer project number is obfuscated when read by any REST or And
  * @memberOf! fitness(v1)
  * @type object
  * @property {fitness(v1).Session[]} deletedSession If includeDeleted is set to true in the request, this list will contain sessions deleted with original end times that are within the startTime and endTime frame.
+ * @property {boolean} hasMoreData Flag to indicate server has more data to transfer
  * @property {string} nextPageToken The continuation token, which is used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
  * @property {fitness(v1).Session[]} session Sessions with an end time that is between startTime and endTime of the request.
  */
