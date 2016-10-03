@@ -569,6 +569,7 @@ function Dataflow(options) { // eslint-disable-line
  * @property {string} dataset The dataset for the current project where various workflow related tables are stored. The supported resource type is: Google BigQuery: bigquery.googleapis.com/{dataset}
  * @property {object} sdkPipelineOptions The Dataflow SDK pipeline options specified by the user. These options are passed through the service and are used to recreate the SDK pipeline options on the worker in a language agnostic and platform independent way.
  * @property {object} internalExperiments Experimental settings.
+ * @property {string} serviceAccountEmail Identity to run virtual machines as. Defaults to the default account.
  */
 /**
  * @typedef WorkerPool

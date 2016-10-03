@@ -6903,6 +6903,42 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.projects.setDefaultServiceAccount
+     *
+     * @desc Sets the default service account of the project. The default service account is used when a VM instance is created with the service account email address set to "default".
+     *
+     * @alias compute.projects.setDefaultServiceAccount
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {compute(alpha).ProjectsSetDefaultServiceAccountRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setDefaultServiceAccount: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/setDefaultServiceAccount',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.projects.setUsageExportBucket
      *
      * @desc Enables the usage export feature and sets the usage export bucket where reports are stored. If you provide an empty request body using this method, the usage export feature will be disabled.
@@ -7096,7 +7132,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionAutoscalers.patch
      *
-     * @desc Updates a autoscaler in the specified project using the data included in the request. This method supports patch semantics.
+     * @desc Updates an autoscaler in the specified project using the data included in the request. This method supports patch semantics.
      *
      * @alias compute.regionAutoscalers.patch
      * @memberOf! compute(alpha)
@@ -7172,7 +7208,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionAutoscalers.update
      *
-     * @desc Updates a autoscaler in the specified project using the data included in the request.
+     * @desc Updates an autoscaler in the specified project using the data included in the request.
      *
      * @alias compute.regionAutoscalers.update
      * @memberOf! compute(alpha)
@@ -8024,7 +8060,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.get
      *
-     * @desc Returns all of the details for the specified managed instance group.
+     * @desc Returns all of the details about the specified managed instance group.
      *
      * @alias compute.regionInstanceGroupManagers.get
      * @memberOf! compute(alpha)
@@ -8327,7 +8363,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.setInstanceTemplate
      *
-     * @desc Sets the instance template to use when creating new instances in this group. Existing instances are not affected.
+     * @desc Sets the instance template to use when creating new instances or recreating instances in this group. Existing instances are not affected.
      *
      * @alias compute.regionInstanceGroupManagers.setInstanceTemplate
      * @memberOf! compute(alpha)
@@ -10128,6 +10164,44 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.subnetworks.setPrivateIpGoogleAccess
+     *
+     * @desc Set whether VMs in this subnet can access Google services without assigning external IP addresses through Cloudpath.
+     *
+     * @alias compute.subnetworks.setPrivateIpGoogleAccess
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.subnetwork Name of the Subnetwork resource.
+     * @param {compute(alpha).SubnetworksSetPrivateIpGoogleAccessRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setPrivateIpGoogleAccess: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{subnetwork}/setPrivateIpGoogleAccess',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'subnetwork'],
+        pathParams: ['project', 'region', 'subnetwork'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.subnetworks.testIamPermissions
      *
      * @desc Returns permissions that a caller has on the specified resource.
@@ -11646,6 +11720,268 @@ function Compute(options) { // eslint-disable-line
 
   };
 
+  self.targetTcpProxies = {
+
+    /**
+     * compute.targetTcpProxies.delete
+     *
+     * @desc Deletes the specified TargetTcpProxy resource.
+     *
+     * @alias compute.targetTcpProxies.delete
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetTcpProxy Name of the TargetTcpProxy resource to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies/{targetTcpProxy}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'targetTcpProxy'],
+        pathParams: ['project', 'targetTcpProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetTcpProxies.get
+     *
+     * @desc Returns the specified TargetTcpProxy resource. Get a list of available target TCP proxies by making a list() request.
+     *
+     * @alias compute.targetTcpProxies.get
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetTcpProxy Name of the TargetTcpProxy resource to return.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies/{targetTcpProxy}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'targetTcpProxy'],
+        pathParams: ['project', 'targetTcpProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetTcpProxies.insert
+     *
+     * @desc Creates a TargetTcpProxy resource in the specified project using the data included in the request.
+     *
+     * @alias compute.targetTcpProxies.insert
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {compute(alpha).TargetTcpProxy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetTcpProxies.list
+     *
+     * @desc Retrieves the list of TargetTcpProxy resources available to the specified project.
+     *
+     * @alias compute.targetTcpProxies.list
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetTcpProxies.setBackendService
+     *
+     * @desc Changes the BackendService for TargetTcpProxy.
+     *
+     * @alias compute.targetTcpProxies.setBackendService
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetTcpProxy Name of the TargetTcpProxy resource whose BackendService resource is to be set.
+     * @param {compute(alpha).TargetTcpProxiesSetBackendServiceRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setBackendService: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies/{targetTcpProxy}/setBackendService',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'targetTcpProxy'],
+        pathParams: ['project', 'targetTcpProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetTcpProxies.setProxyHeader
+     *
+     * @desc Changes the ProxyHeaderType for TargetTcpProxy.
+     *
+     * @alias compute.targetTcpProxies.setProxyHeader
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.targetTcpProxy Name of the TargetTcpProxy resource whose ProxyHeader is to be set.
+     * @param {compute(alpha).TargetTcpProxiesSetProxyHeaderRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setProxyHeader: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies/{targetTcpProxy}/setProxyHeader',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'targetTcpProxy'],
+        pathParams: ['project', 'targetTcpProxy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.targetTcpProxies.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.targetTcpProxies.testIamPermissions
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies/{resource}/testIamPermissions',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.targetVpnGateways = {
 
     /**
@@ -12648,9 +12984,14 @@ function Compute(options) { // eslint-disable-line
  * @typedef AccessConfig
  * @memberOf! compute(alpha)
  * @type object
+ * @property {string} dnsName [Output Only] The public DNS domain name for the instance.
  * @property {string} kind [Output Only] Type of the resource. Always compute#accessConfig for access configs.
  * @property {string} name Name of this access configuration.
  * @property {string} natIP An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
+ * @property {string} networkTier This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM , STANDARD. If this field is not specified, it is assumed to be PREMIUM.
+ * @property {string} ptrDomainName The DNS domain name for the public PTR record. This field can only be set when the set_ptr field is enabled.
+ * @property {boolean} setPtr Specifies whether a public DNS ?PTR? record should be created to map the external IP address of the instance to a DNS domain name.
+ * @property {boolean} setPublicDns Specifies whether a public DNS ?A? record should be created for the external IP address of this access configuration.
  * @property {string} type The type of configuration. The default and only option is ONE_TO_ONE_NAT.
  */
 /**
@@ -12663,6 +13004,7 @@ function Compute(options) { // eslint-disable-line
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#address for addresses.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} networkTier This signifies the networking tier used for configuring this Address and can only take the following values: PREMIUM , STANDARD. If this field is not specified, it is assumed to be PREMIUM.
  * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {string} status [Output Only] The status of the address, which can be either IN_USE or RESERVED. An address that is RESERVED is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
@@ -12694,6 +13036,13 @@ function Compute(options) { // eslint-disable-line
  * @type object
  * @property {compute(alpha).Address[]} addresses [Output Only] List of addresses contained in this scope.
  * @property {object} warning [Output Only] Informational warning which replaces the list of addresses when the list is empty.
+ */
+/**
+ * @typedef AliasIpRange
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} ipCidrRange The IP CIDR range represented by this alias IP range. This IP CIDR range must belong to the specified subnetwork and cannot contain IP addresses reserved by system or used by other network interfaces. This range may be a single IP address (e.g. 10.2.3.4), a netmask (e.g. /24) or a CIDR format string (e.g. 10.1.2.0/24).
+ * @property {string} subnetworkRangeName Optional subnetwork secondary range name specifying the secondary range from which to allocate the IP CIDR range for this alias IP range. If left unspecified, the primary range of the subnetwork will be used.
  */
 /**
  * @typedef AttachedDisk
@@ -12782,7 +13131,7 @@ If none of these are specified, the default will be to autoscale based on cpuUti
 * @property {string} region [Output Only] URL of the region where the instance group resides (for autoscalers living in regional scope).
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string} status [Output Only] The status of the autoscaler configuration.
-* @property {compute(alpha).AutoscalerStatusDetails[]} statusDetails [Output Only] Human-readable details about the current state of the autoscaler. Examples: ?Error when fetching replicas: Replica Pool xxx doesn?t exist.? ?Autoscaling capped at min_num_replicas: 2.?
+* @property {compute(alpha).AutoscalerStatusDetails[]} statusDetails [Output Only] Human-readable details about the current state of the autoscaler. Read the documentation for Commonly returned status messages for examples of status messages you might encounter.
 * @property {string} target URL of the managed instance group that this autoscaler will scale.
 * @property {string} zone [Output Only] URL of the zone where the instance group resides (for autoscalers living in zonal scope).
 */
@@ -12810,8 +13159,8 @@ If none of these are specified, the default will be to autoscale based on cpuUti
  * @typedef AutoscalerStatusDetails
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} message 
- * @property {string} type 
+ * @property {string} message The status message.
+ * @property {string} type The type of error returned.
  */
 /**
  * @typedef AutoscalersScopedList
@@ -12848,16 +13197,14 @@ If the average CPU is above the target utilization, the autoscaler scales up unt
  * @typedef AutoscalingPolicyCustomMetricUtilization
  * @memberOf! compute(alpha)
  * @type object
-* @property {string} metric The identifier of the Cloud Monitoring metric. The metric cannot have negative values and should be a utilization metric, which means that the number of virtual machines handling requests should increase or decrease proportionally to the metric. The metric must also have a label of compute.googleapis.com/resource_id with the value of the instance&#39;s unique ID, although this alone does not guarantee that the metric is valid.
+* @property {string} metric The identifier of the Stackdriver Monitoring metric. The metric cannot have negative values and should be a utilization metric, which means that the number of virtual machines handling requests should increase or decrease proportionally to the metric. The metric must also have a label of compute.googleapis.com/resource_id with the value of the instance&#39;s unique ID, although this alone does not guarantee that the metric is valid.
 
 For example, the following is a valid metric:
 compute.googleapis.com/instance/network/received_bytes_count
-
-
 The following is not a valid metric because it does not increase or decrease based on usage:
 compute.googleapis.com/instance/cpu/reserved_cores
 * @property {number} utilizationTarget Target value of the metric which autoscaler should maintain. Must be a positive value.
-* @property {string} utilizationTargetType Defines how target utilization value is expressed for a Cloud Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE. If not specified, the default is GAUGE.
+* @property {string} utilizationTargetType Defines how target utilization value is expressed for a Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE. If not specified, the default is GAUGE.
 */
 /**
  * @typedef AutoscalingPolicyLoadBalancingUtilization
@@ -12950,6 +13297,7 @@ This cannot be used for internal load balancing.
 When the load balancing scheme is INTERNAL, this field is not used.
 * @property {compute(alpha).BackendSSLPolicy} backendSslPolicy Backend SSL policies to enforce.
 * @property {compute(alpha).Backend[]} backends The list of backends that serve this BackendService.
+* @property {compute(alpha).BackendServiceCdnPolicy} cdnPolicy Cloud CDN Coniguration for this BackendService.
 * @property {compute(alpha).ConnectionDraining} connectionDraining 
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
@@ -12996,6 +13344,12 @@ When the protocol is UDP, this field is not used.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef BackendServiceCdnPolicy
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).CacheKeyPolicy} cacheKeyPolicy The CacheKeyPolicy for this CdnPolicy.
  */
 /**
  * @typedef BackendServiceGroupHealth
@@ -13055,6 +13409,16 @@ When the protocol is UDP, this field is not used.
  * @type object
  * @property {string} host If host is non-empty, this invalidation rule will only apply to requests with a Host header matching host.
  * @property {string} path 
+ */
+/**
+ * @typedef CacheKeyPolicy
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {boolean} includeHost If true, requests to different hosts will be cached separately.
+ * @property {boolean} includeProtocol If true, http and https requests will be cached separately.
+ * @property {boolean} includeQueryString If true, include query string parameters in the cache key according to query_string_whitelist and query_string_blacklist. If neither is set, the entire query string will be included. If false, the query string will be excluded from the cache key entirely.
+ * @property {string[]} queryStringBlacklist Names of query string parameters to exclude in cache keys. All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both. ?&amp;? and ?=? will be percent encoded and not treated as delimiters.
+ * @property {string[]} queryStringWhitelist Names of query string parameters to include in cache keys. All other parameters will be excluded. Either specify query_string_whitelist or query_string_blacklist, not both. ?&amp;? and ?=? will be percent encoded and not treated as delimiters.
  */
 /**
  * @typedef Condition
@@ -13323,6 +13687,7 @@ This field is only used for internal load balancing.
 * @property {string} network This field is not used for external load balancing.
 
 For internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.
+* @property {string} networkTier This signifies the networking tier used for configuring this load balancer and can only take the following values: PREMIUM , STANDARD. If this field is not specified, it is assumed to be PREMIUM.
 * @property {string} portRange Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
 
 This field is not used for internal load balancing.
@@ -13380,7 +13745,7 @@ This field is not used for internal load balancing.
  * @typedef GuestOsFeature
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} type The type of supported feature..
+ * @property {string} type The type of supported feature. Currenty only VIRTIO_SCSI_MULTIQUEUE is supported.
  */
 /**
  * @typedef HTTP2HealthCheck
@@ -13391,6 +13756,7 @@ This field is not used for internal load balancing.
  * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} requestPath The request path of the HTTP/2 health check request. The default value is /.
+ * @property {string} response The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
  */
 /**
  * @typedef HTTPHealthCheck
@@ -13401,6 +13767,7 @@ This field is not used for internal load balancing.
  * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} requestPath The request path of the HTTP health check request. The default value is /.
+ * @property {string} response The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
  */
 /**
  * @typedef HTTPSHealthCheck
@@ -13411,6 +13778,7 @@ This field is not used for internal load balancing.
  * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
  * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
  * @property {string} requestPath The request path of the HTTPS health check request. The default value is /.
+ * @property {string} response The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
  */
 /**
  * @typedef HealthCheck
@@ -13431,6 +13799,7 @@ This field is not used for internal load balancing.
  * @property {compute(alpha).TCPHealthCheck} tcpHealthCheck 
  * @property {integer} timeoutSec How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
  * @property {string} type Specifies the type of the healthCheck, either TCP, UDP, SSL, HTTP, HTTPS or HTTP2. If not specified, the default is TCP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
+ * @property {compute(alpha).UDPHealthCheck} udpHealthCheck 
  * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
  */
 /**
@@ -13532,7 +13901,7 @@ This field is not used for internal load balancing.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
 * @property {string} family The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
-* @property {compute(alpha).GuestOsFeature[]} guestOsFeatures Features of the guest os, valid for bootable images only.
+* @property {compute(alpha).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable images only. Currently, only one feature is supported, VIRTIO_SCSCI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows images, you can only enable VIRTIO_SCSCI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux images with kernel versions 3.17 and higher will support VIRTIO_SCSCI_MULTIQUEUE.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {compute(alpha).CustomerEncryptionKey} imageEncryptionKey Encrypts the image using a customer-supplied encryption key.
 
@@ -13632,7 +14001,7 @@ For a full list of restrictions, read the Specifications for custom machine type
 * @property {string} creationTimestamp [Output Only] The creation timestamp for this instance group in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} fingerprint [Output Only] The fingerprint of the named ports. The system uses this fingerprint to detect conflicts when multiple users change the named ports concurrently.
-* @property {string} id [Output Only] A unique identifier for this instance group. The server generates this identifier.
+* @property {string} id [Output Only] A unique identifier for this instance group, generated by the server.
 * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroup for instance groups.
 * @property {string} name The name of the instance group. The name must be 1-63 characters long, and comply with RFC1035.
 * @property {compute(alpha).NamedPort[]} namedPorts Assigns a name to a port number. For example: {name: &quot;http&quot;, port: 80}
@@ -13724,6 +14093,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @type object
  * @property {string} healthCheck The URL for the HealthCheck that signals autohealing.
  * @property {integer} initialDelaySec The number of seconds that the managed instance group waits before it applies autohealing policies to new instances or recently recreated instances. This initial delay allows instances to initialize and run their startup scripts before the instance group determines that they are UNHEALTHY. This prevents the managed instance group from recreating its instances prematurely. This value must be from range [0, 3600].
+ * @property {compute(alpha).FixedOrPercent} maxUnavailable Maximum number of instances that can be unavailable when auto-healing. The instance is considered available if all of the following conditions are satisfied: 1. instance&#39;s status is RUNNING 2. instance&#39;s liveness health check result was observed to be HEALTHY at least once By default, a percent value of 100% is used.
  */
 /**
  * @typedef InstanceGroupManagerList
@@ -14117,6 +14487,7 @@ In &quot;auto subnet mode&quot;, a newly created network is assigned the default
  * @memberOf! compute(alpha)
  * @type object
 * @property {compute(alpha).AccessConfig[]} accessConfigs An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If there are no accessConfigs specified, then this instance will have no external internet access.
+* @property {compute(alpha).AliasIpRange[]} aliasIpRanges An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
 * @property {string} name [Output Only] The name of the network interface, generated by the server. For network devices, these are eth0, eth1, etc.
 * @property {string} network URL of the network resource for this instance. This is required for creating an instance but optional when creating a firewall rule. If not specified when creating a firewall rule, the default network is used:
 
@@ -14164,7 +14535,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} status [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
  * @property {string} statusMessage [Output Only] An optional textual description of the current status of the operation.
  * @property {string} targetId [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
- * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies.
+ * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies. If creating a persistent disk snapshot, this points to the persistent disk that the snapshot was created from.
  * @property {string} user [Output Only] User who requested the operation, for example: user@example.com.
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
  * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
@@ -14271,6 +14642,12 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @memberOf! compute(alpha)
  * @type object
  * @property {string} organization Optional organization ID managed by Cloud Resource Manager, for which to list XPN host projects. If not specified, the organization will be inferred from the project.
+ */
+/**
+ * @typedef ProjectsSetDefaultServiceAccountRequest
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} email Email address of the service account.
  */
 /**
  * @typedef Quota
@@ -14439,7 +14816,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @typedef ResourceGroupReference
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} group A URI referencing one of the resource views listed in the backend service.
+ * @property {string} group A URI referencing one of the instance groups listed in the backend service.
  */
 /**
  * @typedef Route
@@ -14701,6 +15078,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} network The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks.
  * @property {boolean} privateIpGoogleAccess Whether the VMs in this subnet can access Google services without assigned external IP addresses.
  * @property {string} region URL of the region where the Subnetwork resides.
+ * @property {compute(alpha).SubnetworkSecondaryRange[]} secondaryIpRanges An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. The primary IP of such VM must belong to the primary ipCidrRange of the subnetwork. The alias IPs may belong to either primary or secondary ranges.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
 /**
@@ -14724,6 +15102,13 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
+ * @typedef SubnetworkSecondaryRange
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} ipCidrRange The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network.
+ * @property {string} rangeName The name associated with this subnetwork secondary range, used when adding an alias IP range to a VM instance. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.
+ */
+/**
  * @typedef SubnetworksExpandIpCidrRangeRequest
  * @memberOf! compute(alpha)
  * @type object
@@ -14735,6 +15120,12 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @type object
  * @property {compute(alpha).Subnetwork[]} subnetworks List of subnetworks contained in this scope.
  * @property {object} warning An informational warning that appears when the list of addresses is empty.
+ */
+/**
+ * @typedef SubnetworksSetPrivateIpGoogleAccessRequest
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {boolean} privateIpGoogleAccess 
  */
 /**
  * @typedef TCPHealthCheck
@@ -14996,6 +15387,41 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
+ * @typedef TargetTcpProxiesSetBackendServiceRequest
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} service The URL of the new BackendService resource for the targetTcpProxy.
+ */
+/**
+ * @typedef TargetTcpProxiesSetProxyHeaderRequest
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} proxyHeader The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
+ */
+/**
+ * @typedef TargetTcpProxy
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#targetTcpProxy for target TCP proxies.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} service URL to the BackendService resource.
+ */
+/**
+ * @typedef TargetTcpProxyList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(alpha).TargetTcpProxy[]} items A list of TargetTcpProxy resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
  * @typedef TargetVpnGateway
  * @memberOf! compute(alpha)
  * @type object
@@ -15058,6 +15484,15 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @memberOf! compute(alpha)
  * @type object
  * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
+ */
+/**
+ * @typedef UDPHealthCheck
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {integer} port The UDP port number for the health check request.
+ * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+ * @property {string} request Raw data of request to send in payload of UDP packet. It is an error if this is empty. The request data can only be ASCII.
+ * @property {string} response The bytes to match against the beginning of the response data. It is an error if this is empty. The response data can only be ASCII.
  */
 /**
  * @typedef UrlMap

@@ -709,6 +709,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} clientId The relying party OAuth client ID.
  * @property {string} context The opaque value used by the client to maintain context info between the authentication request and the IDP callback.
  * @property {string} continueUri The URI to which the IDP redirects the user after the federated login flow.
+ * @property {object} customParameter The query parameter that client can customize by themselves in auth url. The following parameters are reserved for server so that they cannot be customized by clients: client_id, response_type, scope, redirect_uri, state.
  * @property {string} hostedDomain The hosted domain to restrict sign-in to accounts at that domain for Google Apps hosted accounts.
  * @property {string} identifier The email or federated ID of the user.
  * @property {string} oauthConsumerKey The developer&#39;s consumer key for OpenId OAuth Extension
@@ -855,6 +856,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {integer} memoryCost Memory cost for hash calculation. Used by scrypt similar algorithms.
  * @property {integer} rounds Rounds for hash calculation. Used by scrypt and similar algorithms.
  * @property {string} saltSeparator The salt separator.
+ * @property {boolean} sanityCheck If true, backend will do sanity check(including duplicate email and federated id) when uploading account.
  * @property {string} signerKey The key for to hash the password.
  * @property {identitytoolkit(v3).UserInfo[]} users The account info to be stored.
  */
@@ -924,8 +926,10 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @typedef ResetPasswordResponse
  * @memberOf! identitytoolkit(v3)
  * @type object
- * @property {string} email The user&#39;s email.
+ * @property {string} email The user&#39;s email. If the out-of-band code is for email recovery, the user&#39;s original email.
  * @property {string} kind The fixed string &quot;identitytoolkit#ResetPasswordResponse&quot;.
+ * @property {string} newEmail If the out-of-band code is for email recovery, the user&#39;s new email.
+ * @property {string} requestType The request type.
  */
 /**
  * @typedef SetAccountInfoResponse
@@ -967,6 +971,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @memberOf! identitytoolkit(v3)
  * @type object
  * @property {string} createdAt User creation timestamp.
+ * @property {boolean} customAuth Whether the user is authenticated by the developer.
  * @property {boolean} disabled Whether the user is disabled.
  * @property {string} displayName The name of the user.
  * @property {string} email The email of the user.
@@ -978,7 +983,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} photoUrl The URL of the user profile photo.
  * @property {object[]} providerUserInfo The IDP of the user.
  * @property {string} salt The user&#39;s password salt.
- * @property {string} screenName User&#39;s screen name at Twitter.
+ * @property {string} screenName User&#39;s screen name at Twitter or login name at Github.
  * @property {string} validSince Timestamp in seconds for valid login token.
  * @property {integer} version Version of the user&#39;s password.
  */
@@ -1021,7 +1026,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} providerId The IdP ID. For white listed IdPs it&#39;s a short domain name e.g. google.com, aol.com, live.net and yahoo.com. If the &quot;providerId&quot; param is set to OpenID OP identifer other than the whilte listed IdPs the OP identifier is returned. If the &quot;identifier&quot; param is federated ID in the createAuthUri request. The domain part of the federated ID is returned.
  * @property {string} rawUserInfo Raw IDP-returned user info.
  * @property {string} refreshToken If idToken is STS id token, then this field will be refresh token.
- * @property {string} screenName The screen_name of a Twitter user.
+ * @property {string} screenName The screen_name of a Twitter user or the login name at Github.
  * @property {string} timeZone The timezone of the user.
  * @property {string[]} verifiedProvider When action is &#39;map&#39;, contains the idps which can be used for confirmation.
  */

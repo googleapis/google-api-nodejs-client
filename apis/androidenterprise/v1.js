@@ -962,13 +962,13 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.enterprises.pullNotificationSet
      *
-     * @desc Pulls and returns a notification set for the enterprises associated with the service account authenticated for the request. The notification set may be empty if no notification are pending. A notification set returned needs to be acknowledged within 20 seconds by calling Enterprises.AcknowledgeNotificationSet, unless the notification set is empty. Notifications that are not acknowledged within the 20 seconds will eventually be included again in the response to another PullNotificationSet request, and those that are never acknowledged will ultimately be deleted according to the Google Cloud Platform Pub/Sub system policy. Multiple requests might be performed concurrently to retrieve notifications, in which case the pending notifications (if any) will be split among each caller, if any are pending.
+     * @desc Pulls and returns a notification set for the enterprises associated with the service account authenticated for the request. The notification set may be empty if no notification are pending. A notification set returned needs to be acknowledged within 20 seconds by calling Enterprises​.AcknowledgeNotificationSet, unless the notification set is empty. Notifications that are not acknowledged within the 20 seconds will eventually be included again in the response to another PullNotificationSet request, and those that are never acknowledged will ultimately be deleted according to the Google Cloud Platform Pub/Sub system policy. Multiple requests might be performed concurrently to retrieve notifications, in which case the pending notifications (if any) will be split among each caller, if any are pending. If no notifications are present, an empty notification list is returned. Subsequent requests may return more notifications once they become available.
      *
      * @alias androidenterprise.enterprises.pullNotificationSet
      * @memberOf! androidenterprise(v1)
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.requestMode The request mode for pulling notifications. If omitted, defaults to WAIT_FOR_NOTIFCATIONS. If this is set to WAIT_FOR_NOTIFCATIONS, the request will eventually timeout, in which case it should be retried.
+     * @param {string=} params.requestMode The request mode for pulling notifications. Specifying waitForNotifications will cause the request to block and wait until one or more notifications are present, or return an empty notification list if no notifications are present after some time. Speciying returnImmediately will cause the request to immediately return the pending notifications, or an empty list if no notifications are present. If omitted, defaults to waitForNotifications.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3110,7 +3110,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.users.insert
      *
-     * @desc Creates a new EMM-managed user.  The Users resource passed in the body of the request should include an accountIdentifier and an accountType.
+     * @desc Creates a new EMM-managed user.  The Users resource passed in the body of the request should include an accountIdentifier and an accountType. If a corresponding user already exists with the same account identifier, the user will be updated with the resource. In this case only the displayName field can be changed.
      *
      * @alias androidenterprise.users.insert
      * @memberOf! androidenterprise(v1)
@@ -3352,12 +3352,12 @@ function Androidenterprise(options) { // eslint-disable-line
  * @typedef AppRestrictionsSchemaRestriction
  * @memberOf! androidenterprise(v1)
  * @type object
- * @property {androidenterprise(v1).AppRestrictionsSchemaRestrictionRestrictionValue} defaultValue The default value of the restriction.
+ * @property {androidenterprise(v1).AppRestrictionsSchemaRestrictionRestrictionValue} defaultValue The default value of the restriction. bundle and bundleArray restrictions never have a default value.
  * @property {string} description A longer description of the restriction, giving more detail of what it affects.
  * @property {string[]} entry For choice or multiselect restrictions, the list of possible entries&#39; human-readable names.
- * @property {string[]} entryValue For choice or multiselect restrictions, the list of possible entries&#39; machine-readable values.
+ * @property {string[]} entryValue For choice or multiselect restrictions, the list of possible entries&#39; machine-readable values. These values should be used in the configuration, either as a single string value for a choice restriction or in a stringArray for a multiselect restriction.
  * @property {string} key The unique key that the product uses to identify the restriction, e.g. &quot;com.google.android.gm.fieldname&quot;.
- * @property {androidenterprise(v1).AppRestrictionsSchemaRestriction[]} nestedRestriction For bundle or bundleArray restrictions, the list of nested restrictions.
+ * @property {androidenterprise(v1).AppRestrictionsSchemaRestriction[]} nestedRestriction For bundle or bundleArray restrictions, the list of nested restrictions. A bundle restriction is always nested within a bundleArray restriction, and a bundleArray restriction is at most two levels deep.
  * @property {string} restrictionType The type of the restriction.
  * @property {string} title The name of the restriction.
  */
@@ -3431,11 +3431,12 @@ The &quot;allUsers&quot; setting is deprecated, and will be removed.
 * @property {string} androidId The Google Play Services Android ID for the device encoded as a lowercase hex string, e.g. &quot;123456789abcdef0&quot;.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#device&quot;.
 * @property {string} managementType Identifies the extent to which the device is controlled by an Android for Work EMM in various deployment configurations.
+
 Possible values include: 
-- &quot;managedDevice&quot;—A device that has the EMM&#39;s device policy controller (DPC) as the device owner.
-- &quot;managedProfile&quot;—A device that has a work profile managed by the DPC (DPC is profile owner) in addition to a separate, personal profile that is unavailable to the DPC.
-- &quot;containerApp&quot;—A device running the Android for Work App. The Android for Work App is managed by the DPC.
-- &quot;unmanagedProfile&quot;—A device that has been allowed (by the domain&#39;s admin, using the Admin Console to enable the privilege) to use Android for Work apps or Google Apps for Work, but the profile is itself not owned by a DPC.
+- &quot;managedDevice&quot;, a device that has the EMM&#39;s device policy controller (DPC) as the device owner, 
+- &quot;managedProfile&quot;, a device that has a work profile managed by the DPC (DPC is profile owner) in addition to a separate, personal profile that is unavailable to the DPC, 
+- &quot;containerApp&quot;, a device running the Android for Work App. The Android for Work App is managed by the DPC, 
+- &quot;unmanagedProfile&quot;, a device that has been allowed (by the domain&#39;s admin, using the Admin Console to enable the privilege) to use Android for Work apps or Google Apps for Work, but the profile is itself not owned by a DPC.
 */
 /**
  * @typedef DeviceState

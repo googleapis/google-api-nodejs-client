@@ -475,8 +475,8 @@ function Genomics(options) { // eslint-disable-line
  * @typedef DockerExecutor
  * @memberOf! genomics(v1alpha2)
  * @type object
- * @property {string} imageName Required. Image name from either Docker Hub or Google Container Repository. Users that run pipelines must have READ access to the image.
- * @property {string} cmd Required. The command string to run. Parameters that do not have `localCopy` specified should be used as environment variables, while those that do can be accessed at the defined paths.
+ * @property {string} imageName Required. Image name from either Docker Hub or Google Container Registry. Users that run pipelines must have READ access to the image.
+ * @property {string} cmd Required. The command or newline delimited script to run. The command string will be executed within a bash shell. If the command exits with a non-zero exit code, output parameter de-localization will be skipped and the pipeline operation&#39;s `error` field will be populated. Maximum command string length is 16384.
  */
 /**
  * @typedef PipelineResources

@@ -94,6 +94,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * @memberOf! cloudresourcemanager(v1beta1)
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.useLegacyStack A safety hatch to opt out of the new reliable project creation process.
      * @param {cloudresourcemanager(v1beta1).Project} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -666,7 +667,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * @memberOf! cloudresourcemanager(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
      * @param {cloudresourcemanager(v1beta1).GetIamPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -696,7 +697,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
     /**
      * cloudresourcemanager.projects.setIamPolicy
      *
-     * @desc Sets the IAM access control policy for the specified Project. Replaces any existing policy. The following constraints apply when using `setIamPolicy()`: + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`. + The owner role can be granted only to `user` and `serviceAccount`. + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation. + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation. + Invitations to grant the owner role cannot be sent using `setIamPolicy()`; they must be sent only using the Cloud Platform Console. + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected. + Members cannot be added to more than one role in the same policy. + There must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified. + Calling this method requires enabling the App Engine Admin API. Note: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles.
+     * @desc Sets the IAM access control policy for the specified Project. Replaces any existing policy. The following constraints apply when using `setIamPolicy()`: + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`. + The owner role can be granted only to `user` and `serviceAccount`. + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation. + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation. + Invitations to grant the owner role cannot be sent using `setIamPolicy()`; they must be sent only using the Cloud Platform Console. + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected. + There must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified. + Calling this method requires enabling the App Engine Admin API. Note: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles.
      *
      * @example
      * // BEFORE RUNNING:
@@ -750,7 +751,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * @memberOf! cloudresourcemanager(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
      * @param {cloudresourcemanager(v1beta1).SetIamPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -835,7 +836,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * @memberOf! cloudresourcemanager(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
      * @param {cloudresourcemanager(v1beta1).TestIamPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1005,7 +1006,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * @memberOf! cloudresourcemanager(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the Organization to fetch. Its format is "organizations/[organization_id]". For example, "organizations/1234".
+     * @param {string} params.name The resource name of the Organization to fetch, e.g. "organizations/1234".
      * @param {string=} params.organizationId The id of the Organization resource to fetch. This field is deprecated and will be removed in v1. Use name instead.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1118,7 +1119,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
     /**
      * cloudresourcemanager.organizations.setIamPolicy
      *
-     * @desc Sets the access control policy on an Organization resource. Replaces any existing policy. The `resource` field should be the organization's resource name, e.g. "organizations/123". For backward compatibility, the resource provided may also be the organization_id. This will not be supported in v1.
+     * @desc Sets the access control policy on an Organization resource. Replaces any existing policy. The `resource` field should be the organization's resource name, e.g. "organizations/123".
      *
      * @example
      * // BEFORE RUNNING:
@@ -1172,7 +1173,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * @memberOf! cloudresourcemanager(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
      * @param {cloudresourcemanager(v1beta1).SetIamPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1202,7 +1203,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
     /**
      * cloudresourcemanager.organizations.getIamPolicy
      *
-     * @desc Gets the access control policy for an Organization resource. May be empty if no such policy or resource exists. The `resource` field should be the organization's resource name, e.g. "organizations/123". For backward compatibility, the resource provided may also be the organization_id. This will not be supported in v1.
+     * @desc Gets the access control policy for an Organization resource. May be empty if no such policy or resource exists. The `resource` field should be the organization's resource name, e.g. "organizations/123".
      *
      * @example
      * // BEFORE RUNNING:
@@ -1256,7 +1257,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * @memberOf! cloudresourcemanager(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
      * @param {cloudresourcemanager(v1beta1).GetIamPolicyRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1286,7 +1287,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
     /**
      * cloudresourcemanager.organizations.testIamPermissions
      *
-     * @desc Returns permissions that a caller has on the specified Organization. The `resource` field should be the organization's resource name, e.g. "organizations/123". For backward compatibility, the resource provided may also be the organization_id. This will not be supported in v1.
+     * @desc Returns permissions that a caller has on the specified Organization. The `resource` field should be the organization's resource name, e.g. "organizations/123".
      *
      * @example
      * // BEFORE RUNNING:
@@ -1341,7 +1342,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * @memberOf! cloudresourcemanager(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
      * @param {cloudresourcemanager(v1beta1).TestIamPermissionsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1454,7 +1455,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
  * @typedef TestIamPermissionsRequest
  * @memberOf! cloudresourcemanager(v1beta1)
  * @type object
- * @property {string[]} permissions The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see IAM Overview.
+ * @property {string[]} permissions The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
  */
 /**
  * @typedef TestIamPermissionsResponse
@@ -1475,7 +1476,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
  * @type object
  * @property {string} name Output Only. The resource name of the organization. This is the organization&#39;s relative path in the API. Its format is &quot;organizations/[organization_id]&quot;. For example, &quot;organizations/1234&quot;.
  * @property {string} organizationId An immutable id for the Organization that is assigned on creation. This should be omitted when creating a new Organization. This field is read-only. This field is deprecated and will be removed in v1. Use name instead.
- * @property {string} displayName A friendly string to be used to refer to the Organization in the UI. This field is required.
+ * @property {string} displayName A friendly string to be used to refer to the Organization in the UI. Assigned by the server, set to the firm name of the Google For Work customer that owns this organization. @OutputOnly
  * @property {cloudresourcemanager(v1beta1).OrganizationOwner} owner The owner of this Organization. The owner should be specified on creation. Once set, it cannot be changed. This field is required.
  * @property {string} creationTime Timestamp when the Organization was created. Assigned by the server. @OutputOnly
  * @property {string} lifecycleState The organization&#39;s current lifecycle state. Assigned by the server. @OutputOnly
@@ -1485,5 +1486,28 @@ function Cloudresourcemanager(options) { // eslint-disable-line
  * @memberOf! cloudresourcemanager(v1beta1)
  * @type object
  * @property {string} directoryCustomerId The Google for Work customer id used in the Directory API.
+ */
+/**
+ * @typedef ProjectCreationStatus
+ * @memberOf! cloudresourcemanager(v1beta1)
+ * @type object
+ * @property {string} createTime Creation time of the project creation workflow.
+ * @property {boolean} gettable True if the project can be retrieved using GetProject. No other operations on the project are guaranteed to work until the project creation is complete.
+ * @property {boolean} ready True if the project creation process is complete.
+ */
+/**
+ * @typedef FolderOperation
+ * @memberOf! cloudresourcemanager(v1beta1)
+ * @type object
+ * @property {string} displayName The display name of the folder.
+ * @property {string} operationType The type of this operation.
+ * @property {string} sourceParent The resource name of the folder&#39;s parent. Only applicable when the operation_type is MOVE.
+ * @property {string} destinationParent The resource name of the folder or organization we are either creating the folder under or moving the folder to.
+ */
+/**
+ * @typedef FolderOperationError
+ * @memberOf! cloudresourcemanager(v1beta1)
+ * @type object
+ * @property {string} errorMessageId The type of operation error experienced.
  */
 module.exports = Cloudresourcemanager;

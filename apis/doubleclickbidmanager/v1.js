@@ -332,23 +332,23 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
 
   };
 
-  self.rubicon = {
+  self.sdf = {
 
     /**
-     * doubleclickbidmanager.rubicon.notifyproposalchange
+     * doubleclickbidmanager.sdf.download
      *
-     * @desc Update proposal upon actions of Rubicon publisher.
+     * @desc Retrieves entities in SDF format.
      *
-     * @alias doubleclickbidmanager.rubicon.notifyproposalchange
+     * @alias doubleclickbidmanager.sdf.download
      * @memberOf! doubleclickbidmanager(v1)
      *
      * @param {object} params Parameters for request
-     * @param {doubleclickbidmanager(v1).NotifyProposalChangeRequest} params.resource Request body data
+     * @param {doubleclickbidmanager(v1).DownloadRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    notifyproposalchange: function (params, options, callback) {
+    download: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -357,7 +357,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/rubicon/notifyproposalchange',
+          url: 'https://www.googleapis.com/doubleclickbidmanager/v1/sdf/download',
           method: 'POST'
         }, options),
         params: params,
@@ -388,6 +388,24 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
  * @property {string} lineItems Retrieved line items in CSV format. Refer to  Entity Write File Format or  Structured Data File Format for more information on file formats.
  */
 /**
+ * @typedef DownloadRequest
+ * @memberOf! doubleclickbidmanager(v1)
+ * @type object
+ * @property {string[]} fileTypes File types that will be returned.
+ * @property {string[]} filterIds IDs of the specified filter type used to filter entities to fetch. If omitted, all the entities will be returned.
+ * @property {string} filterType Filter type used to filter line items to fetch.
+ * @property {string} version SDF Version (column names, types, order) in which the entities will be returned. Default to 3.
+ */
+/**
+ * @typedef DownloadResponse
+ * @memberOf! doubleclickbidmanager(v1)
+ * @type object
+ * @property {string} adGroups Retrieved ad groups in SDF format.
+ * @property {string} ads Retrieved ads in SDF format.
+ * @property {string} insertionOrders Retrieved insertion orders in SDF format.
+ * @property {string} lineItems Retrieved line items in SDF format.
+ */
+/**
  * @typedef FilterPair
  * @memberOf! doubleclickbidmanager(v1)
  * @type object
@@ -407,26 +425,6 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listReportsResponse&quot;.
  * @property {doubleclickbidmanager(v1).Report[]} reports Retrieved reports.
- */
-/**
- * @typedef Note
- * @memberOf! doubleclickbidmanager(v1)
- * @type object
- * @property {string} id Note id.
- * @property {string} message Message from publisher.
- * @property {string} source Equals &quot;publisher&quot; for notification from Rubicon.
- * @property {string} timestamp Time when the note was added, e.g. &quot;2015-12-16T17:25:35.000-08:00&quot;.
- * @property {string} username Publisher user name.
- */
-/**
- * @typedef NotifyProposalChangeRequest
- * @memberOf! doubleclickbidmanager(v1)
- * @type object
- * @property {string} action Action taken by publisher. One of: Accept, Decline, Append
- * @property {string} href URL to access proposal detail.
- * @property {string} id Below are contents of notification from Rubicon. Proposal id.
- * @property {doubleclickbidmanager(v1).Note[]} notes Notes from publisher
- * @property {string} token Deal token, available when proposal is accepted by publisher.
  */
 /**
  * @typedef Parameters

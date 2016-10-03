@@ -157,7 +157,7 @@ function Consumersurveys(options) { // eslint-disable-line
     /**
      * consumersurveys.results.get
      *
-     * @desc Retrieves any survey results that have been produced so far. Results are formatted as an Excel file.
+     * @desc Retrieves any survey results that have been produced so far. Results are formatted as an Excel file. You must add "?alt=media" to the URL as an argument to get results.
      *
      * @alias consumersurveys.results.get
      * @memberOf! consumersurveys(v2)
@@ -504,6 +504,7 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {string} description Text description of the survey.
  * @property {string[]} owners List of email addresses for survey owners. Must contain at least the address of the user making the API call.
  * @property {consumersurveys(v2).SurveyQuestion[]} questions List of questions defining the survey.
+ * @property {consumersurveys(v2).SurveyRejection} rejectionReason Reason for the survey being rejected. Only present if the survey state is &#39;rejected&#39;.
  * @property {string} state State that the survey is in.
  * @property {string} surveyUrlId Unique survey ID, that is viewable in the URL of the Survey Creator UI
  * @property {string} title Optional name that will be given to the survey.
@@ -560,6 +561,13 @@ function Consumersurveys(options) { // eslint-disable-line
  * @property {string} altText The alt text property used in image tags is required for all images.
  * @property {string} data Inline jpeg, gif, tiff, bmp, or png image raw bytes for an image question types.
  * @property {string} url The read-only URL for the hosted images.
+ */
+/**
+ * @typedef SurveyRejection
+ * @memberOf! consumersurveys(v2)
+ * @type object
+ * @property {string} explanation A human-readable explanation of what was wrong with the survey.
+ * @property {string} type Which category of rejection this was. See the GCS Help Center for additional details on each category.
  */
 /**
  * @typedef SurveyResults

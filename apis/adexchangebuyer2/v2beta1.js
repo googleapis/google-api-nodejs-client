@@ -487,7 +487,7 @@ page of results.
 * @property {string} entityType The type of the client entity: `ADVERTISER`, `BRAND`, or `AGENCY`.
 * @property {string} role The role which is assigned to the client buyer. Each role implies a set of
 permissions granted to the client. Must be one of `CLIENT_DEAL_VIEWER`,
-`CLIENT_DEAL_NEGOTIATOR`, or `CLIENT_DEAL_APPROVER`.
+`CLIENT_DEAL_NEGOTIATOR` or `CLIENT_DEAL_APPROVER`.
 * @property {string} clientName Name used to represent this client to publishers.
 You may have multiple clients that map to the same entity,
 but for each client the combination of `clientName` and entity
