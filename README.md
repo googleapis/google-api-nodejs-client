@@ -215,7 +215,7 @@ See the [Options section][options] for more information.
 
 You can start using OAuth2 to authorize and authenticate your
 requests to Google APIs with the retrieved tokens. If you provide a
-`refresh_token` and the `access_token` has expired, the `access_token` will be
+`refresh_token`, `expiry_date` and the `access_token` has expired, the `access_token` will be
 automatically refreshed and the request is replayed.
 
 Following sample retrieves Google+ profile of the authenticated user.
@@ -229,7 +229,8 @@ var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 // Retrieve tokens via token exchange explained above or set them:
 oauth2Client.setCredentials({
   access_token: 'ACCESS TOKEN HERE',
-  refresh_token: 'REFRESH TOKEN HERE'
+  refresh_token: 'REFRESH TOKEN HERE',
+  expiry_date: 'EXPIRY DATE HERE'
 });
 
 plus.people.get({ userId: 'me', auth: oauth2Client }, function(err, response) {
