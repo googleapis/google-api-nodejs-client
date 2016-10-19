@@ -2284,6 +2284,8 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
+     * @param {integer=} params.maxResults Maximum number of revisions to return.
+     * @param {string=} params.pageToken Page token for revisions. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2772,6 +2774,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} etag The ETag of the list.
  * @property {drive(v2).Revision[]} items The actual list of revisions.
  * @property {string} kind This is always drive#revisionList.
+ * @property {string} nextPageToken The page token for the next page of revisions. This field will be absent if the end of the revisions list has been reached. If the token is rejected for any reason, it should be discarded and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
 /**

@@ -768,7 +768,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.backendBuckets.patch
      *
-     * @desc Update the entire content of the BackendBucket resource. This method supports patch semantics.
+     * @desc Updates the specified BackendBucket resource with the data included in the request. This method supports patch semantics.
      *
      * @alias compute.backendBuckets.patch
      * @memberOf! compute(alpha)
@@ -879,7 +879,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.backendBuckets.update
      *
-     * @desc Update the entire content of the BackendBucket resource.
+     * @desc Updates the specified BackendBucket resource with the data included in the request.
      *
      * @alias compute.backendBuckets.update
      * @memberOf! compute(alpha)
@@ -1143,7 +1143,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.backendServices.patch
      *
-     * @desc Updates the entire content of the BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
+     * @desc Updates the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
      *
      * @alias compute.backendServices.patch
      * @memberOf! compute(alpha)
@@ -1217,7 +1217,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.backendServices.update
      *
-     * @desc Updates the entire content of the BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
+     * @desc Updates the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
      *
      * @alias compute.backendServices.update
      * @memberOf! compute(alpha)
@@ -3115,6 +3115,123 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'healthCheck'],
         pathParams: ['healthCheck', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.hosts = {
+
+    /**
+     * compute.hosts.getIamPolicy
+     *
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * @alias compute.hosts.getIamPolicy
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts/{resource}/getIamPolicy',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.hosts.setIamPolicy
+     *
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * @alias compute.hosts.setIamPolicy
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(alpha).Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts/{resource}/setIamPolicy',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.hosts.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.hosts.testIamPermissions
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts/{resource}/testIamPermissions',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'resource'],
+        pathParams: ['project', 'resource', 'zone'],
         context: self
       };
 
@@ -5259,6 +5376,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.forceAttach Whether to force attach the disk even if it's currently attached to another instance. This is only available for regional disks.
      * @param {string} params.instance The instance name for this request.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
@@ -6117,6 +6235,45 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.instances.updateAccessConfig
+     *
+     * @desc Updates the specified access config from an instance's network interface with the data included in the request.
+     *
+     * @alias compute.instances.updateAccessConfig
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance The instance name for this request.
+     * @param {string} params.networkInterface The name of the network interface where the access config is attached.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(alpha).AccessConfig} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateAccessConfig: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/updateAccessConfig',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
+        pathParams: ['instance', 'project', 'zone'],
         context: self
       };
 
@@ -7439,7 +7596,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionBackendServices.patch
      *
-     * @desc Update the entire content of the regional BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
+     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
      *
      * @alias compute.regionBackendServices.patch
      * @memberOf! compute(alpha)
@@ -7515,7 +7672,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionBackendServices.update
      *
-     * @desc Update the entire content of the regional BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
+     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
      *
      * @alias compute.regionBackendServices.update
      * @memberOf! compute(alpha)
@@ -9142,7 +9299,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.routers.patch
      *
-     * @desc Updates the entire content of the Router resource. This method supports patch semantics.
+     * @desc Updates the specified Router resource with the data included in the request. This method supports patch semantics.
      *
      * @alias compute.routers.patch
      * @memberOf! compute(alpha)
@@ -9256,7 +9413,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.routers.update
      *
-     * @desc Updates the entire content of the Router resource.
+     * @desc Updates the specified Router resource with the data included in the request.
      *
      * @alias compute.routers.update
      * @memberOf! compute(alpha)
@@ -12403,7 +12560,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.urlMaps.patch
      *
-     * @desc Updates the entire content of the UrlMap resource. This method supports patch semantics.
+     * @desc Updates the specified UrlMap resource with the data included in the request. This method supports patch semantics.
      *
      * @alias compute.urlMaps.patch
      * @memberOf! compute(alpha)
@@ -12477,7 +12634,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.urlMaps.update
      *
-     * @desc Updates the entire content of the UrlMap resource.
+     * @desc Updates the specified UrlMap resource with the data included in the request.
      *
      * @alias compute.urlMaps.update
      * @memberOf! compute(alpha)
@@ -12998,18 +13155,22 @@ function Compute(options) { // eslint-disable-line
  * @typedef Address
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} address The static external IP address represented by this resource.
- * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
- * @property {string} description An optional description of this resource. Provide this property when you create the resource.
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {string} kind [Output Only] Type of the resource. Always compute#address for addresses.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
- * @property {string} networkTier This signifies the networking tier used for configuring this Address and can only take the following values: PREMIUM , STANDARD. If this field is not specified, it is assumed to be PREMIUM.
- * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
- * @property {string} status [Output Only] The status of the address, which can be either IN_USE or RESERVED. An address that is RESERVED is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
- * @property {string[]} users [Output Only] The URLs of the resources that are using this address.
- */
+* @property {string} address The static external IP address represented by this resource.
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output Only] Type of the resource. Always compute#address for addresses.
+* @property {string} labelFingerprint A fingerprint for the labels being applied to this Address, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.
+
+To see the latest fingerprint, make a get() request to retrieve an Address.
+* @property {object} labels Labels to apply to this Address resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} networkTier This signifies the networking tier used for configuring this Address and can only take the following values: PREMIUM , STANDARD. If this field is not specified, it is assumed to be PREMIUM.
+* @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} status [Output Only] The status of the address, which can be either IN_USE or RESERVED. An address that is RESERVED is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
+* @property {string[]} users [Output Only] The URLs of the resources that are using this address.
+*/
 /**
  * @typedef AddressAggregatedList
  * @memberOf! compute(alpha)
@@ -13308,7 +13469,7 @@ When the load balancing scheme is INTERNAL, this field is not used.
 * @property {string[]} healthChecks The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required.
 
 For internal load balancing, a URL to a HealthCheck resource must be specified instead.
-* @property {compute(alpha).BackendServiceIAAP} iaap 
+* @property {compute(alpha).BackendServiceIAP} iap 
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of resource. Always compute#backendService for backend services.
 * @property {string} loadBalancingScheme 
@@ -13359,7 +13520,7 @@ When the protocol is UDP, this field is not used.
  * @property {string} kind [Output Only] Type of resource. Always compute#backendServiceGroupHealth for the health of backend services.
  */
 /**
- * @typedef BackendServiceIAAP
+ * @typedef BackendServiceIAP
  * @memberOf! compute(alpha)
  * @type object
  * @property {boolean} enabled 
@@ -13407,7 +13568,7 @@ When the protocol is UDP, this field is not used.
  * @typedef CacheInvalidationRule
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} host If host is non-empty, this invalidation rule will only apply to requests with a Host header matching host.
+ * @property {string} host If set, this invalidation rule will only apply to requests with a Host header matching host.
  * @property {string} path 
  */
 /**
@@ -13417,8 +13578,8 @@ When the protocol is UDP, this field is not used.
  * @property {boolean} includeHost If true, requests to different hosts will be cached separately.
  * @property {boolean} includeProtocol If true, http and https requests will be cached separately.
  * @property {boolean} includeQueryString If true, include query string parameters in the cache key according to query_string_whitelist and query_string_blacklist. If neither is set, the entire query string will be included. If false, the query string will be excluded from the cache key entirely.
- * @property {string[]} queryStringBlacklist Names of query string parameters to exclude in cache keys. All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both. ?&amp;? and ?=? will be percent encoded and not treated as delimiters.
- * @property {string[]} queryStringWhitelist Names of query string parameters to include in cache keys. All other parameters will be excluded. Either specify query_string_whitelist or query_string_blacklist, not both. ?&amp;? and ?=? will be percent encoded and not treated as delimiters.
+ * @property {string[]} queryStringBlacklist Names of query string parameters to exclude in cache keys. All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both. &#39;&amp;&#39; and &#39;=&#39; will be percent encoded and not treated as delimiters.
+ * @property {string[]} queryStringWhitelist Names of query string parameters to include in cache keys. All other parameters will be excluded. Either specify query_string_whitelist or query_string_blacklist, not both. &#39;&amp;&#39; and &#39;=&#39; will be percent encoded and not treated as delimiters.
  */
 /**
  * @typedef Condition
@@ -13522,7 +13683,7 @@ global/images/family/my-private-family
 - global/snapshots/snapshot
 * @property {compute(alpha).CustomerEncryptionKey} sourceSnapshotEncryptionKey The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.
 * @property {string} sourceSnapshotId [Output Only] The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
-* @property {string} status [Output Only] The status of disk creation. Applicable statuses includes: CREATING, FAILED, READY, RESTORING.
+* @property {string} status [Output Only] The status of disk creation.
 * @property {string} storageType [Deprecated] Storage type of the persistent disk.
 * @property {string} type URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk.
 * @property {string[]} users [Output Only] Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
@@ -13682,6 +13843,10 @@ This field is only used for internal load balancing.
 This field is only used for internal load balancing.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of the resource. Always compute#forwardingRule for Forwarding Rule resources.
+* @property {string} labelFingerprint A fingerprint for the labels being applied to this resource, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.
+
+To see the latest fingerprint, make a get() request to retrieve a ForwardingRule.
+* @property {object} labels Labels to apply to this resource. These can be later modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
 * @property {string} loadBalancingScheme This signifies what the ForwardingRule will be used for and can only take the following values: INTERNAL EXTERNAL The value of INTERNAL means that this will be used for Internal Network Load Balancing (TCP, UDP). The value of EXTERNAL means that this will be used for External Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
 * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {string} network This field is not used for external load balancing.
@@ -13896,7 +14061,7 @@ This field is not used for internal load balancing.
  * @memberOf! compute(alpha)
  * @type object
 * @property {string} archiveSizeBytes Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
-* @property {string} creationTimestamp Creation timestamp in RFC3339 text format.
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {compute(alpha).DeprecationStatus} deprecated The deprecation status associated with this image.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
@@ -13920,8 +14085,8 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 * @property {object} rawDisk The parameters of the raw disk image.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string} sourceDisk URL of the The source disk used to create this image. This can be a full or valid partial URL. You must provide either this property or the rawDisk.source property but not both to create an image. For example, the following are valid values:  
-- https://www.googleapis.com/compute/v1/projects/project/zones/zone/disk/disk 
-- projects/project/zones/zone/disk/disk 
+- https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk 
+- projects/project/zones/zone/disks/disk 
 - zones/zone/disks/disk
 * @property {compute(alpha).CustomerEncryptionKey} sourceDiskEncryptionKey The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
 * @property {string} sourceDiskId The ID value of the disk used to create this image. This value may be used to determine whether the image was taken from the current or a previous instance of a given disk name.
@@ -13947,6 +14112,11 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {compute(alpha).AttachedDisk[]} disks Array of disks associated with this instance. Persistent disks must be created before you can assign them.
+* @property {string} host Full or partial URL of the host resource that the instance should be placed on, in the format: zones/zone/hosts/host.
+
+Optional, Private Host (physical machine) that the instance will be placed on when it&#39;s created. The instance is guaranteed to be placed on the same machine as other instances with the same private host.
+
+The request will be rejected if the private host has run out of resources.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {compute(alpha).CustomerEncryptionKey} instanceEncryptionKey Encrypts or decrypts data for an instance with a customer-supplied encryption key.
 
@@ -14045,7 +14215,7 @@ Named ports apply to all instances in this instance group.
  * @property {string} creationTimestamp [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
  * @property {compute(alpha).InstanceGroupManagerActionsSummary} currentActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
- * @property {string} failoverAction The action to perform in case of zone failure (set only for Regional instance group managers).
+ * @property {string} failoverAction The action to perform in case of zone failure. Only one value is supported, NO_FAILOVER. The default is NO_FAILOVER.
  * @property {string} fingerprint [Output Only] The fingerprint of the resource data. You can use this optional field for optimistic locking when you update the resource.
  * @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
  * @property {string} instanceGroup [Output Only] The URL of the Instance Group resource.
@@ -14070,7 +14240,7 @@ Named ports apply to all instances in this instance group.
 * @property {integer} creating [Output Only] The number of instances in the managed instance group that are scheduled to be created or are currently being created. If the group fails to create any of these instances, it tries again until it creates the instance successfully.
 
 If you have disabled creation retries, this field will not be populated; instead, the creatingWithoutRetries field will be populated.
-* @property {integer} creatingWithoutRetries [Output Only] The number of instances that the managed instance group will attempt to create. The group attempts to create each instance only once. If the group fails to create any of these instances, it decreases the group&#39;s target_size value accordingly.
+* @property {integer} creatingWithoutRetries [Output Only] The number of instances that the managed instance group will attempt to create. The group attempts to create each instance only once. If the group fails to create any of these instances, it decreases the group&#39;s targetSize value accordingly.
 * @property {integer} deleting [Output Only] The number of instances in the managed instance group that are scheduled to be deleted or are currently being deleted.
 * @property {integer} none [Output Only] The number of instances in the managed instance group that are running and have no scheduled actions.
 * @property {integer} recreating [Output Only] The number of instances in the managed instance group that are scheduled to be recreated or are currently being being recreated. Recreating an instance deletes the existing root persistent disk and creates a new disk from the image that is defined in the instance template.
@@ -14103,7 +14273,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {compute(alpha).InstanceGroupManager[]} items [Output Only] A list of managed instance groups.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerList for a list of managed instance groups.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef InstanceGroupManagerPendingActionsSummary
@@ -14474,10 +14644,12 @@ If the instance you are starting is protected with a customer-supplied encryptio
 
 In &quot;auto subnet mode&quot;, a newly created network is assigned the default CIDR of 10.128.0.0/9 and it automatically creates one subnetwork per region.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} crossVmEncryption [Output Only] Type of VM-to-VM traffic encryption for this network.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} gatewayIPv4 A gateway address for default routing to other networks. This value is read only and is selected by the Google Compute Engine, typically as the first usable address in the IPv4Range.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of the resource. Always compute#network for networks.
+* @property {string} loadBalancerVmEncryption [Output Only] Type of LB-to-VM traffic encryption for this network.
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string[]} subnetworks [Output Only] Server-defined fully-qualified URLs for all subnetworks in this network.
@@ -14510,7 +14682,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {compute(alpha).Network[]} items [Output Only] A list of Network resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#networkList for lists of networks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for this resource .
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef Operation
@@ -14859,7 +15031,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(alpha).RouterInterface[]} interfaces Router interfaces. Each interface requires either one linked resource (e.g. linkedVpnTunnel) or IP address and IP address range (e.g. ipRange).
+ * @property {compute(alpha).RouterInterface[]} interfaces Router interfaces. Each interface requires either one linked resource (e.g. linkedVpnTunnel), or IP address and IP address range (e.g. ipRange), or both.
  * @property {string} kind [Output Only] Type of resource. Always compute#router for routers.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network URI of the network to which this router belongs.
@@ -14909,7 +15081,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {compute(alpha).Router[]} items A list of Router resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#router for routers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef RouterStatus
@@ -14991,7 +15163,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} contents [Output Only] The contents of the console output.
  * @property {string} kind [Output Only] Type of the resource. Always compute#serialPortOutput for serial port output.
  * @property {string} next [Output Only] The position of the next byte of content from the serial console output. Use this value in the next request as the start parameter.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  * @property {string} start [Output Only] The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer, older output will be overwritten by newer content and the start values will be mismatched.
  */
 /**
@@ -15445,7 +15617,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {object} items A map of scoped target vpn gateway lists.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef TargetVpnGatewayList
@@ -15455,7 +15627,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(alpha).TargetVpnGateway[]} items [Output Only] A list of TargetVpnGateway resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef TargetVpnGatewaysScopedList
@@ -15567,24 +15739,28 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @typedef VpnTunnel
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
- * @property {string} description An optional description of this resource. Provide this property when you create the resource.
- * @property {string} detailedStatus [Output Only] Detailed status message for the VPN tunnel.
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {integer} ikeVersion IKE protocol version to use when establishing the VPN tunnel with peer VPN gateway. Acceptable IKE versions are 1 or 2. Default version is 2.
- * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
- * @property {string[]} localTrafficSelector Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint.
- * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
- * @property {string} peerIp IP address of the peer VPN gateway.
- * @property {string} region [Output Only] URL of the region where the VPN tunnel resides.
- * @property {string[]} remoteTrafficSelector Remote traffic selectors to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint.
- * @property {string} router URL of router resource to be used for dynamic routing.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
- * @property {string} sharedSecret Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
- * @property {string} sharedSecretHash Hash of the shared secret.
- * @property {string} status [Output Only] The status of the VPN tunnel.
- * @property {string} targetVpnGateway URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
- */
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} detailedStatus [Output Only] Detailed status message for the VPN tunnel.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {integer} ikeVersion IKE protocol version to use when establishing the VPN tunnel with peer VPN gateway. Acceptable IKE versions are 1 or 2. Default version is 2.
+* @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
+* @property {string} labelFingerprint A fingerprint for the labels being applied to this VpnTunnel, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.
+
+To see the latest fingerprint, make a get() request to retrieve a VpnTunnel.
+* @property {object} labels Labels to apply to this VpnTunnel. These can be later modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
+* @property {string[]} localTrafficSelector Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint.
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} peerIp IP address of the peer VPN gateway.
+* @property {string} region [Output Only] URL of the region where the VPN tunnel resides.
+* @property {string[]} remoteTrafficSelector Remote traffic selectors to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint.
+* @property {string} router URL of router resource to be used for dynamic routing.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} sharedSecret Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
+* @property {string} sharedSecretHash Hash of the shared secret.
+* @property {string} status [Output Only] The status of the VPN tunnel.
+* @property {string} targetVpnGateway URL of the VPN gateway with which this VPN tunnel is associated. Provided by the client when the VPN tunnel is created.
+*/
 /**
  * @typedef VpnTunnelAggregatedList
  * @memberOf! compute(alpha)
@@ -15603,7 +15779,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(alpha).VpnTunnel[]} items [Output Only] A list of VpnTunnel resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef VpnTunnelsScopedList
@@ -15620,7 +15796,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(alpha).Project[]} items [Output Only] A list of XPN host project URLs.
  * @property {string} kind [Output Only] Type of resource. Always compute#xpnHostList for lists of XPN hosts.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for this resource .
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef XpnResourceId

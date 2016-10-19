@@ -98,7 +98,9 @@ given short url:
 var google = require('googleapis');
 var urlshortener = google.urlshortener('v1');
 
-var params = { shortUrl: 'http://goo.gl/xKbRu3' };
+var params = {
+  shortUrl: 'http://goo.gl/xKbRu3'
+};
 
 // get the long url of a shortened url
 urlshortener.url.get(params, function (err, response) {
@@ -129,9 +131,9 @@ Supported APIs are listed on the [Google APIs Explorer][apiexplorer].
 #### OAuth2 client
 
 This client comes with an [OAuth2][oauth] client that allows you to retrieve an
-access token and refreshes the token and retry the request seamlessly if token
-is expired. The basics of Google's OAuth2 implementation is explained on
-[Google Authorization and Authentication documentation][authdocs].
+access token and refreshes the token and retry the request seamlessly if you
+also provide an `expiry_date` and the token is expired. The basics of Google's
+OAuth2 implementation is explained on [Google Authorization and Authentication documentation][authdocs].
 
 In the following examples, you may need a `CLIENT_ID`, `CLIENT_SECRET` and
 `REDIRECT_URL`. You can find these pieces of information by going to the
@@ -151,7 +153,11 @@ redirect them to a consent page. To create a consent page URL:
 var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 
-var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+var oauth2Client = new OAuth2(
+  YOUR_CLIENT_ID,
+  YOUR_CLIENT_SECRET,
+  YOUR_REDIRECT_URL
+);
 
 // generate a url that asks permissions for Google+ and Google Calendar scopes
 var scopes = [
@@ -160,8 +166,11 @@ var scopes = [
 ];
 
 var url = oauth2Client.generateAuthUrl({
-  access_type: 'offline', // 'online' (default) or 'offline' (gets refresh_token)
-  scope: scopes // If you only need one scope you can pass it as string
+  // 'online' (default) or 'offline' (gets refresh_token)
+  access_type: 'offline',
+
+  // If you only need one scope you can pass it as string
+  scope: scopes
 });
 ```
 
@@ -177,9 +186,9 @@ the page to the redirect URL you have provided with a code query parameter.
 With the code returned, you can ask for an access token as shown below:
 
 ``` js
-oauth2Client.getToken(code, function(err, tokens) {
+oauth2Client.getToken(code, function (err, tokens) {
   // Now tokens contains an access_token and an optional refresh_token. Save them.
-  if(!err) {
+  if (!err) {
     oauth2Client.setCredentials(tokens);
   }
 });
@@ -195,8 +204,16 @@ Example: Setting a global `auth` option.
 ``` js
 var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
-var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
-google.options({ auth: oauth2Client }); // set auth as a global default
+var oauth2Client = new OAuth2(
+  YOUR_CLIENT_ID,
+  YOUR_CLIENT_SECRET,
+  YOUR_REDIRECT_URL
+);
+
+// set auth as a global default
+google.options({
+  auth: oauth2Client
+});
 ```
 
 Example: Setting a service-level `auth` option.
@@ -204,9 +221,16 @@ Example: Setting a service-level `auth` option.
 ``` js
 var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
-var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+var oauth2Client = new OAuth2(
+  YOUR_CLIENT_ID,
+  YOUR_CLIENT_SECRET,
+  YOUR_REDIRECT_URL
+);
 
-var drive = google.drive({ version: 'v2', auth: oauth2Client });
+var drive = google.drive({
+  version: 'v2',
+  auth: oauth2Client
+});
 ```
 
 See the [Options section][options] for more information.
@@ -215,25 +239,36 @@ See the [Options section][options] for more information.
 
 You can start using OAuth2 to authorize and authenticate your
 requests to Google APIs with the retrieved tokens. If you provide a
-`refresh_token`, `expiry_date` and the `access_token` has expired, the `access_token` will be
-automatically refreshed and the request is replayed.
+`refresh_token` and `expiry_date` (milliseconds since the Unix Epoch) and the
+`access_token` has expired, the `access_token` will be automatically refreshed
+and the request is replayed (with the except of requests with a media body, as
+we cannot reliably restart your media stream). Set `expiry_date` to `true` to
+force a refresh.
 
-Following sample retrieves Google+ profile of the authenticated user.
+The following sample retrieves Google+ profile of the authenticated user.
 
 ``` js
 var google = require('googleapis');
 var plus = google.plus('v1');
 var OAuth2 = google.auth.OAuth2;
-var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+var oauth2Client = new OAuth2(
+  YOUR_CLIENT_ID,
+  YOUR_CLIENT_SECRET,
+  YOUR_REDIRECT_URL
+);
 
 // Retrieve tokens via token exchange explained above or set them:
 oauth2Client.setCredentials({
   access_token: 'ACCESS TOKEN HERE',
-  refresh_token: 'REFRESH TOKEN HERE',
-  expiry_date: 'EXPIRY DATE HERE'
+  refresh_token: 'REFRESH TOKEN HERE'
+  // Optional, provide an expiry_date (milliseconds since the Unix Epoch)
+  // expiry_date: (new Date()).getTime() + (1000 * 60 * 60 * 24 * 7)
 });
 
-plus.people.get({ userId: 'me', auth: oauth2Client }, function(err, response) {
+plus.people.get({
+  userId: 'me',
+  auth: oauth2Client
+}, function (err, response) {
   // handle err and response
 });
 ```
@@ -263,7 +298,10 @@ var plus = google.plus('v1');
 
 var API_KEY = 'ABC123'; // specify your API key here
 
-plus.people.get({ auth: API_KEY, userId: '+google' }, function(err, user) {
+plus.people.get({
+  auth: API_KEY,
+  userId: '+google'
+}, function (err, user) {
   console.log('Result: ' + (err ? err.message : user.displayName));
 });
 ```
@@ -271,7 +309,10 @@ plus.people.get({ auth: API_KEY, userId: '+google' }, function(err, user) {
 Alternatively, you can specify the `key` parameter and it will get used:
 
 ``` js
-plus.people.get({ key: API_KEY, userId: '+google' }, function(err, user) {
+plus.people.get({
+  key: API_KEY,
+  userId: '+google'
+}, function (err, user) {
   console.log('Result: ' + (err ? err.message : user.displayName));
 });
 ```
@@ -283,66 +324,90 @@ To learn more about API keys, please see the [documentation][usingkeys].
 The Google Developers Console provides `.json` file that you can use to configure a JWT auth client and authenticate your requests.
 
 ``` js
-var key = require('path/to/key.json');
-var jwtClient = new google.auth.JWT(key.client_email, null, key.private_key, [scope1, scope2], null);
+var key = require('/path/to/key.json');
+var jwtClient = new google.auth.JWT(
+  key.client_email,
+  null,
+  key.private_key,
+  [scope1, scope2],
+  null
+);
 
-jwtClient.authorize(function(err, tokens) {
+jwtClient.authorize(function (err, tokens) {
   if (err) {
     console.log(err);
     return;
   }
 
   // Make an authorized request to list Drive files.
-  drive.files.list({ auth: jwtClient }, function(err, resp) {
+  drive.files.list({
+    auth: jwtClient
+  }, function (err, resp) {
     // handle err and response
   });
 });
 ```
 
-The parameters for the JWT auth client including how to use it with a `.pem` file are explained in [samples/jwt.js](samples/jwt.js)
+The parameters for the JWT auth client including how to use it with a `.pem`
+file are explained in [samples/jwt.js](samples/jwt.js).
 
 #### Choosing the correct credential type automatically
 
-Rather than manually creating an OAuth2 client, JWT client, or Compute client, the auth
-library can create the correct credential type for you, depending upon the environment your
-code is running under.
+Rather than manually creating an OAuth2 client, JWT client, or Compute client,
+the auth library can create the correct credential type for you, depending upon
+the environment your code is running under.
 
-For example, a JWT auth client will be created when your code is running
-on your local developer machine, and a Compute client will be created when the same code
+For example, a JWT auth client will be created when your code is running on your
+local developer machine, and a Compute client will be created when the same code
 is running on a configured instance of Google Compute Engine.
 
-The code below shows how to retrieve a default credential type, depending upon the runtime
-environment. The createScopedRequired must be called to determine when you need to pass
-in the scopes manually, and when they have been set for you automatically based on the
-configured runtime environment.
+The code below shows how to retrieve a default credential type, depending upon
+the runtime environment. The createScopedRequired must be called to determine
+when you need to pass in the scopes manually, and when they have been set for
+you automatically based on the configured runtime environment.
 
 ```js
-google.auth.getApplicationDefault(function(err, authClient) {
+// This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
+// environment variables.
+google.auth.getApplicationDefault(function (err, authClient, projectId) {
   if (err) {
-    res.send('Failed to get the default credentials: ' + String(err));
-    return;
+    throw err;
   }
+
   // The createScopedRequired method returns true when running on GAE or a local developer
   // machine. In that case, the desired scopes must be passed in manually. When the code is
   // running in GCE or a Managed VM, the scopes are pulled from the GCE metadata server.
   // See https://cloud.google.com/compute/docs/authentication for more information.
   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
     // Scopes can be specified either as an array or as a single, space-delimited string.
-    authClient = authClient.createScoped(['https://www.googleapis.com/auth/compute']);
+    authClient = authClient.createScoped([
+      'https://www.googleapis.com/auth/compute'
+    ]);
   }
+
   // Fetch the list of GCE zones within a project.
   // NOTE: You must fill in your valid project ID before running this sample!
-  var compute = google.compute({ version: 'v1', auth: authClient });
-  var projectId = 'fill in your project id here!';
-  compute.zones.list({ project: projectId, auth: authClient }, function(error, result) {
-    console.log(error, result);
+  var compute = google.compute({
+    version: 'v1',
+    auth: authClient
+  });
+  var projectId = 'YOUR_PROJECT_ID';
+
+  compute.zones.list({
+    project: projectId,
+    auth: authClient
+  }, function (err, result) {
+    console.log(err, result);
   });
 });
 ```
 
 ### Specifying request body
 
-The body of the request is specified in the `resource` parameter object of the request. The resource/body is specified as a JavaScript object with key/value pairs. See the example in the next section below for an example on how it is specified.
+The body of the request is specified in the `resource` parameter object of the
+request. The resource/body is specified as a JavaScript object with key/value
+pairs. See the example in the next section below for an example on how it is
+specified.
 
 ### Media uploads
 
@@ -398,8 +463,8 @@ take a look at the `samples/mediaupload.js` sample.
 
 ### Exposing request object
 
-Every request to the API returns a [`request`][request] object, allowing you to track
-the request's progress or general information about the request.
+Every request to the API returns a [`request`][request] object, allowing you to
+track the request's progress or general information about the request.
 
 ```js
 var req = drive.files.create(/* ... */);
@@ -488,7 +553,9 @@ For example:
 var google = require('googleapis');
 var bigquery = google.bigquery('v2');
 
-google.auth.getApplicationDefault(function (err, authClient) {
+// This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
+// environment variables.
+google.auth.getApplicationDefault(function (err, authClient, projectId) {
   if (err) {
     console.log('Authentication failed because of ', err);
     return;
@@ -499,8 +566,8 @@ google.auth.getApplicationDefault(function (err, authClient) {
   }
 
   var request = {
-    projectId: '<your-project-id>',
-    datasetId: '<your-dataset-id>',
+    projectId: projectId,
+    datasetId: '<YOUR_DATASET_ID>',
 
     // This is a "request-level" option
     auth: authClient

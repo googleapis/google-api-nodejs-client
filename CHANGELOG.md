@@ -1,3 +1,27 @@
+##### 14.1.0 - 19 October 2016
+
+###### Backwards compatible changes
+- Upgraded to `google-auth-library` version `0.9.9`
+- Added `logging` `v2` API
+- Added `runtimeconfig` `v1` API
+- Added `surveys` `v2` API
+- Added `creatives.listDeals` to `addexchangebuyer` `v1.4` API
+- Added `chromeosdevices.action` to `admin` `directory_v1` API
+- Added `enterprises.createWebToken` to `androidenterprise` `v1` API
+- Added `edits.deobfuscationfiles.upload` to `androidpublisher` `v2` API
+- Added `experimental.apps.operations.get` to `appengine` `v1` API
+- Added `experimental.apps.operations.list` to `appengine` `v1` API
+- Added `apps.patch` to `appengine` `v1` API
+- Added `apps.patch` to `appengine` `v1beta4` API
+- Added `apps.patch` to `appengine` `v1beta5` API
+- Added `hosts.getIamPolicy` to `compute` `alpha` API
+- Added `hosts.setIamPolicy` to `compute` `alpha` API
+- Added `hosts.testIamPermissions` to `compute` `alpha` API
+- Added `instances.updateAccessConfig` to `compute` `alpha` API
+- Added `projects.snapshots.getIamPolicy` to `pubsub` `v1` API
+- Added `projects.snapshots.setIamPolicy` to `pubsub` `v1` API
+- Added `projects.snapshots.testIamPermissions` to `pubsub` `v1` API
+
 ##### 14.0.0 - 03 October 2016
 
 ###### Breaking changes

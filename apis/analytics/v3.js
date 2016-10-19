@@ -2115,15 +2115,15 @@ function Analytics(options) { // eslint-disable-line
       /**
        * analytics.management.remarketingAudience.get
        *
-       * @desc Gets remarketing audiences to which the user has access.
+       * @desc Gets a remarketing audience to which the user has access.
        *
        * @alias analytics.management.remarketingAudience.get
        * @memberOf! analytics(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID for the remarketing audience to retrieve.
-       * @param {string} params.remarketingAudienceId The ID to retrieve the Remarketing Audience for.
-       * @param {string} params.webPropertyId Web property ID for the remarketing audience to retrieve.
+       * @param {string} params.accountId The account ID of the remarketing audience to retrieve.
+       * @param {string} params.remarketingAudienceId The ID of the remarketing audience to retrieve.
+       * @param {string} params.webPropertyId The web property ID of the remarketing audience to retrieve.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -2152,14 +2152,14 @@ function Analytics(options) { // eslint-disable-line
       /**
        * analytics.management.remarketingAudience.insert
        *
-       * @desc Creates a new remarketing audiences.
+       * @desc Creates a new remarketing audience.
        *
        * @alias analytics.management.remarketingAudience.insert
        * @memberOf! analytics(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID to create the remarketing audience for.
-       * @param {string} params.webPropertyId Web property ID to create the remarketing audience for.
+       * @param {string} params.accountId The account ID for which to create the remarketing audience.
+       * @param {string} params.webPropertyId Web property ID for which to create the remarketing audience.
        * @param {analytics(v3).RemarketingAudience} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -2195,11 +2195,11 @@ function Analytics(options) { // eslint-disable-line
        * @memberOf! analytics(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID for the remarketing audience to retrieve.
+       * @param {string} params.accountId The account ID of the remarketing audiences to retrieve.
        * @param {integer=} params.max-results The maximum number of remarketing audiences to include in this response.
        * @param {integer=} params.start-index An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter.
        * @param {string=} params.type 
-       * @param {string} params.webPropertyId Web property ID for the remarketing audience to retrieve.
+       * @param {string} params.webPropertyId The web property ID of the remarketing audiences to retrieve.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -2228,15 +2228,15 @@ function Analytics(options) { // eslint-disable-line
       /**
        * analytics.management.remarketingAudience.patch
        *
-       * @desc Updates an existing remarketing audiences. This method supports patch semantics.
+       * @desc Updates an existing remarketing audience. This method supports patch semantics.
        *
        * @alias analytics.management.remarketingAudience.patch
        * @memberOf! analytics(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID for the remarketing audience to update.
-       * @param {string} params.remarketingAudienceId Remarketing audience ID of the remarketing audience to update.
-       * @param {string} params.webPropertyId Web property ID for the remarketing audience to update.
+       * @param {string} params.accountId The account ID of the remarketing audience to update.
+       * @param {string} params.remarketingAudienceId The ID of the remarketing audience to update.
+       * @param {string} params.webPropertyId The web property ID of the remarketing audience to update.
        * @param {analytics(v3).RemarketingAudience} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -2266,15 +2266,15 @@ function Analytics(options) { // eslint-disable-line
       /**
        * analytics.management.remarketingAudience.update
        *
-       * @desc Updates an existing remarketing audiences.
+       * @desc Updates an existing remarketing audience.
        *
        * @alias analytics.management.remarketingAudience.update
        * @memberOf! analytics(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.accountId Account ID for the remarketing audience to update.
-       * @param {string} params.remarketingAudienceId Remarketing audience ID of the remarketing audience to update.
-       * @param {string} params.webPropertyId Web property ID for the remarketing audience to update.
+       * @param {string} params.accountId The account ID of the remarketing audience to update.
+       * @param {string} params.remarketingAudienceId The ID of the remarketing audience to update.
+       * @param {string} params.webPropertyId The web property ID of the remarketing audience to update.
        * @param {analytics(v3).RemarketingAudience} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -3745,6 +3745,7 @@ function Analytics(options) { // eslint-disable-line
  * @type object
  * @property {object[]} columnHeaders Column headers that list dimension names followed by the metric names. The order of dimensions and metrics is same as specified in the request.
  * @property {boolean} containsSampledData Determines if Analytics data contains samples.
+ * @property {string} dataLastRefreshed The last refreshed time in seconds for Analytics data.
  * @property {object} dataTable 
  * @property {string} id Unique ID for this data response.
  * @property {integer} itemsPerPage The maximum number of rows the response can contain, regardless of the actual number of rows returned. Its value ranges from 1 to 10,000 with a value of 1000 by default, or otherwise specified by the max-results query parameter.
@@ -3803,7 +3804,7 @@ function Analytics(options) { // eslint-disable-line
  * @property {integer} daysToLookBack The look-back window lets you specify a time frame for evaluating the behavior that qualifies users for your audience. For example, if your filters include users from Central Asia, and Transactions Greater than 2, and you set the look-back window to 14 days, then any user from Central Asia whose cumulative transactions exceed 2 during the last 14 days is added to the audience.
  * @property {boolean} isSmartList Boolean indicating whether this segment is a smart list. https://support.google.com/analytics/answer/4628577
  * @property {string} kind Resource type for include conditions.
- * @property {integer} membershipDurationDays Number of days a user remains in the audience. Use any integer from 1-540. In remarketing audiences for search ads, membership duration is truncated to 180 days.
+ * @property {integer} membershipDurationDays Number of days (in the range 1 to 540) a user remains in the audience.
  * @property {string} segment The segment condition that will cause a user to be added to an audience.
  */
 /**
@@ -3850,7 +3851,7 @@ function Analytics(options) { // eslint-disable-line
 * @property {object} childLink Child link for this view (profile). Points to the list of goals for this view (profile).
 * @property {string} created Time this view (profile) was created.
 * @property {string} currency The currency type associated with this view (profile), defaults to USD. The supported values are:
-ARS, AUD, BGN, BRL, CAD, CHF, CNY, CZK, DKK, EUR, GBP, HKD, HUF, IDR, INR, JPY, KRW, LTL, MXN, NOK, NZD, PHP, PLN, RUB, SEK, THB, TRY, TWD, USD, VND, ZAR
+USD, JPY, EUR, GBP, AUD, KRW, BRL, CNY, DKK, RUB, SEK, NOK, PLN, TRY, TWD, HKD, THB, IDR, ARS, MXN, VND, PHP, INR, CHF, CAD, CZK, NZD, HUF, BGN, LTL, ZAR, UAH, AED, BOB, CLP, COP, EGP, HRK, ILS, MAD, MYR, PEN, PKR, RON, RSD, SAR, SGD, VEF, LVL
 * @property {string} defaultPage Default page for this view (profile).
 * @property {boolean} eCommerceTracking Indicates whether ecommerce tracking is enabled for this view (profile).
 * @property {boolean} enhancedECommerceTracking Indicates whether enhanced ecommerce tracking is enabled for this view (profile). This property can only be enabled if ecommerce tracking is enabled.

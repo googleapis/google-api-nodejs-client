@@ -2352,7 +2352,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).TableFieldSchema[]} fields [Optional] Describes the nested schema fields if the type property is set to RECORD.
  * @property {string} mode [Optional] The field mode. Possible values include NULLABLE, REQUIRED and REPEATED. The default value is NULLABLE.
  * @property {string} name [Required] The field name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 128 characters.
- * @property {string} type [Required] The field data type. Possible values include STRING, BYTES, INTEGER, FLOAT, BOOLEAN, TIMESTAMP or RECORD (where RECORD indicates that the field contains a nested schema).
+ * @property {string} type [Required] The field data type. Possible values include STRING, BYTES, INTEGER, FLOAT, BOOLEAN, TIMESTAMP, DATE, TIME, DATETIME, or RECORD (where RECORD indicates that the field contains a nested schema).
  */
 /**
  * @typedef TableList

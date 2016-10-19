@@ -808,7 +808,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.backendServices.patch
      *
-     * @desc Updates the entire content of the BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
+     * @desc Updates the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
      *
      * @alias compute.backendServices.patch
      * @memberOf! compute(beta)
@@ -882,7 +882,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.backendServices.update
      *
-     * @desc Updates the entire content of the BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
+     * @desc Updates the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
      *
      * @alias compute.backendServices.update
      * @memberOf! compute(beta)
@@ -1089,6 +1089,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.disk Name of the persistent disk to snapshot.
+     * @param {boolean=} params.guestFlush 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
      * @param {compute(beta).Snapshot} params.resource Request body data
@@ -6550,7 +6551,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionBackendServices.patch
      *
-     * @desc Update the entire content of the regional BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
+     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
      *
      * @alias compute.regionBackendServices.patch
      * @memberOf! compute(beta)
@@ -6626,7 +6627,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionBackendServices.update
      *
-     * @desc Update the entire content of the regional BackendService resource. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
+     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
      *
      * @alias compute.regionBackendServices.update
      * @memberOf! compute(beta)
@@ -7863,7 +7864,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.routers.patch
      *
-     * @desc Updates the entire content of the Router resource. This method supports patch semantics.
+     * @desc Updates the specified Router resource with the data included in the request. This method supports patch semantics.
      *
      * @alias compute.routers.patch
      * @memberOf! compute(beta)
@@ -7977,7 +7978,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.routers.update
      *
-     * @desc Updates the entire content of the Router resource.
+     * @desc Updates the specified Router resource with the data included in the request.
      *
      * @alias compute.routers.update
      * @memberOf! compute(beta)
@@ -10749,7 +10750,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.urlMaps.patch
      *
-     * @desc Updates the entire content of the UrlMap resource. This method supports patch semantics.
+     * @desc Updates the specified UrlMap resource with the data included in the request. This method supports patch semantics.
      *
      * @alias compute.urlMaps.patch
      * @memberOf! compute(beta)
@@ -10823,7 +10824,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.urlMaps.update
      *
-     * @desc Updates the entire content of the UrlMap resource.
+     * @desc Updates the specified UrlMap resource with the data included in the request.
      *
      * @alias compute.urlMaps.update
      * @memberOf! compute(beta)
@@ -11742,7 +11743,7 @@ global/images/family/my-private-family
 - global/snapshots/snapshot
 * @property {compute(beta).CustomerEncryptionKey} sourceSnapshotEncryptionKey The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.
 * @property {string} sourceSnapshotId [Output Only] The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
-* @property {string} status [Output Only] The status of disk creation. Applicable statuses includes: CREATING, FAILED, READY, RESTORING.
+* @property {string} status [Output Only] The status of disk creation.
 * @property {string} storageType [Deprecated] Storage type of the persistent disk.
 * @property {string} type URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk.
 * @property {string[]} users [Output Only] Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
@@ -12095,7 +12096,7 @@ This field is not used for internal load balancing.
  * @memberOf! compute(beta)
  * @type object
 * @property {string} archiveSizeBytes Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
-* @property {string} creationTimestamp Creation timestamp in RFC3339 text format.
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {compute(beta).DeprecationStatus} deprecated The deprecation status associated with this image.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
@@ -12119,8 +12120,8 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 * @property {object} rawDisk The parameters of the raw disk image.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string} sourceDisk URL of the The source disk used to create this image. This can be a full or valid partial URL. You must provide either this property or the rawDisk.source property but not both to create an image. For example, the following are valid values:  
-- https://www.googleapis.com/compute/v1/projects/project/zones/zone/disk/disk 
-- projects/project/zones/zone/disk/disk 
+- https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk 
+- projects/project/zones/zone/disks/disk 
 - zones/zone/disks/disk
 * @property {compute(beta).CustomerEncryptionKey} sourceDiskEncryptionKey The customer-supplied encryption key of the source disk. Required if the source disk is protected by a customer-supplied encryption key.
 * @property {string} sourceDiskId The ID value of the disk used to create this image. This value may be used to determine whether the image was taken from the current or a previous instance of a given disk name.
@@ -12235,7 +12236,7 @@ Named ports apply to all instances in this instance group.
  * @property {string} creationTimestamp [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
  * @property {compute(beta).InstanceGroupManagerActionsSummary} currentActions [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
- * @property {string} failoverAction The action to perform in case of zone failure (set only for Regional instance group managers).
+ * @property {string} failoverAction The action to perform in case of zone failure. Only one value is supported, NO_FAILOVER. The default is NO_FAILOVER.
  * @property {string} fingerprint [Output Only] The fingerprint of the resource data. You can use this optional field for optimistic locking when you update the resource.
  * @property {string} id [Output Only] A unique identifier for this resource type. The server generates this identifier.
  * @property {string} instanceGroup [Output Only] The URL of the Instance Group resource.
@@ -12257,7 +12258,7 @@ Named ports apply to all instances in this instance group.
 * @property {integer} creating [Output Only] The number of instances in the managed instance group that are scheduled to be created or are currently being created. If the group fails to create any of these instances, it tries again until it creates the instance successfully.
 
 If you have disabled creation retries, this field will not be populated; instead, the creatingWithoutRetries field will be populated.
-* @property {integer} creatingWithoutRetries [Output Only] The number of instances that the managed instance group will attempt to create. The group attempts to create each instance only once. If the group fails to create any of these instances, it decreases the group&#39;s target_size value accordingly.
+* @property {integer} creatingWithoutRetries [Output Only] The number of instances that the managed instance group will attempt to create. The group attempts to create each instance only once. If the group fails to create any of these instances, it decreases the group&#39;s targetSize value accordingly.
 * @property {integer} deleting [Output Only] The number of instances in the managed instance group that are scheduled to be deleted or are currently being deleted.
 * @property {integer} none [Output Only] The number of instances in the managed instance group that are running and have no scheduled actions.
 * @property {integer} recreating [Output Only] The number of instances in the managed instance group that are scheduled to be recreated or are currently being being recreated. Recreating an instance deletes the existing root persistent disk and creates a new disk from the image that is defined in the instance template.
@@ -12289,7 +12290,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {compute(beta).InstanceGroupManager[]} items [Output Only] A list of managed instance groups.
  * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerList for a list of managed instance groups.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef InstanceGroupManagersAbandonInstancesRequest
@@ -12639,7 +12640,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {compute(beta).Network[]} items [Output Only] A list of Network resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#networkList for lists of networks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for this resource .
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef Operation
@@ -12909,7 +12910,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(beta).RouterInterface[]} interfaces Router interfaces. Each interface requires either one linked resource (e.g. linkedVpnTunnel) or IP address and IP address range (e.g. ipRange).
+ * @property {compute(beta).RouterInterface[]} interfaces Router interfaces. Each interface requires either one linked resource (e.g. linkedVpnTunnel), or IP address and IP address range (e.g. ipRange), or both.
  * @property {string} kind [Output Only] Type of resource. Always compute#router for routers.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network URI of the network to which this router belongs.
@@ -12959,7 +12960,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {compute(beta).Router[]} items A list of Router resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#router for routers.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef RouterStatus
@@ -13029,7 +13030,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} contents [Output Only] The contents of the console output.
  * @property {string} kind [Output Only] Type of the resource. Always compute#serialPortOutput for serial port output.
  * @property {string} next [Output Only] The position of the next byte of content from the serial console output. Use this value in the next request as the start parameter.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  * @property {string} start [Output Only] The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer, older output will be overwritten by newer content and the start values will be mismatched.
  */
 /**
@@ -13431,7 +13432,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {object} items A map of scoped target vpn gateway lists.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef TargetVpnGatewayList
@@ -13441,7 +13442,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(beta).TargetVpnGateway[]} items [Output Only] A list of TargetVpnGateway resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef TargetVpnGatewaysScopedList
@@ -13580,7 +13581,7 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {compute(beta).VpnTunnel[]} items [Output Only] A list of VpnTunnel resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#vpnTunnel for VPN tunnels.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
- * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef VpnTunnelsScopedList

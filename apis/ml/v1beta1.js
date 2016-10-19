@@ -667,7 +667,7 @@ function Ml(options) { // eslint-disable-line
       /**
        * ml.projects.operations.cancel
        *
-       * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation.
+       * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
        *
        * @alias ml.projects.operations.cancel
        * @memberOf! ml(v1beta1)
@@ -794,7 +794,7 @@ subsequent call.
  * @typedef GoogleLongrunning__Operation
  * @memberOf! ml(v1beta1)
  * @type object
-* @property {ml(v1beta1).GoogleRpc__Status} error The error result of the operation in case of failure.
+* @property {ml(v1beta1).GoogleRpc__Status} error The error result of the operation in case of failure or cancellation.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
@@ -895,18 +895,18 @@ Defaults to `MAXIMIZE`.
 * @property {string} modelName Use this field if you want to use the default version for the specified
 model. The string must use the following format:
 
-`&quot;project/&lt;var&gt;[YOUR_PROJECT]&lt;/var&gt;/models/&lt;var&gt;[YOUR_MODEL]&lt;/var&gt;&quot;`
+`&quot;projects/&lt;var&gt;[YOUR_PROJECT]&lt;/var&gt;/models/&lt;var&gt;[YOUR_MODEL]&lt;/var&gt;&quot;`
 * @property {string} outputPath Required. The output Google Cloud Storage location.
 * @property {string[]} inputPaths Required. The Google Cloud Storage location of the input data files.
 May contain wildcards.
 * @property {string} dataFormat Required. The format of the input data files.
-* @property {string} maxWorkerCount Optional. The maximum amount of workers to be used for parallel processing.
-Defaults to 10.
+* @property {string} maxWorkerCount Optional. The maximum number of workers to be used for parallel processing.
+Defaults to 10 if not specified.
 * @property {string} versionName Use this field if you want to specify a version of the model to use. The
 string is formatted the same way as `model_version`, with the addition
 of the version information:
 
-`&quot;project/&lt;var&gt;[YOUR_PROJECT]&lt;/var&gt;/models/&lt;var&gt;YOUR_MODEL/versions/&lt;var&gt;[YOUR_VERSION]&lt;/var&gt;&quot;`
+`&quot;projects/&lt;var&gt;[YOUR_PROJECT]&lt;/var&gt;/models/&lt;var&gt;YOUR_MODEL/versions/&lt;var&gt;[YOUR_VERSION]&lt;/var&gt;&quot;`
 * @property {string} region Required. The Google Compute Engine region to run the prediction job in.
 */
 /**
@@ -931,10 +931,10 @@ subsequent call.
 job&#39;s worker nodes.
 
 The supported values are the same as those described in the entry for
-`master_type`.
+`masterType`.
 
-This value must be present when `scale_tier` is set to `CUSTOM` and
-`worker_count` is greater than zero.
+This value must be present when `scaleTier` is set to `CUSTOM` and
+`workerCount` is greater than zero.
 * @property {string} workerCount Optional. The number of worker replicas to use for the training job. Each
 replica in the cluster will be of the type specified in `worker_type`.
 
@@ -969,16 +969,16 @@ The following types are supported:
   &lt;dt&gt;complex_model_m&lt;/dt&gt;
   &lt;dd&gt;
   A machine with roughly twice the number of cores and roughly double the
-  memory of `complex_model_s`.
+  memory of &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_s&lt;/code&gt;.
   &lt;/dd&gt;
   &lt;dt&gt;complex_model_l&lt;/dt&gt;
   &lt;dd&gt;
   A machine with roughly twice the number of cores and roughly double the
-  memory of `complex_model_m`.
+  memory of &lt;code suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt;.
   &lt;/dd&gt;
 &lt;/dl&gt;
 
-This value can only be used when `ScaleTier` is set to `CUSTOM`.
+You must set this value when `scaleTier` is set to `CUSTOM`.
 * @property {string} parameterServerCount Optional. The number of parameter server replicas to use for the training
 job. Each replica in the cluster will be of the type specified in
 `parameter_server_type`.
@@ -992,7 +992,7 @@ job&#39;s parameter server.
 The supported values are the same as those described in the entry for
 `master_type`.
 
-This value must be present when `scale_tier` is set to `CUSTOM` and
+This value must be present when `scaleTier` is set to `CUSTOM` and
 `parameter_server_count` is greater than zero.
 * @property {string} scaleTier Required. Specifies the machine types, the number of replicas for workers
 and parameter servers.

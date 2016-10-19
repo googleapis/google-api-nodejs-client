@@ -502,7 +502,7 @@ If the build source came in a single package such as a gzipped tarfile
  * @typedef Operation
  * @memberOf! cloudbuild(v1)
  * @type object
-* @property {cloudbuild(v1).Status} error The error result of the operation in case of failure.
+* @property {cloudbuild(v1).Status} error The error result of the operation in case of failure or cancellation.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.

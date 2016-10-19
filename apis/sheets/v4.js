@@ -47,6 +47,53 @@ function Sheets(options) { // eslint-disable-line
      *
      * @desc Creates a spreadsheet, returning the newly created spreadsheet.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Sheets API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/sheets
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     * var google = require('googleapis');
+     * var sheets = google.sheets('v4');
+     *
+     * getAuth(function(err, authClient) {
+     *   if (err) {
+     *     console.log(err);
+     *     return;
+     *   }
+     *
+     *   var request = {
+     *
+     *     resource: {
+     *       // TODO: Add desired properties of the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   sheets.spreadsheets.create(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function getAuth(callback) {
+     *   // TODO: Change placeholder below to get authentication credentials.
+     *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+     *   //
+     *   // To use the `create` method, authorize using one of the following scopes:
+     *   //   https://www.googleapis.com/auth/drive
+     *   //   https://www.googleapis.com/auth/spreadsheets
+     *   return callback(new Error("Not implemented"), null);
+     * };
+     *
      * @alias sheets.spreadsheets.create
      * @memberOf! sheets(v4)
      *
@@ -81,6 +128,57 @@ function Sheets(options) { // eslint-disable-line
      * sheets.spreadsheets.get
      *
      * @desc Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID.  By default, data within grids will not be returned. You can include grid data one of two ways:  * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP  * Set the includeGridData URL parameter to true.  If a field mask is set, the `includeGridData` parameter is ignored  For large spreadsheets, it is recommended to retrieve only the specific fields of the spreadsheet that you want.  To retrieve only subsets of the spreadsheet, use the ranges URL parameter. Multiple ranges can be specified.  Limiting the range will return only the portions of the spreadsheet that intersect the requested ranges. Ranges are specified using A1 notation.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Sheets API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/sheets
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     * var google = require('googleapis');
+     * var sheets = google.sheets('v4');
+     *
+     * getAuth(function(err, authClient) {
+     *   if (err) {
+     *     console.log(err);
+     *     return;
+     *   }
+     *
+     *   var request = {
+     *
+     *     // TODO: Change placeholder below to desired parameter value for the `get` method:
+     *
+     *     // The spreadsheet to request.
+     *     spreadsheetId: '{MY-SPREADSHEET-ID}',
+     *
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   sheets.spreadsheets.get(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function getAuth(callback) {
+     *   // TODO: Change placeholder below to get authentication credentials.
+     *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+     *   //
+     *   // To use the `get` method, authorize using one of the following scopes:
+     *   //   https://www.googleapis.com/auth/drive
+     *   //   https://www.googleapis.com/auth/drive.readonly
+     *   //   https://www.googleapis.com/auth/spreadsheets
+     *   //   https://www.googleapis.com/auth/spreadsheets.readonly
+     *   return callback(new Error("Not implemented"), null);
+     * };
      *
      * @alias sheets.spreadsheets.get
      * @memberOf! sheets(v4)
@@ -119,6 +217,59 @@ function Sheets(options) { // eslint-disable-line
      *
      * @desc Applies one or more updates to the spreadsheet.  Each request is validated before being applied. If any request is not valid then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. The replies will mirror the requests.  For example, if you applied 4 updates and the 3rd one had a reply, then the response will have 2 empty replies, the actual reply, and another empty reply, in that order.  Due to the collaborative nature of spreadsheets, it is not guaranteed that the spreadsheet will reflect exactly your changes after this completes, however it is guaranteed that the updates in the request will be applied together atomically. Your changes may be altered with respect to collaborator changes. If there are no collaborators, the spreadsheet should reflect your changes.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Sheets API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/sheets
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     * var google = require('googleapis');
+     * var sheets = google.sheets('v4');
+     *
+     * getAuth(function(err, authClient) {
+     *   if (err) {
+     *     console.log(err);
+     *     return;
+     *   }
+     *
+     *   var request = {
+     *
+     *     // TODO: Change placeholder below to desired parameter value for the `batchUpdate` method:
+     *
+     *     // The spreadsheet to apply the updates to.
+     *     spreadsheetId: '{MY-SPREADSHEET-ID}',
+     *
+     *
+     *     resource: {
+     *       // TODO: Add desired properties of the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   sheets.spreadsheets.batchUpdate(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function getAuth(callback) {
+     *   // TODO: Change placeholder below to get authentication credentials.
+     *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+     *   //
+     *   // To use the `batchUpdate` method, authorize using one of the following scopes:
+     *   //   https://www.googleapis.com/auth/drive
+     *   //   https://www.googleapis.com/auth/spreadsheets
+     *   return callback(new Error("Not implemented"), null);
+     * };
+     *
      * @alias sheets.spreadsheets.batchUpdate
      * @memberOf! sheets(v4)
      *
@@ -153,24 +304,22 @@ function Sheets(options) { // eslint-disable-line
     values: {
 
       /**
-       * sheets.spreadsheets.values.append
+       * sheets.spreadsheets.values.clear
        *
-       * @desc Appends values to a spreadsheet. The input range is used to search for existing data and find a "table" within that range. Values will be appended to the next row of the table, starting with the first column of the table. See the [guide](/sheets/guides/values#appending_values) and [sample code](/sheets/samples/writing#append_values) for specific details of how tables are detected and data is appended.  The caller must specify the spreadsheet ID, range, and a valueInputOption.  The `valueInputOption` only controls how the input data will be added to the sheet (column-wise or row-wise), it does not influence what cell the data starts being written to.
+       * @desc Clears values from a spreadsheet. The caller must specify the spreadsheet ID and range. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
        *
-       * @alias sheets.spreadsheets.values.append
+       * @alias sheets.spreadsheets.values.clear
        * @memberOf! sheets(v4)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.valueInputOption How the input data should be interpreted.
        * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-       * @param {string=} params.insertDataOption How the input data should be inserted.
-       * @param {string} params.range The A1 notation of a range to search for a logical table of data. Values will be appended after the last row of the table.
-       * @param {sheets(v4).ValueRange} params.resource Request body data
+       * @param {string} params.range The A1 notation of the values to clear.
+       * @param {sheets(v4).ClearValuesRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      append: function (params, options, callback) {
+      clear: function (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -179,85 +328,8 @@ function Sheets(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}:append',
+            url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}:clear',
             method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['spreadsheetId', 'range'],
-          pathParams: ['spreadsheetId', 'range'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * sheets.spreadsheets.values.update
-       *
-       * @desc Sets values in a range of a spreadsheet. The caller must specify the spreadsheet ID, range, and a valueInputOption.
-       *
-       * @alias sheets.spreadsheets.values.update
-       * @memberOf! sheets(v4)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.valueInputOption How the input data should be interpreted.
-       * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-       * @param {string} params.range The A1 notation of the values to update.
-       * @param {sheets(v4).ValueRange} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      update: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}',
-            method: 'PUT'
-          }, options),
-          params: params,
-          requiredParams: ['spreadsheetId', 'range'],
-          pathParams: ['spreadsheetId', 'range'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * sheets.spreadsheets.values.get
-       *
-       * @desc Returns a range of values from a spreadsheet. The caller must specify the spreadsheet ID and a range.
-       *
-       * @alias sheets.spreadsheets.values.get
-       * @memberOf! sheets(v4)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
-       * @param {string=} params.valueRenderOption How values should be represented in the output.
-       * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE.
-       * @param {string} params.range The A1 notation of the values to retrieve.
-       * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}',
-            method: 'GET'
           }, options),
           params: params,
           requiredParams: ['spreadsheetId', 'range'],
@@ -272,6 +344,57 @@ function Sheets(options) { // eslint-disable-line
        * sheets.spreadsheets.values.batchGet
        *
        * @desc Returns one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Sheets API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/sheets
+       * // 2. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       * var google = require('googleapis');
+       * var sheets = google.sheets('v4');
+       *
+       * getAuth(function(err, authClient) {
+       *   if (err) {
+       *     console.log(err);
+       *     return;
+       *   }
+       *
+       *   var request = {
+       *
+       *     // TODO: Change placeholder below to desired parameter value for the `batchGet` method:
+       *
+       *     // The ID of the spreadsheet to retrieve data from.
+       *     spreadsheetId: '{MY-SPREADSHEET-ID}',
+       *
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   sheets.spreadsheets.values.batchGet(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function getAuth(callback) {
+       *   // TODO: Change placeholder below to get authentication credentials.
+       *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       *   //
+       *   // To use the `batchGet` method, authorize using one of the following scopes:
+       *   //   https://www.googleapis.com/auth/drive
+       *   //   https://www.googleapis.com/auth/drive.readonly
+       *   //   https://www.googleapis.com/auth/spreadsheets
+       *   //   https://www.googleapis.com/auth/spreadsheets.readonly
+       *   return callback(new Error("Not implemented"), null);
+       * };
        *
        * @alias sheets.spreadsheets.values.batchGet
        * @memberOf! sheets(v4)
@@ -312,6 +435,59 @@ function Sheets(options) { // eslint-disable-line
        *
        * @desc Sets values in one or more ranges of a spreadsheet. The caller must specify the spreadsheet ID, a valueInputOption, and one or more ValueRanges.
        *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Sheets API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/sheets
+       * // 2. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       * var google = require('googleapis');
+       * var sheets = google.sheets('v4');
+       *
+       * getAuth(function(err, authClient) {
+       *   if (err) {
+       *     console.log(err);
+       *     return;
+       *   }
+       *
+       *   var request = {
+       *
+       *     // TODO: Change placeholder below to desired parameter value for the `batchUpdate` method:
+       *
+       *     // The ID of the spreadsheet to update.
+       *     spreadsheetId: '{MY-SPREADSHEET-ID}',
+       *
+       *
+       *     resource: {
+       *       // TODO: Add desired properties of the request body.
+       *     },
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   sheets.spreadsheets.values.batchUpdate(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function getAuth(callback) {
+       *   // TODO: Change placeholder below to get authentication credentials.
+       *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       *   //
+       *   // To use the `batchUpdate` method, authorize using one of the following scopes:
+       *   //   https://www.googleapis.com/auth/drive
+       *   //   https://www.googleapis.com/auth/spreadsheets
+       *   return callback(new Error("Not implemented"), null);
+       * };
+       *
        * @alias sheets.spreadsheets.values.batchUpdate
        * @memberOf! sheets(v4)
        *
@@ -341,6 +517,325 @@ function Sheets(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sheets.spreadsheets.values.get
+       *
+       * @desc Returns a range of values from a spreadsheet. The caller must specify the spreadsheet ID and a range.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Sheets API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/sheets
+       * // 2. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       * var google = require('googleapis');
+       * var sheets = google.sheets('v4');
+       *
+       * getAuth(function(err, authClient) {
+       *   if (err) {
+       *     console.log(err);
+       *     return;
+       *   }
+       *
+       *   var request = {
+       *
+       *     // TODO: Change placeholders below to desired parameter values for the `get` method:
+       *
+       *     // The ID of the spreadsheet to retrieve data from.
+       *     spreadsheetId: '{MY-SPREADSHEET-ID}',
+       *
+       *     // The A1 notation of the values to retrieve.
+       *     range: '{MY-RANGE}',
+       *
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   sheets.spreadsheets.values.get(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function getAuth(callback) {
+       *   // TODO: Change placeholder below to get authentication credentials.
+       *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       *   //
+       *   // To use the `get` method, authorize using one of the following scopes:
+       *   //   https://www.googleapis.com/auth/drive
+       *   //   https://www.googleapis.com/auth/drive.readonly
+       *   //   https://www.googleapis.com/auth/spreadsheets
+       *   //   https://www.googleapis.com/auth/spreadsheets.readonly
+       *   return callback(new Error("Not implemented"), null);
+       * };
+       *
+       * @alias sheets.spreadsheets.values.get
+       * @memberOf! sheets(v4)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
+       * @param {string=} params.valueRenderOption How values should be represented in the output.
+       * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE.
+       * @param {string} params.range The A1 notation of the values to retrieve.
+       * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['spreadsheetId', 'range'],
+          pathParams: ['spreadsheetId', 'range'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sheets.spreadsheets.values.append
+       *
+       * @desc Appends values to a spreadsheet. The input range is used to search for existing data and find a "table" within that range. Values will be appended to the next row of the table, starting with the first column of the table. See the [guide](/sheets/guides/values#appending_values) and [sample code](/sheets/samples/writing#append_values) for specific details of how tables are detected and data is appended.  The caller must specify the spreadsheet ID, range, and a valueInputOption.  The `valueInputOption` only controls how the input data will be added to the sheet (column-wise or row-wise), it does not influence what cell the data starts being written to.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Sheets API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/sheets
+       * // 2. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       * var google = require('googleapis');
+       * var sheets = google.sheets('v4');
+       *
+       * getAuth(function(err, authClient) {
+       *   if (err) {
+       *     console.log(err);
+       *     return;
+       *   }
+       *
+       *   var request = {
+       *
+       *     // TODO: Change placeholders below to desired parameter values for the `append` method:
+       *
+       *     // The ID of the spreadsheet to update.
+       *     spreadsheetId: '{MY-SPREADSHEET-ID}',
+       *
+       *     // The A1 notation of a range to search for a logical table of data.
+       *     // Values will be appended after the last row of the table.
+       *     range: '{MY-RANGE}',
+       *
+       *
+       *     resource: {
+       *       // TODO: Add desired properties of the request body.
+       *     },
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   sheets.spreadsheets.values.append(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function getAuth(callback) {
+       *   // TODO: Change placeholder below to get authentication credentials.
+       *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       *   //
+       *   // To use the `append` method, authorize using one of the following scopes:
+       *   //   https://www.googleapis.com/auth/drive
+       *   //   https://www.googleapis.com/auth/spreadsheets
+       *   return callback(new Error("Not implemented"), null);
+       * };
+       *
+       * @alias sheets.spreadsheets.values.append
+       * @memberOf! sheets(v4)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.valueInputOption How the input data should be interpreted.
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
+       * @param {string=} params.insertDataOption How the input data should be inserted.
+       * @param {string} params.range The A1 notation of a range to search for a logical table of data. Values will be appended after the last row of the table.
+       * @param {sheets(v4).ValueRange} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      append: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}:append',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['spreadsheetId', 'range'],
+          pathParams: ['spreadsheetId', 'range'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sheets.spreadsheets.values.update
+       *
+       * @desc Sets values in a range of a spreadsheet. The caller must specify the spreadsheet ID, range, and a valueInputOption.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Sheets API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/sheets
+       * // 2. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       * var google = require('googleapis');
+       * var sheets = google.sheets('v4');
+       *
+       * getAuth(function(err, authClient) {
+       *   if (err) {
+       *     console.log(err);
+       *     return;
+       *   }
+       *
+       *   var request = {
+       *
+       *     // TODO: Change placeholders below to desired parameter values for the `update` method:
+       *
+       *     // The ID of the spreadsheet to update.
+       *     spreadsheetId: '{MY-SPREADSHEET-ID}',
+       *
+       *     // The A1 notation of the values to update.
+       *     range: '{MY-RANGE}',
+       *
+       *
+       *     resource: {
+       *       // TODO: Add desired properties of the request body.
+       *     },
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   sheets.spreadsheets.values.update(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function getAuth(callback) {
+       *   // TODO: Change placeholder below to get authentication credentials.
+       *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       *   //
+       *   // To use the `update` method, authorize using one of the following scopes:
+       *   //   https://www.googleapis.com/auth/drive
+       *   //   https://www.googleapis.com/auth/spreadsheets
+       *   return callback(new Error("Not implemented"), null);
+       * };
+       *
+       * @alias sheets.spreadsheets.values.update
+       * @memberOf! sheets(v4)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.valueInputOption How the input data should be interpreted.
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
+       * @param {string} params.range The A1 notation of the values to update.
+       * @param {sheets(v4).ValueRange} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values/{range}',
+            method: 'PUT'
+          }, options),
+          params: params,
+          requiredParams: ['spreadsheetId', 'range'],
+          pathParams: ['spreadsheetId', 'range'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sheets.spreadsheets.values.batchClear
+       *
+       * @desc Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
+       *
+       * @alias sheets.spreadsheets.values.batchClear
+       * @memberOf! sheets(v4)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
+       * @param {sheets(v4).BatchClearValuesRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchClear: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheetId}/values:batchClear',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['spreadsheetId'],
+          pathParams: ['spreadsheetId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     },
 
@@ -350,6 +845,62 @@ function Sheets(options) { // eslint-disable-line
        * sheets.spreadsheets.sheets.copyTo
        *
        * @desc Copies a single sheet from a spreadsheet to another spreadsheet. Returns the properties of the newly created sheet.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Sheets API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/sheets
+       * // 2. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       * var google = require('googleapis');
+       * var sheets = google.sheets('v4');
+       *
+       * getAuth(function(err, authClient) {
+       *   if (err) {
+       *     console.log(err);
+       *     return;
+       *   }
+       *
+       *   var request = {
+       *
+       *     // TODO: Change placeholders below to desired parameter values for the `copyTo` method:
+       *
+       *     // The ID of the spreadsheet containing the sheet to copy.
+       *     spreadsheetId: '{MY-SPREADSHEET-ID}',
+       *
+       *     // The ID of the sheet to copy.
+       *     sheetId: 0,
+       *
+       *
+       *     resource: {
+       *       // TODO: Add desired properties of the request body.
+       *     },
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   sheets.spreadsheets.sheets.copyTo(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function getAuth(callback) {
+       *   // TODO: Change placeholder below to get authentication credentials.
+       *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       *   //
+       *   // To use the `copyTo` method, authorize using one of the following scopes:
+       *   //   https://www.googleapis.com/auth/drive
+       *   //   https://www.googleapis.com/auth/spreadsheets
+       *   return callback(new Error("Not implemented"), null);
+       * };
        *
        * @alias sheets.spreadsheets.sheets.copyTo
        * @memberOf! sheets(v4)
@@ -438,6 +989,16 @@ A single `&quot;*&quot;` can be used as short-hand for listing every field.
  * @type object
  * @property {sheets(v4).EmbeddedObjectPosition} position The new position of the embedded object.
  */
+/**
+ * @typedef ClearValuesResponse
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {string} spreadsheetId The spreadsheet the updates were applied to.
+* @property {string} clearedRange The range (in A1 notation) that was cleared.
+(If the request was for an unbounded range or a ranger larger
+ than the bounds of the sheet, this will be the actual range
+ that was cleared, bounded to the sheet&#39;s limits.)
+*/
 /**
  * @typedef UpdateConditionalFormatRuleRequest
  * @memberOf! sheets(v4)
@@ -804,6 +1365,16 @@ For example, these are valid configurations:
  * @property {integer} sheetId The sheet ID on which the basic filter should be cleared.
  */
 /**
+ * @typedef BatchClearValuesResponse
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {string} spreadsheetId The spreadsheet the updates were applied to.
+* @property {string[]} clearedRanges The ranges that were cleared, in A1 notation.
+(If the requests were for an unbounded range or a ranger larger
+ than the bounds of the sheet, this will be the actual ranges
+ that were cleared, bounded to the sheet&#39;s limits.)
+*/
+/**
  * @typedef ConditionalFormatRule
  * @memberOf! sheets(v4)
  * @type object
@@ -1070,6 +1641,11 @@ This field cannot be changed once set.
 This field cannot be changed once set.
 */
 /**
+ * @typedef ClearValuesRequest
+ * @memberOf! sheets(v4)
+ * @type object
+ */
+/**
  * @typedef ProtectedRange
  * @memberOf! sheets(v4)
  * @type object
@@ -1209,6 +1785,12 @@ information about the supported patterns.
 When writing, this field must be set.
 */
 /**
+ * @typedef BatchClearValuesRequest
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {string[]} ranges The ranges to clear, in A1 notation.
+ */
+/**
  * @typedef UpdateDimensionPropertiesRequest
  * @memberOf! sheets(v4)
  * @type object
@@ -1313,7 +1895,7 @@ The index of all sheets after this are incremented.
  * @type object
 * @property {string} style The style of the border.
 * @property {integer} width The width of the border, in pixels.
-Border widths must be between 0 and 3 pixels, inclusive.
+Deprecated; the width is determined by the &quot;style&quot; field.
 * @property {sheets(v4).Color} color The color of the border.
 */
 /**

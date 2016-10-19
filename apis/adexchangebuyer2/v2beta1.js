@@ -24,7 +24,7 @@ var utils = require('../../lib/utils');
 /**
  * Ad Exchange Buyer API II
  *
- * Accesses the latest features for managing Ad Exchange accounts and Real-Time Bidding configurations and auction metrics.
+ * Accesses the latest features for managing Ad Exchange accounts, Real-Time Bidding configurations and auction metrics, and Marketplace programmatic deals.
  *
  * @example
  * var google = require('googleapis');

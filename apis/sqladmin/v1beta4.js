@@ -1592,6 +1592,7 @@ function Sqladmin(options) { // eslint-disable-line
 * @property {string} backendType FIRST_GEN: Basic Cloud SQL instance that runs in a Google-managed container.
 SECOND_GEN: A newer Cloud SQL backend that runs in a Compute Engine VM.
 EXTERNAL: A MySQL server that is not managed by Google.
+* @property {string} connectionName Connection name of the Cloud SQL instance used in connection strings.
 * @property {string} currentDiskSize The current disk usage of the instance in bytes. This property has been deprecated. Users should use the &quot;cloudsql.googleapis.com/database/disk/bytes_used&quot; metric in Cloud Monitoring API instead. Please see https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ for details.
 * @property {string} databaseVersion The database engine type and version. The databaseVersion can not be changed after instance creation. Can be MYSQL_5_5, MYSQL_5_6 or MYSQL_5_7. Defaults to MYSQL_5_6. MYSQL_5_7 is applicable only to Second Generation instances.
 * @property {string} etag HTTP 1.1 Entity tag for the resource.
