@@ -693,7 +693,7 @@ Once you create a variable, you cannot change the variable name.
  * @typedef Operation
  * @memberOf! runtimeconfig(v1beta1)
  * @type object
-* @property {runtimeconfig(v1beta1).Status} error The error result of the operation in case of failure.
+* @property {runtimeconfig(v1beta1).Status} error The error result of the operation in case of failure or cancellation.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.

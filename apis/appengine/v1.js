@@ -40,6 +40,89 @@ function Appengine(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
 
+  self.experimental = {
+
+    apps: {
+
+      operations: {
+
+        /**
+         * appengine.experimental.apps.operations.get
+         *
+         * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+         *
+         * @alias appengine.experimental.apps.operations.get
+         * @memberOf! appengine(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. The name of the operation resource.
+         * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          var parameters = {
+            options: utils.extend({
+              url: 'https://appengine.googleapis.com/experimental/apps/{appsId}/operations/{operationsId}',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['appsId', 'operationsId'],
+            pathParams: ['appsId', 'operationsId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * appengine.experimental.apps.operations.list
+         *
+         * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
+         *
+         * @alias appengine.experimental.apps.operations.list
+         * @memberOf! appengine(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. The name of the operation collection.
+         * @param {string=} params.filter The standard list filter.
+         * @param {integer=} params.pageSize The standard list page size.
+         * @param {string=} params.pageToken The standard list page token.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          var parameters = {
+            options: utils.extend({
+              url: 'https://appengine.googleapis.com/experimental/apps/{appsId}/operations',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['appsId'],
+            pathParams: ['appsId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
+      }
+    }
+  };
+
   self.apps = {
 
     /**
@@ -67,6 +150,43 @@ function Appengine(options) { // eslint-disable-line
         options: utils.extend({
           url: 'https://appengine.googleapis.com/v1/apps/{appsId}',
           method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['appsId'],
+        pathParams: ['appsId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * appengine.apps.patch
+     *
+     * @desc Updates application parameters.
+     *
+     * @alias appengine.apps.patch
+     * @memberOf! appengine(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.appsId Part of `name`. Name of the application to update. Example: `apps/myapp`.
+     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
+     * @param {appengine(v1).Application} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://appengine.googleapis.com/v1/apps/{appsId}',
+          method: 'PATCH'
         }, options),
         params: params,
         requiredParams: ['appsId'],
@@ -1109,7 +1229,7 @@ function Appengine(options) { // eslint-disable-line
  * @memberOf! appengine(v1)
  * @type object
  * @property {string} name Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
- * @property {string} locationId The cononical id for this location. For example: `&quot;us-east1&quot;`.
+ * @property {string} locationId The canonical id for this location. For example: `&quot;us-east1&quot;`.
  * @property {object} labels Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
  * @property {object} metadata Service-specific metadata. For example the available capacity at the given location.
  */

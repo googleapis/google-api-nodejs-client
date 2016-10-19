@@ -43,20 +43,23 @@ function Genomics(options) { // eslint-disable-line
   self.operations = {
 
     /**
-     * genomics.operations.get
+     * genomics.operations.list
      *
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Lists operations that match the specified filter in the request.
      *
-     * @alias genomics.operations.get
+     * @alias genomics.operations.list
      * @memberOf! genomics(v1alpha2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
+     * @param {string} params.name The name of the operation collection.
+     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
+     * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
+     * @param {string=} params.pageToken The standard list page token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    list: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -78,23 +81,20 @@ function Genomics(options) { // eslint-disable-line
     },
 
     /**
-     * genomics.operations.list
+     * genomics.operations.get
      *
-     * @desc Lists operations that match the specified filter in the request.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      *
-     * @alias genomics.operations.list
+     * @alias genomics.operations.get
      * @memberOf! genomics(v1alpha2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation collection.
-     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
-     * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
-     * @param {string=} params.pageToken The standard list page token.
+     * @param {string} params.name The name of the operation resource.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, options, callback) {
+    get: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -408,13 +408,20 @@ function Genomics(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef ListOperationsResponse
+ * @memberOf! genomics(v1alpha2)
+ * @type object
+ * @property {genomics(v1alpha2).Operation[]} operations A list of operations that matches the specified filter in the request.
+ * @property {string} nextPageToken The standard List next-page token.
+ */
+/**
  * @typedef Operation
  * @memberOf! genomics(v1alpha2)
  * @type object
  * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. For example: `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
  * @property {object} metadata An OperationMetadata object. This will always be returned with the Operation.
  * @property {boolean} done If the value is `false`, it means the operation is still in progress. If true, the operation is completed, and either `error` or `response` is available.
- * @property {genomics(v1alpha2).Status} error The error result of the operation in case of failure.
+ * @property {genomics(v1alpha2).Status} error The error result of the operation in case of failure or cancellation.
  * @property {object} response If importing ReadGroupSets, an ImportReadGroupSetsResponse is returned. If importing Variants, an ImportVariantsResponse is returned. For exports, an empty response is returned.
  */
 /**
@@ -424,13 +431,6 @@ function Genomics(options) { // eslint-disable-line
  * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
  * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
  * @property {object[]} details A list of messages that carry the error details. There will be a common set of message types for APIs to use.
- */
-/**
- * @typedef ListOperationsResponse
- * @memberOf! genomics(v1alpha2)
- * @type object
- * @property {genomics(v1alpha2).Operation[]} operations A list of operations that matches the specified filter in the request.
- * @property {string} nextPageToken The standard List next-page token.
  */
 /**
  * @typedef CancelOperationRequest
@@ -488,7 +488,7 @@ function Genomics(options) { // eslint-disable-line
  * @property {genomics(v1alpha2).Disk[]} disks Disks to attach.
  * @property {string[]} zones List of Google Compute Engine availability zones to which resource creation will restricted. If empty, any zone may be chosen.
  * @property {integer} bootDiskSizeGb The size of the boot disk. Defaults to 10 (GB).
- * @property {boolean} noAddress Whether to assign an external IP to the instance. Defaults to false. Corresponds to `--no_address` flag for [gcloud compute instances create] (https://cloud.google.com/sdk/gcloud/reference/compute/instances/create). In order to use this, must be true for both create time and run time. Cannot be true at run time if false at create time. ** Note: To use this option, your project must be in Google Access for Private IPs Early Access Program.**
+ * @property {boolean} noAddress Whether to assign an external IP to the instance. This is an experimental feature that may go away. Defaults to false. Corresponds to `--no_address` flag for [gcloud compute instances create] (https://cloud.google.com/sdk/gcloud/reference/compute/instances/create). In order to use this, must be true for both create time and run time. Cannot be true at run time if false at create time. If you need to ssh into a private IP VM for debugging, you can ssh to a public VM and then ssh into the private VM&#39;s Internal IP. If noAddress is set, this pipeline run may only load docker images from Google Container Registry and not Docker Hub. ** Note: To use this option, your project must be in Google Access for Private IPs Early Access Program.**
  */
 /**
  * @typedef Disk
@@ -528,7 +528,7 @@ function Genomics(options) { // eslint-disable-line
  * @memberOf! genomics(v1alpha2)
  * @type object
  * @property {string} email Email address of the service account. Defaults to `default`, which uses the compute service account associated with the project.
- * @property {string[]} scopes List of scopes to be enabled for this service account on the pipeline virtual machine. The following scopes are automatically included: * https://www.googleapis.com/auth/genomics * https://www.googleapis.com/auth/compute * https://www.googleapis.com/auth/devstorage.full_control
+ * @property {string[]} scopes List of scopes to be enabled for this service account on the VM. The following scopes are automatically included: * https://www.googleapis.com/auth/compute * https://www.googleapis.com/auth/devstorage.full_control * https://www.googleapis.com/auth/genomics * https://www.googleapis.com/auth/logging.write * https://www.googleapis.com/auth/monitoring.write
  */
 /**
  * @typedef LoggingOptions

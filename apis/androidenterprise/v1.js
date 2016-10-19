@@ -677,6 +677,42 @@ function Androidenterprise(options) { // eslint-disable-line
     },
 
     /**
+     * androidenterprise.enterprises.createWebToken
+     *
+     * @desc Returns a unique token to access an embeddable UI. To generate a web UI, pass the generated token into the Play for Work javascript API. Each token may only be used to start one UI session. See the javascript API documentation for further information.
+     *
+     * @alias androidenterprise.enterprises.createWebToken
+     * @memberOf! androidenterprise(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.enterpriseId The ID of the enterprise.
+     * @param {androidenterprise(v1).AdministratorWebTokenSpec} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    createWebToken: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/createWebToken',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['enterpriseId'],
+        pathParams: ['enterpriseId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * androidenterprise.enterprises.delete
      *
      * @desc Deletes the binding between the EMM and enterprise. This is now deprecated; use this to unenroll customers that were previously enrolled with the 'insert' call, then enroll them again with the 'enroll' call.
@@ -3336,6 +3372,21 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} email The administrator&#39;s email address.
  */
 /**
+ * @typedef AdministratorWebToken
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#administratorWebToken&quot;.
+ * @property {string} token An opaque token to be passed to the Play front-end to generate an iframe.
+ */
+/**
+ * @typedef AdministratorWebTokenSpec
+ * @memberOf! androidenterprise(v1)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#administratorWebTokenSpec&quot;.
+ * @property {string} parent The URI of the parent frame hosting the iframe. To prevent XSS, the iframe may not be hosted at other URIs. This URI must be https.
+ * @property {string[]} permission The list of permissions the admin is granted within the iframe. The admin will only be allowed to view an iframe if they have all of the permissions associated with it.
+ */
+/**
  * @typedef AppRestrictionsSchema
  * @memberOf! androidenterprise(v1)
  * @type object
@@ -3694,6 +3745,7 @@ Possible values include:
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#productSet&quot;.
  * @property {string[]} productId The list of product IDs making up the set of products.
+ * @property {string} productSetBehavior The interpretation of this product set. &quot;unknown&quot; should never be sent and ignored if received. &quot;whitelist&quot; means that this product set constitutes a whitelist. &quot;includeAll&quot; means that all products are accessible (the value of the productId field is therefore ignored). If a value is not supplied, it is interpreted to be &quot;whitelist&quot; for backwards compatibility.
  */
 /**
  * @typedef ProductsApproveRequest
@@ -3769,6 +3821,7 @@ If a homepage has not been set, the Play store shown on devices will be empty. N
 
 If there exists at least one page, this field must be set to the ID of a valid page.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeLayout&quot;.
+* @property {string} storeLayoutType Sets a store layout type. If set to &quot;custom&quot;, &quot;homepageId&quot; must be specified. If set to &quot;basic&quot;, the layout will consist of all approved apps accessible by the user, split in pages of 100 each; in this case, &quot;homepageId&quot; must not be specified. The &quot;basic&quot; setting takes precedence over any existing collections setup for this enterprise (if any). Should the enterprise use collectionViewers for controlling access rights, these will still be respected.
 */
 /**
  * @typedef StoreLayoutClustersListResponse

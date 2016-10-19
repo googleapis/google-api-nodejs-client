@@ -193,6 +193,43 @@ function Admin(options) { // eslint-disable-line
   self.chromeosdevices = {
 
     /**
+     * directory.chromeosdevices.action
+     *
+     * @desc Take action on Chrome OS Device
+     *
+     * @alias directory.chromeosdevices.action
+     * @memberOf! admin(directory_v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.resourceId Immutable id of Chrome OS Device
+     * @param {admin(directory_v1).ChromeOsDeviceAction} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    action: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['customerId', 'resourceId'],
+        pathParams: ['customerId', 'resourceId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * directory.chromeosdevices.get
      *
      * @desc Retrieve Chrome OS Device
@@ -3699,6 +3736,13 @@ function Admin(options) { // eslint-disable-line
  * @property {boolean} willAutoRenew Will Chromebook auto renew after support end date (Read-only)
  */
 /**
+ * @typedef ChromeOsDeviceAction
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} action Action to be taken on the ChromeOs Device
+ * @property {string} deprovisionReason 
+ */
+/**
  * @typedef ChromeOsDevices
  * @memberOf! admin(directory_v1)
  * @type object
@@ -3826,27 +3870,36 @@ function Admin(options) { // eslint-disable-line
  * @property {boolean} adbStatus Adb (USB debugging) enabled or disabled on device (Read-only)
  * @property {object[]} applications List of applications installed on Mobile Device
  * @property {string} basebandVersion Mobile Device Baseband version (Read-only)
+ * @property {string} bootloaderVersion Mobile Device Bootloader version (Read-only)
+ * @property {string} brand Mobile Device Brand (Read-only)
  * @property {string} buildNumber Mobile Device Build number (Read-only)
  * @property {string} defaultLanguage The default locale used on the Mobile Device (Read-only)
  * @property {boolean} developerOptionsStatus Developer options enabled or disabled on device (Read-only)
  * @property {string} deviceCompromisedStatus Mobile Device compromised status (Read-only)
  * @property {string} deviceId Mobile Device serial number (Read-only)
+ * @property {string} devicePasswordStatus DevicePasswordStatus (Read-only)
  * @property {string[]} email List of owner user&#39;s email addresses (Read-only)
+ * @property {string} encryptionStatus Mobile Device Encryption Status (Read-only)
  * @property {string} etag ETag of the resource.
  * @property {string} firstSync Date and time the device was first synchronized with the policy settings in the Google Apps administrator control panel (Read-only)
+ * @property {string} hardware Mobile Device Hardware (Read-only)
  * @property {string} hardwareId Mobile Device Hardware Id (Read-only)
  * @property {string} imei Mobile Device IMEI number (Read-only)
  * @property {string} kernelVersion Mobile Device Kernel version (Read-only)
  * @property {string} kind Kind of resource this is.
  * @property {string} lastSync Date and time the device was last synchronized with the policy settings in the Google Apps administrator control panel (Read-only)
  * @property {boolean} managedAccountIsOnOwnerProfile Boolean indicating if this account is on owner/primary profile or not (Read-only)
+ * @property {string} manufacturer Mobile Device manufacturer (Read-only)
  * @property {string} meid Mobile Device MEID number (Read-only)
  * @property {string} model Name of the model of the device
  * @property {string[]} name List of owner user&#39;s names (Read-only)
  * @property {string} networkOperator Mobile Device mobile or network operator (if available) (Read-only)
  * @property {string} os Name of the mobile operating system
  * @property {string[]} otherAccountsInfo List of accounts added on device (Read-only)
+ * @property {string} privilege DMAgentPermission (Read-only)
+ * @property {string} releaseVersion Mobile Device release version version (Read-only)
  * @property {string} resourceId Unique identifier of Mobile Device (Read-only)
+ * @property {string} securityPatchLevel Mobile Device Security patch level (Read-only)
  * @property {string} serialNumber Mobile Device SSN or Serial Number (Read-only)
  * @property {string} status Status of the device (Read-only)
  * @property {boolean} supportsWorkProfile Work profile supported on device (Read-only)

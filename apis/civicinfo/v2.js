@@ -50,8 +50,9 @@ function Civicinfo(options) { // eslint-disable-line
      * @alias civicinfo.divisions.search
      * @memberOf! civicinfo(v2)
      *
-     * @param {object=} params Parameters for request
+     * @param {object} params Parameters for request
      * @param {string=} params.query The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
+     * @param {civicinfo(v2).DivisionSearchRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -89,7 +90,8 @@ function Civicinfo(options) { // eslint-disable-line
      * @alias civicinfo.elections.electionQuery
      * @memberOf! civicinfo(v2)
      *
-     * @param {object=} params Parameters for request
+     * @param {object} params Parameters for request
+     * @param {civicinfo(v2).ElectionsQueryRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -128,6 +130,7 @@ function Civicinfo(options) { // eslint-disable-line
      * @param {string=} params.electionId The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version}/elections
      * @param {boolean=} params.officialOnly If set to true, only data from official state sources will be returned.
      * @param {boolean=} params.returnAllAvailableData If set to true, the query will return the success codeand include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
+     * @param {civicinfo(v2).VoterInfoRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -165,11 +168,12 @@ function Civicinfo(options) { // eslint-disable-line
      * @alias civicinfo.representatives.representativeInfoByAddress
      * @memberOf! civicinfo(v2)
      *
-     * @param {object=} params Parameters for request
+     * @param {object} params Parameters for request
      * @param {string=} params.address The address to look up. May only be specified if the field ocdId is not given in the URL.
      * @param {boolean=} params.includeOffices Whether to return information about offices and officials. If false, only the top-level district information will be returned.
      * @param {string=} params.levels A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
      * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
+     * @param {civicinfo(v2).RepresentativeInfoRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -208,6 +212,7 @@ function Civicinfo(options) { // eslint-disable-line
      * @param {string} params.ocdId The Open Civic Data division identifier of the division to look up.
      * @param {boolean=} params.recursive If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
      * @param {string=} params.roles A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
+     * @param {civicinfo(v2).DivisionRepresentativeInfoRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -272,7 +277,7 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} candidateUrl The URL for the candidate&#39;s campaign web site.
  * @property {civicinfo(v2).Channel[]} channels A list of known (social) media channels for this candidate.
  * @property {string} email The email address for the candidate&#39;s campaign.
- * @property {string} name The candidate&#39;s name.
+ * @property {string} name The candidate&#39;s name. If this is a joint ticket it will indicate the name of the candidate at the top of a ticket followed by a / and that name of candidate at the bottom of the ticket. e.g. &quot;Mitt Romney / Paul Ryan&quot;
  * @property {string} orderOnBallot The order the candidate appears on the ballot for this contest.
  * @property {string} party The full name of the party the candidate is a member of.
  * @property {string} phone The voice phone number for the candidate&#39;s campaign office.
@@ -315,6 +320,24 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} type The type of contest. Usually this will be &#39;General&#39;, &#39;Primary&#39;, or &#39;Run-off&#39; for contests with candidates. For referenda this will be &#39;Referendum&#39;. For Retention contests this will typically be &#39;Retention&#39;.
  */
 /**
+ * @typedef ContextParams
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} clientProfile 
+ */
+/**
+ * @typedef DivisionRepresentativeInfoRequest
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {civicinfo(v2).ContextParams} contextParams 
+ */
+/**
+ * @typedef DivisionSearchRequest
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {civicinfo(v2).ContextParams} contextParams 
+ */
+/**
  * @typedef DivisionSearchResponse
  * @memberOf! civicinfo(v2)
  * @type object
@@ -347,6 +370,12 @@ function Civicinfo(options) { // eslint-disable-line
  * @property {string} name The full name of the election official.
  * @property {string} officePhoneNumber The office phone number of the election official.
  * @property {string} title The title of the election official.
+ */
+/**
+ * @typedef ElectionsQueryRequest
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {civicinfo(v2).ContextParams} contextParams 
  */
 /**
  * @typedef ElectionsQueryResponse
@@ -423,6 +452,12 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {civicinfo(v2).Official[]} officials Officials holding the offices listed above. Will only be present if includeOffices was true in the request.
  */
 /**
+ * @typedef RepresentativeInfoRequest
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {civicinfo(v2).ContextParams} contextParams 
+ */
+/**
  * @typedef RepresentativeInfoResponse
  * @memberOf! civicinfo(v2)
  * @type object
@@ -450,6 +485,12 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @type object
  * @property {string} name The name of the data source.
  * @property {boolean} official Whether this data comes from an official government source.
+ */
+/**
+ * @typedef VoterInfoRequest
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {civicinfo(v2).ContextParams} contextParams 
  */
 /**
  * @typedef VoterInfoResponse

@@ -890,7 +890,7 @@ function Storage(options) { // eslint-disable-line
     /**
      * storage.buckets.patch
      *
-     * @desc Updates a bucket. This method supports patch semantics.
+     * @desc Updates a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate. This method supports patch semantics.
      *
      * @example
      * // BEFORE RUNNING:
@@ -977,7 +977,7 @@ function Storage(options) { // eslint-disable-line
     /**
      * storage.buckets.update
      *
-     * @desc Updates a bucket.
+     * @desc Updates a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
      *
      * @example
      * // BEFORE RUNNING:

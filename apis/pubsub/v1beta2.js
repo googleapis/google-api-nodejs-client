@@ -53,7 +53,7 @@ function Pubsub(options) { // eslint-disable-line
        * @memberOf! pubsub(v1beta2)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
        * @param {pubsub(v1beta2).SetIamPolicyRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -83,13 +83,13 @@ function Pubsub(options) { // eslint-disable-line
       /**
        * pubsub.projects.topics.getIamPolicy
        *
-       * @desc Gets the access control policy for a `resource`. Returns an empty policy if the resource exists and does not have a policy set.
+       * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
        *
        * @alias pubsub.projects.topics.getIamPolicy
        * @memberOf! pubsub(v1beta2)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -124,7 +124,7 @@ function Pubsub(options) { // eslint-disable-line
        * @memberOf! pubsub(v1beta2)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
        * @param {pubsub(v1beta2).TestIamPermissionsRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -382,7 +382,7 @@ function Pubsub(options) { // eslint-disable-line
        * @memberOf! pubsub(v1beta2)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `setIamPolicy` documentation.
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
        * @param {pubsub(v1beta2).SetIamPolicyRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -412,13 +412,13 @@ function Pubsub(options) { // eslint-disable-line
       /**
        * pubsub.projects.subscriptions.getIamPolicy
        *
-       * @desc Gets the access control policy for a `resource`. Returns an empty policy if the resource exists and does not have a policy set.
+       * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
        *
        * @alias pubsub.projects.subscriptions.getIamPolicy
        * @memberOf! pubsub(v1beta2)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `getIamPolicy` documentation.
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -453,7 +453,7 @@ function Pubsub(options) { // eslint-disable-line
        * @memberOf! pubsub(v1beta2)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path, such as `projects/xprojectx/zones/xzonex/disks/xdisk*`. The format for the path specified in this value is resource specific and is specified in the `testIamPermissions` documentation.
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
        * @param {pubsub(v1beta2).TestIamPermissionsRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -483,7 +483,7 @@ function Pubsub(options) { // eslint-disable-line
       /**
        * pubsub.projects.subscriptions.create
        *
-       * @desc Creates a subscription to a given topic. If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
+       * @desc Creates a subscription to a given topic. If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic. Note that for REST API requests, you must specify a name.
        *
        * @alias pubsub.projects.subscriptions.create
        * @memberOf! pubsub(v1beta2)
@@ -626,7 +626,7 @@ function Pubsub(options) { // eslint-disable-line
       /**
        * pubsub.projects.subscriptions.modifyAckDeadline
        *
-       * @desc Modifies the ack deadline for a specific message. This method is useful to indicate that more time is needed to process a message by the subscriber, or to make the message available for redelivery if the processing was interrupted.
+       * @desc Modifies the ack deadline for a specific message. This method is useful to indicate that more time is needed to process a message by the subscriber, or to make the message available for redelivery if the processing was interrupted. Note that this does not modify the subscription-level `ackDeadlineSeconds` used for subsequent messages.
        *
        * @alias pubsub.projects.subscriptions.modifyAckDeadline
        * @memberOf! pubsub(v1beta2)
@@ -795,7 +795,7 @@ function Pubsub(options) { // eslint-disable-line
  * @typedef TestIamPermissionsRequest
  * @memberOf! pubsub(v1beta2)
  * @type object
- * @property {string[]} permissions The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see IAM Overview.
+ * @property {string[]} permissions The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
  */
 /**
  * @typedef TestIamPermissionsResponse
@@ -819,7 +819,7 @@ function Pubsub(options) { // eslint-disable-line
  * @typedef PubsubMessage
  * @memberOf! pubsub(v1beta2)
  * @type object
- * @property {string} data The message payload. For JSON requests, the value of this field must be base64-encoded.
+ * @property {string} data The message payload. For JSON requests, the value of this field must be [base64-encoded](https://tools.ietf.org/html/rfc4648).
  * @property {object} attributes Optional attributes for this message.
  * @property {string} messageId ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.
  * @property {string} publishTime The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
@@ -856,7 +856,7 @@ function Pubsub(options) { // eslint-disable-line
  * @property {string} name The name of the subscription. It must have the format `&quot;projects/{project}/subscriptions/{subscription}&quot;`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `&quot;goog&quot;`.
  * @property {string} topic The name of the topic from which this subscription is receiving messages. The value of this field will be `_deleted-topic_` if the topic has been deleted.
  * @property {pubsub(v1beta2).PushConfig} pushConfig If push delivery is used with this subscription, this field is used to configure it. An empty `pushConfig` signifies that the subscriber will pull and ack messages using API methods.
- * @property {integer} ackDeadlineSeconds This value is the maximum time after a subscriber receives a message before the subscriber should acknowledge the message. After message delivery but before the ack deadline expires and before the message is acknowledged, it is an outstanding message and will not be delivered again during that time (on a best-effort basis). For pull subscriptions, this value is used as the initial value for the ack deadline. To override this value for a given message, call `ModifyAckDeadline` with the corresponding `ack_id` if using pull. For push delivery, this value is also used to set the request timeout for the call to the push endpoint. If the subscriber never acknowledges the message, the Pub/Sub system will eventually redeliver the message. If this parameter is not set, the default value of 10 seconds is used.
+ * @property {integer} ackDeadlineSeconds This value is the maximum time after a subscriber receives a message before the subscriber should acknowledge the message. After message delivery but before the ack deadline expires and before the message is acknowledged, it is an outstanding message and will not be delivered again during that time (on a best-effort basis). For pull subscriptions, this value is used as the initial value for the ack deadline. To override this value for a given message, call `ModifyAckDeadline` with the corresponding `ack_id` if using pull. The maximum custom deadline you can specify is 600 seconds (10 minutes). For push delivery, this value is also used to set the request timeout for the call to the push endpoint. If the subscriber never acknowledges the message, the Pub/Sub system will eventually redeliver the message. If this parameter is 0, a default value of 10 seconds is used.
  */
 /**
  * @typedef PushConfig

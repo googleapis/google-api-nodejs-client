@@ -40,80 +40,6 @@ function Speech(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
 
-  self.speech = {
-
-    /**
-     * speech.speech.syncrecognize
-     *
-     * @desc Perform synchronous speech-recognition: receive results after all audio has been sent and processed.
-     *
-     * @alias speech.speech.syncrecognize
-     * @memberOf! speech(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {speech(v1beta1).SyncRecognizeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    syncrecognize: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://speech.googleapis.com/v1beta1/speech:syncrecognize',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * speech.speech.asyncrecognize
-     *
-     * @desc Perform asynchronous speech-recognition: receive results via the google.longrunning.Operations interface. Returns either an `Operation.error` or an `Operation.response` which contains an `AsyncRecognizeResponse` message.
-     *
-     * @alias speech.speech.asyncrecognize
-     * @memberOf! speech(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {speech(v1beta1).AsyncRecognizeRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    asyncrecognize: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://speech.googleapis.com/v1beta1/speech:asyncrecognize',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
   self.operations = {
 
     /**
@@ -192,7 +118,7 @@ function Speech(options) { // eslint-disable-line
     /**
      * speech.operations.cancel
      *
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation.
+     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      *
      * @alias speech.operations.cancel
      * @memberOf! speech(v1beta1)
@@ -261,6 +187,80 @@ function Speech(options) { // eslint-disable-line
     }
 
   };
+
+  self.speech = {
+
+    /**
+     * speech.speech.syncrecognize
+     *
+     * @desc Perform synchronous speech-recognition: receive results after all audio has been sent and processed.
+     *
+     * @alias speech.speech.syncrecognize
+     * @memberOf! speech(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {speech(v1beta1).SyncRecognizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    syncrecognize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://speech.googleapis.com/v1beta1/speech:syncrecognize',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * speech.speech.asyncrecognize
+     *
+     * @desc Perform asynchronous speech-recognition: receive results via the google.longrunning.Operations interface. Returns either an `Operation.error` or an `Operation.response` which contains an `AsyncRecognizeResponse` message.
+     *
+     * @alias speech.speech.asyncrecognize
+     * @memberOf! speech(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {speech(v1beta1).AsyncRecognizeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    asyncrecognize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://speech.googleapis.com/v1beta1/speech:asyncrecognize',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
 
 /**
@@ -292,7 +292,7 @@ google.rpc.Code.INVALID_ARGUMENT). For more information, see
  * @typedef Operation
  * @memberOf! speech(v1beta1)
  * @type object
-* @property {speech(v1beta1).Status} error The error result of the operation in case of failure.
+* @property {speech(v1beta1).Status} error The error result of the operation in case of failure or cancellation.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
@@ -341,7 +341,7 @@ Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
 * @property {string} languageCode [Optional] The language of the supplied audio as a BCP-47 language tag.
 Example: &quot;en-GB&quot;  https://www.rfc-editor.org/rfc/bcp/bcp47.txt
 If omitted, defaults to &quot;en-US&quot;. See
-[Language Support](https://cloud.google.com/speech/docs/best-practices#language_support)
+[Language Support](https://cloud.google.com/speech/docs/languages)
 for a list of the currently supported language codes.
 * @property {speech(v1beta1).SpeechContext} speechContext [Optional] A means to provide context to assist the speech recognition.
 * @property {string} encoding [Required] Encoding of audio data sent in all `RecognitionAudio` messages.
@@ -378,17 +378,17 @@ maximum specified in `max_alternatives`).
  * @property {speech(v1beta1).Operation[]} operations A list of operations that matches the specified filter in the request.
  */
 /**
+ * @typedef Empty
+ * @memberOf! speech(v1beta1)
+ * @type object
+ */
+/**
  * @typedef SyncRecognizeResponse
  * @memberOf! speech(v1beta1)
  * @type object
 * @property {speech(v1beta1).SpeechRecognitionResult[]} results [Output-only] Sequential list of transcription results corresponding to
 sequential portions of audio.
 */
-/**
- * @typedef Empty
- * @memberOf! speech(v1beta1)
- * @type object
- */
 /**
  * @typedef SpeechContext
  * @memberOf! speech(v1beta1)

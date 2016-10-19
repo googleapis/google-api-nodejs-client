@@ -767,20 +767,23 @@ function Genomics(options) { // eslint-disable-line
   self.operations = {
 
     /**
-     * genomics.operations.get
+     * genomics.operations.list
      *
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @desc Lists operations that match the specified filter in the request.
      *
-     * @alias genomics.operations.get
+     * @alias genomics.operations.list
      * @memberOf! genomics(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
+     * @param {string} params.name The name of the operation collection.
+     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
+     * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
+     * @param {string=} params.pageToken The standard list page token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get: function (params, options, callback) {
+    list: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -802,23 +805,20 @@ function Genomics(options) { // eslint-disable-line
     },
 
     /**
-     * genomics.operations.list
+     * genomics.operations.get
      *
-     * @desc Lists operations that match the specified filter in the request.
+     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      *
-     * @alias genomics.operations.list
+     * @alias genomics.operations.get
      * @memberOf! genomics(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation collection.
-     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
-     * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
-     * @param {string=} params.pageToken The standard list page token.
+     * @param {string} params.name The name of the operation resource.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, options, callback) {
+    get: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -2295,21 +2295,21 @@ function Genomics(options) { // eslint-disable-line
  * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
  */
 /**
+ * @typedef ListOperationsResponse
+ * @memberOf! genomics(v1)
+ * @type object
+ * @property {genomics(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ * @property {string} nextPageToken The standard List next-page token.
+ */
+/**
  * @typedef Operation
  * @memberOf! genomics(v1)
  * @type object
  * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. For example: `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
  * @property {object} metadata An OperationMetadata object. This will always be returned with the Operation.
  * @property {boolean} done If the value is `false`, it means the operation is still in progress. If true, the operation is completed, and either `error` or `response` is available.
- * @property {genomics(v1).Status} error The error result of the operation in case of failure.
+ * @property {genomics(v1).Status} error The error result of the operation in case of failure or cancellation.
  * @property {object} response If importing ReadGroupSets, an ImportReadGroupSetsResponse is returned. If importing Variants, an ImportVariantsResponse is returned. For exports, an empty response is returned.
- */
-/**
- * @typedef ListOperationsResponse
- * @memberOf! genomics(v1)
- * @type object
- * @property {genomics(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
- * @property {string} nextPageToken The standard List next-page token.
  */
 /**
  * @typedef CancelOperationRequest

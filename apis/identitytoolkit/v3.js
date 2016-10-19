@@ -709,7 +709,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} clientId The relying party OAuth client ID.
  * @property {string} context The opaque value used by the client to maintain context info between the authentication request and the IDP callback.
  * @property {string} continueUri The URI to which the IDP redirects the user after the federated login flow.
- * @property {object} customParameter The query parameter that client can customize by themselves in auth url. The following parameters are reserved for server so that they cannot be customized by clients: client_id, response_type, scope, redirect_uri, state.
+ * @property {object} customParameter The query parameter that client can customize by themselves in auth url. The following parameters are reserved for server so that they cannot be customized by clients: client_id, response_type, scope, redirect_uri, state, oauth_token.
  * @property {string} hostedDomain The hosted domain to restrict sign-in to accounts at that domain for Google Apps hosted accounts.
  * @property {string} identifier The email or federated ID of the user.
  * @property {string} oauthConsumerKey The developer&#39;s consumer key for OpenId OAuth Extension
@@ -858,6 +858,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} saltSeparator The salt separator.
  * @property {boolean} sanityCheck If true, backend will do sanity check(including duplicate email and federated id) when uploading account.
  * @property {string} signerKey The key for to hash the password.
+ * @property {string} targetProjectId Specify which project (field value is actually project id) to operate. Only used when provided credential.
  * @property {identitytoolkit(v3).UserInfo[]} users The account info to be stored.
  */
 /**

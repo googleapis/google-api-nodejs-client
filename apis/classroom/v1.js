@@ -65,7 +65,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://classroom.googleapis.com/v1/courses',
+          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses',
           method: 'POST'
         }, options),
         params: params,
@@ -100,7 +100,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://classroom.googleapis.com/v1/courses/{id}',
+          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -136,7 +136,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://classroom.googleapis.com/v1/courses/{id}',
+          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{id}',
           method: 'PUT'
         }, options),
         params: params,
@@ -173,7 +173,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://classroom.googleapis.com/v1/courses/{id}',
+          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{id}',
           method: 'PATCH'
         }, options),
         params: params,
@@ -208,7 +208,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://classroom.googleapis.com/v1/courses/{id}',
+          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -231,6 +231,7 @@ function Classroom(options) { // eslint-disable-line
      * @param {object=} params Parameters for request
      * @param {string=} params.studentId Restricts returned courses to those having a student with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
      * @param {string=} params.teacherId Restricts returned courses to those having a teacher with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+     * @param {string=} params.courseStates Restricts returned courses to those in one of the specified states
      * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
      * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -246,7 +247,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://classroom.googleapis.com/v1/courses',
+          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses',
           method: 'GET'
         }, options),
         params: params,
@@ -284,7 +285,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/aliases',
             method: 'POST'
           }, options),
           params: params,
@@ -320,7 +321,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases/{alias}',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/aliases/{alias}',
             method: 'DELETE'
           }, options),
           params: params,
@@ -357,7 +358,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/aliases',
             method: 'GET'
           }, options),
           params: params,
@@ -396,7 +397,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/teachers',
             method: 'POST'
           }, options),
           params: params,
@@ -432,7 +433,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
             method: 'GET'
           }, options),
           params: params,
@@ -468,7 +469,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
             method: 'DELETE'
           }, options),
           params: params,
@@ -505,7 +506,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/teachers',
             method: 'GET'
           }, options),
           params: params,
@@ -545,7 +546,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/students',
             method: 'POST'
           }, options),
           params: params,
@@ -581,7 +582,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students/{userId}',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/students/{userId}',
             method: 'GET'
           }, options),
           params: params,
@@ -617,7 +618,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students/{userId}',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/students/{userId}',
             method: 'DELETE'
           }, options),
           params: params,
@@ -654,7 +655,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/students',
             method: 'GET'
           }, options),
           params: params,
@@ -693,7 +694,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork',
             method: 'POST'
           }, options),
           params: params,
@@ -729,7 +730,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{id}',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{id}',
             method: 'GET'
           }, options),
           params: params,
@@ -768,7 +769,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork',
             method: 'GET'
           }, options),
           params: params,
@@ -807,7 +808,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
+              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
               method: 'GET'
             }, options),
             params: params,
@@ -846,7 +847,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
+              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
               method: 'PATCH'
             }, options),
             params: params,
@@ -887,7 +888,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions',
+              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions',
               method: 'GET'
             }, options),
             params: params,
@@ -925,7 +926,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn',
+              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn',
               method: 'POST'
             }, options),
             params: params,
@@ -963,7 +964,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim',
+              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim',
               method: 'POST'
             }, options),
             params: params,
@@ -1001,7 +1002,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return',
+              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return',
               method: 'POST'
             }, options),
             params: params,
@@ -1039,7 +1040,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments',
+              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments',
               method: 'POST'
             }, options),
             params: params,
@@ -1079,7 +1080,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://classroom.googleapis.com/v1/userProfiles/{userId}',
+          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{userId}',
           method: 'GET'
         }, options),
         params: params,
@@ -1096,13 +1097,13 @@ function Classroom(options) { // eslint-disable-line
       /**
        * classroom.userProfiles.guardianInvitations.list
        *
-       * @desc Returns a list of guardian invitations that the requesting user is permitted to view, filtered by the parameters provided. This method returns the following error codes: * `PERMISSION_DENIED` if a `student_id` is specified, and the requesting user is not permitted to view guardian invitations for that student, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). May also be returned if an invalid `page_token` or `state` is provided. * `NOT_FOUND` if a `student_id` is specified, and its format can be recognized, but Classroom has no record of that student.
+       * @desc Returns a list of guardian invitations that the requesting user is permitted to view, filtered by the parameters provided. This method returns the following error codes: * `PERMISSION_DENIED` if a `student_id` is specified, and the requesting user is not permitted to view guardian invitations for that student, if `"-"` is specified as the `student_id` and the user is not a domain administrator, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). May also be returned if an invalid `page_token` or `state` is provided. * `NOT_FOUND` if a `student_id` is specified, and its format can be recognized, but Classroom has no record of that student.
        *
        * @alias classroom.userProfiles.guardianInvitations.list
        * @memberOf! classroom(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.studentId The ID of the student whose guardian invitations are to be returned. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {string} params.studentId The ID of the student whose guardian invitations are to be returned. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for all students that the requesting user is permitted to view guardian invitations.
        * @param {string=} params.invitedEmailAddress If specified, only results with the specified `invited_email_address` will be returned.
        * @param {string=} params.states If specified, only results with the specified `state` values will be returned. Otherwise, results with a `state` of `PENDING` will be returned.
        * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
@@ -1120,7 +1121,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
             method: 'GET'
           }, options),
           params: params,
@@ -1156,7 +1157,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
             method: 'GET'
           }, options),
           params: params,
@@ -1192,7 +1193,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
             method: 'POST'
           }, options),
           params: params,
@@ -1230,7 +1231,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
             method: 'PATCH'
           }, options),
           params: params,
@@ -1248,13 +1249,13 @@ function Classroom(options) { // eslint-disable-line
       /**
        * classroom.userProfiles.guardians.list
        *
-       * @desc Returns a list of guardians that the requesting user is permitted to view, restricted to those that match the request. This method returns the following error codes: * `PERMISSION_DENIED` if a `student_id` is specified, and the requesting user is not permitted to view guardian information for that student, if guardians are not enabled for the domain in question, if the `invited_email_address` filter is set by a user who is not a domain administrator, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). May also be returned if an invalid `page_token` is provided. * `NOT_FOUND` if a `student_id` is specified, and its format can be recognized, but Classroom has no record of that student.
+       * @desc Returns a list of guardians that the requesting user is permitted to view, restricted to those that match the request. To list guardians for any student that the requesting user may view guardians for, use the literal character `-` for the student ID. This method returns the following error codes: * `PERMISSION_DENIED` if a `student_id` is specified, and the requesting user is not permitted to view guardian information for that student, if `"-"` is specified as the `student_id` and the user is not a domain administrator, if guardians are not enabled for the domain in question, if the `invited_email_address` filter is set by a user who is not a domain administrator, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). May also be returned if an invalid `page_token` is provided. * `NOT_FOUND` if a `student_id` is specified, and its format can be recognized, but Classroom has no record of that student.
        *
        * @alias classroom.userProfiles.guardians.list
        * @memberOf! classroom(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.studentId Filter results by the student who the guardian is linked to. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
+       * @param {string} params.studentId Filter results by the student who the guardian is linked to. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for all students that the requesting user has access to view.
        * @param {string=} params.invitedEmailAddress Filter results by the email address that the original invitation was sent to, resulting in this guardian link. This filter can only be used by domain administrators.
        * @param {string=} params.pageToken nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
        * @param {integer=} params.pageSize Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
@@ -1271,7 +1272,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardians',
             method: 'GET'
           }, options),
           params: params,
@@ -1307,7 +1308,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
             method: 'GET'
           }, options),
           params: params,
@@ -1343,7 +1344,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
+            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
             method: 'DELETE'
           }, options),
           params: params,
@@ -1382,7 +1383,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://classroom.googleapis.com/v1/invitations',
+          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/invitations',
           method: 'POST'
         }, options),
         params: params,
@@ -1417,7 +1418,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://classroom.googleapis.com/v1/invitations/{id}',
+          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/invitations/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -1452,7 +1453,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://classroom.googleapis.com/v1/invitations/{id}',
+          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/invitations/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -1490,7 +1491,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://classroom.googleapis.com/v1/invitations',
+          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/invitations',
           method: 'GET'
         }, options),
         params: params,
@@ -1525,7 +1526,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://classroom.googleapis.com/v1/invitations/{id}:accept',
+          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/invitations/{id}:accept',
           method: 'POST'
         }, options),
         params: params,
@@ -1560,6 +1561,7 @@ function Classroom(options) { // eslint-disable-line
  * @property {string} courseGroupEmail The email address of a Google group containing all members of the course. This group does not accept email and can only be used for permissions. Read-only.
  * @property {classroom(v1).DriveFolder} teacherFolder Information about a Drive Folder that is shared with all teachers of the course. This field will only be set for teachers of the course and domain administrators. Read-only.
  * @property {classroom(v1).CourseMaterialSet[]} courseMaterialSets Sets of materials that appear on the &quot;about&quot; page of this course. Read-only.
+ * @property {boolean} guardiansEnabled Whether or not guardian notifications are enabled for this course. Read-only.
  */
 /**
  * @typedef DriveFolder

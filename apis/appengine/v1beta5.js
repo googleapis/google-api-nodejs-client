@@ -113,6 +113,43 @@ function Appengine(options) { // eslint-disable-line
       return createAPIRequest(parameters, callback);
     },
 
+    /**
+     * appengine.apps.patch
+     *
+     * @desc Updates application parameters.
+     *
+     * @alias appengine.apps.patch
+     * @memberOf! appengine(v1beta5)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.appsId Part of `name`. Name of the application to update. Example: `apps/myapp`.
+     * @param {string=} params.mask Standard field mask for the set of fields to be updated.
+     * @param {appengine(v1beta5).Application} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://appengine.googleapis.com/v1beta5/apps/{appsId}',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['appsId'],
+        pathParams: ['appsId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
     operations: {
 
       /**
@@ -1103,7 +1140,7 @@ function Appengine(options) { // eslint-disable-line
  * @memberOf! appengine(v1beta5)
  * @type object
  * @property {string} name Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
- * @property {string} locationId The cononical id for this location. For example: `&quot;us-east1&quot;`.
+ * @property {string} locationId The canonical id for this location. For example: `&quot;us-east1&quot;`.
  * @property {object} labels Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
  * @property {object} metadata Service-specific metadata. For example the available capacity at the given location.
  */

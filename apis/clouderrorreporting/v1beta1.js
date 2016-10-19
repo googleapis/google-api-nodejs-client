@@ -247,7 +247,7 @@ function Clouderrorreporting(options) { // eslint-disable-line
        * @param {string=} params.timeRange.period Restricts the query to the specified time range.
        * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as <code>projects/</code> plus the <a href="https://support.google.com/cloud/answer/6158840">Google Cloud Platform project ID</a>.  Example: <code>projects/my-project-123</code>.
        * @param {string=} params.order [Optional] The sort order in which the results are returned. Default is `COUNT_DESC`.
-       * @param {string=} params.groupId [Optional] List all <code>ErrorGroupStats</code> with these IDs. If not specified, all error group stats with a non-zero error count for the given selection criteria are returned.
+       * @param {string=} params.groupId [Optional] List all <code>ErrorGroupStats</code> with these IDs.
        * @param {string=} params.serviceFilter.service [Optional] The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
        * @param {string=} params.alignmentTime [Optional] Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
        * @param {string=} params.serviceFilter.version [Optional] The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
@@ -317,9 +317,9 @@ the whole group. Events in the group are usually sufficiently similar
 to each other such that showing an arbitrary representative provides
 insight into the characteristics of the group as a whole.
 * @property {integer} numAffectedServices The total number of services with a non-zero error count for the given
-selection criteria.
+filter criteria.
 * @property {string} affectedUsersCount Approximate number of affected users in the given group that
-match the selection criteria.
+match the filter criteria.
 Users are distinguished by data in the `ErrorContext` of the
 individual error events, such as their login name or their remote
 IP address in case of HTTP requests.
@@ -331,13 +331,15 @@ context that was provided in the error report. If more users are
 implicitly affected, such as due to a crash of the whole service,
 this is not reflected here.
 * @property {string} count Approximate total number of events in the given group that match
-the selection criteria.
-* @property {string} firstSeenTime Approximate first occurrence that was seen for this group and
-which matches the given selection criteria.
-* @property {string} lastSeenTime Approximate last occurrence that was seen for this group
-and which matches the given selection criteria.
-* @property {clouderrorreporting(v1beta1).ErrorGroup} group Group data that is independent of the selection criteria.
-* @property {clouderrorreporting(v1beta1).ServiceContext[]} affectedServices Service contexts with a non-zero error count for the given selection
+the filter criteria.
+* @property {string} firstSeenTime Approximate first occurrence that was ever seen for this group
+and which matches the given filter criteria, ignoring the
+time_range that was specified in the request.
+* @property {string} lastSeenTime Approximate last occurrence that was ever seen for this group and
+which matches the given filter criteria, ignoring the time_range
+that was specified in the request.
+* @property {clouderrorreporting(v1beta1).ErrorGroup} group Group data that is independent of the filter criteria.
+* @property {clouderrorreporting(v1beta1).ServiceContext[]} affectedServices Service contexts with a non-zero error count for the given filter
 criteria. This list can be truncated if multiple services are affected.
 Refer to `num_affected_services` for the total count.
 * @property {clouderrorreporting(v1beta1).TimedCount[]} timedCounts Approximate number of occurrences over time.

@@ -525,6 +525,42 @@ function Adexchangebuyer(options) { // eslint-disable-line
     },
 
     /**
+     * adexchangebuyer.creatives.listDeals
+     *
+     * @desc Lists the external deal ids associated with the creative.
+     *
+     * @alias adexchangebuyer.creatives.listDeals
+     * @memberOf! adexchangebuyer(v1.4)
+     *
+     * @param {object} params Parameters for request
+     * @param {integer} params.accountId The id for the account that will serve this creative.
+     * @param {string} params.buyerCreativeId The buyer-specific id for this creative.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listDeals: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/adexchangebuyer/v1.4/creatives/{accountId}/{buyerCreativeId}/listDeals',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['accountId', 'buyerCreativeId'],
+        pathParams: ['accountId', 'buyerCreativeId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * adexchangebuyer.creatives.removeDeal
      *
      * @desc Remove a deal id associated with the creative.
@@ -1547,7 +1583,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string[]} impressionTrackingUrl The set of urls to be called to record an impression.
  * @property {string} kind Resource type.
  * @property {string[]} languages Detected languages for this creative. Read-only. This field should not be set in requests.
- * @property {object} nativeAd If nativeAd is set, HTMLSnippet and videoURL should not be set.
+ * @property {object} nativeAd If nativeAd is set, HTMLSnippet and the videoURL outside of nativeAd should not be set. (The videoURL inside nativeAd can be set.)
  * @property {string} openAuctionStatus Top-level open auction status. Read-only. This field should not be set in requests. If disapproved, an entry for auctionType=OPEN_AUCTION (or ALL) in servingRestrictions will also exist. Note that this may be nuanced with other contextual restrictions, in which case it may be preferable to read from ServingRestrictions directly.
  * @property {integer[]} productCategories Detected product categories, if any. Read-only. This field should not be set in requests.
  * @property {integer[]} restrictedCategories All restricted categories for the ads that may be shown from this snippet.
@@ -1555,8 +1591,15 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {object[]} servingRestrictions The granular status of this ad in specific contexts. A context here relates to where something ultimately serves (for example, a physical location, a platform, an HTTPS vs HTTP request, or the type of auction). Read-only. This field should not be set in requests.
  * @property {integer[]} vendorType All vendor types for the ads that may be shown from this snippet.
  * @property {integer} version The version for this creative. Read-only. This field should not be set in requests.
- * @property {string} videoURL The url to fetch a video ad. If set, HTMLSnippet should not be set.
+ * @property {string} videoURL The URL to fetch a video ad. If set, HTMLSnippet and the nativeAd should not be set. Note, this is diffrent from resource.native_ad.video_url above.
  * @property {integer} width Ad width.
+ */
+/**
+ * @typedef CreativeDealIds
+ * @memberOf! adexchangebuyer(v1.4)
+ * @type object
+ * @property {object[]} dealStatuses A list of external deal ids and ARC approval status.
+ * @property {string} kind Resource type.
  */
 /**
  * @typedef CreativesList
@@ -1743,6 +1786,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} flightEndTimeMs Proposed flight end time of the deal (ms since epoch) This will generally be stored in a granularity of a second. (updatable)
  * @property {string} flightStartTimeMs Proposed flight start time of the deal (ms since epoch) This will generally be stored in a granularity of a second. (updatable)
  * @property {string} inventoryDescription Description for the deal terms. (updatable)
+ * @property {boolean} isRfpTemplate Indicates whether the current deal is a RFP template. RFP template is created by buyer and not based on seller created products.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;adexchangebuyer#marketplaceDeal&quot;.
  * @property {string} lastUpdateTimeMs The time (ms since epoch) when the deal was last updated. (readonly)
  * @property {string} name The name of the deal. (updatable)
@@ -1915,6 +1959,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).Buyer} buyer Reference to the buyer on the proposal. (readonly, except on create)
  * @property {adexchangebuyer(v1.4).ContactInformation[]} buyerContacts Optional contact information of the buyer. (seller-readonly)
  * @property {adexchangebuyer(v1.4).PrivateData} buyerPrivateData Private data for buyer. (hidden from seller).
+ * @property {string[]} dbmAdvertiserIds IDs of DBM advertisers permission to this proposal.
  * @property {boolean} hasBuyerSignedOff When an proposal is in an accepted state, indicates whether the buyer has signed off. Once both sides have signed off on a deal, the proposal can be finalized by the seller. (seller-readonly)
  * @property {boolean} hasSellerSignedOff When an proposal is in an accepted state, indicates whether the buyer has signed off Once both sides have signed off on a deal, the proposal can be finalized by the seller. (buyer-readonly)
  * @property {string} inventorySource What exchange will provide this inventory (readonly, except on create).

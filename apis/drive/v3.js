@@ -1275,6 +1275,8 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
+     * @param {integer=} params.pageSize The maximum number of revisions to return per page.
+     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1563,6 +1565,7 @@ This field is only applicable to files with binary content in Drive.
  * @memberOf! drive(v3)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#revisionList&quot;.
+ * @property {string} nextPageToken The page token for the next page of revisions. This will be absent if the end of the revisions list has been reached.
  * @property {drive(v3).Revision[]} revisions The full list of revisions.
  */
 /**

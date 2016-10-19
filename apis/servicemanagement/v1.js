@@ -893,6 +893,9 @@ should be listed here by name. Example:
 * @property {servicemanagement(v1).Usage} usage Configuration controlling usage of this service.
 * @property {servicemanagement(v1).Control} control Configuration for the service control plane.
 * @property {string} title The product title associated with this service.
+* @property {servicemanagement(v1).Analytics} analytics WARNING: DO NOT USE UNTIL THIS MESSAGE IS REMOVED.
+
+Analytics configuration.
 * @property {servicemanagement(v1).Http} http HTTP configuration.
 * @property {servicemanagement(v1).Type[]} systemTypes A list of all proto message types included in this API service.
 It serves similar purpose as [google.api.Service.types], except that
@@ -1106,10 +1109,12 @@ and google.api.Service
  * @typedef LoggingDestination
  * @memberOf! servicemanagement(v1)
  * @type object
-* @property {string} monitoredResource The monitored resource type. The type must be defined in
+* @property {string} monitoredResource The monitored resource type. The type must be defined in the
 Service.monitored_resources section.
 * @property {string[]} logs Names of the logs to be sent to this destination. Each name must
-be defined in the Service.logs section.
+be defined in the Service.logs section. If the log name is
+not a domain scoped name, it will be automatically prefixed with
+the service name followed by &quot;/&quot;.
 */
 /**
  * @typedef Authentication
@@ -1207,7 +1212,7 @@ generate one instead.
  * @typedef Operation
  * @memberOf! servicemanagement(v1)
  * @type object
-* @property {servicemanagement(v1).Status} error The error result of the operation in case of failure.
+* @property {servicemanagement(v1).Status} error The error result of the operation in case of failure or cancellation.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
@@ -1470,6 +1475,15 @@ Refer to selector for syntax details.
  * @property {string} name The option&#39;s name. For example, `&quot;java_package&quot;`.
  */
 /**
+ * @typedef Analytics
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {servicemanagement(v1).AnalyticsDestination[]} producerDestinations Analytics configurations for sending metrics to the analytics backend.
+There can be multiple producer destinations, each one must have a
+different monitored resource type. A metric can be used in at most
+one producer destination.
+*/
+/**
  * @typedef HttpRule
  * @memberOf! servicemanagement(v1)
  * @type object
@@ -1533,6 +1547,30 @@ allowed.
  * @property {boolean} enabled Whether download is enabled.
  */
 /**
+ * @typedef AnalyticsDestination
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} monitoredResource The monitored resource type. The type must be defined in
+Service.monitored_resources section.
+* @property {string[]} metrics Names of the metrics to report to this analytics destination.
+Each name must be defined in Service.metrics section. Metrics
+with value type BOOL and STRING must be of GUAGE kind, metrics with
+value type INT64, DOUBLE and MONEY must be of DELTA kind.
+*/
+/**
+ * @typedef Logging
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {servicemanagement(v1).LoggingDestination[]} producerDestinations Logging configurations for sending logs to the producer project.
+There can be multiple producer destinations, each one must have a
+different monitored resource type. A log can be used in at most
+one producer destination.
+* @property {servicemanagement(v1).LoggingDestination[]} consumerDestinations Logging configurations for sending logs to the consumer project.
+There can be multiple consumer destinations, each one must have a
+different monitored resource type. A log can be used in at most
+one consumer destination.
+*/
+/**
  * @typedef SubmitConfigSourceRequest
  * @memberOf! servicemanagement(v1)
  * @type object
@@ -1557,19 +1595,6 @@ project.
 * @property {string} selector Selects the methods to which this rule applies.
 
 Refer to selector for syntax details.
-*/
-/**
- * @typedef Logging
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {servicemanagement(v1).LoggingDestination[]} producerDestinations Logging configurations for sending logs to the producer project.
-There can be multiple producer destinations, each one must have a
-different monitored resource type. A log can be used in at most
-one producer destination.
-* @property {servicemanagement(v1).LoggingDestination[]} consumerDestinations Logging configurations for sending logs to the consumer project.
-There can be multiple consumer destinations, each one must have a
-different monitored resource type. A log can be used in at most
-one consumer destination.
 */
 /**
  * @typedef SystemParameter
@@ -1696,6 +1721,7 @@ types. Example: `&quot;type.googleapis.com/google.protobuf.Timestamp&quot;`.
 
 * `user:{emailid}`: An email address that represents a specific Google
    account. For example, `alice@gmail.com` or `joe@example.com`.
+
 
 * `serviceAccount:{emailid}`: An email address that represents a service
    account. For example, `my-other-app@appspot.gserviceaccount.com`.

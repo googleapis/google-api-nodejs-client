@@ -1005,6 +1005,7 @@ function Sqladmin(options) { // eslint-disable-line
  * @typedef DatabaseInstance
  * @memberOf! sqladmin(v1beta3)
  * @type object
+* @property {string} connectionName Connection name of the Cloud SQL instance used in connection strings.
 * @property {string} currentDiskSize The current disk usage of the instance in bytes.
 * @property {string} databaseVersion The database engine type and version. Can be MYSQL_5_5 or MYSQL_5_6. Defaults to MYSQL_5_5. The databaseVersion cannot be changed after instance creation.
 * @property {string} etag HTTP 1.1 Entity tag for the resource.
