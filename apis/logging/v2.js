@@ -40,6 +40,681 @@ function Logging(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
 
+  self.folders = {
+
+    logs: {
+
+      /**
+       * logging.folders.logs.delete
+       *
+       * @desc Deletes a log and all its log entries. The log will reappear if it receives new entries.
+       *
+       * @alias logging.folders.logs.delete
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.logName Required. The resource name of the log to delete.  Example: `"projects/my-project/logs/syslog"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{logName}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['logName'],
+          pathParams: ['logName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    sinks: {
+
+      /**
+       * logging.folders.sinks.update
+       *
+       * @desc Updates or creates a sink.
+       *
+       * @alias logging.folders.sinks.update
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The resource name of the sink to update, including the parent resource and the sink identifier.  If the sink does not exist, this method creates the sink.  Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Whether the sink will have a dedicated service account returned in the sink's writer_identity. Set this field to be true to export logs from one project to a different project. This field is ignored for non-project sinks (e.g. organization sinks) because those sinks are required to have dedicated service accounts.
+       * @param {logging(v2).LogSink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'PUT'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.folders.sinks.get
+       *
+       * @desc Gets a sink.
+       *
+       * @alias logging.folders.sinks.get
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The resource name of the sink to return. Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.folders.sinks.create
+       *
+       * @desc Creates a sink.
+       *
+       * @alias logging.folders.sinks.create
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Whether the sink will have a dedicated service account returned in the sink's writer_identity. Set this field to be true to export logs from one project to a different project. This field is ignored for non-project sinks (e.g. organization sinks) because those sinks are required to have dedicated service accounts.
+       * @param {string} params.parent Required. The resource in which to create the sink. Example: `"projects/my-project-id"`. The new sink must be provided in the request.
+       * @param {logging(v2).LogSink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{parent}/sinks',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.folders.sinks.list
+       *
+       * @desc Lists sinks.
+       *
+       * @alias logging.folders.sinks.list
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored.  The presence of `nextPageToken` in the response indicates that more results might be available.
+       * @param {string} params.parent Required. The resource name where this sink was created. Example: `"projects/my-logging-project"`.
+       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method.  `pageToken` must be the value of `nextPageToken` from the previous response.  The values of other method parameters should be identical to those in the previous call.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{parent}/sinks',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.folders.sinks.delete
+       *
+       * @desc Deletes a sink.
+       *
+       * @alias logging.folders.sinks.delete
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The resource name of the sink to delete, including the parent resource and the sink identifier.  Example: `"projects/my-project-id/sinks/my-sink-id"`.  It is an error if the sink does not exist.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
+  };
+
+  self.billingAccounts = {
+
+    logs: {
+
+      /**
+       * logging.billingAccounts.logs.delete
+       *
+       * @desc Deletes a log and all its log entries. The log will reappear if it receives new entries.
+       *
+       * @alias logging.billingAccounts.logs.delete
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.logName Required. The resource name of the log to delete.  Example: `"projects/my-project/logs/syslog"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{logName}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['logName'],
+          pathParams: ['logName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    sinks: {
+
+      /**
+       * logging.billingAccounts.sinks.update
+       *
+       * @desc Updates or creates a sink.
+       *
+       * @alias logging.billingAccounts.sinks.update
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The resource name of the sink to update, including the parent resource and the sink identifier.  If the sink does not exist, this method creates the sink.  Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Whether the sink will have a dedicated service account returned in the sink's writer_identity. Set this field to be true to export logs from one project to a different project. This field is ignored for non-project sinks (e.g. organization sinks) because those sinks are required to have dedicated service accounts.
+       * @param {logging(v2).LogSink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'PUT'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.billingAccounts.sinks.get
+       *
+       * @desc Gets a sink.
+       *
+       * @alias logging.billingAccounts.sinks.get
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The resource name of the sink to return. Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.billingAccounts.sinks.create
+       *
+       * @desc Creates a sink.
+       *
+       * @alias logging.billingAccounts.sinks.create
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Whether the sink will have a dedicated service account returned in the sink's writer_identity. Set this field to be true to export logs from one project to a different project. This field is ignored for non-project sinks (e.g. organization sinks) because those sinks are required to have dedicated service accounts.
+       * @param {string} params.parent Required. The resource in which to create the sink. Example: `"projects/my-project-id"`. The new sink must be provided in the request.
+       * @param {logging(v2).LogSink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{parent}/sinks',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.billingAccounts.sinks.list
+       *
+       * @desc Lists sinks.
+       *
+       * @alias logging.billingAccounts.sinks.list
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored.  The presence of `nextPageToken` in the response indicates that more results might be available.
+       * @param {string} params.parent Required. The resource name where this sink was created. Example: `"projects/my-logging-project"`.
+       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method.  `pageToken` must be the value of `nextPageToken` from the previous response.  The values of other method parameters should be identical to those in the previous call.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{parent}/sinks',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.billingAccounts.sinks.delete
+       *
+       * @desc Deletes a sink.
+       *
+       * @alias logging.billingAccounts.sinks.delete
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The resource name of the sink to delete, including the parent resource and the sink identifier.  Example: `"projects/my-project-id/sinks/my-sink-id"`.  It is an error if the sink does not exist.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
+  };
+
+  self.organizations = {
+
+    logs: {
+
+      /**
+       * logging.organizations.logs.delete
+       *
+       * @desc Deletes a log and all its log entries. The log will reappear if it receives new entries.
+       *
+       * @alias logging.organizations.logs.delete
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.logName Required. The resource name of the log to delete.  Example: `"projects/my-project/logs/syslog"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{logName}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['logName'],
+          pathParams: ['logName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    sinks: {
+
+      /**
+       * logging.organizations.sinks.update
+       *
+       * @desc Updates or creates a sink.
+       *
+       * @alias logging.organizations.sinks.update
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The resource name of the sink to update, including the parent resource and the sink identifier.  If the sink does not exist, this method creates the sink.  Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Whether the sink will have a dedicated service account returned in the sink's writer_identity. Set this field to be true to export logs from one project to a different project. This field is ignored for non-project sinks (e.g. organization sinks) because those sinks are required to have dedicated service accounts.
+       * @param {logging(v2).LogSink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'PUT'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.organizations.sinks.get
+       *
+       * @desc Gets a sink.
+       *
+       * @alias logging.organizations.sinks.get
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The resource name of the sink to return. Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.organizations.sinks.create
+       *
+       * @desc Creates a sink.
+       *
+       * @alias logging.organizations.sinks.create
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Whether the sink will have a dedicated service account returned in the sink's writer_identity. Set this field to be true to export logs from one project to a different project. This field is ignored for non-project sinks (e.g. organization sinks) because those sinks are required to have dedicated service accounts.
+       * @param {string} params.parent Required. The resource in which to create the sink. Example: `"projects/my-project-id"`. The new sink must be provided in the request.
+       * @param {logging(v2).LogSink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{parent}/sinks',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.organizations.sinks.list
+       *
+       * @desc Lists sinks.
+       *
+       * @alias logging.organizations.sinks.list
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored.  The presence of `nextPageToken` in the response indicates that more results might be available.
+       * @param {string} params.parent Required. The resource name where this sink was created. Example: `"projects/my-logging-project"`.
+       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method.  `pageToken` must be the value of `nextPageToken` from the previous response.  The values of other method parameters should be identical to those in the previous call.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{parent}/sinks',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.organizations.sinks.delete
+       *
+       * @desc Deletes a sink.
+       *
+       * @alias logging.organizations.sinks.delete
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The resource name of the sink to delete, including the parent resource and the sink identifier.  Example: `"projects/my-project-id/sinks/my-sink-id"`.  It is an error if the sink does not exist.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
+  };
+
   self.projects = {
 
     metrics: {
@@ -274,6 +949,7 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.sinkName Required. The resource name of the sink to update, including the parent resource and the sink identifier.  If the sink does not exist, this method creates the sink.  Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Whether the sink will have a dedicated service account returned in the sink's writer_identity. Set this field to be true to export logs from one project to a different project. This field is ignored for non-project sinks (e.g. organization sinks) because those sinks are required to have dedicated service accounts.
        * @param {logging(v2).LogSink} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -344,6 +1020,7 @@ function Logging(options) { // eslint-disable-line
        * @memberOf! logging(v2)
        *
        * @param {object} params Parameters for request
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Whether the sink will have a dedicated service account returned in the sink's writer_identity. Set this field to be true to export logs from one project to a different project. This field is ignored for non-project sinks (e.g. organization sinks) because those sinks are required to have dedicated service accounts.
        * @param {string} params.parent Required. The resource in which to create the sink. Example: `"projects/my-project-id"`. The new sink must be provided in the request.
        * @param {logging(v2).LogSink} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -381,7 +1058,7 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored.  The presence of `nextPageToken` in the response indicates that more results might be available.
-       * @param {string} params.parent Required. The cloud resource containing the sinks. Example: `"projects/my-logging-project"`.
+       * @param {string} params.parent Required. The resource name where this sink was created. Example: `"projects/my-logging-project"`.
        * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method.  `pageToken` must be the value of `nextPageToken` from the previous response.  The values of other method parameters should be identical to those in the previous call.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -437,47 +1114,6 @@ function Logging(options) { // eslint-disable-line
           params: params,
           requiredParams: ['sinkName'],
           pathParams: ['sinkName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
-    }
-  };
-
-  self.organizations = {
-
-    logs: {
-
-      /**
-       * logging.organizations.logs.delete
-       *
-       * @desc Deletes a log and all its log entries. The log will reappear if it receives new entries.
-       *
-       * @alias logging.organizations.logs.delete
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.logName Required. The resource name of the log to delete.  Example: `"projects/my-project/logs/syslog"`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{logName}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['logName'],
-          pathParams: ['logName'],
           context: self
         };
 
@@ -599,47 +1235,6 @@ function Logging(options) { // eslint-disable-line
     }
 
   };
-
-  self.billingAccounts = {
-
-    logs: {
-
-      /**
-       * logging.billingAccounts.logs.delete
-       *
-       * @desc Deletes a log and all its log entries. The log will reappear if it receives new entries.
-       *
-       * @alias logging.billingAccounts.logs.delete
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.logName Required. The resource name of the log to delete.  Example: `"projects/my-project/logs/syslog"`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{logName}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['logName'],
-          pathParams: ['logName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
-    }
-  };
 }
 
 /**
@@ -678,16 +1273,13 @@ meaningful. The format can vary by language. For example:
  * @typedef LogSink
  * @memberOf! logging(v2)
  * @type object
-* @property {string} writerIdentity Output only. The iam identity to which the destination needs to grant write
-access.  This may be a service account or a group.
-Examples (Do not assume these specific values):
-   &quot;serviceAccount:cloud-logs@system.gserviceaccount.com&quot;
-   &quot;group:cloud-logs@google.com&quot;
+* @property {string} destination Required. The export destination. See
+[Exporting Logs With Sinks](/logging/docs/api/tasks/exporting-logs).
+Examples:
 
-  For GCS destinations, the role &quot;roles/owner&quot; is required on the bucket
-  For Cloud Pubsub destinations, the role &quot;roles/pubsub.publisher&quot; is
-    required on the topic
-  For BigQuery, the role &quot;roles/editor&quot; is required on the dataset
+    &quot;storage.googleapis.com/my-gcs-bucket&quot;
+    &quot;bigquery.googleapis.com/projects/my-project-id/datasets/my-dataset&quot;
+    &quot;pubsub.googleapis.com/projects/my-project/topics/my-topic&quot;
 * @property {string} filter Optional. An [advanced logs filter](/logging/docs/view/advanced_filters).
 Only log entries matching the filter are exported. The filter
 must be consistent with the log entry format specified by the
@@ -696,22 +1288,27 @@ log entry that was originally written to Stackdriver Logging.
 Example filter (V2 format):
 
     logName=projects/my-projectid/logs/syslog AND severity&gt;=ERROR
-* @property {string} destination Required. The export destination. See
-[Exporting Logs With Sinks](/logging/docs/api/tasks/exporting-logs).
-Examples:
-
-    &quot;storage.googleapis.com/my-gcs-bucket&quot;
-    &quot;bigquery.googleapis.com/projects/my-project-id/datasets/my-dataset&quot;
-    &quot;pubsub.googleapis.com/projects/my-project/topics/my-topic&quot;
-* @property {string} outputVersionFormat Optional. The log entry version to use for this sink&#39;s exported log
-entries.  This version does not have to correspond to the version of the
-log entry that was written to Stackdriver Logging. If omitted, the
-v2 format is used.
+The maximum length of the filter is 20000 characters.
+* @property {string} endTime Optional. Time at which this sink will stop exporting log entries.  If this
+value is present, then log entries are exported only if `entry.timestamp` &lt;
+`end_time`.
 * @property {string} name Required. The client-assigned sink identifier, unique within the
 project. Example: `&quot;my-syslog-errors-to-pubsub&quot;`.  Sink identifiers are
 limited to 1000 characters and can include only the following characters:
 `A-Z`, `a-z`, `0-9`, and the special characters `_-.`.  The maximum length
 of the name is 100 characters.
+* @property {string} startTime Optional. The time at which this sink will begin exporting log entries.  If
+this value is present, then log entries are exported only if `start_time`
+&lt;=`entry.timestamp`.
+* @property {string} outputVersionFormat Optional. The log entry version to use for this sink&#39;s exported log
+entries.  This version does not have to correspond to the version of the
+log entry that was written to Stackdriver Logging. If omitted, the
+v2 format is used.
+* @property {string} writerIdentity Output only. An IAM identity&amp;mdash;a service account or group&amp;mdash;that
+will write exported log entries to the destination on behalf of Stackdriver
+Logging. You must grant this identity write-access to the destination.
+Consult the destination service&#39;s documentation to determine the exact role
+that must be granted.
 */
 /**
  * @typedef LogMetric
@@ -720,6 +1317,7 @@ of the name is 100 characters.
 * @property {string} description Optional. A description of this metric, which is used in documentation.
 * @property {string} filter Required. An [advanced logs filter](/logging/docs/view/advanced_filters).
 Example: `&quot;resource.type=gae_app AND severity&gt;=ERROR&quot;`.
+The maximum length of the filter is 20000 characters.
 * @property {string} name Required. The client-assigned metric identifier. Example:
 `&quot;severe_errors&quot;`.  Metric identifiers are limited to 100
 characters and can include only the following characters: `A-Z`,
@@ -944,9 +1542,9 @@ headers and the request body.
 * @property {string} requestId Globally unique identifier for a request, which is based on the request
 start time.  Request IDs for requests which started later will compare
 greater as strings than those for requests which started earlier.
-* @property {boolean} first Whether this is the first RequestLog entry for this request.  If an active
-request has several RequestLog entries written to Cloud Logging, this field
-will be set for one of them.
+* @property {boolean} first Whether this is the first `RequestLog` entry for this request.  If an
+active request has several `RequestLog` entries written to Stackdriver
+Logging, then this field will be set for one of them.
 * @property {string} method Request method. Example: `&quot;GET&quot;`, `&quot;HEAD&quot;`, `&quot;PUT&quot;`, `&quot;POST&quot;`, `&quot;DELETE&quot;`.
 * @property {string} versionId Version of the application that handled this request.
 * @property {integer} status HTTP response status code. Example: 200, 404.
@@ -976,7 +1574,7 @@ distributed among multiple repositories.
 * @property {logging(v2).LogLine[]} line A list of log lines emitted by the application while serving this request.
 * @property {string} megaCycles Number of CPU megacycles used to process request.
 * @property {string} appId Application that handled this request.
-* @property {string} traceId Cloud Trace identifier for this request.
+* @property {string} traceId Stackdriver Trace identifier for this request.
 * @property {string} taskName Task name of the request, in the case of an offline request.
 * @property {number} cost An indication of the relative cost of serving this request.
 * @property {string} instanceId An identifier for the instance that handled the request.
@@ -1003,12 +1601,13 @@ the `#` character, is not included.
 * @property {string} filter Optional. A filter that chooses which log entries to return.  See [Advanced
 Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
 match the filter are returned.  An empty filter matches all log entries.
+The maximum length of the filter is 20000 characters.
 * @property {string[]} projectIds Deprecated. One or more project identifiers or project numbers from which
 to retrieve log entries.  Examples: `&quot;my-project-1A&quot;`, `&quot;1234567890&quot;`. If
 present, these project identifiers are converted to resource format and
 added to the list of resources in `resourceNames`. Callers should use
 `resourceNames` rather than this parameter.
-* @property {string[]} resourceNames Optional. One or more cloud resources from which to retrieve log entries.
+* @property {string[]} resourceNames Required. One or more cloud resources from which to retrieve log entries.
 Example: `&quot;projects/my-project-1A&quot;`, `&quot;projects/1234567890&quot;`.  Projects
 listed in `projectIds` are added to this list.
 * @property {integer} pageSize Optional. The maximum number of results to return from this request.

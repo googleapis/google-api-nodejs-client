@@ -3177,7 +3177,7 @@ function Storage(options) { // eslint-disable-line
  * @property {object} owner The owner of the bucket. This is always the project team&#39;s owner group.
  * @property {string} projectNumber The project number of the project the bucket belongs to.
  * @property {string} selfLink The URI of this bucket.
- * @property {string} storageClass The bucket&#39;s storage class. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include STANDARD, NEARLINE and DURABLE_REDUCED_AVAILABILITY. Defaults to STANDARD. For more information, see storage classes.
+ * @property {string} storageClass The bucket&#39;s default storage class, used whenever no storageClass is specified for a newly-created object. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, and DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the bucket is created, it will default to STANDARD. For more information, see storage classes.
  * @property {string} timeCreated The creation time of the bucket in RFC 3339 format.
  * @property {string} updated The modification time of the bucket in RFC 3339 format.
  * @property {object} versioning The bucket&#39;s versioning configuration.

@@ -2344,7 +2344,7 @@ function Gmail(options) { // eslint-disable-line
  * @memberOf! gmail(v1)
  * @type object
  * @property {string} attachmentId When present, contains the ID of an external attachment that can be retrieved in a separate messages.attachments.get request. When not present, the entire content of the message part body is contained in the data field.
- * @property {string} data The body data of a MIME message part. May be empty for MIME container types that have no message body or when the body data is sent as a separate attachment. An attachment ID is present if the body data is contained in a separate attachment.
+ * @property {string} data The body data of a MIME message part as a base64url encoded string. May be empty for MIME container types that have no message body or when the body data is sent as a separate attachment. An attachment ID is present if the body data is contained in a separate attachment.
  * @property {integer} size Total number of bytes in the body of the message part.
  */
 /**
@@ -2395,7 +2395,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} sendAsEmail The email address that appears in the &quot;From:&quot; header for mail sent using this alias. This is read-only for all operations except create.
  * @property {string} signature An optional HTML signature that is included in messages composed with this alias in the Gmail web UI.
  * @property {gmail(v1).SmtpMsa} smtpMsa An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail&#39;s servers to the destination SMTP service. This setting only applies to custom &quot;from&quot; aliases.
- * @property {boolean} treatAsAlias Whether Gmail should treat this address as an alias for the user&#39;s primary email address. See  for more details. This setting only applies to custom &quot;from&quot; aliases.
+ * @property {boolean} treatAsAlias Whether Gmail should  treat this address as an alias for the user&#39;s primary email address. This setting only applies to custom &quot;from&quot; aliases.
  * @property {string} verificationStatus Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom &quot;from&quot; aliases.
  */
 /**

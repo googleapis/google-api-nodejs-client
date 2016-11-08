@@ -2926,6 +2926,7 @@ function Content(options) { // eslint-disable-line
  * @property {content(v2).Installment} installment Number and amount of installments to pay for an item. Brazil only.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#inventory&quot;.
  * @property {content(v2).LoyaltyPoints} loyaltyPoints Loyalty points that users receive after purchasing the item. Japan only.
+ * @property {content(v2).InventoryPickup} pickup Store pickup information. Only supported for local inventory. Not setting pickup means &quot;don&#39;t update&quot; while setting it to the empty value ({} in JSON) means &quot;delete&quot;. Otherwise, pickupMethod and pickupSla must be set together, unless pickupMethod is &quot;not supported&quot;.
  * @property {content(v2).Price} price The price of the product.
  * @property {integer} quantity The quantity of the product. Must be equal to or greater than zero. Supported only for local products.
  * @property {content(v2).Price} salePrice The sale price of the product. Mandatory if sale_price_effective_date is defined.
@@ -2964,12 +2965,20 @@ function Content(options) { // eslint-disable-line
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#inventoryCustomBatchResponseEntry&quot;.
  */
 /**
+ * @typedef InventoryPickup
+ * @memberOf! content(v2)
+ * @type object
+ * @property {string} pickupMethod Whether store pickup is available for this offer and whether the pickup option should be shown as buy, reserve, or not supported. Only supported for local inventory. Unless the value is &quot;not supported&quot;, must be submitted together with pickupSla.
+ * @property {string} pickupSla The expected date that an order will be ready for pickup, relative to when the order is placed. Only supported for local inventory. Must be submitted together with pickupMethod.
+ */
+/**
  * @typedef InventorySetRequest
  * @memberOf! content(v2)
  * @type object
  * @property {string} availability The availability of the product.
  * @property {content(v2).Installment} installment Number and amount of installments to pay for an item. Brazil only.
  * @property {content(v2).LoyaltyPoints} loyaltyPoints Loyalty points that users receive after purchasing the item. Japan only.
+ * @property {content(v2).InventoryPickup} pickup Store pickup information. Only supported for local inventory. Not setting pickup means &quot;don&#39;t update&quot; while setting it to the empty value ({} in JSON) means &quot;delete&quot;. Otherwise, pickupMethod and pickupSla must be set together, unless pickupMethod is &quot;not supported&quot;.
  * @property {content(v2).Price} price The price of the product.
  * @property {integer} quantity The quantity of the product. Must be equal to or greater than zero. Supported only for local products.
  * @property {content(v2).Price} salePrice The sale price of the product. Mandatory if sale_price_effective_date is defined.

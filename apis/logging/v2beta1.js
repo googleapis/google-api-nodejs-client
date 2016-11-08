@@ -607,6 +607,7 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.sinkName Required. The resource name of the sink to update, including the parent resource and the sink identifier.  If the sink does not exist, this method creates the sink.  Example: `"projects/my-project-id/sinks/my-sink-id"`.
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Whether the sink will have a dedicated service account returned in the sink's writer_identity. Set this field to be true to export logs from one project to a different project. This field is ignored for non-project sinks (e.g. organization sinks) because those sinks are required to have dedicated service accounts.
        * @param {logging(v2beta1).LogSink} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -770,6 +771,7 @@ function Logging(options) { // eslint-disable-line
        * @memberOf! logging(v2beta1)
        *
        * @param {object} params Parameters for request
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Whether the sink will have a dedicated service account returned in the sink's writer_identity. Set this field to be true to export logs from one project to a different project. This field is ignored for non-project sinks (e.g. organization sinks) because those sinks are required to have dedicated service accounts.
        * @param {string} params.parent Required. The resource in which to create the sink. Example: `"projects/my-project-id"`. The new sink must be provided in the request.
        * @param {logging(v2beta1).LogSink} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -859,7 +861,7 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored.  The presence of `nextPageToken` in the response indicates that more results might be available.
-       * @param {string} params.parent Required. The cloud resource containing the sinks. Example: `"projects/my-logging-project"`.
+       * @param {string} params.parent Required. The resource name where this sink was created. Example: `"projects/my-logging-project"`.
        * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method.  `pageToken` must be the value of `nextPageToken` from the previous response.  The values of other method parameters should be identical to those in the previous call.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -1434,16 +1436,13 @@ meaningful. The format can vary by language. For example:
  * @typedef LogSink
  * @memberOf! logging(v2beta1)
  * @type object
-* @property {string} writerIdentity Output only. The iam identity to which the destination needs to grant write
-access.  This may be a service account or a group.
-Examples (Do not assume these specific values):
-   &quot;serviceAccount:cloud-logs@system.gserviceaccount.com&quot;
-   &quot;group:cloud-logs@google.com&quot;
+* @property {string} destination Required. The export destination. See
+[Exporting Logs With Sinks](/logging/docs/api/tasks/exporting-logs).
+Examples:
 
-  For GCS destinations, the role &quot;roles/owner&quot; is required on the bucket
-  For Cloud Pubsub destinations, the role &quot;roles/pubsub.publisher&quot; is
-    required on the topic
-  For BigQuery, the role &quot;roles/editor&quot; is required on the dataset
+    &quot;storage.googleapis.com/my-gcs-bucket&quot;
+    &quot;bigquery.googleapis.com/projects/my-project-id/datasets/my-dataset&quot;
+    &quot;pubsub.googleapis.com/projects/my-project/topics/my-topic&quot;
 * @property {string} filter Optional. An [advanced logs filter](/logging/docs/view/advanced_filters).
 Only log entries matching the filter are exported. The filter
 must be consistent with the log entry format specified by the
@@ -1452,22 +1451,26 @@ log entry that was originally written to Stackdriver Logging.
 Example filter (V2 format):
 
     logName=projects/my-projectid/logs/syslog AND severity&gt;=ERROR
-* @property {string} destination Required. The export destination. See
-[Exporting Logs With Sinks](/logging/docs/api/tasks/exporting-logs).
-Examples:
-
-    &quot;storage.googleapis.com/my-gcs-bucket&quot;
-    &quot;bigquery.googleapis.com/projects/my-project-id/datasets/my-dataset&quot;
-    &quot;pubsub.googleapis.com/projects/my-project/topics/my-topic&quot;
-* @property {string} outputVersionFormat Optional. The log entry version to use for this sink&#39;s exported log
-entries.  This version does not have to correspond to the version of the
-log entry that was written to Stackdriver Logging. If omitted, the
-v2 format is used.
+* @property {string} endTime Optional. Time at which this sink will stop exporting log entries.  If this
+value is present, then log entries are exported only if `entry.timestamp` &lt;
+`end_time`.
 * @property {string} name Required. The client-assigned sink identifier, unique within the
 project. Example: `&quot;my-syslog-errors-to-pubsub&quot;`.  Sink identifiers are
 limited to 1000 characters and can include only the following characters:
 `A-Z`, `a-z`, `0-9`, and the special characters `_-.`.  The maximum length
 of the name is 100 characters.
+* @property {string} startTime Optional. The time at which this sink will begin exporting log entries.  If
+this value is present, then log entries are exported only if `start_time`
+&lt;=`entry.timestamp`.
+* @property {string} outputVersionFormat Optional. The log entry version to use for this sink&#39;s exported log
+entries.  This version does not have to correspond to the version of the
+log entry that was written to Stackdriver Logging. If omitted, the
+v2 format is used.
+* @property {string} writerIdentity Output only. An IAM identity&amp;mdash;a service account or group&amp;mdash;that
+will write exported log entries to the destination on behalf of Stackdriver
+Logging. You must grant this identity write-access to the destination.
+Consult the destination service&#39;s documentation to determine the exact role
+that must be granted.
 */
 /**
  * @typedef LogMetric
@@ -1764,7 +1767,7 @@ to retrieve log entries.  Examples: `&quot;my-project-1A&quot;`, `&quot;12345678
 present, these project identifiers are converted to resource format and
 added to the list of resources in `resourceNames`. Callers should use
 `resourceNames` rather than this parameter.
-* @property {string[]} resourceNames Optional. One or more cloud resources from which to retrieve log entries.
+* @property {string[]} resourceNames Required. One or more cloud resources from which to retrieve log entries.
 Example: `&quot;projects/my-project-1A&quot;`, `&quot;projects/1234567890&quot;`.  Projects
 listed in `projectIds` are added to this list.
 * @property {integer} pageSize Optional. The maximum number of results to return from this request.

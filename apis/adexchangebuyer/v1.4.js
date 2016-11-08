@@ -1591,7 +1591,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {object[]} servingRestrictions The granular status of this ad in specific contexts. A context here relates to where something ultimately serves (for example, a physical location, a platform, an HTTPS vs HTTP request, or the type of auction). Read-only. This field should not be set in requests.
  * @property {integer[]} vendorType All vendor types for the ads that may be shown from this snippet.
  * @property {integer} version The version for this creative. Read-only. This field should not be set in requests.
- * @property {string} videoURL The URL to fetch a video ad. If set, HTMLSnippet and the nativeAd should not be set. Note, this is diffrent from resource.native_ad.video_url above.
+ * @property {string} videoURL The URL to fetch a video ad. If set, HTMLSnippet and the nativeAd should not be set. Note, this is different from resource.native_ad.video_url above.
  * @property {integer} width Ad width.
  */
 /**
@@ -1887,6 +1887,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {object[]} placements Requests containing any of these placements will match.
  * @property {string[]} platforms Requests matching any of these platforms will match. Possible values are PRETARGETING_PLATFORM_MOBILE, PRETARGETING_PLATFORM_DESKTOP, and PRETARGETING_PLATFORM_TABLET.
  * @property {string[]} supportedCreativeAttributes Creative attributes should be declared here if all creatives corresponding to this pretargeting configuration have that creative attribute. Values are from pretargetable-creative-attributes.txt in the downloadable files section.
+ * @property {string[]} userIdentifierDataRequired Requests containing the specified type of user data will match. Possible values are HOSTED_MATCH_DATA, which means the request is cookie-targetable and has a match in the buyer&#39;s hosted match table, and COOKIE_OR_IDFA, which means the request has either a targetable cookie or an iOS IDFA.
  * @property {string[]} userLists Requests containing any of these user list ids will match.
  * @property {string[]} vendorTypes Requests that allow any of these vendor ids will match. Values are from vendors.txt in the downloadable files section.
  * @property {string[]} verticals Requests containing any of these vertical ids will match.

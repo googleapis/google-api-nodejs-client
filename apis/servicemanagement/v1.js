@@ -158,7 +158,7 @@ function Servicemanagement(options) { // eslint-disable-line
      * @memberOf! servicemanagement(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.configId 
+     * @param {string=} params.configId The id of the service configuration resource.
      * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -223,7 +223,7 @@ function Servicemanagement(options) { // eslint-disable-line
     /**
      * servicemanagement.services.get
      *
-     * @desc Gets a managed service.
+     * @desc Gets a managed service. Authentication is required unless the service is public.
      *
      * @alias servicemanagement.services.get
      * @memberOf! servicemanagement(v1)
@@ -258,7 +258,7 @@ function Servicemanagement(options) { // eslint-disable-line
     /**
      * servicemanagement.services.list
      *
-     * @desc Lists all managed services.
+     * @desc Lists all managed services. The result is limited to services that the caller has "servicemanagement.services.get" permission for. If the request is made without authentication, it returns only public services that are available to everyone.
      *
      * @alias servicemanagement.services.list
      * @memberOf! servicemanagement(v1)
@@ -629,7 +629,7 @@ function Servicemanagement(options) { // eslint-disable-line
        * @memberOf! servicemanagement(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.configId 
+       * @param {string} params.configId The id of the service configuration resource.
        * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -893,9 +893,6 @@ should be listed here by name. Example:
 * @property {servicemanagement(v1).Usage} usage Configuration controlling usage of this service.
 * @property {servicemanagement(v1).Control} control Configuration for the service control plane.
 * @property {string} title The product title associated with this service.
-* @property {servicemanagement(v1).Analytics} analytics WARNING: DO NOT USE UNTIL THIS MESSAGE IS REMOVED.
-
-Analytics configuration.
 * @property {servicemanagement(v1).Http} http HTTP configuration.
 * @property {servicemanagement(v1).Type[]} systemTypes A list of all proto message types included in this API service.
 It serves similar purpose as [google.api.Service.types], except that
@@ -1024,7 +1021,7 @@ Example:
  * @memberOf! servicemanagement(v1)
  * @type object
  * @property {string} nextPageToken Token that can be passed to `ListServices` to resume a paginated query.
- * @property {servicemanagement(v1).ManagedService[]} services The results of the query.
+ * @property {servicemanagement(v1).ManagedService[]} services The returned services will only have the name field set.
  */
 /**
  * @typedef Step
@@ -1320,34 +1317,33 @@ Notes:
    `{requests}/s == 1/s`, `By{transmitted}/s == By/s`.
 * `NAME` is a sequence of non-blank printable ASCII characters not
    containing &#39;{&#39; or &#39;}&#39;.
-* @property {servicemanagement(v1).LabelDescriptor[]} labels The set of labels that can be used to describe a specific instance of this
-metric type. For example, the
-`compute.googleapis.com/instance/network/received_bytes_count` metric type
-has a label, `loadbalanced`, that specifies whether the traffic was
-received through a load balanced IP address.
+* @property {servicemanagement(v1).LabelDescriptor[]} labels The set of labels that can be used to describe a specific
+instance of this metric type. For example, the
+`appengine.googleapis.com/http/server/response_latencies` metric
+type has a label for the HTTP response code, `response_code`, so
+you can look at latencies for successful responses or just
+for responses that failed.
 * @property {string} metricKind Whether the metric records instantaneous values, changes to a value, etc.
 Some combinations of `metric_kind` and `value_type` might not be supported.
 * @property {string} valueType Whether the measurement is an integer, a floating-point number, etc.
 Some combinations of `metric_kind` and `value_type` might not be supported.
 * @property {string} displayName A concise name for the metric, which can be displayed in user interfaces.
 Use sentence case without an ending period, for example &quot;Request count&quot;.
-* @property {string} name Resource name. The format of the name may vary between different
-implementations. For examples:
+* @property {string} name The resource name of the metric descriptor. Depending on the
+implementation, the name typically includes: (1) the parent resource name
+that defines the scope of the metric type or of its data; and (2) the
+metric&#39;s URL-encoded type, which also appears in the `type` field of this
+descriptor. For example, following is the resource name of a custom
+metric within the GCP project 123456789:
 
-    projects/{project_id}/metricDescriptors/{type=**}
-    metricDescriptors/{type=**}
-* @property {string} type The metric type including a DNS name prefix, for example
-`&quot;compute.googleapis.com/instance/cpu/utilization&quot;`. Metric types
-should use a natural hierarchical grouping such as the following:
+    &quot;projects/123456789/metricDescriptors/custom.googleapis.com%2Finvoice%2Fpaid%2Famount&quot;
+* @property {string} type The metric type, including its DNS name prefix. The type is not
+URL-encoded.  All user-defined metric types have the DNS name
+`custom.googleapis.com`.  Metric types should use a natural hierarchical
+grouping. For example:
 
-    compute.googleapis.com/instance/cpu/utilization
-    compute.googleapis.com/instance/disk/read_ops_count
-    compute.googleapis.com/instance/network/received_bytes_count
-
-Note that if the metric type changes, the monitoring data will be
-discontinued, and anything depends on it will break, such as monitoring
-dashboards, alerting rules and quota limits. Therefore, once a metric has
-been published, its type should be immutable.
+    &quot;custom.googleapis.com/invoice/paid/amount&quot;
+    &quot;appengine.googleapis.com/http/server/response_latencies&quot;
 */
 /**
  * @typedef EnableServiceRequest
@@ -1357,7 +1353,8 @@ been published, its type should be immutable.
 applied to.
 
 The Google Service Management implementation accepts the following
-forms: &quot;project:&lt;project_id&gt;&quot;, &quot;project_number:&lt;project_number&gt;&quot;.
+forms:
+- &quot;project:&lt;project_id&gt;&quot;
 
 Note: this is made compatible with
 google.api.servicecontrol.v1.Operation.consumer_id.
@@ -1475,15 +1472,6 @@ Refer to selector for syntax details.
  * @property {string} name The option&#39;s name. For example, `&quot;java_package&quot;`.
  */
 /**
- * @typedef Analytics
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {servicemanagement(v1).AnalyticsDestination[]} producerDestinations Analytics configurations for sending metrics to the analytics backend.
-There can be multiple producer destinations, each one must have a
-different monitored resource type. A metric can be used in at most
-one producer destination.
-*/
-/**
  * @typedef HttpRule
  * @memberOf! servicemanagement(v1)
  * @type object
@@ -1547,30 +1535,6 @@ allowed.
  * @property {boolean} enabled Whether download is enabled.
  */
 /**
- * @typedef AnalyticsDestination
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} monitoredResource The monitored resource type. The type must be defined in
-Service.monitored_resources section.
-* @property {string[]} metrics Names of the metrics to report to this analytics destination.
-Each name must be defined in Service.metrics section. Metrics
-with value type BOOL and STRING must be of GUAGE kind, metrics with
-value type INT64, DOUBLE and MONEY must be of DELTA kind.
-*/
-/**
- * @typedef Logging
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {servicemanagement(v1).LoggingDestination[]} producerDestinations Logging configurations for sending logs to the producer project.
-There can be multiple producer destinations, each one must have a
-different monitored resource type. A log can be used in at most
-one producer destination.
-* @property {servicemanagement(v1).LoggingDestination[]} consumerDestinations Logging configurations for sending logs to the consumer project.
-There can be multiple consumer destinations, each one must have a
-different monitored resource type. A log can be used in at most
-one consumer destination.
-*/
-/**
  * @typedef SubmitConfigSourceRequest
  * @memberOf! servicemanagement(v1)
  * @type object
@@ -1595,6 +1559,19 @@ project.
 * @property {string} selector Selects the methods to which this rule applies.
 
 Refer to selector for syntax details.
+*/
+/**
+ * @typedef Logging
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {servicemanagement(v1).LoggingDestination[]} producerDestinations Logging configurations for sending logs to the producer project.
+There can be multiple producer destinations, each one must have a
+different monitored resource type. A log can be used in at most
+one producer destination.
+* @property {servicemanagement(v1).LoggingDestination[]} consumerDestinations Logging configurations for sending logs to the consumer project.
+There can be multiple consumer destinations, each one must have a
+different monitored resource type. A log can be used in at most
+one consumer destination.
 */
 /**
  * @typedef SystemParameter
@@ -1652,7 +1629,8 @@ associated with.
 applied to.
 
 The Google Service Management implementation accepts the following
-forms: &quot;project:&lt;project_id&gt;&quot;, &quot;project_number:&lt;project_number&gt;&quot;.
+forms:
+- &quot;project:&lt;project_id&gt;&quot;
 
 Note: this is made compatible with
 google.api.servicecontrol.v1.Operation.consumer_id.
@@ -1753,6 +1731,19 @@ format: &quot;services/{service name}/configs/{config id}&quot;.
  * @typedef AuthProvider
  * @memberOf! servicemanagement(v1)
  * @type object
+* @property {string} audiences The list of JWT
+[audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3).
+that are allowed to access. A JWT containing any of these audiences will
+be accepted. When this setting is absent, only JWTs with audience
+&quot;https://Service_name/API_name&quot;
+will be accepted. For example, if no audiences are in the setting,
+LibraryService API will only accept JWTs with the following audience
+&quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.
+
+Example:
+
+    audiences: bookstore_android.apps.googleusercontent.com,
+               bookstore_web.apps.googleusercontent.com
 * @property {string} jwksUri URL of the provider&#39;s public key set to validate signature of the JWT. See
 [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).
 Optional if the key set document:
@@ -1954,7 +1945,10 @@ be taken to mitigate any implied risks.
  * @typedef AuthRequirement
  * @memberOf! servicemanagement(v1)
  * @type object
-* @property {string} audiences The list of JWT
+* @property {string} audiences NOTE: This will be deprecated soon, once AuthProvider.audiences is
+implemented and accepted in all the runtime components.
+
+The list of JWT
 [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3).
 that are allowed to access. A JWT containing any of these audiences will
 be accepted. When this setting is absent, only JWTs with audience

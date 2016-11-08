@@ -504,7 +504,7 @@ function Surveys(options) { // eslint-disable-line
  * @property {string} description Text description of the survey.
  * @property {string[]} owners List of email addresses for survey owners. Must contain at least the address of the user making the API call.
  * @property {surveys(v2).SurveyQuestion[]} questions List of questions defining the survey.
- * @property {surveys(v2).SurveyRejection} rejectionReason Reason for the survey being rejected. Only present if the survey state is &#39;rejected&#39;.
+ * @property {surveys(v2).SurveyRejection} rejectionReason Reason for the survey being rejected. Only present if the survey state is rejected.
  * @property {string} state State that the survey is in.
  * @property {string} surveyUrlId Unique survey ID, that is viewable in the URL of the Survey Creator UI
  * @property {string} title Optional name that will be given to the survey.
@@ -567,7 +567,7 @@ function Surveys(options) { // eslint-disable-line
  * @memberOf! surveys(v2)
  * @type object
  * @property {string} explanation A human-readable explanation of what was wrong with the survey.
- * @property {string} type Which category of rejection this was. See the GCS Help Center for additional details on each category.
+ * @property {string} type Which category of rejection this was. See the  Google Surveys Help Center for additional details on each category.
  */
 /**
  * @typedef SurveyResults

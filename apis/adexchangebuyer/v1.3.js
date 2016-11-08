@@ -897,7 +897,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} status Creative serving status. Read-only. This field should not be set in requests.
  * @property {integer[]} vendorType All vendor types for the ads that may be shown from this snippet.
  * @property {integer} version The version for this creative. Read-only. This field should not be set in requests.
- * @property {string} videoURL The url to fetch a video ad. If set, HTMLSnippet should not be set.
+ * @property {string} videoURL The URL to fetch a video ad. If set, HTMLSnippet and the nativeAd should not be set.
  * @property {integer} width Ad width.
  */
 /**

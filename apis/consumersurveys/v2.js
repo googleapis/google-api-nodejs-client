@@ -457,12 +457,12 @@ function Consumersurveys(options) { // eslint-disable-line
  * @typedef MobileAppPanel
  * @memberOf! consumersurveys(v2)
  * @type object
- * @property {string} country Country code for the country of the users that the panel contains. Uses standard ISO 3166-1 2-character language codes. For instance, &#39;US&#39; for the United States, and &#39;GB&#39; for the United Kingdom. Any survey created targeting this panel must also target the corresponding country.
- * @property {boolean} isPublicPanel Whether or not the panel is accessible to all API users.
- * @property {string} language Language code that the panel can target. For instance, &#39;en-US&#39;. Uses standard BCP47 language codes. See specification. Any survey created targeting this panel must also target the corresponding language.
- * @property {string} mobileAppPanelId Unique panel ID string. This corresponds to the mobile_app_panel_id used in Survey Insert requests.
- * @property {string} name Human readable name of the audience panel.
- * @property {string[]} owners List of email addresses for users who can target members of this panel. Must contain at least the address of the user making the API call for panels that are not public. This field will be empty for public panels.
+ * @property {string} country 
+ * @property {boolean} isPublicPanel 
+ * @property {string} language 
+ * @property {string} mobileAppPanelId 
+ * @property {string} name 
+ * @property {string[]} owners 
  */
 /**
  * @typedef MobileAppPanelsListResponse
@@ -498,83 +498,83 @@ function Consumersurveys(options) { // eslint-disable-line
  * @typedef Survey
  * @memberOf! consumersurveys(v2)
  * @type object
- * @property {consumersurveys(v2).SurveyAudience} audience Targeting-criteria message containing demographic information
- * @property {consumersurveys(v2).SurveyCost} cost Cost to run the survey and collect the necessary number of responses.
- * @property {string} customerData Additional information to store on behalf of the API consumer and associate with this question. This binary blob is treated as opaque. This field is limited to 64K bytes.
- * @property {string} description Text description of the survey.
- * @property {string[]} owners List of email addresses for survey owners. Must contain at least the address of the user making the API call.
- * @property {consumersurveys(v2).SurveyQuestion[]} questions List of questions defining the survey.
- * @property {consumersurveys(v2).SurveyRejection} rejectionReason Reason for the survey being rejected. Only present if the survey state is &#39;rejected&#39;.
- * @property {string} state State that the survey is in.
- * @property {string} surveyUrlId Unique survey ID, that is viewable in the URL of the Survey Creator UI
- * @property {string} title Optional name that will be given to the survey.
- * @property {integer} wantedResponseCount Number of responses desired for the survey.
+ * @property {consumersurveys(v2).SurveyAudience} audience 
+ * @property {consumersurveys(v2).SurveyCost} cost 
+ * @property {string} customerData 
+ * @property {string} description 
+ * @property {string[]} owners 
+ * @property {consumersurveys(v2).SurveyQuestion[]} questions 
+ * @property {consumersurveys(v2).SurveyRejection} rejectionReason 
+ * @property {string} state 
+ * @property {string} surveyUrlId 
+ * @property {string} title 
+ * @property {integer} wantedResponseCount 
  */
 /**
  * @typedef SurveyAudience
  * @memberOf! consumersurveys(v2)
  * @type object
- * @property {string[]} ages Optional list of age buckets to target. Supported age buckets are: [&#39;18-24&#39;, &#39;25-34&#39;, &#39;35-44&#39;, &#39;45-54&#39;, &#39;55-64&#39;, &#39;65+&#39;]
- * @property {string} country Required country code that surveys should be targeted to. Accepts standard ISO 3166-1 2 character language codes. For instance, &#39;US&#39; for the United States, and &#39;GB&#39; for the United Kingdom.
- * @property {string} countrySubdivision Country subdivision (states/provinces/etc) that surveys should be targeted to. For all countries except GB, ISO-3166-2 subdivision code is required (eg. &#39;US-OH&#39; for Ohio, United States). For GB, NUTS 1 statistical region codes for the United Kingdom is required (eg. &#39;UK-UKC&#39; for North East England).
- * @property {string} gender Optional gender to target.
- * @property {string[]} languages Language code that surveys should be targeted to. For instance, &#39;en-US&#39;. Surveys may target bilingual users by specifying a list of language codes (for example, &#39;de&#39; and &#39;en-US&#39;). In that case, all languages will be used for targeting users but the survey content (which is displayed) must match the first language listed. Accepts standard BCP47 language codes. See specification.
- * @property {string} mobileAppPanelId Key for predefined panel that causes survey to be sent to a predefined set of Opinion Rewards App users. You must set PopulationSource to ANDROID_APP_PANEL to use this field.
- * @property {string} populationSource Online population source where the respondents are sampled from.
+ * @property {string[]} ages 
+ * @property {string} country 
+ * @property {string} countrySubdivision 
+ * @property {string} gender 
+ * @property {string[]} languages 
+ * @property {string} mobileAppPanelId 
+ * @property {string} populationSource 
  */
 /**
  * @typedef SurveyCost
  * @memberOf! consumersurveys(v2)
  * @type object
- * @property {string} costPerResponseNanos Cost per survey response in nano units of the given currency. To get the total cost for a survey, multiply this value by wanted_response_count.
- * @property {string} currencyCode Currency code that the cost is given in.
- * @property {string} maxCostPerResponseNanos Threshold to start a survey automatically if the quoted price is at most this value. When a survey has a Screener (threshold) question, it must go through an incidence pricing test to determine the final cost per response. Typically you will have to make a followup call to start the survey giving the final computed cost per response. If the survey has no threshold_answers, setting this property will return an error. By specifying this property, you indicate the max price per response you are willing to pay in advance of the incidence test. If the price turns out to be lower than the specified value, the survey will begin immediately and you will be charged at the rate determined by the incidence pricing test. If the price turns out to be greater than the specified value the survey will not be started and you will instead be notified what price was determined by the incidence test. At that point, you must raise the value of this property to be greater than or equal to that cost before attempting to start the survey again. This will immediately start the survey as long the incidence test was run within the last 21 days.
- * @property {string} nanos Cost of survey in nano units of the given currency. DEPRECATED in favor of cost_per_response_nanos
+ * @property {string} costPerResponseNanos 
+ * @property {string} currencyCode 
+ * @property {string} maxCostPerResponseNanos 
+ * @property {string} nanos 
  */
 /**
  * @typedef SurveyQuestion
  * @memberOf! consumersurveys(v2)
  * @type object
- * @property {string} answerOrder The randomization option for multiple choice and multi-select questions. If not specified, this option defaults to randomize.
- * @property {string[]} answers Required list of answer options for a question.
- * @property {boolean} hasOther Option to allow open-ended text box for Single Answer and Multiple Answer question types. This can be used with SINGLE_ANSWER, SINGLE_ANSWER_WITH_IMAGE, MULTIPLE_ANSWERS, and MULTIPLE_ANSWERS_WITH_IMAGE question types.
- * @property {string} highValueLabel For rating questions, the text for the higher end of the scale, such as &#39;Best&#39;. For numeric questions, a string representing a floating-point that is the maximum allowed number for a response.
+ * @property {string} answerOrder 
+ * @property {string[]} answers 
+ * @property {boolean} hasOther 
+ * @property {string} highValueLabel 
  * @property {consumersurveys(v2).SurveyQuestionImage[]} images 
- * @property {boolean} lastAnswerPositionPinned Currently only support pinning an answer option to the last position.
- * @property {string} lowValueLabel For rating questions, the text for the lower end of the scale, such as &#39;Worst&#39;. For numeric questions, a string representing a floating-point that is the minimum allowed number for a response.
- * @property {boolean} mustPickSuggestion Option to force the user to pick one of the open text suggestions. This requires that suggestions are provided for this question.
- * @property {string} numStars Number of stars to use for ratings questions.
- * @property {string} openTextPlaceholder Placeholder text for an open text question.
- * @property {string[]} openTextSuggestions A list of suggested answers for open text question auto-complete. This is only valid if single_line_response is true.
- * @property {string} question Required question text shown to the respondent.
- * @property {string} sentimentText Used by the Rating Scale with Text question type. This text goes along with the question field that is presented to the respondent, and is the actual text that the respondent is asked to rate.
- * @property {boolean} singleLineResponse Option to allow multiple line open text responses instead of a single line response. Note that we don&#39;t show auto-complete suggestions with multiple line responses.
- * @property {string[]} thresholdAnswers The threshold/screener answer options, which will screen a user into the rest of the survey. These will be a subset of the answer option strings.
- * @property {string} type Required field defining the question type. For details about configuring different type of questions, consult the question configuration guide.
- * @property {string} unitOfMeasurementLabel Optional unit of measurement for display (for example: hours, people, miles).
- * @property {string} videoId The YouTube video ID to be show in video questions.
+ * @property {boolean} lastAnswerPositionPinned 
+ * @property {string} lowValueLabel 
+ * @property {boolean} mustPickSuggestion 
+ * @property {string} numStars 
+ * @property {string} openTextPlaceholder 
+ * @property {string[]} openTextSuggestions 
+ * @property {string} question 
+ * @property {string} sentimentText 
+ * @property {boolean} singleLineResponse 
+ * @property {string[]} thresholdAnswers 
+ * @property {string} type 
+ * @property {string} unitOfMeasurementLabel 
+ * @property {string} videoId 
  */
 /**
  * @typedef SurveyQuestionImage
  * @memberOf! consumersurveys(v2)
  * @type object
- * @property {string} altText The alt text property used in image tags is required for all images.
- * @property {string} data Inline jpeg, gif, tiff, bmp, or png image raw bytes for an image question types.
- * @property {string} url The read-only URL for the hosted images.
+ * @property {string} altText 
+ * @property {string} data 
+ * @property {string} url 
  */
 /**
  * @typedef SurveyRejection
  * @memberOf! consumersurveys(v2)
  * @type object
- * @property {string} explanation A human-readable explanation of what was wrong with the survey.
- * @property {string} type Which category of rejection this was. See the GCS Help Center for additional details on each category.
+ * @property {string} explanation 
+ * @property {string} type 
  */
 /**
  * @typedef SurveyResults
  * @memberOf! consumersurveys(v2)
  * @type object
- * @property {string} status Human readable string describing the status of the request.
- * @property {string} surveyUrlId External survey ID as viewable by survey owners in the editor view.
+ * @property {string} status 
+ * @property {string} surveyUrlId 
  */
 /**
  * @typedef SurveysDeleteResponse

@@ -24,7 +24,7 @@ var utils = require('../../lib/utils');
 /**
  * Google Cloud Dataproc API
  *
- * Manages Hadoop-based clusters and jobs on Google Cloud Platform.
+ * An API for managing Hadoop-based clusters and jobs on Google Cloud Platform.
  *
  * @example
  * var google = require('googleapis');
@@ -462,8 +462,9 @@ function Dataproc(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
          * @param {string} params.region [Required] The Cloud Dataproc region in which to handle the request.
-         * @param {integer=} params.pageSize The standard List page size.
-         * @param {string=} params.pageToken The standard List page token.
+         * @param {string=} params.filter [Optional] A filter constraining the clusters to list. Filters are case-sensitive and have the following syntax: field:value [field:value] ... or field = value [AND [field = value]] ... where **field** is one of `status.state`, `clusterName`, or `labels.[KEY]`, and `[KEY]` is a label key. **value** can be `*` to match all values. `status.state` can be one of the following: `ACTIVE`, `INACTIVE`, `CREATING`, `RUNNING`, `ERROR`, `DELETING`, or `UPDATING`. `ACTIVE` contains the `CREATING`, `UPDATING`, and `RUNNING` states. `INACTIVE` contains the `DELETING` and `ERROR` states. `clusterName` is the name of the cluster provided at creation time. Only the logical `AND` operator is supported; space-separated items are treated as having an implicit `AND` operator. Example valid filters are: status.state:ACTIVE clusterName:mycluster labels.env:staging \ labels.starred:* and status.state = ACTIVE AND clusterName = mycluster \ AND labels.env = staging AND labels.starred = *
+         * @param {integer=} params.pageSize [Optional] The standard List page size.
+         * @param {string=} params.pageToken [Optional] The standard List page token.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -823,7 +824,8 @@ function Dataproc(options) { // eslint-disable-line
          * @param {integer=} params.pageSize [Optional] The number of results to return in each response.
          * @param {string=} params.pageToken [Optional] The page token, returned by a previous call, to request the next page of results.
          * @param {string=} params.clusterName [Optional] If set, the returned jobs list includes only jobs that were submitted to the named cluster.
-         * @param {string=} params.jobStateMatcher [Optional] Specifies enumerated categories of jobs to list.
+         * @param {string=} params.jobStateMatcher [Optional] Specifies enumerated categories of jobs to list (default = match ALL jobs).
+         * @param {string=} params.filter [Optional] A filter constraining the jobs to list. Filters are case-sensitive and have the following syntax: field:value] ... or [field = value] AND [field [= value]] ... where **field** is `status.state` or `labels.[KEY]`, and `[KEY]` is a label key. **value** can be `*` to match all values. `status.state` can be either `ACTIVE` or `INACTIVE`. Only the logical `AND` operator is supported; space-separated items are treated as having an implicit `AND` operator. Example valid filters are: status.state:ACTIVE labels.env:staging labels.starred:* and status.state = ACTIVE AND labels.env = staging AND labels.starred = *
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -1030,85 +1032,6 @@ function Dataproc(options) { // eslint-disable-line
       operations: {
 
         /**
-         * dataproc.projects.regions.operations.get
-         *
-         * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-         *
-         * @example
-         * // BEFORE RUNNING:
-         * // ---------------
-         * // 1. If not already done, enable the Google Cloud Dataproc API
-         * //    and check the quota for your project at
-         * //    https://console.developers.google.com/apis/api/dataproc
-         * // 2. This sample uses Application Default Credentials for authentication.
-         * //    If not already done, install the gcloud CLI from
-         * //    https://cloud.google.com/sdk/ and run
-         * //    'gcloud beta auth application-default login'
-         * // 3. Install the Node.js client library and Application Default Credentials
-         * //    library by running 'npm install googleapis --save'
-         * var google = require('googleapis');
-         * var dataproc = google.dataproc('v1');
-         *
-         * google.auth.getApplicationDefault(function(err, authClient) {
-         *   if (err) {
-         *     console.log('Authentication failed because of ', err);
-         *     return;
-         *   }
-         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-         *     authClient = authClient.createScoped(scopes);
-         *   }
-         *
-         *   var request = {
-         *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
-         *
-         *     // * The name of the operation resource.
-         *     name: "projects/{MY-PROJECT}/regions/{MY-REGION}/operations/{MY-OPERATION}",
-         *
-         *     // Auth client
-         *     auth: authClient
-         *   };
-         *
-         *   dataproc.projects.regions.operations.get(request, function(err, result) {
-         *     if (err) {
-         *       console.log(err);
-         *     } else {
-         *       console.log(result);
-         *     }
-         *   });
-         * });
-         *
-         * @alias dataproc.projects.regions.operations.get
-         * @memberOf! dataproc(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name The name of the operation resource.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        get: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://dataproc.googleapis.com/v1/{name}',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
          * dataproc.projects.regions.operations.list
          *
          * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
@@ -1198,9 +1121,9 @@ function Dataproc(options) { // eslint-disable-line
         },
 
         /**
-         * dataproc.projects.regions.operations.cancel
+         * dataproc.projects.regions.operations.get
          *
-         * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation.
+         * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
          *
          * @example
          * // BEFORE RUNNING:
@@ -1228,16 +1151,16 @@ function Dataproc(options) { // eslint-disable-line
          *   }
          *
          *   var request = {
-         *     // TODO: Change placeholders below to appropriate parameter values for the 'cancel' method:
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
          *
-         *     // * The name of the operation resource to be cancelled.
+         *     // * The name of the operation resource.
          *     name: "projects/{MY-PROJECT}/regions/{MY-REGION}/operations/{MY-OPERATION}",
          *
          *     // Auth client
          *     auth: authClient
          *   };
          *
-         *   dataproc.projects.regions.operations.cancel(request, function(err, result) {
+         *   dataproc.projects.regions.operations.get(request, function(err, result) {
          *     if (err) {
          *       console.log(err);
          *     } else {
@@ -1246,16 +1169,16 @@ function Dataproc(options) { // eslint-disable-line
          *   });
          * });
          *
-         * @alias dataproc.projects.regions.operations.cancel
+         * @alias dataproc.projects.regions.operations.get
          * @memberOf! dataproc(v1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.name The name of the operation resource to be cancelled.
+         * @param {string} params.name The name of the operation resource.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        cancel: function (params, options, callback) {
+        get: function (params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -1264,8 +1187,8 @@ function Dataproc(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://dataproc.googleapis.com/v1/{name}:cancel',
-              method: 'POST'
+              url: 'https://dataproc.googleapis.com/v1/{name}',
+              method: 'GET'
             }, options),
             params: params,
             requiredParams: ['name'],
@@ -1353,6 +1276,85 @@ function Dataproc(options) { // eslint-disable-line
           };
 
           return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataproc.projects.regions.operations.cancel
+         *
+         * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+         *
+         * @example
+         * // BEFORE RUNNING:
+         * // ---------------
+         * // 1. If not already done, enable the Google Cloud Dataproc API
+         * //    and check the quota for your project at
+         * //    https://console.developers.google.com/apis/api/dataproc
+         * // 2. This sample uses Application Default Credentials for authentication.
+         * //    If not already done, install the gcloud CLI from
+         * //    https://cloud.google.com/sdk/ and run
+         * //    'gcloud beta auth application-default login'
+         * // 3. Install the Node.js client library and Application Default Credentials
+         * //    library by running 'npm install googleapis --save'
+         * var google = require('googleapis');
+         * var dataproc = google.dataproc('v1');
+         *
+         * google.auth.getApplicationDefault(function(err, authClient) {
+         *   if (err) {
+         *     console.log('Authentication failed because of ', err);
+         *     return;
+         *   }
+         *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+         *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+         *     authClient = authClient.createScoped(scopes);
+         *   }
+         *
+         *   var request = {
+         *     // TODO: Change placeholders below to appropriate parameter values for the 'cancel' method:
+         *
+         *     // * The name of the operation resource to be cancelled.
+         *     name: "projects/{MY-PROJECT}/regions/{MY-REGION}/operations/{MY-OPERATION}",
+         *
+         *     // Auth client
+         *     auth: authClient
+         *   };
+         *
+         *   dataproc.projects.regions.operations.cancel(request, function(err, result) {
+         *     if (err) {
+         *       console.log(err);
+         *     } else {
+         *       console.log(result);
+         *     }
+         *   });
+         * });
+         *
+         * @alias dataproc.projects.regions.operations.cancel
+         * @memberOf! dataproc(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name The name of the operation resource to be cancelled.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        cancel: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          var parameters = {
+            options: utils.extend({
+              url: 'https://dataproc.googleapis.com/v1/{name}:cancel',
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
         }
       }
     }
@@ -1366,9 +1368,11 @@ function Dataproc(options) { // eslint-disable-line
  * @property {string} projectId [Required] The Google Cloud Platform project ID that the cluster belongs to.
  * @property {string} clusterName [Required] The cluster name. Cluster names within a project must be unique. Names of deleted clusters can be reused.
  * @property {dataproc(v1).ClusterConfig} config [Required] The cluster config. Note that Cloud Dataproc may set default values, and values may change when clusters are updated.
+ * @property {object} labels [Optional] The labels to associate with this cluster. Label **keys** must contain 1 to 63 characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt). Label **values** may be empty, but, if present, must contain 1 to 63 characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a cluster.
  * @property {dataproc(v1).ClusterStatus} status [Output-only] Cluster status.
  * @property {dataproc(v1).ClusterStatus[]} statusHistory [Output-only] The previous cluster status.
  * @property {string} clusterUuid [Output-only] A cluster UUID (Unique Universal Identifier). Cloud Dataproc generates this value when it creates the cluster.
+ * @property {dataproc(v1).ClusterMetrics} metrics Contains cluster daemon metrics such as HDFS and YARN stats. **Beta Feature**: This report is available for testing purposes only. It may be changed before final release.
  */
 /**
  * @typedef ClusterConfig
@@ -1380,29 +1384,30 @@ function Dataproc(options) { // eslint-disable-line
  * @property {dataproc(v1).InstanceGroupConfig} workerConfig [Optional] The Google Compute Engine config settings for worker instances in a cluster.
  * @property {dataproc(v1).InstanceGroupConfig} secondaryWorkerConfig [Optional] The Google Compute Engine config settings for additional worker instances in a cluster.
  * @property {dataproc(v1).SoftwareConfig} softwareConfig [Optional] The config settings for software inside the cluster.
- * @property {dataproc(v1).NodeInitializationAction[]} initializationActions [Optional] Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node&#39;s role metadata to run an executable on a master or worker node, as shown below: ROLE=$(/usr/share/google/get_metadata_value attributes/role) if [[ &quot;${ROLE}&quot; == &#39;Master&#39; ]]; then ... master specific actions ... else ... worker specific actions ... fi
+ * @property {dataproc(v1).NodeInitializationAction[]} initializationActions [Optional] Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node&#39;s role metadata to run an executable on a master or worker node, as shown below using `curl` (you can also use `wget`): ROLE=$(curl -H Metadata-Flavor:Google http://metadata/computeMetadata/v1/instance/attributes/dataproc-role) if [[ &quot;${ROLE}&quot; == &#39;Master&#39; ]]; then ... master specific actions ... else ... worker specific actions ... fi
  */
 /**
  * @typedef GceClusterConfig
  * @memberOf! dataproc(v1)
  * @type object
  * @property {string} zoneUri [Required] The zone where the Google Compute Engine cluster will be located. Example: `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]`.
- * @property {string} networkUri The Google Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the &quot;default&quot; network of the project is used, if it exists. Cannot be a &quot;Custom Subnet Network&quot; (see https://cloud.google.com/compute/docs/subnetworks for more information). Example: `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`.
- * @property {string} subnetworkUri The Google Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri. Example: `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`.
- * @property {string[]} serviceAccountScopes The URIs of service account scopes to be included in Google Compute Engine instances. The following base set of scopes is always included: * https://www.googleapis.com/auth/cloud.useraccounts.readonly * https://www.googleapis.com/auth/devstorage.read_write * https://www.googleapis.com/auth/logging.write If no scopes are specfied, the following defaults are also provided: * https://www.googleapis.com/auth/bigquery * https://www.googleapis.com/auth/bigtable.admin.table * https://www.googleapis.com/auth/bigtable.data * https://www.googleapis.com/auth/devstorage.full_control
- * @property {string[]} tags The Google Compute Engine tags to add to all instances.
- * @property {object} metadata The Google Compute Engine metadata entries to add to all instances.
+ * @property {string} networkUri [Optional] The Google Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither `network_uri` nor `subnetwork_uri` is specified, the &quot;default&quot; network of the project is used, if it exists. Cannot be a &quot;Custom Subnet Network&quot; (see [Using Subnetworks](/compute/docs/subnetworks) for more information). Example: `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`.
+ * @property {string} subnetworkUri [Optional] The Google Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri. Example: `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`.
+ * @property {boolean} internalIpOnly [Optional] If true, all instances in the cluster will only have internal IP addresses. By default, clusters are not restricted to internal IP addresses, and will have ephemeral external IP addresses assigned to each instance. This `internal_ip_only` restriction can only be enabled for subnetwork enabled networks, and all off-cluster dependencies must be configured to be accessible without external IP addresses.
+ * @property {string[]} serviceAccountScopes [Optional] The URIs of service account scopes to be included in Google Compute Engine instances. The following base set of scopes is always included: * https://www.googleapis.com/auth/cloud.useraccounts.readonly * https://www.googleapis.com/auth/devstorage.read_write * https://www.googleapis.com/auth/logging.write If no scopes are specified, the following defaults are also provided: * https://www.googleapis.com/auth/bigquery * https://www.googleapis.com/auth/bigtable.admin.table * https://www.googleapis.com/auth/bigtable.data * https://www.googleapis.com/auth/devstorage.full_control
+ * @property {string[]} tags The Google Compute Engine tags to add to all instances (see [Tagging instances](/compute/docs/label-or-tag-resources#tags)).
+ * @property {object} metadata The Google Compute Engine metadata entries to add to all instances (see [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
  */
 /**
  * @typedef InstanceGroupConfig
  * @memberOf! dataproc(v1)
  * @type object
- * @property {integer} numInstances The number of VM instances in the instance group. For master instance groups, must be set to 1.
- * @property {string[]} instanceNames The list of instance names. Cloud Dataproc derives the names from `cluster_name`, `num_instances`, and the instance group if not set by user (recommended practice is to let Cloud Dataproc derive the name).
+ * @property {integer} numInstances [Required] The number of VM instances in the instance group. For master instance groups, must be set to 1.
+ * @property {string[]} instanceNames [Optional] The list of instance names. Cloud Dataproc derives the names from `cluster_name`, `num_instances`, and the instance group if not set by user (recommended practice is to let Cloud Dataproc derive the name).
  * @property {string} imageUri [Output-only] The Google Compute Engine image resource used for cluster instances. Inferred from `SoftwareConfig.image_version`.
- * @property {string} machineTypeUri The Google Compute Engine machine type used for cluster instances. Example: `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`.
- * @property {dataproc(v1).DiskConfig} diskConfig Disk option config settings.
- * @property {boolean} isPreemptible Specifies that this instance group contains Preemptible Instances.
+ * @property {string} machineTypeUri [Required] The Google Compute Engine machine type used for cluster instances. Example: `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2`.
+ * @property {dataproc(v1).DiskConfig} diskConfig [Optional] Disk option config settings.
+ * @property {boolean} isPreemptible [Optional] Specifies that this instance group contains preemptible instances.
  * @property {dataproc(v1).ManagedGroupConfig} managedGroupConfig [Output-only] The config for Google Compute Engine Instance Group Manager that manages this group. This is only used for preemptible instance groups.
  */
 /**
@@ -1410,7 +1415,7 @@ function Dataproc(options) { // eslint-disable-line
  * @memberOf! dataproc(v1)
  * @type object
  * @property {integer} bootDiskSizeGb [Optional] Size in GB of the boot disk (default is 500GB).
- * @property {integer} numLocalSsds [Optional] Number of attached SSDs, from 0 to 4 (default is 0). If SSDs are not attached, the boot disk is used to store runtime logs and HDFS data. If one or more SSDs are attached, this runtime bulk data is spread across them, and the boot disk contains only basic config and installed binaries.
+ * @property {integer} numLocalSsds [Optional] Number of attached SSDs, from 0 to 4 (default is 0). If SSDs are not attached, the boot disk is used to store runtime logs and [HDFS](https://hadoop.apache.org/docs/r1.2.1/hdfs_user_guide.html) data. If one or more SSDs are attached, this runtime bulk data is spread across them, and the boot disk contains only basic config and installed binaries.
  */
 /**
  * @typedef ManagedGroupConfig
@@ -1437,9 +1442,16 @@ function Dataproc(options) { // eslint-disable-line
  * @typedef ClusterStatus
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} state The cluster&#39;s state.
- * @property {string} detail Optional details of cluster&#39;s state.
- * @property {string} stateStartTime Time when this state was entered.
+ * @property {string} state [Output-only] The cluster&#39;s state.
+ * @property {string} detail [Output-only] Optional details of cluster&#39;s state.
+ * @property {string} stateStartTime [Output-only] Time when this state was entered.
+ */
+/**
+ * @typedef ClusterMetrics
+ * @memberOf! dataproc(v1)
+ * @type object
+ * @property {object} hdfsMetrics The HDFS metrics.
+ * @property {object} yarnMetrics The YARN metrics.
  */
 /**
  * @typedef Operation
@@ -1448,7 +1460,7 @@ function Dataproc(options) { // eslint-disable-line
  * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
  * @property {object} metadata Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
  * @property {boolean} done If the value is `false`, it means the operation is still in progress. If true, the operation is completed, and either `error` or `response` is available.
- * @property {dataproc(v1).Status} error The error result of the operation in case of failure.
+ * @property {dataproc(v1).Status} error The error result of the operation in case of failure or cancellation.
  * @property {object} response The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
  */
 /**
@@ -1464,7 +1476,7 @@ function Dataproc(options) { // eslint-disable-line
  * @memberOf! dataproc(v1)
  * @type object
  * @property {dataproc(v1).Cluster[]} clusters [Output-only] The clusters in the project.
- * @property {string} nextPageToken [Optional] This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the `page_token` in a subsequent ListClustersRequest.
+ * @property {string} nextPageToken [Output-only] This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the `page_token` in a subsequent ListClustersRequest.
  */
 /**
  * @typedef DiagnoseClusterRequest
@@ -1491,15 +1503,17 @@ function Dataproc(options) { // eslint-disable-line
  * @property {dataproc(v1).SparkSqlJob} sparkSqlJob Job is a SparkSql job.
  * @property {dataproc(v1).JobStatus} status [Output-only] The job status. Additional application-specific status information may be contained in the type_job and yarn_applications fields.
  * @property {dataproc(v1).JobStatus[]} statusHistory [Output-only] The previous job status.
+ * @property {dataproc(v1).YarnApplication[]} yarnApplications [Output-only] The collection of YARN applications spun up by this job. **Beta** Feature: This report is available for testing purposes only. It may be changed before final release.
  * @property {string} driverOutputResourceUri [Output-only] A URI pointing to the location of the stdout of the job&#39;s driver program.
  * @property {string} driverControlFilesUri [Output-only] If present, the location of miscellaneous control files which may be used as part of job setup and handling. If not present, control files may be placed in the same location as `driver_output_uri`.
+ * @property {object} labels [Optional] The labels to associate with this job. Label **keys** must contain 1 to 63 characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt). Label **values** may be empty, but, if present, must contain 1 to 63 characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a job.
  */
 /**
  * @typedef JobReference
  * @memberOf! dataproc(v1)
  * @type object
  * @property {string} projectId [Required] The ID of the Google Cloud Platform project that the job belongs to.
- * @property {string} jobId [Required] The job ID, which must be unique within the project. The job ID is generated by the server upon job submission or provided by the user as a means to perform retries without creating duplicate jobs. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or hyphens (-). The maximum length is 512 characters.
+ * @property {string} jobId [Optional] The job ID, which must be unique within the project. The job ID is generated by the server upon job submission or provided by the user as a means to perform retries without creating duplicate jobs. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or hyphens (-). The maximum length is 512 characters.
  */
 /**
  * @typedef JobPlacement
@@ -1597,9 +1611,18 @@ function Dataproc(options) { // eslint-disable-line
  * @typedef JobStatus
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} state [Required] A state message specifying the overall job state.
- * @property {string} details [Optional] Job state details, such as an error description if the state is ERROR.
+ * @property {string} state [Output-only] A state message specifying the overall job state.
+ * @property {string} details [Output-only] Optional job state details, such as an error description if the state is ERROR.
  * @property {string} stateStartTime [Output-only] The time when this state was entered.
+ */
+/**
+ * @typedef YarnApplication
+ * @memberOf! dataproc(v1)
+ * @type object
+ * @property {string} name [Required] The application name.
+ * @property {string} state [Required] The application state.
+ * @property {number} progress [Required] The numerical progress of the application, from 1 to 100.
+ * @property {string} trackingUrl [Optional] The HTTP URL of the ApplicationMaster, HistoryServer, or TimelineServer that provides application-specific information. The URL uses the internal hostname, and requires a proxy server for resolution and, possibly, access.
  */
 /**
  * @typedef ListJobsResponse
@@ -1629,27 +1652,28 @@ function Dataproc(options) { // eslint-disable-line
  * @typedef DiagnoseClusterResults
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} outputUri [Output-only] The Google Cloud Storage URI of the diagnostic output. This is a plain text file with a summary of collected diagnostics.
+ * @property {string} outputUri [Output-only] The Google Cloud Storage URI of the diagnostic output. The output report is a plain text file with a summary of collected diagnostics.
  */
 /**
  * @typedef ClusterOperationMetadata
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} clusterName Name of the cluster for the operation.
- * @property {string} clusterUuid Cluster UUId for the operation.
+ * @property {string} clusterName [Output-only] Name of the cluster for the operation.
+ * @property {string} clusterUuid [Output-only] Cluster UUID for the operation.
  * @property {dataproc(v1).ClusterOperationStatus} status [Output-only] Current operation status.
  * @property {dataproc(v1).ClusterOperationStatus[]} statusHistory [Output-only] The previous operation status.
  * @property {string} operationType [Output-only] The operation type.
  * @property {string} description [Output-only] Short description of operation.
+ * @property {object} labels [Output-only] labels associated with the operation
  */
 /**
  * @typedef ClusterOperationStatus
  * @memberOf! dataproc(v1)
  * @type object
- * @property {string} state A message containing the operation state.
- * @property {string} innerState A message containing the detailed operation state.
- * @property {string} details A message containing any operation metadata details.
- * @property {string} stateStartTime The time this state was entered.
+ * @property {string} state [Output-only] A message containing the operation state.
+ * @property {string} innerState [Output-only] A message containing the detailed operation state.
+ * @property {string} details [Output-only]A message containing any operation metadata details.
+ * @property {string} stateStartTime [Output-only] The time this state was entered.
  */
 /**
  * @typedef DiagnoseClusterOutputLocation

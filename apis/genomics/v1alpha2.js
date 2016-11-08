@@ -52,7 +52,7 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation collection.
-     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
+     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
      * @param {string=} params.pageToken The standard list page token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -518,10 +518,11 @@ function Genomics(options) { // eslint-disable-line
  * @property {object} inputs Pipeline input arguments; keys are defined in the pipeline documentation. All input parameters that do not have default values must be specified. If parameters with defaults are specified here, the defaults will be overridden.
  * @property {object} outputs Pipeline output arguments; keys are defined in the pipeline documentation. All output parameters of without default values must be specified. If parameters with defaults are specified here, the defaults will be overridden.
  * @property {genomics(v1alpha2).ServiceAccount} serviceAccount The Google Cloud Service Account that will be used to access data and services. By default, the compute service account associated with `projectId` is used.
- * @property {string} clientId Client-specified pipeline operation identifier.
+ * @property {string} clientId This field is deprecated. Use `labels` instead. Client-specified pipeline operation identifier.
  * @property {genomics(v1alpha2).PipelineResources} resources Specifies resource requirements/overrides for the pipeline run.
  * @property {genomics(v1alpha2).LoggingOptions} logging Required. Logging options. Used by the service to communicate results to the user.
  * @property {string} keepVmAliveOnFailureDuration How long to keep the VM up after a failure (for example docker command failed, copying input or output files failed, etc). While the VM is up, one can ssh into the VM to debug. Default is 0; maximum allowed value is 1 day.
+ * @property {object} labels Labels to apply to this pipeline run. Labels will also be applied to compute resources (VM, disks) created by this pipeline run. When listing operations, operations can filtered by labels. Label keys may not be empty; label values may be empty. Non-empty labels must be 1-63 characters long, and comply with [RFC1035] (https://www.ietf.org/rfc/rfc1035.txt). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  */
 /**
  * @typedef ServiceAccount
@@ -601,8 +602,9 @@ function Genomics(options) { // eslint-disable-line
  * @property {string} endTime The time at which the job stopped running.
  * @property {object} request The original request that started the operation. Note that this will be in current version of the API. If the operation was started with v1beta2 API and a GetOperation is performed on v1 API, a v1 request will be returned.
  * @property {genomics(v1alpha2).OperationEvent[]} events Optional event messages that were generated during the job&#39;s execution. This also contains any warnings that were generated during import or export.
- * @property {string} clientId Optionally provided by the caller when submitting the request that creates the operation.
+ * @property {string} clientId This field is deprecated. Use `labels` instead. Optionally provided by the caller when submitting the request that creates the operation.
  * @property {object} runtimeMetadata Runtime metadata on this Operation.
+ * @property {object} labels Optionally provided by the caller when submitting the request that creates the operation.
  */
 /**
  * @typedef OperationEvent

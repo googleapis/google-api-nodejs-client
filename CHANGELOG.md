@@ -1,3 +1,50 @@
+##### 14.2.0 - 08 November 2016
+
+###### Backwards compatible changes
+- Added `dfareporting` `v2.7` API
+- Added `manufacturers` `v1` API
+- Added `slides` `v1` API
+- Added `apps.create` to `appengine` `v1` API
+- Added `hosts.aggregatedList` to `compute` `alpha` API
+- Added `hosts.delete` to `compute` `alpha` API
+- Added `hosts.get` to `compute` `alpha` API
+- Added `hosts.insert` to `compute` `alpha` API
+- Added `hosts.list` to `compute` `alpha` API
+- Added `backendBuckets.delete` to `compute` `beta` API
+- Added `backendBuckets.get` to `compute` `beta` API
+- Added `backendBuckets.insert` to `compute` `beta` API
+- Added `backendBuckets.list` to `compute` `beta` API
+- Added `backendBuckets.patch` to `compute` `beta` API
+- Added `backendBuckets.update` to `compute` `beta` API
+- Added `subnetworks.getIamPolicy` to `compute` `beta` API
+- Added `subnetworks.setIamPolicy` to `compute` `beta` API
+- Added `networks.switchToCustomMode` to `compute` `v1` API
+- Added `subnetworks.expandIpCidrRange` to `compute` `v1` API
+- Added `projects.locations.jobs.create` to `dataflow` `v1b3` API
+- Added `projects.locations.jobs.get` to `dataflow` `v1b3` API
+- Added `projects.locations.jobs.update` to `dataflow` `v1b3` API
+- Added `projects.locations.jobs.list` to `dataflow` `v1b3` API
+- Added `projects.locations.jobs.getMetrics` to `dataflow` `v1b3` API
+- Added `projects.locations.jobs.messages.list` to `dataflow` `v1b3` API
+- Added `projects.locations.jobs.workItems.reportStatus` to `dataflow` `v1b3` API
+- Added `projects.locations.jobs.workItems.lease` to `dataflow` `v1b3` API
+- Added `folders.logs.delete` to `logging` `v2` API
+- Added `folders.sinks.update` to `logging` `v2` API
+- Added `folders.sinks.get` to `logging` `v2` API
+- Added `folders.sinks.create` to `logging` `v2` API
+- Added `folders.sinks.list` to `logging` `v2` API
+- Added `folders.sinks.delete` to `logging` `v2` API
+- Added `organizations.sinks.update` to `logging` `v2` API
+- Added `organizations.sinks.get` to `logging` `v2` API
+- Added `organizations.sinks.create` to `logging` `v2` API
+- Added `organizations.sinks.list` to `logging` `v2` API
+- Added `organizations.sinks.delete` to `logging` `v2` API
+- Added `billingAccounts.sinks.update` to `logging` `v2` API
+- Added `billingAccounts.sinks.get` to `logging` `v2` API
+- Added `billingAccounts.sinks.create` to `logging` `v2` API
+- Added `billingAccounts.sinks.list` to `logging` `v2` API
+- Added `billingAccounts.sinks.delete` to `logging` `v2` API
+
 ##### 14.1.0 - 19 October 2016
 
 ###### Backwards compatible changes

@@ -55,17 +55,12 @@ function Sheets(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/sheets
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var sheets = google.sheets('v4');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
      *     },
@@ -84,15 +79,21 @@ function Sheets(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
      *   //
-     *   // To use the `create` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/drive
-     *   //   https://www.googleapis.com/auth/spreadsheets
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using one of the following scopes:
+     *   //    https://www.googleapis.com/auth/drive
+     *   //    https://www.googleapis.com/auth/spreadsheets
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias sheets.spreadsheets.create
      * @memberOf! sheets(v4)
@@ -137,22 +138,14 @@ function Sheets(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/sheets
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var sheets = google.sheets('v4');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `get` method:
-     *
      *     // The spreadsheet to request.
-     *     spreadsheetId: '{MY-SPREADSHEET-ID}',
-     *
+     *     spreadsheetId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -168,17 +161,23 @@ function Sheets(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/drive
-     *   //   https://www.googleapis.com/auth/drive.readonly
-     *   //   https://www.googleapis.com/auth/spreadsheets
-     *   //   https://www.googleapis.com/auth/spreadsheets.readonly
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using one of the following scopes:
+     *   //    https://www.googleapis.com/auth/drive
+     *   //    https://www.googleapis.com/auth/drive.readonly
+     *   //    https://www.googleapis.com/auth/spreadsheets
+     *   //    https://www.googleapis.com/auth/spreadsheets.readonly
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias sheets.spreadsheets.get
      * @memberOf! sheets(v4)
@@ -225,22 +224,14 @@ function Sheets(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/sheets
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var sheets = google.sheets('v4');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `batchUpdate` method:
-     *
      *     // The spreadsheet to apply the updates to.
-     *     spreadsheetId: '{MY-SPREADSHEET-ID}',
-     *
+     *     spreadsheetId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -260,15 +251,21 @@ function Sheets(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
      *   //
-     *   // To use the `batchUpdate` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/drive
-     *   //   https://www.googleapis.com/auth/spreadsheets
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using one of the following scopes:
+     *   //    https://www.googleapis.com/auth/drive
+     *   //    https://www.googleapis.com/auth/spreadsheets
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias sheets.spreadsheets.batchUpdate
      * @memberOf! sheets(v4)
@@ -307,6 +304,60 @@ function Sheets(options) { // eslint-disable-line
        * sheets.spreadsheets.values.clear
        *
        * @desc Clears values from a spreadsheet. The caller must specify the spreadsheet ID and range. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Sheets API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/sheets
+       * // 2. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var sheets = google.sheets('v4');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // The ID of the spreadsheet to update.
+       *     spreadsheetId: '',  // TODO: Update placeholder value.
+       *
+       *     // The A1 notation of the values to clear.
+       *     range: '',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties of the request body.
+       *     },
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   sheets.spreadsheets.values.clear(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   // TODO: Change placeholder below to generate authentication credentials. See:
+       *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       *   //
+       *   // Authorize using one of the following scopes:
+       *   //    https://www.googleapis.com/auth/drive
+       *   //    https://www.googleapis.com/auth/spreadsheets
+       *   var authClient = null;
+       *
+       *   if (authClient == null) {
+       *     console.log('authentication failed');
+       *     return;
+       *   }
+       *   callback(authClient);
+       * }
        *
        * @alias sheets.spreadsheets.values.clear
        * @memberOf! sheets(v4)
@@ -353,22 +404,14 @@ function Sheets(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/sheets
        * // 2. Install the Node.js client library by running
        * //    `npm install googleapis --save`
+       *
        * var google = require('googleapis');
        * var sheets = google.sheets('v4');
        *
-       * getAuth(function(err, authClient) {
-       *   if (err) {
-       *     console.log(err);
-       *     return;
-       *   }
-       *
+       * authorize(function(authClient) {
        *   var request = {
-       *
-       *     // TODO: Change placeholder below to desired parameter value for the `batchGet` method:
-       *
        *     // The ID of the spreadsheet to retrieve data from.
-       *     spreadsheetId: '{MY-SPREADSHEET-ID}',
-       *
+       *     spreadsheetId: '',  // TODO: Update placeholder value.
        *
        *     auth: authClient
        *   };
@@ -384,17 +427,23 @@ function Sheets(options) { // eslint-disable-line
        *   });
        * });
        *
-       * function getAuth(callback) {
-       *   // TODO: Change placeholder below to get authentication credentials.
-       *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       * function authorize(callback) {
+       *   // TODO: Change placeholder below to generate authentication credentials. See:
+       *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
        *   //
-       *   // To use the `batchGet` method, authorize using one of the following scopes:
-       *   //   https://www.googleapis.com/auth/drive
-       *   //   https://www.googleapis.com/auth/drive.readonly
-       *   //   https://www.googleapis.com/auth/spreadsheets
-       *   //   https://www.googleapis.com/auth/spreadsheets.readonly
-       *   return callback(new Error("Not implemented"), null);
-       * };
+       *   // Authorize using one of the following scopes:
+       *   //    https://www.googleapis.com/auth/drive
+       *   //    https://www.googleapis.com/auth/drive.readonly
+       *   //    https://www.googleapis.com/auth/spreadsheets
+       *   //    https://www.googleapis.com/auth/spreadsheets.readonly
+       *   var authClient = null;
+       *
+       *   if (authClient == null) {
+       *     console.log('authentication failed');
+       *     return;
+       *   }
+       *   callback(authClient);
+       * }
        *
        * @alias sheets.spreadsheets.values.batchGet
        * @memberOf! sheets(v4)
@@ -402,8 +451,8 @@ function Sheets(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
        * @param {string=} params.ranges The A1 notation of the values to retrieve.
-       * @param {string=} params.valueRenderOption How values should be represented in the output.
-       * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE.
+       * @param {string=} params.valueRenderOption How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
+       * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
        * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -443,22 +492,14 @@ function Sheets(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/sheets
        * // 2. Install the Node.js client library by running
        * //    `npm install googleapis --save`
+       *
        * var google = require('googleapis');
        * var sheets = google.sheets('v4');
        *
-       * getAuth(function(err, authClient) {
-       *   if (err) {
-       *     console.log(err);
-       *     return;
-       *   }
-       *
+       * authorize(function(authClient) {
        *   var request = {
-       *
-       *     // TODO: Change placeholder below to desired parameter value for the `batchUpdate` method:
-       *
        *     // The ID of the spreadsheet to update.
-       *     spreadsheetId: '{MY-SPREADSHEET-ID}',
-       *
+       *     spreadsheetId: '',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties of the request body.
@@ -478,15 +519,21 @@ function Sheets(options) { // eslint-disable-line
        *   });
        * });
        *
-       * function getAuth(callback) {
-       *   // TODO: Change placeholder below to get authentication credentials.
-       *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       * function authorize(callback) {
+       *   // TODO: Change placeholder below to generate authentication credentials. See:
+       *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
        *   //
-       *   // To use the `batchUpdate` method, authorize using one of the following scopes:
-       *   //   https://www.googleapis.com/auth/drive
-       *   //   https://www.googleapis.com/auth/spreadsheets
-       *   return callback(new Error("Not implemented"), null);
-       * };
+       *   // Authorize using one of the following scopes:
+       *   //    https://www.googleapis.com/auth/drive
+       *   //    https://www.googleapis.com/auth/spreadsheets
+       *   var authClient = null;
+       *
+       *   if (authClient == null) {
+       *     console.log('authentication failed');
+       *     return;
+       *   }
+       *   callback(authClient);
+       * }
        *
        * @alias sheets.spreadsheets.values.batchUpdate
        * @memberOf! sheets(v4)
@@ -532,25 +579,17 @@ function Sheets(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/sheets
        * // 2. Install the Node.js client library by running
        * //    `npm install googleapis --save`
+       *
        * var google = require('googleapis');
        * var sheets = google.sheets('v4');
        *
-       * getAuth(function(err, authClient) {
-       *   if (err) {
-       *     console.log(err);
-       *     return;
-       *   }
-       *
+       * authorize(function(authClient) {
        *   var request = {
-       *
-       *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-       *
        *     // The ID of the spreadsheet to retrieve data from.
-       *     spreadsheetId: '{MY-SPREADSHEET-ID}',
+       *     spreadsheetId: '',  // TODO: Update placeholder value.
        *
        *     // The A1 notation of the values to retrieve.
-       *     range: '{MY-RANGE}',
-       *
+       *     range: '',  // TODO: Update placeholder value.
        *
        *     auth: authClient
        *   };
@@ -566,25 +605,31 @@ function Sheets(options) { // eslint-disable-line
        *   });
        * });
        *
-       * function getAuth(callback) {
-       *   // TODO: Change placeholder below to get authentication credentials.
-       *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       * function authorize(callback) {
+       *   // TODO: Change placeholder below to generate authentication credentials. See:
+       *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
        *   //
-       *   // To use the `get` method, authorize using one of the following scopes:
-       *   //   https://www.googleapis.com/auth/drive
-       *   //   https://www.googleapis.com/auth/drive.readonly
-       *   //   https://www.googleapis.com/auth/spreadsheets
-       *   //   https://www.googleapis.com/auth/spreadsheets.readonly
-       *   return callback(new Error("Not implemented"), null);
-       * };
+       *   // Authorize using one of the following scopes:
+       *   //    https://www.googleapis.com/auth/drive
+       *   //    https://www.googleapis.com/auth/drive.readonly
+       *   //    https://www.googleapis.com/auth/spreadsheets
+       *   //    https://www.googleapis.com/auth/spreadsheets.readonly
+       *   var authClient = null;
+       *
+       *   if (authClient == null) {
+       *     console.log('authentication failed');
+       *     return;
+       *   }
+       *   callback(authClient);
+       * }
        *
        * @alias sheets.spreadsheets.values.get
        * @memberOf! sheets(v4)
        *
        * @param {object} params Parameters for request
        * @param {string} params.spreadsheetId The ID of the spreadsheet to retrieve data from.
-       * @param {string=} params.valueRenderOption How values should be represented in the output.
-       * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE.
+       * @param {string=} params.valueRenderOption How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
+       * @param {string=} params.dateTimeRenderOption How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
        * @param {string} params.range The A1 notation of the values to retrieve.
        * @param {string=} params.majorDimension The major dimension that results should use.  For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return `[[1,3],[2,4]]`.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -625,26 +670,18 @@ function Sheets(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/sheets
        * // 2. Install the Node.js client library by running
        * //    `npm install googleapis --save`
+       *
        * var google = require('googleapis');
        * var sheets = google.sheets('v4');
        *
-       * getAuth(function(err, authClient) {
-       *   if (err) {
-       *     console.log(err);
-       *     return;
-       *   }
-       *
+       * authorize(function(authClient) {
        *   var request = {
-       *
-       *     // TODO: Change placeholders below to desired parameter values for the `append` method:
-       *
        *     // The ID of the spreadsheet to update.
-       *     spreadsheetId: '{MY-SPREADSHEET-ID}',
+       *     spreadsheetId: '',  // TODO: Update placeholder value.
        *
        *     // The A1 notation of a range to search for a logical table of data.
        *     // Values will be appended after the last row of the table.
-       *     range: '{MY-RANGE}',
-       *
+       *     range: '',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties of the request body.
@@ -664,24 +701,33 @@ function Sheets(options) { // eslint-disable-line
        *   });
        * });
        *
-       * function getAuth(callback) {
-       *   // TODO: Change placeholder below to get authentication credentials.
-       *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       * function authorize(callback) {
+       *   // TODO: Change placeholder below to generate authentication credentials. See:
+       *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
        *   //
-       *   // To use the `append` method, authorize using one of the following scopes:
-       *   //   https://www.googleapis.com/auth/drive
-       *   //   https://www.googleapis.com/auth/spreadsheets
-       *   return callback(new Error("Not implemented"), null);
-       * };
+       *   // Authorize using one of the following scopes:
+       *   //    https://www.googleapis.com/auth/drive
+       *   //    https://www.googleapis.com/auth/spreadsheets
+       *   var authClient = null;
+       *
+       *   if (authClient == null) {
+       *     console.log('authentication failed');
+       *     return;
+       *   }
+       *   callback(authClient);
+       * }
        *
        * @alias sheets.spreadsheets.values.append
        * @memberOf! sheets(v4)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.responseValueRenderOption Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
        * @param {string=} params.valueInputOption How the input data should be interpreted.
+       * @param {string=} params.responseDateTimeRenderOption Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+       * @param {boolean=} params.includeValuesInResponse Determines if the update response should include the values of the cells that were appended. By default, responses do not include the updated values.
        * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
-       * @param {string=} params.insertDataOption How the input data should be inserted.
        * @param {string} params.range The A1 notation of a range to search for a logical table of data. Values will be appended after the last row of the table.
+       * @param {string=} params.insertDataOption How the input data should be inserted.
        * @param {sheets(v4).ValueRange} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -721,25 +767,17 @@ function Sheets(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/sheets
        * // 2. Install the Node.js client library by running
        * //    `npm install googleapis --save`
+       *
        * var google = require('googleapis');
        * var sheets = google.sheets('v4');
        *
-       * getAuth(function(err, authClient) {
-       *   if (err) {
-       *     console.log(err);
-       *     return;
-       *   }
-       *
+       * authorize(function(authClient) {
        *   var request = {
-       *
-       *     // TODO: Change placeholders below to desired parameter values for the `update` method:
-       *
        *     // The ID of the spreadsheet to update.
-       *     spreadsheetId: '{MY-SPREADSHEET-ID}',
+       *     spreadsheetId: '',  // TODO: Update placeholder value.
        *
        *     // The A1 notation of the values to update.
-       *     range: '{MY-RANGE}',
-       *
+       *     range: '',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties of the request body.
@@ -759,21 +797,30 @@ function Sheets(options) { // eslint-disable-line
        *   });
        * });
        *
-       * function getAuth(callback) {
-       *   // TODO: Change placeholder below to get authentication credentials.
-       *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       * function authorize(callback) {
+       *   // TODO: Change placeholder below to generate authentication credentials. See:
+       *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
        *   //
-       *   // To use the `update` method, authorize using one of the following scopes:
-       *   //   https://www.googleapis.com/auth/drive
-       *   //   https://www.googleapis.com/auth/spreadsheets
-       *   return callback(new Error("Not implemented"), null);
-       * };
+       *   // Authorize using one of the following scopes:
+       *   //    https://www.googleapis.com/auth/drive
+       *   //    https://www.googleapis.com/auth/spreadsheets
+       *   var authClient = null;
+       *
+       *   if (authClient == null) {
+       *     console.log('authentication failed');
+       *     return;
+       *   }
+       *   callback(authClient);
+       * }
        *
        * @alias sheets.spreadsheets.values.update
        * @memberOf! sheets(v4)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.responseValueRenderOption Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
        * @param {string=} params.valueInputOption How the input data should be interpreted.
+       * @param {string=} params.responseDateTimeRenderOption Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+       * @param {boolean=} params.includeValuesInResponse Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than than the range actually written, the response will include all values in the requested range (excluding trailing empty rows and columns).
        * @param {string} params.spreadsheetId The ID of the spreadsheet to update.
        * @param {string} params.range The A1 notation of the values to update.
        * @param {sheets(v4).ValueRange} params.resource Request body data
@@ -806,6 +853,57 @@ function Sheets(options) { // eslint-disable-line
        * sheets.spreadsheets.values.batchClear
        *
        * @desc Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Sheets API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/sheets
+       * // 2. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var sheets = google.sheets('v4');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // The ID of the spreadsheet to update.
+       *     spreadsheetId: '',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties of the request body.
+       *     },
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   sheets.spreadsheets.values.batchClear(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   // TODO: Change placeholder below to generate authentication credentials. See:
+       *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       *   //
+       *   // Authorize using one of the following scopes:
+       *   //    https://www.googleapis.com/auth/drive
+       *   //    https://www.googleapis.com/auth/spreadsheets
+       *   var authClient = null;
+       *
+       *   if (authClient == null) {
+       *     console.log('authentication failed');
+       *     return;
+       *   }
+       *   callback(authClient);
+       * }
        *
        * @alias sheets.spreadsheets.values.batchClear
        * @memberOf! sheets(v4)
@@ -854,25 +952,17 @@ function Sheets(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/sheets
        * // 2. Install the Node.js client library by running
        * //    `npm install googleapis --save`
+       *
        * var google = require('googleapis');
        * var sheets = google.sheets('v4');
        *
-       * getAuth(function(err, authClient) {
-       *   if (err) {
-       *     console.log(err);
-       *     return;
-       *   }
-       *
+       * authorize(function(authClient) {
        *   var request = {
-       *
-       *     // TODO: Change placeholders below to desired parameter values for the `copyTo` method:
-       *
        *     // The ID of the spreadsheet containing the sheet to copy.
-       *     spreadsheetId: '{MY-SPREADSHEET-ID}',
+       *     spreadsheetId: '',  // TODO: Update placeholder value.
        *
        *     // The ID of the sheet to copy.
-       *     sheetId: 0,
-       *
+       *     sheetId: 0,  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties of the request body.
@@ -892,15 +982,21 @@ function Sheets(options) { // eslint-disable-line
        *   });
        * });
        *
-       * function getAuth(callback) {
-       *   // TODO: Change placeholder below to get authentication credentials.
-       *   // See: https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
+       * function authorize(callback) {
+       *   // TODO: Change placeholder below to generate authentication credentials. See:
+       *   // https://developers.google.com/sheets/quickstart/nodejs#step_3_set_up_the_sample,
        *   //
-       *   // To use the `copyTo` method, authorize using one of the following scopes:
-       *   //   https://www.googleapis.com/auth/drive
-       *   //   https://www.googleapis.com/auth/spreadsheets
-       *   return callback(new Error("Not implemented"), null);
-       * };
+       *   // Authorize using one of the following scopes:
+       *   //    https://www.googleapis.com/auth/drive
+       *   //    https://www.googleapis.com/auth/spreadsheets
+       *   var authClient = null;
+       *
+       *   if (authClient == null) {
+       *     console.log('authentication failed');
+       *     return;
+       *   }
+       *   callback(authClient);
+       * }
        *
        * @alias sheets.spreadsheets.sheets.copyTo
        * @memberOf! sheets(v4)
@@ -1069,12 +1165,15 @@ A single `&quot;*&quot;` can be used as short-hand for listing every field.
  * @typedef UpdateValuesResponse
  * @memberOf! sheets(v4)
  * @type object
- * @property {string} updatedRange The range (in A1 notation) that updates were applied to.
- * @property {integer} updatedColumns The number of columns where at least one cell in the column was updated.
- * @property {string} spreadsheetId The spreadsheet the updates were applied to.
- * @property {integer} updatedRows The number of rows where at least one cell in the row was updated.
- * @property {integer} updatedCells The number of cells updated.
- */
+* @property {integer} updatedColumns The number of columns where at least one cell in the column was updated.
+* @property {integer} updatedCells The number of cells updated.
+* @property {sheets(v4).ValueRange} updatedData The values of the cells after updates were applied.
+This is only included if the request&#39;s `includeValuesInResponse` field
+was `true`.
+* @property {string} updatedRange The range (in A1 notation) that updates were applied to.
+* @property {string} spreadsheetId The spreadsheet the updates were applied to.
+* @property {integer} updatedRows The number of rows where at least one cell in the row was updated.
+*/
 /**
  * @typedef SpreadsheetProperties
  * @memberOf! sheets(v4)
@@ -1209,6 +1308,7 @@ this is the data representing the dates.
  * @property {sheets(v4).UpdateConditionalFormatRuleResponse} updateConditionalFormatRule A reply from updating a conditional format rule.
  * @property {sheets(v4).AddChartResponse} addChart A reply from adding a chart.
  * @property {sheets(v4).DeleteConditionalFormatRuleResponse} deleteConditionalFormatRule A reply from deleting a conditional format rule.
+ * @property {sheets(v4).AddBandingResponse} addBanding A reply from adding a banded range.
  * @property {sheets(v4).DuplicateSheetResponse} duplicateSheet A reply from duplicating a sheet.
  * @property {sheets(v4).DuplicateFilterViewResponse} duplicateFilterView A reply from duplicating a filter view.
  * @property {sheets(v4).AddNamedRangeResponse} addNamedRange A reply from adding a named range.
@@ -1248,6 +1348,12 @@ that column.
 * @property {sheets(v4).SortSpec[]} sortSpecs The sort order per column. Later specifications are used when values
 are equal in the earlier specifications.
 */
+/**
+ * @typedef AddBandingResponse
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).BandedRange} bandedRange The banded range that was added.
+ */
 /**
  * @typedef TextFormatRun
  * @memberOf! sheets(v4)
@@ -1355,9 +1461,22 @@ For example, these are valid configurations:
  * @typedef BatchUpdateValuesRequest
  * @memberOf! sheets(v4)
  * @type object
- * @property {string} valueInputOption How the input data should be interpreted.
- * @property {sheets(v4).ValueRange[]} data The new values to apply to the spreadsheet.
- */
+* @property {string} valueInputOption How the input data should be interpreted.
+* @property {sheets(v4).ValueRange[]} data The new values to apply to the spreadsheet.
+* @property {string} responseValueRenderOption Determines how values in the response should be rendered.
+The default render option is ValueRenderOption.FORMATTED_VALUE.
+* @property {string} responseDateTimeRenderOption Determines how dates, times, and durations in the response should be
+rendered. This is ignored if response_value_render_option is
+FORMATTED_VALUE.
+The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+* @property {boolean} includeValuesInResponse Determines if the update response should include the values
+of the cells that were updated. By default, responses
+do not include the updated values. The `updatedData` field within
+each of the BatchUpdateValuesResponse.responses will contain
+the updated values. If the range to write was larger than than the range
+actually written, the response will include all values in the requested
+range (excluding trailing empty rows and columns).
+*/
 /**
  * @typedef ClearBasicFilterRequest
  * @memberOf! sheets(v4)
@@ -1617,8 +1736,15 @@ MAX.
  * @typedef BatchUpdateSpreadsheetRequest
  * @memberOf! sheets(v4)
  * @type object
- * @property {sheets(v4).Request[]} requests A list of updates to apply to the spreadsheet.
- */
+* @property {boolean} includeSpreadsheetInResponse Determines if the update response should include the spreadsheet
+resource.
+* @property {sheets(v4).Request[]} requests A list of updates to apply to the spreadsheet.
+* @property {string[]} responseRanges Limits the ranges included in the response spreadsheet.
+Meaningful only if include_spreadsheet_response is &#39;true&#39;.
+* @property {boolean} responseIncludeGridData True if grid data should be returned. Meaningful only if
+if include_spreadsheet_response is &#39;true&#39;.
+This parameter is ignored if a field mask was set in the request.
+*/
 /**
  * @typedef SheetProperties
  * @memberOf! sheets(v4)
@@ -1855,6 +1981,12 @@ is not supported.
 Otherwise, the column name is used.
 */
 /**
+ * @typedef DeleteBandingRequest
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {integer} bandedRangeId The ID of the banded range to delete.
+ */
+/**
  * @typedef BasicFilter
  * @memberOf! sheets(v4)
  * @type object
@@ -1912,6 +2044,14 @@ is an error to specify the ID of a range that already exists.)
  * @type object
  * @property {sheets(v4).EmbeddedChart} chart The newly added chart.
  */
+/**
+ * @typedef AddBandingRequest
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).BandedRange} bandedRange The banded range to add. The bandedRangeId
+field is optional; if one is not set, an id will be randomly generated. (It
+is an error to specify the ID of a range that already exists.)
+*/
 /**
  * @typedef AppendCellsRequest
  * @memberOf! sheets(v4)
@@ -1984,12 +2124,6 @@ on the data.
  * @property {string} name The name of the named range.
  */
 /**
- * @typedef SetBasicFilterRequest
- * @memberOf! sheets(v4)
- * @type object
- * @property {sheets(v4).BasicFilter} filter The filter to set.
- */
-/**
  * @typedef UpdateEmbeddedObjectPositionRequest
  * @memberOf! sheets(v4)
  * @type object
@@ -2008,6 +2142,12 @@ should not be specified.
 A single `&quot;*&quot;` can be used as short-hand for listing every field.
 */
 /**
+ * @typedef SetBasicFilterRequest
+ * @memberOf! sheets(v4)
+ * @type object
+ * @property {sheets(v4).BasicFilter} filter The filter to set.
+ */
+/**
  * @typedef AutoResizeDimensionsRequest
  * @memberOf! sheets(v4)
  * @type object
@@ -2020,6 +2160,23 @@ Only COLUMNS are supported.
  * @type object
  * @property {sheets(v4).FilterView} filter The newly created filter.
  */
+/**
+ * @typedef BandingProperties
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).Color} footerColor The color of the last row or column. If this field is not set, the last
+row or column will be filled with either first_row_color or
+second_row_color, depending on the color of the previous row or
+column.
+* @property {sheets(v4).Color} headerColor The color of the first row or column. If this field is set, the first
+row or column will be filled with this color and the colors will
+alternate between first_band_color and [second_band_color[] starting
+from the second row or column. Otherwise, the first row or column will be
+filled with first_band_color and the colors will proceed to alternate
+as they normally would.
+* @property {sheets(v4).Color} secondBandColor The second color that is alternating. (Required)
+* @property {sheets(v4).Color} firstBandColor The first color that is alternating. (Required)
+*/
 /**
  * @typedef PivotGroup
  * @memberOf! sheets(v4)
@@ -2052,6 +2209,15 @@ If not specified, sorting is alphabetical by this group&#39;s values.
  * @property {integer} sheetId The ID of the sheet to delete.
  */
 /**
+ * @typedef UpdateBandingRequest
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {sheets(v4).BandedRange} bandedRange The banded range to update with the new properties.
+* @property {string} fields The fields that should be updated.  At least one field must be specified.
+The root `bandedRange` is implied and should not be specified.
+A single `&quot;*&quot;` can be used as short-hand for listing every field.
+*/
+/**
  * @typedef ChartData
  * @memberOf! sheets(v4)
  * @type object
@@ -2076,6 +2242,7 @@ ranges requested on this sheet. For example, if this is representing
 startRow/startColumn of `0`,
 while the second one will have `startRow 14` (zero-based row 15),
 and `startColumn 3` (zero-based column D).
+* @property {sheets(v4).BandedRange[]} bandedRanges The banded (i.e. alternating colors) ranges on this sheet.
 */
 /**
  * @typedef CopyPasteRequest
@@ -2128,6 +2295,8 @@ Leading single quotes are not included. For example, if the user typed
  * @memberOf! sheets(v4)
  * @type object
 * @property {string} spreadsheetId The spreadsheet the updates were applied to.
+* @property {sheets(v4).Spreadsheet} updatedSpreadsheet The spreadsheet after updates were applied. This is only set if
+[BatchUpdateSpreadsheetRequest.include_spreadsheet_in_response] is `true`.
 * @property {sheets(v4).Response[]} replies The reply of the updates.  This maps 1:1 with the updates, although
 replies to some requests may be empty.
 */
@@ -2283,8 +2452,11 @@ or empty to clear the data validation in the range.
 * @property {sheets(v4).UpdateConditionalFormatRuleRequest} updateConditionalFormatRule Updates an existing conditional format rule.
 * @property {sheets(v4).SetBasicFilterRequest} setBasicFilter Sets the basic filter on a sheet.
 * @property {sheets(v4).MergeCellsRequest} mergeCells Merges cells together.
+* @property {sheets(v4).UpdateBandingRequest} updateBanding Updates a banded range
 * @property {sheets(v4).AddChartRequest} addChart Adds a chart.
 * @property {sheets(v4).DeleteConditionalFormatRuleRequest} deleteConditionalFormatRule Deletes an existing conditional format rule.
+* @property {sheets(v4).AddBandingRequest} addBanding Adds a new banded range
+* @property {sheets(v4).DeleteBandingRequest} deleteBanding Removes a banded range
 * @property {sheets(v4).UpdateChartSpecRequest} updateChartSpec Updates a chart&#39;s specifications.
 * @property {sheets(v4).DeleteDimensionRequest} deleteDimension Deletes rows or columns in a sheet.
 * @property {sheets(v4).DeleteEmbeddedObjectRequest} deleteEmbeddedObject Deletes an embedded object (e.g, chart, image) in a sheet.
@@ -2336,6 +2508,19 @@ be green (because the row after the insertion point was green).
  * @type object
  * @property {integer} objectId The ID of the embedded object to delete.
  */
+/**
+ * @typedef BandedRange
+ * @memberOf! sheets(v4)
+ * @type object
+* @property {integer} bandedRangeId The id of the banded range.
+* @property {sheets(v4).BandingProperties} rowProperties Properties for row bands. These properties will be applied on a row-by-row
+basis throughout all the rows in the range. At least one of
+row_properties or column_properties must be specified.
+* @property {sheets(v4).BandingProperties} columnProperties Properties for column bands. These properties will be applied on a column-
+by-column basis throughout all the columns in the range. At least one of
+row_properties or column_properties must be specified.
+* @property {sheets(v4).GridRange} range The range over which these properties are applied.
+*/
 /**
  * @typedef DeleteConditionalFormatRuleResponse
  * @memberOf! sheets(v4)

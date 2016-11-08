@@ -665,41 +665,6 @@ function Ml(options) { // eslint-disable-line
       },
 
       /**
-       * ml.projects.operations.cancel
-       *
-       * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-       *
-       * @alias ml.projects.operations.cancel
-       * @memberOf! ml(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the operation resource to be cancelled.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      cancel: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://ml.googleapis.com/v1beta1/{name}:cancel',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * ml.projects.operations.delete
        *
        * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
@@ -724,6 +689,41 @@ function Ml(options) { // eslint-disable-line
           options: utils.extend({
             url: 'https://ml.googleapis.com/v1beta1/{name}',
             method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * ml.projects.operations.cancel
+       *
+       * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+       *
+       * @alias ml.projects.operations.cancel
+       * @memberOf! ml(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the operation resource to be cancelled.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      cancel: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://ml.googleapis.com/v1beta1/{name}:cancel',
+            method: 'POST'
           }, options),
           params: params,
           requiredParams: ['name'],

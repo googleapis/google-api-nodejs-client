@@ -65,7 +65,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses',
+          url: 'https://classroom.googleapis.com/v1/courses',
           method: 'POST'
         }, options),
         params: params,
@@ -100,7 +100,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{id}',
+          url: 'https://classroom.googleapis.com/v1/courses/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -136,7 +136,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{id}',
+          url: 'https://classroom.googleapis.com/v1/courses/{id}',
           method: 'PUT'
         }, options),
         params: params,
@@ -173,7 +173,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{id}',
+          url: 'https://classroom.googleapis.com/v1/courses/{id}',
           method: 'PATCH'
         }, options),
         params: params,
@@ -208,7 +208,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{id}',
+          url: 'https://classroom.googleapis.com/v1/courses/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -247,7 +247,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses',
+          url: 'https://classroom.googleapis.com/v1/courses',
           method: 'GET'
         }, options),
         params: params,
@@ -285,7 +285,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/aliases',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases',
             method: 'POST'
           }, options),
           params: params,
@@ -321,7 +321,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/aliases/{alias}',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases/{alias}',
             method: 'DELETE'
           }, options),
           params: params,
@@ -358,7 +358,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/aliases',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases',
             method: 'GET'
           }, options),
           params: params,
@@ -397,7 +397,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/teachers',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers',
             method: 'POST'
           }, options),
           params: params,
@@ -433,7 +433,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
             method: 'GET'
           }, options),
           params: params,
@@ -469,7 +469,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
             method: 'DELETE'
           }, options),
           params: params,
@@ -506,7 +506,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/teachers',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers',
             method: 'GET'
           }, options),
           params: params,
@@ -546,7 +546,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/students',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students',
             method: 'POST'
           }, options),
           params: params,
@@ -582,7 +582,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/students/{userId}',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students/{userId}',
             method: 'GET'
           }, options),
           params: params,
@@ -618,7 +618,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/students/{userId}',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students/{userId}',
             method: 'DELETE'
           }, options),
           params: params,
@@ -655,7 +655,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/students',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students',
             method: 'GET'
           }, options),
           params: params,
@@ -694,7 +694,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork',
             method: 'POST'
           }, options),
           params: params,
@@ -730,7 +730,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{id}',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{id}',
             method: 'GET'
           }, options),
           params: params,
@@ -769,7 +769,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork',
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork',
             method: 'GET'
           }, options),
           params: params,
@@ -808,7 +808,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
               method: 'GET'
             }, options),
             params: params,
@@ -847,7 +847,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
               method: 'PATCH'
             }, options),
             params: params,
@@ -888,7 +888,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions',
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions',
               method: 'GET'
             }, options),
             params: params,
@@ -926,7 +926,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn',
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn',
               method: 'POST'
             }, options),
             params: params,
@@ -964,7 +964,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim',
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim',
               method: 'POST'
             }, options),
             params: params,
@@ -1002,7 +1002,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return',
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return',
               method: 'POST'
             }, options),
             params: params,
@@ -1040,7 +1040,7 @@ function Classroom(options) { // eslint-disable-line
 
           var parameters = {
             options: utils.extend({
-              url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments',
+              url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments',
               method: 'POST'
             }, options),
             params: params,
@@ -1080,7 +1080,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{userId}',
+          url: 'https://classroom.googleapis.com/v1/userProfiles/{userId}',
           method: 'GET'
         }, options),
         params: params,
@@ -1121,7 +1121,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
             method: 'GET'
           }, options),
           params: params,
@@ -1157,7 +1157,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
             method: 'GET'
           }, options),
           params: params,
@@ -1193,7 +1193,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
             method: 'POST'
           }, options),
           params: params,
@@ -1231,7 +1231,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
             method: 'PATCH'
           }, options),
           params: params,
@@ -1272,7 +1272,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardians',
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians',
             method: 'GET'
           }, options),
           params: params,
@@ -1308,7 +1308,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
             method: 'GET'
           }, options),
           params: params,
@@ -1344,7 +1344,7 @@ function Classroom(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
+            url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
             method: 'DELETE'
           }, options),
           params: params,
@@ -1383,7 +1383,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/invitations',
+          url: 'https://classroom.googleapis.com/v1/invitations',
           method: 'POST'
         }, options),
         params: params,
@@ -1418,7 +1418,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/invitations/{id}',
+          url: 'https://classroom.googleapis.com/v1/invitations/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -1453,7 +1453,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/invitations/{id}',
+          url: 'https://classroom.googleapis.com/v1/invitations/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -1491,7 +1491,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/invitations',
+          url: 'https://classroom.googleapis.com/v1/invitations',
           method: 'GET'
         }, options),
         params: params,
@@ -1526,7 +1526,7 @@ function Classroom(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://prod-day0-classroom.sandbox.googleapis.com/v1/invitations/{id}:accept',
+          url: 'https://classroom.googleapis.com/v1/invitations/{id}:accept',
           method: 'POST'
         }, options),
         params: params,

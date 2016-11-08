@@ -444,6 +444,42 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {string} voterServices The services provided by this early vote site or drop off location. This field is not populated for polling locations.
  */
 /**
+ * @typedef PostalAddress
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string[]} addressLines 
+ * @property {string} administrativeAreaName 
+ * @property {string} countryName 
+ * @property {string} countryNameCode 
+ * @property {string} dependentLocalityName 
+ * @property {string} dependentThoroughfareLeadingType 
+ * @property {string} dependentThoroughfareName 
+ * @property {string} dependentThoroughfarePostDirection 
+ * @property {string} dependentThoroughfarePreDirection 
+ * @property {string} dependentThoroughfareTrailingType 
+ * @property {string} dependentThoroughfaresConnector 
+ * @property {string} dependentThoroughfaresIndicator 
+ * @property {string} dependentThoroughfaresType 
+ * @property {string} firmName 
+ * @property {boolean} isDisputed 
+ * @property {string} languageCode 
+ * @property {string} localityName 
+ * @property {string} postBoxNumber 
+ * @property {string} postalCodeNumber 
+ * @property {string} postalCodeNumberExtension 
+ * @property {string} premiseName 
+ * @property {string} recipientName 
+ * @property {string} sortingCode 
+ * @property {string} subAdministrativeAreaName 
+ * @property {string} subPremiseName 
+ * @property {string} thoroughfareLeadingType 
+ * @property {string} thoroughfareName 
+ * @property {string} thoroughfareNumber 
+ * @property {string} thoroughfarePostDirection 
+ * @property {string} thoroughfarePreDirection 
+ * @property {string} thoroughfareTrailingType 
+ */
+/**
  * @typedef RepresentativeInfoData
  * @memberOf! civicinfo(v2)
  * @type object
@@ -491,6 +527,7 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @memberOf! civicinfo(v2)
  * @type object
  * @property {civicinfo(v2).ContextParams} contextParams 
+ * @property {civicinfo(v2).VoterInfoSegmentResult} voterInfoSegmentResult 
  */
 /**
  * @typedef VoterInfoResponse
@@ -507,5 +544,14 @@ For example, if this division&#39;s OCD ID is ocd-division/country:us/district:d
  * @property {civicinfo(v2).PollingLocation[]} pollingLocations Locations where the voter is eligible to vote on election day.
  * @property {string} precinctId 
  * @property {civicinfo(v2).AdministrationRegion[]} state Local Election Information for the state that the voter votes in. For the US, there will only be one element in this array.
+ */
+/**
+ * @typedef VoterInfoSegmentResult
+ * @memberOf! civicinfo(v2)
+ * @type object
+ * @property {string} generatedMillis 
+ * @property {civicinfo(v2).PostalAddress} postalAddress 
+ * @property {civicinfo(v2).VoterInfoRequest} request 
+ * @property {civicinfo(v2).VoterInfoResponse} response 
  */
 module.exports = Civicinfo;
