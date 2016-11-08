@@ -297,8 +297,9 @@ supports proper noun mentions.
  * @typedef Sentiment
  * @memberOf! language(v1beta1)
  * @type object
-* @property {number} polarity Polarity of the sentiment in the [-1.0, 1.0] range. Larger numbers
-represent more positive sentiments.
+* @property {number} polarity DEPRECATED FIELD - This field is being deprecated in
+favor of score. Please refer to our documentation at
+https://cloud.google.com/natural-language/docs for more information.
 * @property {number} magnitude A non-negative number in the [0, +inf) range, which represents
 the absolute magnitude of sentiment regardless of polarity (positive or
 negative).

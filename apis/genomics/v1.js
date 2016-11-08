@@ -776,7 +776,7 @@ function Genomics(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.name The name of the operation collection.
-     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING`
+     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      * @param {integer=} params.pageSize The maximum number of results to return. If unspecified, defaults to 256. The maximum value is 2048.
      * @param {string=} params.pageToken The standard list page token.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2758,8 +2758,9 @@ function Genomics(options) { // eslint-disable-line
  * @property {string} endTime The time at which the job stopped running.
  * @property {object} request The original request that started the operation. Note that this will be in current version of the API. If the operation was started with v1beta2 API and a GetOperation is performed on v1 API, a v1 request will be returned.
  * @property {genomics(v1).OperationEvent[]} events Optional event messages that were generated during the job&#39;s execution. This also contains any warnings that were generated during import or export.
- * @property {string} clientId Optionally provided by the caller when submitting the request that creates the operation.
+ * @property {string} clientId This field is deprecated. Use `labels` instead. Optionally provided by the caller when submitting the request that creates the operation.
  * @property {object} runtimeMetadata Runtime metadata on this Operation.
+ * @property {object} labels Optionally provided by the caller when submitting the request that creates the operation.
  */
 /**
  * @typedef OperationEvent

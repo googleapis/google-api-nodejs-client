@@ -1588,7 +1588,7 @@ function Adsense(options) { // eslint-disable-line
  * @memberOf! adsense(v1.4)
  * @type object
  * @property {object} colors The colors which are included in the style. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash.
- * @property {string} corners The style of the corners in the ad.
+ * @property {string} corners The style of the corners in the ad (deprecated: never populated, ignored).
  * @property {object} font The font which is included in the style.
  * @property {string} kind Kind this is, in this case adsense#adStyle.
  */

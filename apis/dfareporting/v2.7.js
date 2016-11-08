@@ -28,12 +28,12 @@ var utils = require('../../lib/utils');
  *
  * @example
  * var google = require('googleapis');
- * var dfareporting = google.dfareporting('v2.4');
+ * var dfareporting = google.dfareporting('v2.7');
  *
  * @namespace dfareporting
  * @type {Function}
- * @version v2.4
- * @variation v2.4
+ * @version v2.7
+ * @variation v2.7
  * @param {object=} options Options for Dfareporting
  */
 function Dfareporting(options) { // eslint-disable-line
@@ -48,7 +48,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets the account's active ad summary by account ID.
      *
      * @alias dfareporting.accountActiveAdSummaries.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -66,7 +66,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}',
           method: 'GET'
         }, options),
         params: params,
@@ -88,7 +88,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one account permission group by ID.
      *
      * @alias dfareporting.accountPermissionGroups.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Account permission group ID.
@@ -106,7 +106,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accountPermissionGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accountPermissionGroups/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -124,7 +124,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves the list of account permission groups.
      *
      * @alias dfareporting.accountPermissionGroups.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -141,7 +141,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accountPermissionGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accountPermissionGroups',
           method: 'GET'
         }, options),
         params: params,
@@ -163,7 +163,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one account permission by ID.
      *
      * @alias dfareporting.accountPermissions.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Account permission ID.
@@ -181,7 +181,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accountPermissions/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accountPermissions/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -199,7 +199,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves the list of account permissions.
      *
      * @alias dfareporting.accountPermissions.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -216,7 +216,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accountPermissions',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accountPermissions',
           method: 'GET'
         }, options),
         params: params,
@@ -238,7 +238,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one account user profile by ID.
      *
      * @alias dfareporting.accountUserProfiles.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User profile ID.
@@ -256,7 +256,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accountUserProfiles/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accountUserProfiles/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -274,11 +274,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new account user profile.
      *
      * @alias dfareporting.accountUserProfiles.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).AccountUserProfile} params.resource Request body data
+     * @param {dfareporting(v2.7).AccountUserProfile} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -292,7 +292,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accountUserProfiles',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accountUserProfiles',
           method: 'POST'
         }, options),
         params: params,
@@ -310,7 +310,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of account user profiles, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.accountUserProfiles.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.active Select only active user profiles.
@@ -336,7 +336,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accountUserProfiles',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accountUserProfiles',
           method: 'GET'
         }, options),
         params: params,
@@ -354,12 +354,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing account user profile. This method supports patch semantics.
      *
      * @alias dfareporting.accountUserProfiles.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User profile ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).AccountUserProfile} params.resource Request body data
+     * @param {dfareporting(v2.7).AccountUserProfile} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -373,7 +373,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accountUserProfiles',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accountUserProfiles',
           method: 'PATCH'
         }, options),
         params: params,
@@ -391,11 +391,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing account user profile.
      *
      * @alias dfareporting.accountUserProfiles.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).AccountUserProfile} params.resource Request body data
+     * @param {dfareporting(v2.7).AccountUserProfile} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -409,7 +409,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accountUserProfiles',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accountUserProfiles',
           method: 'PUT'
         }, options),
         params: params,
@@ -431,7 +431,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one account by ID.
      *
      * @alias dfareporting.accounts.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Account ID.
@@ -449,7 +449,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accounts/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accounts/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -467,7 +467,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves the list of accounts, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.accounts.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.active Select only active accounts. Don't set this field to select both active and non-active accounts.
@@ -491,7 +491,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accounts',
           method: 'GET'
         }, options),
         params: params,
@@ -509,12 +509,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing account. This method supports patch semantics.
      *
      * @alias dfareporting.accounts.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Account ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Account} params.resource Request body data
+     * @param {dfareporting(v2.7).Account} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -528,7 +528,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accounts',
           method: 'PATCH'
         }, options),
         params: params,
@@ -546,11 +546,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing account.
      *
      * @alias dfareporting.accounts.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Account} params.resource Request body data
+     * @param {dfareporting(v2.7).Account} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -564,7 +564,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/accounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/accounts',
           method: 'PUT'
         }, options),
         params: params,
@@ -586,7 +586,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one ad by ID.
      *
      * @alias dfareporting.ads.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Ad ID.
@@ -604,7 +604,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/ads/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/ads/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -622,11 +622,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new ad.
      *
      * @alias dfareporting.ads.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Ad} params.resource Request body data
+     * @param {dfareporting(v2.7).Ad} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -640,7 +640,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/ads',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/ads',
           method: 'POST'
         }, options),
         params: params,
@@ -658,7 +658,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of ads, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.ads.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.active Select only active ads.
@@ -669,7 +669,6 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.compatibility Select default ads with the specified compatibility. Applicable when type is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an in-stream video ads developed with the VAST standard.
      * @param {string=} params.creativeIds Select only ads with these creative IDs assigned.
      * @param {string=} params.creativeOptimizationConfigurationIds Select only ads with these creative optimization configuration IDs.
-     * @param {string=} params.creativeType Select only ads with the specified creativeType.
      * @param {boolean=} params.dynamicClickTracker Select only dynamic click trackers. Applicable when type is AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If false, select static click trackers. Leave unset to select both.
      * @param {string=} params.ids Select only ads with these IDs.
      * @param {string=} params.landingPageIds Select only ads with these landing page IDs.
@@ -699,7 +698,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/ads',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/ads',
           method: 'GET'
         }, options),
         params: params,
@@ -717,12 +716,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing ad. This method supports patch semantics.
      *
      * @alias dfareporting.ads.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Ad ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Ad} params.resource Request body data
+     * @param {dfareporting(v2.7).Ad} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -736,7 +735,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/ads',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/ads',
           method: 'PATCH'
         }, options),
         params: params,
@@ -754,11 +753,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing ad.
      *
      * @alias dfareporting.ads.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Ad} params.resource Request body data
+     * @param {dfareporting(v2.7).Ad} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -772,7 +771,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/ads',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/ads',
           method: 'PUT'
         }, options),
         params: params,
@@ -794,7 +793,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Deletes an existing advertiser group.
      *
      * @alias dfareporting.advertiserGroups.delete
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser group ID.
@@ -812,7 +811,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/advertiserGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/advertiserGroups/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -830,7 +829,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one advertiser group by ID.
      *
      * @alias dfareporting.advertiserGroups.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser group ID.
@@ -848,7 +847,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/advertiserGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/advertiserGroups/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -866,11 +865,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new advertiser group.
      *
      * @alias dfareporting.advertiserGroups.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).AdvertiserGroup} params.resource Request body data
+     * @param {dfareporting(v2.7).AdvertiserGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -884,7 +883,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/advertiserGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/advertiserGroups',
           method: 'POST'
         }, options),
         params: params,
@@ -902,7 +901,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of advertiser groups, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.advertiserGroups.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.ids Select only advertiser groups with these IDs.
@@ -925,7 +924,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/advertiserGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/advertiserGroups',
           method: 'GET'
         }, options),
         params: params,
@@ -943,12 +942,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing advertiser group. This method supports patch semantics.
      *
      * @alias dfareporting.advertiserGroups.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser group ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).AdvertiserGroup} params.resource Request body data
+     * @param {dfareporting(v2.7).AdvertiserGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -962,7 +961,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/advertiserGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/advertiserGroups',
           method: 'PATCH'
         }, options),
         params: params,
@@ -980,11 +979,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing advertiser group.
      *
      * @alias dfareporting.advertiserGroups.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).AdvertiserGroup} params.resource Request body data
+     * @param {dfareporting(v2.7).AdvertiserGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -998,7 +997,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/advertiserGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/advertiserGroups',
           method: 'PUT'
         }, options),
         params: params,
@@ -1020,7 +1019,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one advertiser by ID.
      *
      * @alias dfareporting.advertisers.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser ID.
@@ -1038,7 +1037,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/advertisers/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/advertisers/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -1056,11 +1055,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new advertiser.
      *
      * @alias dfareporting.advertisers.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Advertiser} params.resource Request body data
+     * @param {dfareporting(v2.7).Advertiser} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1074,7 +1073,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/advertisers',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/advertisers',
           method: 'POST'
         }, options),
         params: params,
@@ -1092,7 +1091,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of advertisers, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.advertisers.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserGroupIds Select only advertisers with these advertiser group IDs.
@@ -1121,7 +1120,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/advertisers',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/advertisers',
           method: 'GET'
         }, options),
         params: params,
@@ -1139,12 +1138,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing advertiser. This method supports patch semantics.
      *
      * @alias dfareporting.advertisers.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Advertiser ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Advertiser} params.resource Request body data
+     * @param {dfareporting(v2.7).Advertiser} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1158,7 +1157,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/advertisers',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/advertisers',
           method: 'PATCH'
         }, options),
         params: params,
@@ -1176,11 +1175,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing advertiser.
      *
      * @alias dfareporting.advertisers.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Advertiser} params.resource Request body data
+     * @param {dfareporting(v2.7).Advertiser} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1194,7 +1193,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/advertisers',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/advertisers',
           method: 'PUT'
         }, options),
         params: params,
@@ -1216,7 +1215,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of browsers.
      *
      * @alias dfareporting.browsers.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -1233,7 +1232,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/browsers',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/browsers',
           method: 'GET'
         }, options),
         params: params,
@@ -1255,12 +1254,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Associates a creative with the specified campaign. This method creates a default ad with dimensions matching the creative in the campaign if such a default ad does not exist already.
      *
      * @alias dfareporting.campaignCreativeAssociations.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.campaignId Campaign ID in this association.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).CampaignCreativeAssociation} params.resource Request body data
+     * @param {dfareporting(v2.7).CampaignCreativeAssociation} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1274,7 +1273,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations',
           method: 'POST'
         }, options),
         params: params,
@@ -1292,7 +1291,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves the list of creative IDs associated with the specified campaign. This method supports paging.
      *
      * @alias dfareporting.campaignCreativeAssociations.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.campaignId Campaign ID in this association.
@@ -1313,7 +1312,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations',
           method: 'GET'
         }, options),
         params: params,
@@ -1335,7 +1334,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one campaign by ID.
      *
      * @alias dfareporting.campaigns.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Campaign ID.
@@ -1353,7 +1352,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -1371,13 +1370,13 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new campaign.
      *
      * @alias dfareporting.campaigns.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.defaultLandingPageName Default landing page name for this new campaign. Must be less than 256 characters long.
      * @param {string} params.defaultLandingPageUrl Default landing page URL for this new campaign.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Campaign} params.resource Request body data
+     * @param {dfareporting(v2.7).Campaign} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1391,7 +1390,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns',
           method: 'POST'
         }, options),
         params: params,
@@ -1409,7 +1408,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of campaigns, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.campaigns.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserGroupIds Select only campaigns whose advertisers belong to these advertiser groups.
@@ -1439,7 +1438,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns',
           method: 'GET'
         }, options),
         params: params,
@@ -1457,12 +1456,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing campaign. This method supports patch semantics.
      *
      * @alias dfareporting.campaigns.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Campaign ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Campaign} params.resource Request body data
+     * @param {dfareporting(v2.7).Campaign} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1476,7 +1475,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns',
           method: 'PATCH'
         }, options),
         params: params,
@@ -1494,11 +1493,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing campaign.
      *
      * @alias dfareporting.campaigns.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Campaign} params.resource Request body data
+     * @param {dfareporting(v2.7).Campaign} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1512,7 +1511,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns',
           method: 'PUT'
         }, options),
         params: params,
@@ -1534,7 +1533,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one change log by ID.
      *
      * @alias dfareporting.changeLogs.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Change log ID.
@@ -1552,7 +1551,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/changeLogs/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/changeLogs/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -1570,7 +1569,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of change logs. This method supports paging.
      *
      * @alias dfareporting.changeLogs.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.action Select only change logs with the specified action.
@@ -1597,7 +1596,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/changeLogs',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/changeLogs',
           method: 'GET'
         }, options),
         params: params,
@@ -1619,7 +1618,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of cities, possibly filtered.
      *
      * @alias dfareporting.cities.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.countryDartIds Select only cities from these countries.
@@ -1640,7 +1639,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/cities',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/cities',
           method: 'GET'
         }, options),
         params: params,
@@ -1662,7 +1661,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one connection type by ID.
      *
      * @alias dfareporting.connectionTypes.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Connection type ID.
@@ -1680,7 +1679,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/connectionTypes/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/connectionTypes/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -1698,7 +1697,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of connection types.
      *
      * @alias dfareporting.connectionTypes.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -1715,7 +1714,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/connectionTypes',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/connectionTypes',
           method: 'GET'
         }, options),
         params: params,
@@ -1737,7 +1736,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Deletes an existing content category.
      *
      * @alias dfareporting.contentCategories.delete
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Content category ID.
@@ -1755,7 +1754,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/contentCategories/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/contentCategories/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -1773,7 +1772,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one content category by ID.
      *
      * @alias dfareporting.contentCategories.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Content category ID.
@@ -1791,7 +1790,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/contentCategories/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/contentCategories/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -1809,11 +1808,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new content category.
      *
      * @alias dfareporting.contentCategories.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).ContentCategory} params.resource Request body data
+     * @param {dfareporting(v2.7).ContentCategory} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1827,7 +1826,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/contentCategories',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/contentCategories',
           method: 'POST'
         }, options),
         params: params,
@@ -1845,7 +1844,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of content categories, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.contentCategories.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.ids Select only content categories with these IDs.
@@ -1868,7 +1867,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/contentCategories',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/contentCategories',
           method: 'GET'
         }, options),
         params: params,
@@ -1886,12 +1885,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing content category. This method supports patch semantics.
      *
      * @alias dfareporting.contentCategories.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Content category ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).ContentCategory} params.resource Request body data
+     * @param {dfareporting(v2.7).ContentCategory} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1905,7 +1904,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/contentCategories',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/contentCategories',
           method: 'PATCH'
         }, options),
         params: params,
@@ -1923,11 +1922,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing content category.
      *
      * @alias dfareporting.contentCategories.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).ContentCategory} params.resource Request body data
+     * @param {dfareporting(v2.7).ContentCategory} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1941,8 +1940,48 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/contentCategories',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/contentCategories',
           method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.conversions = {
+
+    /**
+     * dfareporting.conversions.batchinsert
+     *
+     * @desc Inserts conversions.
+     *
+     * @alias dfareporting.conversions.batchinsert
+     * @memberOf! dfareporting(v2.7)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {dfareporting(v2.7).ConversionsBatchInsertRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    batchinsert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/conversions/batchinsert',
+          method: 'POST'
         }, options),
         params: params,
         requiredParams: ['profileId'],
@@ -1963,7 +2002,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one country by ID.
      *
      * @alias dfareporting.countries.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.dartId Country DART ID.
@@ -1981,7 +2020,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/countries/{dartId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/countries/{dartId}',
           method: 'GET'
         }, options),
         params: params,
@@ -1999,7 +2038,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of countries.
      *
      * @alias dfareporting.countries.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -2016,7 +2055,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/countries',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/countries',
           method: 'GET'
         }, options),
         params: params,
@@ -2038,7 +2077,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new creative asset.
      *
      * @alias dfareporting.creativeAssets.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.advertiserId Advertiser ID of this creative. This is a required field.
@@ -2060,11 +2099,11 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets',
           method: 'POST'
         }, options),
         params: params,
-        mediaUrl: 'https://www.googleapis.com/upload/dfareporting/v2.4/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets',
+        mediaUrl: 'https://www.googleapis.com/upload/dfareporting/v2.7/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets',
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['advertiserId', 'profileId'],
         context: self
@@ -2083,7 +2122,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Deletes an existing creative field value.
      *
      * @alias dfareporting.creativeFieldValues.delete
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
@@ -2102,7 +2141,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -2120,7 +2159,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one creative field value by ID.
      *
      * @alias dfareporting.creativeFieldValues.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
@@ -2139,7 +2178,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -2157,12 +2196,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new creative field value.
      *
      * @alias dfareporting.creativeFieldValues.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).CreativeFieldValue} params.resource Request body data
+     * @param {dfareporting(v2.7).CreativeFieldValue} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2176,7 +2215,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'POST'
         }, options),
         params: params,
@@ -2194,7 +2233,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of creative field values, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.creativeFieldValues.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
@@ -2218,7 +2257,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'GET'
         }, options),
         params: params,
@@ -2236,13 +2275,13 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing creative field value. This method supports patch semantics.
      *
      * @alias dfareporting.creativeFieldValues.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.id Creative Field Value ID
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).CreativeFieldValue} params.resource Request body data
+     * @param {dfareporting(v2.7).CreativeFieldValue} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2256,7 +2295,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'PATCH'
         }, options),
         params: params,
@@ -2274,12 +2313,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing creative field value.
      *
      * @alias dfareporting.creativeFieldValues.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.creativeFieldId Creative field ID for this creative field value.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).CreativeFieldValue} params.resource Request body data
+     * @param {dfareporting(v2.7).CreativeFieldValue} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2293,7 +2332,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues',
           method: 'PUT'
         }, options),
         params: params,
@@ -2315,7 +2354,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Deletes an existing creative field.
      *
      * @alias dfareporting.creativeFields.delete
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative Field ID
@@ -2333,7 +2372,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeFields/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeFields/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -2351,7 +2390,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one creative field by ID.
      *
      * @alias dfareporting.creativeFields.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative Field ID
@@ -2369,7 +2408,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeFields/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeFields/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -2387,11 +2426,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new creative field.
      *
      * @alias dfareporting.creativeFields.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).CreativeField} params.resource Request body data
+     * @param {dfareporting(v2.7).CreativeField} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2405,7 +2444,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeFields',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeFields',
           method: 'POST'
         }, options),
         params: params,
@@ -2423,7 +2462,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of creative fields, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.creativeFields.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserIds Select only creative fields that belong to these advertisers.
@@ -2447,7 +2486,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeFields',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeFields',
           method: 'GET'
         }, options),
         params: params,
@@ -2465,12 +2504,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing creative field. This method supports patch semantics.
      *
      * @alias dfareporting.creativeFields.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative Field ID
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).CreativeField} params.resource Request body data
+     * @param {dfareporting(v2.7).CreativeField} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2484,7 +2523,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeFields',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeFields',
           method: 'PATCH'
         }, options),
         params: params,
@@ -2502,11 +2541,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing creative field.
      *
      * @alias dfareporting.creativeFields.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).CreativeField} params.resource Request body data
+     * @param {dfareporting(v2.7).CreativeField} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2520,7 +2559,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeFields',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeFields',
           method: 'PUT'
         }, options),
         params: params,
@@ -2542,7 +2581,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one creative group by ID.
      *
      * @alias dfareporting.creativeGroups.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative group ID.
@@ -2560,7 +2599,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeGroups/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -2578,11 +2617,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new creative group.
      *
      * @alias dfareporting.creativeGroups.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).CreativeGroup} params.resource Request body data
+     * @param {dfareporting(v2.7).CreativeGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2596,7 +2635,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeGroups',
           method: 'POST'
         }, options),
         params: params,
@@ -2614,7 +2653,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of creative groups, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.creativeGroups.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserIds Select only creative groups that belong to these advertisers.
@@ -2639,7 +2678,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeGroups',
           method: 'GET'
         }, options),
         params: params,
@@ -2657,12 +2696,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing creative group. This method supports patch semantics.
      *
      * @alias dfareporting.creativeGroups.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative group ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).CreativeGroup} params.resource Request body data
+     * @param {dfareporting(v2.7).CreativeGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2676,7 +2715,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeGroups',
           method: 'PATCH'
         }, options),
         params: params,
@@ -2694,11 +2733,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing creative group.
      *
      * @alias dfareporting.creativeGroups.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).CreativeGroup} params.resource Request body data
+     * @param {dfareporting(v2.7).CreativeGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2712,7 +2751,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creativeGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creativeGroups',
           method: 'PUT'
         }, options),
         params: params,
@@ -2734,7 +2773,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one creative by ID.
      *
      * @alias dfareporting.creatives.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative ID.
@@ -2752,7 +2791,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creatives/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creatives/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -2770,11 +2809,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new creative.
      *
      * @alias dfareporting.creatives.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Creative} params.resource Request body data
+     * @param {dfareporting(v2.7).Creative} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2788,7 +2827,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creatives',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creatives',
           method: 'POST'
         }, options),
         params: params,
@@ -2806,7 +2845,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of creatives, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.creatives.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.active Select only active creatives. Leave blank to select active and inactive creatives.
@@ -2839,7 +2878,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creatives',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creatives',
           method: 'GET'
         }, options),
         params: params,
@@ -2857,12 +2896,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing creative. This method supports patch semantics.
      *
      * @alias dfareporting.creatives.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Creative ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Creative} params.resource Request body data
+     * @param {dfareporting(v2.7).Creative} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2876,7 +2915,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creatives',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creatives',
           method: 'PATCH'
         }, options),
         params: params,
@@ -2894,11 +2933,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing creative.
      *
      * @alias dfareporting.creatives.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Creative} params.resource Request body data
+     * @param {dfareporting(v2.7).Creative} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2912,7 +2951,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/creatives',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/creatives',
           method: 'PUT'
         }, options),
         params: params,
@@ -2934,13 +2973,13 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves list of report dimension values for a list of filters.
      *
      * @alias dfareporting.dimensionValues.query
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken The value of the nextToken from the previous result page.
      * @param {string} params.profileId The DFA user profile ID.
-     * @param {dfareporting(v2.4).DimensionValueRequest} params.resource Request body data
+     * @param {dfareporting(v2.7).DimensionValueRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2954,7 +2993,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/dimensionvalues/query',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/dimensionvalues/query',
           method: 'POST'
         }, options),
         params: params,
@@ -2976,7 +3015,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one directory site contact by ID.
      *
      * @alias dfareporting.directorySiteContacts.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Directory site contact ID.
@@ -2994,7 +3033,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/directorySiteContacts/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/directorySiteContacts/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -3012,7 +3051,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of directory site contacts, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.directorySiteContacts.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.directorySiteIds Select only directory site contacts with these directory site IDs. This is a required field.
@@ -3036,7 +3075,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/directorySiteContacts',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/directorySiteContacts',
           method: 'GET'
         }, options),
         params: params,
@@ -3058,7 +3097,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one directory site by ID.
      *
      * @alias dfareporting.directorySites.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Directory site ID.
@@ -3076,7 +3115,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/directorySites/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/directorySites/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -3094,11 +3133,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new directory site.
      *
      * @alias dfareporting.directorySites.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).DirectorySite} params.resource Request body data
+     * @param {dfareporting(v2.7).DirectorySite} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3112,7 +3151,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/directorySites',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/directorySites',
           method: 'POST'
         }, options),
         params: params,
@@ -3130,7 +3169,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of directory sites, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.directorySites.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.acceptsInStreamVideoPlacements This search filter is no longer supported and will have no effect on the results returned.
@@ -3160,7 +3199,124 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/directorySites',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/directorySites',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.dynamicTargetingKeys = {
+
+    /**
+     * dfareporting.dynamicTargetingKeys.delete
+     *
+     * @desc Deletes an existing dynamic targeting key.
+     *
+     * @alias dfareporting.dynamicTargetingKeys.delete
+     * @memberOf! dfareporting(v2.7)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
+     * @param {string} params.objectId ID of the object of this dynamic targeting key. This is a required field.
+     * @param {string} params.objectType Type of the object of this dynamic targeting key. This is a required field.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['profileId', 'objectId', 'name', 'objectType'],
+        pathParams: ['objectId', 'profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * dfareporting.dynamicTargetingKeys.insert
+     *
+     * @desc Inserts a new dynamic targeting key. Keys must be created at the advertiser level before being assigned to the advertiser's ads, creatives, or placements. There is a maximum of 1000 keys per advertiser, out of which a maximum of 20 keys can be assigned per ad, creative, or placement.
+     *
+     * @alias dfareporting.dynamicTargetingKeys.insert
+     * @memberOf! dfareporting(v2.7)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {dfareporting(v2.7).DynamicTargetingKey} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/dynamicTargetingKeys',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * dfareporting.dynamicTargetingKeys.list
+     *
+     * @desc Retrieves a list of dynamic targeting keys.
+     *
+     * @alias dfareporting.dynamicTargetingKeys.list
+     * @memberOf! dfareporting(v2.7)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId Select only dynamic targeting keys whose object has this advertiser ID.
+     * @param {string=} params.names Select only dynamic targeting keys exactly matching these names.
+     * @param {string=} params.objectId Select only dynamic targeting keys with this object ID.
+     * @param {string=} params.objectType Select only dynamic targeting keys with this object type.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/dynamicTargetingKeys',
           method: 'GET'
         }, options),
         params: params,
@@ -3182,7 +3338,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Deletes an existing event tag.
      *
      * @alias dfareporting.eventTags.delete
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Event tag ID.
@@ -3200,7 +3356,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/eventTags/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/eventTags/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -3218,7 +3374,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one event tag by ID.
      *
      * @alias dfareporting.eventTags.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Event tag ID.
@@ -3236,7 +3392,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/eventTags/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/eventTags/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -3254,11 +3410,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new event tag.
      *
      * @alias dfareporting.eventTags.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).EventTag} params.resource Request body data
+     * @param {dfareporting(v2.7).EventTag} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3272,7 +3428,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/eventTags',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/eventTags',
           method: 'POST'
         }, options),
         params: params,
@@ -3290,7 +3446,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of event tags, possibly filtered.
      *
      * @alias dfareporting.eventTags.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.adId Select only event tags that belong to this ad.
@@ -3317,7 +3473,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/eventTags',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/eventTags',
           method: 'GET'
         }, options),
         params: params,
@@ -3335,12 +3491,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing event tag. This method supports patch semantics.
      *
      * @alias dfareporting.eventTags.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Event tag ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).EventTag} params.resource Request body data
+     * @param {dfareporting(v2.7).EventTag} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3354,7 +3510,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/eventTags',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/eventTags',
           method: 'PATCH'
         }, options),
         params: params,
@@ -3372,11 +3528,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing event tag.
      *
      * @alias dfareporting.eventTags.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).EventTag} params.resource Request body data
+     * @param {dfareporting(v2.7).EventTag} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3390,7 +3546,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/eventTags',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/eventTags',
           method: 'PUT'
         }, options),
         params: params,
@@ -3412,7 +3568,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a report file by its report ID and file ID.
      *
      * @alias dfareporting.files.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the report file.
@@ -3430,7 +3586,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/reports/{reportId}/files/{fileId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/reports/{reportId}/files/{fileId}',
           method: 'GET'
         }, options),
         params: params,
@@ -3448,7 +3604,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Lists files for a user profile.
      *
      * @alias dfareporting.files.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return.
@@ -3470,7 +3626,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/files',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/files',
           method: 'GET'
         }, options),
         params: params,
@@ -3492,7 +3648,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Deletes an existing floodlight activity.
      *
      * @alias dfareporting.floodlightActivities.delete
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity ID.
@@ -3510,7 +3666,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightActivities/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightActivities/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -3528,7 +3684,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Generates a tag for a floodlight activity.
      *
      * @alias dfareporting.floodlightActivities.generatetag
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.floodlightActivityId Floodlight activity ID for which we want to generate a tag.
@@ -3546,7 +3702,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightActivities/generatetag',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightActivities/generatetag',
           method: 'POST'
         }, options),
         params: params,
@@ -3564,7 +3720,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one floodlight activity by ID.
      *
      * @alias dfareporting.floodlightActivities.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity ID.
@@ -3582,7 +3738,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightActivities/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightActivities/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -3600,11 +3756,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new floodlight activity.
      *
      * @alias dfareporting.floodlightActivities.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).FloodlightActivity} params.resource Request body data
+     * @param {dfareporting(v2.7).FloodlightActivity} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3618,7 +3774,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightActivities',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightActivities',
           method: 'POST'
         }, options),
         params: params,
@@ -3636,7 +3792,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of floodlight activities, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.floodlightActivities.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserId Select only floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
@@ -3666,7 +3822,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightActivities',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightActivities',
           method: 'GET'
         }, options),
         params: params,
@@ -3684,12 +3840,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing floodlight activity. This method supports patch semantics.
      *
      * @alias dfareporting.floodlightActivities.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).FloodlightActivity} params.resource Request body data
+     * @param {dfareporting(v2.7).FloodlightActivity} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3703,7 +3859,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightActivities',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightActivities',
           method: 'PATCH'
         }, options),
         params: params,
@@ -3721,11 +3877,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing floodlight activity.
      *
      * @alias dfareporting.floodlightActivities.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).FloodlightActivity} params.resource Request body data
+     * @param {dfareporting(v2.7).FloodlightActivity} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3739,7 +3895,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightActivities',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightActivities',
           method: 'PUT'
         }, options),
         params: params,
@@ -3761,7 +3917,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one floodlight activity group by ID.
      *
      * @alias dfareporting.floodlightActivityGroups.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity Group ID.
@@ -3779,7 +3935,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightActivityGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightActivityGroups/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -3797,11 +3953,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new floodlight activity group.
      *
      * @alias dfareporting.floodlightActivityGroups.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).FloodlightActivityGroup} params.resource Request body data
+     * @param {dfareporting(v2.7).FloodlightActivityGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3815,7 +3971,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightActivityGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'POST'
         }, options),
         params: params,
@@ -3833,7 +3989,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of floodlight activity groups, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.floodlightActivityGroups.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserId Select only floodlight activity groups with the specified advertiser ID. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
@@ -3859,7 +4015,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightActivityGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'GET'
         }, options),
         params: params,
@@ -3877,12 +4033,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing floodlight activity group. This method supports patch semantics.
      *
      * @alias dfareporting.floodlightActivityGroups.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight activity Group ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).FloodlightActivityGroup} params.resource Request body data
+     * @param {dfareporting(v2.7).FloodlightActivityGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3896,7 +4052,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightActivityGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'PATCH'
         }, options),
         params: params,
@@ -3914,11 +4070,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing floodlight activity group.
      *
      * @alias dfareporting.floodlightActivityGroups.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).FloodlightActivityGroup} params.resource Request body data
+     * @param {dfareporting(v2.7).FloodlightActivityGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3932,7 +4088,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightActivityGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightActivityGroups',
           method: 'PUT'
         }, options),
         params: params,
@@ -3954,7 +4110,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one floodlight configuration by ID.
      *
      * @alias dfareporting.floodlightConfigurations.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight configuration ID.
@@ -3972,7 +4128,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightConfigurations/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightConfigurations/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -3990,7 +4146,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of floodlight configurations, possibly filtered.
      *
      * @alias dfareporting.floodlightConfigurations.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.ids Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
@@ -4008,7 +4164,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightConfigurations',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightConfigurations',
           method: 'GET'
         }, options),
         params: params,
@@ -4026,12 +4182,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing floodlight configuration. This method supports patch semantics.
      *
      * @alias dfareporting.floodlightConfigurations.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Floodlight configuration ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).FloodlightConfiguration} params.resource Request body data
+     * @param {dfareporting(v2.7).FloodlightConfiguration} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4045,7 +4201,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightConfigurations',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightConfigurations',
           method: 'PATCH'
         }, options),
         params: params,
@@ -4063,11 +4219,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing floodlight configuration.
      *
      * @alias dfareporting.floodlightConfigurations.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).FloodlightConfiguration} params.resource Request body data
+     * @param {dfareporting(v2.7).FloodlightConfiguration} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4081,7 +4237,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/floodlightConfigurations',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/floodlightConfigurations',
           method: 'PUT'
         }, options),
         params: params,
@@ -4103,7 +4259,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one inventory item by ID.
      *
      * @alias dfareporting.inventoryItems.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Inventory item ID.
@@ -4122,7 +4278,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -4140,7 +4296,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of inventory items, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.inventoryItems.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.ids Select only inventory items with these IDs.
@@ -4167,7 +4323,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/projects/{projectId}/inventoryItems',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/projects/{projectId}/inventoryItems',
           method: 'GET'
         }, options),
         params: params,
@@ -4189,7 +4345,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Deletes an existing campaign landing page.
      *
      * @alias dfareporting.landingPages.delete
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.campaignId Landing page campaign ID.
@@ -4208,7 +4364,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -4226,7 +4382,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one campaign landing page by ID.
      *
      * @alias dfareporting.landingPages.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.campaignId Landing page campaign ID.
@@ -4245,7 +4401,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns/{campaignId}/landingPages/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -4263,12 +4419,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new landing page for the specified campaign.
      *
      * @alias dfareporting.landingPages.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.campaignId Landing page campaign ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).LandingPage} params.resource Request body data
+     * @param {dfareporting(v2.7).LandingPage} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4282,7 +4438,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'POST'
         }, options),
         params: params,
@@ -4300,7 +4456,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves the list of landing pages for the specified campaign.
      *
      * @alias dfareporting.landingPages.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.campaignId Landing page campaign ID.
@@ -4318,7 +4474,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'GET'
         }, options),
         params: params,
@@ -4336,13 +4492,13 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing campaign landing page. This method supports patch semantics.
      *
      * @alias dfareporting.landingPages.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.campaignId Landing page campaign ID.
      * @param {string} params.id Landing page ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).LandingPage} params.resource Request body data
+     * @param {dfareporting(v2.7).LandingPage} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4356,7 +4512,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'PATCH'
         }, options),
         params: params,
@@ -4374,12 +4530,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing campaign landing page.
      *
      * @alias dfareporting.landingPages.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.campaignId Landing page campaign ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).LandingPage} params.resource Request body data
+     * @param {dfareporting(v2.7).LandingPage} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4393,7 +4549,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/campaigns/{campaignId}/landingPages',
           method: 'PUT'
         }, options),
         params: params,
@@ -4407,15 +4563,15 @@ function Dfareporting(options) { // eslint-disable-line
 
   };
 
-  self.metros = {
+  self.languages = {
 
     /**
-     * dfareporting.metros.list
+     * dfareporting.languages.list
      *
-     * @desc Retrieves a list of metros.
+     * @desc Retrieves a list of languages.
      *
-     * @alias dfareporting.metros.list
-     * @memberOf! dfareporting(v2.4)
+     * @alias dfareporting.languages.list
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -4432,7 +4588,46 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/metros',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/languages',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.metros = {
+
+    /**
+     * dfareporting.metros.list
+     *
+     * @desc Retrieves a list of metros.
+     *
+     * @alias dfareporting.metros.list
+     * @memberOf! dfareporting(v2.7)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/metros',
           method: 'GET'
         }, options),
         params: params,
@@ -4454,7 +4649,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one mobile carrier by ID.
      *
      * @alias dfareporting.mobileCarriers.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Mobile carrier ID.
@@ -4472,7 +4667,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/mobileCarriers/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/mobileCarriers/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -4490,7 +4685,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of mobile carriers.
      *
      * @alias dfareporting.mobileCarriers.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -4507,7 +4702,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/mobileCarriers',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/mobileCarriers',
           method: 'GET'
         }, options),
         params: params,
@@ -4529,7 +4724,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one operating system version by ID.
      *
      * @alias dfareporting.operatingSystemVersions.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Operating system version ID.
@@ -4547,7 +4742,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/operatingSystemVersions/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/operatingSystemVersions/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -4565,7 +4760,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of operating system versions.
      *
      * @alias dfareporting.operatingSystemVersions.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -4582,7 +4777,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/operatingSystemVersions',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/operatingSystemVersions',
           method: 'GET'
         }, options),
         params: params,
@@ -4604,7 +4799,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one operating system by DART ID.
      *
      * @alias dfareporting.operatingSystems.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.dartId Operating system DART ID.
@@ -4622,7 +4817,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/operatingSystems/{dartId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/operatingSystems/{dartId}',
           method: 'GET'
         }, options),
         params: params,
@@ -4640,7 +4835,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of operating systems.
      *
      * @alias dfareporting.operatingSystems.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -4657,7 +4852,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/operatingSystems',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/operatingSystems',
           method: 'GET'
         }, options),
         params: params,
@@ -4679,7 +4874,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one order document by ID.
      *
      * @alias dfareporting.orderDocuments.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Order document ID.
@@ -4698,7 +4893,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -4716,7 +4911,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of order documents, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.orderDocuments.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.approved Select only order documents that have been approved by at least one user.
@@ -4743,7 +4938,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/projects/{projectId}/orderDocuments',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/projects/{projectId}/orderDocuments',
           method: 'GET'
         }, options),
         params: params,
@@ -4765,7 +4960,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one order by ID.
      *
      * @alias dfareporting.orders.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Order ID.
@@ -4784,7 +4979,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/projects/{projectId}/orders/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/projects/{projectId}/orders/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -4802,7 +4997,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of orders, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.orders.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.ids Select only orders with these IDs.
@@ -4827,7 +5022,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/projects/{projectId}/orders',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/projects/{projectId}/orders',
           method: 'GET'
         }, options),
         params: params,
@@ -4849,7 +5044,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one placement group by ID.
      *
      * @alias dfareporting.placementGroups.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement group ID.
@@ -4867,7 +5062,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placementGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placementGroups/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -4885,11 +5080,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new placement group.
      *
      * @alias dfareporting.placementGroups.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).PlacementGroup} params.resource Request body data
+     * @param {dfareporting(v2.7).PlacementGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4903,7 +5098,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placementGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placementGroups',
           method: 'POST'
         }, options),
         params: params,
@@ -4921,7 +5116,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of placement groups, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.placementGroups.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserIds Select only placement groups that belong to these advertisers.
@@ -4957,7 +5152,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placementGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placementGroups',
           method: 'GET'
         }, options),
         params: params,
@@ -4975,12 +5170,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing placement group. This method supports patch semantics.
      *
      * @alias dfareporting.placementGroups.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement group ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).PlacementGroup} params.resource Request body data
+     * @param {dfareporting(v2.7).PlacementGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -4994,7 +5189,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placementGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placementGroups',
           method: 'PATCH'
         }, options),
         params: params,
@@ -5012,11 +5207,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing placement group.
      *
      * @alias dfareporting.placementGroups.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).PlacementGroup} params.resource Request body data
+     * @param {dfareporting(v2.7).PlacementGroup} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5030,7 +5225,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placementGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placementGroups',
           method: 'PUT'
         }, options),
         params: params,
@@ -5052,7 +5247,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Deletes an existing placement strategy.
      *
      * @alias dfareporting.placementStrategies.delete
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement strategy ID.
@@ -5070,7 +5265,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placementStrategies/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placementStrategies/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -5088,7 +5283,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one placement strategy by ID.
      *
      * @alias dfareporting.placementStrategies.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement strategy ID.
@@ -5106,7 +5301,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placementStrategies/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placementStrategies/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -5124,11 +5319,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new placement strategy.
      *
      * @alias dfareporting.placementStrategies.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).PlacementStrategy} params.resource Request body data
+     * @param {dfareporting(v2.7).PlacementStrategy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5142,7 +5337,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placementStrategies',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placementStrategies',
           method: 'POST'
         }, options),
         params: params,
@@ -5160,7 +5355,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of placement strategies, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.placementStrategies.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.ids Select only placement strategies with these IDs.
@@ -5183,7 +5378,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placementStrategies',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placementStrategies',
           method: 'GET'
         }, options),
         params: params,
@@ -5201,12 +5396,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing placement strategy. This method supports patch semantics.
      *
      * @alias dfareporting.placementStrategies.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement strategy ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).PlacementStrategy} params.resource Request body data
+     * @param {dfareporting(v2.7).PlacementStrategy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5220,7 +5415,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placementStrategies',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placementStrategies',
           method: 'PATCH'
         }, options),
         params: params,
@@ -5238,11 +5433,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing placement strategy.
      *
      * @alias dfareporting.placementStrategies.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).PlacementStrategy} params.resource Request body data
+     * @param {dfareporting(v2.7).PlacementStrategy} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5256,7 +5451,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placementStrategies',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placementStrategies',
           method: 'PUT'
         }, options),
         params: params,
@@ -5278,7 +5473,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Generates tags for a placement.
      *
      * @alias dfareporting.placements.generatetags
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.campaignId Generate placements belonging to this campaign. This is a required field.
@@ -5298,7 +5493,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placements/generatetags',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placements/generatetags',
           method: 'POST'
         }, options),
         params: params,
@@ -5316,7 +5511,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one placement by ID.
      *
      * @alias dfareporting.placements.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement ID.
@@ -5334,7 +5529,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placements/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placements/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -5352,11 +5547,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new placement.
      *
      * @alias dfareporting.placements.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Placement} params.resource Request body data
+     * @param {dfareporting(v2.7).Placement} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5370,7 +5565,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placements',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placements',
           method: 'POST'
         }, options),
         params: params,
@@ -5388,7 +5583,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of placements, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.placements.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserIds Select only placements that belong to these advertisers.
@@ -5427,7 +5622,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placements',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placements',
           method: 'GET'
         }, options),
         params: params,
@@ -5445,12 +5640,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing placement. This method supports patch semantics.
      *
      * @alias dfareporting.placements.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Placement ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Placement} params.resource Request body data
+     * @param {dfareporting(v2.7).Placement} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5464,7 +5659,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placements',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placements',
           method: 'PATCH'
         }, options),
         params: params,
@@ -5482,11 +5677,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing placement.
      *
      * @alias dfareporting.placements.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Placement} params.resource Request body data
+     * @param {dfareporting(v2.7).Placement} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5500,7 +5695,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/placements',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/placements',
           method: 'PUT'
         }, options),
         params: params,
@@ -5522,7 +5717,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one platform type by ID.
      *
      * @alias dfareporting.platformTypes.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Platform type ID.
@@ -5540,7 +5735,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/platformTypes/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/platformTypes/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -5558,7 +5753,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of platform types.
      *
      * @alias dfareporting.platformTypes.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -5575,7 +5770,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/platformTypes',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/platformTypes',
           method: 'GET'
         }, options),
         params: params,
@@ -5597,7 +5792,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one postal code by ID.
      *
      * @alias dfareporting.postalCodes.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.code Postal code ID.
@@ -5615,7 +5810,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/postalCodes/{code}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/postalCodes/{code}',
           method: 'GET'
         }, options),
         params: params,
@@ -5633,7 +5828,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of postal codes.
      *
      * @alias dfareporting.postalCodes.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -5650,7 +5845,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/postalCodes',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/postalCodes',
           method: 'GET'
         }, options),
         params: params,
@@ -5672,7 +5867,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one project by ID.
      *
      * @alias dfareporting.projects.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Project ID.
@@ -5690,7 +5885,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/projects/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/projects/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -5708,7 +5903,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of projects, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.projects.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.advertiserIds Select only projects with these advertiser IDs.
@@ -5732,7 +5927,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/projects',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/projects',
           method: 'GET'
         }, options),
         params: params,
@@ -5754,7 +5949,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of regions.
      *
      * @alias dfareporting.regions.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -5771,7 +5966,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/regions',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/regions',
           method: 'GET'
         }, options),
         params: params,
@@ -5793,7 +5988,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one remarketing list share by remarketing list ID.
      *
      * @alias dfareporting.remarketingListShares.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -5811,7 +6006,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/remarketingListShares/{remarketingListId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/remarketingListShares/{remarketingListId}',
           method: 'GET'
         }, options),
         params: params,
@@ -5829,12 +6024,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing remarketing list share. This method supports patch semantics.
      *
      * @alias dfareporting.remarketingListShares.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string} params.remarketingListId Remarketing list ID.
-     * @param {dfareporting(v2.4).RemarketingListShare} params.resource Request body data
+     * @param {dfareporting(v2.7).RemarketingListShare} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5848,7 +6043,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/remarketingListShares',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/remarketingListShares',
           method: 'PATCH'
         }, options),
         params: params,
@@ -5866,11 +6061,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing remarketing list share.
      *
      * @alias dfareporting.remarketingListShares.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).RemarketingListShare} params.resource Request body data
+     * @param {dfareporting(v2.7).RemarketingListShare} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5884,7 +6079,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/remarketingListShares',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/remarketingListShares',
           method: 'PUT'
         }, options),
         params: params,
@@ -5906,7 +6101,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one remarketing list by ID.
      *
      * @alias dfareporting.remarketingLists.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Remarketing list ID.
@@ -5924,7 +6119,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/remarketingLists/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/remarketingLists/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -5942,11 +6137,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new remarketing list.
      *
      * @alias dfareporting.remarketingLists.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).RemarketingList} params.resource Request body data
+     * @param {dfareporting(v2.7).RemarketingList} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5960,7 +6155,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/remarketingLists',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/remarketingLists',
           method: 'POST'
         }, options),
         params: params,
@@ -5978,7 +6173,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of remarketing lists, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.remarketingLists.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.active Select only active or only inactive remarketing lists.
@@ -6003,7 +6198,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/remarketingLists',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/remarketingLists',
           method: 'GET'
         }, options),
         params: params,
@@ -6021,12 +6216,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing remarketing list. This method supports patch semantics.
      *
      * @alias dfareporting.remarketingLists.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Remarketing list ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).RemarketingList} params.resource Request body data
+     * @param {dfareporting(v2.7).RemarketingList} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6040,7 +6235,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/remarketingLists',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/remarketingLists',
           method: 'PATCH'
         }, options),
         params: params,
@@ -6058,11 +6253,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing remarketing list.
      *
      * @alias dfareporting.remarketingLists.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).RemarketingList} params.resource Request body data
+     * @param {dfareporting(v2.7).RemarketingList} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6076,7 +6271,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/remarketingLists',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/remarketingLists',
           method: 'PUT'
         }, options),
         params: params,
@@ -6098,7 +6293,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Deletes a report by its ID.
      *
      * @alias dfareporting.reports.delete
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
@@ -6116,7 +6311,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/reports/{reportId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/reports/{reportId}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -6134,7 +6329,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a report by its ID.
      *
      * @alias dfareporting.reports.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
@@ -6152,7 +6347,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/reports/{reportId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/reports/{reportId}',
           method: 'GET'
         }, options),
         params: params,
@@ -6170,11 +6365,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Creates a report.
      *
      * @alias dfareporting.reports.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
-     * @param {dfareporting(v2.4).Report} params.resource Request body data
+     * @param {dfareporting(v2.7).Report} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6188,7 +6383,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/reports',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/reports',
           method: 'POST'
         }, options),
         params: params,
@@ -6206,7 +6401,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves list of reports.
      *
      * @alias dfareporting.reports.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.maxResults Maximum number of results to return.
@@ -6228,7 +6423,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/reports',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/reports',
           method: 'GET'
         }, options),
         params: params,
@@ -6246,12 +6441,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates a report. This method supports patch semantics.
      *
      * @alias dfareporting.reports.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
-     * @param {dfareporting(v2.4).Report} params.resource Request body data
+     * @param {dfareporting(v2.7).Report} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6265,7 +6460,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/reports/{reportId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/reports/{reportId}',
           method: 'PATCH'
         }, options),
         params: params,
@@ -6283,7 +6478,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Runs a report.
      *
      * @alias dfareporting.reports.run
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA profile ID.
@@ -6302,7 +6497,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/reports/{reportId}/run',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/reports/{reportId}/run',
           method: 'POST'
         }, options),
         params: params,
@@ -6320,12 +6515,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates a report.
      *
      * @alias dfareporting.reports.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId The DFA user profile ID.
      * @param {string} params.reportId The ID of the report.
-     * @param {dfareporting(v2.4).Report} params.resource Request body data
+     * @param {dfareporting(v2.7).Report} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6339,7 +6534,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/reports/{reportId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/reports/{reportId}',
           method: 'PUT'
         }, options),
         params: params,
@@ -6359,11 +6554,11 @@ function Dfareporting(options) { // eslint-disable-line
        * @desc Returns the fields that are compatible to be selected in the respective sections of a report criteria, given the fields already selected in the input report and user permissions.
        *
        * @alias dfareporting.reports.compatibleFields.query
-       * @memberOf! dfareporting(v2.4)
+       * @memberOf! dfareporting(v2.7)
        *
        * @param {object} params Parameters for request
        * @param {string} params.profileId The DFA user profile ID.
-       * @param {dfareporting(v2.4).Report} params.resource Request body data
+       * @param {dfareporting(v2.7).Report} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -6377,7 +6572,7 @@ function Dfareporting(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/reports/compatiblefields/query',
+            url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/reports/compatiblefields/query',
             method: 'POST'
           }, options),
           params: params,
@@ -6398,7 +6593,7 @@ function Dfareporting(options) { // eslint-disable-line
        * @desc Retrieves a report file.
        *
        * @alias dfareporting.reports.files.get
-       * @memberOf! dfareporting(v2.4)
+       * @memberOf! dfareporting(v2.7)
        *
        * @param {object} params Parameters for request
        * @param {string} params.fileId The ID of the report file.
@@ -6417,7 +6612,7 @@ function Dfareporting(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/reports/{reportId}/files/{fileId}',
+            url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/reports/{reportId}/files/{fileId}',
             method: 'GET'
           }, options),
           params: params,
@@ -6435,7 +6630,7 @@ function Dfareporting(options) { // eslint-disable-line
        * @desc Lists files for a report.
        *
        * @alias dfareporting.reports.files.list
-       * @memberOf! dfareporting(v2.4)
+       * @memberOf! dfareporting(v2.7)
        *
        * @param {object} params Parameters for request
        * @param {integer=} params.maxResults Maximum number of results to return.
@@ -6457,7 +6652,7 @@ function Dfareporting(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/reports/{reportId}/files',
+            url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/reports/{reportId}/files',
             method: 'GET'
           }, options),
           params: params,
@@ -6479,7 +6674,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one site by ID.
      *
      * @alias dfareporting.sites.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Site ID.
@@ -6497,7 +6692,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/sites/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/sites/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -6515,11 +6710,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new site.
      *
      * @alias dfareporting.sites.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Site} params.resource Request body data
+     * @param {dfareporting(v2.7).Site} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6533,7 +6728,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/sites',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/sites',
           method: 'POST'
         }, options),
         params: params,
@@ -6551,7 +6746,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of sites, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.sites.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.acceptsInStreamVideoPlacements This search filter is no longer supported and will have no effect on the results returned.
@@ -6583,7 +6778,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/sites',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/sites',
           method: 'GET'
         }, options),
         params: params,
@@ -6601,12 +6796,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing site. This method supports patch semantics.
      *
      * @alias dfareporting.sites.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Site ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Site} params.resource Request body data
+     * @param {dfareporting(v2.7).Site} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6620,7 +6815,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/sites',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/sites',
           method: 'PATCH'
         }, options),
         params: params,
@@ -6638,11 +6833,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing site.
      *
      * @alias dfareporting.sites.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Site} params.resource Request body data
+     * @param {dfareporting(v2.7).Site} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6656,7 +6851,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/sites',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/sites',
           method: 'PUT'
         }, options),
         params: params,
@@ -6678,7 +6873,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one size by ID.
      *
      * @alias dfareporting.sizes.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Size ID.
@@ -6696,7 +6891,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/sizes/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/sizes/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -6714,11 +6909,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new size.
      *
      * @alias dfareporting.sizes.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Size} params.resource Request body data
+     * @param {dfareporting(v2.7).Size} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6732,7 +6927,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/sizes',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/sizes',
           method: 'POST'
         }, options),
         params: params,
@@ -6750,7 +6945,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of sizes, possibly filtered.
      *
      * @alias dfareporting.sizes.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {integer=} params.height Select only sizes with this height.
@@ -6771,7 +6966,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/sizes',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/sizes',
           method: 'GET'
         }, options),
         params: params,
@@ -6793,7 +6988,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one subaccount by ID.
      *
      * @alias dfareporting.subaccounts.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Subaccount ID.
@@ -6811,7 +7006,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/subaccounts/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/subaccounts/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -6829,11 +7024,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new subaccount.
      *
      * @alias dfareporting.subaccounts.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Subaccount} params.resource Request body data
+     * @param {dfareporting(v2.7).Subaccount} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6847,7 +7042,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/subaccounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/subaccounts',
           method: 'POST'
         }, options),
         params: params,
@@ -6865,7 +7060,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets a list of subaccounts, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.subaccounts.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.ids Select only subaccounts with these IDs.
@@ -6888,7 +7083,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/subaccounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/subaccounts',
           method: 'GET'
         }, options),
         params: params,
@@ -6906,12 +7101,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing subaccount. This method supports patch semantics.
      *
      * @alias dfareporting.subaccounts.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Subaccount ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Subaccount} params.resource Request body data
+     * @param {dfareporting(v2.7).Subaccount} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6925,7 +7120,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/subaccounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/subaccounts',
           method: 'PATCH'
         }, options),
         params: params,
@@ -6943,11 +7138,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing subaccount.
      *
      * @alias dfareporting.subaccounts.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).Subaccount} params.resource Request body data
+     * @param {dfareporting(v2.7).Subaccount} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6961,7 +7156,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/subaccounts',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/subaccounts',
           method: 'PUT'
         }, options),
         params: params,
@@ -6983,7 +7178,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one remarketing list by ID.
      *
      * @alias dfareporting.targetableRemarketingLists.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id Remarketing list ID.
@@ -7001,7 +7196,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/targetableRemarketingLists/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/targetableRemarketingLists/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -7019,7 +7214,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of targetable remarketing lists, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.targetableRemarketingLists.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.active Select only active or only inactive targetable remarketing lists.
@@ -7043,11 +7238,202 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/targetableRemarketingLists',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/targetableRemarketingLists',
           method: 'GET'
         }, options),
         params: params,
         requiredParams: ['profileId', 'advertiserId'],
+        pathParams: ['profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.targetingTemplates = {
+
+    /**
+     * dfareporting.targetingTemplates.get
+     *
+     * @desc Gets one targeting template by ID.
+     *
+     * @alias dfareporting.targetingTemplates.get
+     * @memberOf! dfareporting(v2.7)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.id Targeting template ID.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/targetingTemplates/{id}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['profileId', 'id'],
+        pathParams: ['id', 'profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * dfareporting.targetingTemplates.insert
+     *
+     * @desc Inserts a new targeting template.
+     *
+     * @alias dfareporting.targetingTemplates.insert
+     * @memberOf! dfareporting(v2.7)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {dfareporting(v2.7).TargetingTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/targetingTemplates',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * dfareporting.targetingTemplates.list
+     *
+     * @desc Retrieves a list of targeting templates, optionally filtered. This method supports paging.
+     *
+     * @alias dfareporting.targetingTemplates.list
+     * @memberOf! dfareporting(v2.7)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.advertiserId Select only targeting templates with this advertiser ID.
+     * @param {string=} params.ids Select only targeting templates with these IDs.
+     * @param {integer=} params.maxResults Maximum number of results to return.
+     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "template*2015" will return objects with names like "template June 2015", "template April 2015", or simply "template 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "template" will match objects with name "my template", "template 2015", or simply "template".
+     * @param {string=} params.sortField Field by which to sort the list.
+     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/targetingTemplates',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * dfareporting.targetingTemplates.patch
+     *
+     * @desc Updates an existing targeting template. This method supports patch semantics.
+     *
+     * @alias dfareporting.targetingTemplates.patch
+     * @memberOf! dfareporting(v2.7)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.id Targeting template ID.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {dfareporting(v2.7).TargetingTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/targetingTemplates',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['profileId', 'id'],
+        pathParams: ['profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * dfareporting.targetingTemplates.update
+     *
+     * @desc Updates an existing targeting template.
+     *
+     * @alias dfareporting.targetingTemplates.update
+     * @memberOf! dfareporting(v2.7)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {dfareporting(v2.7).TargetingTemplate} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/targetingTemplates',
+          method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['profileId'],
         pathParams: ['profileId'],
         context: self
       };
@@ -7065,7 +7451,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one user profile by ID.
      *
      * @alias dfareporting.userProfiles.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId The user profile ID.
@@ -7082,7 +7468,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}',
           method: 'GET'
         }, options),
         params: params,
@@ -7100,7 +7486,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves list of user profiles for a user.
      *
      * @alias dfareporting.userProfiles.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object=} params Parameters for request
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7116,7 +7502,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles',
           method: 'GET'
         }, options),
         params: params,
@@ -7138,7 +7524,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one user role permission group by ID.
      *
      * @alias dfareporting.userRolePermissionGroups.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User role permission group ID.
@@ -7156,7 +7542,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/userRolePermissionGroups/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/userRolePermissionGroups/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -7174,7 +7560,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets a list of all supported user role permission groups.
      *
      * @alias dfareporting.userRolePermissionGroups.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
@@ -7191,7 +7577,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/userRolePermissionGroups',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/userRolePermissionGroups',
           method: 'GET'
         }, options),
         params: params,
@@ -7213,7 +7599,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one user role permission by ID.
      *
      * @alias dfareporting.userRolePermissions.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User role permission ID.
@@ -7231,7 +7617,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/userRolePermissions/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/userRolePermissions/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -7249,7 +7635,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets a list of user role permissions, possibly filtered.
      *
      * @alias dfareporting.userRolePermissions.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.ids Select only user role permissions with these IDs.
@@ -7267,7 +7653,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/userRolePermissions',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/userRolePermissions',
           method: 'GET'
         }, options),
         params: params,
@@ -7289,7 +7675,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Deletes an existing user role.
      *
      * @alias dfareporting.userRoles.delete
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User role ID.
@@ -7307,7 +7693,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/userRoles/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/userRoles/{id}',
           method: 'DELETE'
         }, options),
         params: params,
@@ -7325,7 +7711,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Gets one user role by ID.
      *
      * @alias dfareporting.userRoles.get
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User role ID.
@@ -7343,7 +7729,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/userRoles/{id}',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/userRoles/{id}',
           method: 'GET'
         }, options),
         params: params,
@@ -7361,11 +7747,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Inserts a new user role.
      *
      * @alias dfareporting.userRoles.insert
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).UserRole} params.resource Request body data
+     * @param {dfareporting(v2.7).UserRole} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7379,7 +7765,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/userRoles',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/userRoles',
           method: 'POST'
         }, options),
         params: params,
@@ -7397,7 +7783,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Retrieves a list of user roles, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.userRoles.list
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {boolean=} params.accountUserRoleOnly Select only account level user roles not associated with any specific subaccount.
@@ -7422,7 +7808,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/userRoles',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/userRoles',
           method: 'GET'
         }, options),
         params: params,
@@ -7440,12 +7826,12 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing user role. This method supports patch semantics.
      *
      * @alias dfareporting.userRoles.patch
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.id User role ID.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).UserRole} params.resource Request body data
+     * @param {dfareporting(v2.7).UserRole} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7459,7 +7845,7 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/userRoles',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/userRoles',
           method: 'PATCH'
         }, options),
         params: params,
@@ -7477,11 +7863,11 @@ function Dfareporting(options) { // eslint-disable-line
      * @desc Updates an existing user role.
      *
      * @alias dfareporting.userRoles.update
-     * @memberOf! dfareporting(v2.4)
+     * @memberOf! dfareporting(v2.7)
      *
      * @param {object} params Parameters for request
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {dfareporting(v2.4).UserRole} params.resource Request body data
+     * @param {dfareporting(v2.7).UserRole} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7495,8 +7881,83 @@ function Dfareporting(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://www.googleapis.com/dfareporting/v2.4/userprofiles/{profileId}/userRoles',
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/userRoles',
           method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.videoFormats = {
+
+    /**
+     * dfareporting.videoFormats.get
+     *
+     * @desc Gets one video format by ID.
+     *
+     * @alias dfareporting.videoFormats.get
+     * @memberOf! dfareporting(v2.7)
+     *
+     * @param {object} params Parameters for request
+     * @param {integer} params.id Video format ID.
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/videoFormats/{id}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['profileId', 'id'],
+        pathParams: ['id', 'profileId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * dfareporting.videoFormats.list
+     *
+     * @desc Lists available video formats.
+     *
+     * @alias dfareporting.videoFormats.list
+     * @memberOf! dfareporting(v2.7)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.profileId User profile ID associated with this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/dfareporting/v2.7/userprofiles/{profileId}/videoFormats',
+          method: 'GET'
         }, options),
         params: params,
         requiredParams: ['profileId'],
@@ -7512,7 +7973,7 @@ function Dfareporting(options) { // eslint-disable-line
 
 /**
  * @typedef Account
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {string[]} accountPermissionIds Account permissions assigned to this account.
 * @property {string} accountProfile Profile for this account. This is a read-only field that can be left blank.
@@ -7520,7 +7981,6 @@ function Dfareporting(options) { // eslint-disable-line
 * @property {string} activeAdsLimitTier Maximum number of active ads allowed for this account.
 * @property {boolean} activeViewOptOut Whether to serve creatives with Active View tags. If disabled, viewability data will not be available for any impressions.
 * @property {string[]} availablePermissionIds User role permissions available to the user roles of this account.
-* @property {boolean} comscoreVceEnabled Whether campaigns created in this account will be enabled for comScore vCE by default.
 * @property {string} countryId ID of the country associated with this account.
 * @property {string} currencyId ID of currency associated with this account. This is a required field.
 Acceptable values are: 
@@ -7596,12 +8056,13 @@ Acceptable values are:
 * @property {string} maximumImageSize Maximum image size allowed for this account.
 * @property {string} name Name of this account. This is a required field, and must be less than 128 characters long and be globally unique.
 * @property {boolean} nielsenOcrEnabled Whether campaigns created in this account will be enabled for Nielsen OCR reach ratings by default.
-* @property {dfareporting(v2.4).ReportsConfiguration} reportsConfiguration Reporting configuration of this account.
+* @property {dfareporting(v2.7).ReportsConfiguration} reportsConfiguration Reporting configuration of this account.
+* @property {boolean} shareReportsWithTwitter Share Path to Conversion reports with Twitter.
 * @property {string} teaserSizeLimit File size limit in kilobytes of Rich Media teaser creatives. Must be between 1 and 10240.
 */
 /**
  * @typedef AccountActiveAdSummary
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId ID of the account.
  * @property {string} activeAds Ads that have been activated for the account
@@ -7611,7 +8072,7 @@ Acceptable values are:
  */
 /**
  * @typedef AccountPermission
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {string[]} accountProfiles Account profiles associated with this account permission.
 
@@ -7626,7 +8087,7 @@ Possible values are:
 */
 /**
  * @typedef AccountPermissionGroup
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} id ID of this account permission group.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionGroup&quot;.
@@ -7634,26 +8095,26 @@ Possible values are:
  */
 /**
  * @typedef AccountPermissionGroupsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).AccountPermissionGroup[]} accountPermissionGroups Account permission group collection.
+ * @property {dfareporting(v2.7).AccountPermissionGroup[]} accountPermissionGroups Account permission group collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionGroupsListResponse&quot;.
  */
 /**
  * @typedef AccountPermissionsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).AccountPermission[]} accountPermissions Account permission collection.
+ * @property {dfareporting(v2.7).AccountPermission[]} accountPermissions Account permission collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionsListResponse&quot;.
  */
 /**
  * @typedef AccountUserProfile
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {string} accountId Account ID of the user profile. This is a read-only field that can be left blank.
 * @property {boolean} active Whether this user profile is active. This defaults to false, and must be set true on insert for the user profile to be usable.
-* @property {dfareporting(v2.4).ObjectFilter} advertiserFilter Filter that describes which advertisers are visible to the user profile.
-* @property {dfareporting(v2.4).ObjectFilter} campaignFilter Filter that describes which campaigns are visible to the user profile.
+* @property {dfareporting(v2.7).ObjectFilter} advertiserFilter Filter that describes which advertisers are visible to the user profile.
+* @property {dfareporting(v2.7).ObjectFilter} campaignFilter Filter that describes which campaigns are visible to the user profile.
 * @property {string} comments Comments for this user profile.
 * @property {string} email Email of the user profile. The email addresss must be linked to a Google Account. This field is required on insertion and is read-only after insertion.
 * @property {string} id ID of the user profile. This is a read-only, auto-generated field.
@@ -7677,82 +8138,84 @@ Acceptable values are:
 - &quot;zh-CN&quot; (Chinese Simplified) 
 - &quot;zh-TW&quot; (Chinese Traditional)
 * @property {string} name Name of the user profile. This is a required field. Must be less than 64 characters long, must be globally unique, and cannot contain whitespace or any of the following characters: &quot;&amp;;&quot;#%,&quot;.
-* @property {dfareporting(v2.4).ObjectFilter} siteFilter Filter that describes which sites are visible to the user profile.
+* @property {dfareporting(v2.7).ObjectFilter} siteFilter Filter that describes which sites are visible to the user profile.
 * @property {string} subaccountId Subaccount ID of the user profile. This is a read-only field that can be left blank.
 * @property {string} traffickerType Trafficker type of this user profile.
 * @property {string} userAccessType User type of the user profile. This is a read-only field that can be left blank.
-* @property {dfareporting(v2.4).ObjectFilter} userRoleFilter Filter that describes which user roles are visible to the user profile.
+* @property {dfareporting(v2.7).ObjectFilter} userRoleFilter Filter that describes which user roles are visible to the user profile.
 * @property {string} userRoleId User role ID of the user profile. This is a required field.
 */
 /**
  * @typedef AccountUserProfilesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).AccountUserProfile[]} accountUserProfiles Account user profile collection.
+ * @property {dfareporting(v2.7).AccountUserProfile[]} accountUserProfiles Account user profile collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountUserProfilesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef AccountsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Account[]} accounts Account collection.
+ * @property {dfareporting(v2.7).Account[]} accounts Account collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef Activities
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).DimensionValue[]} filters List of activity filters. The dimension values need to be all either of type &quot;dfa:activity&quot; or &quot;dfa:activityGroup&quot;.
+ * @property {dfareporting(v2.7).DimensionValue[]} filters List of activity filters. The dimension values need to be all either of type &quot;dfa:activity&quot; or &quot;dfa:activityGroup&quot;.
  * @property {string} kind The kind of resource this is, in this case dfareporting#activities.
  * @property {string[]} metricNames List of names of floodlight activity metrics.
  */
 /**
  * @typedef Ad
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this ad. This is a read-only field that can be left blank.
  * @property {boolean} active Whether this ad is active. When true, archived must be false.
  * @property {string} advertiserId Advertiser ID of this ad. This is a required field on insertion.
- * @property {dfareporting(v2.4).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
  * @property {boolean} archived Whether this ad is archived. When true, active must be false.
  * @property {string} audienceSegmentId Audience segment ID that is being targeted for this ad. Applicable when type is AD_SERVING_STANDARD_AD.
  * @property {string} campaignId Campaign ID of this ad. This is a required field on insertion.
- * @property {dfareporting(v2.4).DimensionValue} campaignIdDimensionValue Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
- * @property {dfareporting(v2.4).ClickThroughUrl} clickThroughUrl Click-through URL for this ad. This is a required field on insertion. Applicable when type is AD_SERVING_CLICK_TRACKER.
- * @property {dfareporting(v2.4).ClickThroughUrlSuffixProperties} clickThroughUrlSuffixProperties Click-through URL suffix properties for this ad. Applies to the URL in the ad or (if overriding ad properties) the URL in the creative.
+ * @property {dfareporting(v2.7).DimensionValue} campaignIdDimensionValue Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).ClickThroughUrl} clickThroughUrl Click-through URL for this ad. This is a required field on insertion. Applicable when type is AD_SERVING_CLICK_TRACKER.
+ * @property {dfareporting(v2.7).ClickThroughUrlSuffixProperties} clickThroughUrlSuffixProperties Click-through URL suffix properties for this ad. Applies to the URL in the ad or (if overriding ad properties) the URL in the creative.
  * @property {string} comments Comments for this ad.
  * @property {string} compatibility Compatibility of this ad. Applicable when type is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to either rendering on desktop or on mobile devices or in mobile apps for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are only used for existing default ads. New mobile placements must be assigned DISPLAY or DISPLAY_INTERSTITIAL and default ads created for those placements will be limited to those compatibility types. IN_STREAM_VIDEO refers to rendering in-stream video ads developed with the VAST standard.
- * @property {dfareporting(v2.4).LastModifiedInfo} createInfo Information about the creation of this ad. This is a read-only field.
- * @property {dfareporting(v2.4).CreativeGroupAssignment[]} creativeGroupAssignments Creative group assignments for this ad. Applicable when type is AD_SERVING_CLICK_TRACKER. Only one assignment per creative group number is allowed for a maximum of two assignments.
- * @property {dfareporting(v2.4).CreativeRotation} creativeRotation Creative rotation for this ad. Applicable when type is AD_SERVING_DEFAULT_AD, AD_SERVING_STANDARD_AD, or AD_SERVING_TRACKING. When type is AD_SERVING_DEFAULT_AD, this field should have exactly one creativeAssignment.
- * @property {dfareporting(v2.4).DayPartTargeting} dayPartTargeting Time and day targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
- * @property {dfareporting(v2.4).DefaultClickThroughEventTagProperties} defaultClickThroughEventTagProperties Default click-through event tag properties for this ad.
- * @property {dfareporting(v2.4).DeliverySchedule} deliverySchedule Delivery schedule information for this ad. Applicable when type is AD_SERVING_STANDARD_AD or AD_SERVING_TRACKING. This field along with subfields priority and impressionRatio are required on insertion when type is AD_SERVING_STANDARD_AD.
+ * @property {dfareporting(v2.7).LastModifiedInfo} createInfo Information about the creation of this ad. This is a read-only field.
+ * @property {dfareporting(v2.7).CreativeGroupAssignment[]} creativeGroupAssignments Creative group assignments for this ad. Applicable when type is AD_SERVING_CLICK_TRACKER. Only one assignment per creative group number is allowed for a maximum of two assignments.
+ * @property {dfareporting(v2.7).CreativeRotation} creativeRotation Creative rotation for this ad. Applicable when type is AD_SERVING_DEFAULT_AD, AD_SERVING_STANDARD_AD, or AD_SERVING_TRACKING. When type is AD_SERVING_DEFAULT_AD, this field should have exactly one creativeAssignment.
+ * @property {dfareporting(v2.7).DayPartTargeting} dayPartTargeting Time and day targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
+ * @property {dfareporting(v2.7).DefaultClickThroughEventTagProperties} defaultClickThroughEventTagProperties Default click-through event tag properties for this ad.
+ * @property {dfareporting(v2.7).DeliverySchedule} deliverySchedule Delivery schedule information for this ad. Applicable when type is AD_SERVING_STANDARD_AD or AD_SERVING_TRACKING. This field along with subfields priority and impressionRatio are required on insertion when type is AD_SERVING_STANDARD_AD.
  * @property {boolean} dynamicClickTracker Whether this ad is a dynamic click tracker. Applicable when type is AD_SERVING_CLICK_TRACKER. This is a required field on insert, and is read-only after insert.
  * @property {string} endTime Date and time that this ad should stop serving. Must be later than the start time. This is a required field on insertion.
- * @property {dfareporting(v2.4).EventTagOverride[]} eventTagOverrides Event tag overrides for this ad.
- * @property {dfareporting(v2.4).GeoTargeting} geoTargeting Geographical targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
+ * @property {dfareporting(v2.7).EventTagOverride[]} eventTagOverrides Event tag overrides for this ad.
+ * @property {dfareporting(v2.7).GeoTargeting} geoTargeting Geographical targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
  * @property {string} id ID of this ad. This is a read-only, auto-generated field.
- * @property {dfareporting(v2.4).DimensionValue} idDimensionValue Dimension value for the ID of this ad. This is a read-only, auto-generated field.
- * @property {dfareporting(v2.4).KeyValueTargetingExpression} keyValueTargetingExpression Key-value targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
+ * @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of this ad. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).KeyValueTargetingExpression} keyValueTargetingExpression Key-value targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#ad&quot;.
- * @property {dfareporting(v2.4).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this ad. This is a read-only field.
+ * @property {dfareporting(v2.7).LanguageTargeting} languageTargeting Language targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
+ * @property {dfareporting(v2.7).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this ad. This is a read-only field.
  * @property {string} name Name of this ad. This is a required field and must be less than 256 characters long.
- * @property {dfareporting(v2.4).PlacementAssignment[]} placementAssignments Placement assignments for this ad.
- * @property {dfareporting(v2.4).ListTargetingExpression} remarketingListExpression Remarketing list targeting expression for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
- * @property {dfareporting(v2.4).Size} size Size of this ad. Applicable when type is AD_SERVING_DEFAULT_AD.
+ * @property {dfareporting(v2.7).PlacementAssignment[]} placementAssignments Placement assignments for this ad.
+ * @property {dfareporting(v2.7).ListTargetingExpression} remarketingListExpression Remarketing list targeting expression for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
+ * @property {dfareporting(v2.7).Size} size Size of this ad. Applicable when type is AD_SERVING_DEFAULT_AD.
  * @property {boolean} sslCompliant Whether this ad is ssl compliant. This is a read-only field that is auto-generated when the ad is inserted or updated.
  * @property {boolean} sslRequired Whether this ad requires ssl. This is a read-only field that is auto-generated when the ad is inserted or updated.
  * @property {string} startTime Date and time that this ad should start serving. If creating an ad, this field must be a time in the future. This is a required field on insertion.
  * @property {string} subaccountId Subaccount ID of this ad. This is a read-only field that can be left blank.
- * @property {dfareporting(v2.4).TechnologyTargeting} technologyTargeting Technology platform targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
+ * @property {string} targetingTemplateId Targeting template ID, used to apply preconfigured targeting information to this ad. This cannot be set while any of dayPartTargeting, geoTargeting, keyValueTargetingExpression, languageTargeting, remarketingListExpression, or technologyTargeting are set. Applicable when type is AD_SERVING_STANDARD_AD.
+ * @property {dfareporting(v2.7).TechnologyTargeting} technologyTargeting Technology platform targeting information for this ad. This field must be left blank if the ad is using a targeting template. Applicable when type is AD_SERVING_STANDARD_AD.
  * @property {string} type Type of ad. This is a required field on insertion. Note that default ads (AD_SERVING_DEFAULT_AD) cannot be created directly (see Creative resource).
  */
 /**
  * @typedef AdSlot
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} comment Comment for this ad slot.
  * @property {string} compatibility Ad slot compatibility. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop, mobile devices or in mobile apps for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
@@ -7765,15 +8228,15 @@ Acceptable values are:
  */
 /**
  * @typedef AdsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Ad[]} ads Ad collection.
+ * @property {dfareporting(v2.7).Ad[]} ads Ad collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#adsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef Advertiser
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {string} accountId Account ID of this advertiser.This is a read-only field that can be left blank.
 * @property {string} advertiserGroupId ID of the advertiser group this advertiser belongs to. You can group advertisers for reporting purposes, allowing you to see aggregated information for all advertisers in each group.
@@ -7783,9 +8246,9 @@ Acceptable values are:
 * @property {string} floodlightConfigurationId Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser&#39;s floodlight configuration ID in order to share that advertiser&#39;s floodlight configuration with this advertiser, so long as: 
 - This advertiser&#39;s original floodlight configuration is not already associated with floodlight activities or floodlight activity groups. 
 - This advertiser&#39;s original floodlight configuration is not already shared with another advertiser.
-* @property {dfareporting(v2.4).DimensionValue} floodlightConfigurationIdDimensionValue Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} floodlightConfigurationIdDimensionValue Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
 * @property {string} id ID of this advertiser. This is a read-only, auto-generated field.
-* @property {dfareporting(v2.4).DimensionValue} idDimensionValue Dimension value for the ID of this advertiser. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of this advertiser. This is a read-only, auto-generated field.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiser&quot;.
 * @property {string} name Name of this advertiser. This is a required field and must be less than 256 characters long and unique among advertisers of the same account.
 * @property {string} originalFloodlightConfigurationId Original floodlight configuration before any sharing occurred. Set the floodlightConfigurationId of this advertiser to originalFloodlightConfigurationId to unshare the advertiser&#39;s current floodlight configuration. You cannot unshare an advertiser&#39;s floodlight configuration if the shared configuration has activities associated with any campaign or placement.
@@ -7795,7 +8258,7 @@ Acceptable values are:
 */
 /**
  * @typedef AdvertiserGroup
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this advertiser group. This is a read-only field that can be left blank.
  * @property {string} id ID of this advertiser group. This is a read-only, auto-generated field.
@@ -7804,23 +8267,23 @@ Acceptable values are:
  */
 /**
  * @typedef AdvertiserGroupsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).AdvertiserGroup[]} advertiserGroups Advertiser group collection.
+ * @property {dfareporting(v2.7).AdvertiserGroup[]} advertiserGroups Advertiser group collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiserGroupsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef AdvertisersListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Advertiser[]} advertisers Advertiser collection.
+ * @property {dfareporting(v2.7).Advertiser[]} advertisers Advertiser collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertisersListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef AudienceSegment
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {integer} allocation Weight allocated to this segment. Must be between 1 and 1000. The weight assigned will be understood in proportion to the weights assigned to other segments in the same segment group.
  * @property {string} id ID of this audience segment. This is a read-only, auto-generated field.
@@ -7828,15 +8291,15 @@ Acceptable values are:
  */
 /**
  * @typedef AudienceSegmentGroup
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).AudienceSegment[]} audienceSegments Audience segments assigned to this group. The number of segments must be between 2 and 100.
+ * @property {dfareporting(v2.7).AudienceSegment[]} audienceSegments Audience segments assigned to this group. The number of segments must be between 2 and 100.
  * @property {string} id ID of this audience segment group. This is a read-only, auto-generated field.
  * @property {string} name Name of this audience segment group. This is a required field and must be less than 65 characters long.
  */
 /**
  * @typedef Browser
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} browserVersionId ID referring to this grouping of browser and version numbers. This is the ID used for targeting.
  * @property {string} dartId DART ID of this browser. This is the ID used when generating reports.
@@ -7847,38 +8310,37 @@ Acceptable values are:
  */
 /**
  * @typedef BrowsersListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Browser[]} browsers Browser collection.
+ * @property {dfareporting(v2.7).Browser[]} browsers Browser collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#browsersListResponse&quot;.
  */
 /**
  * @typedef Campaign
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this campaign. This is a read-only field that can be left blank.
- * @property {dfareporting(v2.4).CreativeOptimizationConfiguration[]} additionalCreativeOptimizationConfigurations Additional creative optimization configurations for the campaign.
+ * @property {dfareporting(v2.7).CreativeOptimizationConfiguration[]} additionalCreativeOptimizationConfigurations Additional creative optimization configurations for the campaign.
  * @property {string} advertiserGroupId Advertiser group ID of the associated advertiser.
  * @property {string} advertiserId Advertiser ID of this campaign. This is a required field.
- * @property {dfareporting(v2.4).DimensionValue} advertiserIdDimensionValue Dimension value for the advertiser ID of this campaign. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the advertiser ID of this campaign. This is a read-only, auto-generated field.
  * @property {boolean} archived Whether this campaign has been archived.
- * @property {dfareporting(v2.4).AudienceSegmentGroup[]} audienceSegmentGroups Audience segment groups assigned to this campaign. Cannot have more than 300 segment groups.
+ * @property {dfareporting(v2.7).AudienceSegmentGroup[]} audienceSegmentGroups Audience segment groups assigned to this campaign. Cannot have more than 300 segment groups.
  * @property {string} billingInvoiceCode Billing invoice code included in the DCM client billing invoices associated with the campaign.
- * @property {dfareporting(v2.4).ClickThroughUrlSuffixProperties} clickThroughUrlSuffixProperties Click-through URL suffix override properties for this campaign.
+ * @property {dfareporting(v2.7).ClickThroughUrlSuffixProperties} clickThroughUrlSuffixProperties Click-through URL suffix override properties for this campaign.
  * @property {string} comment Arbitrary comments about this campaign. Must be less than 256 characters long.
- * @property {boolean} comscoreVceEnabled Whether comScore vCE reports are enabled for this campaign.
- * @property {dfareporting(v2.4).LastModifiedInfo} createInfo Information about the creation of this campaign. This is a read-only field.
+ * @property {dfareporting(v2.7).LastModifiedInfo} createInfo Information about the creation of this campaign. This is a read-only field.
  * @property {string[]} creativeGroupIds List of creative group IDs that are assigned to the campaign.
- * @property {dfareporting(v2.4).CreativeOptimizationConfiguration} creativeOptimizationConfiguration Creative optimization configuration for the campaign.
- * @property {dfareporting(v2.4).DefaultClickThroughEventTagProperties} defaultClickThroughEventTagProperties Click-through event tag ID override properties for this campaign.
+ * @property {dfareporting(v2.7).CreativeOptimizationConfiguration} creativeOptimizationConfiguration Creative optimization configuration for the campaign.
+ * @property {dfareporting(v2.7).DefaultClickThroughEventTagProperties} defaultClickThroughEventTagProperties Click-through event tag ID override properties for this campaign.
  * @property {string} endDate Date on which the campaign will stop running. On insert, the end date must be today or a future date. The end date must be later than or be the same as the start date. If, for example, you set 6/25/2015 as both the start and end dates, the effective campaign run date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error. This is a required field.
- * @property {dfareporting(v2.4).EventTagOverride[]} eventTagOverrides Overrides that can be used to activate or deactivate advertiser event tags.
+ * @property {dfareporting(v2.7).EventTagOverride[]} eventTagOverrides Overrides that can be used to activate or deactivate advertiser event tags.
  * @property {string} externalId External ID for this campaign.
  * @property {string} id ID of this campaign. This is a read-only auto-generated field.
- * @property {dfareporting(v2.4).DimensionValue} idDimensionValue Dimension value for the ID of this campaign. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of this campaign. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaign&quot;.
- * @property {dfareporting(v2.4).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this campaign. This is a read-only field.
- * @property {dfareporting(v2.4).LookbackConfiguration} lookbackConfiguration Lookback window settings for the campaign.
+ * @property {dfareporting(v2.7).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this campaign. This is a read-only field.
+ * @property {dfareporting(v2.7).LookbackConfiguration} lookbackConfiguration Lookback window settings for the campaign.
  * @property {string} name Name of this campaign. This is a required field and must be less than 256 characters long and unique among campaigns of the same advertiser.
  * @property {boolean} nielsenOcrEnabled Whether Nielsen reports are enabled for this campaign.
  * @property {string} startDate Date on which the campaign starts running. The start date can be any date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error. This is a required field.
@@ -7887,30 +8349,30 @@ Acceptable values are:
  */
 /**
  * @typedef CampaignCreativeAssociation
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} creativeId ID of the creative associated with the campaign. This is a required field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignCreativeAssociation&quot;.
  */
 /**
  * @typedef CampaignCreativeAssociationsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).CampaignCreativeAssociation[]} campaignCreativeAssociations Campaign creative association collection
+ * @property {dfareporting(v2.7).CampaignCreativeAssociation[]} campaignCreativeAssociations Campaign creative association collection
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignCreativeAssociationsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef CampaignsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Campaign[]} campaigns Campaign collection.
+ * @property {dfareporting(v2.7).Campaign[]} campaigns Campaign collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef ChangeLog
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of the modified object.
  * @property {string} action Action which caused the change.
@@ -7929,22 +8391,22 @@ Acceptable values are:
  */
 /**
  * @typedef ChangeLogsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).ChangeLog[]} changeLogs Change log collection.
+ * @property {dfareporting(v2.7).ChangeLog[]} changeLogs Change log collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#changeLogsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef CitiesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).City[]} cities City collection.
+ * @property {dfareporting(v2.7).City[]} cities City collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#citiesListResponse&quot;.
  */
 /**
  * @typedef City
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} countryCode Country code of the country to which this city belongs.
  * @property {string} countryDartId DART ID of the country to which this city belongs.
@@ -7958,15 +8420,15 @@ Acceptable values are:
  */
 /**
  * @typedef ClickTag
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {string} eventName Advertiser event name associated with the click tag. This field is used by ENHANCED_IMAGE, and HTML5_BANNER creatives. Applicable to ENHANCED_BANNER when the primary asset type is not HTML_IMAGE
- * @property {string} name Parameter name for the specified click tag. For ENHANCED_IMAGE creative assets, this field must match the value of the creative asset&#39;s creativeAssetId.name field.
+ * @property {string} eventName Advertiser event name associated with the click tag. This field is used by DISPLAY_IMAGE_GALLERY and HTML5_BANNER creatives. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+ * @property {string} name Parameter name for the specified click tag. For DISPLAY_IMAGE_GALLERY creative assets, this field must match the value of the creative asset&#39;s creativeAssetId.name field.
  * @property {string} value Parameter value for the specified click tag. This field contains a click-through url.
  */
 /**
  * @typedef ClickThroughUrl
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {string} computedClickThroughUrl Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows: 
 - If defaultLandingPage is enabled then the campaign&#39;s default landing page URL is assigned to this field.
@@ -7978,32 +8440,41 @@ Acceptable values are:
 */
 /**
  * @typedef ClickThroughUrlSuffixProperties
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} clickThroughUrlSuffix Click-through URL suffix to apply to all ads in this entity&#39;s scope. Must be less than 128 characters long.
  * @property {boolean} overrideInheritedSuffix Whether this entity should override the inherited click-through URL suffix with its own defined value.
  */
 /**
  * @typedef CompanionClickThroughOverride
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).ClickThroughUrl} clickThroughUrl Click-through URL of this companion click-through override.
+ * @property {dfareporting(v2.7).ClickThroughUrl} clickThroughUrl Click-through URL of this companion click-through override.
  * @property {string} creativeId ID of the creative for this companion click-through override.
  */
 /**
- * @typedef CompatibleFields
- * @memberOf! dfareporting(v2.4)
+ * @typedef CompanionSetting
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).CrossDimensionReachReportCompatibleFields} crossDimensionReachReportCompatibleFields Contains items that are compatible to be selected for a report of type &quot;CROSS_DIMENSION_REACH&quot;.
- * @property {dfareporting(v2.4).FloodlightReportCompatibleFields} floodlightReportCompatibleFields Contains items that are compatible to be selected for a report of type &quot;FLOODLIGHT&quot;.
+ * @property {boolean} companionsDisabled Whether companions are disabled for this placement.
+ * @property {dfareporting(v2.7).Size[]} enabledSizes Whitelist of companion sizes to be served to this placement. Set this list to null or empty to serve all companion sizes.
+ * @property {boolean} imageOnly Whether to serve only static images as companions.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#companionSetting&quot;.
+ */
+/**
+ * @typedef CompatibleFields
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {dfareporting(v2.7).CrossDimensionReachReportCompatibleFields} crossDimensionReachReportCompatibleFields Contains items that are compatible to be selected for a report of type &quot;CROSS_DIMENSION_REACH&quot;.
+ * @property {dfareporting(v2.7).FloodlightReportCompatibleFields} floodlightReportCompatibleFields Contains items that are compatible to be selected for a report of type &quot;FLOODLIGHT&quot;.
  * @property {string} kind The kind of resource this is, in this case dfareporting#compatibleFields.
- * @property {dfareporting(v2.4).PathToConversionReportCompatibleFields} pathToConversionReportCompatibleFields Contains items that are compatible to be selected for a report of type &quot;PATH_TO_CONVERSION&quot;.
- * @property {dfareporting(v2.4).ReachReportCompatibleFields} reachReportCompatibleFields Contains items that are compatible to be selected for a report of type &quot;REACH&quot;.
- * @property {dfareporting(v2.4).ReportCompatibleFields} reportCompatibleFields Contains items that are compatible to be selected for a report of type &quot;STANDARD&quot;.
+ * @property {dfareporting(v2.7).PathToConversionReportCompatibleFields} pathToConversionReportCompatibleFields Contains items that are compatible to be selected for a report of type &quot;PATH_TO_CONVERSION&quot;.
+ * @property {dfareporting(v2.7).ReachReportCompatibleFields} reachReportCompatibleFields Contains items that are compatible to be selected for a report of type &quot;REACH&quot;.
+ * @property {dfareporting(v2.7).ReportCompatibleFields} reportCompatibleFields Contains items that are compatible to be selected for a report of type &quot;STANDARD&quot;.
  */
 /**
  * @typedef ConnectionType
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} id ID of this connection type.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#connectionType&quot;.
@@ -8011,22 +8482,22 @@ Acceptable values are:
  */
 /**
  * @typedef ConnectionTypesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).ConnectionType[]} connectionTypes Collection of connection types such as broadband and mobile.
+ * @property {dfareporting(v2.7).ConnectionType[]} connectionTypes Collection of connection types such as broadband and mobile.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#connectionTypesListResponse&quot;.
  */
 /**
  * @typedef ContentCategoriesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).ContentCategory[]} contentCategories Content category collection.
+ * @property {dfareporting(v2.7).ContentCategory[]} contentCategories Content category collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#contentCategoriesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef ContentCategory
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this content category. This is a read-only field that can be left blank.
  * @property {string} id ID of this content category. This is a read-only, auto-generated field.
@@ -8034,15 +8505,65 @@ Acceptable values are:
  * @property {string} name Name of this content category. This is a required field and must be less than 256 characters long and unique among content categories of the same account.
  */
 /**
- * @typedef CountriesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @typedef Conversion
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Country[]} countries Country collection.
+ * @property {boolean} childDirectedTreatment Whether the conversion was directed toward children.
+ * @property {dfareporting(v2.7).CustomFloodlightVariable[]} customVariables Custom floodlight variables.
+ * @property {string} encryptedUserId The alphanumeric encrypted user ID. When set, encryptionInfo should also be specified. This field is mutually exclusive with encryptedUserIdCandidates[] and mobileDeviceId. This or encryptedUserIdCandidates[] or mobileDeviceId is a required field.
+ * @property {string[]} encryptedUserIdCandidates A list of the alphanumeric encrypted user IDs. Any user ID with exposure prior to the conversion timestamp will be used in the inserted conversion. If no such user ID is found then the conversion will be rejected with NO_COOKIE_MATCH_FOUND error. When set, encryptionInfo should also be specified. This field should only be used when calling conversions.batchinsert. This field is mutually exclusive with encryptedUserId and mobileDeviceId. This or encryptedUserId or mobileDeviceId is a required field.
+ * @property {string} floodlightActivityId Floodlight Activity ID of this conversion. This is a required field.
+ * @property {string} floodlightConfigurationId Floodlight Configuration ID of this conversion. This is a required field.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversion&quot;.
+ * @property {boolean} limitAdTracking Whether Limit Ad Tracking is enabled. When set to true, the conversion will be used for reporting but not targeting. This will prevent remarketing.
+ * @property {string} mobileDeviceId The mobile device ID. This field is mutually exclusive with encryptedUserId and encryptedUserIdCandidates[]. This or encryptedUserId or encryptedUserIdCandidates[] is a required field.
+ * @property {string} ordinal The ordinal of the conversion. Use this field to control how conversions of the same user and day are de-duplicated. This is a required field.
+ * @property {string} quantity The quantity of the conversion.
+ * @property {string} timestampMicros The timestamp of conversion, in Unix epoch micros. This is a required field.
+ * @property {number} value The value of the conversion.
+ */
+/**
+ * @typedef ConversionError
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} code The error code.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionError&quot;.
+ * @property {string} message A description of the error.
+ */
+/**
+ * @typedef ConversionStatus
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {dfareporting(v2.7).Conversion} conversion The original conversion that was inserted or updated.
+ * @property {dfareporting(v2.7).ConversionError[]} errors A list of errors related to this conversion.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionStatus&quot;.
+ */
+/**
+ * @typedef ConversionsBatchInsertRequest
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {dfareporting(v2.7).Conversion[]} conversions The set of conversions to insert.
+ * @property {dfareporting(v2.7).EncryptionInfo} encryptionInfo Describes how encryptedUserId or encryptedUserIdCandidates[] is encrypted. This is a required field if encryptedUserId or encryptedUserIdCandidates[] is used.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchInsertRequest&quot;.
+ */
+/**
+ * @typedef ConversionsBatchInsertResponse
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {boolean} hasFailures Indicates that some or all conversions failed to insert.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchInsertResponse&quot;.
+ * @property {dfareporting(v2.7).ConversionStatus[]} status The status of each conversion&#39;s insertion status. The status is returned in the same order that conversions are inserted.
+ */
+/**
+ * @typedef CountriesListResponse
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {dfareporting(v2.7).Country[]} countries Country collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#countriesListResponse&quot;.
  */
 /**
  * @typedef Country
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} countryCode Country code.
  * @property {string} dartId DART ID of this country. This is the ID used for targeting and generating reports.
@@ -8052,7 +8573,7 @@ Acceptable values are:
  */
 /**
  * @typedef Creative
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {string} accountId Account ID of this creative. This field, if left unset, will be auto-generated for both insert and update operations. Applicable to all creative types.
 * @property {boolean} active Whether the creative is active. Applicable to all creative types.
@@ -8064,15 +8585,15 @@ Acceptable values are:
 * @property {string} artworkType Type of artwork used for the creative. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
 * @property {string} authoringSource Source application where creative was authored. Presently, only DBM authored creatives will have this field set. Applicable to all creative types.
 * @property {string} authoringTool Authoring tool for HTML5 banner creatives. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
-* @property {boolean} auto_advance_images Whether images are automatically advanced for enhanced image creatives. Applicable to the following creative types: ENHANCED_IMAGE.
+* @property {boolean} auto_advance_images Whether images are automatically advanced for image gallery creatives. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY.
 * @property {string} backgroundColor The 6-character HTML color code, beginning with #, for the background of the window area where the Flash file is displayed. Default is white. Applicable to the following creative types: FLASH_INPAGE.
-* @property {string} backupImageClickThroughUrl Click-through URL for backup image. Applicable to the following creative types: FLASH_INPAGE, and HTML5_BANNER. Applicable to ENHANCED_BANNER when the primary asset type is not HTML_IMAGE.
-* @property {string[]} backupImageFeatures List of feature dependencies that will cause a backup image to be served if the browser that serves the ad does not support them. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative asset correctly. This field is initially auto-generated to contain all features detected by DCM for all the assets of this creative and can then be modified by the client. To reset this field, copy over all the creativeAssets&#39; detected features. Applicable to the following creative types: HTML5_BANNER. Applicable to ENHANCED_BANNER when the primary asset is not HTML_IMAGE.
-* @property {string} backupImageReportingLabel Reporting label used for HTML5 banner backup image. Applicable to ENHANCED_BANNER when the primary asset type is not HTML_IMAGE.
-* @property {dfareporting(v2.4).TargetWindow} backupImageTargetWindow Target window for backup image. Applicable to the following creative types: FLASH_INPAGE, and HTML5_BANNER. Applicable to ENHANCED_BANNER when the primary asset type is not HTML_IMAGE.
-* @property {dfareporting(v2.4).ClickTag[]} clickTags Click tags of the creative. For ENHANCED_BANNER, FLASH_INPAGE, and HTML5_BANNER creatives, this is a subset of detected click tags for the assets associated with this creative. After creating a flash asset, detected click tags will be returned in the creativeAssetMetadata. When inserting the creative, populate the creative clickTags field using the creativeAssetMetadata.clickTags field. For ENHANCED_IMAGE creatives, there should be exactly one entry in this list for each image creative asset. A click tag is matched with a corresponding creative asset by matching the clickTag.name field with the creativeAsset.assetIdentifier.name field. Applicable to the following creative types: ENHANCED_IMAGE, FLASH_INPAGE HTML5_BANNER. Applicable to ENHANCED_BANNER when the primary asset type is not HTML_IMAGE.
+* @property {string} backupImageClickThroughUrl Click-through URL for backup image. Applicable to the following creative types: FLASH_INPAGE and HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+* @property {string[]} backupImageFeatures List of feature dependencies that will cause a backup image to be served if the browser that serves the ad does not support them. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative asset correctly. This field is initially auto-generated to contain all features detected by DCM for all the assets of this creative and can then be modified by the client. To reset this field, copy over all the creativeAssets&#39; detected features. Applicable to the following creative types: HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+* @property {string} backupImageReportingLabel Reporting label used for HTML5 banner backup image. Applicable to the following creative types: DISPLAY when the primary asset type is not HTML_IMAGE.
+* @property {dfareporting(v2.7).TargetWindow} backupImageTargetWindow Target window for backup image. Applicable to the following creative types: FLASH_INPAGE and HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+* @property {dfareporting(v2.7).ClickTag[]} clickTags Click tags of the creative. For DISPLAY, FLASH_INPAGE, and HTML5_BANNER creatives, this is a subset of detected click tags for the assets associated with this creative. After creating a flash asset, detected click tags will be returned in the creativeAssetMetadata. When inserting the creative, populate the creative clickTags field using the creativeAssetMetadata.clickTags field. For DISPLAY_IMAGE_GALLERY creatives, there should be exactly one entry in this list for each image creative asset. A click tag is matched with a corresponding creative asset by matching the clickTag.name field with the creativeAsset.assetIdentifier.name field. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
 * @property {string} commercialId Industry standard ID assigned to creative for reach and frequency. Applicable to the following creative types: all INSTREAM_VIDEO and all VPAID.
-* @property {string[]} companionCreatives List of companion creatives assigned to an in-Stream videocreative. Acceptable values include IDs of existing flash and image creatives. Applicable to the following creative types: all INSTREAM_VIDEO and all VPAID.
+* @property {string[]} companionCreatives List of companion creatives assigned to an in-Stream videocreative. Acceptable values include IDs of existing flash and image creatives. Applicable to the following creative types: all VPAID and all INSTREAM_VIDEO with dynamicAssetSelection set to false.
 * @property {string[]} compatibility Compatibilities associated with this creative. This is a read-only field. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices or in mobile apps for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. Only pre-existing creatives may have these compatibilities since new creatives will either be assigned DISPLAY or DISPLAY_INTERSTITIAL instead. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard. Applicable to all creative types.
 
 Acceptable values are:
@@ -8081,28 +8602,32 @@ Acceptable values are:
 - &quot;IN_STREAM_VIDEO&quot;
 - &quot;DISPLAY&quot;
 - &quot;DISPLAY_INTERSTITIAL&quot;
-* @property {boolean} convertFlashToHtml5 Whether Flash assets associated with the creative need to be automatically converted to HTML5. This flag is enabled by default and users can choose to disable it if they don&#39;t want the system to generate and use HTML5 asset for this creative. Applicable to the following creative type: FLASH_INPAGE. Applicable to ENHANCED_BANNER when the primary asset type is not HTML_IMAGE.
-* @property {dfareporting(v2.4).CreativeCustomEvent[]} counterCustomEvents List of counter events configured for the creative. For ENHANCED_IMAGE creatives, these are read-only and auto-generated from clickTags. Applicable to the following creative types: ENHANCED_IMAGE, all RICH_MEDIA, and all VPAID.
-* @property {dfareporting(v2.4).CreativeAsset[]} creativeAssets Assets associated with a creative. Applicable to all but the following creative types: INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and REDIRECT
-* @property {dfareporting(v2.4).CreativeFieldAssignment[]} creativeFieldAssignments Creative field assignments for this creative. Applicable to all creative types.
+* @property {boolean} convertFlashToHtml5 Whether Flash assets associated with the creative need to be automatically converted to HTML5. This flag is enabled by default and users can choose to disable it if they don&#39;t want the system to generate and use HTML5 asset for this creative. Applicable to the following creative type: FLASH_INPAGE. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+* @property {dfareporting(v2.7).CreativeCustomEvent[]} counterCustomEvents List of counter events configured for the creative. For DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID.
+* @property {dfareporting(v2.7).CreativeAssetSelection} creativeAssetSelection Required if dynamicAssetSelection is true.
+* @property {dfareporting(v2.7).CreativeAsset[]} creativeAssets Assets associated with a creative. Applicable to all but the following creative types: INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and REDIRECT
+* @property {dfareporting(v2.7).CreativeFieldAssignment[]} creativeFieldAssignments Creative field assignments for this creative. Applicable to all creative types.
 * @property {string[]} customKeyValues Custom key-values for a Rich Media creative. Key-values let you customize the creative settings of a Rich Media ad running on your site without having to contact the advertiser. You can use key-values to dynamically change the look or functionality of a creative. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
-* @property {dfareporting(v2.4).CreativeCustomEvent[]} exitCustomEvents List of exit events configured for the creative. For ENHANCED_BANNER and ENHANCED_IMAGE creatives, these are read-only and auto-generated from clickTags, For ENHANCED_BANNER, an event is also created from the backupImageReportingLabel. Applicable to the following creative types: ENHANCED_IMAGE, all RICH_MEDIA, and all VPAID. Applicable to ENHANCED_BANNER when the primary asset is not HTML_IMAGE.
-* @property {dfareporting(v2.4).FsCommand} fsCommand OpenWindow FSCommand of this creative. This lets the SWF file communicate with either Flash Player or the program hosting Flash Player, such as a web browser. This is only triggered if allowScriptAccess field is true. Applicable to the following creative types: FLASH_INPAGE.
+* @property {boolean} dynamicAssetSelection Set this to true to enable the use of rules to target individual assets in this creative. When set to true creativeAssetSelection must be set. This also controls asset-level companions. When this is true, companion creatives should be assigned to creative assets. Learn more. Applicable to INSTREAM_VIDEO creatives.
+* @property {dfareporting(v2.7).CreativeCustomEvent[]} exitCustomEvents List of exit events configured for the creative. For DISPLAY and DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags, For DISPLAY, an event is also created from the backupImageReportingLabel. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+* @property {dfareporting(v2.7).FsCommand} fsCommand OpenWindow FSCommand of this creative. This lets the SWF file communicate with either Flash Player or the program hosting Flash Player, such as a web browser. This is only triggered if allowScriptAccess field is true. Applicable to the following creative types: FLASH_INPAGE.
 * @property {string} htmlCode HTML code for the creative. This is a required field when applicable. This field is ignored if htmlCodeLocked is false. Applicable to the following creative types: all CUSTOM, FLASH_INPAGE, and HTML5_BANNER, and all RICH_MEDIA.
 * @property {boolean} htmlCodeLocked Whether HTML code is DCM-generated or manually entered. Set to true to ignore changes to htmlCode. Applicable to the following creative types: FLASH_INPAGE and HTML5_BANNER.
 * @property {string} id ID of this creative. This is a read-only, auto-generated field. Applicable to all creative types.
-* @property {dfareporting(v2.4).DimensionValue} idDimensionValue Dimension value for the ID of this creative. This is a read-only field. Applicable to all creative types.
+* @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of this creative. This is a read-only field. Applicable to all creative types.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creative&quot;.
-* @property {dfareporting(v2.4).LastModifiedInfo} lastModifiedInfo Creative last modification information. This is a read-only field. Applicable to all creative types.
+* @property {dfareporting(v2.7).LastModifiedInfo} lastModifiedInfo Creative last modification information. This is a read-only field. Applicable to all creative types.
 * @property {string} latestTraffickedCreativeId Latest Studio trafficked creative ID associated with rich media and VPAID creatives. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
 * @property {string} name Name of the creative. This is a required field and must be less than 256 characters long. Applicable to all creative types.
 * @property {string} overrideCss Override CSS value for rich media creatives. Applicable to the following creative types: all RICH_MEDIA.
-* @property {string} redirectUrl URL of hosted image or hosted video or another ad tag. For INSTREAM_VIDEO_REDIRECT creatives this is the in-stream video redirect URL. The standard for a VAST (Video Ad Serving Template) ad response allows for a redirect link to another VAST 2.0 or 3.0 call. This is a required field when applicable. Applicable to the following creative types: INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, REDIRECT, and INSTREAM_VIDEO_REDIRECT
+* @property {dfareporting(v2.7).VideoOffset} progressOffset Amount of time to play the video before counting a view. Applicable to the following creative types: all INSTREAM_VIDEO.
+* @property {string} redirectUrl URL of hosted image or hosted video or another ad tag. For INSTREAM_VIDEO_REDIRECT creatives this is the in-stream video redirect URL. The standard for a VAST (Video Ad Serving Template) ad response allows for a redirect link to another VAST 2.0 or 3.0 call. This is a required field when applicable. Applicable to the following creative types: DISPLAY_REDIRECT, INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and INSTREAM_VIDEO_REDIRECT
 * @property {string} renderingId ID of current rendering version. This is a read-only field. Applicable to all creative types.
-* @property {dfareporting(v2.4).DimensionValue} renderingIdDimensionValue Dimension value for the rendering ID of this creative. This is a read-only field. Applicable to all creative types.
+* @property {dfareporting(v2.7).DimensionValue} renderingIdDimensionValue Dimension value for the rendering ID of this creative. This is a read-only field. Applicable to all creative types.
 * @property {string} requiredFlashPluginVersion The minimum required Flash plugin version for this creative. For example, 11.2.202.235. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
-* @property {integer} requiredFlashVersion The internal Flash version for this creative as calculated by DoubleClick Studio. This is a read-only field. Applicable to the following creative types: FLASH_INPAGE, all RICH_MEDIA, and all VPAID. Applicable to ENHANCED_BANNER when the primary asset type is not HTML_IMAGE.
-* @property {dfareporting(v2.4).Size} size Size associated with this creative. When inserting or updating a creative either the size ID field or size width and height fields can be used. This is a required field when applicable; however for IMAGE and FLASH_INPAGE creatives, and for ENHANCED_BANNER creatives with a primary asset of type HTML_IMAGE, if left blank, this field will be automatically set using the actual size of the associated image assets. Applicable to the following creative types: ENHANCED_BANNER, ENHANCED_IMAGE, FLASH_INPAGE, HTML5_BANNER, IMAGE, and all RICH_MEDIA.
+* @property {integer} requiredFlashVersion The internal Flash version for this creative as calculated by DoubleClick Studio. This is a read-only field. Applicable to the following creative types: FLASH_INPAGE all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+* @property {dfareporting(v2.7).Size} size Size associated with this creative. When inserting or updating a creative either the size ID field or size width and height fields can be used. This is a required field when applicable; however for IMAGE, FLASH_INPAGE creatives, and for DISPLAY creatives with a primary asset of type HTML_IMAGE, if left blank, this field will be automatically set using the actual size of the associated image assets. Applicable to the following creative types: DISPLAY, DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER, IMAGE, and all RICH_MEDIA.
+* @property {dfareporting(v2.7).VideoOffset} skipOffset Amount of time to play the video before the skip button appears. Applicable to the following creative types: all INSTREAM_VIDEO.
 * @property {boolean} skippable Whether the user can choose to skip the creative. Applicable to the following creative types: all INSTREAM_VIDEO and all VPAID.
 * @property {boolean} sslCompliant Whether the creative is SSL-compliant. This is a read-only field. Applicable to all creative types.
 * @property {boolean} sslOverride Whether creative should be treated as SSL compliant even if the system scan shows it&#39;s not. Applicable to all creative types.
@@ -8112,83 +8637,89 @@ Acceptable values are:
 * @property {string} subaccountId Subaccount ID of this creative. This field, if left unset, will be auto-generated for both insert and update operations. Applicable to all creative types.
 * @property {string} thirdPartyBackupImageImpressionsUrl Third-party URL used to record backup image impressions. Applicable to the following creative types: all RICH_MEDIA.
 * @property {string} thirdPartyRichMediaImpressionsUrl Third-party URL used to record rich media impressions. Applicable to the following creative types: all RICH_MEDIA.
-* @property {dfareporting(v2.4).ThirdPartyTrackingUrl[]} thirdPartyUrls Third-party URLs for tracking in-stream video creative events. Applicable to the following creative types: all INSTREAM_VIDEO and all VPAID.
-* @property {dfareporting(v2.4).CreativeCustomEvent[]} timerCustomEvents List of timer events configured for the creative. For ENHANCED_IMAGE creatives, these are read-only and auto-generated from clickTags. Applicable to the following creative types: ENHANCED_IMAGE, all RICH_MEDIA, and all VPAID. Applicable to ENHANCED_BANNER when the primary asset is not HTML_IMAGE.
+* @property {dfareporting(v2.7).ThirdPartyTrackingUrl[]} thirdPartyUrls Third-party URLs for tracking in-stream video creative events. Applicable to the following creative types: all INSTREAM_VIDEO and all VPAID.
+* @property {dfareporting(v2.7).CreativeCustomEvent[]} timerCustomEvents List of timer events configured for the creative. For DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset is not HTML_IMAGE.
 * @property {string} totalFileSize Combined size of all creative assets. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
-* @property {string} type Type of this creative.This is a required field. Applicable to all creative types.
+* @property {string} type Type of this creative. This is a required field. Applicable to all creative types.
+
+Note: FLASH_INPAGE, HTML5_BANNER, and IMAGE are only used for existing creatives. New creatives should use DISPLAY as a replacement for these types.
 * @property {integer} version The version number helps you keep track of multiple versions of your creative in your reports. The version number will always be auto-generated during insert operations to start at 1. For tracking creatives the version cannot be incremented and will always remain at 1. For all other creative types the version can be incremented only by 1 during update operations. In addition, the version will be automatically incremented by 1 when undergoing Rich Media creative merging. Applicable to all creative types.
 * @property {string} videoDescription Description of the video ad. Applicable to the following creative types: all INSTREAM_VIDEO and all VPAID.
 * @property {number} videoDuration Creative video duration in seconds. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO, all RICH_MEDIA, and all VPAID.
 */
 /**
  * @typedef CreativeAsset
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
-* @property {boolean} actionScript3 Whether ActionScript3 is enabled for the flash asset. This is a read-only field. Applicable to the following creative type: FLASH_INPAGE. Applicable to ENHANCED_BANNER when the primary asset type is not HTML_IMAGE.
-* @property {boolean} active Whether the video asset is active. This is a read-only field for VPAID_NON_LINEAR assets. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
-* @property {string} alignment Possible alignments for an asset. This is a read-only field. Applicable to the following creative types: RICH_MEDIA_MULTI_FLOATING.
+* @property {boolean} actionScript3 Whether ActionScript3 is enabled for the flash asset. This is a read-only field. Applicable to the following creative type: FLASH_INPAGE. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+* @property {boolean} active Whether the video asset is active. This is a read-only field for VPAID_NON_LINEAR_VIDEO assets. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
+* @property {string} alignment Possible alignments for an asset. This is a read-only field. Applicable to the following creative types: RICH_MEDIA_DISPLAY_MULTI_FLOATING_INTERSTITIAL.
 * @property {string} artworkType Artwork type of rich media creative. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
-* @property {dfareporting(v2.4).CreativeAssetId} assetIdentifier Identifier of this asset. This is the same identifier returned during creative asset insert operation. This is a required field. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
-* @property {dfareporting(v2.4).CreativeCustomEvent} backupImageExit Exit event configured for the backup image. Applicable to the following creative types: all RICH_MEDIA.
+* @property {dfareporting(v2.7).CreativeAssetId} assetIdentifier Identifier of this asset. This is the same identifier returned during creative asset insert operation. This is a required field. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
+* @property {dfareporting(v2.7).CreativeCustomEvent} backupImageExit Exit event configured for the backup image. Applicable to the following creative types: all RICH_MEDIA.
 * @property {integer} bitRate Detected bit-rate for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
 * @property {string} childAssetType Rich media child asset type. This is a read-only field. Applicable to the following creative types: all VPAID.
-* @property {dfareporting(v2.4).Size} collapsedSize Size of an asset when collapsed. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA and all VPAID. Additionally, applicable to assets whose displayType is ASSET_DISPLAY_TYPE_EXPANDING or ASSET_DISPLAY_TYPE_PEEL_DOWN.
+* @property {dfareporting(v2.7).Size} collapsedSize Size of an asset when collapsed. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA and all VPAID. Additionally, applicable to assets whose displayType is ASSET_DISPLAY_TYPE_EXPANDING or ASSET_DISPLAY_TYPE_PEEL_DOWN.
+* @property {string[]} companionCreativeIds List of companion creatives assigned to an in-stream video creative asset. Acceptable values include IDs of existing flash and image creatives. Applicable to INSTREAM_VIDEO creative type with dynamicAssetSelection set to true.
 * @property {integer} customStartTimeValue Custom start time in seconds for making the asset visible. Applicable to the following creative types: all RICH_MEDIA.
-* @property {string[]} detectedFeatures List of feature dependencies for the creative asset that are detected by DCM. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative correctly. This is a read-only, auto-generated field. Applicable to the following creative types: ENHANCED_BANNER and HTML5_BANNER.
+* @property {string[]} detectedFeatures List of feature dependencies for the creative asset that are detected by DCM. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative correctly. This is a read-only, auto-generated field. Applicable to the following creative types: HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
 * @property {string} displayType Type of rich media asset. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
-* @property {integer} duration Duration in seconds for which an asset will be displayed. Applicable to the following creative types: INSTREAM_VIDEO and VPAID_LINEAR.
+* @property {integer} duration Duration in seconds for which an asset will be displayed. Applicable to the following creative types: INSTREAM_VIDEO and VPAID_LINEAR_VIDEO.
 * @property {string} durationType Duration type for which an asset will be displayed. Applicable to the following creative types: all RICH_MEDIA.
-* @property {dfareporting(v2.4).Size} expandedDimension Detected expanded dimension for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
+* @property {dfareporting(v2.7).Size} expandedDimension Detected expanded dimension for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
 * @property {string} fileSize File size associated with this creative asset. This is a read-only field. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
-* @property {integer} flashVersion Flash version of the asset. This is a read-only field. Applicable to the following creative types: FLASH_INPAGE, all RICH_MEDIA, and all VPAID. Applicable to ENHANCED_BANNER when the primary asset type is not HTML_IMAGE.
+* @property {integer} flashVersion Flash version of the asset. This is a read-only field. Applicable to the following creative types: FLASH_INPAGE, all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
 * @property {boolean} hideFlashObjects Whether to hide Flash objects flag for an asset. Applicable to the following creative types: all RICH_MEDIA.
 * @property {boolean} hideSelectionBoxes Whether to hide selection boxes flag for an asset. Applicable to the following creative types: all RICH_MEDIA.
 * @property {boolean} horizontallyLocked Whether the asset is horizontally locked. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
 * @property {string} id Numeric ID of this creative asset. This is a required field and should not be modified. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
+* @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of the asset. This is a read-only, auto-generated field.
 * @property {string} mimeType Detected MIME type for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
-* @property {dfareporting(v2.4).OffsetPosition} offset Offset position for an asset in collapsed mode. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA and all VPAID. Additionally, only applicable to assets whose displayType is ASSET_DISPLAY_TYPE_EXPANDING or ASSET_DISPLAY_TYPE_PEEL_DOWN.
+* @property {dfareporting(v2.7).OffsetPosition} offset Offset position for an asset in collapsed mode. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA and all VPAID. Additionally, only applicable to assets whose displayType is ASSET_DISPLAY_TYPE_EXPANDING or ASSET_DISPLAY_TYPE_PEEL_DOWN.
 * @property {boolean} originalBackup Whether the backup asset is original or changed by the user in DCM. Applicable to the following creative types: all RICH_MEDIA.
-* @property {dfareporting(v2.4).OffsetPosition} position Offset position for an asset. Applicable to the following creative types: all RICH_MEDIA.
+* @property {dfareporting(v2.7).OffsetPosition} position Offset position for an asset. Applicable to the following creative types: all RICH_MEDIA.
 * @property {string} positionLeftUnit Offset left unit for an asset. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
 * @property {string} positionTopUnit Offset top unit for an asset. This is a read-only field if the asset displayType is ASSET_DISPLAY_TYPE_OVERLAY. Applicable to the following creative types: all RICH_MEDIA.
 * @property {string} progressiveServingUrl Progressive URL for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
 * @property {boolean} pushdown Whether the asset pushes down other content. Applicable to the following creative types: all RICH_MEDIA. Additionally, only applicable when the asset offsets are 0, the collapsedSize.width matches size.width, and the collapsedSize.height is less than size.height.
 * @property {number} pushdownDuration Pushdown duration in seconds for an asset. Must be between 0 and 9.99. Applicable to the following creative types: all RICH_MEDIA.Additionally, only applicable when the asset pushdown field is true, the offsets are 0, the collapsedSize.width matches size.width, and the collapsedSize.height is less than size.height.
 * @property {string} role Role of the asset in relation to creative. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT. This is a required field.
-PRIMARY applies to ENHANCED_BANNER, FLASH_INPAGE, HTML5_BANNER, IMAGE, IMAGE_GALLERY, all RICH_MEDIA (which may contain multiple primary assets), and all VPAID creatives.
-BACKUP_IMAGE applies to ENHANCED_BANNER, FLASH_INPAGE, HTML5_BANNER, all RICH_MEDIA, and all VPAID creatives.
+PRIMARY applies to DISPLAY, FLASH_INPAGE, HTML5_BANNER, IMAGE, DISPLAY_IMAGE_GALLERY, all RICH_MEDIA (which may contain multiple primary assets), and all VPAID creatives.
+BACKUP_IMAGE applies to FLASH_INPAGE, HTML5_BANNER, all RICH_MEDIA, and all VPAID creatives. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
 ADDITIONAL_IMAGE and ADDITIONAL_FLASH apply to FLASH_INPAGE creatives.
 OTHER refers to assets from sources other than DCM, such as Studio uploaded assets, applicable to all RICH_MEDIA and all VPAID creatives.
-PARENT_VIDEO refers to videos uploaded by the user in DCM and is applicable to INSTREAM_VIDEO and VPAID_LINEAR creatives.
-TRANSCODED_VIDEO refers to videos transcoded by DCM from PARENT_VIDEO assets and is applicable to INSTREAM_VIDEO and VPAID_LINEAR creatives.
+PARENT_VIDEO refers to videos uploaded by the user in DCM and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO creatives.
+TRANSCODED_VIDEO refers to videos transcoded by DCM from PARENT_VIDEO assets and is applicable to INSTREAM_VIDEO and VPAID_LINEAR_VIDEO creatives.
 ALTERNATE_VIDEO refers to the DCM representation of child asset videos from Studio, and is applicable to VPAID_LINEAR_VIDEO creatives. These cannot be added or removed within DCM.
-For VPAID_LINEAR creatives, PARENT_VIDEO, TRANSCODED_VIDEO and ALTERNATE_VIDEO assets that are marked active serve as backup in case the VPAID creative cannot be served. Only PARENT_VIDEO assets can be added or removed for an INSTREAM_VIDEO or VPAID_LINEAR creative.
-* @property {dfareporting(v2.4).Size} size Size associated with this creative asset. This is a required field when applicable; however for IMAGE and FLASH_INPAGE creatives, if left blank, this field will be automatically set using the actual size of the associated image asset. Applicable to the following creative types: ENHANCED_IMAGE, FLASH_INPAGE, HTML5_BANNER, IMAGE, and all RICH_MEDIA. Applicable to ENHANCED_BANNER when the primary asset type is not HTML_IMAGE.
+For VPAID_LINEAR_VIDEO creatives, PARENT_VIDEO, TRANSCODED_VIDEO and ALTERNATE_VIDEO assets that are marked active serve as backup in case the VPAID creative cannot be served. Only PARENT_VIDEO assets can be added or removed for an INSTREAM_VIDEO or VPAID_LINEAR_VIDEO creative.
+* @property {dfareporting(v2.7).Size} size Size associated with this creative asset. This is a required field when applicable; however for IMAGE and FLASH_INPAGE, creatives if left blank, this field will be automatically set using the actual size of the associated image asset. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, FLASH_INPAGE, HTML5_BANNER, IMAGE, and all RICH_MEDIA. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
 * @property {boolean} sslCompliant Whether the asset is SSL-compliant. This is a read-only field. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
 * @property {string} startTimeType Initial wait time type before making the asset visible. Applicable to the following creative types: all RICH_MEDIA.
 * @property {string} streamingServingUrl Streaming URL for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
 * @property {boolean} transparency Whether the asset is transparent. Applicable to the following creative types: all RICH_MEDIA. Additionally, only applicable to HTML5 assets.
 * @property {boolean} verticallyLocked Whether the asset is vertically locked. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
 * @property {number} videoDuration Detected video duration for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
-* @property {string} windowMode Window mode options for flash assets. Applicable to the following creative types: FLASH_INPAGE, RICH_MEDIA_EXPANDING, RICH_MEDIA_IM_EXPAND, RICH_MEDIA_INPAGE, and RICH_MEDIA_INPAGE_FLOATING.
+* @property {string} windowMode Window mode options for flash assets. Applicable to the following creative types: FLASH_INPAGE, RICH_MEDIA_DISPLAY_EXPANDING, RICH_MEDIA_IM_EXPAND, RICH_MEDIA_DISPLAY_BANNER, and RICH_MEDIA_INPAGE_FLOATING.
 * @property {integer} zIndex zIndex value of an asset. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.Additionally, only applicable to assets whose displayType is NOT one of the following types: ASSET_DISPLAY_TYPE_INPAGE or ASSET_DISPLAY_TYPE_OVERLAY.
 * @property {string} zipFilename File name of zip file. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
 * @property {string} zipFilesize Size of zip file. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
 */
 /**
  * @typedef CreativeAssetId
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} name Name of the creative asset. This is a required field while inserting an asset. After insertion, this assetIdentifier is used to identify the uploaded asset. Characters in the name must be alphanumeric or one of the following: &quot;.-_ &quot;. Spaces are allowed.
- * @property {string} type Type of asset to upload. This is a required field. IMAGE is solely used for IMAGE creatives. Other image assets should use HTML_IMAGE.
+ * @property {string} type Type of asset to upload. This is a required field. FLASH and IMAGE are no longer supported for new uploads. All image assets should use HTML_IMAGE.
  */
 /**
  * @typedef CreativeAssetMetadata
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
-* @property {dfareporting(v2.4).CreativeAssetId} assetIdentifier ID of the creative asset. This is a required field.
-* @property {dfareporting(v2.4).ClickTag[]} clickTags List of detected click tags for assets. This is a read-only auto-generated field.
+* @property {dfareporting(v2.7).CreativeAssetId} assetIdentifier ID of the creative asset. This is a required field.
+* @property {dfareporting(v2.7).ClickTag[]} clickTags List of detected click tags for assets. This is a read-only auto-generated field.
 * @property {string[]} detectedFeatures List of feature dependencies for the creative asset that are detected by DCM. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative correctly. This is a read-only, auto-generated field.
+* @property {string} id Numeric ID of the asset. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the numeric ID of the asset. This is a read-only, auto-generated field.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeAssetMetadata&quot;.
 * @property {string[]} warnedValidationRules Rules validated during code generation that generated a warning. This is a read-only, auto-generated field.
 
@@ -8219,18 +8750,25 @@ Possible values are:
 - &quot;ZIP_INVALID&quot;
 */
 /**
+ * @typedef CreativeAssetSelection
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} defaultAssetId A creativeAssets[].id. This should refer to one of the parent assets in this creative, and will be served if none of the rules match. This is a required field.
+ * @property {dfareporting(v2.7).Rule[]} rules Rules determine which asset will be served to a viewer. Rules will be evaluated in the order in which they are stored in this list. This list must contain at least one rule. Applicable to INSTREAM_VIDEO creatives.
+ */
+/**
  * @typedef CreativeAssignment
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {boolean} active Whether this creative assignment is active. When true, the creative will be included in the ad&#39;s rotation.
 * @property {boolean} applyEventTags Whether applicable event tags should fire when this creative assignment is rendered. If this value is unset when the ad is inserted or updated, it will default to true for all creative types EXCEPT for INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and INSTREAM_VIDEO.
-* @property {dfareporting(v2.4).ClickThroughUrl} clickThroughUrl Click-through URL of the creative assignment.
-* @property {dfareporting(v2.4).CompanionClickThroughOverride[]} companionCreativeOverrides Companion creative overrides for this creative assignment. Applicable to video ads.
-* @property {dfareporting(v2.4).CreativeGroupAssignment[]} creativeGroupAssignments Creative group assignments for this creative assignment. Only one assignment per creative group number is allowed for a maximum of two assignments.
+* @property {dfareporting(v2.7).ClickThroughUrl} clickThroughUrl Click-through URL of the creative assignment.
+* @property {dfareporting(v2.7).CompanionClickThroughOverride[]} companionCreativeOverrides Companion creative overrides for this creative assignment. Applicable to video ads.
+* @property {dfareporting(v2.7).CreativeGroupAssignment[]} creativeGroupAssignments Creative group assignments for this creative assignment. Only one assignment per creative group number is allowed for a maximum of two assignments.
 * @property {string} creativeId ID of the creative to be assigned. This is a required field.
-* @property {dfareporting(v2.4).DimensionValue} creativeIdDimensionValue Dimension value for the ID of the creative. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} creativeIdDimensionValue Dimension value for the ID of the creative. This is a read-only, auto-generated field.
 * @property {string} endTime Date and time that the assigned creative should stop serving. Must be later than the start time.
-* @property {dfareporting(v2.4).RichMediaExitOverride[]} richMediaExitOverrides Rich media exit overrides for this creative assignment.
+* @property {dfareporting(v2.7).RichMediaExitOverride[]} richMediaExitOverrides Rich media exit overrides for this creative assignment.
 Applicable when the creative type is any of the following: 
 - RICH_MEDIA_INPAGE
 - RICH_MEDIA_INPAGE_FLOATING
@@ -8250,7 +8788,7 @@ Applicable when the creative type is any of the following:
 */
 /**
  * @typedef CreativeCustomEvent
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} advertiserCustomEventId Unique ID of this event used by DDM Reporting and Data Transfer. This is a read-only field.
  * @property {string} advertiserCustomEventName User-entered name for the event.
@@ -8259,17 +8797,17 @@ Applicable when the creative type is any of the following:
  * @property {string} artworkType Artwork type used by the creative.This is a read-only field.
  * @property {string} exitUrl Exit URL of the event. This field is used only for exit events.
  * @property {string} id ID of this event. This is a required field and should not be modified after insertion.
- * @property {dfareporting(v2.4).PopupWindowProperties} popupWindowProperties Properties for rich media popup windows. This field is used only for exit events.
+ * @property {dfareporting(v2.7).PopupWindowProperties} popupWindowProperties Properties for rich media popup windows. This field is used only for exit events.
  * @property {string} targetType Target type used by the event.
  * @property {string} videoReportingId Video reporting ID, used to differentiate multiple videos in a single creative. This is a read-only field.
  */
 /**
  * @typedef CreativeField
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this creative field. This is a read-only field that can be left blank.
  * @property {string} advertiserId Advertiser ID of this creative field. This is a required field on insertion.
- * @property {dfareporting(v2.4).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
  * @property {string} id ID of this creative field. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeField&quot;.
  * @property {string} name Name of this creative field. This is a required field and must be less than 256 characters long and unique among creative fields of the same advertiser.
@@ -8277,14 +8815,14 @@ Applicable when the creative type is any of the following:
  */
 /**
  * @typedef CreativeFieldAssignment
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} creativeFieldId ID of the creative field.
  * @property {string} creativeFieldValueId ID of the creative field value.
  */
 /**
  * @typedef CreativeFieldValue
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} id ID of this creative field value. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldValue&quot;.
@@ -8292,27 +8830,27 @@ Applicable when the creative type is any of the following:
  */
 /**
  * @typedef CreativeFieldValuesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).CreativeFieldValue[]} creativeFieldValues Creative field value collection.
+ * @property {dfareporting(v2.7).CreativeFieldValue[]} creativeFieldValues Creative field value collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldValuesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef CreativeFieldsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).CreativeField[]} creativeFields Creative field collection.
+ * @property {dfareporting(v2.7).CreativeField[]} creativeFields Creative field collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef CreativeGroup
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {string} accountId Account ID of this creative group. This is a read-only field that can be left blank.
 * @property {string} advertiserId Advertiser ID of this creative group. This is a required field on insertion.
-* @property {dfareporting(v2.4).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
 * @property {integer} groupNumber Subgroup of the creative group. Assign your creative groups to one of the following subgroups in order to filter or manage them more easily. This field is required on insertion and is read-only after insertion.
 Acceptable values are: 
 - 1
@@ -8324,72 +8862,80 @@ Acceptable values are:
 */
 /**
  * @typedef CreativeGroupAssignment
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} creativeGroupId ID of the creative group to be assigned.
  * @property {string} creativeGroupNumber Creative group number of the creative group assignment.
  */
 /**
  * @typedef CreativeGroupsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).CreativeGroup[]} creativeGroups Creative group collection.
+ * @property {dfareporting(v2.7).CreativeGroup[]} creativeGroups Creative group collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeGroupsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef CreativeOptimizationConfiguration
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} id ID of this creative optimization config. This field is auto-generated when the campaign is inserted or updated. It can be null for existing campaigns.
  * @property {string} name Name of this creative optimization config. This is a required field and must be less than 129 characters long.
- * @property {dfareporting(v2.4).OptimizationActivity[]} optimizationActivitys List of optimization activities associated with this configuration.
+ * @property {dfareporting(v2.7).OptimizationActivity[]} optimizationActivitys List of optimization activities associated with this configuration.
  * @property {string} optimizationModel Optimization model for this configuration.
  */
 /**
  * @typedef CreativeRotation
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).CreativeAssignment[]} creativeAssignments Creative assignments in this creative rotation.
+ * @property {dfareporting(v2.7).CreativeAssignment[]} creativeAssignments Creative assignments in this creative rotation.
  * @property {string} creativeOptimizationConfigurationId Creative optimization configuration that is used by this ad. It should refer to one of the existing optimization configurations in the ad&#39;s campaign. If it is unset or set to 0, then the campaign&#39;s default optimization configuration will be used for this ad.
  * @property {string} type Type of creative rotation. Can be used to specify whether to use sequential or random rotation.
  * @property {string} weightCalculationStrategy Strategy for calculating weights. Used with CREATIVE_ROTATION_TYPE_RANDOM.
  */
 /**
  * @typedef CreativeSettings
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} iFrameFooter Header text for iFrames for this site. Must be less than or equal to 2000 characters long.
  * @property {string} iFrameHeader Header text for iFrames for this site. Must be less than or equal to 2000 characters long.
  */
 /**
  * @typedef CreativesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Creative[]} creatives Creative collection.
+ * @property {dfareporting(v2.7).Creative[]} creatives Creative collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef CrossDimensionReachReportCompatibleFields
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Dimension[]} breakdown Dimensions which are compatible to be selected in the &quot;breakdown&quot; section of the report.
- * @property {dfareporting(v2.4).Dimension[]} dimensionFilters Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
+ * @property {dfareporting(v2.7).Dimension[]} breakdown Dimensions which are compatible to be selected in the &quot;breakdown&quot; section of the report.
+ * @property {dfareporting(v2.7).Dimension[]} dimensionFilters Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
  * @property {string} kind The kind of resource this is, in this case dfareporting#crossDimensionReachReportCompatibleFields.
- * @property {dfareporting(v2.4).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
- * @property {dfareporting(v2.4).Metric[]} overlapMetrics Metrics which are compatible to be selected in the &quot;overlapMetricNames&quot; section of the report.
+ * @property {dfareporting(v2.7).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
+ * @property {dfareporting(v2.7).Metric[]} overlapMetrics Metrics which are compatible to be selected in the &quot;overlapMetricNames&quot; section of the report.
+ */
+/**
+ * @typedef CustomFloodlightVariable
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customFloodlightVariable&quot;.
+ * @property {string} type The type of custom floodlight variable to supply a value for. These map to the &quot;u[1-20]=&quot; in the tags.
+ * @property {string} value The value of the custom floodlight variable. The length of string must not exceed 50 characters.
  */
 /**
  * @typedef CustomRichMediaEvents
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).DimensionValue[]} filteredEventIds List of custom rich media event IDs. Dimension values must be all of type dfa:richMediaEventTypeIdAndName.
+ * @property {dfareporting(v2.7).DimensionValue[]} filteredEventIds List of custom rich media event IDs. Dimension values must be all of type dfa:richMediaEventTypeIdAndName.
  * @property {string} kind The kind of resource this is, in this case dfareporting#customRichMediaEvents.
  */
 /**
  * @typedef DateRange
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} endDate The end date of the date range, inclusive. A string of the format: &quot;yyyy-MM-dd&quot;.
  * @property {string} kind The kind of resource this is, in this case dfareporting#dateRange.
@@ -8398,7 +8944,7 @@ Acceptable values are:
  */
 /**
  * @typedef DayPartTargeting
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {string[]} daysOfWeek Days of the week when the ad will serve.
 
@@ -8415,23 +8961,23 @@ Acceptable values are:
 */
 /**
  * @typedef DefaultClickThroughEventTagProperties
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} defaultClickThroughEventTagId ID of the click-through event tag to apply to all ads in this entity&#39;s scope.
  * @property {boolean} overrideInheritedEventTag Whether this entity should override the inherited default click-through event tag with its own defined value.
  */
 /**
  * @typedef DeliverySchedule
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).FrequencyCap} frequencyCap Limit on the number of times an individual user can be served the ad within a specified period of time.
+ * @property {dfareporting(v2.7).FrequencyCap} frequencyCap Limit on the number of times an individual user can be served the ad within a specified period of time.
  * @property {boolean} hardCutoff Whether or not hard cutoff is enabled. If true, the ad will not serve after the end date and time. Otherwise the ad will continue to be served until it has reached its delivery goals.
  * @property {string} impressionRatio Impression ratio for this ad. This ratio determines how often each ad is served relative to the others. For example, if ad A has an impression ratio of 1 and ad B has an impression ratio of 3, then DCM will serve ad B three times as often as ad A. Must be between 1 and 10.
  * @property {string} priority Serving priority of an ad, with respect to other ads. The lower the priority number, the greater the priority with which it is served.
  */
 /**
  * @typedef DfpSettings
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} dfp_network_code DFP network code for this directory site.
  * @property {string} dfp_network_name DFP network name for this directory site.
@@ -8441,14 +8987,14 @@ Acceptable values are:
  */
 /**
  * @typedef Dimension
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind The kind of resource this is, in this case dfareporting#dimension.
  * @property {string} name The dimension name, e.g. dfa:advertiser
  */
 /**
  * @typedef DimensionFilter
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} dimensionName The name of the dimension to filter.
  * @property {string} kind The kind of resource this is, in this case dfareporting#dimensionFilter.
@@ -8456,7 +9002,7 @@ Acceptable values are:
  */
 /**
  * @typedef DimensionValue
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} dimensionName The name of the dimension.
  * @property {string} etag The eTag of this response for caching purposes.
@@ -8467,29 +9013,29 @@ Acceptable values are:
  */
 /**
  * @typedef DimensionValueList
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} etag The eTag of this response for caching purposes.
- * @property {dfareporting(v2.4).DimensionValue[]} items The dimension values returned in this response.
+ * @property {dfareporting(v2.7).DimensionValue[]} items The dimension values returned in this response.
  * @property {string} kind The kind of list this is, in this case dfareporting#dimensionValueList.
  * @property {string} nextPageToken Continuation token used to page through dimension values. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
  */
 /**
  * @typedef DimensionValueRequest
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} dimensionName The name of the dimension for which values should be requested.
  * @property {string} endDate The end date of the date range for which to retrieve dimension values. A string of the format &quot;yyyy-MM-dd&quot;.
- * @property {dfareporting(v2.4).DimensionFilter[]} filters The list of filters by which to filter values. The filters are ANDed.
+ * @property {dfareporting(v2.7).DimensionFilter[]} filters The list of filters by which to filter values. The filters are ANDed.
  * @property {string} kind The kind of request this is, in this case dfareporting#dimensionValueRequest.
  * @property {string} startDate The start date of the date range for which to retrieve dimension values. A string of the format &quot;yyyy-MM-dd&quot;.
  */
 /**
  * @typedef DirectorySite
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {boolean} active Whether this directory site is active.
-* @property {dfareporting(v2.4).DirectorySiteContactAssignment[]} contactAssignments Directory site contacts.
+* @property {dfareporting(v2.7).DirectorySiteContactAssignment[]} contactAssignments Directory site contacts.
 * @property {string} countryId Country ID of this directory site.
 * @property {string} currencyId Currency ID of this directory site.
 Possible values are: 
@@ -8542,7 +9088,7 @@ Possible values are:
 - &quot;48&quot; for HRK
 * @property {string} description Description of this directory site.
 * @property {string} id ID of this directory site. This is a read-only, auto-generated field.
-* @property {dfareporting(v2.4).DimensionValue} idDimensionValue Dimension value for the ID of this directory site. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of this directory site. This is a read-only, auto-generated field.
 * @property {string[]} inpageTagFormats Tag types for regular placements.
 
 Acceptable values are:
@@ -8559,12 +9105,12 @@ Acceptable values are:
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySite&quot;.
 * @property {string} name Name of this directory site.
 * @property {string} parentId Parent directory site ID.
-* @property {dfareporting(v2.4).DirectorySiteSettings} settings Directory site settings.
+* @property {dfareporting(v2.7).DirectorySiteSettings} settings Directory site settings.
 * @property {string} url URL of this directory site.
 */
 /**
  * @typedef DirectorySiteContact
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} address Address of this directory site contact.
  * @property {string} email Email address of this directory site contact.
@@ -8579,25 +9125,25 @@ Acceptable values are:
  */
 /**
  * @typedef DirectorySiteContactAssignment
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} contactId ID of this directory site contact. This is a read-only, auto-generated field.
  * @property {string} visibility Visibility of this directory site contact assignment. When set to PUBLIC this contact assignment is visible to all account and agency users; when set to PRIVATE it is visible only to the site.
  */
 /**
  * @typedef DirectorySiteContactsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).DirectorySiteContact[]} directorySiteContacts Directory site contact collection
+ * @property {dfareporting(v2.7).DirectorySiteContact[]} directorySiteContacts Directory site contact collection
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySiteContactsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef DirectorySiteSettings
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {boolean} activeViewOptOut Whether this directory site has disabled active view creatives.
- * @property {dfareporting(v2.4).DfpSettings} dfp_settings Directory site DFP settings.
+ * @property {dfareporting(v2.7).DfpSettings} dfp_settings Directory site DFP settings.
  * @property {boolean} instream_video_placement_accepted Whether this site accepts in-stream video ads.
  * @property {boolean} interstitialPlacementAccepted Whether this site accepts interstitial ads.
  * @property {boolean} nielsenOcrOptOut Whether this directory site has disabled Nielsen OCR reach ratings.
@@ -8606,21 +9152,46 @@ Acceptable values are:
  */
 /**
  * @typedef DirectorySitesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).DirectorySite[]} directorySites Directory site collection.
+ * @property {dfareporting(v2.7).DirectorySite[]} directorySites Directory site collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySitesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
+ * @typedef DynamicTargetingKey
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#dynamicTargetingKey&quot;.
+ * @property {string} name Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
+ * @property {string} objectId ID of the object of this dynamic targeting key. This is a required field.
+ * @property {string} objectType Type of the object of this dynamic targeting key. This is a required field.
+ */
+/**
+ * @typedef DynamicTargetingKeysListResponse
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {dfareporting(v2.7).DynamicTargetingKey[]} dynamicTargetingKeys Dynamic targeting key collection.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#dynamicTargetingKeysListResponse&quot;.
+ */
+/**
+ * @typedef EncryptionInfo
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} encryptionEntityId The encryption entity ID. This should match the encryption configuration for ad serving or Data Transfer.
+ * @property {string} encryptionEntityType The encryption entity type. This should match the encryption configuration for ad serving or Data Transfer.
+ * @property {string} encryptionSource Describes whether the encrypted cookie was received from ad serving (the %m macro) or from Data Transfer.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#encryptionInfo&quot;.
+ */
+/**
  * @typedef EventTag
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this event tag. This is a read-only field that can be left blank.
  * @property {string} advertiserId Advertiser ID of this event tag. This field or the campaignId field is required on insertion.
- * @property {dfareporting(v2.4).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
  * @property {string} campaignId Campaign ID of this event tag. This field or the advertiserId field is required on insertion.
- * @property {dfareporting(v2.4).DimensionValue} campaignIdDimensionValue Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} campaignIdDimensionValue Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
  * @property {boolean} enabledByDefault Whether this event tag should be automatically enabled for all of the advertiser&#39;s campaigns and ads.
  * @property {boolean} excludeFromAdxRequests Whether to remove this event tag from ads that are trafficked through DoubleClick Bid Manager to Ad Exchange. This may be useful if the event tag uses a pixel that is unapproved for Ad Exchange bids on one or more networks, such as the Google Display Network.
  * @property {string} id ID of this event tag. This is a read-only, auto-generated field.
@@ -8637,23 +9208,23 @@ Acceptable values are:
  */
 /**
  * @typedef EventTagOverride
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {boolean} enabled Whether this override is enabled.
  * @property {string} id ID of this event tag override. This is a read-only, auto-generated field.
  */
 /**
  * @typedef EventTagsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).EventTag[]} eventTags Event tag collection.
+ * @property {dfareporting(v2.7).EventTag[]} eventTags Event tag collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#eventTagsListResponse&quot;.
  */
 /**
  * @typedef File
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).DateRange} dateRange The date range for which the file has report data. The date range will always be the absolute date range for which the report is run.
+ * @property {dfareporting(v2.7).DateRange} dateRange The date range for which the file has report data. The date range will always be the absolute date range for which the report is run.
  * @property {string} etag The eTag of this response for caching purposes.
  * @property {string} fileName The filename of the file.
  * @property {string} format The output format of the report. Only available once the file is available.
@@ -8666,16 +9237,16 @@ Acceptable values are:
  */
 /**
  * @typedef FileList
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} etag The eTag of this response for caching purposes.
- * @property {dfareporting(v2.4).File[]} items The files returned in this response.
+ * @property {dfareporting(v2.7).File[]} items The files returned in this response.
  * @property {string} kind The kind of list this is, in this case dfareporting#fileList.
  * @property {string} nextPageToken Continuation token used to page through files. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
  */
 /**
  * @typedef Flight
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} endDate Inventory item flight end date.
  * @property {string} rateOrCost Rate or cost of this flight.
@@ -8684,44 +9255,44 @@ Acceptable values are:
  */
 /**
  * @typedef FloodlightActivitiesGenerateTagResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} floodlightActivityTag Generated tag for this floodlight activity.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivitiesGenerateTagResponse&quot;.
  */
 /**
  * @typedef FloodlightActivitiesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).FloodlightActivity[]} floodlightActivities Floodlight activity collection.
+ * @property {dfareporting(v2.7).FloodlightActivity[]} floodlightActivities Floodlight activity collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivitiesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef FloodlightActivity
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {string} accountId Account ID of this floodlight activity. This is a read-only field that can be left blank.
 * @property {string} advertiserId Advertiser ID of this floodlight activity. If this field is left blank, the value will be copied over either from the activity group&#39;s advertiser or the existing activity&#39;s advertiser.
-* @property {dfareporting(v2.4).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
 * @property {string} cacheBustingType Code type used for cache busting in the generated tag.
 * @property {string} countingMethod Counting method for conversions for this floodlight activity. This is a required field.
-* @property {dfareporting(v2.4).FloodlightActivityDynamicTag[]} defaultTags Dynamic floodlight tags.
+* @property {dfareporting(v2.7).FloodlightActivityDynamicTag[]} defaultTags Dynamic floodlight tags.
 * @property {string} expectedUrl URL where this tag will be deployed. If specified, must be less than 256 characters long.
 * @property {string} floodlightActivityGroupId Floodlight activity group ID of this floodlight activity. This is a required field.
 * @property {string} floodlightActivityGroupName Name of the associated floodlight activity group. This is a read-only field.
 * @property {string} floodlightActivityGroupTagString Tag string of the associated floodlight activity group. This is a read-only field.
 * @property {string} floodlightActivityGroupType Type of the associated floodlight activity group. This is a read-only field.
 * @property {string} floodlightConfigurationId Floodlight configuration ID of this floodlight activity. If this field is left blank, the value will be copied over either from the activity group&#39;s floodlight configuration or from the existing activity&#39;s floodlight configuration.
-* @property {dfareporting(v2.4).DimensionValue} floodlightConfigurationIdDimensionValue Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} floodlightConfigurationIdDimensionValue Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
 * @property {boolean} hidden Whether this activity is archived.
 * @property {string} id ID of this floodlight activity. This is a read-only, auto-generated field.
-* @property {dfareporting(v2.4).DimensionValue} idDimensionValue Dimension value for the ID of this floodlight activity. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of this floodlight activity. This is a read-only, auto-generated field.
 * @property {boolean} imageTagEnabled Whether the image tag is enabled for this activity.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivity&quot;.
 * @property {string} name Name of this floodlight activity. This is a required field. Must be less than 129 characters long and cannot contain quotes.
 * @property {string} notes General notes or implementation instructions for the tag.
-* @property {dfareporting(v2.4).FloodlightActivityPublisherDynamicTag[]} publisherTags Publisher dynamic floodlight tags.
+* @property {dfareporting(v2.7).FloodlightActivityPublisherDynamicTag[]} publisherTags Publisher dynamic floodlight tags.
 * @property {boolean} secure Whether this tag should use SSL.
 * @property {boolean} sslCompliant Whether the floodlight activity is SSL-compliant. This is a read-only field, its value detected by the system from the floodlight tags.
 * @property {boolean} sslRequired Whether this floodlight activity must be SSL-compliant.
@@ -8753,7 +9324,7 @@ Acceptable values are:
 */
 /**
  * @typedef FloodlightActivityDynamicTag
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} id ID of this dynamic tag. This is a read-only, auto-generated field.
  * @property {string} name Name of this tag.
@@ -8761,15 +9332,15 @@ Acceptable values are:
  */
 /**
  * @typedef FloodlightActivityGroup
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this floodlight activity group. This is a read-only field that can be left blank.
  * @property {string} advertiserId Advertiser ID of this floodlight activity group. If this field is left blank, the value will be copied over either from the floodlight configuration&#39;s advertiser or from the existing activity group&#39;s advertiser.
- * @property {dfareporting(v2.4).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
  * @property {string} floodlightConfigurationId Floodlight configuration ID of this floodlight activity group. This is a required field.
- * @property {dfareporting(v2.4).DimensionValue} floodlightConfigurationIdDimensionValue Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} floodlightConfigurationIdDimensionValue Dimension value for the ID of the floodlight configuration. This is a read-only, auto-generated field.
  * @property {string} id ID of this floodlight activity group. This is a read-only, auto-generated field.
- * @property {dfareporting(v2.4).DimensionValue} idDimensionValue Dimension value for the ID of this floodlight activity group. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of this floodlight activity group. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivityGroup&quot;.
  * @property {string} name Name of this floodlight activity group. This is a required field. Must be less than 65 characters long and cannot contain quotes.
  * @property {string} subaccountId Subaccount ID of this floodlight activity group. This is a read-only field that can be left blank.
@@ -8778,76 +9349,76 @@ Acceptable values are:
  */
 /**
  * @typedef FloodlightActivityGroupsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).FloodlightActivityGroup[]} floodlightActivityGroups Floodlight activity group collection.
+ * @property {dfareporting(v2.7).FloodlightActivityGroup[]} floodlightActivityGroups Floodlight activity group collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivityGroupsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef FloodlightActivityPublisherDynamicTag
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {boolean} clickThrough Whether this tag is applicable only for click-throughs.
  * @property {string} directorySiteId Directory site ID of this dynamic tag. This is a write-only field that can be used as an alternative to the siteId field. When this resource is retrieved, only the siteId field will be populated.
- * @property {dfareporting(v2.4).FloodlightActivityDynamicTag} dynamicTag Dynamic floodlight tag.
+ * @property {dfareporting(v2.7).FloodlightActivityDynamicTag} dynamicTag Dynamic floodlight tag.
  * @property {string} siteId Site ID of this dynamic tag.
- * @property {dfareporting(v2.4).DimensionValue} siteIdDimensionValue Dimension value for the ID of the site. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} siteIdDimensionValue Dimension value for the ID of the site. This is a read-only, auto-generated field.
  * @property {boolean} viewThrough Whether this tag is applicable only for view-throughs.
  */
 /**
  * @typedef FloodlightConfiguration
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {string} accountId Account ID of this floodlight configuration. This is a read-only field that can be left blank.
 * @property {string} advertiserId Advertiser ID of the parent advertiser of this floodlight configuration.
-* @property {dfareporting(v2.4).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
 * @property {boolean} analyticsDataSharingEnabled Whether advertiser data is shared with Google Analytics.
 * @property {boolean} exposureToConversionEnabled Whether the exposure-to-conversion report is enabled. This report shows detailed pathway information on up to 10 of the most recent ad exposures seen by a user before converting.
 * @property {string} firstDayOfWeek Day that will be counted as the first day of the week in reports. This is a required field.
 * @property {string} id ID of this floodlight configuration. This is a read-only, auto-generated field.
-* @property {dfareporting(v2.4).DimensionValue} idDimensionValue Dimension value for the ID of this floodlight configuration. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of this floodlight configuration. This is a read-only, auto-generated field.
 * @property {boolean} inAppAttributionTrackingEnabled Whether in-app attribution tracking is enabled.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightConfiguration&quot;.
-* @property {dfareporting(v2.4).LookbackConfiguration} lookbackConfiguration Lookback window settings for this floodlight configuration.
+* @property {dfareporting(v2.7).LookbackConfiguration} lookbackConfiguration Lookback window settings for this floodlight configuration.
 * @property {string} naturalSearchConversionAttributionOption Types of attribution options for natural search conversions.
-* @property {dfareporting(v2.4).OmnitureSettings} omnitureSettings Settings for DCM Omniture integration.
+* @property {dfareporting(v2.7).OmnitureSettings} omnitureSettings Settings for DCM Omniture integration.
 * @property {string[]} standardVariableTypes List of standard variables enabled for this configuration.
 
 Acceptable values are:
 - &quot;ORD&quot;
 - &quot;NUM&quot;
 * @property {string} subaccountId Subaccount ID of this floodlight configuration. This is a read-only field that can be left blank.
-* @property {dfareporting(v2.4).TagSettings} tagSettings Configuration settings for dynamic and image floodlight tags.
-* @property {dfareporting(v2.4).ThirdPartyAuthenticationToken[]} thirdPartyAuthenticationTokens List of third-party authentication tokens enabled for this configuration.
-* @property {dfareporting(v2.4).UserDefinedVariableConfiguration[]} userDefinedVariableConfigurations List of user defined variables enabled for this configuration.
+* @property {dfareporting(v2.7).TagSettings} tagSettings Configuration settings for dynamic and image floodlight tags.
+* @property {dfareporting(v2.7).ThirdPartyAuthenticationToken[]} thirdPartyAuthenticationTokens List of third-party authentication tokens enabled for this configuration.
+* @property {dfareporting(v2.7).UserDefinedVariableConfiguration[]} userDefinedVariableConfigurations List of user defined variables enabled for this configuration.
 */
 /**
  * @typedef FloodlightConfigurationsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).FloodlightConfiguration[]} floodlightConfigurations Floodlight configuration collection.
+ * @property {dfareporting(v2.7).FloodlightConfiguration[]} floodlightConfigurations Floodlight configuration collection.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightConfigurationsListResponse&quot;.
  */
 /**
  * @typedef FloodlightReportCompatibleFields
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Dimension[]} dimensionFilters Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
- * @property {dfareporting(v2.4).Dimension[]} dimensions Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
+ * @property {dfareporting(v2.7).Dimension[]} dimensionFilters Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
+ * @property {dfareporting(v2.7).Dimension[]} dimensions Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
  * @property {string} kind The kind of resource this is, in this case dfareporting#floodlightReportCompatibleFields.
- * @property {dfareporting(v2.4).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
+ * @property {dfareporting(v2.7).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
  */
 /**
  * @typedef FrequencyCap
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} duration Duration of time, in seconds, for this frequency cap. The maximum duration is 90 days in seconds, or 7,776,000.
  * @property {string} impressions Number of times an individual user can be served the ad within the specified duration. The maximum allowed is 15.
  */
 /**
  * @typedef FsCommand
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {integer} left Distance from the left of the browser.Applicable when positionOption is DISTANCE_FROM_TOP_LEFT_CORNER.
  * @property {string} positionOption Position in the browser where the window will open.
@@ -8857,21 +9428,21 @@ Acceptable values are:
  */
 /**
  * @typedef GeoTargeting
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).City[]} cities Cities to be targeted. For each city only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a city, do not target or exclude the country of the city, and do not target the metro or region of the city.
- * @property {dfareporting(v2.4).Country[]} countries Countries to be targeted or excluded from targeting, depending on the setting of the excludeCountries field. For each country only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting or excluding a country, do not target regions, cities, metros, or postal codes in the same country.
+ * @property {dfareporting(v2.7).City[]} cities Cities to be targeted. For each city only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a city, do not target or exclude the country of the city, and do not target the metro or region of the city.
+ * @property {dfareporting(v2.7).Country[]} countries Countries to be targeted or excluded from targeting, depending on the setting of the excludeCountries field. For each country only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting or excluding a country, do not target regions, cities, metros, or postal codes in the same country.
  * @property {boolean} excludeCountries Whether or not to exclude the countries in the countries field from targeting. If false, the countries field refers to countries which will be targeted by the ad.
- * @property {dfareporting(v2.4).Metro[]} metros Metros to be targeted. For each metro only dmaId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a metro, do not target or exclude the country of the metro.
- * @property {dfareporting(v2.4).PostalCode[]} postalCodes Postal codes to be targeted. For each postal code only id is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a postal code, do not target or exclude the country of the postal code.
- * @property {dfareporting(v2.4).Region[]} regions Regions to be targeted. For each region only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a region, do not target or exclude the country of the region.
+ * @property {dfareporting(v2.7).Metro[]} metros Metros to be targeted. For each metro only dmaId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a metro, do not target or exclude the country of the metro.
+ * @property {dfareporting(v2.7).PostalCode[]} postalCodes Postal codes to be targeted. For each postal code only id is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a postal code, do not target or exclude the country of the postal code.
+ * @property {dfareporting(v2.7).Region[]} regions Regions to be targeted. For each region only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a region, do not target or exclude the country of the region.
  */
 /**
  * @typedef InventoryItem
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this inventory item.
- * @property {dfareporting(v2.4).AdSlot[]} adSlots Ad slots of this inventory item. If this inventory item represents a standalone placement, there will be exactly one ad slot. If this inventory item represents a placement group, there will be more than one ad slot, each representing one child placement in that placement group.
+ * @property {dfareporting(v2.7).AdSlot[]} adSlots Ad slots of this inventory item. If this inventory item represents a standalone placement, there will be exactly one ad slot. If this inventory item represents a placement group, there will be more than one ad slot, each representing one child placement in that placement group.
  * @property {string} advertiserId Advertiser ID of this inventory item.
  * @property {string} contentCategoryId Content category ID of this inventory item.
  * @property {string} estimatedClickThroughRate Estimated click-through rate of this inventory item.
@@ -8879,12 +9450,12 @@ Acceptable values are:
  * @property {string} id ID of this inventory item.
  * @property {boolean} inPlan Whether this inventory item is in plan.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#inventoryItem&quot;.
- * @property {dfareporting(v2.4).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this inventory item.
+ * @property {dfareporting(v2.7).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this inventory item.
  * @property {string} name Name of this inventory item. For standalone inventory items, this is the same name as that of its only ad slot. For group inventory items, this can differ from the name of any of its ad slots.
  * @property {string} negotiationChannelId Negotiation channel ID of this inventory item.
  * @property {string} orderId Order ID of this inventory item.
  * @property {string} placementStrategyId Placement strategy ID of this inventory item.
- * @property {dfareporting(v2.4).Pricing} pricing Pricing of this inventory item.
+ * @property {dfareporting(v2.7).Pricing} pricing Pricing of this inventory item.
  * @property {string} projectId Project ID of this inventory item.
  * @property {string} rfpId RFP ID of this inventory item.
  * @property {string} siteId ID of the site this inventory item is associated with.
@@ -8893,21 +9464,21 @@ Acceptable values are:
  */
 /**
  * @typedef InventoryItemsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).InventoryItem[]} inventoryItems Inventory item collection
+ * @property {dfareporting(v2.7).InventoryItem[]} inventoryItems Inventory item collection
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#inventoryItemsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
  */
 /**
  * @typedef KeyValueTargetingExpression
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} expression Keyword expression being targeted by the ad.
  */
 /**
  * @typedef LandingPage
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {boolean} default Whether or not this landing page will be assigned to any ads or creatives that do not have a landing page assigned explicitly. Only one default landing page is allowed per campaign.
  * @property {string} id ID of this landing page. This is a read-only, auto-generated field.
@@ -8917,34 +9488,56 @@ Acceptable values are:
  */
 /**
  * @typedef LandingPagesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#landingPagesListResponse&quot;.
- * @property {dfareporting(v2.4).LandingPage[]} landingPages Landing page collection
+ * @property {dfareporting(v2.7).LandingPage[]} landingPages Landing page collection
+ */
+/**
+ * @typedef Language
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} id Language ID of this language. This is the ID used for targeting and generating reports.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#language&quot;.
+ * @property {string} languageCode Format of language code is an ISO 639 two-letter language code optionally followed by an underscore followed by an ISO 3166 code. Examples are &quot;en&quot; for English or &quot;zh_CN&quot; for Simplified Chinese.
+ * @property {string} name Name of this language.
+ */
+/**
+ * @typedef LanguageTargeting
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {dfareporting(v2.7).Language[]} languages Languages that this ad targets. For each language only languageId is required. The other fields are populated automatically when the ad is inserted or updated.
+ */
+/**
+ * @typedef LanguagesListResponse
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#languagesListResponse&quot;.
+ * @property {dfareporting(v2.7).Language[]} languages Language collection.
  */
 /**
  * @typedef LastModifiedInfo
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} time Timestamp of the last change in milliseconds since epoch.
  */
 /**
  * @typedef ListPopulationClause
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).ListPopulationTerm[]} terms Terms of this list population clause. Each clause is made up of list population terms representing constraints and are joined by ORs.
+ * @property {dfareporting(v2.7).ListPopulationTerm[]} terms Terms of this list population clause. Each clause is made up of list population terms representing constraints and are joined by ORs.
  */
 /**
  * @typedef ListPopulationRule
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} floodlightActivityId Floodlight activity ID associated with this rule. This field can be left blank.
  * @property {string} floodlightActivityName Name of floodlight activity associated with this rule. This is a read-only, auto-generated field.
- * @property {dfareporting(v2.4).ListPopulationClause[]} listPopulationClauses Clauses that make up this list population rule. Clauses are joined by ANDs, and the clauses themselves are made up of list population terms which are joined by ORs.
+ * @property {dfareporting(v2.7).ListPopulationClause[]} listPopulationClauses Clauses that make up this list population rule. Clauses are joined by ANDs, and the clauses themselves are made up of list population terms which are joined by ORs.
  */
 /**
  * @typedef ListPopulationTerm
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {boolean} contains Will be true if the term should check if the user is in the list and false if the term should check if the user is not in the list. This field is only relevant when type is set to LIST_MEMBERSHIP_TERM. False by default.
  * @property {boolean} negation Whether to negate the comparison result of this term during rule evaluation. This field is only relevant when type is left unset or set to CUSTOM_VARIABLE_TERM or REFERRER_TERM.
@@ -8957,27 +9550,27 @@ Acceptable values are:
  */
 /**
  * @typedef ListTargetingExpression
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} expression Expression describing which lists are being targeted by the ad.
  */
 /**
  * @typedef LookbackConfiguration
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {integer} clickDuration Lookback window, in days, from the last time a given user clicked on one of your ads. If you enter 0, clicks will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used.
  * @property {integer} postImpressionActivitiesDuration Lookback window, in days, from the last time a given user viewed one of your ads. If you enter 0, impressions will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used.
  */
 /**
  * @typedef Metric
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind The kind of resource this is, in this case dfareporting#metric.
  * @property {string} name The metric name, e.g. dfa:impressions
  */
 /**
  * @typedef Metro
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} countryCode Country code of the country to which this metro region belongs.
  * @property {string} countryDartId DART ID of the country to which this metro region belongs.
@@ -8989,14 +9582,14 @@ Acceptable values are:
  */
 /**
  * @typedef MetrosListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#metrosListResponse&quot;.
- * @property {dfareporting(v2.4).Metro[]} metros Metro collection.
+ * @property {dfareporting(v2.7).Metro[]} metros Metro collection.
  */
 /**
  * @typedef MobileCarrier
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} countryCode Country code of the country to which this mobile carrier belongs.
  * @property {string} countryDartId DART ID of the country to which this mobile carrier belongs.
@@ -9006,14 +9599,14 @@ Acceptable values are:
  */
 /**
  * @typedef MobileCarriersListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileCarriersListResponse&quot;.
- * @property {dfareporting(v2.4).MobileCarrier[]} mobileCarriers Mobile carrier collection.
+ * @property {dfareporting(v2.7).MobileCarrier[]} mobileCarriers Mobile carrier collection.
  */
 /**
  * @typedef ObjectFilter
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#objectFilter&quot;.
  * @property {string[]} objectIds Applicable when status is ASSIGNED. The user has access to objects with these object IDs.
@@ -9021,21 +9614,21 @@ Acceptable values are:
  */
 /**
  * @typedef OffsetPosition
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {integer} left Offset distance from left side of an asset or a window.
  * @property {integer} top Offset distance from top side of an asset or a window.
  */
 /**
  * @typedef OmnitureSettings
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {boolean} omnitureCostDataEnabled Whether placement cost data will be sent to Omniture. This property can be enabled only if omnitureIntegrationEnabled is true.
  * @property {boolean} omnitureIntegrationEnabled Whether Omniture integration is enabled. This property can be enabled only when the &quot;Advanced Ad Serving&quot; account setting is enabled.
  */
 /**
  * @typedef OperatingSystem
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} dartId DART ID of this operating system. This is the ID used for targeting.
  * @property {boolean} desktop Whether this operating system is for desktop.
@@ -9045,40 +9638,40 @@ Acceptable values are:
  */
 /**
  * @typedef OperatingSystemVersion
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} id ID of this operating system version.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemVersion&quot;.
  * @property {string} majorVersion Major version (leftmost number) of this operating system version.
  * @property {string} minorVersion Minor version (number after the first dot) of this operating system version.
  * @property {string} name Name of this operating system version.
- * @property {dfareporting(v2.4).OperatingSystem} operatingSystem Operating system of this operating system version.
+ * @property {dfareporting(v2.7).OperatingSystem} operatingSystem Operating system of this operating system version.
  */
 /**
  * @typedef OperatingSystemVersionsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemVersionsListResponse&quot;.
- * @property {dfareporting(v2.4).OperatingSystemVersion[]} operatingSystemVersions Operating system version collection.
+ * @property {dfareporting(v2.7).OperatingSystemVersion[]} operatingSystemVersions Operating system version collection.
  */
 /**
  * @typedef OperatingSystemsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemsListResponse&quot;.
- * @property {dfareporting(v2.4).OperatingSystem[]} operatingSystems Operating system collection.
+ * @property {dfareporting(v2.7).OperatingSystem[]} operatingSystems Operating system collection.
  */
 /**
  * @typedef OptimizationActivity
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} floodlightActivityId Floodlight activity ID of this optimization activity. This is a required field.
- * @property {dfareporting(v2.4).DimensionValue} floodlightActivityIdDimensionValue Dimension value for the ID of the floodlight activity. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} floodlightActivityIdDimensionValue Dimension value for the ID of the floodlight activity. This is a read-only, auto-generated field.
  * @property {integer} weight Weight associated with this optimization. Must be greater than 1. The weight assigned will be understood in proportion to the weights assigned to the other optimization activities.
  */
 /**
  * @typedef Order
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this order.
  * @property {string} advertiserId Advertiser ID of this order.
@@ -9086,10 +9679,10 @@ Acceptable values are:
  * @property {string} buyerInvoiceId Buyer invoice ID associated with this order.
  * @property {string} buyerOrganizationName Name of the buyer organization.
  * @property {string} comments Comments in this order.
- * @property {dfareporting(v2.4).OrderContact[]} contacts Contacts for this order.
+ * @property {dfareporting(v2.7).OrderContact[]} contacts Contacts for this order.
  * @property {string} id ID of this order. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#order&quot;.
- * @property {dfareporting(v2.4).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this order.
+ * @property {dfareporting(v2.7).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this order.
  * @property {string} name Name of this order.
  * @property {string} notes Notes of this order.
  * @property {string} planningTermId ID of the terms and conditions template used in this order.
@@ -9103,7 +9696,7 @@ Acceptable values are:
  */
 /**
  * @typedef OrderContact
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} contactInfo Free-form information about this contact. It could be any information related to this contact in addition to type, title, name, and signature user profile ID.
  * @property {string} contactName Name of this contact.
@@ -9113,14 +9706,14 @@ Acceptable values are:
  */
 /**
  * @typedef OrderDocument
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this order document.
  * @property {string} advertiserId Advertiser ID of this order document.
  * @property {string} amendedOrderDocumentId The amended order document ID of this order document. An order document can be created by optionally amending another order document so that the change history can be preserved.
  * @property {string[]} approvedByUserProfileIds IDs of users who have approved this order document.
  * @property {boolean} cancelled Whether this order document is cancelled.
- * @property {dfareporting(v2.4).LastModifiedInfo} createdInfo Information about the creation of this order document.
+ * @property {dfareporting(v2.7).LastModifiedInfo} createdInfo Information about the creation of this order document.
  * @property {string} effectiveDate Effective date of this order document.
  * @property {string} id ID of this order document.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#orderDocument&quot;.
@@ -9135,65 +9728,65 @@ Acceptable values are:
  */
 /**
  * @typedef OrderDocumentsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#orderDocumentsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
- * @property {dfareporting(v2.4).OrderDocument[]} orderDocuments Order document collection
+ * @property {dfareporting(v2.7).OrderDocument[]} orderDocuments Order document collection
  */
 /**
  * @typedef OrdersListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#ordersListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
- * @property {dfareporting(v2.4).Order[]} orders Order collection.
+ * @property {dfareporting(v2.7).Order[]} orders Order collection.
  */
 /**
  * @typedef PathToConversionReportCompatibleFields
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Dimension[]} conversionDimensions Conversion dimensions which are compatible to be selected in the &quot;conversionDimensions&quot; section of the report.
- * @property {dfareporting(v2.4).Dimension[]} customFloodlightVariables Custom floodlight variables which are compatible to be selected in the &quot;customFloodlightVariables&quot; section of the report.
+ * @property {dfareporting(v2.7).Dimension[]} conversionDimensions Conversion dimensions which are compatible to be selected in the &quot;conversionDimensions&quot; section of the report.
+ * @property {dfareporting(v2.7).Dimension[]} customFloodlightVariables Custom floodlight variables which are compatible to be selected in the &quot;customFloodlightVariables&quot; section of the report.
  * @property {string} kind The kind of resource this is, in this case dfareporting#pathToConversionReportCompatibleFields.
- * @property {dfareporting(v2.4).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
- * @property {dfareporting(v2.4).Dimension[]} perInteractionDimensions Per-interaction dimensions which are compatible to be selected in the &quot;perInteractionDimensions&quot; section of the report.
+ * @property {dfareporting(v2.7).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
+ * @property {dfareporting(v2.7).Dimension[]} perInteractionDimensions Per-interaction dimensions which are compatible to be selected in the &quot;perInteractionDimensions&quot; section of the report.
  */
 /**
  * @typedef Placement
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {string} accountId Account ID of this placement. This field can be left blank.
 * @property {string} advertiserId Advertiser ID of this placement. This field can be left blank.
-* @property {dfareporting(v2.4).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
 * @property {boolean} archived Whether this placement is archived.
 * @property {string} campaignId Campaign ID of this placement. This field is a required field on insertion.
-* @property {dfareporting(v2.4).DimensionValue} campaignIdDimensionValue Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} campaignIdDimensionValue Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
 * @property {string} comment Comments for this placement.
 * @property {string} compatibility Placement compatibility. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering on desktop, on mobile devices or in mobile apps for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are no longer allowed for new placement insertions. Instead, use DISPLAY or DISPLAY_INTERSTITIAL. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard. This field is required on insertion.
 * @property {string} contentCategoryId ID of the content category assigned to this placement.
-* @property {dfareporting(v2.4).LastModifiedInfo} createInfo Information about the creation of this placement. This is a read-only field.
+* @property {dfareporting(v2.7).LastModifiedInfo} createInfo Information about the creation of this placement. This is a read-only field.
 * @property {string} directorySiteId Directory site ID of this placement. On insert, you must set either this field or the siteId field to specify the site associated with this placement. This is a required field that is read-only after insertion.
-* @property {dfareporting(v2.4).DimensionValue} directorySiteIdDimensionValue Dimension value for the ID of the directory site. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} directorySiteIdDimensionValue Dimension value for the ID of the directory site. This is a read-only, auto-generated field.
 * @property {string} externalId External ID for this placement.
 * @property {string} id ID of this placement. This is a read-only, auto-generated field.
-* @property {dfareporting(v2.4).DimensionValue} idDimensionValue Dimension value for the ID of this placement. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of this placement. This is a read-only, auto-generated field.
 * @property {string} keyName Key name of this placement. This is a read-only, auto-generated field.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placement&quot;.
-* @property {dfareporting(v2.4).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this placement. This is a read-only field.
-* @property {dfareporting(v2.4).LookbackConfiguration} lookbackConfiguration Lookback window settings for this placement.
+* @property {dfareporting(v2.7).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this placement. This is a read-only field.
+* @property {dfareporting(v2.7).LookbackConfiguration} lookbackConfiguration Lookback window settings for this placement.
 * @property {string} name Name of this placement.This is a required field and must be less than 256 characters long.
 * @property {boolean} paymentApproved Whether payment was approved for this placement. This is a read-only field relevant only to publisher-paid placements.
 * @property {string} paymentSource Payment source for this placement. This is a required field that is read-only after insertion.
 * @property {string} placementGroupId ID of this placement&#39;s group, if applicable.
-* @property {dfareporting(v2.4).DimensionValue} placementGroupIdDimensionValue Dimension value for the ID of the placement group. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).DimensionValue} placementGroupIdDimensionValue Dimension value for the ID of the placement group. This is a read-only, auto-generated field.
 * @property {string} placementStrategyId ID of the placement strategy assigned to this placement.
-* @property {dfareporting(v2.4).PricingSchedule} pricingSchedule Pricing schedule of this placement. This field is required on insertion, specifically subfields startDate, endDate and pricingType.
+* @property {dfareporting(v2.7).PricingSchedule} pricingSchedule Pricing schedule of this placement. This field is required on insertion, specifically subfields startDate, endDate and pricingType.
 * @property {boolean} primary Whether this placement is the primary placement of a roadblock (placement group). You cannot change this field from true to false. Setting this field to true will automatically set the primary field on the original primary placement of the roadblock to false, and it will automatically set the roadblock&#39;s primaryPlacementId field to the ID of this placement.
-* @property {dfareporting(v2.4).LastModifiedInfo} publisherUpdateInfo Information about the last publisher update. This is a read-only field.
+* @property {dfareporting(v2.7).LastModifiedInfo} publisherUpdateInfo Information about the last publisher update. This is a read-only field.
 * @property {string} siteId Site ID associated with this placement. On insert, you must set either this field or the directorySiteId field to specify the site associated with this placement. This is a required field that is read-only after insertion.
-* @property {dfareporting(v2.4).DimensionValue} siteIdDimensionValue Dimension value for the ID of the site. This is a read-only, auto-generated field.
-* @property {dfareporting(v2.4).Size} size Size associated with this placement. When inserting or updating a placement, only the size ID field is used. This field is required on insertion.
+* @property {dfareporting(v2.7).DimensionValue} siteIdDimensionValue Dimension value for the ID of the site. This is a read-only, auto-generated field.
+* @property {dfareporting(v2.7).Size} size Size associated with this placement. When inserting or updating a placement, only the size ID field is used. This field is required on insertion.
 * @property {boolean} sslRequired Whether creatives assigned to this placement must be SSL-compliant.
 * @property {string} status Third-party placement status.
 * @property {string} subaccountId Subaccount ID of this placement. This field can be left blank.
@@ -9212,67 +9805,70 @@ Acceptable values are:
 - &quot;PLACEMENT_TAG_TRACKING&quot;
 - &quot;PLACEMENT_TAG_TRACKING_IFRAME&quot;
 - &quot;PLACEMENT_TAG_TRACKING_JAVASCRIPT&quot;
-* @property {dfareporting(v2.4).TagSetting} tagSetting Tag settings for this placement.
+* @property {dfareporting(v2.7).TagSetting} tagSetting Tag settings for this placement.
+* @property {boolean} videoActiveViewOptOut Whether Verification and ActiveView are disabled for in-stream video creatives for this placement. The same setting videoActiveViewOptOut exists on the site level -- the opt out occurs if either of these settings are true. These settings are distinct from DirectorySites.settings.activeViewOptOut or Sites.siteSettings.activeViewOptOut which only apply to display ads. However, Accounts.activeViewOptOut opts out both video traffic, as well as display ads, from Verification and ActiveView.
+* @property {dfareporting(v2.7).VideoSettings} videoSettings A collection of settings which affect video creatives served through this placement. Applicable to placements with IN_STREAM_VIDEO compatibility.
+* @property {string} vpaidAdapterChoice VPAID adapter setting for this placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to this placement.
 */
 /**
  * @typedef PlacementAssignment
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {boolean} active Whether this placement assignment is active. When true, the placement will be included in the ad&#39;s rotation.
  * @property {string} placementId ID of the placement to be assigned. This is a required field.
- * @property {dfareporting(v2.4).DimensionValue} placementIdDimensionValue Dimension value for the ID of the placement. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} placementIdDimensionValue Dimension value for the ID of the placement. This is a read-only, auto-generated field.
  * @property {boolean} sslRequired Whether the placement to be assigned requires SSL. This is a read-only field that is auto-generated when the ad is inserted or updated.
  */
 /**
  * @typedef PlacementGroup
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this placement group. This is a read-only field that can be left blank.
  * @property {string} advertiserId Advertiser ID of this placement group. This is a required field on insertion.
- * @property {dfareporting(v2.4).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
  * @property {boolean} archived Whether this placement group is archived.
  * @property {string} campaignId Campaign ID of this placement group. This field is required on insertion.
- * @property {dfareporting(v2.4).DimensionValue} campaignIdDimensionValue Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} campaignIdDimensionValue Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
  * @property {string[]} childPlacementIds IDs of placements which are assigned to this placement group. This is a read-only, auto-generated field.
  * @property {string} comment Comments for this placement group.
  * @property {string} contentCategoryId ID of the content category assigned to this placement group.
- * @property {dfareporting(v2.4).LastModifiedInfo} createInfo Information about the creation of this placement group. This is a read-only field.
+ * @property {dfareporting(v2.7).LastModifiedInfo} createInfo Information about the creation of this placement group. This is a read-only field.
  * @property {string} directorySiteId Directory site ID associated with this placement group. On insert, you must set either this field or the site_id field to specify the site associated with this placement group. This is a required field that is read-only after insertion.
- * @property {dfareporting(v2.4).DimensionValue} directorySiteIdDimensionValue Dimension value for the ID of the directory site. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} directorySiteIdDimensionValue Dimension value for the ID of the directory site. This is a read-only, auto-generated field.
  * @property {string} externalId External ID for this placement.
  * @property {string} id ID of this placement group. This is a read-only, auto-generated field.
- * @property {dfareporting(v2.4).DimensionValue} idDimensionValue Dimension value for the ID of this placement group. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of this placement group. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementGroup&quot;.
- * @property {dfareporting(v2.4).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this placement group. This is a read-only field.
+ * @property {dfareporting(v2.7).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this placement group. This is a read-only field.
  * @property {string} name Name of this placement group. This is a required field and must be less than 256 characters long.
  * @property {string} placementGroupType Type of this placement group. A package is a simple group of placements that acts as a single pricing point for a group of tags. A roadblock is a group of placements that not only acts as a single pricing point, but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned placements to be marked as primary for reporting. This field is required on insertion.
  * @property {string} placementStrategyId ID of the placement strategy assigned to this placement group.
- * @property {dfareporting(v2.4).PricingSchedule} pricingSchedule Pricing schedule of this placement group. This field is required on insertion.
+ * @property {dfareporting(v2.7).PricingSchedule} pricingSchedule Pricing schedule of this placement group. This field is required on insertion.
  * @property {string} primaryPlacementId ID of the primary placement, used to calculate the media cost of a roadblock (placement group). Modifying this field will automatically modify the primary field on all affected roadblock child placements.
- * @property {dfareporting(v2.4).DimensionValue} primaryPlacementIdDimensionValue Dimension value for the ID of the primary placement. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} primaryPlacementIdDimensionValue Dimension value for the ID of the primary placement. This is a read-only, auto-generated field.
  * @property {string} siteId Site ID associated with this placement group. On insert, you must set either this field or the directorySiteId field to specify the site associated with this placement group. This is a required field that is read-only after insertion.
- * @property {dfareporting(v2.4).DimensionValue} siteIdDimensionValue Dimension value for the ID of the site. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} siteIdDimensionValue Dimension value for the ID of the site. This is a read-only, auto-generated field.
  * @property {string} subaccountId Subaccount ID of this placement group. This is a read-only field that can be left blank.
  */
 /**
  * @typedef PlacementGroupsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementGroupsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
- * @property {dfareporting(v2.4).PlacementGroup[]} placementGroups Placement group collection.
+ * @property {dfareporting(v2.7).PlacementGroup[]} placementGroups Placement group collection.
  */
 /**
  * @typedef PlacementStrategiesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementStrategiesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
- * @property {dfareporting(v2.4).PlacementStrategy[]} placementStrategies Placement strategy collection.
+ * @property {dfareporting(v2.7).PlacementStrategy[]} placementStrategies Placement strategy collection.
  */
 /**
  * @typedef PlacementStrategy
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this placement strategy.This is a read-only field that can be left blank.
  * @property {string} id ID of this placement strategy. This is a read-only, auto-generated field.
@@ -9281,29 +9877,29 @@ Acceptable values are:
  */
 /**
  * @typedef PlacementTag
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} placementId Placement ID
- * @property {dfareporting(v2.4).TagData[]} tagDatas Tags generated for this placement.
+ * @property {dfareporting(v2.7).TagData[]} tagDatas Tags generated for this placement.
  */
 /**
  * @typedef PlacementsGenerateTagsResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementsGenerateTagsResponse&quot;.
- * @property {dfareporting(v2.4).PlacementTag[]} placementTags Set of generated tags for the specified placements.
+ * @property {dfareporting(v2.7).PlacementTag[]} placementTags Set of generated tags for the specified placements.
  */
 /**
  * @typedef PlacementsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
- * @property {dfareporting(v2.4).Placement[]} placements Placement collection.
+ * @property {dfareporting(v2.7).Placement[]} placements Placement collection.
  */
 /**
  * @typedef PlatformType
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} id ID of this platform type.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#platformType&quot;.
@@ -9311,17 +9907,17 @@ Acceptable values are:
  */
 /**
  * @typedef PlatformTypesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#platformTypesListResponse&quot;.
- * @property {dfareporting(v2.4).PlatformType[]} platformTypes Platform type collection.
+ * @property {dfareporting(v2.7).PlatformType[]} platformTypes Platform type collection.
  */
 /**
  * @typedef PopupWindowProperties
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Size} dimension Popup dimension for a creative. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA and all VPAID
- * @property {dfareporting(v2.4).OffsetPosition} offset Upper-left corner coordinates of the popup window. Applicable if positionType is COORDINATES.
+ * @property {dfareporting(v2.7).Size} dimension Popup dimension for a creative. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA and all VPAID
+ * @property {dfareporting(v2.7).OffsetPosition} offset Upper-left corner coordinates of the popup window. Applicable if positionType is COORDINATES.
  * @property {string} positionType Popup window position either centered or at specific coordinate.
  * @property {boolean} showAddressBar Whether to display the browser address bar.
  * @property {boolean} showMenuBar Whether to display the browser menu bar.
@@ -9332,7 +9928,7 @@ Acceptable values are:
  */
 /**
  * @typedef PostalCode
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} code Postal code. This is equivalent to the id field.
  * @property {string} countryCode Country code of the country to which this postal code belongs.
@@ -9342,39 +9938,39 @@ Acceptable values are:
  */
 /**
  * @typedef PostalCodesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#postalCodesListResponse&quot;.
- * @property {dfareporting(v2.4).PostalCode[]} postalCodes Postal code collection.
+ * @property {dfareporting(v2.7).PostalCode[]} postalCodes Postal code collection.
  */
 /**
  * @typedef Pricing
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} capCostType Cap cost type of this inventory item.
  * @property {string} endDate End date of this inventory item.
- * @property {dfareporting(v2.4).Flight[]} flights Flights of this inventory item. A flight (a.k.a. pricing period) represents the inventory item pricing information for a specific period of time.
+ * @property {dfareporting(v2.7).Flight[]} flights Flights of this inventory item. A flight (a.k.a. pricing period) represents the inventory item pricing information for a specific period of time.
  * @property {string} groupType Group type of this inventory item if it represents a placement group. Is null otherwise. There are two type of placement groups: PLANNING_PLACEMENT_GROUP_TYPE_PACKAGE is a simple group of inventory items that acts as a single pricing point for a group of tags. PLANNING_PLACEMENT_GROUP_TYPE_ROADBLOCK is a group of inventory items that not only acts as a single pricing point, but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned inventory items to be marked as primary.
  * @property {string} pricingType Pricing type of this inventory item.
  * @property {string} startDate Start date of this inventory item.
  */
 /**
  * @typedef PricingSchedule
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} capCostOption Placement cap cost option.
  * @property {boolean} disregardOverdelivery Whether cap costs are ignored by ad serving.
  * @property {string} endDate Placement end date. This date must be later than, or the same day as, the placement start date, but not later than the campaign end date. If, for example, you set 6/25/2015 as both the start and end dates, the effective placement date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error. This field is required on insertion.
  * @property {boolean} flighted Whether this placement is flighted. If true, pricing periods will be computed automatically.
  * @property {string} floodlightActivityId Floodlight activity ID associated with this placement. This field should be set when placement pricing type is set to PRICING_TYPE_CPA.
- * @property {dfareporting(v2.4).PricingSchedulePricingPeriod[]} pricingPeriods Pricing periods for this placement.
+ * @property {dfareporting(v2.7).PricingSchedulePricingPeriod[]} pricingPeriods Pricing periods for this placement.
  * @property {string} pricingType Placement pricing type. This field is required on insertion.
  * @property {string} startDate Placement start date. This date must be later than, or the same day as, the campaign start date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error. This field is required on insertion.
  * @property {string} testingStartDate Testing start date of this placement. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error.
  */
 /**
  * @typedef PricingSchedulePricingPeriod
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} endDate Pricing period end date. This date must be later than, or the same day as, the pricing period start date, but not later than the placement end date. The period end date can be the same date as the period start date. If, for example, you set 6/25/2015 as both the start and end dates, the effective pricing period date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error.
  * @property {string} pricingComment Comments for this pricing period.
@@ -9384,7 +9980,7 @@ Acceptable values are:
  */
 /**
  * @typedef Project
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this project.
  * @property {string} advertiserId Advertiser ID of this project.
@@ -9396,7 +9992,7 @@ Acceptable values are:
  * @property {string} endDate End date of the project.
  * @property {string} id ID of this project. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#project&quot;.
- * @property {dfareporting(v2.4).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this project.
+ * @property {dfareporting(v2.7).LastModifiedInfo} lastModifiedInfo Information about the most recent modification of this project.
  * @property {string} name Name of this project.
  * @property {string} overview Overview of this project.
  * @property {string} startDate Start date of the project.
@@ -9405,31 +10001,32 @@ Acceptable values are:
  * @property {string} targetConversions Number of conversions that the advertiser is targeting.
  * @property {string} targetCpaNanos CPA that the advertiser is targeting.
  * @property {string} targetCpcNanos CPC that the advertiser is targeting.
+ * @property {string} targetCpmActiveViewNanos vCPM from Active View that the advertiser is targeting.
  * @property {string} targetCpmNanos CPM that the advertiser is targeting.
  * @property {string} targetImpressions Number of impressions that the advertiser is targeting.
  */
 /**
  * @typedef ProjectsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#projectsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
- * @property {dfareporting(v2.4).Project[]} projects Project collection.
+ * @property {dfareporting(v2.7).Project[]} projects Project collection.
  */
 /**
  * @typedef ReachReportCompatibleFields
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Dimension[]} dimensionFilters Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
- * @property {dfareporting(v2.4).Dimension[]} dimensions Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
+ * @property {dfareporting(v2.7).Dimension[]} dimensionFilters Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
+ * @property {dfareporting(v2.7).Dimension[]} dimensions Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
  * @property {string} kind The kind of resource this is, in this case dfareporting#reachReportCompatibleFields.
- * @property {dfareporting(v2.4).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
- * @property {dfareporting(v2.4).Metric[]} pivotedActivityMetrics Metrics which are compatible to be selected as activity metrics to pivot on in the &quot;activities&quot; section of the report.
- * @property {dfareporting(v2.4).Metric[]} reachByFrequencyMetrics Metrics which are compatible to be selected in the &quot;reachByFrequencyMetricNames&quot; section of the report.
+ * @property {dfareporting(v2.7).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
+ * @property {dfareporting(v2.7).Metric[]} pivotedActivityMetrics Metrics which are compatible to be selected as activity metrics to pivot on in the &quot;activities&quot; section of the report.
+ * @property {dfareporting(v2.7).Metric[]} reachByFrequencyMetrics Metrics which are compatible to be selected in the &quot;reachByFrequencyMetricNames&quot; section of the report.
  */
 /**
  * @typedef Recipient
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} deliveryType The delivery type for the recipient.
  * @property {string} email The email address of the recipient.
@@ -9437,7 +10034,7 @@ Acceptable values are:
  */
 /**
  * @typedef Region
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} countryCode Country code of the country to which this region belongs.
  * @property {string} countryDartId DART ID of the country to which this region belongs.
@@ -9448,24 +10045,24 @@ Acceptable values are:
  */
 /**
  * @typedef RegionsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#regionsListResponse&quot;.
- * @property {dfareporting(v2.4).Region[]} regions Region collection.
+ * @property {dfareporting(v2.7).Region[]} regions Region collection.
  */
 /**
  * @typedef RemarketingList
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this remarketing list. This is a read-only, auto-generated field that is only returned in GET requests.
  * @property {boolean} active Whether this remarketing list is active.
  * @property {string} advertiserId Dimension value for the advertiser ID that owns this remarketing list. This is a required field.
- * @property {dfareporting(v2.4).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
  * @property {string} description Remarketing list description.
  * @property {string} id Remarketing list ID. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingList&quot;.
  * @property {string} lifeSpan Number of days that a user should remain in the remarketing list without an impression.
- * @property {dfareporting(v2.4).ListPopulationRule} listPopulationRule Rule used to populate the remarketing list with users.
+ * @property {dfareporting(v2.7).ListPopulationRule} listPopulationRule Rule used to populate the remarketing list with users.
  * @property {string} listSize Number of users currently in the list. This is a read-only field.
  * @property {string} listSource Product from which this remarketing list was originated.
  * @property {string} name Name of the remarketing list. This is a required field. Must be no greater than 128 characters long.
@@ -9473,7 +10070,7 @@ Acceptable values are:
  */
 /**
  * @typedef RemarketingListShare
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingListShare&quot;.
  * @property {string} remarketingListId Remarketing list ID. This is a read-only, auto-generated field.
@@ -9482,15 +10079,15 @@ Acceptable values are:
  */
 /**
  * @typedef RemarketingListsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingListsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
- * @property {dfareporting(v2.4).RemarketingList[]} remarketingLists Remarketing list collection.
+ * @property {dfareporting(v2.7).RemarketingList[]} remarketingLists Remarketing list collection.
  */
 /**
  * @typedef Report
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId The account ID to which this report belongs.
  * @property {object} criteria The report criteria for a report of type &quot;STANDARD&quot;.
@@ -9513,29 +10110,29 @@ Acceptable values are:
  */
 /**
  * @typedef ReportCompatibleFields
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Dimension[]} dimensionFilters Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
- * @property {dfareporting(v2.4).Dimension[]} dimensions Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
+ * @property {dfareporting(v2.7).Dimension[]} dimensionFilters Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
+ * @property {dfareporting(v2.7).Dimension[]} dimensions Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
  * @property {string} kind The kind of resource this is, in this case dfareporting#reportCompatibleFields.
- * @property {dfareporting(v2.4).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
- * @property {dfareporting(v2.4).Metric[]} pivotedActivityMetrics Metrics which are compatible to be selected as activity metrics to pivot on in the &quot;activities&quot; section of the report.
+ * @property {dfareporting(v2.7).Metric[]} metrics Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
+ * @property {dfareporting(v2.7).Metric[]} pivotedActivityMetrics Metrics which are compatible to be selected as activity metrics to pivot on in the &quot;activities&quot; section of the report.
  */
 /**
  * @typedef ReportList
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} etag The eTag of this response for caching purposes.
- * @property {dfareporting(v2.4).Report[]} items The reports returned in this response.
+ * @property {dfareporting(v2.7).Report[]} items The reports returned in this response.
  * @property {string} kind The kind of list this is, in this case dfareporting#reportList.
  * @property {string} nextPageToken Continuation token used to page through reports. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
  */
 /**
  * @typedef ReportsConfiguration
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
 * @property {boolean} exposureToConversionEnabled Whether the exposure to conversion report is enabled. This report shows detailed pathway information on up to 10 of the most recent ad exposures seen by a user before converting.
-* @property {dfareporting(v2.4).LookbackConfiguration} lookbackConfiguration Default lookback windows for new advertisers in this account.
+* @property {dfareporting(v2.7).LookbackConfiguration} lookbackConfiguration Default lookback windows for new advertisers in this account.
 * @property {string} reportGenerationTimeZoneId Report generation time zone ID of this account. This is a required field that can only be changed by a superuser.
 Acceptable values are:
 
@@ -9555,32 +10152,40 @@ Acceptable values are:
 */
 /**
  * @typedef RichMediaExitOverride
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {string} customExitUrl Click-through URL to override the default exit URL. Applicable if the useCustomExitUrl field is set to true.
+ * @property {dfareporting(v2.7).ClickThroughUrl} clickThroughUrl Click-through URL of this rich media exit override. Applicable if the enabled field is set to true.
+ * @property {boolean} enabled Whether to use the clickThroughUrl. If false, the creative-level exit will be used.
  * @property {string} exitId ID for the override to refer to a specific exit in the creative.
- * @property {boolean} useCustomExitUrl Whether to use the custom exit URL.
+ */
+/**
+ * @typedef Rule
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} assetId A creativeAssets[].id. This should refer to one of the parent assets in this creative. This is a required field.
+ * @property {string} name A user-friendly name for this rule. This is a required field.
+ * @property {string} targetingTemplateId A targeting template ID. The targeting from the targeting template will be used to determine whether this asset should be served. This is a required field.
  */
 /**
  * @typedef Site
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this site. This is a read-only field that can be left blank.
  * @property {boolean} approved Whether this site is approved.
  * @property {string} directorySiteId Directory site associated with this site. This is a required field that is read-only after insertion.
- * @property {dfareporting(v2.4).DimensionValue} directorySiteIdDimensionValue Dimension value for the ID of the directory site. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} directorySiteIdDimensionValue Dimension value for the ID of the directory site. This is a read-only, auto-generated field.
  * @property {string} id ID of this site. This is a read-only, auto-generated field.
- * @property {dfareporting(v2.4).DimensionValue} idDimensionValue Dimension value for the ID of this site. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DimensionValue} idDimensionValue Dimension value for the ID of this site. This is a read-only, auto-generated field.
  * @property {string} keyName Key name of this site. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#site&quot;.
  * @property {string} name Name of this site.This is a required field. Must be less than 128 characters long. If this site is under a subaccount, the name must be unique among sites of the same subaccount. Otherwise, this site is a top-level site, and the name must be unique among top-level sites of the same account.
- * @property {dfareporting(v2.4).SiteContact[]} siteContacts Site contacts.
- * @property {dfareporting(v2.4).SiteSettings} siteSettings Site-wide settings.
+ * @property {dfareporting(v2.7).SiteContact[]} siteContacts Site contacts.
+ * @property {dfareporting(v2.7).SiteSettings} siteSettings Site-wide settings.
  * @property {string} subaccountId Subaccount ID of this site. This is a read-only field that can be left blank.
  */
 /**
  * @typedef SiteContact
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} address Address of this site contact.
  * @property {string} contactType Site contact type.
@@ -9593,27 +10198,28 @@ Acceptable values are:
  */
 /**
  * @typedef SiteSettings
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {boolean} activeViewOptOut Whether active view creatives are disabled for this site.
- * @property {dfareporting(v2.4).CreativeSettings} creativeSettings Site-wide creative settings.
+ * @property {dfareporting(v2.7).CreativeSettings} creativeSettings Site-wide creative settings.
  * @property {boolean} disableBrandSafeAds Whether brand safe ads are disabled for this site.
  * @property {boolean} disableNewCookie Whether new cookies are disabled for this site.
- * @property {dfareporting(v2.4).LookbackConfiguration} lookbackConfiguration Lookback window settings for this site.
- * @property {dfareporting(v2.4).TagSetting} tagSetting Configuration settings for dynamic and image floodlight tags.
- * @property {boolean} videoActiveViewOptOut Whether Verification and ActiveView are disabled for in-stream video creatives on this site. The same setting videoActiveViewOptOut exists on the directory site level -- the opt out occurs if either of these settings are true. These settings are distinct from DirectorySites.settings.activeViewOptOut or Sites.siteSettings.activeViewOptOut which only apply to display ads. However, Accounts.activeViewOptOut opts out both video traffic, as well as display ads, from Verification and ActiveView.
+ * @property {dfareporting(v2.7).LookbackConfiguration} lookbackConfiguration Lookback window settings for this site.
+ * @property {dfareporting(v2.7).TagSetting} tagSetting Configuration settings for dynamic and image floodlight tags.
+ * @property {boolean} videoActiveViewOptOutTemplate Whether Verification and ActiveView for in-stream video creatives are disabled by default for new placements created under this site. This value will be used to populate the placement.videoActiveViewOptOut field, when no value is specified for the new placement.
+ * @property {string} vpaidAdapterChoiceTemplate Default VPAID adapter setting for new placements created under this site. This value will be used to populate the placements.vpaidAdapterChoice field, when no value is specified for the new placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to the placement. The publisher&#39;s specifications will typically determine this setting. For VPAID creatives, the adapter format will match the VPAID format (HTML5 VPAID creatives use the HTML5 adapter, and Flash VPAID creatives use the Flash adapter).
  */
 /**
  * @typedef SitesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#sitesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
- * @property {dfareporting(v2.4).Site[]} sites Site collection.
+ * @property {dfareporting(v2.7).Site[]} sites Site collection.
  */
 /**
  * @typedef Size
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {integer} height Height of this size.
  * @property {boolean} iab IAB standard size. This is a read-only, auto-generated field.
@@ -9623,14 +10229,23 @@ Acceptable values are:
  */
 /**
  * @typedef SizesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#sizesListResponse&quot;.
- * @property {dfareporting(v2.4).Size[]} sizes Size collection.
+ * @property {dfareporting(v2.7).Size[]} sizes Size collection.
+ */
+/**
+ * @typedef SkippableSetting
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#skippableSetting&quot;.
+ * @property {dfareporting(v2.7).VideoOffset} progressOffset Amount of time to play videos served to this placement before counting a view. Applicable when skippable is true.
+ * @property {dfareporting(v2.7).VideoOffset} skipOffset Amount of time to play videos served to this placement before the skip button should appear. Applicable when skippable is true.
+ * @property {boolean} skippable Whether the user can skip creatives served to this placement.
  */
 /**
  * @typedef SortedDimension
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind The kind of resource this is, in this case dfareporting#sortedDimension.
  * @property {string} name The name of the dimension.
@@ -9638,7 +10253,7 @@ Acceptable values are:
  */
 /**
  * @typedef Subaccount
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId ID of the account that contains this subaccount. This is a read-only field that can be left blank.
  * @property {string[]} availablePermissionIds IDs of the available user role permissions for this subaccount.
@@ -9648,15 +10263,15 @@ Acceptable values are:
  */
 /**
  * @typedef SubaccountsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#subaccountsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
- * @property {dfareporting(v2.4).Subaccount[]} subaccounts Subaccount collection.
+ * @property {dfareporting(v2.7).Subaccount[]} subaccounts Subaccount collection.
  */
 /**
  * @typedef TagData
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} adId Ad associated with this placement tag.
  * @property {string} clickTag Tag string to record a click.
@@ -9666,7 +10281,7 @@ Acceptable values are:
  */
 /**
  * @typedef TagSetting
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} additionalKeyValues Additional key-values to be included in tags. Each key-value pair must be of the form key=value, and pairs must be separated by a semicolon (;). Keys and values must not contain commas. For example, id=2;color=red is a valid value for this field.
  * @property {boolean} includeClickThroughUrls Whether static landing page URLs should be included in the tags. This setting applies only to placements.
@@ -9675,26 +10290,26 @@ Acceptable values are:
  */
 /**
  * @typedef TagSettings
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {boolean} dynamicTagEnabled Whether dynamic floodlight tags are enabled.
  * @property {boolean} imageTagEnabled Whether image tags are enabled.
  */
 /**
  * @typedef TargetWindow
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} customHtml User-entered value.
  * @property {string} targetWindowOption Type of browser window for which the backup image of the flash creative can be displayed.
  */
 /**
  * @typedef TargetableRemarketingList
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this remarketing list. This is a read-only, auto-generated field that is only returned in GET requests.
  * @property {boolean} active Whether this targetable remarketing list is active.
  * @property {string} advertiserId Dimension value for the advertiser ID that owns this targetable remarketing list.
- * @property {dfareporting(v2.4).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser.
+ * @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser.
  * @property {string} description Targetable remarketing list description.
  * @property {string} id Targetable remarketing list ID.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetableRemarketingList&quot;.
@@ -9706,40 +10321,73 @@ Acceptable values are:
  */
 /**
  * @typedef TargetableRemarketingListsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetableRemarketingListsListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
- * @property {dfareporting(v2.4).TargetableRemarketingList[]} targetableRemarketingLists Targetable remarketing list collection.
+ * @property {dfareporting(v2.7).TargetableRemarketingList[]} targetableRemarketingLists Targetable remarketing list collection.
+ */
+/**
+ * @typedef TargetingTemplate
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} accountId Account ID of this targeting template. This field, if left unset, will be auto-generated on insert and is read-only after insert.
+ * @property {string} advertiserId Advertiser ID of this targeting template. This is a required field on insert and is read-only after insert.
+ * @property {dfareporting(v2.7).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).DayPartTargeting} dayPartTargeting Time and day targeting criteria.
+ * @property {dfareporting(v2.7).GeoTargeting} geoTargeting Geographical targeting criteria.
+ * @property {string} id ID of this targeting template. This is a read-only, auto-generated field.
+ * @property {dfareporting(v2.7).KeyValueTargetingExpression} keyValueTargetingExpression Key-value targeting criteria.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetingTemplate&quot;.
+ * @property {dfareporting(v2.7).LanguageTargeting} languageTargeting Language targeting criteria.
+ * @property {dfareporting(v2.7).ListTargetingExpression} listTargetingExpression Remarketing list targeting criteria.
+ * @property {string} name Name of this targeting template. This field is required. It must be less than 256 characters long and unique within an advertiser.
+ * @property {string} subaccountId Subaccount ID of this targeting template. This field, if left unset, will be auto-generated on insert and is read-only after insert.
+ * @property {dfareporting(v2.7).TechnologyTargeting} technologyTargeting Technology platform targeting criteria.
+ */
+/**
+ * @typedef TargetingTemplatesListResponse
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetingTemplatesListResponse&quot;.
+ * @property {string} nextPageToken Pagination token to be used for the next list operation.
+ * @property {dfareporting(v2.7).TargetingTemplate[]} targetingTemplates Targeting template collection.
  */
 /**
  * @typedef TechnologyTargeting
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
- * @property {dfareporting(v2.4).Browser[]} browsers Browsers that this ad targets. For each browser either set browserVersionId or dartId along with the version numbers. If both are specified, only browserVersionId will be used. The other fields are populated automatically when the ad is inserted or updated.
- * @property {dfareporting(v2.4).ConnectionType[]} connectionTypes Connection types that this ad targets. For each connection type only id is required. The other fields are populated automatically when the ad is inserted or updated.
- * @property {dfareporting(v2.4).MobileCarrier[]} mobileCarriers Mobile carriers that this ad targets. For each mobile carrier only id is required, and the other fields are populated automatically when the ad is inserted or updated. If targeting a mobile carrier, do not set targeting for any zip codes.
- * @property {dfareporting(v2.4).OperatingSystemVersion[]} operatingSystemVersions Operating system versions that this ad targets. To target all versions, use operatingSystems. For each operating system version, only id is required. The other fields are populated automatically when the ad is inserted or updated. If targeting an operating system version, do not set targeting for the corresponding operating system in operatingSystems.
- * @property {dfareporting(v2.4).OperatingSystem[]} operatingSystems Operating systems that this ad targets. To target specific versions, use operatingSystemVersions. For each operating system only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting an operating system, do not set targeting for operating system versions for the same operating system.
- * @property {dfareporting(v2.4).PlatformType[]} platformTypes Platform types that this ad targets. For example, desktop, mobile, or tablet. For each platform type, only id is required, and the other fields are populated automatically when the ad is inserted or updated.
+ * @property {dfareporting(v2.7).Browser[]} browsers Browsers that this ad targets. For each browser either set browserVersionId or dartId along with the version numbers. If both are specified, only browserVersionId will be used. The other fields are populated automatically when the ad is inserted or updated.
+ * @property {dfareporting(v2.7).ConnectionType[]} connectionTypes Connection types that this ad targets. For each connection type only id is required. The other fields are populated automatically when the ad is inserted or updated.
+ * @property {dfareporting(v2.7).MobileCarrier[]} mobileCarriers Mobile carriers that this ad targets. For each mobile carrier only id is required, and the other fields are populated automatically when the ad is inserted or updated. If targeting a mobile carrier, do not set targeting for any zip codes.
+ * @property {dfareporting(v2.7).OperatingSystemVersion[]} operatingSystemVersions Operating system versions that this ad targets. To target all versions, use operatingSystems. For each operating system version, only id is required. The other fields are populated automatically when the ad is inserted or updated. If targeting an operating system version, do not set targeting for the corresponding operating system in operatingSystems.
+ * @property {dfareporting(v2.7).OperatingSystem[]} operatingSystems Operating systems that this ad targets. To target specific versions, use operatingSystemVersions. For each operating system only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting an operating system, do not set targeting for operating system versions for the same operating system.
+ * @property {dfareporting(v2.7).PlatformType[]} platformTypes Platform types that this ad targets. For example, desktop, mobile, or tablet. For each platform type, only id is required, and the other fields are populated automatically when the ad is inserted or updated.
  */
 /**
  * @typedef ThirdPartyAuthenticationToken
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} name Name of the third-party authentication token.
  * @property {string} value Value of the third-party authentication token. This is a read-only, auto-generated field.
  */
 /**
  * @typedef ThirdPartyTrackingUrl
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} thirdPartyUrlType Third-party URL type for in-stream video creatives.
  * @property {string} url URL for the specified third-party URL type.
  */
 /**
+ * @typedef TranscodeSetting
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {integer[]} enabledVideoFormats Whitelist of video formats to be served to this placement. Set this list to null or empty to serve all video formats.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#transcodeSetting&quot;.
+ */
+/**
  * @typedef UserDefinedVariableConfiguration
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} dataType Data type for the variable. This is a required field.
  * @property {string} reportName User-friendly name for the variable which will appear in reports. This is a required field, must be less than 64 characters long, and cannot contain the following characters: &quot;&quot;&lt;&gt;&quot;.
@@ -9747,7 +10395,7 @@ Acceptable values are:
  */
 /**
  * @typedef UserProfile
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId The account ID to which this profile belongs.
  * @property {string} accountName The account name this profile belongs to.
@@ -9760,15 +10408,15 @@ Acceptable values are:
  */
 /**
  * @typedef UserProfileList
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} etag The eTag of this response for caching purposes.
- * @property {dfareporting(v2.4).UserProfile[]} items The user profiles returned in this response.
+ * @property {dfareporting(v2.7).UserProfile[]} items The user profiles returned in this response.
  * @property {string} kind The kind of list this is, in this case dfareporting#userProfileList.
  */
 /**
  * @typedef UserRole
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} accountId Account ID of this user role. This is a read-only field that can be left blank.
  * @property {boolean} defaultUserRole Whether this is a default user role. Default user roles are created by the system for the account/subaccount and cannot be modified or deleted. Each default user role comes with a basic set of preassigned permissions.
@@ -9776,12 +10424,12 @@ Acceptable values are:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRole&quot;.
  * @property {string} name Name of this user role. This is a required field. Must be less than 256 characters long. If this user role is under a subaccount, the name must be unique among sites of the same subaccount. Otherwise, this user role is a top-level user role, and the name must be unique among top-level user roles of the same account.
  * @property {string} parentUserRoleId ID of the user role that this user role is based on or copied from. This is a required field.
- * @property {dfareporting(v2.4).UserRolePermission[]} permissions List of permissions associated with this user role.
+ * @property {dfareporting(v2.7).UserRolePermission[]} permissions List of permissions associated with this user role.
  * @property {string} subaccountId Subaccount ID of this user role. This is a read-only field that can be left blank.
  */
 /**
  * @typedef UserRolePermission
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} availability Levels of availability for a user role permission.
  * @property {string} id ID of this user role permission.
@@ -9791,7 +10439,7 @@ Acceptable values are:
  */
 /**
  * @typedef UserRolePermissionGroup
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} id ID of this user role permission.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionGroup&quot;.
@@ -9799,24 +10447,57 @@ Acceptable values are:
  */
 /**
  * @typedef UserRolePermissionGroupsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionGroupsListResponse&quot;.
- * @property {dfareporting(v2.4).UserRolePermissionGroup[]} userRolePermissionGroups User role permission group collection.
+ * @property {dfareporting(v2.7).UserRolePermissionGroup[]} userRolePermissionGroups User role permission group collection.
  */
 /**
  * @typedef UserRolePermissionsListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionsListResponse&quot;.
- * @property {dfareporting(v2.4).UserRolePermission[]} userRolePermissions User role permission collection.
+ * @property {dfareporting(v2.7).UserRolePermission[]} userRolePermissions User role permission collection.
  */
 /**
  * @typedef UserRolesListResponse
- * @memberOf! dfareporting(v2.4)
+ * @memberOf! dfareporting(v2.7)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolesListResponse&quot;.
  * @property {string} nextPageToken Pagination token to be used for the next list operation.
- * @property {dfareporting(v2.4).UserRole[]} userRoles User role collection.
+ * @property {dfareporting(v2.7).UserRole[]} userRoles User role collection.
+ */
+/**
+ * @typedef VideoFormat
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} fileType File type of the video format.
+ * @property {integer} id ID of the video format.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoFormat&quot;.
+ * @property {dfareporting(v2.7).Size} resolution The resolution of this video format.
+ * @property {integer} targetBitRate The target bit rate of this video format.
+ */
+/**
+ * @typedef VideoFormatsListResponse
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoFormatsListResponse&quot;.
+ * @property {dfareporting(v2.7).VideoFormat[]} videoFormats Video format collection.
+ */
+/**
+ * @typedef VideoOffset
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {integer} offsetPercentage Duration, as a percentage of video duration. Do not set when offsetSeconds is set.
+ * @property {integer} offsetSeconds Duration, in seconds. Do not set when offsetPercentage is set.
+ */
+/**
+ * @typedef VideoSettings
+ * @memberOf! dfareporting(v2.7)
+ * @type object
+ * @property {dfareporting(v2.7).CompanionSetting} companionSettings Settings for the companion creatives of video creatives served to this placement.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoSettings&quot;.
+ * @property {dfareporting(v2.7).SkippableSetting} skippableSettings Settings for the skippability of video creatives served to this placement. If this object is provided, the creative-level skippable settings will be overridden.
+ * @property {dfareporting(v2.7).TranscodeSetting} transcodeSettings Settings for the transcodes of video creatives served to this placement. If this object is provided, the creative-level transcode settings will be overridden.
  */
 module.exports = Dfareporting;

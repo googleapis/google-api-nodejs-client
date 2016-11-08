@@ -116,6 +116,41 @@ function Speech(options) { // eslint-disable-line
     },
 
     /**
+     * speech.operations.delete
+     *
+     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     *
+     * @alias speech.operations.delete
+     * @memberOf! speech(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://speech.googleapis.com/v1beta1/operations/{name}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * speech.operations.cancel
      *
      * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
@@ -149,41 +184,6 @@ function Speech(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * speech.operations.delete
-     *
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     *
-     * @alias speech.operations.delete
-     * @memberOf! speech(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://speech.googleapis.com/v1beta1/operations/{name}',
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -193,7 +193,7 @@ function Speech(options) { // eslint-disable-line
     /**
      * speech.speech.syncrecognize
      *
-     * @desc Perform synchronous speech-recognition: receive results after all audio has been sent and processed.
+     * @desc Performs synchronous speech recognition: receive results after all audio has been sent and processed.
      *
      * @alias speech.speech.syncrecognize
      * @memberOf! speech(v1beta1)
@@ -228,7 +228,7 @@ function Speech(options) { // eslint-disable-line
     /**
      * speech.speech.asyncrecognize
      *
-     * @desc Perform asynchronous speech-recognition: receive results via the google.longrunning.Operations interface. Returns either an `Operation.error` or an `Operation.response` which contains an `AsyncRecognizeResponse` message.
+     * @desc Performs asynchronous speech recognition: receive results via the google.longrunning.Operations interface. Returns either an `Operation.error` or an `Operation.response` which contains an `AsyncRecognizeResponse` message.
      *
      * @alias speech.speech.asyncrecognize
      * @memberOf! speech(v1beta1)

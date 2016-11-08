@@ -1873,6 +1873,7 @@ function Youtube(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.id The id parameter specifies the YouTube playlist item ID for the playlist item that is being deleted. In a playlistItem resource, the id property specifies the playlist item's ID.
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1985,6 +1986,7 @@ function Youtube(options) { // eslint-disable-line
      * @memberOf! youtube(v3)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {string} params.part The part parameter serves two purposes in this operation. It identifies the properties that the write operation will set as well as the properties that the API response will include.  Note that this method will override the existing values for all of the mutable properties that are contained in any parts that the parameter value specifies. For example, a playlist item can specify a start time and end time, which identify the times portion of the video that should play when users watch the video in the playlist. If your request is updating a playlist item that sets these values, and the request's part parameter value includes the contentDetails part, the playlist item's start and end times will be updated to whatever value the request body specifies. If the request body does not specify values, the existing start and end times will be removed and replaced with the default settings.
      * @param {youtube(v3).PlaylistItem} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2662,7 +2664,9 @@ function Youtube(options) { // eslint-disable-line
      * @param {string=} params.hl The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
      * @param {string=} params.id The id parameter specifies a comma-separated list of the YouTube video ID(s) for the resource(s) that are being retrieved. In a video resource, the id property specifies the video's ID.
      * @param {string=} params.locale DEPRECATED
+     * @param {integer=} params.maxHeight The maxHeight parameter specifies a maximum height of the embedded player. If maxWidth is provided, maxHeight may not be reached in order to not violate the width request.
      * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.  Note: This parameter is supported for use in conjunction with the myRating parameter, but it is not supported for use in conjunction with the id parameter.
+     * @param {integer=} params.maxWidth The maxWidth parameter specifies a maximum width of the embedded player. If maxHeight is provided, maxWidth may not be reached in order to not violate the height request.
      * @param {string=} params.myRating Set this parameter's value to like or dislike to instruct the API to only return videos liked or disliked by the authenticated user.
      * @param {string=} params.onBehalfOfContentOwner Note: This parameter is intended exclusively for YouTube content partners.  The onBehalfOfContentOwner parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.  Note: This parameter is supported for use in conjunction with the myRating parameter, but it is not supported for use in conjunction with the id parameter.
@@ -3126,7 +3130,6 @@ function Youtube(options) { // eslint-disable-line
  * @typedef ChannelContentDetails
  * @memberOf! youtube(v3)
  * @type object
- * @property {string} googlePlusUserId The googlePlusUserId object identifies the Google+ profile ID associated with this channel.
  * @property {object} relatedPlaylists 
  */
 /**
@@ -3319,7 +3322,6 @@ function Youtube(options) { // eslint-disable-line
  * @property {any} authorChannelId The id of the author&#39;s YouTube channel, if any.
  * @property {string} authorChannelUrl Link to the author&#39;s YouTube channel, if any.
  * @property {string} authorDisplayName The name of the user who posted the comment.
- * @property {string} authorGoogleplusProfileUrl Link to the author&#39;s Google+ profile, if any.
  * @property {string} authorProfileImageUrl The URL for the avatar of the user who posted the comment.
  * @property {boolean} canRate Whether the current viewer can rate this comment.
  * @property {string} channelId The id of the corresponding YouTube channel. In case of a channel comment this is the channel the comment refers to. In case of a video comment it&#39;s the video&#39;s channel.
@@ -4460,6 +4462,7 @@ The processingProgress object is designed to be polled so that the video uploade
  * @property {string} definition The value of definition indicates whether the video is available in high definition or only in standard definition.
  * @property {string} dimension The value of dimension indicates whether the video is available in 3D or in 2D.
  * @property {string} duration The length of the video. The tag value is an ISO 8601 duration in the format PT#M#S, in which the letters PT indicate that the value specifies a period of time, and the letters M and S refer to length in minutes and seconds, respectively. The # characters preceding the M and S letters are both integers that specify the number of minutes (or seconds) of the video. For example, a value of PT15M51S indicates that the video is 15 minutes and 51 seconds long.
+ * @property {boolean} hasCustomThumbnail Indicates whether the video uploader has provided a custom thumbnail image for the video. This property is only visible to the video uploader.
  * @property {boolean} licensedContent The value of is_license_content indicates whether the video is licensed content.
  * @property {string} projection Specifies the projection format of the video.
  * @property {youtube(v3).VideoContentDetailsRegionRestriction} regionRestriction The regionRestriction object contains information about the countries where a video is (or is not) viewable. The object will contain either the contentDetails.regionRestriction.allowed property or the contentDetails.regionRestriction.blocked property.
@@ -4486,7 +4489,6 @@ The processingProgress object is designed to be polled so that the video uploade
 * @property {string} fileName The uploaded file&#39;s name. This field is present whether a video file or another type of file was uploaded.
 * @property {string} fileSize The uploaded file&#39;s size in bytes. This field is present whether a video file or another type of file was uploaded.
 * @property {string} fileType The uploaded file&#39;s type as detected by YouTube&#39;s video processing engine. Currently, YouTube only processes video files, but this field is present whether a video file or another type of file was uploaded.
-* @property {youtube(v3).GeoPoint} recordingLocation Geographic coordinates that identify the place where the uploaded video was recorded. Coordinates are defined using WGS 84.
 * @property {youtube(v3).VideoFileDetailsVideoStream[]} videoStreams A list of video streams contained in the uploaded video file. Each item in the list contains detailed metadata about a video stream.
 */
 /**
@@ -4563,7 +4565,9 @@ The processingProgress object is designed to be polled so that the video uploade
  * @typedef VideoPlayer
  * @memberOf! youtube(v3)
  * @type object
+ * @property {string} embedHeight 
  * @property {string} embedHtml An &lt;iframe&gt; tag that embeds a player that will play the video.
+ * @property {string} embedWidth The embed width
  */
 /**
  * @typedef VideoProcessingDetails

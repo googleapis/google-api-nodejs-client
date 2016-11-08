@@ -45,7 +45,7 @@ function Servicecontrol(options) { // eslint-disable-line
     /**
      * servicecontrol.services.check
      *
-     * @desc Checks an operation with Google Service Control to decide whether the given operation should proceed. It should be called before the operation is executed.  This method requires the `servicemanagement.services.check` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
+     * @desc Checks an operation with Google Service Control to decide whether the given operation should proceed. It should be called before the operation is executed.  If feasible, the client should cache the check results and reuse them for up to 60s. In case of server errors, the client may rely on the cached results for longer time.  This method requires the `servicemanagement.services.check` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
      *
      * @alias servicecontrol.services.check
      * @memberOf! servicecontrol(v1)
@@ -81,7 +81,7 @@ function Servicecontrol(options) { // eslint-disable-line
     /**
      * servicecontrol.services.report
      *
-     * @desc Reports operations to Google Service Control. It should be called after the operation is completed.  This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
+     * @desc Reports operations to Google Service Control. It should be called after the operation is completed.  If feasible, the client should aggregate reporting data for up to 5s to reduce API traffic. Limiting aggregation to 5s is to reduce data loss during client crashes. Clients should carefully choose the aggregation window to avoid data loss risk more than 0.01% for business and compliance reasons.  This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
      *
      * @alias servicecontrol.services.report
      * @memberOf! servicecontrol(v1)
@@ -217,8 +217,13 @@ an invalid argument error.
  * @typedef CheckRequest
  * @memberOf! servicecontrol(v1)
  * @type object
- * @property {servicecontrol(v1).Operation} operation The operation to be checked.
- */
+* @property {servicecontrol(v1).Operation} operation The operation to be checked.
+* @property {string} serviceConfigId Specifies which version of service configuration should be used to process
+the request.
+
+If unspecified or no matching version can be found, the
+latest one will be used.
+*/
 /**
  * @typedef LogEntry
  * @memberOf! servicecontrol(v1)
@@ -254,6 +259,11 @@ of the report.
 If multiple operations are in a single request, the total request size
 should be no larger than 1MB. See ReportResponse.report_errors for
 partial failure behavior.
+* @property {string} serviceConfigId Specifies which version of service config should be used to process the
+request.
+
+If unspecified or no matching version can be found, the
+latest one will be used.
 */
 /**
  * @typedef MetricValueSet
@@ -305,8 +315,9 @@ processing. There are three possible combinations of the RPC status:
    `Operations` in the request succeeded. Each
    `Operation` that failed processing has a corresponding item
    in this list.
-3. A failed RPC status indicates a complete failure where none of the
-   `Operations` in the request succeeded.
+3. A failed RPC status indicates a general non-deterministic failure.
+   When this happens, it&#39;s impossible to know which of the
+   &#39;Operations&#39; in the request succeeded or failed.
 * @property {string} serviceConfigId The actual config id used to process the request.
 */
 /**

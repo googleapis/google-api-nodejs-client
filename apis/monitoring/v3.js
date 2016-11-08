@@ -1275,8 +1275,8 @@ function Monitoring(options) { // eslint-disable-line
  * @typedef Metric
  * @memberOf! monitoring(v3)
  * @type object
- * @property {object} labels The set of labels that uniquely identify a metric. To specify a metric, all labels enumerated in the MetricDescriptor must be assigned values.
- * @property {string} type An existing metric type, see google.api.MetricDescriptor. For example, compute.googleapis.com/instance/cpu/usage_time.
+ * @property {object} labels The set of label values that uniquely identify this metric. All labels listed in the MetricDescriptor must be assigned values.
+ * @property {string} type An existing metric type, see google.api.MetricDescriptor. For example, custom.googleapis.com/invoice/paid/amount.
  */
 /**
  * @typedef ListGroupMembersResponse
@@ -1380,19 +1380,17 @@ Annotation = &quot;{&quot; NAME &quot;}&quot; ;
 Notes:
 Annotation is just a comment if it follows a UNIT and is  equivalent to 1 if it is used alone. For examples,  {requests}/s == 1/s, By{transmitted}/s == By/s.
 NAME is a sequence of non-blank printable ASCII characters not  containing &#39;{&#39; or &#39;}&#39;.
-* @property {monitoring(v3).LabelDescriptor[]} labels The set of labels that can be used to describe a specific instance of this metric type. For example, the compute.googleapis.com/instance/network/received_bytes_count metric type has a label, loadbalanced, that specifies whether the traffic was received through a load balanced IP address.
+* @property {monitoring(v3).LabelDescriptor[]} labels The set of labels that can be used to describe a specific instance of this metric type. For example, the appengine.googleapis.com/http/server/response_latencies metric type has a label for the HTTP response code, response_code, so you can look at latencies for successful responses or just for responses that failed.
 * @property {string} metricKind Whether the metric records instantaneous values, changes to a value, etc. Some combinations of metric_kind and value_type might not be supported.
 * @property {string} valueType Whether the measurement is an integer, a floating-point number, etc. Some combinations of metric_kind and value_type might not be supported.
 * @property {string} displayName A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example &quot;Request count&quot;.
-* @property {string} name Resource name. The format of the name may vary between different implementations. For examples:
-projects/{project_id}/metricDescriptors/{type=**}
-metricDescriptors/{type=**}
+* @property {string} name The resource name of the metric descriptor. Depending on the implementation, the name typically includes: (1) the parent resource name that defines the scope of the metric type or of its data; and (2) the metric&#39;s URL-encoded type, which also appears in the type field of this descriptor. For example, following is the resource name of a custom metric within the GCP project 123456789:
+&quot;projects/123456789/metricDescriptors/custom.googleapis.com%2Finvoice%2Fpaid%2Famount&quot;
 
-* @property {string} type The metric type including a DNS name prefix, for example &quot;compute.googleapis.com/instance/cpu/utilization&quot;. Metric types should use a natural hierarchical grouping such as the following:
-compute.googleapis.com/instance/cpu/utilization
-compute.googleapis.com/instance/disk/read_ops_count
-compute.googleapis.com/instance/network/received_bytes_count
-Note that if the metric type changes, the monitoring data will be discontinued, and anything depends on it will break, such as monitoring dashboards, alerting rules and quota limits. Therefore, once a metric has been published, its type should be immutable.
+* @property {string} type The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined metric types have the DNS name custom.googleapis.com. Metric types should use a natural hierarchical grouping. For example:
+&quot;custom.googleapis.com/invoice/paid/amount&quot;
+&quot;appengine.googleapis.com/http/server/response_latencies&quot;
+
 */
 /**
  * @typedef Exponential

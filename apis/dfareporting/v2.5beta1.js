@@ -307,7 +307,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.accountUserProfiles.list
      *
-     * @desc Retrieves a list of account user profiles, possibly filtered.
+     * @desc Retrieves a list of account user profiles, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.accountUserProfiles.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -464,7 +464,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.accounts.list
      *
-     * @desc Retrieves the list of accounts, possibly filtered.
+     * @desc Retrieves the list of accounts, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.accounts.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -655,7 +655,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.ads.list
      *
-     * @desc Retrieves a list of ads, possibly filtered.
+     * @desc Retrieves a list of ads, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.ads.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -899,7 +899,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.advertiserGroups.list
      *
-     * @desc Retrieves a list of advertiser groups, possibly filtered.
+     * @desc Retrieves a list of advertiser groups, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.advertiserGroups.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -1089,7 +1089,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.advertisers.list
      *
-     * @desc Retrieves a list of advertisers, possibly filtered.
+     * @desc Retrieves a list of advertisers, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.advertisers.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -1289,7 +1289,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.campaignCreativeAssociations.list
      *
-     * @desc Retrieves the list of creative IDs associated with the specified campaign.
+     * @desc Retrieves the list of creative IDs associated with the specified campaign. This method supports paging.
      *
      * @alias dfareporting.campaignCreativeAssociations.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -1406,7 +1406,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.campaigns.list
      *
-     * @desc Retrieves a list of campaigns, possibly filtered.
+     * @desc Retrieves a list of campaigns, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.campaigns.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -1567,7 +1567,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.changeLogs.list
      *
-     * @desc Retrieves a list of change logs.
+     * @desc Retrieves a list of change logs. This method supports paging.
      *
      * @alias dfareporting.changeLogs.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -1842,7 +1842,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.contentCategories.list
      *
-     * @desc Retrieves a list of content categories, possibly filtered.
+     * @desc Retrieves a list of content categories, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.contentCategories.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -2231,7 +2231,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.creativeFieldValues.list
      *
-     * @desc Retrieves a list of creative field values, possibly filtered.
+     * @desc Retrieves a list of creative field values, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.creativeFieldValues.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -2460,7 +2460,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.creativeFields.list
      *
-     * @desc Retrieves a list of creative fields, possibly filtered.
+     * @desc Retrieves a list of creative fields, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.creativeFields.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -2651,7 +2651,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.creativeGroups.list
      *
-     * @desc Retrieves a list of creative groups, possibly filtered.
+     * @desc Retrieves a list of creative groups, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.creativeGroups.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -2843,7 +2843,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.creatives.list
      *
-     * @desc Retrieves a list of creatives, possibly filtered.
+     * @desc Retrieves a list of creatives, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.creatives.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -3049,7 +3049,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.directorySiteContacts.list
      *
-     * @desc Retrieves a list of directory site contacts, possibly filtered.
+     * @desc Retrieves a list of directory site contacts, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.directorySiteContacts.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -3167,7 +3167,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.directorySites.list
      *
-     * @desc Retrieves a list of directory sites, possibly filtered.
+     * @desc Retrieves a list of directory sites, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.directorySites.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -3790,7 +3790,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.floodlightActivities.list
      *
-     * @desc Retrieves a list of floodlight activities, possibly filtered.
+     * @desc Retrieves a list of floodlight activities, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.floodlightActivities.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -3987,7 +3987,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.floodlightActivityGroups.list
      *
-     * @desc Retrieves a list of floodlight activity groups, possibly filtered.
+     * @desc Retrieves a list of floodlight activity groups, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.floodlightActivityGroups.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -4294,7 +4294,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.inventoryItems.list
      *
-     * @desc Retrieves a list of inventory items, possibly filtered.
+     * @desc Retrieves a list of inventory items, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.inventoryItems.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -4870,7 +4870,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.orderDocuments.list
      *
-     * @desc Retrieves a list of order documents, possibly filtered.
+     * @desc Retrieves a list of order documents, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.orderDocuments.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -4956,7 +4956,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.orders.list
      *
-     * @desc Retrieves a list of orders, possibly filtered.
+     * @desc Retrieves a list of orders, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.orders.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -5075,7 +5075,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.placementGroups.list
      *
-     * @desc Retrieves a list of placement groups, possibly filtered.
+     * @desc Retrieves a list of placement groups, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.placementGroups.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -5314,7 +5314,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.placementStrategies.list
      *
-     * @desc Retrieves a list of placement strategies, possibly filtered.
+     * @desc Retrieves a list of placement strategies, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.placementStrategies.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -5542,7 +5542,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.placements.list
      *
-     * @desc Retrieves a list of placements, possibly filtered.
+     * @desc Retrieves a list of placements, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.placements.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -5862,7 +5862,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.projects.list
      *
-     * @desc Retrieves a list of projects, possibly filtered.
+     * @desc Retrieves a list of projects, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.projects.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -6132,7 +6132,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.remarketingLists.list
      *
-     * @desc Retrieves a list of remarketing lists, possibly filtered.
+     * @desc Retrieves a list of remarketing lists, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.remarketingLists.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -6705,7 +6705,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.sites.list
      *
-     * @desc Retrieves a list of sites, possibly filtered.
+     * @desc Retrieves a list of sites, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.sites.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -7019,7 +7019,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.subaccounts.list
      *
-     * @desc Gets a list of subaccounts, possibly filtered.
+     * @desc Gets a list of subaccounts, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.subaccounts.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -7173,7 +7173,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.targetableRemarketingLists.list
      *
-     * @desc Retrieves a list of targetable remarketing lists, possibly filtered.
+     * @desc Retrieves a list of targetable remarketing lists, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.targetableRemarketingLists.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -7551,7 +7551,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.userRoles.list
      *
-     * @desc Retrieves a list of user roles, possibly filtered.
+     * @desc Retrieves a list of user roles, possibly filtered. This method supports paging.
      *
      * @alias dfareporting.userRoles.list
      * @memberOf! dfareporting(v2.5beta1)
@@ -7870,10 +7870,10 @@ Acceptable values are:
  * @memberOf! dfareporting(v2.5beta1)
  * @type object
  * @property {string} accountId Account ID of this ad. This is a read-only field that can be left blank.
- * @property {boolean} active Whether this ad is active.
+ * @property {boolean} active Whether this ad is active. When true, archived must be false.
  * @property {string} advertiserId Advertiser ID of this ad. This is a required field on insertion.
  * @property {dfareporting(v2.5beta1).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
- * @property {boolean} archived Whether this ad is archived.
+ * @property {boolean} archived Whether this ad is archived. When true, active must be false.
  * @property {string} audienceSegmentId Audience segment ID that is being targeted for this ad. Applicable when type is AD_SERVING_STANDARD_AD.
  * @property {string} campaignId Campaign ID of this ad. This is a required field on insertion.
  * @property {dfareporting(v2.5beta1).DimensionValue} campaignIdDimensionValue Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
@@ -8200,7 +8200,7 @@ Acceptable values are:
  * @property {string} floodlightActivityId Floodlight Activity ID of this conversion. This is a required field.
  * @property {string} floodlightConfigurationId Floodlight Configuration ID of this conversion. This is a required field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversion&quot;.
- * @property {boolean} limitAdTracking Whether the user has Limit Ad Tracking set.
+ * @property {boolean} limitAdTracking Whether Limit Ad Tracking is enabled. When set to true, the conversion will be used for reporting but not targeting. This will prevent remarketing.
  * @property {string} mobileDeviceId The mobile device ID. This field is mutually exclusive with encryptedUserId and encryptedUserIdCandidates[]. This or encryptedUserId or encryptedUserIdCandidates[] is a required field.
  * @property {string} ordinal The ordinal of the conversion. Use this field to control how conversions of the same user and day are de-duplicated. This is a required field.
  * @property {string} quantity The quantity of the conversion.

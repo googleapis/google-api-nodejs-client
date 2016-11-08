@@ -3126,6 +3126,119 @@ function Compute(options) { // eslint-disable-line
   self.hosts = {
 
     /**
+     * compute.hosts.aggregatedList
+     *
+     * @desc Retrieves an aggregated list of hosts.
+     *
+     * @alias compute.hosts.aggregatedList
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/hosts',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.hosts.delete
+     *
+     * @desc Deletes the specified Host resource.
+     *
+     * @alias compute.hosts.delete
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.host Name of the Host resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts/{host}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'host'],
+        pathParams: ['host', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.hosts.get
+     *
+     * @desc Returns the specified host. Get a list of available hosts by making a list() request.
+     *
+     * @alias compute.hosts.get
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.host Name of the host to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts/{host}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'host'],
+        pathParams: ['host', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.hosts.getIamPolicy
      *
      * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
@@ -3156,6 +3269,83 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'zone', 'resource'],
         pathParams: ['project', 'resource', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.hosts.insert
+     *
+     * @desc Creates a host resource in the specified project using the data included in the request.
+     *
+     * @alias compute.hosts.insert
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(alpha).Host} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.hosts.list
+     *
+     * @desc Retrieves a list of hosts available to the specified project.
+     *
+     * @alias compute.hosts.list
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
         context: self
       };
 
@@ -4339,7 +4529,11 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter 
      * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.order_by 
+     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8337,7 +8531,11 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter 
      * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.order_by 
+     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13231,7 +13429,11 @@ This property is mutually exclusive with the source property; you can only defin
 * @property {string} kind [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
 * @property {string[]} licenses [Output Only] Any valid publicly visible licenses.
 * @property {string} mode The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
-* @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks. Note that for InstanceTemplate, it is just disk name, not URL for the disk.
+* @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or disks.source is required.
+
+If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks.
+
+Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
 * @property {string} type Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT.
 */
 /**
@@ -13249,7 +13451,7 @@ Other values include pd-ssd and local-ssd. If you define this field, you can pro
 - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType 
 - projects/project/zones/zone/diskTypes/diskType 
 - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
-* @property {string} sourceImage The source image used to create this disk. If the source image is deleted, this field will not be set.
+* @property {string} sourceImage The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required.
 
 To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:
 
@@ -13265,7 +13467,9 @@ global/images/my-private-image
 
 You can also specify a private image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
 
-global/images/family/my-private-family
+global/images/family/my-private-family 
+
+If the source image is deleted later, this field will not be set.
 * @property {compute(alpha).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
 
 Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
@@ -13557,6 +13761,8 @@ When the protocol is UDP, this field is not used.
 
 * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` or `joe@example.com`.
 
+
+
 * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.
 
 * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.
@@ -13622,9 +13828,9 @@ https://cloud-certs.storage.googleapis.com/google-cloud-csek-ingress.pem
  * @typedef DeprecationStatus
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} deleted An optional RFC3339 timestamp on or after which the deprecation state of this resource will be changed to DELETED.
- * @property {string} deprecated An optional RFC3339 timestamp on or after which the deprecation state of this resource will be changed to DEPRECATED.
- * @property {string} obsolete An optional RFC3339 timestamp on or after which the deprecation state of this resource will be changed to OBSOLETE.
+ * @property {string} deleted An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DELETED. This is only informational and the status will not change unless the client explicitly changes it.
+ * @property {string} deprecated An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DEPRECATED. This is only informational and the status will not change unless the client explicitly changes it.
+ * @property {string} obsolete An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.
  * @property {string} replacement The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
  * @property {string} state The deprecation state of this resource. This can be DEPRECATED, OBSOLETE, or DELETED. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
  */
@@ -13993,12 +14199,54 @@ This field is not used for internal load balancing.
  * @property {integer} port The port on the instance.
  */
 /**
+ * @typedef Host
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description [Output Only] An optional textual description of the resource.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string[]} instances A list of resource URLs to the virtual machine instances in this host. They must live in zones contained in the same region as this host.
+ * @property {string} kind [Output Only] The type of the resource. Always compute#host for host.
+ * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} status [Output Only] The status of the host. One of the following values: CREATING, READY, REPAIR, and DELETING.
+ * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
+ * @property {string} zone [Output Only] The name of the zone where the host resides, such as us-central1-a.
+ */
+/**
+ * @typedef HostAggregatedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items [Output Only] A map of scoped host lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#hostAggregatedList for aggregated lists of hosts.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef HostList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(alpha).Host[]} items [Output Only] A list of Host resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#hostList for lists of hosts.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
  * @typedef HostRule
  * @memberOf! compute(alpha)
  * @type object
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string[]} hosts The list of host patterns to match. They must be valid hostnames, except * will match any string of ([a-z0-9-.]*). In that case, * must be the first character and must be followed in the pattern by either - or ..
  * @property {string} pathMatcher The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL&#39;s host portion.
+ */
+/**
+ * @typedef HostsScopedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).Host[]} hosts [Output Only] List of hosts contained in this scope.
+ * @property {object} warning [Output Only] An informational warning that appears when the host list is empty.
  */
 /**
  * @typedef HttpHealthCheck
@@ -14707,7 +14955,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} status [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
  * @property {string} statusMessage [Output Only] An optional textual description of the current status of the operation.
  * @property {string} targetId [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
- * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies. If creating a persistent disk snapshot, this points to the persistent disk that the snapshot was created from.
+ * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
  * @property {string} user [Output Only] User who requested the operation, for example: user@example.com.
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
  * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
@@ -14852,16 +15100,6 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {compute(alpha).Autoscaler[]} items A list of autoscalers.
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
- * @property {string} selfLink [Output Only] Server-defined URL for this resource.
- */
-/**
- * @typedef RegionDiskList
- * @memberOf! compute(alpha)
- * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(alpha).Disk[]} items [Output Only] A list of persistent disks.
- * @property {string} kind [Output Only] Type of resource. Always compute#regionDiskList for lists of region disks.
- * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**

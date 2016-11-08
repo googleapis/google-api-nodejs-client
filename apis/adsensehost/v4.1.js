@@ -1085,7 +1085,7 @@ function Adsensehost(options) { // eslint-disable-line
  * @memberOf! adsensehost(v4.1)
  * @type object
  * @property {object} colors The colors included in the style. These are represented as six hexadecimal characters, similar to HTML color codes, but without the leading hash.
- * @property {string} corners The style of the corners in the ad. Possible values are SQUARE, SLIGHTLY_ROUNDED and VERY_ROUNDED.
+ * @property {string} corners The style of the corners in the ad (deprecated: never populated, ignored).
  * @property {object} font The font which is included in the style.
  * @property {string} kind Kind this is, in this case adsensehost#adStyle.
  */

@@ -313,64 +313,14 @@ function Dns(options) { // eslint-disable-line
 
   };
 
-  self.dnskeys = {
+  self.dnsKeys = {
 
     /**
-     * dns.dnskeys.get
+     * dns.dnsKeys.get
      *
      * @desc Fetch the representation of an existing DnsKey.
      *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud DNS API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dns
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
-     * var google = require('googleapis');
-     * var dns = google.dns('v2beta1');
-     *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
-     *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
-     *
-     *     // * Identifies the project addressed by this request.
-     *     project: "",
-     *
-     *     // * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     *     managedZone: "",
-     *
-     *     // * The identifier of the requested DnsKey.
-     *     dnsKeyId: "",
-     *
-     *     // Auth client
-     *     auth: authClient
-     *   };
-     *
-     *   dns.dnskeys.get(request, function(err, result) {
-     *     if (err) {
-     *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *     }
-     *   });
-     * });
-     *
-     * @alias dns.dnskeys.get
+     * @alias dns.dnsKeys.get
      * @memberOf! dns(v2beta1)
      *
      * @param {object} params Parameters for request
@@ -405,65 +355,11 @@ function Dns(options) { // eslint-disable-line
     },
 
     /**
-     * dns.dnskeys.list
+     * dns.dnsKeys.list
      *
      * @desc Enumerate DnsKeys to a ResourceRecordSet collection.
      *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud DNS API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/dns
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
-     * var google = require('googleapis');
-     * var dns = google.dns('v2beta1');
-     *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
-     *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
-     *
-     *     // * Identifies the project addressed by this request.
-     *     project: "",
-     *
-     *     // * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     *     managedZone: "",
-     *
-     *     // Auth client
-     *     auth: authClient
-     *   };
-     *
-     *
-     *   var recur = function(err, result) {
-     *     if (err) {
-     *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *       if (result.nextPageToken) {
-     *         request.pageToken = result.nextPageToken;
-     *         dns.dnskeys.list(request, recur);
-     *       }
-     *     }
-     *   };
-     *
-     *   dns.dnskeys.list(request, recur);
-     * });
-     *
-     * @alias dns.dnskeys.list
+     * @alias dns.dnsKeys.list
      * @memberOf! dns(v2beta1)
      *
      * @param {object} params Parameters for request

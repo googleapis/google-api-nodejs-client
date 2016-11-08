@@ -47,42 +47,6 @@ function Appengine(options) { // eslint-disable-line
       operations: {
 
         /**
-         * appengine.experimental.apps.operations.get
-         *
-         * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-         *
-         * @alias appengine.experimental.apps.operations.get
-         * @memberOf! appengine(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.appsId Part of `name`. The name of the operation resource.
-         * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        get: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://appengine.googleapis.com/experimental/apps/{appsId}/operations/{operationsId}',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['appsId', 'operationsId'],
-            pathParams: ['appsId', 'operationsId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
          * appengine.experimental.apps.operations.list
          *
          * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
@@ -114,6 +78,42 @@ function Appengine(options) { // eslint-disable-line
             params: params,
             requiredParams: ['appsId'],
             pathParams: ['appsId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * appengine.experimental.apps.operations.get
+         *
+         * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+         *
+         * @alias appengine.experimental.apps.operations.get
+         * @memberOf! appengine(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.appsId Part of `name`. The name of the operation resource.
+         * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          var parameters = {
+            options: utils.extend({
+              url: 'https://appengine.googleapis.com/experimental/apps/{appsId}/operations/{operationsId}',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['appsId', 'operationsId'],
+            pathParams: ['appsId', 'operationsId'],
             context: self
           };
 
@@ -161,9 +161,44 @@ function Appengine(options) { // eslint-disable-line
     },
 
     /**
+     * appengine.apps.create
+     *
+     * @desc Creates an App Engine application for a Google Cloud Platform project. This requires a project that excludes an App Engine application. For details about creating a project without an application, see the [Google Cloud Resource Manager create project topic](https://cloud.google.com/resource-manager/docs/creating-project).
+     *
+     * @alias appengine.apps.create
+     * @memberOf! appengine(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {appengine(v1).Application} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://appengine.googleapis.com/v1/apps',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * appengine.apps.patch
      *
-     * @desc Updates application parameters.
+     * @desc Updates application fields.
      *
      * @alias appengine.apps.patch
      * @memberOf! appengine(v1)
@@ -236,42 +271,6 @@ function Appengine(options) { // eslint-disable-line
     operations: {
 
       /**
-       * appengine.apps.operations.get
-       *
-       * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-       *
-       * @alias appengine.apps.operations.get
-       * @memberOf! appengine(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.appsId Part of `name`. The name of the operation resource.
-       * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://appengine.googleapis.com/v1/apps/{appsId}/operations/{operationsId}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['appsId', 'operationsId'],
-          pathParams: ['appsId', 'operationsId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * appengine.apps.operations.list
        *
        * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
@@ -303,6 +302,42 @@ function Appengine(options) { // eslint-disable-line
           params: params,
           requiredParams: ['appsId'],
           pathParams: ['appsId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * appengine.apps.operations.get
+       *
+       * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+       *
+       * @alias appengine.apps.operations.get
+       * @memberOf! appengine(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. The name of the operation resource.
+       * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://appengine.googleapis.com/v1/apps/{appsId}/operations/{operationsId}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['appsId', 'operationsId'],
+          pathParams: ['appsId', 'operationsId'],
           context: self
         };
 
@@ -891,13 +926,20 @@ function Appengine(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef ListOperationsResponse
+ * @memberOf! appengine(v1)
+ * @type object
+ * @property {appengine(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ * @property {string} nextPageToken The standard List next-page token.
+ */
+/**
  * @typedef Operation
  * @memberOf! appengine(v1)
  * @type object
  * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
  * @property {object} metadata Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
  * @property {boolean} done If the value is `false`, it means the operation is still in progress. If true, the operation is completed, and either `error` or `response` is available.
- * @property {appengine(v1).Status} error The error result of the operation in case of failure.
+ * @property {appengine(v1).Status} error The error result of the operation in case of failure or cancellation.
  * @property {object} response The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
  */
 /**
@@ -907,13 +949,6 @@ function Appengine(options) { // eslint-disable-line
  * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
  * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
  * @property {object[]} details A list of messages that carry the error details. There will be a common set of message types for APIs to use.
- */
-/**
- * @typedef ListOperationsResponse
- * @memberOf! appengine(v1)
- * @type object
- * @property {appengine(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
- * @property {string} nextPageToken The standard List next-page token.
  */
 /**
  * @typedef Application
@@ -1211,11 +1246,13 @@ function Appengine(options) { // eslint-disable-line
  * @property {string} memoryUsage Total memory in use (bytes). @OutputOnly
  * @property {string} vmStatus Status of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment. @OutputOnly
  * @property {boolean} vmDebugEnabled Whether this instance is in debug mode. Only applicable for instances in App Engine flexible environment. @OutputOnly
+ * @property {string} vmIp The IP address of this instance. Only applicable for instances in App Engine flexible environment. @OutputOnly
  */
 /**
  * @typedef DebugInstanceRequest
  * @memberOf! appengine(v1)
  * @type object
+ * @property {string} sshKey Public SSH key to add to the instance. Example: `[USERNAME]:ssh-rsa KEY_VALUE` or `[USERNAME]:ssh-rsa [KEY_VALUE] google-ssh {&quot;userName&quot;:&quot;[USERNAME]&quot;,&quot;expireOn&quot;:&quot;[EXPIRE_TIME]&quot;}` For more information, see [Adding and Removing SSH Keys](https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys)
  */
 /**
  * @typedef ListLocationsResponse
@@ -1232,6 +1269,16 @@ function Appengine(options) { // eslint-disable-line
  * @property {string} locationId The canonical id for this location. For example: `&quot;us-east1&quot;`.
  * @property {object} labels Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
  * @property {object} metadata Service-specific metadata. For example the available capacity at the given location.
+ */
+/**
+ * @typedef OperationMetadataExperimental
+ * @memberOf! appengine(v1)
+ * @type object
+ * @property {string} method API method that initiated this operation. Example: `google.appengine.experimental.CustomDomains.CreateCustomDomain`. @OutputOnly
+ * @property {string} insertTime Time that this operation was created. @OutputOnly
+ * @property {string} endTime Time that this operation completed. @OutputOnly
+ * @property {string} user User who requested this operation. @OutputOnly
+ * @property {string} target Name of the resource that this operation is acting on. Example: `apps/myapp/customDomains/example.com`. @OutputOnly
  */
 /**
  * @typedef OperationMetadata

@@ -24,7 +24,7 @@ var utils = require('../../lib/utils');
 /**
  * Google Cloud Dataproc API
  *
- * Manages Hadoop-based clusters and jobs on Google Cloud Platform.
+ * An API for managing Hadoop-based clusters and jobs on Google Cloud Platform.
  *
  * @example
  * var google = require('googleapis');
@@ -200,6 +200,7 @@ function Dataproc(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
+       * @param {string=} params.filter [Optional] A filter constraining which clusters to list. Valid filters contain label terms such as: labels.key1 = val1 AND (-labels.k2 = val2 OR labels.k3 = val3)
        * @param {integer=} params.pageSize The standard List page size.
        * @param {string=} params.pageToken The standard List page token.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -353,6 +354,7 @@ function Dataproc(options) { // eslint-disable-line
        * @param {string=} params.pageToken [Optional] The page token, returned by a previous call, to request the next page of results.
        * @param {string=} params.clusterName [Optional] If set, the returned jobs list includes only jobs that were submitted to the named cluster.
        * @param {string=} params.jobStateMatcher [Optional] Specifies enumerated categories of jobs to list.
+       * @param {string=} params.filter [Optional] A filter constraining which jobs to list. Valid filters contain job state and label terms such as: labels.key1 = val1 AND (labels.k2 = val2 OR labels.k3 = val3)
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -609,9 +611,11 @@ function Dataproc(options) { // eslint-disable-line
  * @property {string} projectId [Required] The Google Cloud Platform project ID that the cluster belongs to.
  * @property {string} clusterName [Required] The cluster name. Cluster names within a project must be unique. Names from deleted clusters can be reused.
  * @property {dataproc(v1beta1).ClusterConfiguration} configuration [Required] The cluster configuration. Note that Cloud Dataproc may set default values, and values may change when clusters are updated.
+ * @property {object} labels [Optional] The labels to associate with this cluster. Label keys must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62} Label values must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given cluster.
  * @property {dataproc(v1beta1).ClusterStatus} status [Output-only] Cluster status.
  * @property {dataproc(v1beta1).ClusterStatus[]} statusHistory [Output-only] Previous cluster statuses.
  * @property {string} clusterUuid [Output-only] A cluster UUID (Unique Universal Identifier). Cloud Dataproc generates this value when it creates the cluster.
+ * @property {dataproc(v1beta1).ClusterMetrics} metrics Contains cluster daemon metrics such as HDFS and YARN stats.
  */
 /**
  * @typedef ClusterConfiguration
@@ -632,6 +636,7 @@ function Dataproc(options) { // eslint-disable-line
  * @property {string} zoneUri [Required] The zone where the Google Compute Engine cluster will be located. Example: `https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]`.
  * @property {string} networkUri The Google Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the &quot;default&quot; network of the project is used, if it exists. Cannot be a &quot;Custom Subnet Network&quot; (see https://cloud.google.com/compute/docs/subnetworks for more information). Example: `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default`.
  * @property {string} subnetworkUri The Google Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri. Example: `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0`.
+ * @property {boolean} internalIpOnly If true, all instances in the cluser will only have internal IP addresses. By default, clusters are not restricted to internal IP addresses, and will have ephemeral external IP addresses assigned to each instance. This restriction can only be enabled for subnetwork enabled networks, and all off-cluster dependencies must be configured to be accessible without external IP addresses.
  * @property {string[]} serviceAccountScopes The URIs of service account scopes to be included in Google Compute Engine instances. The following base set of scopes is always included: - https://www.googleapis.com/auth/cloud.useraccounts.readonly - https://www.googleapis.com/auth/devstorage.read_write - https://www.googleapis.com/auth/logging.write If no scopes are specfied, the following defaults are also provided: - https://www.googleapis.com/auth/bigquery - https://www.googleapis.com/auth/bigtable.admin.table - https://www.googleapis.com/auth/bigtable.data - https://www.googleapis.com/auth/devstorage.full_control
  * @property {string[]} tags The Google Compute Engine tags to add to all instances.
  * @property {object} metadata The Google Compute Engine metadata entries to add to all instances.
@@ -685,13 +690,20 @@ function Dataproc(options) { // eslint-disable-line
  * @property {string} stateStartTime Time when this state was entered.
  */
 /**
+ * @typedef ClusterMetrics
+ * @memberOf! dataproc(v1beta1)
+ * @type object
+ * @property {object} hdfsMetrics The HDFS metrics.
+ * @property {object} yarnMetrics The YARN metrics.
+ */
+/**
  * @typedef Operation
  * @memberOf! dataproc(v1beta1)
  * @type object
  * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`.
  * @property {object} metadata Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
  * @property {boolean} done If the value is `false`, it means the operation is still in progress. If true, the operation is completed, and either `error` or `response` is available.
- * @property {dataproc(v1beta1).Status} error The error result of the operation in case of failure.
+ * @property {dataproc(v1beta1).Status} error The error result of the operation in case of failure or cancellation.
  * @property {object} response The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
  */
 /**
@@ -740,6 +752,7 @@ function Dataproc(options) { // eslint-disable-line
  * @property {string} driverOutputResourceUri [Output-only] A URI pointing to the location of the stdout of the job&#39;s driver program.
  * @property {string} driverControlFilesUri [Output-only] If present, the location of miscellaneous control files which may be used as part of job setup and handling. If not present, control files may be placed in the same location as `driver_output_uri`.
  * @property {boolean} interactive [Optional] If set to `true`, the driver&#39;s stdin will be kept open and `driver_input_uri` will be set to provide a path at which additional input can be sent to the driver.
+ * @property {object} labels [Optional] The labels to associate with this job. Label keys must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}{0,62} Label values must be between 1 and 63 characters long, and must conform to the following regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given job.
  */
 /**
  * @typedef JobReference
@@ -890,27 +903,28 @@ function Dataproc(options) { // eslint-disable-line
  * @typedef DiagnoseClusterResults
  * @memberOf! dataproc(v1beta1)
  * @type object
- * @property {string} outputUri [Output-only] The Google Cloud Storage URI of the diagnostic output. This is a plain text file with a summary of collected diagnostics.
+ * @property {string} outputUri [Output-only] The Google Cloud Storage URI of the diagnostic output. The output report is a plain text file with a summary of collected diagnostics.
  */
 /**
  * @typedef ClusterOperationMetadata
  * @memberOf! dataproc(v1beta1)
  * @type object
- * @property {string} clusterName Name of the cluster for the operation.
- * @property {string} clusterUuid Cluster UUId for the operation.
+ * @property {string} clusterName [Output-only] Name of the cluster for the operation.
+ * @property {string} clusterUuid [Output-only] Cluster UUID for the operation.
  * @property {dataproc(v1beta1).ClusterOperationStatus} status [Output-only] Current operation status.
  * @property {dataproc(v1beta1).ClusterOperationStatus[]} statusHistory [Output-only] The previous operation status.
  * @property {string} operationType [Output-only] The operation type.
  * @property {string} description [Output-only] Short description of operation.
+ * @property {object} labels [Output-only] labels associated with the operation
  */
 /**
  * @typedef ClusterOperationStatus
  * @memberOf! dataproc(v1beta1)
  * @type object
- * @property {string} state A message containing the operation state.
- * @property {string} innerState A message containing the detailed operation state.
- * @property {string} details A message containing any operation metadata details.
- * @property {string} stateStartTime The time this state was entered.
+ * @property {string} state [Output-only] A message containing the operation state.
+ * @property {string} innerState [Output-only] A message containing the detailed operation state.
+ * @property {string} details [Output-only]A message containing any operation metadata details.
+ * @property {string} stateStartTime [Output-only] The time this state was entered.
  */
 /**
  * @typedef DiagnoseClusterOutputLocation

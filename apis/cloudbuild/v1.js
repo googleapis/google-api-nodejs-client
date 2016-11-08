@@ -619,6 +619,9 @@ results field.
 If any of the images fail to be pushed, the build is marked FAILURE.
 * @property {string} startTime Time at which execution of the build was started.
 @OutputOnly
+* @property {string} buildTriggerId The ID of the BuildTrigger that triggered this build, if it was
+triggered automatically.
+@OutputOnly
 * @property {string} logsBucket Google Cloud Storage bucket where logs should be written (see
 [Bucket Name
 Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).

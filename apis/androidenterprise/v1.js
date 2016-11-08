@@ -1104,7 +1104,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.enterprises.setStoreLayout
      *
-     * @desc Sets the store layout for the enterprise.
+     * @desc Sets the store layout for the enterprise. By default, storeLayoutType is set to "basic" and the basic store layout is enabled. The basic layout only contains apps approved by the administrator, and that have been added to the available product set for a user (using the  setAvailableProductSet call). Apps on the page are sorted in order of their product ID value. If you create a custom store layout (by setting storeLayoutType = "custom"), the basic store layout is disabled.
      *
      * @alias androidenterprise.enterprises.setStoreLayout
      * @memberOf! androidenterprise(v1)
@@ -3384,7 +3384,7 @@ function Androidenterprise(options) { // eslint-disable-line
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#administratorWebTokenSpec&quot;.
  * @property {string} parent The URI of the parent frame hosting the iframe. To prevent XSS, the iframe may not be hosted at other URIs. This URI must be https.
- * @property {string[]} permission The list of permissions the admin is granted within the iframe. The admin will only be allowed to view an iframe if they have all of the permissions associated with it.
+ * @property {string[]} permission The list of permissions the admin is granted within the iframe. The admin will only be allowed to view an iframe if they have all of the permissions associated with it. The only valid value is &quot;approveApps&quot; that will allow the admin to access the iframe in &quot;approve&quot; mode.
  */
 /**
  * @typedef AppRestrictionsSchema
@@ -3821,7 +3821,7 @@ If a homepage has not been set, the Play store shown on devices will be empty. N
 
 If there exists at least one page, this field must be set to the ID of a valid page.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#storeLayout&quot;.
-* @property {string} storeLayoutType Sets a store layout type. If set to &quot;custom&quot;, &quot;homepageId&quot; must be specified. If set to &quot;basic&quot;, the layout will consist of all approved apps accessible by the user, split in pages of 100 each; in this case, &quot;homepageId&quot; must not be specified. The &quot;basic&quot; setting takes precedence over any existing collections setup for this enterprise (if any). Should the enterprise use collectionViewers for controlling access rights, these will still be respected.
+* @property {string} storeLayoutType The store layout type. By default, this value is set to &quot;basic&quot;. If set to &quot;custom&quot;, &quot;homepageId&quot; must be specified. If set to &quot;basic&quot;, the layout will consist of all approved apps accessible by the user, split in pages of 100 each; in this case, &quot;homepageId&quot; must not be specified. The &quot;basic&quot; setting takes precedence over any existing collections setup for this enterprise (if any). Should the enterprise use collectionViewers for controlling access rights, these will still be respected.
 */
 /**
  * @typedef StoreLayoutClustersListResponse

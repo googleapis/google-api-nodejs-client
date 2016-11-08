@@ -429,6 +429,7 @@ by the Error Reporting system is used.
 * @property {string} nextPageToken If non-empty, more results are available.
 Pass this token, along with the same query parameters as the first
 request, to view the next page of results.
+* @property {string} timeRangeBegin The timestamp specifies the start time to which the request was restricted.
 * @property {clouderrorreporting(v1beta1).ErrorEvent[]} errorEvents The error events which match the given request.
 */
 /**
@@ -460,6 +461,10 @@ in the error report.
 * @property {string} nextPageToken If non-empty, more results are available.
 Pass this token, along with the same query parameters as the first
 request, to view the next page of results.
+* @property {string} timeRangeBegin The timestamp specifies the start time to which the request was restricted.
+The start time is set based on the requested time range. It may be adjusted
+to a later time if a project has exceeded the storage quota and older data
+has been deleted.
 * @property {clouderrorreporting(v1beta1).ErrorGroupStats[]} errorGroupStats The error group stats which match the given request.
 */
 module.exports = Clouderrorreporting;

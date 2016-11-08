@@ -55,25 +55,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Account ID.
-     *     summaryAccountId: '',
-     *
+     *     summaryAccountId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -89,14 +81,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accountActiveAdSummaries.get
      * @memberOf! dfareporting(v2.6)
@@ -146,25 +144,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Account permission group ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -180,14 +170,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accountPermissionGroups.get
      * @memberOf! dfareporting(v2.6)
@@ -233,22 +229,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -264,14 +252,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accountPermissionGroups.list
      * @memberOf! dfareporting(v2.6)
@@ -320,25 +314,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Account permission ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -354,14 +340,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accountPermissions.get
      * @memberOf! dfareporting(v2.6)
@@ -407,22 +399,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -438,14 +422,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accountPermissions.list
      * @memberOf! dfareporting(v2.6)
@@ -494,25 +484,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // User profile ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -528,14 +510,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accountUserProfiles.get
      * @memberOf! dfareporting(v2.6)
@@ -581,22 +569,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -616,14 +596,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accountUserProfiles.insert
      * @memberOf! dfareporting(v2.6)
@@ -659,7 +645,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.accountUserProfiles.list
      *
-     * @desc Retrieves a list of account user profiles, possibly filtered.
+     * @desc Retrieves a list of account user profiles, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -669,22 +655,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -713,14 +691,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.accountUserProfiles.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accountUserProfiles.list
      * @memberOf! dfareporting(v2.6)
@@ -774,28 +758,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // User profile ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -812,14 +789,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accountUserProfiles.patch
      * @memberOf! dfareporting(v2.6)
@@ -866,22 +849,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -901,14 +876,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accountUserProfiles.update
      * @memberOf! dfareporting(v2.6)
@@ -958,25 +939,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Account ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -992,14 +965,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accounts.get
      * @memberOf! dfareporting(v2.6)
@@ -1035,7 +1014,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.accounts.list
      *
-     * @desc Retrieves the list of accounts, possibly filtered.
+     * @desc Retrieves the list of accounts, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -1045,22 +1024,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -1089,14 +1060,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.accounts.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accounts.list
      * @memberOf! dfareporting(v2.6)
@@ -1148,28 +1125,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Account ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -1186,14 +1156,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accounts.patch
      * @memberOf! dfareporting(v2.6)
@@ -1240,22 +1216,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -1275,14 +1243,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.accounts.update
      * @memberOf! dfareporting(v2.6)
@@ -1332,25 +1306,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Ad ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -1366,14 +1332,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.ads.get
      * @memberOf! dfareporting(v2.6)
@@ -1419,22 +1391,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -1454,14 +1418,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.ads.insert
      * @memberOf! dfareporting(v2.6)
@@ -1497,7 +1467,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.ads.list
      *
-     * @desc Retrieves a list of ads, possibly filtered.
+     * @desc Retrieves a list of ads, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -1507,22 +1477,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -1551,14 +1513,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.ads.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.ads.list
      * @memberOf! dfareporting(v2.6)
@@ -1619,6 +1587,60 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @desc Updates an existing ad. This method supports patch semantics.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // User profile ID associated with this request.
+     *     profileId: '',  // TODO: Update placeholder value.
+     *
+     *     // Ad ID.
+     *     id: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.ads.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
+     *
      * @alias dfareporting.ads.patch
      * @memberOf! dfareporting(v2.6)
      *
@@ -1655,6 +1677,56 @@ function Dfareporting(options) { // eslint-disable-line
      * dfareporting.ads.update
      *
      * @desc Updates an existing ad.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // User profile ID associated with this request.
+     *     profileId: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties of the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.ads.update(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.ads.update
      * @memberOf! dfareporting(v2.6)
@@ -1704,25 +1776,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `delete` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Advertiser group ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -1730,18 +1794,25 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.advertiserGroups.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
+     *       return;
      *     }
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `delete` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.advertiserGroups.delete
      * @memberOf! dfareporting(v2.6)
@@ -1787,25 +1858,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Advertiser group ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -1821,14 +1884,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.advertiserGroups.get
      * @memberOf! dfareporting(v2.6)
@@ -1874,22 +1943,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -1909,14 +1970,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.advertiserGroups.insert
      * @memberOf! dfareporting(v2.6)
@@ -1952,7 +2019,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.advertiserGroups.list
      *
-     * @desc Retrieves a list of advertiser groups, possibly filtered.
+     * @desc Retrieves a list of advertiser groups, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -1962,22 +2029,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -2006,14 +2065,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.advertiserGroups.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.advertiserGroups.list
      * @memberOf! dfareporting(v2.6)
@@ -2064,28 +2129,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Advertiser group ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -2102,14 +2160,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.advertiserGroups.patch
      * @memberOf! dfareporting(v2.6)
@@ -2156,22 +2220,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -2191,14 +2247,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.advertiserGroups.update
      * @memberOf! dfareporting(v2.6)
@@ -2248,25 +2310,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Advertiser ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -2282,14 +2336,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.advertisers.get
      * @memberOf! dfareporting(v2.6)
@@ -2335,22 +2395,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -2370,14 +2422,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.advertisers.insert
      * @memberOf! dfareporting(v2.6)
@@ -2413,7 +2471,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.advertisers.list
      *
-     * @desc Retrieves a list of advertisers, possibly filtered.
+     * @desc Retrieves a list of advertisers, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -2423,22 +2481,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -2467,14 +2517,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.advertisers.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.advertisers.list
      * @memberOf! dfareporting(v2.6)
@@ -2531,28 +2587,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Advertiser ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -2569,14 +2618,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.advertisers.patch
      * @memberOf! dfareporting(v2.6)
@@ -2623,22 +2678,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -2658,14 +2705,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.advertisers.update
      * @memberOf! dfareporting(v2.6)
@@ -2715,22 +2768,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -2746,14 +2791,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.browsers.list
      * @memberOf! dfareporting(v2.6)
@@ -2802,25 +2853,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Campaign ID in this association.
-     *     campaignId: '',
-     *
+     *     campaignId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -2840,14 +2883,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.campaignCreativeAssociations.insert
      * @memberOf! dfareporting(v2.6)
@@ -2884,7 +2933,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.campaignCreativeAssociations.list
      *
-     * @desc Retrieves the list of creative IDs associated with the specified campaign.
+     * @desc Retrieves the list of creative IDs associated with the specified campaign. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -2894,25 +2943,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Campaign ID in this association.
-     *     campaignId: '',
-     *
+     *     campaignId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -2941,14 +2982,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.campaignCreativeAssociations.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.campaignCreativeAssociations.list
      * @memberOf! dfareporting(v2.6)
@@ -3001,25 +3048,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Campaign ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -3035,14 +3074,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.campaigns.get
      * @memberOf! dfareporting(v2.6)
@@ -3088,28 +3133,20 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Default landing page name for this new campaign. Must be less than 256 characters long.
-     *     defaultLandingPageName: '{MY-DEFAULT-LANDING-PAGE-NAME}',
+     *     defaultLandingPageName: '',  // TODO: Update placeholder value.
      *
      *     // Default landing page URL for this new campaign.
-     *     defaultLandingPageUrl: '{MY-DEFAULT-LANDING-PAGE-URL}',
-     *
+     *     defaultLandingPageUrl: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -3129,14 +3166,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.campaigns.insert
      * @memberOf! dfareporting(v2.6)
@@ -3174,7 +3217,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.campaigns.list
      *
-     * @desc Retrieves a list of campaigns, possibly filtered.
+     * @desc Retrieves a list of campaigns, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -3184,22 +3227,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -3228,14 +3263,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.campaigns.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.campaigns.list
      * @memberOf! dfareporting(v2.6)
@@ -3293,28 +3334,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Campaign ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -3331,14 +3365,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.campaigns.patch
      * @memberOf! dfareporting(v2.6)
@@ -3385,22 +3425,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -3420,14 +3452,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.campaigns.update
      * @memberOf! dfareporting(v2.6)
@@ -3477,25 +3515,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Change log ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -3511,14 +3541,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.changeLogs.get
      * @memberOf! dfareporting(v2.6)
@@ -3554,7 +3590,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.changeLogs.list
      *
-     * @desc Retrieves a list of change logs.
+     * @desc Retrieves a list of change logs. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -3564,22 +3600,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -3608,14 +3636,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.changeLogs.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.changeLogs.list
      * @memberOf! dfareporting(v2.6)
@@ -3674,22 +3708,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -3705,14 +3731,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.cities.list
      * @memberOf! dfareporting(v2.6)
@@ -3765,25 +3797,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Connection type ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -3799,14 +3823,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.connectionTypes.get
      * @memberOf! dfareporting(v2.6)
@@ -3852,22 +3882,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -3883,14 +3905,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.connectionTypes.list
      * @memberOf! dfareporting(v2.6)
@@ -3939,25 +3967,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `delete` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Content category ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -3965,18 +3985,25 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.contentCategories.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
+     *       return;
      *     }
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `delete` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.contentCategories.delete
      * @memberOf! dfareporting(v2.6)
@@ -4022,25 +4049,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Content category ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -4056,14 +4075,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.contentCategories.get
      * @memberOf! dfareporting(v2.6)
@@ -4109,22 +4134,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -4144,14 +4161,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.contentCategories.insert
      * @memberOf! dfareporting(v2.6)
@@ -4187,7 +4210,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.contentCategories.list
      *
-     * @desc Retrieves a list of content categories, possibly filtered.
+     * @desc Retrieves a list of content categories, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -4197,22 +4220,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -4241,14 +4256,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.contentCategories.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.contentCategories.list
      * @memberOf! dfareporting(v2.6)
@@ -4299,28 +4320,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Content category ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -4337,14 +4351,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.contentCategories.patch
      * @memberOf! dfareporting(v2.6)
@@ -4391,22 +4411,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -4426,14 +4438,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.contentCategories.update
      * @memberOf! dfareporting(v2.6)
@@ -4483,22 +4501,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `batchinsert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -4518,14 +4528,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `batchinsert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/ddmconversions
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/ddmconversions
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.conversions.batchinsert
      * @memberOf! dfareporting(v2.6)
@@ -4575,25 +4591,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Country DART ID.
-     *     dartId: '',
-     *
+     *     dartId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -4609,14 +4617,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.countries.get
      * @memberOf! dfareporting(v2.6)
@@ -4662,22 +4676,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -4693,14 +4699,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.countries.list
      * @memberOf! dfareporting(v2.6)
@@ -4749,35 +4761,26 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Advertiser ID of this creative. This is a required field.
-     *     advertiserId: '',
-     *
+     *     advertiserId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
      *     },
      *
      *     media: {
-     *       // TODO: Change placeholders below to add desired media content for upload.
-     *       // For more information, see:
+     *       // TODO: Add desired media content for upload. See:
      *       // https://github.com/google/google-api-nodejs-client#media-uploads
-     *       mimeType: '{MY-MIME-TYPE}',  // See https://www.w3.org/Protocols/rfc1341/4_Content-Type.html
+     *       mimeType: '',  // See https://www.w3.org/Protocols/rfc1341/4_Content-Type.html
      *       body: {}
      *     },
      *
@@ -4795,14 +4798,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeAssets.insert
      * @memberOf! dfareporting(v2.6)
@@ -4857,28 +4866,20 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `delete` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Creative field ID for this creative field value.
-     *     creativeFieldId: '',
+     *     creativeFieldId: '',  // TODO: Update placeholder value.
      *
      *     // Creative Field Value ID
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -4886,18 +4887,25 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.creativeFieldValues.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
+     *       return;
      *     }
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `delete` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeFieldValues.delete
      * @memberOf! dfareporting(v2.6)
@@ -4944,28 +4952,20 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Creative field ID for this creative field value.
-     *     creativeFieldId: '',
+     *     creativeFieldId: '',  // TODO: Update placeholder value.
      *
      *     // Creative Field Value ID
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -4981,14 +4981,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeFieldValues.get
      * @memberOf! dfareporting(v2.6)
@@ -5027,6 +5033,59 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @desc Inserts a new creative field value.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // User profile ID associated with this request.
+     *     profileId: '',  // TODO: Update placeholder value.
+     *
+     *     // Creative field ID for this creative field value.
+     *     creativeFieldId: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties of the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.creativeFieldValues.insert(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
+     *
      * @alias dfareporting.creativeFieldValues.insert
      * @memberOf! dfareporting(v2.6)
      *
@@ -5062,7 +5121,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.creativeFieldValues.list
      *
-     * @desc Retrieves a list of creative field values, possibly filtered.
+     * @desc Retrieves a list of creative field values, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -5072,25 +5131,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Creative field ID for this creative field value.
-     *     creativeFieldId: '',
-     *
+     *     creativeFieldId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -5119,14 +5170,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.creativeFieldValues.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeFieldValues.list
      * @memberOf! dfareporting(v2.6)
@@ -5178,31 +5235,24 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Creative field ID for this creative field value.
-     *     creativeFieldId: '',
+     *     creativeFieldId: '',  // TODO: Update placeholder value.
      *
      *     // Creative Field Value ID
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -5219,14 +5269,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeFieldValues.patch
      * @memberOf! dfareporting(v2.6)
@@ -5274,25 +5330,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Creative field ID for this creative field value.
-     *     creativeFieldId: '',
-     *
+     *     creativeFieldId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -5312,14 +5360,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeFieldValues.update
      * @memberOf! dfareporting(v2.6)
@@ -5370,25 +5424,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `delete` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Creative Field ID
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -5396,18 +5442,25 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.creativeFields.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
+     *       return;
      *     }
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `delete` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeFields.delete
      * @memberOf! dfareporting(v2.6)
@@ -5453,25 +5506,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Creative Field ID
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -5487,14 +5532,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeFields.get
      * @memberOf! dfareporting(v2.6)
@@ -5540,22 +5591,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -5575,14 +5618,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeFields.insert
      * @memberOf! dfareporting(v2.6)
@@ -5618,7 +5667,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.creativeFields.list
      *
-     * @desc Retrieves a list of creative fields, possibly filtered.
+     * @desc Retrieves a list of creative fields, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -5628,22 +5677,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -5672,14 +5713,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.creativeFields.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeFields.list
      * @memberOf! dfareporting(v2.6)
@@ -5731,28 +5778,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Creative Field ID
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -5769,14 +5809,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeFields.patch
      * @memberOf! dfareporting(v2.6)
@@ -5823,22 +5869,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -5858,14 +5896,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeFields.update
      * @memberOf! dfareporting(v2.6)
@@ -5915,25 +5959,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Creative group ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -5949,14 +5985,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeGroups.get
      * @memberOf! dfareporting(v2.6)
@@ -5994,6 +6036,56 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @desc Inserts a new creative group.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // User profile ID associated with this request.
+     *     profileId: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties of the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.creativeGroups.insert(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
+     *
      * @alias dfareporting.creativeGroups.insert
      * @memberOf! dfareporting(v2.6)
      *
@@ -6028,7 +6120,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.creativeGroups.list
      *
-     * @desc Retrieves a list of creative groups, possibly filtered.
+     * @desc Retrieves a list of creative groups, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -6038,22 +6130,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -6082,14 +6166,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.creativeGroups.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeGroups.list
      * @memberOf! dfareporting(v2.6)
@@ -6142,28 +6232,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Creative group ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -6180,14 +6263,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeGroups.patch
      * @memberOf! dfareporting(v2.6)
@@ -6234,22 +6323,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -6269,14 +6350,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creativeGroups.update
      * @memberOf! dfareporting(v2.6)
@@ -6326,25 +6413,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Creative ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -6360,14 +6439,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creatives.get
      * @memberOf! dfareporting(v2.6)
@@ -6413,22 +6498,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -6448,14 +6525,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creatives.insert
      * @memberOf! dfareporting(v2.6)
@@ -6491,7 +6574,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.creatives.list
      *
-     * @desc Retrieves a list of creatives, possibly filtered.
+     * @desc Retrieves a list of creatives, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -6501,22 +6584,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -6545,14 +6620,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.creatives.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creatives.list
      * @memberOf! dfareporting(v2.6)
@@ -6613,28 +6694,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Creative ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -6651,14 +6725,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creatives.patch
      * @memberOf! dfareporting(v2.6)
@@ -6705,22 +6785,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -6740,14 +6812,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.creatives.update
      * @memberOf! dfareporting(v2.6)
@@ -6797,22 +6875,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `query` method:
-     *
      *     // The DFA user profile ID.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -6845,14 +6915,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.dimensionValues.query(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `query` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfareporting
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfareporting
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.dimensionValues.query
      * @memberOf! dfareporting(v2.6)
@@ -6904,25 +6980,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Directory site contact ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -6938,14 +7006,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.directorySiteContacts.get
      * @memberOf! dfareporting(v2.6)
@@ -6981,7 +7055,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.directorySiteContacts.list
      *
-     * @desc Retrieves a list of directory site contacts, possibly filtered.
+     * @desc Retrieves a list of directory site contacts, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -6991,22 +7065,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -7035,14 +7101,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.directorySiteContacts.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.directorySiteContacts.list
      * @memberOf! dfareporting(v2.6)
@@ -7098,25 +7170,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Directory site ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -7132,14 +7196,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.directorySites.get
      * @memberOf! dfareporting(v2.6)
@@ -7185,22 +7255,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -7220,14 +7282,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.directorySites.insert
      * @memberOf! dfareporting(v2.6)
@@ -7263,7 +7331,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.directorySites.list
      *
-     * @desc Retrieves a list of directory sites, possibly filtered.
+     * @desc Retrieves a list of directory sites, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -7273,22 +7341,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -7317,14 +7377,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.directorySites.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.directorySites.list
      * @memberOf! dfareporting(v2.6)
@@ -7386,32 +7452,24 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `delete` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // ID of the object of this dynamic targeting key. This is a required field.
-     *     objectId: '',
+     *     objectId: '',  // TODO: Update placeholder value.
      *
      *     // Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long
      *     // and cannot contain commas. All characters are converted to lowercase.
-     *     name: '{MY-NAME}',
+     *     name: '',  // TODO: Update placeholder value.
      *
      *     // Type of the object of this dynamic targeting key. This is a required field.
-     *     objectType: '{MY-OBJECT-TYPE}',
-     *
+     *     objectType: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -7419,18 +7477,25 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.dynamicTargetingKeys.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
+     *       return;
      *     }
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `delete` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.dynamicTargetingKeys.delete
      * @memberOf! dfareporting(v2.6)
@@ -7478,22 +7543,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -7513,14 +7570,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.dynamicTargetingKeys.insert
      * @memberOf! dfareporting(v2.6)
@@ -7566,22 +7629,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -7597,14 +7652,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.dynamicTargetingKeys.list
      * @memberOf! dfareporting(v2.6)
@@ -7657,25 +7718,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `delete` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Event tag ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -7683,18 +7736,25 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.eventTags.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
+     *       return;
      *     }
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `delete` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.eventTags.delete
      * @memberOf! dfareporting(v2.6)
@@ -7740,25 +7800,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Event tag ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -7774,14 +7826,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.eventTags.get
      * @memberOf! dfareporting(v2.6)
@@ -7827,22 +7885,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -7862,14 +7912,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.eventTags.insert
      * @memberOf! dfareporting(v2.6)
@@ -7915,22 +7971,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -7946,14 +7994,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.eventTags.list
      * @memberOf! dfareporting(v2.6)
@@ -8008,28 +8062,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Event tag ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -8046,14 +8093,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.eventTags.patch
      * @memberOf! dfareporting(v2.6)
@@ -8100,22 +8153,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -8135,14 +8180,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.eventTags.update
      * @memberOf! dfareporting(v2.6)
@@ -8192,25 +8243,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // The ID of the report.
-     *     reportId: '',
+     *     reportId: '',  // TODO: Update placeholder value.
      *
      *     // The ID of the report file.
-     *     fileId: '',
-     *
+     *     fileId: '',  // TODO: Update placeholder value.
      *
      *     // TODO: To download media content, use:
      *     //
@@ -8230,14 +8273,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfareporting
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfareporting
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.files.get
      * @memberOf! dfareporting(v2.6)
@@ -8283,22 +8332,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // The DFA profile ID.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -8327,14 +8368,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.files.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfareporting
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfareporting
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.files.list
      * @memberOf! dfareporting(v2.6)
@@ -8388,25 +8435,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `delete` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Floodlight activity ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -8414,18 +8453,25 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.floodlightActivities.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
+     *       return;
      *     }
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `delete` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightActivities.delete
      * @memberOf! dfareporting(v2.6)
@@ -8471,22 +8517,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `generatetag` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -8502,14 +8540,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `generatetag` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightActivities.generatetag
      * @memberOf! dfareporting(v2.6)
@@ -8555,25 +8599,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Floodlight activity ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -8589,14 +8625,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightActivities.get
      * @memberOf! dfareporting(v2.6)
@@ -8642,22 +8684,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -8677,14 +8711,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightActivities.insert
      * @memberOf! dfareporting(v2.6)
@@ -8720,7 +8760,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.floodlightActivities.list
      *
-     * @desc Retrieves a list of floodlight activities, possibly filtered.
+     * @desc Retrieves a list of floodlight activities, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -8730,22 +8770,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -8774,14 +8806,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.floodlightActivities.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightActivities.list
      * @memberOf! dfareporting(v2.6)
@@ -8839,28 +8877,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Floodlight activity ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -8877,14 +8908,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightActivities.patch
      * @memberOf! dfareporting(v2.6)
@@ -8931,22 +8968,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -8966,14 +8995,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightActivities.update
      * @memberOf! dfareporting(v2.6)
@@ -9023,25 +9058,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Floodlight activity Group ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -9057,14 +9084,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightActivityGroups.get
      * @memberOf! dfareporting(v2.6)
@@ -9110,22 +9143,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -9145,14 +9170,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightActivityGroups.insert
      * @memberOf! dfareporting(v2.6)
@@ -9188,7 +9219,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.floodlightActivityGroups.list
      *
-     * @desc Retrieves a list of floodlight activity groups, possibly filtered.
+     * @desc Retrieves a list of floodlight activity groups, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -9198,22 +9229,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -9242,14 +9265,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.floodlightActivityGroups.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightActivityGroups.list
      * @memberOf! dfareporting(v2.6)
@@ -9303,28 +9332,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Floodlight activity Group ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -9341,14 +9363,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightActivityGroups.patch
      * @memberOf! dfareporting(v2.6)
@@ -9386,6 +9414,56 @@ function Dfareporting(options) { // eslint-disable-line
      * dfareporting.floodlightActivityGroups.update
      *
      * @desc Updates an existing floodlight activity group.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // User profile ID associated with this request.
+     *     profileId: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties of the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.floodlightActivityGroups.update(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightActivityGroups.update
      * @memberOf! dfareporting(v2.6)
@@ -9435,25 +9513,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Floodlight configuration ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -9469,14 +9539,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightConfigurations.get
      * @memberOf! dfareporting(v2.6)
@@ -9522,22 +9598,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -9553,14 +9621,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightConfigurations.list
      * @memberOf! dfareporting(v2.6)
@@ -9606,28 +9680,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Floodlight configuration ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -9644,14 +9711,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightConfigurations.patch
      * @memberOf! dfareporting(v2.6)
@@ -9698,22 +9771,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -9733,14 +9798,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.floodlightConfigurations.update
      * @memberOf! dfareporting(v2.6)
@@ -9790,28 +9861,20 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Project ID for order documents.
-     *     projectId: '',
+     *     projectId: '',  // TODO: Update placeholder value.
      *
      *     // Inventory item ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -9827,14 +9890,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.inventoryItems.get
      * @memberOf! dfareporting(v2.6)
@@ -9871,7 +9940,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.inventoryItems.list
      *
-     * @desc Retrieves a list of inventory items, possibly filtered.
+     * @desc Retrieves a list of inventory items, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -9881,25 +9950,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Project ID for order documents.
-     *     projectId: '',
-     *
+     *     projectId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -9928,14 +9989,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.inventoryItems.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.inventoryItems.list
      * @memberOf! dfareporting(v2.6)
@@ -9994,28 +10061,20 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `delete` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Landing page campaign ID.
-     *     campaignId: '',
+     *     campaignId: '',  // TODO: Update placeholder value.
      *
      *     // Landing page ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -10023,18 +10082,25 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.landingPages.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
+     *       return;
      *     }
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `delete` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.landingPages.delete
      * @memberOf! dfareporting(v2.6)
@@ -10081,28 +10147,20 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Landing page campaign ID.
-     *     campaignId: '',
+     *     campaignId: '',  // TODO: Update placeholder value.
      *
      *     // Landing page ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -10118,14 +10176,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.landingPages.get
      * @memberOf! dfareporting(v2.6)
@@ -10172,25 +10236,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Landing page campaign ID.
-     *     campaignId: '',
-     *
+     *     campaignId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -10210,14 +10266,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.landingPages.insert
      * @memberOf! dfareporting(v2.6)
@@ -10264,25 +10326,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Landing page campaign ID.
-     *     campaignId: '',
-     *
+     *     campaignId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -10298,14 +10352,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.landingPages.list
      * @memberOf! dfareporting(v2.6)
@@ -10351,31 +10411,24 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Landing page campaign ID.
-     *     campaignId: '',
+     *     campaignId: '',  // TODO: Update placeholder value.
      *
      *     // Landing page ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -10392,14 +10445,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.landingPages.patch
      * @memberOf! dfareporting(v2.6)
@@ -10447,25 +10506,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Landing page campaign ID.
-     *     campaignId: '',
-     *
+     *     campaignId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -10485,14 +10536,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.landingPages.update
      * @memberOf! dfareporting(v2.6)
@@ -10543,22 +10600,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -10574,14 +10623,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.languages.list
      * @memberOf! dfareporting(v2.6)
@@ -10630,22 +10685,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -10661,14 +10708,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.metros.list
      * @memberOf! dfareporting(v2.6)
@@ -10709,6 +10762,55 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @desc Gets one mobile carrier by ID.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // User profile ID associated with this request.
+     *     profileId: '',  // TODO: Update placeholder value.
+     *
+     *     // Mobile carrier ID.
+     *     id: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.mobileCarriers.get(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
+     *
      * @alias dfareporting.mobileCarriers.get
      * @memberOf! dfareporting(v2.6)
      *
@@ -10744,6 +10846,52 @@ function Dfareporting(options) { // eslint-disable-line
      * dfareporting.mobileCarriers.list
      *
      * @desc Retrieves a list of mobile carriers.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // User profile ID associated with this request.
+     *     profileId: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.mobileCarriers.list(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.mobileCarriers.list
      * @memberOf! dfareporting(v2.6)
@@ -10792,25 +10940,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Operating system version ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -10826,14 +10966,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.operatingSystemVersions.get
      * @memberOf! dfareporting(v2.6)
@@ -10879,22 +11025,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -10910,14 +11048,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.operatingSystemVersions.list
      * @memberOf! dfareporting(v2.6)
@@ -10966,25 +11110,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Operating system DART ID.
-     *     dartId: '',
-     *
+     *     dartId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -11000,14 +11136,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.operatingSystems.get
      * @memberOf! dfareporting(v2.6)
@@ -11053,22 +11195,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -11084,14 +11218,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.operatingSystems.list
      * @memberOf! dfareporting(v2.6)
@@ -11140,28 +11280,20 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Project ID for order documents.
-     *     projectId: '',
+     *     projectId: '',  // TODO: Update placeholder value.
      *
      *     // Order document ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -11177,14 +11309,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.orderDocuments.get
      * @memberOf! dfareporting(v2.6)
@@ -11221,7 +11359,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.orderDocuments.list
      *
-     * @desc Retrieves a list of order documents, possibly filtered.
+     * @desc Retrieves a list of order documents, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -11231,25 +11369,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Project ID for order documents.
-     *     projectId: '',
-     *
+     *     projectId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -11278,14 +11408,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.orderDocuments.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.orderDocuments.list
      * @memberOf! dfareporting(v2.6)
@@ -11344,28 +11480,20 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Project ID for orders.
-     *     projectId: '',
+     *     projectId: '',  // TODO: Update placeholder value.
      *
      *     // Order ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -11381,14 +11509,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.orders.get
      * @memberOf! dfareporting(v2.6)
@@ -11425,7 +11559,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.orders.list
      *
-     * @desc Retrieves a list of orders, possibly filtered.
+     * @desc Retrieves a list of orders, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -11435,25 +11569,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Project ID for orders.
-     *     projectId: '',
-     *
+     *     projectId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -11482,14 +11608,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.orders.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.orders.list
      * @memberOf! dfareporting(v2.6)
@@ -11546,25 +11678,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Placement group ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -11580,14 +11704,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placementGroups.get
      * @memberOf! dfareporting(v2.6)
@@ -11633,22 +11763,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -11668,14 +11790,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placementGroups.insert
      * @memberOf! dfareporting(v2.6)
@@ -11711,7 +11839,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.placementGroups.list
      *
-     * @desc Retrieves a list of placement groups, possibly filtered.
+     * @desc Retrieves a list of placement groups, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -11721,22 +11849,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -11765,14 +11885,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.placementGroups.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placementGroups.list
      * @memberOf! dfareporting(v2.6)
@@ -11836,28 +11962,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Placement group ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -11874,14 +11993,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placementGroups.patch
      * @memberOf! dfareporting(v2.6)
@@ -11928,22 +12053,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -11963,14 +12080,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placementGroups.update
      * @memberOf! dfareporting(v2.6)
@@ -12020,25 +12143,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `delete` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Placement strategy ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -12046,18 +12161,25 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.placementStrategies.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
+     *       return;
      *     }
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `delete` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placementStrategies.delete
      * @memberOf! dfareporting(v2.6)
@@ -12094,6 +12216,55 @@ function Dfareporting(options) { // eslint-disable-line
      * dfareporting.placementStrategies.get
      *
      * @desc Gets one placement strategy by ID.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // User profile ID associated with this request.
+     *     profileId: '',  // TODO: Update placeholder value.
+     *
+     *     // Placement strategy ID.
+     *     id: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.placementStrategies.get(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placementStrategies.get
      * @memberOf! dfareporting(v2.6)
@@ -12139,22 +12310,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -12174,14 +12337,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placementStrategies.insert
      * @memberOf! dfareporting(v2.6)
@@ -12217,7 +12386,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.placementStrategies.list
      *
-     * @desc Retrieves a list of placement strategies, possibly filtered.
+     * @desc Retrieves a list of placement strategies, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -12227,22 +12396,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -12271,14 +12432,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.placementStrategies.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placementStrategies.list
      * @memberOf! dfareporting(v2.6)
@@ -12329,28 +12496,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Placement strategy ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -12367,14 +12527,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placementStrategies.patch
      * @memberOf! dfareporting(v2.6)
@@ -12421,22 +12587,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -12456,14 +12614,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placementStrategies.update
      * @memberOf! dfareporting(v2.6)
@@ -12513,22 +12677,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `generatetags` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -12544,14 +12700,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `generatetags` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placements.generatetags
      * @memberOf! dfareporting(v2.6)
@@ -12599,25 +12761,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Placement ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -12633,14 +12787,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placements.get
      * @memberOf! dfareporting(v2.6)
@@ -12686,22 +12846,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -12721,14 +12873,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placements.insert
      * @memberOf! dfareporting(v2.6)
@@ -12764,7 +12922,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.placements.list
      *
-     * @desc Retrieves a list of placements, possibly filtered.
+     * @desc Retrieves a list of placements, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -12774,22 +12932,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -12818,14 +12968,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.placements.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placements.list
      * @memberOf! dfareporting(v2.6)
@@ -12892,28 +13048,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Placement ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -12930,14 +13079,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placements.patch
      * @memberOf! dfareporting(v2.6)
@@ -12984,22 +13139,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -13019,14 +13166,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.placements.update
      * @memberOf! dfareporting(v2.6)
@@ -13076,25 +13229,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Platform type ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -13110,14 +13255,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.platformTypes.get
      * @memberOf! dfareporting(v2.6)
@@ -13163,22 +13314,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -13194,14 +13337,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.platformTypes.list
      * @memberOf! dfareporting(v2.6)
@@ -13250,25 +13399,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Postal code ID.
-     *     code: '{MY-CODE}',
-     *
+     *     code: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -13284,14 +13425,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.postalCodes.get
      * @memberOf! dfareporting(v2.6)
@@ -13337,22 +13484,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -13368,14 +13507,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.postalCodes.list
      * @memberOf! dfareporting(v2.6)
@@ -13424,25 +13569,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Project ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -13458,14 +13595,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.projects.get
      * @memberOf! dfareporting(v2.6)
@@ -13501,7 +13644,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.projects.list
      *
-     * @desc Retrieves a list of projects, possibly filtered.
+     * @desc Retrieves a list of projects, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -13511,22 +13654,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -13555,14 +13690,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.projects.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.projects.list
      * @memberOf! dfareporting(v2.6)
@@ -13618,22 +13759,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -13649,14 +13782,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.regions.list
      * @memberOf! dfareporting(v2.6)
@@ -13705,25 +13844,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Remarketing list ID.
-     *     remarketingListId: '',
-     *
+     *     remarketingListId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -13739,14 +13870,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.remarketingListShares.get
      * @memberOf! dfareporting(v2.6)
@@ -13792,28 +13929,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Remarketing list ID.
-     *     remarketingListId: '',
-     *
+     *     remarketingListId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -13830,14 +13960,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.remarketingListShares.patch
      * @memberOf! dfareporting(v2.6)
@@ -13884,22 +14020,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -13919,14 +14047,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.remarketingListShares.update
      * @memberOf! dfareporting(v2.6)
@@ -13976,25 +14110,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Remarketing list ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -14010,14 +14136,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.remarketingLists.get
      * @memberOf! dfareporting(v2.6)
@@ -14063,22 +14195,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -14098,14 +14222,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.remarketingLists.insert
      * @memberOf! dfareporting(v2.6)
@@ -14141,7 +14271,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.remarketingLists.list
      *
-     * @desc Retrieves a list of remarketing lists, possibly filtered.
+     * @desc Retrieves a list of remarketing lists, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -14151,25 +14281,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Select only remarketing lists owned by this advertiser.
-     *     advertiserId: '',
-     *
+     *     advertiserId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -14198,14 +14320,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.remarketingLists.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.remarketingLists.list
      * @memberOf! dfareporting(v2.6)
@@ -14258,28 +14386,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Remarketing list ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -14296,14 +14417,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.remarketingLists.patch
      * @memberOf! dfareporting(v2.6)
@@ -14350,22 +14477,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -14385,14 +14504,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.remarketingLists.update
      * @memberOf! dfareporting(v2.6)
@@ -14442,25 +14567,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `delete` method:
-     *
      *     // The DFA user profile ID.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // The ID of the report.
-     *     reportId: '',
-     *
+     *     reportId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -14468,18 +14585,25 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.reports.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
+     *       return;
      *     }
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `delete` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfareporting
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfareporting
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.reports.delete
      * @memberOf! dfareporting(v2.6)
@@ -14525,25 +14649,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // The DFA user profile ID.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // The ID of the report.
-     *     reportId: '',
-     *
+     *     reportId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -14559,14 +14675,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfareporting
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfareporting
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.reports.get
      * @memberOf! dfareporting(v2.6)
@@ -14612,22 +14734,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // The DFA user profile ID.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -14647,14 +14761,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfareporting
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfareporting
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.reports.insert
      * @memberOf! dfareporting(v2.6)
@@ -14700,22 +14820,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // The DFA user profile ID.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -14744,14 +14856,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.reports.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfareporting
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfareporting
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.reports.list
      * @memberOf! dfareporting(v2.6)
@@ -14801,28 +14919,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // The DFA user profile ID.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // The ID of the report.
-     *     reportId: '',
-     *
+     *     reportId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -14839,14 +14950,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfareporting
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfareporting
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.reports.patch
      * @memberOf! dfareporting(v2.6)
@@ -14885,6 +15002,55 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * @desc Runs a report.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The DFA profile ID.
+     *     profileId: '',  // TODO: Update placeholder value.
+     *
+     *     // The ID of the report.
+     *     reportId: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.reports.run(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfareporting
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
+     *
      * @alias dfareporting.reports.run
      * @memberOf! dfareporting(v2.6)
      *
@@ -14921,6 +15087,59 @@ function Dfareporting(options) { // eslint-disable-line
      * dfareporting.reports.update
      *
      * @desc Updates a report.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The DFA user profile ID.
+     *     profileId: '',  // TODO: Update placeholder value.
+     *
+     *     // The ID of the report.
+     *     reportId: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties of the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.reports.update(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfareporting
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.reports.update
      * @memberOf! dfareporting(v2.6)
@@ -14969,22 +15188,14 @@ function Dfareporting(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/dfareporting
        * // 2. Install the Node.js client library by running
        * //    `npm install googleapis --save`
+       *
        * var google = require('googleapis');
        * var dfareporting = google.dfareporting('v2.6');
        *
-       * getAuth(function(err, authClient) {
-       *   if (err) {
-       *     console.log(err);
-       *     return;
-       *   }
-       *
+       * authorize(function(authClient) {
        *   var request = {
-       *
-       *     // TODO: Change placeholder below to desired parameter value for the `query` method:
-       *
        *     // The DFA user profile ID.
-       *     profileId: '',
-       *
+       *     profileId: '',  // TODO: Update placeholder value.
        *
        *     resource: {
        *       // TODO: Add desired properties of the request body.
@@ -15004,14 +15215,20 @@ function Dfareporting(options) { // eslint-disable-line
        *   });
        * });
        *
-       * function getAuth(callback) {
-       *   // TODO: Change placeholder below to get authentication credentials.
-       *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+       * function authorize(callback) {
+       *   // TODO: Change placeholder below to generate authentication credentials. See:
+       *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
        *   //
-       *   // To use the `query` method, authorize using one of the following scopes:
-       *   //   https://www.googleapis.com/auth/dfareporting
-       *   return callback(new Error("Not implemented"), null);
-       * };
+       *   // Authorize using the following scope:
+       *   //    https://www.googleapis.com/auth/dfareporting
+       *   var authClient = null;
+       *
+       *   if (authClient == null) {
+       *     console.log('authentication failed');
+       *     return;
+       *   }
+       *   callback(authClient);
+       * }
        *
        * @alias dfareporting.reports.compatibleFields.query
        * @memberOf! dfareporting(v2.6)
@@ -15060,28 +15277,20 @@ function Dfareporting(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/dfareporting
        * // 2. Install the Node.js client library by running
        * //    `npm install googleapis --save`
+       *
        * var google = require('googleapis');
        * var dfareporting = google.dfareporting('v2.6');
        *
-       * getAuth(function(err, authClient) {
-       *   if (err) {
-       *     console.log(err);
-       *     return;
-       *   }
-       *
+       * authorize(function(authClient) {
        *   var request = {
-       *
-       *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-       *
        *     // The DFA profile ID.
-       *     profileId: '',
+       *     profileId: '',  // TODO: Update placeholder value.
        *
        *     // The ID of the report.
-       *     reportId: '',
+       *     reportId: '',  // TODO: Update placeholder value.
        *
        *     // The ID of the report file.
-       *     fileId: '',
-       *
+       *     fileId: '',  // TODO: Update placeholder value.
        *
        *     // TODO: To download media content, use:
        *     //
@@ -15101,14 +15310,20 @@ function Dfareporting(options) { // eslint-disable-line
        *   });
        * });
        *
-       * function getAuth(callback) {
-       *   // TODO: Change placeholder below to get authentication credentials.
-       *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+       * function authorize(callback) {
+       *   // TODO: Change placeholder below to generate authentication credentials. See:
+       *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
        *   //
-       *   // To use the `get` method, authorize using one of the following scopes:
-       *   //   https://www.googleapis.com/auth/dfareporting
-       *   return callback(new Error("Not implemented"), null);
-       * };
+       *   // Authorize using the following scope:
+       *   //    https://www.googleapis.com/auth/dfareporting
+       *   var authClient = null;
+       *
+       *   if (authClient == null) {
+       *     console.log('authentication failed');
+       *     return;
+       *   }
+       *   callback(authClient);
+       * }
        *
        * @alias dfareporting.reports.files.get
        * @memberOf! dfareporting(v2.6)
@@ -15155,25 +15370,17 @@ function Dfareporting(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/dfareporting
        * // 2. Install the Node.js client library by running
        * //    `npm install googleapis --save`
+       *
        * var google = require('googleapis');
        * var dfareporting = google.dfareporting('v2.6');
        *
-       * getAuth(function(err, authClient) {
-       *   if (err) {
-       *     console.log(err);
-       *     return;
-       *   }
-       *
+       * authorize(function(authClient) {
        *   var request = {
-       *
-       *     // TODO: Change placeholders below to desired parameter values for the `list` method:
-       *
        *     // The DFA profile ID.
-       *     profileId: '',
+       *     profileId: '',  // TODO: Update placeholder value.
        *
        *     // The ID of the parent report.
-       *     reportId: '',
-       *
+       *     reportId: '',  // TODO: Update placeholder value.
        *
        *     auth: authClient
        *   };
@@ -15202,14 +15409,20 @@ function Dfareporting(options) { // eslint-disable-line
        *   dfareporting.reports.files.list(request, handlePage);
        * });
        *
-       * function getAuth(callback) {
-       *   // TODO: Change placeholder below to get authentication credentials.
-       *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+       * function authorize(callback) {
+       *   // TODO: Change placeholder below to generate authentication credentials. See:
+       *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
        *   //
-       *   // To use the `list` method, authorize using one of the following scopes:
-       *   //   https://www.googleapis.com/auth/dfareporting
-       *   return callback(new Error("Not implemented"), null);
-       * };
+       *   // Authorize using the following scope:
+       *   //    https://www.googleapis.com/auth/dfareporting
+       *   var authClient = null;
+       *
+       *   if (authClient == null) {
+       *     console.log('authentication failed');
+       *     return;
+       *   }
+       *   callback(authClient);
+       * }
        *
        * @alias dfareporting.reports.files.list
        * @memberOf! dfareporting(v2.6)
@@ -15263,25 +15476,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Site ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -15297,14 +15502,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.sites.get
      * @memberOf! dfareporting(v2.6)
@@ -15350,22 +15561,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -15385,14 +15588,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.sites.insert
      * @memberOf! dfareporting(v2.6)
@@ -15428,7 +15637,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.sites.list
      *
-     * @desc Retrieves a list of sites, possibly filtered.
+     * @desc Retrieves a list of sites, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -15438,22 +15647,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -15482,14 +15683,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.sites.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.sites.list
      * @memberOf! dfareporting(v2.6)
@@ -15549,28 +15756,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Site ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -15587,14 +15787,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.sites.patch
      * @memberOf! dfareporting(v2.6)
@@ -15641,22 +15847,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -15676,14 +15874,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.sites.update
      * @memberOf! dfareporting(v2.6)
@@ -15733,25 +15937,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Size ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -15767,14 +15963,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.sizes.get
      * @memberOf! dfareporting(v2.6)
@@ -15811,6 +16013,56 @@ function Dfareporting(options) { // eslint-disable-line
      * dfareporting.sizes.insert
      *
      * @desc Inserts a new size.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // User profile ID associated with this request.
+     *     profileId: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties of the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.sizes.insert(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.sizes.insert
      * @memberOf! dfareporting(v2.6)
@@ -15856,22 +16108,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -15887,14 +16131,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.sizes.list
      * @memberOf! dfareporting(v2.6)
@@ -15947,25 +16197,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Subaccount ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -15981,14 +16223,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.subaccounts.get
      * @memberOf! dfareporting(v2.6)
@@ -16034,22 +16282,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -16069,14 +16309,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.subaccounts.insert
      * @memberOf! dfareporting(v2.6)
@@ -16112,7 +16358,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.subaccounts.list
      *
-     * @desc Gets a list of subaccounts, possibly filtered.
+     * @desc Gets a list of subaccounts, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -16122,22 +16368,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -16166,14 +16404,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.subaccounts.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.subaccounts.list
      * @memberOf! dfareporting(v2.6)
@@ -16224,28 +16468,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Subaccount ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -16262,14 +16499,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.subaccounts.patch
      * @memberOf! dfareporting(v2.6)
@@ -16316,22 +16559,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -16351,14 +16586,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.subaccounts.update
      * @memberOf! dfareporting(v2.6)
@@ -16408,25 +16649,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Remarketing list ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -16442,14 +16675,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.targetableRemarketingLists.get
      * @memberOf! dfareporting(v2.6)
@@ -16485,7 +16724,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.targetableRemarketingLists.list
      *
-     * @desc Retrieves a list of targetable remarketing lists, possibly filtered.
+     * @desc Retrieves a list of targetable remarketing lists, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -16495,25 +16734,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Select only targetable remarketing lists targetable by these advertisers.
-     *     advertiserId: '',
-     *
+     *     advertiserId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -16542,14 +16773,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.targetableRemarketingLists.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.targetableRemarketingLists.list
      * @memberOf! dfareporting(v2.6)
@@ -16605,25 +16842,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Targeting template ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -16639,14 +16868,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.targetingTemplates.get
      * @memberOf! dfareporting(v2.6)
@@ -16692,22 +16927,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -16727,14 +16954,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.targetingTemplates.insert
      * @memberOf! dfareporting(v2.6)
@@ -16770,7 +17003,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.targetingTemplates.list
      *
-     * @desc Retrieves a list of targeting templates, optionally filtered.
+     * @desc Retrieves a list of targeting templates, optionally filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -16780,22 +17013,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -16824,14 +17049,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.targetingTemplates.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.targetingTemplates.list
      * @memberOf! dfareporting(v2.6)
@@ -16883,28 +17114,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // Targeting template ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -16921,14 +17145,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.targetingTemplates.patch
      * @memberOf! dfareporting(v2.6)
@@ -16975,22 +17205,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -17010,14 +17232,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.targetingTemplates.update
      * @memberOf! dfareporting(v2.6)
@@ -17067,22 +17295,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `get` method:
-     *
      *     // The user profile ID.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -17098,15 +17318,21 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfareporting
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using one of the following scopes:
+     *   //    https://www.googleapis.com/auth/dfareporting
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.userProfiles.get
      * @memberOf! dfareporting(v2.6)
@@ -17142,6 +17368,50 @@ function Dfareporting(options) { // eslint-disable-line
      * dfareporting.userProfiles.list
      *
      * @desc Retrieves list of user profiles for a user.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.userProfiles.list(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using one of the following scopes:
+     *   //    https://www.googleapis.com/auth/dfareporting
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.userProfiles.list
      * @memberOf! dfareporting(v2.6)
@@ -17180,6 +17450,55 @@ function Dfareporting(options) { // eslint-disable-line
      * dfareporting.userRolePermissionGroups.get
      *
      * @desc Gets one user role permission group by ID.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the DCM/DFA Reporting And Trafficking API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/dfareporting
+     * // 2. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var dfareporting = google.dfareporting('v2.6');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // User profile ID associated with this request.
+     *     profileId: '',  // TODO: Update placeholder value.
+     *
+     *     // User role permission group ID.
+     *     id: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   dfareporting.userRolePermissionGroups.get(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     *   //
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.userRolePermissionGroups.get
      * @memberOf! dfareporting(v2.6)
@@ -17225,22 +17544,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -17256,14 +17567,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.userRolePermissionGroups.list
      * @memberOf! dfareporting(v2.6)
@@ -17312,25 +17629,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // User role permission ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -17346,14 +17655,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.userRolePermissions.get
      * @memberOf! dfareporting(v2.6)
@@ -17399,22 +17714,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -17430,14 +17737,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.userRolePermissions.list
      * @memberOf! dfareporting(v2.6)
@@ -17487,25 +17800,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `delete` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // User role ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -17513,18 +17818,25 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.userRoles.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
+     *       return;
      *     }
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `delete` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.userRoles.delete
      * @memberOf! dfareporting(v2.6)
@@ -17570,25 +17882,17 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `get` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // User role ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -17604,14 +17908,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `get` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.userRoles.get
      * @memberOf! dfareporting(v2.6)
@@ -17657,22 +17967,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `insert` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -17692,14 +17994,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `insert` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.userRoles.insert
      * @memberOf! dfareporting(v2.6)
@@ -17735,7 +18043,7 @@ function Dfareporting(options) { // eslint-disable-line
     /**
      * dfareporting.userRoles.list
      *
-     * @desc Retrieves a list of user roles, possibly filtered.
+     * @desc Retrieves a list of user roles, possibly filtered. This method supports paging.
      *
      * @example
      * // BEFORE RUNNING:
@@ -17745,22 +18053,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `list` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     auth: authClient
      *   };
@@ -17789,14 +18089,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   dfareporting.userRoles.list(request, handlePage);
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `list` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.userRoles.list
      * @memberOf! dfareporting(v2.6)
@@ -17849,28 +18155,21 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholders below to desired parameter values for the `patch` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     // User role ID.
-     *     id: '',
-     *
+     *     id: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body to be changed.
+     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // will be changed.
      *     },
      *
      *     auth: authClient
@@ -17887,14 +18186,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `patch` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.userRoles.patch
      * @memberOf! dfareporting(v2.6)
@@ -17941,22 +18246,14 @@ function Dfareporting(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/dfareporting
      * // 2. Install the Node.js client library by running
      * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var dfareporting = google.dfareporting('v2.6');
      *
-     * getAuth(function(err, authClient) {
-     *   if (err) {
-     *     console.log(err);
-     *     return;
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *
-     *     // TODO: Change placeholder below to desired parameter value for the `update` method:
-     *
      *     // User profile ID associated with this request.
-     *     profileId: '',
-     *
+     *     profileId: '',  // TODO: Update placeholder value.
      *
      *     resource: {
      *       // TODO: Add desired properties of the request body.
@@ -17976,14 +18273,20 @@ function Dfareporting(options) { // eslint-disable-line
      *   });
      * });
      *
-     * function getAuth(callback) {
-     *   // TODO: Change placeholder below to get authentication credentials.
-     *   // See: https://developers.google.com/doubleclick-advertisers/authorizing#examples,
+     * function authorize(callback) {
+     *   // TODO: Change placeholder below to generate authentication credentials. See:
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples,
      *   //
-     *   // To use the `update` method, authorize using one of the following scopes:
-     *   //   https://www.googleapis.com/auth/dfatrafficking
-     *   return callback(new Error("Not implemented"), null);
-     * };
+     *   // Authorize using the following scope:
+     *   //    https://www.googleapis.com/auth/dfatrafficking
+     *   var authClient = null;
+     *
+     *   if (authClient == null) {
+     *     console.log('authentication failed');
+     *     return;
+     *   }
+     *   callback(authClient);
+     * }
      *
      * @alias dfareporting.userRoles.update
      * @memberOf! dfareporting(v2.6)
@@ -18222,10 +18525,10 @@ Acceptable values are:
  * @memberOf! dfareporting(v2.6)
  * @type object
  * @property {string} accountId Account ID of this ad. This is a read-only field that can be left blank.
- * @property {boolean} active Whether this ad is active.
+ * @property {boolean} active Whether this ad is active. When true, archived must be false.
  * @property {string} advertiserId Advertiser ID of this ad. This is a required field on insertion.
  * @property {dfareporting(v2.6).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
- * @property {boolean} archived Whether this ad is archived.
+ * @property {boolean} archived Whether this ad is archived. When true, active must be false.
  * @property {string} audienceSegmentId Audience segment ID that is being targeted for this ad. Applicable when type is AD_SERVING_STANDARD_AD.
  * @property {string} campaignId Campaign ID of this ad. This is a required field on insertion.
  * @property {dfareporting(v2.6).DimensionValue} campaignIdDimensionValue Dimension value for the ID of the campaign. This is a read-only, auto-generated field.
@@ -18554,7 +18857,7 @@ Acceptable values are:
  * @property {string} floodlightActivityId Floodlight Activity ID of this conversion. This is a required field.
  * @property {string} floodlightConfigurationId Floodlight Configuration ID of this conversion. This is a required field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversion&quot;.
- * @property {boolean} limitAdTracking Whether the user has Limit Ad Tracking set.
+ * @property {boolean} limitAdTracking Whether Limit Ad Tracking is enabled. When set to true, the conversion will be used for reporting but not targeting. This will prevent remarketing.
  * @property {string} mobileDeviceId The mobile device ID. This field is mutually exclusive with encryptedUserId and encryptedUserIdCandidates[]. This or encryptedUserId or encryptedUserIdCandidates[] is a required field.
  * @property {string} ordinal The ordinal of the conversion. Use this field to control how conversions of the same user and day are de-duplicated. This is a required field.
  * @property {string} quantity The quantity of the conversion.

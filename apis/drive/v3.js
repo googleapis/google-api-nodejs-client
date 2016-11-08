@@ -1442,6 +1442,7 @@ This is automatically updated when the name field changes, however it is not cle
 * @property {string} mimeType The MIME type of the file.
 Drive will attempt to automatically detect an appropriate value from uploaded content if no value is provided. The value cannot be changed unless a new revision is uploaded.
 If a file is created with a Google Doc MIME type, the uploaded content will be imported if possible. The supported import formats are published in the About resource.
+* @property {boolean} modifiedByMe Whether the file has been modified by this user.
 * @property {string} modifiedByMeTime The last time the file was modified by the user (RFC 3339 date-time).
 * @property {string} modifiedTime The last time the file was modified by anyone (RFC 3339 date-time).
 Note that setting modifiedTime will also update modifiedByMeTime for the user.

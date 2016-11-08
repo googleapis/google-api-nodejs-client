@@ -7238,7 +7238,10 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter 
      * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11204,6 +11207,42 @@ function Compute(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.networks.switchToCustomMode
+     *
+     * @desc Switches the network mode from auto subnet mode to custom subnet mode.
+     *
+     * @alias compute.networks.switchToCustomMode
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.network Name of the network to be updated.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    switchToCustomMode: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}/switchToCustomMode',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -13986,6 +14025,44 @@ function Compute(options) { // eslint-disable-line
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
           method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'subnetwork'],
+        pathParams: ['project', 'region', 'subnetwork'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.subnetworks.expandIpCidrRange
+     *
+     * @desc Expands the IP CIDR range of the subnetwork to a specified value.
+     *
+     * @alias compute.subnetworks.expandIpCidrRange
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.subnetwork Name of the Subnetwork resource to update.
+     * @param {compute(v1).SubnetworksExpandIpCidrRangeRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    expandIpCidrRange: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}/expandIpCidrRange',
+          method: 'POST'
         }, options),
         params: params,
         requiredParams: ['project', 'region', 'subnetwork'],
@@ -19015,7 +19092,11 @@ This property is mutually exclusive with the source property; you can only defin
 * @property {string} kind [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
 * @property {string[]} licenses [Output Only] Any valid publicly visible licenses.
 * @property {string} mode The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
-* @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks. Note that for InstanceTemplate, it is just disk name, not URL for the disk.
+* @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or disks.source is required.
+
+If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks.
+
+Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
 * @property {string} type Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT.
 */
 /**
@@ -19032,7 +19113,7 @@ Other values include pd-ssd and local-ssd. If you define this field, you can pro
 - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType 
 - projects/project/zones/zone/diskTypes/diskType 
 - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
-* @property {string} sourceImage The source image used to create this disk. If the source image is deleted, this field will not be set.
+* @property {string} sourceImage The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required.
 
 To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:
 
@@ -19048,7 +19129,9 @@ global/images/my-private-image
 
 You can also specify a private image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
 
-global/images/family/my-private-family
+global/images/family/my-private-family 
+
+If the source image is deleted later, this field will not be set.
 * @property {compute(v1).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
 
 Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
@@ -19261,9 +19344,9 @@ When the protocol is UDP, this field is not used.
  * @typedef DeprecationStatus
  * @memberOf! compute(v1)
  * @type object
- * @property {string} deleted An optional RFC3339 timestamp on or after which the deprecation state of this resource will be changed to DELETED.
- * @property {string} deprecated An optional RFC3339 timestamp on or after which the deprecation state of this resource will be changed to DEPRECATED.
- * @property {string} obsolete An optional RFC3339 timestamp on or after which the deprecation state of this resource will be changed to OBSOLETE.
+ * @property {string} deleted An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DELETED. This is only informational and the status will not change unless the client explicitly changes it.
+ * @property {string} deprecated An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DEPRECATED. This is only informational and the status will not change unless the client explicitly changes it.
+ * @property {string} obsolete An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.
  * @property {string} replacement The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
  * @property {string} state The deprecation state of this resource. This can be DEPRECATED, OBSOLETE, or DELETED. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
  */
@@ -20162,7 +20245,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} status [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
  * @property {string} statusMessage [Output Only] An optional textual description of the current status of the operation.
  * @property {string} targetId [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
- * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies. If creating a persistent disk snapshot, this points to the persistent disk that the snapshot was created from.
+ * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
  * @property {string} user [Output Only] User who requested the operation, for example: user@example.com.
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
  * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
@@ -20530,6 +20613,12 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} kind [Output Only] Type of resource. Always compute#subnetworkList for lists of subnetworks.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef SubnetworksExpandIpCidrRangeRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} ipCidrRange The IP (in CIDR format or netmask) of internal addresses that are legal on this Subnetwork. This range should be disjoint from other subnetworks within this network. This range can only be larger than (i.e. a superset of) the range previously defined before the update.
  */
 /**
  * @typedef SubnetworksScopedList

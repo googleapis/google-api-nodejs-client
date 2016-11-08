@@ -580,6 +580,231 @@ function Compute(options) { // eslint-disable-line
 
   };
 
+  self.backendBuckets = {
+
+    /**
+     * compute.backendBuckets.delete
+     *
+     * @desc Deletes the specified BackendBucket resource.
+     *
+     * @alias compute.backendBuckets.delete
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendBucket Name of the BackendBucket resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.backendBuckets.get
+     *
+     * @desc Returns the specified BackendBucket resource. Get a list of available backend buckets by making a list() request.
+     *
+     * @alias compute.backendBuckets.get
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendBucket Name of the BackendBucket resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.backendBuckets.insert
+     *
+     * @desc Creates a BackendBucket resource in the specified project using the data included in the request.
+     *
+     * @alias compute.backendBuckets.insert
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {compute(beta).BackendBucket} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendBuckets',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.backendBuckets.list
+     *
+     * @desc Retrieves the list of BackendBucket resources available to the specified project.
+     *
+     * @alias compute.backendBuckets.list
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendBuckets',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.backendBuckets.patch
+     *
+     * @desc Updates the specified BackendBucket resource with the data included in the request. This method supports patch semantics.
+     *
+     * @alias compute.backendBuckets.patch
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendBucket Name of the BackendBucket resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {compute(beta).BackendBucket} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.backendBuckets.update
+     *
+     * @desc Updates the specified BackendBucket resource with the data included in the request.
+     *
+     * @alias compute.backendBuckets.update
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendBucket Name of the BackendBucket resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {compute(beta).BackendBucket} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/global/backendBuckets/{backendBucket}',
+          method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.backendServices = {
 
     /**
@@ -3846,7 +4071,11 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter 
      * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.order_by 
+     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6902,7 +7131,11 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter 
      * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.order_by 
+     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8734,6 +8967,43 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.subnetworks.getIamPolicy
+     *
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * @alias compute.subnetworks.getIamPolicy
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{resource}/getIamPolicy',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.subnetworks.insert
      *
      * @desc Creates a subnetwork in the specified project using the data included in the request.
@@ -8804,6 +9074,44 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.subnetworks.setIamPolicy
+     *
+     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * @alias compute.subnetworks.setIamPolicy
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(beta).Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{resource}/setIamPolicy',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
         context: self
       };
 
@@ -11404,7 +11712,11 @@ This property is mutually exclusive with the source property; you can only defin
 * @property {string} kind [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
 * @property {string[]} licenses [Output Only] Any valid publicly visible licenses.
 * @property {string} mode The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
-* @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks. Note that for InstanceTemplate, it is just disk name, not URL for the disk.
+* @property {string} source Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or disks.source is required.
+
+If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks.
+
+Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
 * @property {string} type Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT.
 */
 /**
@@ -11422,7 +11734,7 @@ Other values include pd-ssd and local-ssd. If you define this field, you can pro
 - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType 
 - projects/project/zones/zone/diskTypes/diskType 
 - zones/zone/diskTypes/diskType  Note that for InstanceTemplate, this is the name of the disk type, not URL.
-* @property {string} sourceImage The source image used to create this disk. If the source image is deleted, this field will not be set.
+* @property {string} sourceImage The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or disks.source is required.
 
 To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-8 to use the latest Debian 8 image:
 
@@ -11438,11 +11750,20 @@ global/images/my-private-image
 
 You can also specify a private image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name:
 
-global/images/family/my-private-family
+global/images/family/my-private-family 
+
+If the source image is deleted later, this field will not be set.
 * @property {compute(beta).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
 
 Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
 */
+/**
+ * @typedef AuditConfig
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit logging for the `service` specified above. Follows the same format of Binding.members.
+ * @property {string} service Specifies a service that will be enabled for &quot;data access&quot; audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
+ */
 /**
  * @typedef Autoscaler
  * @memberOf! compute(beta)
@@ -11571,6 +11892,29 @@ This cannot be used for internal load balancing.
 This cannot be used for internal load balancing.
 */
 /**
+ * @typedef BackendBucket
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} bucketName Cloud Storage bucket name.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional textual description of the resource; provided by the client when the resource is created.
+ * @property {boolean} enableCdn If true, enable Cloud CDN for this BackendBucket.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {string} kind Type of the resource.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef BackendBucketList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(beta).BackendBucket[]} items A list of BackendBucket resources.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
  * @typedef BackendService
  * @memberOf! compute(beta)
  * @type object
@@ -11649,10 +11993,43 @@ When the protocol is UDP, this field is not used.
  * @property {object} warning Informational warning which replaces the list of backend services when the list is empty.
  */
 /**
+ * @typedef Binding
+ * @memberOf! compute(beta)
+ * @type object
+* @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:
+
+* `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
+
+* `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.
+
+* `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@gmail.com` or `joe@example.com`.
+
+
+
+* `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.
+
+* `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.
+
+* `domain:{domain}`: A Google Apps domain name that represents all the users of that domain. For example, `google.com` or `example.com`.
+* @property {string} role Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+*/
+/**
  * @typedef CacheInvalidationRule
  * @memberOf! compute(beta)
  * @type object
+ * @property {string} host If set, this invalidation rule will only apply to requests with a Host header matching host.
  * @property {string} path 
+ */
+/**
+ * @typedef Condition
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} iam Trusted attributes supplied by the IAM system.
+ * @property {string} op An operator to apply the subject with.
+ * @property {string} svc Trusted attributes discharged by the service.
+ * @property {string} sys Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
+ * @property {string} value DEPRECATED. Use &#39;values&#39; instead.
+ * @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
  */
 /**
  * @typedef ConnectionDraining
@@ -11684,9 +12061,9 @@ https://cloud-certs.storage.googleapis.com/google-cloud-csek-ingress.pem
  * @typedef DeprecationStatus
  * @memberOf! compute(beta)
  * @type object
- * @property {string} deleted An optional RFC3339 timestamp on or after which the deprecation state of this resource will be changed to DELETED.
- * @property {string} deprecated An optional RFC3339 timestamp on or after which the deprecation state of this resource will be changed to DEPRECATED.
- * @property {string} obsolete An optional RFC3339 timestamp on or after which the deprecation state of this resource will be changed to OBSOLETE.
+ * @property {string} deleted An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DELETED. This is only informational and the status will not change unless the client explicitly changes it.
+ * @property {string} deprecated An optional RFC3339 timestamp on or after which the state of this resource is intended to change to DEPRECATED. This is only informational and the status will not change unless the client explicitly changes it.
+ * @property {string} obsolete An optional RFC3339 timestamp on or after which the state of this resource is intended to change to OBSOLETE. This is only informational and the status will not change unless the client explicitly changes it.
  * @property {string} replacement The URL of the suggested replacement for a deprecated resource. The suggested replacement resource must be the same kind of resource as the deprecated resource.
  * @property {string} state The deprecation state of this resource. This can be DEPRECATED, OBSOLETE, or DELETED. Operations which create a new resource using a DEPRECATED resource will return successfully, but with a warning indicating the deprecated resource and recommending its replacement. Operations which use OBSOLETE or DELETED resources will be rejected and result in an error.
  */
@@ -12513,6 +12890,19 @@ If the disk is not protected with a customer-supplied encryption key it should n
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
 /**
+ * @typedef LogConfig
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {compute(beta).LogConfigCounterOptions} counter Counter options.
+ */
+/**
+ * @typedef LogConfigCounterOptions
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} field The field value to attribute.
+ * @property {string} metric The metric to update.
+ */
+/**
  * @typedef MachineType
  * @memberOf! compute(beta)
  * @type object
@@ -12665,7 +13055,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} status [Output Only] The status of the operation, which can be one of the following: PENDING, RUNNING, or DONE.
  * @property {string} statusMessage [Output Only] An optional textual description of the current status of the operation.
  * @property {string} targetId [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
- * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies. If creating a persistent disk snapshot, this points to the persistent disk that the snapshot was created from.
+ * @property {string} targetLink [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
  * @property {string} user [Output Only] User who requested the operation, for example: user@example.com.
  * @property {object[]} warnings [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
  * @property {string} zone [Output Only] The URL of the zone where the operation resides. Only available when performing per-zone operations.
@@ -12716,6 +13106,21 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string[]} paths The list of path patterns to match. Each must start with / and the only place a * is allowed is at the end following a /. The string fed to the path matcher does not include any text after the first ? or #, and those chars are not allowed here.
  * @property {string} service The URL of the BackendService resource if this rule is matched.
  */
+/**
+ * @typedef Policy
+ * @memberOf! compute(beta)
+ * @type object
+* @property {compute(beta).AuditConfig[]} auditConfigs Specifies audit logging configs for &quot;data access&quot;. &quot;data access&quot;: generally refers to data reads/writes and admin reads. &quot;admin activity&quot;: generally refers to admin writes.
+
+Note: `AuditConfig` doesn&#39;t apply to &quot;admin activity&quot;, which always enables audit logging.
+* @property {compute(beta).Binding[]} bindings Associates a list of `members` to a `role`. Multiple `bindings` must not be specified for the same `role`. `bindings` with no members will result in an error.
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.
+
+If no `etag` is provided in the call to `setIamPolicy`, then the existing policy is overwritten blindly.
+* @property {boolean} iamOwned 
+* @property {compute(beta).Rule[]} rules If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
+* @property {integer} version Version of the `Policy`. The default version is 0.
+*/
 /**
  * @typedef Project
  * @memberOf! compute(beta)
@@ -13004,6 +13409,18 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @type object
  * @property {compute(beta).Router[]} routers List of routers contained in this scope.
  * @property {object} warning Informational warning which replaces the list of routers when the list is empty.
+ */
+/**
+ * @typedef Rule
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} action Required
+ * @property {compute(beta).Condition[]} conditions Additional restrictions that must be met
+ * @property {string} description Human-readable description of the rule.
+ * @property {string[]} ins If one or more &#39;in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+ * @property {compute(beta).LogConfig[]} logConfigs The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
+ * @property {string[]} notIns If one or more &#39;not_in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+ * @property {string[]} permissions A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
  */
 /**
  * @typedef SSLHealthCheck

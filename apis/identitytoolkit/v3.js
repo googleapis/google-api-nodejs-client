@@ -752,6 +752,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} apiKey Browser API key, needed when making http request to Apiary.
  * @property {string[]} authorizedDomains Authorized domains.
  * @property {identitytoolkit(v3).EmailTemplate} changeEmailTemplate Change email template.
+ * @property {string} dynamicLinksDomain 
  * @property {boolean} enableAnonymousUser Whether anonymous user is enabled.
  * @property {identitytoolkit(v3).IdpConfig[]} idpConfig OAuth2 provider configuration.
  * @property {identitytoolkit(v3).EmailTemplate} legacyResetPasswordTemplate Legacy reset password email template.
@@ -841,16 +842,20 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @type object
  * @property {string} captchaChallenge The captcha challenge.
  * @property {string} captchaResponse Response to the captcha.
+ * @property {boolean} disabled Whether to disable the user. Only can be used by service account.
  * @property {string} displayName The name of the user.
  * @property {string} email The email of the user.
+ * @property {boolean} emailVerified Mark the email as verified or not. Only can be used by service account.
  * @property {string} idToken The GITKit token of the authenticated user.
  * @property {string} instanceId Instance id token of the app.
  * @property {string} password The new password of the user.
+ * @property {string} photoUrl The photo url of the user.
  */
 /**
  * @typedef IdentitytoolkitRelyingpartyUploadAccountRequest
  * @memberOf! identitytoolkit(v3)
  * @type object
+ * @property {boolean} allowOverwrite Whether allow overwrite existing account when user local_id exists.
  * @property {string} delegatedProjectNumber GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
  * @property {string} hashAlgorithm The password hash algorithm.
  * @property {integer} memoryCost Memory cost for hash calculation. Used by scrypt similar algorithms.
@@ -983,6 +988,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {number} passwordUpdatedAt The timestamp when the password was last updated.
  * @property {string} photoUrl The URL of the user profile photo.
  * @property {object[]} providerUserInfo The IDP of the user.
+ * @property {string} rawPassword The user&#39;s plain text password.
  * @property {string} salt The user&#39;s password salt.
  * @property {string} screenName User&#39;s screen name at Twitter or login name at Github.
  * @property {string} validSince Timestamp in seconds for valid login token.

@@ -173,6 +173,7 @@ function Appsactivity(options) { // eslint-disable-line
  * @memberOf! appsactivity(v1)
  * @type object
  * @property {boolean} isDeleted A boolean which indicates whether the specified User was deleted. If true, name, photo and permission_id will be omitted.
+ * @property {boolean} isMe Whether the user is the authenticated user.
  * @property {string} name The displayable name of the user.
  * @property {string} permissionId The permission ID associated with this user. Equivalent to the Drive API&#39;s permission ID for this user, returned as part of the Drive Permissions resource.
  * @property {appsactivity(v1).Photo} photo The profile photo of the user. Not present if the user has no profile photo.

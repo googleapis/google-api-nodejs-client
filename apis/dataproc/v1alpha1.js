@@ -24,7 +24,7 @@ var utils = require('../../lib/utils');
 /**
  * Google Cloud Dataproc API
  *
- * Manages Hadoop-based clusters and jobs on Google Cloud Platform.
+ * An API for managing Hadoop-based clusters and jobs on Google Cloud Platform.
  *
  * @example
  * var google = require('googleapis');
@@ -432,6 +432,7 @@ function Dataproc(options) { // eslint-disable-line
          * @param {object} params Parameters for request
          * @param {string} params.projectId [Required] The ID of the Google Cloud Platform project that the cluster belongs to.
          * @param {string} params.region [Required] The Dataproc region in which to handle the request.
+         * @param {string=} params.filter [Optional] A filter constraining which clusters to list. Valid filters contain label terms such as: labels.key1 = val1 AND (-labels.k2 = val2 OR labels.k3 = val3)
          * @param {integer=} params.pageSize The standard List page size.
          * @param {string=} params.pageToken The standard List page token.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1114,10 +1115,12 @@ function Dataproc(options) { // eslint-disable-line
  * @property {string} projectId [Required] The Google Cloud Platform project ID that the cluster belongs to.
  * @property {string} clusterName [Required] The cluster name. Cluster names within a project must be unique. Names from deleted clusters can be reused.
  * @property {dataproc(v1alpha1).ClusterConfiguration} configuration [Required] The cluster configuration. It may differ from a user&#39;s initial configuration due to Cloud Dataproc setting of default values and updating clusters.
+ * @property {object} labels [Optional] The labels to associate with this cluster. Label keys must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: \p{Ll}\p{Lo}{0,62} Label values must be between 1 and 63 characters long, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given cluster.
  * @property {dataproc(v1alpha1).ClusterStatus} status [Output-only] Cluster status.
  * @property {dataproc(v1alpha1).ClusterStatus[]} statusHistory [Output-only] Previous cluster statuses.
  * @property {string} createTime [Output-only] The timestamp of cluster creation.
  * @property {string} clusterUuid [Output-only] A cluster UUID (Unique Universal Identifier). Cloud Dataproc generates this value when it creates the cluster.
+ * @property {dataproc(v1alpha1).ClusterMetrics} metrics Contains cluster daemon metrics such as HDFS and YARN stats.
  */
 /**
  * @typedef ClusterConfiguration
@@ -1161,6 +1164,7 @@ function Dataproc(options) { // eslint-disable-line
  * @property {string} zoneUri [Required] The zone where the Google Compute Engine cluster will be located. Example: &quot;compute.googleapis.com/projects/[project_id] /zones/us-east1-a&quot;.
  * @property {string} networkUri The Google Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the &quot;default&quot; network of the project is used, if it exists. Cannot be a &quot;Custom Subnet Network&quot; (see https://cloud.google.com/compute/docs/subnetworks for more information). Example: `compute.googleapis.com/projects/[project_id]/regions/global/default`.
  * @property {string} subnetworkUri The Google Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri. Example: `compute.googleapis.com/projects/[project_id]/regions/us-east1/sub0`.
+ * @property {boolean} internalIpOnly If true, all instances in the cluser will only have internal IP addresses. By default, clusters are not restricted to internal IP addresses, and will have ephemeral external IP addresses assigned to each instance. This restriction can only be enabled for subnetwork enabled networks, and all off-cluster dependencies must be configured to be accessible without external IP addresses.
  * @property {string[]} serviceAccountScopes The service account scopes included in Google Compute Engine instances. Must include devstorage.full_control to enable the Google Cloud Storage connector. Example &quot;auth.googleapis.com/compute&quot; and &quot;auth.googleapis.com/devstorage.full_control&quot;.
  * @property {string[]} tags The Google Compute Engine tags to add to all instances.
  * @property {object} metadata The Google Compute Engine metadata entries to add to all instances.
@@ -1205,6 +1209,13 @@ function Dataproc(options) { // eslint-disable-line
  * @property {string} state The cluster&#39;s state.
  * @property {string} detail Optional details of cluster&#39;s state.
  * @property {string} stateStartTime Time when this state was entered.
+ */
+/**
+ * @typedef ClusterMetrics
+ * @memberOf! dataproc(v1alpha1)
+ * @type object
+ * @property {object} hdfsMetrics The HDFS metrics.
+ * @property {object} yarnMetrics The YARN metrics.
  */
 /**
  * @typedef Operation
@@ -1258,6 +1269,7 @@ function Dataproc(options) { // eslint-disable-line
  * @property {string} driverOutputResourceUri [Output-only] A URI pointing to the location of the stdout of the job&#39;s driver program.
  * @property {string} driverControlFilesUri [Output-only] If present, the location of miscellaneous control files which may be used as part of job setup and handling. If not present, control files may be placed in the same location as driver_output_uri.
  * @property {boolean} interactive [Optional] If set to true, then the driver&#39;s stdin will be kept open and driver_input_uri will be set to provide a path at which additional input can be sent to the driver.
+ * @property {object} labels [Optional] The labels to associate with this job. Label keys must be between 1 and 63 characters long, and must conform to the following regular expression: \p{Ll}\p{Lo}{0,62} Label values must be between 1 and 63 characters long, and must conform to the following regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given job.
  */
 /**
  * @typedef JobReference
@@ -1393,6 +1405,7 @@ function Dataproc(options) { // eslint-disable-line
  * @property {string} pageToken [Optional] The page token, returned by a previous call, to request the next page of results.
  * @property {string} clusterName [Optional] If set, the returned jobs list includes only jobs that were submitted to the named cluster.
  * @property {string} jobStateMatcher [Optional] Specifies enumerated categories of jobs to list.
+ * @property {string} filter [Optional] A filter constraining which jobs to list. Valid filters contain job state and label terms such as: labels.key1 = val1 AND (labels.k2 = val2 OR labels.k3 = val3)
  */
 /**
  * @typedef CancelJobRequest
@@ -1420,27 +1433,28 @@ function Dataproc(options) { // eslint-disable-line
  * @typedef DiagnoseClusterResults
  * @memberOf! dataproc(v1alpha1)
  * @type object
- * @property {string} outputUri [Output-only] The Google Cloud Storage URI of the diagnostic output. This is a plain text file with a summary of collected diagnostics.
+ * @property {string} outputUri [Output-only] The Google Cloud Storage URI of the diagnostic output. The output report is a plain text file with a summary of collected diagnostics.
  */
 /**
  * @typedef ClusterOperationMetadata
  * @memberOf! dataproc(v1alpha1)
  * @type object
- * @property {string} clusterName Name of the cluster for the operation.
- * @property {string} clusterUuid Cluster UUId for the operation.
+ * @property {string} clusterName [Output-only] Name of the cluster for the operation.
+ * @property {string} clusterUuid [Output-only] Cluster UUID for the operation.
  * @property {dataproc(v1alpha1).ClusterOperationStatus} status [Output-only] Current operation status.
  * @property {dataproc(v1alpha1).ClusterOperationStatus[]} statusHistory [Output-only] The previous operation status.
  * @property {string} operationType [Output-only] The operation type.
  * @property {string} description [Output-only] Short description of operation.
+ * @property {object} labels [Output-only] labels associated with the operation
  */
 /**
  * @typedef ClusterOperationStatus
  * @memberOf! dataproc(v1alpha1)
  * @type object
- * @property {string} state A message containing the operation state.
- * @property {string} innerState A message containing the detailed operation state.
- * @property {string} details A message containing any operation metadata details.
- * @property {string} stateStartTime The time this state was entered.
+ * @property {string} state [Output-only] A message containing the operation state.
+ * @property {string} innerState [Output-only] A message containing the detailed operation state.
+ * @property {string} details [Output-only]A message containing any operation metadata details.
+ * @property {string} stateStartTime [Output-only] The time this state was entered.
  */
 /**
  * @typedef DiagnoseClusterOutputLocation
