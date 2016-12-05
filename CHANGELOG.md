@@ -1,3 +1,22 @@
+##### 15.0.0 - 05 December 2016
+
+###### Breaking changes
+- Deleted `dfareporting` `v2.4` API
+- Deleted `genomics` `v1beta2` API
+- Deleted some methods from the `youtubeanalytics` `v1` API
+- Deleted some methods from the `youtubeanalytics` `v1beta1` API
+
+###### Backwards compatible changes
+- Added new methods to the `cloudbuild` `v1` API
+- Added new methods to the `compute` `alpha` API
+- Added new methods to the `compute` `beta` API
+- Added new methods to the `gmail` `v1` API
+- Added the `language` `v1` API
+- Added new methods to the `language` `v1beta1` API
+- Added new methods to the `logging` `v2` API
+- Added new methods to the `logging` `v2beta1` API
+- Added new methods to the `runtimeconfig` `v1beta1` API
+
 ##### 14.2.0 - 08 November 2016
 
 ###### Backwards compatible changes

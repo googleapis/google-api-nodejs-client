@@ -90,6 +90,7 @@ function Clouderrorreporting(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string=} params.timeRange.period Restricts the query to the specified time range.
+       * @param {string=} params.serviceFilter.resourceType [Optional] The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
        * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
        * @param {string=} params.serviceFilter.service [Optional] The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
        * @param {string=} params.groupId [Required] The group for which events shall be returned.
@@ -245,6 +246,7 @@ function Clouderrorreporting(options) { // eslint-disable-line
        * @param {object} params Parameters for request
        * @param {string=} params.alignment [Optional] The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
        * @param {string=} params.timeRange.period Restricts the query to the specified time range.
+       * @param {string=} params.serviceFilter.resourceType [Optional] The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
        * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as <code>projects/</code> plus the <a href="https://support.google.com/cloud/answer/6158840">Google Cloud Platform project ID</a>.  Example: <code>projects/my-project-123</code>.
        * @param {string=} params.order [Optional] The sort order in which the results are returned. Default is `COUNT_DESC`.
        * @param {string=} params.groupId [Optional] List all <code>ErrorGroupStats</code> with these IDs.
@@ -374,6 +376,11 @@ distinguish affected users. See `affected_users_count` in
  * @typedef ServiceContext
  * @memberOf! clouderrorreporting(v1beta1)
  * @type object
+* @property {string} resourceType Type of the MonitoredResource. List of possible values:
+https://cloud.google.com/monitoring/api/resources
+
+Value is set automatically for incoming errors and must not be set when
+reporting errors.
 * @property {string} service An identifier of the service, such as the name of the
 executable, job, or Google App Engine service name. This field is expected
 to have a low number of values that are relatively stable over time, as

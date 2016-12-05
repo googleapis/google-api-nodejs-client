@@ -40,85 +40,6 @@ function Youtubeanalytics(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
 
-  self.batchReportDefinitions = {
-
-    /**
-     * youtubeAnalytics.batchReportDefinitions.list
-     *
-     * @desc Retrieves a list of available batch report definitions.
-     *
-     * @alias youtubeAnalytics.batchReportDefinitions.list
-     * @memberOf! youtubeAnalytics(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.onBehalfOfContentOwner The onBehalfOfContentOwner parameter identifies the content owner that the user is acting on behalf of.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/youtube/analytics/v1beta1/batchReportDefinitions',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['onBehalfOfContentOwner'],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  self.batchReports = {
-
-    /**
-     * youtubeAnalytics.batchReports.list
-     *
-     * @desc Retrieves a list of processed batch reports.
-     *
-     * @alias youtubeAnalytics.batchReports.list
-     * @memberOf! youtubeAnalytics(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.batchReportDefinitionId The batchReportDefinitionId parameter specifies the ID of the batch reportort definition for which you are retrieving reports.
-     * @param {string} params.onBehalfOfContentOwner The onBehalfOfContentOwner parameter identifies the content owner that the user is acting on behalf of.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/youtube/analytics/v1beta1/batchReports',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['batchReportDefinitionId', 'onBehalfOfContentOwner'],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
   self.groupItems = {
 
     /**
@@ -430,41 +351,6 @@ function Youtubeanalytics(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef BatchReport
- * @memberOf! youtubeAnalytics(v1beta1)
- * @type object
- * @property {string} id The ID that YouTube assigns and uses to uniquely identify the report.
- * @property {string} kind This value specifies the type of data of this item. For batch report the kind property value is youtubeAnalytics#batchReport.
- * @property {object[]} outputs Report outputs.
- * @property {string} reportId The ID of the the report definition.
- * @property {object} timeSpan Period included in the report. For reports containing all entities endTime is not set. Both startTime and endTime are inclusive.
- * @property {string} timeUpdated The time when the report was updated.
- */
-/**
- * @typedef BatchReportDefinition
- * @memberOf! youtubeAnalytics(v1beta1)
- * @type object
- * @property {string} id The ID that YouTube assigns and uses to uniquely identify the report definition.
- * @property {string} kind This value specifies the type of data of this item. For batch report definition the kind property value is youtubeAnalytics#batchReportDefinition.
- * @property {string} name Name of the report definition.
- * @property {string} status Status of the report definition.
- * @property {string} type Type of the report definition.
- */
-/**
- * @typedef BatchReportDefinitionList
- * @memberOf! youtubeAnalytics(v1beta1)
- * @type object
- * @property {youtubeAnalytics(v1beta1).BatchReportDefinition[]} items A list of batchReportDefinition resources that match the request criteria.
- * @property {string} kind This value specifies the type of data included in the API response. For the list method, the kind property value is youtubeAnalytics#batchReportDefinitionList.
- */
-/**
- * @typedef BatchReportList
- * @memberOf! youtubeAnalytics(v1beta1)
- * @type object
- * @property {youtubeAnalytics(v1beta1).BatchReport[]} items A list of batchReport resources that match the request criteria.
- * @property {string} kind This value specifies the type of data included in the API response. For the list method, the kind property value is youtubeAnalytics#batchReportList.
- */
 /**
  * @typedef Group
  * @memberOf! youtubeAnalytics(v1beta1)

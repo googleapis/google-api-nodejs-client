@@ -94,7 +94,7 @@ function Monitoring(options) { // eslint-disable-line
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The project in which to create the time series. The format is &quot;projects/PROJECT_ID_OR_NUMBER&quot;.
+       * @param {string} params.name The project in which to create the time series. The format is "projects/PROJECT_ID_OR_NUMBER".
        * @param {monitoring(v3).CreateCollectdTimeSeriesRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -178,7 +178,7 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {boolean=} params.validateOnly If true, validate this request but do not update the existing group.
-       * @param {string} params.name Output only. The name of this group. The format is &quot;projects/{project_id_or_number}/groups/{group_id}&quot;. When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to CreateGroup and a unique {group_id} that is generated automatically.
+       * @param {string} params.name Output only. The name of this group. The format is "projects/{project_id_or_number}/groups/{group_id}". When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to CreateGroup and a unique {group_id} that is generated automatically.
        * @param {monitoring(v3).Group} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -254,7 +254,7 @@ function Monitoring(options) { // eslint-disable-line
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The group to retrieve. The format is &quot;projects/{project_id_or_number}/groups/{group_id}&quot;.
+       * @param {string} params.name The group to retrieve. The format is "projects/{project_id_or_number}/groups/{group_id}".
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -331,7 +331,7 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {boolean=} params.validateOnly If true, validate this request but do not create the group.
-       * @param {string} params.name The project in which to create the group. The format is &quot;projects/{project_id_or_number}&quot;.
+       * @param {string} params.name The project in which to create the group. The format is "projects/{project_id_or_number}".
        * @param {monitoring(v3).Group} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -414,11 +414,11 @@ function Monitoring(options) { // eslint-disable-line
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.descendantsOfGroup A group name: &quot;projects/{project_id_or_number}/groups/{group_id}&quot;. Returns the descendants of the specified group. This is a superset of the results returned by the childrenOfGroup filter, and includes children-of-children, and so forth.
+       * @param {string=} params.descendantsOfGroup A group name: "projects/{project_id_or_number}/groups/{group_id}". Returns the descendants of the specified group. This is a superset of the results returned by the childrenOfGroup filter, and includes children-of-children, and so forth.
        * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
-       * @param {string=} params.childrenOfGroup A group name: &quot;projects/{project_id_or_number}/groups/{group_id}&quot;. Returns groups whose parentName field contains the group name. If no groups have this parent, the results are empty.
-       * @param {string} params.name The project whose groups are to be listed. The format is &quot;projects/{project_id_or_number}&quot;.
-       * @param {string=} params.ancestorsOfGroup A group name: &quot;projects/{project_id_or_number}/groups/{group_id}&quot;. Returns groups that are ancestors of the specified group. The groups are returned in order, starting with the immediate parent and ending with the most distant ancestor. If the specified group has no immediate parent, the results are empty.
+       * @param {string=} params.childrenOfGroup A group name: "projects/{project_id_or_number}/groups/{group_id}". Returns groups whose parentName field contains the group name. If no groups have this parent, the results are empty.
+       * @param {string} params.name The project whose groups are to be listed. The format is "projects/{project_id_or_number}".
+       * @param {string=} params.ancestorsOfGroup A group name: "projects/{project_id_or_number}/groups/{group_id}". Returns groups that are ancestors of the specified group. The groups are returned in order, starting with the immediate parent and ending with the most distant ancestor. If the specified group has no immediate parent, the results are empty.
        * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -494,7 +494,7 @@ function Monitoring(options) { // eslint-disable-line
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The group to delete. The format is &quot;projects/{project_id_or_number}/groups/{group_id}&quot;.
+       * @param {string} params.name The group to delete. The format is "projects/{project_id_or_number}/groups/{group_id}".
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -579,11 +579,11 @@ function Monitoring(options) { // eslint-disable-line
          * @memberOf! monitoring(v3)
          *
          * @param {object} params Parameters for request
-         * @param {string=} params.filter An optional list filter (/monitoring/api/learn_more#filtering) describing the members to be returned. The filter may reference the type, labels, and metadata of monitored resources that comprise the group. For example, to return only resources representing Compute Engine VM instances, use this filter: resource.type = &quot;gce_instance&quot; 
+         * @param {string=} params.filter An optional list filter describing the members to be returned. The filter may reference the type, labels, and metadata of monitored resources that comprise the group. For example, to return only resources representing Compute Engine VM instances, use this filter: resource.type = "gce_instance" 
          * @param {string=} params.interval.endTime Required. The end of the time interval.
          * @param {string=} params.interval.startTime Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
          * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
-         * @param {string} params.name The group whose members are listed. The format is &quot;projects/{project_id_or_number}/groups/{group_id}&quot;.
+         * @param {string} params.name The group whose members are listed. The format is "projects/{project_id_or_number}/groups/{group_id}".
          * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -665,7 +665,7 @@ function Monitoring(options) { // eslint-disable-line
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The metric descriptor on which to execute the request. The format is &quot;projects/{project_id_or_number}/metricDescriptors/{metric_id}&quot;. An example value of {metric_id} is &quot;compute.googleapis.com/instance/disk/read_bytes_count&quot;.
+       * @param {string} params.name The metric descriptor on which to execute the request. The format is "projects/{project_id_or_number}/metricDescriptors/{metric_id}". An example value of {metric_id} is "compute.googleapis.com/instance/disk/read_bytes_count".
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -694,7 +694,7 @@ function Monitoring(options) { // eslint-disable-line
       /**
        * monitoring.projects.metricDescriptors.create
        *
-       * @desc Creates a new metric descriptor. User-created metric descriptors define custom metrics (/monitoring/custom-metrics).
+       * @desc Creates a new metric descriptor. User-created metric descriptors define custom metrics.
        *
        * @example
        * // PRE-REQUISITES:
@@ -741,7 +741,7 @@ function Monitoring(options) { // eslint-disable-line
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The project on which to execute the request. The format is &quot;projects/{project_id_or_number}&quot;.
+       * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
        * @param {monitoring(v3).MetricDescriptor} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -825,8 +825,8 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
-       * @param {string=} params.filter If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the filter (/monitoring/api/v3/filters) specifies which metric descriptors are to be returned. For example, the following filter matches all custom metrics (/monitoring/custom-metrics): metric.type = starts_with(&quot;custom.googleapis.com/&quot;) 
-       * @param {string} params.name The project on which to execute the request. The format is &quot;projects/{project_id_or_number}&quot;.
+       * @param {string=} params.filter If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the filter specifies which metric descriptors are to be returned. For example, the following filter matches all custom metrics: metric.type = starts_with("custom.googleapis.com/") 
+       * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
        * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -856,7 +856,7 @@ function Monitoring(options) { // eslint-disable-line
       /**
        * monitoring.projects.metricDescriptors.delete
        *
-       * @desc Deletes a metric descriptor. Only user-created custom metrics (/monitoring/custom-metrics) can be deleted.
+       * @desc Deletes a metric descriptor. Only user-created custom metrics can be deleted.
        *
        * @example
        * // PRE-REQUISITES:
@@ -904,7 +904,7 @@ function Monitoring(options) { // eslint-disable-line
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The metric descriptor on which to execute the request. The format is &quot;projects/{project_id_or_number}/metricDescriptors/{metric_id}&quot;. An example of {metric_id} is: &quot;custom.googleapis.com/my_test_metric&quot;.
+       * @param {string} params.name The metric descriptor on which to execute the request. The format is "projects/{project_id_or_number}/metricDescriptors/{metric_id}". An example of {metric_id} is: "custom.googleapis.com/my_test_metric".
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -983,7 +983,7 @@ function Monitoring(options) { // eslint-disable-line
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The project on which to execute the request. The format is &quot;projects/{project_id_or_number}&quot;.
+       * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
        * @param {monitoring(v3).CreateTimeSeriesRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -1066,7 +1066,7 @@ function Monitoring(options) { // eslint-disable-line
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.filter A monitoring filter (/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = &quot;compute.googleapis.com/instance/cpu/usage_time&quot; AND     metric.label.instance_name = &quot;my-instance-name&quot; 
+       * @param {string=} params.filter A monitoring filter that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND     metric.label.instance_name = "my-instance-name" 
        * @param {string=} params.aggregation.groupByFields The set of fields to preserve when crossSeriesReducer is specified. The groupByFields determine how the time series are partitioned into subsets prior to applying the aggregation function. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The crossSeriesReducer is applied to each subset of time series. Fields not specified in groupByFields are aggregated away. If groupByFields is not specified, the time series are aggregated into a single output time series. If crossSeriesReducer is not defined, this field is ignored.
        * @param {string=} params.aggregation.crossSeriesReducer The approach to be used to combine time series. Not all reducer functions may be applied to all time series, depending on the metric type and the value type of the original time series. Reduction may change the metric type of value type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If crossSeriesReducer is specified, then perSeriesAligner must be specified and not equal ALIGN_NONE and alignmentPeriod must be specified; otherwise, an error is returned.
        * @param {string=} params.interval.endTime Required. The end of the time interval.
@@ -1157,7 +1157,7 @@ function Monitoring(options) { // eslint-disable-line
        * @memberOf! monitoring(v3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name The monitored resource descriptor to get. The format is &quot;projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}&quot;. The {resource_type} is a predefined type, such as cloudsql_database.
+       * @param {string} params.name The monitored resource descriptor to get. The format is "projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}". The {resource_type} is a predefined type, such as cloudsql_database.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -1240,8 +1240,8 @@ function Monitoring(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
-       * @param {string=} params.filter An optional filter (/monitoring/api/v3/filters) describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an id label: resource.type = starts_with(&quot;gce_&quot;) AND resource.label:id 
-       * @param {string} params.name The project on which to execute the request. The format is &quot;projects/{project_id_or_number}&quot;.
+       * @param {string=} params.filter An optional filter describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an id label: resource.type = starts_with("gce_") AND resource.label:id 
+       * @param {string} params.name The project on which to execute the request. The format is "projects/{project_id_or_number}".
        * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.

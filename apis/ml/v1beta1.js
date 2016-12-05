@@ -841,6 +841,7 @@ google.rpc.Status.details field, or localized by the client.
  * @typedef GoogleCloudMlV1beta1__TrainingOutput
  * @memberOf! ml(v1beta1)
  * @type object
+ * @property {number} consumedMlUnits The amount of ML units consumed by the job.
  * @property {string} completedTrialCount The number of hyperparameter tuning trials that completed successfully.
  * @property {ml(v1beta1).GoogleCloudMlV1beta1__HyperparameterOutput[]} trials Results for individual Hyperparameter trials.
  */

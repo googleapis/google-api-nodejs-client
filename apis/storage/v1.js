@@ -3277,6 +3277,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} storageClass Storage class of the object.
  * @property {string} timeCreated The creation time of the object in RFC 3339 format.
  * @property {string} timeDeleted The deletion time of the object in RFC 3339 format. Will be returned if and only if this version of the object has been deleted.
+ * @property {string} timeStorageClassUpdated The time at which the object&#39;s storage class was last changed. When the object is initially created, it will be set to timeCreated.
  * @property {string} updated The modification time of the object metadata in RFC 3339 format.
  */
 /**

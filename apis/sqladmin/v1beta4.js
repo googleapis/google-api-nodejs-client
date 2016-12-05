@@ -1736,6 +1736,7 @@ CSV: The file contains CSV data.
  * @type object
  * @property {string} ipAddress The IP address assigned.
  * @property {string} timeToRetire The due time for this IP to be retired in RFC 3339 format, for example 2012-11-15T16:19:00.094Z. This field is only available when the IP is scheduled to be retired.
+ * @property {string} type The type of this IP address. A PRIMARY address is an address that can accept incoming connections. An OUTGOING address is the source address of connections originating from the instance, if supported.
  */
 /**
  * @typedef LocationPreference
@@ -1918,7 +1919,7 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
  * @property {string} DiskQuota The maximum disk size of this tier in bytes.
  * @property {string} RAM The maximum RAM usage of this tier in bytes.
  * @property {string} kind This is always sql#tier.
- * @property {string[]} region The applicable regions for this tier. Can be us-east1, europe-west1 or asia-east1.
+ * @property {string[]} region The applicable regions for this tier.
  * @property {string} tier An identifier for the service tier, for example D1, D2 etc. For related information, see Pricing.
  */
 /**

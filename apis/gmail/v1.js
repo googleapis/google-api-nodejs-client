@@ -685,6 +685,42 @@ function Gmail(options) { // eslint-disable-line
       },
 
       /**
+       * gmail.users.messages.batchModify
+       *
+       * @desc Modifies labels on the given labels.
+       *
+       * @alias gmail.users.messages.batchModify
+       * @memberOf! gmail(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+       * @param {gmail(v1).BatchModifyMessagesRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchModify: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/batchModify',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['userId'],
+          pathParams: ['userId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * gmail.users.messages.delete
        *
        * @desc Immediately and permanently deletes the specified message. This operation cannot be undone. Prefer messages.trash instead.
@@ -857,7 +893,7 @@ function Gmail(options) { // eslint-disable-line
        * @param {string=} params.labelIds Only return messages with labels that match all of the specified label IDs.
        * @param {integer=} params.maxResults Maximum number of messages to return.
        * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-       * @param {string=} params.q Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread".
+       * @param {string=} params.q Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread". Parameter cannot be used when accessing the api using the gmail.metadata scope.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -1998,7 +2034,7 @@ function Gmail(options) { // eslint-disable-line
        * @param {string=} params.labelIds Only return threads with labels that match all of the specified label IDs.
        * @param {integer=} params.maxResults Maximum number of threads to return.
        * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-       * @param {string=} params.q Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread".
+       * @param {string=} params.q Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, "from:someuser@example.com rfc822msgid: is:unread". Parameter cannot be used when accessing the api using the gmail.metadata scope.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -2150,6 +2186,14 @@ function Gmail(options) { // eslint-disable-line
  * @memberOf! gmail(v1)
  * @type object
  * @property {string[]} ids The IDs of the messages to delete.
+ */
+/**
+ * @typedef BatchModifyMessagesRequest
+ * @memberOf! gmail(v1)
+ * @type object
+ * @property {string[]} addLabelIds A list of label IDs to add to messages.
+ * @property {string[]} ids The IDs of the messages to modify. There is a limit of 1000 ids per request.
+ * @property {string[]} removeLabelIds A list of label IDs to remove from messages.
  */
 /**
  * @typedef Draft
@@ -2345,7 +2389,7 @@ function Gmail(options) { // eslint-disable-line
  * @type object
  * @property {string} attachmentId When present, contains the ID of an external attachment that can be retrieved in a separate messages.attachments.get request. When not present, the entire content of the message part body is contained in the data field.
  * @property {string} data The body data of a MIME message part as a base64url encoded string. May be empty for MIME container types that have no message body or when the body data is sent as a separate attachment. An attachment ID is present if the body data is contained in a separate attachment.
- * @property {integer} size Total number of bytes in the body of the message part.
+ * @property {integer} size Number of bytes for the message part data (encoding notwithstanding).
  */
 /**
  * @typedef MessagePartHeader

@@ -304,6 +304,8 @@ for details.
 empty when `hideValueRanges` in the request is false, or when
 rowCount is zero.
 * @property {analyticsreporting(v4).ReportRow[]} rows There&#39;s one ReportRow for every unique combination of dimensions.
+* @property {string} dataLastRefreshed The last time the data in the report was refreshed. All the hits received
+before this timestamp are included in the calculation of the report.
 * @property {analyticsreporting(v4).DateRangeValues[]} totals For each requested date range, for the set of all rows that match
 the query, every requested value format gets a total. The total
 for a value format is computed by first totaling the metrics

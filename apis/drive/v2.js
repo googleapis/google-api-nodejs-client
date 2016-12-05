@@ -2601,6 +2601,7 @@ function Drive(options) { // eslint-disable-line
 * @property {string} fileSize The size of the file in bytes. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
 * @property {string} folderColorRgb Folder color as an RGB hex string if the file is a folder. The list of supported colors is available in the folderColorPalette field of the About resource. If an unsupported color is specified, it will be changed to the closest color in the palette.
 * @property {string} fullFileExtension The full file extension; extracted from the title. May contain multiple concatenated extensions, such as &quot;tar.gz&quot;. Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
+* @property {boolean} hasThumbnail Whether this file has a thumbnail.
 * @property {string} headRevisionId The ID of the file&#39;s head revision. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
 * @property {string} iconLink A link to the file&#39;s icon.
 * @property {string} id The ID of the file.
@@ -2633,8 +2634,9 @@ Setting this field will put the file in all of the provided folders. On insert, 
 * @property {string} sharedWithMeDate Time at which this file was shared with the user (formatted RFC 3339 timestamp).
 * @property {drive(v2).User} sharingUser User that shared the item with the current user, if available.
 * @property {string[]} spaces The list of spaces which contain the file. Supported values are &#39;drive&#39;, &#39;appDataFolder&#39; and &#39;photos&#39;.
-* @property {object} thumbnail Thumbnail for the file. Only accepted on upload and for files that are not already thumbnailed by Google.
-* @property {string} thumbnailLink A short-lived link to the file&#39;s thumbnail. Typically lasts on the order of hours.
+* @property {object} thumbnail A thumbnail for the file. This will only be used if Drive cannot generate a standard thumbnail.
+* @property {string} thumbnailLink A short-lived link to the file&#39;s thumbnail. Typically lasts on the order of hours. Only populated when the requesting app can access the file&#39;s content.
+* @property {string} thumbnailVersion The thumbnail version for use in client-contructable thumbnail URLs or thumbnail cache invalidation.
 * @property {string} title The title of this file.
 * @property {drive(v2).Permission} userPermission The permissions for the authenticated user on this file.
 * @property {string} version A monotonically increasing version number for the file. This reflects every change made to the file on the server, even those not visible to the requesting user.
@@ -2691,7 +2693,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 * @property {string} emailAddress The email address of the user or group this permission refers to. This is an output-only field which is present when the permission type is user or group.
 * @property {string} etag The ETag of the permission.
 * @property {string} expirationDate The time at which this permission will expire (RFC 3339 date-time).
-* @property {string} id The ID of the user this permission refers to, and identical to the permissionId in the About and Files resources. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type anyone, in which case both id and value are ignored.
+* @property {string} id The ID of the user this permission refers to, and identical to the permissionId in the About and Files resources. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type is anyone, in which case both id and value are ignored.
 * @property {string} kind This is always drive#permission.
 * @property {string} name The name for this permission.
 * @property {string} photoLink A link to the profile photo, if available.
@@ -2705,7 +2707,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 - group 
 - domain 
 - anyone
-* @property {string} value The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type anyone, in which case both id and value are ignored.
+* @property {string} value The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type is anyone, in which case both id and value are ignored.
 * @property {boolean} withLink Whether the link is required for this permission.
 */
 /**

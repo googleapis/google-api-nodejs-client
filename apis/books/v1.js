@@ -2202,6 +2202,7 @@ function Books(options) { // eslint-disable-line
  * @property {boolean} dont_show_notification 
  * @property {string} iconUrl 
  * @property {string} kind Resource type.
+ * @property {string} notificationGroup 
  * @property {string} notification_type 
  * @property {string} pcampaign_id 
  * @property {string} reason 

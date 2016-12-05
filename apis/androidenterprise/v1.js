@@ -3745,7 +3745,7 @@ Possible values include:
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#productSet&quot;.
  * @property {string[]} productId The list of product IDs making up the set of products.
- * @property {string} productSetBehavior The interpretation of this product set. &quot;unknown&quot; should never be sent and ignored if received. &quot;whitelist&quot; means that this product set constitutes a whitelist. &quot;includeAll&quot; means that all products are accessible (the value of the productId field is therefore ignored). If a value is not supplied, it is interpreted to be &quot;whitelist&quot; for backwards compatibility.
+ * @property {string} productSetBehavior The interpretation of this product set. &quot;unknown&quot; should never be sent and ignored if received. &quot;whitelist&quot; means that this product set constitutes a whitelist. &quot;includeAll&quot; means that all products are accessible, including products that are approved, not approved, and even products where approval has been revoked. If the value is &quot;includeAll&quot;, the value of the productId field is therefore ignored. If a value is not supplied, it is interpreted to be &quot;whitelist&quot; for backwards compatibility.
  */
 /**
  * @typedef ProductsApproveRequest

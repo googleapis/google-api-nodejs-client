@@ -198,13 +198,13 @@ function Appengine(options) { // eslint-disable-line
     /**
      * appengine.apps.patch
      *
-     * @desc Updates application fields.
+     * @desc Updates the specified Application resource. You can update the following fields: * [`auth_domain`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#Application.FIELDS.auth_domain) * [`default_cookie_expiration`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#Application.FIELDS.default_cookie_expiration)
      *
      * @alias appengine.apps.patch
      * @memberOf! appengine(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the application to update. Example: `apps/myapp`.
+     * @param {string} params.appsId Part of `name`. Name of the Application resource to update. Example: `apps/myapp`.
      * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
      * @param {appengine(v1).Application} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -235,7 +235,7 @@ function Appengine(options) { // eslint-disable-line
     /**
      * appengine.apps.repair
      *
-     * @desc Recreates the required App Engine features for the application in your project, for example a Cloud Storage bucket or App Engine service account. Use this method if you receive an error message about a missing feature, for example "*Error retrieving the App Engine service account*".
+     * @desc Recreates the required App Engine features for the specified App Engine application, for example a Cloud Storage bucket or App Engine service account. Use this method if you receive an error message about a missing feature, for example, *Error retrieving the App Engine service account*.
      *
      * @alias appengine.apps.repair
      * @memberOf! appengine(v1)
@@ -1116,6 +1116,15 @@ function Appengine(options) { // eslint-disable-line
  * @property {number} cpu Number of CPU cores needed.
  * @property {number} diskGb Disk size (GB) needed.
  * @property {number} memoryGb Memory (GB) needed.
+ * @property {appengine(v1).Volume[]} volumes User specified volumes.
+ */
+/**
+ * @typedef Volume
+ * @memberOf! appengine(v1)
+ * @type object
+ * @property {string} name Unique name for the volume.
+ * @property {string} volumeType Underlying volume type, e.g. &#39;tmpfs&#39;.
+ * @property {number} sizeGb Volume size in GB.
  */
 /**
  * @typedef UrlMap

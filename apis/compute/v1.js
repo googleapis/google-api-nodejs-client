@@ -1116,6 +1116,45 @@ function Compute(options) { // eslint-disable-line
   self.backendServices = {
 
     /**
+     * compute.backendServices.aggregatedList
+     *
+     * @desc Retrieves the list of all BackendService resources, regional and global, available to the specified project.
+     *
+     * @alias compute.backendServices.aggregatedList
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Name of the project scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/backendServices',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.backendServices.delete
      *
      * @desc Deletes the specified BackendService resource.
@@ -7238,10 +7277,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter 
      * @param {string} params.instanceGroupManager The name of the managed instance group.
-     * @param {integer=} params.maxResults 
-     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9493,6 +9529,7 @@ function Compute(options) { // eslint-disable-line
      * @param {string} params.instance Name of the instance scoping this request.
      * @param {integer=} params.port Specifies which COM or serial port to retrieve data from.
      * @param {string} params.project Project ID for this request.
+     * @param {string=} params.start For the initial request, leave this field unspecified. For subsequent calls, this field should be set to the next value that was returned in the previous call.
      * @param {string} params.zone The name of the zone for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11650,6 +11687,1087 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.regionAutoscalers = {
+
+    /**
+     * compute.regionAutoscalers.delete
+     *
+     * @desc Deletes the specified autoscaler.
+     *
+     * @alias compute.regionAutoscalers.delete
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.autoscaler Name of the autoscaler to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/autoscalers/{autoscaler}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'autoscaler'],
+        pathParams: ['autoscaler', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionAutoscalers.get
+     *
+     * @desc Returns the specified autoscaler.
+     *
+     * @alias compute.regionAutoscalers.get
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.autoscaler Name of the autoscaler to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/autoscalers/{autoscaler}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'autoscaler'],
+        pathParams: ['autoscaler', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionAutoscalers.insert
+     *
+     * @desc Creates an autoscaler in the specified project using the data included in the request.
+     *
+     * @alias compute.regionAutoscalers.insert
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).Autoscaler} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/autoscalers',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionAutoscalers.list
+     *
+     * @desc Retrieves a list of autoscalers contained within the specified region.
+     *
+     * @alias compute.regionAutoscalers.list
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/autoscalers',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionAutoscalers.patch
+     *
+     * @desc Updates an autoscaler in the specified project using the data included in the request. This method supports patch semantics.
+     *
+     * @alias compute.regionAutoscalers.patch
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.autoscaler Name of the autoscaler to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).Autoscaler} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/autoscalers',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'autoscaler'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionAutoscalers.update
+     *
+     * @desc Updates an autoscaler in the specified project using the data included in the request.
+     *
+     * @alias compute.regionAutoscalers.update
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.autoscaler Name of the autoscaler to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).Autoscaler} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/autoscalers',
+          method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.regionBackendServices = {
+
+    /**
+     * compute.regionBackendServices.delete
+     *
+     * @desc Deletes the specified regional BackendService resource.
+     *
+     * @alias compute.regionBackendServices.delete
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.get
+     *
+     * @desc Returns the specified regional BackendService resource.
+     *
+     * @alias compute.regionBackendServices.get
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.getHealth
+     *
+     * @desc Gets the most recent health check results for this regional BackendService.
+     *
+     * @alias compute.regionBackendServices.getHealth
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to which the queried instance belongs.
+     * @param {string} params.project 
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).ResourceGroupReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getHealth: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}/getHealth',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.insert
+     *
+     * @desc Creates a regional BackendService resource in the specified project using the data included in the request. There are several restrictions and guidelines to keep in mind when creating a regional backend service. Read  Restrictions and Guidelines for more information.
+     *
+     * @alias compute.regionBackendServices.insert
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.list
+     *
+     * @desc Retrieves the list of regional BackendService resources available to the specified project in the given region.
+     *
+     * @alias compute.regionBackendServices.list
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.patch
+     *
+     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
+     *
+     * @alias compute.regionBackendServices.patch
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionBackendServices.update
+     *
+     * @desc Updates the specified regional BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information.
+     *
+     * @alias compute.regionBackendServices.update
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).BackendService} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}',
+          method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'backendService'],
+        pathParams: ['backendService', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.regionInstanceGroupManagers = {
+
+    /**
+     * compute.regionInstanceGroupManagers.abandonInstances
+     *
+     * @desc Schedules a group action to remove the specified instances from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.
+     *
+     * @alias compute.regionInstanceGroupManagers.abandonInstances
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager Name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).RegionInstanceGroupManagersAbandonInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    abandonInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroupManagers.delete
+     *
+     * @desc Deletes the specified managed instance group and all of the instances in that group.
+     *
+     * @alias compute.regionInstanceGroupManagers.delete
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager Name of the managed instance group to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroupManagers.deleteInstances
+     *
+     * @desc Schedules a group action to delete the specified instances in the managed instance group. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.
+     *
+     * @alias compute.regionInstanceGroupManagers.deleteInstances
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager Name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).RegionInstanceGroupManagersDeleteInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroupManagers.get
+     *
+     * @desc Returns all of the details about the specified managed instance group.
+     *
+     * @alias compute.regionInstanceGroupManagers.get
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager Name of the managed instance group to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroupManagers.insert
+     *
+     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, it schedules an action to create instances in the group using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.
+     *
+     * @alias compute.regionInstanceGroupManagers.insert
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).InstanceGroupManager} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroupManagers.list
+     *
+     * @desc Retrieves the list of managed instance groups that are contained within the specified region.
+     *
+     * @alias compute.regionInstanceGroupManagers.list
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroupManagers.listManagedInstances
+     *
+     * @desc Lists the instances in the managed instance group and instances that are scheduled to be created. The list includes any current actions that the group has scheduled for its instances.
+     *
+     * @alias compute.regionInstanceGroupManagers.listManagedInstances
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listManagedInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroupManagers.recreateInstances
+     *
+     * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.
+     *
+     * @alias compute.regionInstanceGroupManagers.recreateInstances
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager Name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).RegionInstanceGroupManagersRecreateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    recreateInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroupManagers.resize
+     *
+     * @desc Changes the intended size for the managed instance group. If you increase the size, the group schedules actions to create new instances using the current instance template. If you decrease the size, the group schedules delete actions on one or more instances. The resize operation is marked DONE when the resize actions are scheduled even if the group has not yet added or deleted any instances. You must separately verify the status of the creating or deleting actions with the listmanagedinstances method.
+     *
+     * @alias compute.regionInstanceGroupManagers.resize
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager Name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {integer} params.size Number of instances that should exist in this instance group manager.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    resize: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resize',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager', 'size'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroupManagers.setInstanceTemplate
+     *
+     * @desc Sets the instance template to use when creating new instances or recreating instances in this group. Existing instances are not affected.
+     *
+     * @alias compute.regionInstanceGroupManagers.setInstanceTemplate
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).RegionInstanceGroupManagersSetTemplateRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setInstanceTemplate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroupManagers.setTargetPools
+     *
+     * @desc Modifies the target pools to which all new instances in this group are assigned. Existing instances in the group are not affected.
+     *
+     * @alias compute.regionInstanceGroupManagers.setTargetPools
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroupManager Name of the managed instance group.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).RegionInstanceGroupManagersSetTargetPoolsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setTargetPools: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroupManager'],
+        pathParams: ['instanceGroupManager', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.regionInstanceGroups = {
+
+    /**
+     * compute.regionInstanceGroups.get
+     *
+     * @desc Returns the specified instance group resource.
+     *
+     * @alias compute.regionInstanceGroups.get
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroup Name of the instance group resource to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroup'],
+        pathParams: ['instanceGroup', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroups.list
+     *
+     * @desc Retrieves the list of instance group resources contained within the specified region.
+     *
+     * @alias compute.regionInstanceGroups.list
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroups',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroups.listInstances
+     *
+     * @desc Lists the instances in the specified instance group and displays information about the named ports. Depending on the specified options, this method can list all instances or only the instances that are running.
+     *
+     * @alias compute.regionInstanceGroups.listInstances
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {string} params.instanceGroup Name of the regional instance group for which we want to list the instances.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).RegionInstanceGroupsListInstancesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listInstances: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/listInstances',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroup'],
+        pathParams: ['instanceGroup', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.regionInstanceGroups.setNamedPorts
+     *
+     * @desc Sets the named ports for the specified regional instance group.
+     *
+     * @alias compute.regionInstanceGroups.setNamedPorts
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instanceGroup The name of the regional instance group where the named ports are updated.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {compute(v1).RegionInstanceGroupsSetNamedPortsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setNamedPorts: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/setNamedPorts',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'instanceGroup'],
+        pathParams: ['instanceGroup', 'project', 'region'],
         context: self
       };
 
@@ -19274,6 +20392,7 @@ When the load balancing scheme is INTERNAL, this field is not used.
 For internal load balancing, a URL to a HealthCheck resource must be specified instead.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of resource. Always compute#backendService for backend services.
+* @property {string} loadBalancingScheme 
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {integer} port Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.
 
@@ -19298,6 +20417,16 @@ When the protocol is UDP, this field is not used.
 * @property {integer} timeoutSec How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds.
 */
 /**
+ * @typedef BackendServiceAggregatedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {object} items A map of scoped BackendService lists.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
  * @typedef BackendServiceGroupHealth
  * @memberOf! compute(v1)
  * @type object
@@ -19313,6 +20442,13 @@ When the protocol is UDP, this field is not used.
  * @property {string} kind [Output Only] Type of resource. Always compute#backendServiceList for lists of backend services.
  * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef BackendServicesScopedList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).BackendService[]} backendServices List of BackendServices contained in this scope.
+ * @property {object} warning Informational warning which replaces the list of backend services when the list is empty.
  */
 /**
  * @typedef CacheInvalidationRule
@@ -19535,16 +20671,33 @@ When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP addr
 * @property {string} IPProtocol The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP.
 
 When the load balancing scheme is INTERNAL&lt;/code, only TCP and UDP are valid.
+* @property {string} backendService This field is not used for external load balancing.
+
+For internal load balancing, this field identifies the BackendService resource to receive the matched traffic.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of the resource. Always compute#forwardingRule for Forwarding Rule resources.
+* @property {string} loadBalancingScheme This signifies what the ForwardingRule will be used for and can only take the following values: INTERNAL EXTERNAL The value of INTERNAL means that this will be used for Internal Network Load Balancing (TCP, UDP). The value of EXTERNAL means that this will be used for External Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
 * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {string} network This field is not used for external load balancing.
+
+For internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.
 * @property {string} portRange Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
 
 This field is not used for internal load balancing.
+* @property {string[]} ports This field is not used for external load balancing.
+
+When the load balancing scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule. If the port list is not provided then all ports are allowed to pass through.
+
+You may specify a maximum of up to 5 ports.
 * @property {string} region [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+* @property {string} subnetwork This field is not used for external load balancing.
+
+For internal load balancing, this field identifies the subnetwork that the load balanced IP should belong to for this Forwarding Rule.
+
+If the network specified is in auto subnet mode, this field is optional. However, if the network is in custom subnet mode, a subnetwork must be specified.
 * @property {string} target The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global TargetHttpProxy or TargetHttpsProxy resource. The forwarded traffic must be of a type appropriate to the target object. For example, TargetHttpProxy requires HTTP traffic, and TargetHttpsProxy requires HTTPS traffic.
 
 This field is not used for internal load balancing.
@@ -19577,14 +20730,10 @@ This field is not used for internal load balancing.
  * @property {object} warning Informational warning which replaces the list of forwarding rules when the list is empty.
  */
 /**
- * @typedef HTTP2HealthCheck
+ * @typedef GuestOsFeature
  * @memberOf! compute(v1)
  * @type object
- * @property {string} host The value of the host header in the HTTP/2 health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
- * @property {integer} port The TCP port number for the health check request. The default value is 443.
- * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
- * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
- * @property {string} requestPath The request path of the HTTP/2 health check request. The default value is /.
+ * @property {string} type The type of supported feature. Currenty only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image. This value is purely informational and does not enable or disable any features.
  */
 /**
  * @typedef HTTPHealthCheck
@@ -19614,7 +20763,6 @@ This field is not used for internal load balancing.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in 3339 text format.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {integer} healthyThreshold A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
- * @property {compute(v1).HTTP2HealthCheck} http2HealthCheck 
  * @property {compute(v1).HTTPHealthCheck} httpHealthCheck 
  * @property {compute(v1).HTTPSHealthCheck} httpsHealthCheck 
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -19726,6 +20874,9 @@ This field is not used for internal load balancing.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
 * @property {string} family The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
+* @property {compute(v1).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable images only. Currently, only one feature can be enabled, VIRTIO_SCSCI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows images, you can only enable VIRTIO_SCSCI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux images with kernel versions 3.17 and higher will support VIRTIO_SCSCI_MULTIQUEUE.
+
+For new Windows images, the server might also populate this field with the value WINDOWS, to indicate that this is a Windows image. This value is purely informational and does not enable or disable any features.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {compute(v1).CustomerEncryptionKey} imageEncryptionKey Encrypts the image using a customer-supplied encryption key.
 
@@ -19739,7 +20890,7 @@ If you do not provide an encryption key when creating the image, then the disk w
 * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {object} rawDisk The parameters of the raw disk image.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
-* @property {string} sourceDisk URL of the The source disk used to create this image. This can be a full or valid partial URL. You must provide either this property or the rawDisk.source property but not both to create an image. For example, the following are valid values:  
+* @property {string} sourceDisk URL of the source disk used to create this image. This can be a full or valid partial URL. You must provide either this property or the rawDisk.source property but not both to create an image. For example, the following are valid values:  
 - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk 
 - projects/project/zones/zone/disks/disk 
 - zones/zone/disks/disk
@@ -20336,6 +21487,97 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string[]} zones [Output Only] A list of zones available in this region, in the form of resource URLs.
  */
 /**
+ * @typedef RegionAutoscalerList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).Autoscaler[]} items A list of autoscalers.
+ * @property {string} kind Type of resource.
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef RegionInstanceGroupList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).InstanceGroup[]} items A list of InstanceGroup resources.
+ * @property {string} kind The resource type.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] The URL for this resource type. The server generates this URL.
+ */
+/**
+ * @typedef RegionInstanceGroupManagerList
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(v1).InstanceGroupManager[]} items A list of managed instance groups.
+ * @property {string} kind [Output Only] The resource type, which is always compute#instanceGroupManagerList for a list of managed instance groups that exist in th regional scope.
+ * @property {string} nextPageToken [Output only] A token used to continue a truncated list request.
+ * @property {string} selfLink [Output only] The URL for this resource type. The server generates this URL.
+ */
+/**
+ * @typedef RegionInstanceGroupManagersAbandonInstancesRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string[]} instances The names of one or more instances to abandon.
+ */
+/**
+ * @typedef RegionInstanceGroupManagersDeleteInstancesRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string[]} instances The names of one or more instances to delete.
+ */
+/**
+ * @typedef RegionInstanceGroupManagersListInstancesResponse
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).ManagedInstance[]} managedInstances List of managed instances.
+ */
+/**
+ * @typedef RegionInstanceGroupManagersRecreateRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string[]} instances The URL for one or more instances to recreate.
+ */
+/**
+ * @typedef RegionInstanceGroupManagersSetTargetPoolsRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} fingerprint Fingerprint of the target pools information, which is a hash of the contents. This field is used for optimistic locking when you update the target pool entries. This field is optional.
+ * @property {string[]} targetPools The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
+ */
+/**
+ * @typedef RegionInstanceGroupManagersSetTemplateRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} instanceTemplate URL of the InstanceTemplate resource from which all new instances will be created.
+ */
+/**
+ * @typedef RegionInstanceGroupsListInstances
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource. Defined by the server.
+ * @property {compute(v1).InstanceWithNamedPorts[]} items A list of instances and any named ports that are assigned to those instances.
+ * @property {string} kind The resource type.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef RegionInstanceGroupsListInstancesRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} instanceState Instances in which state should be returned. Valid options are: &#39;ALL&#39;, &#39;RUNNING&#39;. By default, it lists all instances.
+ * @property {string} portName Name of port user is interested in. It is optional. If it is set, only information about this ports will be returned. If it is not set, all the named ports will be returned. Always lists all instances.
+ */
+/**
+ * @typedef RegionInstanceGroupsSetNamedPortsRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {string} fingerprint The fingerprint of the named ports information for this instance group. Use this optional property to prevent conflicts when multiple users change the named ports settings concurrently. Obtain the fingerprint with the instanceGroups.get method. Then, include the fingerprint in your request to ensure that you do not overwrite changes that were applied from another concurrent request.
+ * @property {compute(v1).NamedPort[]} namedPorts The list of named ports to set for this instance group.
+ */
+/**
  * @typedef RegionList
  * @memberOf! compute(v1)
  * @type object
@@ -20511,7 +21753,9 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @type object
  * @property {string} contents [Output Only] The contents of the console output.
  * @property {string} kind [Output Only] Type of the resource. Always compute#serialPortOutput for serial port output.
+ * @property {string} next [Output Only] The position of the next byte of content from the serial console output. Use this value in the next request as the start parameter.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ * @property {string} start [Output Only] The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer, older output will be overwritten by newer content and the start values will be mismatched.
  */
 /**
  * @typedef ServiceAccount
