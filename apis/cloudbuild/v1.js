@@ -449,6 +449,42 @@ function Cloudbuild(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudbuild.operations.cancel
+     *
+     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     *
+     * @alias cloudbuild.operations.cancel
+     * @memberOf! cloudbuild(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {cloudbuild(v1).CancelOperationRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudbuild.googleapis.com/v1/{name}:cancel',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -559,6 +595,11 @@ presented to `docker push`.
  * @property {string} type The type of hash that was performed.
  */
 /**
+ * @typedef CancelOperationRequest
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ */
+/**
  * @typedef StorageSource
  * @memberOf! cloudbuild(v1)
  * @type object
@@ -593,6 +634,9 @@ build.
 @OutputOnly
 * @property {cloudbuild(v1).BuildOptions} options Special options for this build.
 * @property {string} finishTime Time at which execution of the build was finished.
+
+The difference between finish_time and start_time is the duration of the
+build&#39;s execution.
 @OutputOnly
 * @property {string} timeout Amount of time that this build should be allowed to run, to second
 granularity. If this amount of time elapses, work on the build will cease
@@ -601,7 +645,7 @@ and the build status will be TIMEOUT.
 Default time is ten minutes.
 * @property {cloudbuild(v1).BuildStep[]} steps Describes the operations to be performed on the workspace.
 * @property {cloudbuild(v1).Source} source Describes where to find the source files to build.
-* @property {string} createTime Time at which the build was created.
+* @property {string} createTime Time at which the request to create the build was received.
 @OutputOnly
 * @property {string} logUrl URL to logs for this build in Google Cloud Logging.
 @OutputOnly
@@ -618,7 +662,6 @@ results field.
 
 If any of the images fail to be pushed, the build is marked FAILURE.
 * @property {string} startTime Time at which execution of the build was started.
-@OutputOnly
 * @property {string} buildTriggerId The ID of the BuildTrigger that triggered this build, if it was
 triggered automatically.
 @OutputOnly
@@ -641,17 +684,17 @@ Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.
  * @type object
  */
 /**
- * @typedef FileHashes
- * @memberOf! cloudbuild(v1)
- * @type object
- * @property {cloudbuild(v1).Hash[]} fileHash Collection of file hashes.
- */
-/**
  * @typedef ListOperationsResponse
  * @memberOf! cloudbuild(v1)
  * @type object
  * @property {string} nextPageToken The standard List next-page token.
  * @property {cloudbuild(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+/**
+ * @typedef FileHashes
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {cloudbuild(v1).Hash[]} fileHash Collection of file hashes.
  */
 /**
  * @typedef RepoSource

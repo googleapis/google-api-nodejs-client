@@ -1069,8 +1069,18 @@ function Dataflow(options) { // eslint-disable-line
  * @typedef CreateJobFromTemplateRequest
  * @memberOf! dataflow(v1b3)
  * @type object
+ * @property {string} jobName The job name to use for the created job..
  * @property {string} gcsPath A path to the serialized JSON representation of the job.
  * @property {object} parameters Dynamic parameterization of the job&#39;s runtime environment.
+ * @property {dataflow(v1b3).RuntimeEnvironment} environment Runtime environment for the job.
+ */
+/**
+ * @typedef RuntimeEnvironment
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {integer} maxWorkers The maximum number of workers to start for the job.
+ * @property {string} zone The zone to start the workers in.
+ * @property {string} serviceAccountEmail The service account to run the job as.
  */
 /**
  * @typedef ReportWorkItemStatusRequest
@@ -1575,6 +1585,7 @@ function Dataflow(options) { // eslint-disable-line
 * @property {string} idLabel If set, contains a pubsub label from which to extract record ids. If left empty, record deduplication will be strictly best effort.
 * @property {boolean} dropLateData Indicates whether the pipeline allows late-arriving data.
 * @property {string} trackingSubscription If set, specifies the pubsub subscription that will be used for tracking custom time timestamps for watermark estimation.
+* @property {boolean} withAttributes If true, then the client has requested to get pubsub attributes.
 */
 /**
  * @typedef StreamingSideInputLocation

@@ -115,7 +115,7 @@ function Slides(options) { // eslint-disable-line
     /**
      * slides.presentations.batchUpdate
      *
-     * @desc Applies one or more updates to the presentation.  Each request is validated before being applied. If any request is not valid then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests.  For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies, the reply to the third request, and another empty reply, in that order.  Because other users may be editing the presentation, it is not guaranteed that the presentation will exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the presentation should reflect your changes. In any case, it is guaranteed that the updates in your request will be applied together atomically.
+     * @desc Applies one or more updates to the presentation.  Each request is validated before being applied. If any request is not valid, then the entire request will fail and nothing will be applied.  Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests.  For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies: the reply to the third request, and another empty reply, in that order.  Because other users may be editing the presentation, the presentation might not exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the presentation should reflect your changes. In any case, the updates in your request are guaranteed to be applied together atomically.
      *
      * @alias slides.presentations.batchUpdate
      * @memberOf! slides(v1)
@@ -312,7 +312,7 @@ The index may be adjusted to prevent insertions inside Unicode grapheme
 clusters. In these cases, the text will be inserted immediately after the
 grapheme cluster.
 * @property {slides(v1).TableCellLocation} cellLocation The optional table cell location if the text is to be inserted into a table
-cell. If present the object_id must refer to a table.
+cell. If present, the object_id must refer to a table.
 */
 /**
  * @typedef RgbColor
@@ -350,7 +350,7 @@ to paragraph styles and lists as the two paragraphs are merged.
 Ranges that include only one code unit of a surrogate pair are expanded to
 include both code units.
 * @property {slides(v1).TableCellLocation} cellLocation The optional table cell location if the text is to be deleted from a table
-cell. If present the object_id must refer to a table.
+cell. If present, the object_id must refer to a table.
 */
 /**
  * @typedef ParagraphStyle
@@ -433,7 +433,7 @@ three purposes:
   master, regardless of their layout.
 * @property {slides(v1).Size} pageSize The size of pages in the presentation.
 * @property {string} presentationId The ID of the presentation.
-* @property {slides(v1).Page[]} layouts The layouts in the presentation.  A layout is a template that determines
+* @property {slides(v1).Page[]} layouts The layouts in the presentation. A layout is a template that determines
 how content is arranged and styled on the slides that inherit from that
 layout.
 */
@@ -556,11 +556,12 @@ an image.
  * @memberOf! slides(v1)
  * @type object
 * @property {slides(v1).Dimension} weight The thickness of the line.
-* @property {string} startArrow The style of the arrow at the beginning of the line.
 * @property {string} endArrow The style of the arrow at the end of the line.
+* @property {slides(v1).Link} link The hyperlink destination of the line. If unset, there is no link.
 * @property {slides(v1).LineFill} lineFill The fill of the line. The default line fill matches the defaults for new
 lines created in the Slides editor.
 * @property {string} dashStyle The dash style of the line.
+* @property {string} startArrow The style of the arrow at the beginning of the line.
 */
 /**
  * @typedef Table
@@ -869,6 +870,24 @@ points.
 * @property {boolean} underline Whether or not the text is underlined.
 */
 /**
+ * @typedef UpdateLinePropertiesRequest
+ * @memberOf! slides(v1)
+ * @type object
+* @property {string} objectId The object ID of the line the update is applied to.
+* @property {slides(v1).LineProperties} lineProperties The line properties to update.
+* @property {string} fields The fields that should be updated.
+
+At least one field must be specified. The root `lineProperties` is
+implied and should not be specified. A single `&quot;*&quot;` can be used as
+short-hand for listing every field.
+
+For example to update the line solid fill color, set `fields` to
+`&quot;lineFill.solidFill.color&quot;`.
+
+To reset a property to its default value, include its field name in the
+field mask but leave the field itself unset.
+*/
+/**
  * @typedef TableCellBackgroundFill
  * @memberOf! slides(v1)
  * @type object
@@ -1087,6 +1106,7 @@ any other fill fields set in the same request will be ignored.
  * @type object
  * @property {slides(v1).TextStyle} style The styling applied to this auto text.
  * @property {string} type The type of this auto text.
+ * @property {string} content The rendered content of this auto text, if available.
  */
 /**
  * @typedef TextElement
@@ -1137,6 +1157,8 @@ duplicates.
 parent placeholder if it exists. If the shape has no parent, then the
 default outline depends on the shape type, matching the defaults for
 new shapes created in the Slides editor.
+* @property {slides(v1).Link} link The hyperlink destination of the shape. If unset, there is no link. Links
+are not inherited from parent placeholders.
 * @property {slides(v1).ShapeBackgroundFill} shapeBackgroundFill The background fill of the shape. If unset, the background fill is
 inherited from a parent placeholder if it exists. If the shape has no
 parent, then the default background fill depends on the shape type,
@@ -1145,6 +1167,23 @@ matching the defaults for new shapes created in the Slides editor.
 a parent placeholder if it exists. If the shape has no parent, then the
 default shadow matches the defaults for new shapes created in the Slides
 editor. This property is read-only.
+*/
+/**
+ * @typedef CreateLineRequest
+ * @memberOf! slides(v1)
+ * @type object
+* @property {string} objectId A user-supplied object ID.
+
+If you specify an ID, it must be unique among all pages and page elements
+in the presentation. The ID must start with an alphanumeric character or an
+underscore (matches regex `[a-zA-Z0-9_]`); remaining characters
+may include those as well as a hyphen or colon (matches regex
+`[a-zA-Z0-9_-:]`).
+The length of the ID must not be less than 5 or greater than 50.
+
+If you don&#39;t specify an ID, a unique one is generated.
+* @property {slides(v1).PageElementProperties} elementProperties The element properties for the line.
+* @property {string} lineCategory The category of line to be created.
 */
 /**
  * @typedef CreateShapeResponse
@@ -1242,7 +1281,7 @@ a transparent color.
 * @property {slides(v1).TextContent} text The text content of the shape.
 * @property {slides(v1).ShapeProperties} shapeProperties The properties of the shape.
 * @property {string} shapeType The type of the shape.
-* @property {slides(v1).Placeholder} placeholder Placeholders are shapes that are inherit from correponding placeholders on
+* @property {slides(v1).Placeholder} placeholder Placeholders are shapes that are inherit from corresponding placeholders on
 layouts and masters.
 
 If set, the shape is a placeholder shape and any inherited properties
@@ -1271,6 +1310,7 @@ is read-only.
 This property is read-only.
 * @property {number} contrast The contrast effect of the image. The value should be in the interval
 [-1.0, 1.0], where 0 means no effect. This property is read-only.
+* @property {slides(v1).Link} link The hyperlink destination of the image. If unset, there is no link.
 * @property {slides(v1).Recolor} recolor The recolor effect of the image. If not set, the image is not recolored.
 This property is read-only.
 * @property {number} brightness The brightness effect of the image. The value should be in the interval
@@ -1386,7 +1426,7 @@ belong to a list.
 * @property {string} bulletPreset The kinds of bullet glyphs to be used. Defaults to the
 `BULLET_DISC_CIRCLE_SQUARE` preset.
 * @property {slides(v1).TableCellLocation} cellLocation The optional table cell location if the text to be modified is in a table
-cell. If present the object_id must refer to a table.
+cell. If present, the object_id must refer to a table.
 */
 /**
  * @typedef SubstringMatchCriteria
@@ -1399,6 +1439,12 @@ cell. If present the object_id must refer to a table.
 - `False`: the search is case insensitive.
 */
 /**
+ * @typedef WordArt
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {string} renderedText The text rendered as word art.
+ */
+/**
  * @typedef Range
  * @memberOf! slides(v1)
  * @type object
@@ -1408,12 +1454,6 @@ Required for `SPECIFIC_RANGE` delete mode.
 Required for `SPECIFIC_RANGE` and `FROM_START_INDEX` ranges.
 * @property {string} type The type of range.
 */
-/**
- * @typedef WordArt
- * @memberOf! slides(v1)
- * @type object
- * @property {string} renderedText The text rendered as word art.
- */
 /**
  * @typedef TableColumnProperties
  * @memberOf! slides(v1)
@@ -1432,6 +1472,7 @@ Required for `SPECIFIC_RANGE` and `FROM_START_INDEX` ranges.
  * @property {slides(v1).UpdateVideoPropertiesRequest} updateVideoProperties Updates the properties of a Video.
  * @property {slides(v1).InsertTextRequest} insertText Inserts text into a shape or table cell.
  * @property {slides(v1).DeleteTableRowRequest} deleteTableRow Deletes a row from a table.
+ * @property {slides(v1).CreateLineRequest} createLine Creates a line.
  * @property {slides(v1).UpdateTextStyleRequest} updateTextStyle Updates the styling of text within a Shape or Table.
  * @property {slides(v1).InsertTableRowsRequest} insertTableRows Inserts rows into a table.
  * @property {slides(v1).UpdateTableCellPropertiesRequest} updateTableCellProperties Updates the properties of a TableCell.
@@ -1450,6 +1491,7 @@ Required for `SPECIFIC_RANGE` and `FROM_START_INDEX` ranges.
  * @property {slides(v1).CreateImageRequest} createImage Creates an image.
  * @property {slides(v1).DuplicateObjectRequest} duplicateObject Duplicates a slide or page element.
  * @property {slides(v1).DeleteTableColumnRequest} deleteTableColumn Deletes a column from a table.
+ * @property {slides(v1).UpdateLinePropertiesRequest} updateLineProperties Updates the properties of a Line.
  */
 /**
  * @typedef LineFill

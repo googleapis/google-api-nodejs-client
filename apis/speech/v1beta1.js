@@ -228,7 +228,7 @@ function Speech(options) { // eslint-disable-line
     /**
      * speech.speech.asyncrecognize
      *
-     * @desc Performs asynchronous speech recognition: receive results via the google.longrunning.Operations interface. Returns either an `Operation.error` or an `Operation.response` which contains an `AsyncRecognizeResponse` message.
+     * @desc Performs asynchronous speech recognition: receive results via the [google.longrunning.Operations] (/speech/reference/rest/v1beta1/operations#Operation) interface. Returns either an `Operation.error` or an `Operation.response` which contains an `AsyncRecognizeResponse` message.
      *
      * @alias speech.speech.asyncrecognize
      * @memberOf! speech(v1beta1)

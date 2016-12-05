@@ -267,6 +267,7 @@ function Servicemanagement(options) { // eslint-disable-line
      * @param {integer=} params.pageSize Requested size of the next page of data.
      * @param {string=} params.producerProjectId Include services produced by the specified project.
      * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
+     * @param {string=} params.consumerId Include services consumed by the specified consumer.  The Google Service Management implementation accepts the following forms: - project:<project_id>
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -402,7 +403,7 @@ function Servicemanagement(options) { // eslint-disable-line
     /**
      * servicemanagement.services.delete
      *
-     * @desc Deletes a managed service. This method will change the serivce in the `Soft-Delete` state for 30 days. Within this period, service producers may call UndeleteService to restore the service. After 30 days, the service will be permanently deleted.  Operation<response: google.protobuf.Empty>
+     * @desc Deletes a managed service. This method will change the service to the `Soft-Delete` state for 30 days. Within this period, service producers may call UndeleteService to restore the service. After 30 days, the service will be permanently deleted.  Operation<response: google.protobuf.Empty>
      *
      * @alias servicemanagement.services.delete
      * @memberOf! servicemanagement(v1)
@@ -437,7 +438,7 @@ function Servicemanagement(options) { // eslint-disable-line
     /**
      * servicemanagement.services.testIamPermissions
      *
-     * @desc Returns permissions that a caller has on the specified resource.
+     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
      *
      * @alias servicemanagement.services.testIamPermissions
      * @memberOf! servicemanagement(v1)
@@ -1145,10 +1146,11 @@ the service name followed by &quot;/&quot;.
  * @typedef AuditConfig
  * @memberOf! servicemanagement(v1)
  * @type object
-* @property {string} service Specifies a service that will be enabled for &quot;data access&quot; audit
-logging.
+* @property {string} service Specifies a service that will be enabled for audit logging.
 For example, `resourcemanager`, `storage`, `compute`.
 `allServices` is a special value that covers all services.
+* @property {servicemanagement(v1).AuditLogConfig[]} auditLogConfigs The configuration for each type of logging
+Next ID: 4
 * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit
 logging for the `service` specified above.
 Follows the same format of Binding.members.
@@ -1490,7 +1492,7 @@ configuration.
 * @property {string} body The name of the request field whose value is mapped to the HTTP body, or
 `*` for mapping all fields not captured by the path pattern to the HTTP
 body. NOTE: the referred field must not be a repeated field and must be
-present at the top-level of response message type.
+present at the top-level of request message type.
 * @property {string} put Used for updating a resource.
 * @property {string} get Used for listing and getting information about resources.
 * @property {string} selector Selects methods to which this rule applies.
@@ -1579,8 +1581,7 @@ one consumer destination.
  * @type object
 * @property {string} urlQueryParameter Define the URL query parameter name to use for the parameter. It is case
 sensitive.
-* @property {string} name Define the name of the parameter, such as &quot;api_key&quot;, &quot;alt&quot;, &quot;callback&quot;,
-and etc. It is case sensitive.
+* @property {string} name Define the name of the parameter, such as &quot;api_key&quot; . It is case sensitive.
 * @property {string} httpHeader Define the HTTP header name to use for the parameter. It is case
 insensitive.
 */
@@ -1788,6 +1789,14 @@ rely on this method and only had access to it through GOOGLE_INTERNAL.
 Refer to selector for syntax details.
 */
 /**
+ * @typedef AuditLogConfig
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} logType The log type that this config enables.
+* @property {string[]} exemptedMembers Specifies the identities that are exempted from this type of logging
+Follows the same format of Binding.members.
+*/
+/**
  * @typedef UndeleteServiceResponse
  * @memberOf! servicemanagement(v1)
  * @type object
@@ -1886,27 +1895,26 @@ implemented by the system. If this field is missing from the service
 config, default system parameters will be used. Default system parameters
 and names is implementation-dependent.
 
-Example: define api key and alt name for all methods
+Example: define api key for all methods
 
-system_parameters
-  rules:
-    - selector: &quot;*&quot;
-      parameters:
-        - name: api_key
-          url_query_parameter: api_key
-        - name: alt
-          http_header: Response-Content-Type
+    system_parameters
+      rules:
+        - selector: &quot;*&quot;
+          parameters:
+            - name: api_key
+              url_query_parameter: api_key
+
 
 Example: define 2 api key names for a specific method.
 
-system_parameters
-  rules:
-    - selector: &quot;/ListShelves&quot;
-      parameters:
-        - name: api_key
-          http_header: Api-Key1
-        - name: api_key
-          http_header: Api-Key2
+    system_parameters
+      rules:
+        - selector: &quot;/ListShelves&quot;
+          parameters:
+            - name: api_key
+              http_header: Api-Key1
+            - name: api_key
+              http_header: Api-Key2
 
 **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
 */
@@ -1922,6 +1930,14 @@ system_parameters
  * @typedef Usage
  * @memberOf! servicemanagement(v1)
  * @type object
+* @property {string} producerNotificationChannel The full resource name of a channel used for sending notifications to the
+service producer.
+
+Google Service Management currently only supports
+[Google Cloud Pub/Sub](https://cloud.google.com/pubsub) as a notification
+channel. To use Google Cloud Pub/Sub as the channel, this must be the name
+of a Cloud Pub/Sub topic that uses the Cloud Pub/Sub topic name format
+documented in https://cloud.google.com/pubsub/docs/overview.
 * @property {string[]} requirements Requirements that must be satisfied before a consumer project can use the
 service. Each requirement is of the form &lt;service.name&gt;/&lt;requirement-id&gt;;
 for example &#39;serviceusage.googleapis.com/billing-enabled&#39;.

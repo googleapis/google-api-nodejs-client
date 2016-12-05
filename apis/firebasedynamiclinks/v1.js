@@ -84,9 +84,6 @@ function Firebasedynamiclinks(options) { // eslint-disable-line
  * @typedef DynamicLinkInfo
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
-* @property {boolean} isAd Declares that the Dynamic Link is used in an advertisement.
-See the &#39;ad&#39; parameter in the
-[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
 * @property {firebasedynamiclinks(v1).SocialMetaTagInfo} socialMetaTagInfo Parameters for social meta tag params.
 Used to set meta tag data for link previews on social sites.
 * @property {firebasedynamiclinks(v1).AnalyticsInfo} analyticsInfo Parameters used for tracking. See all tracking parameters in the

@@ -431,6 +431,7 @@ the beginning of the query if no cursor was given) to this batch&#39;s
 In a single transaction, subsequent query result batches for the same query
 can have a greater snapshot version number. Each batch&#39;s snapshot version
 is valid for all preceding batches.
+The value will be zero for eventually consistent queries.
 * @property {string} endCursor A cursor that points to the position after the last result in the batch.
 * @property {string} skippedCursor A cursor that points to the position after the last skipped result.
 Will be set when `skipped_results` != 0.

@@ -1431,6 +1431,7 @@ Entries with null values are cleared in update and copy requests.
 If an unsupported color is specified, the closest color in the palette will be used instead.
 * @property {string} fullFileExtension The full file extension extracted from the name field. May contain multiple concatenated extensions, such as &quot;tar.gz&quot;. This is only available for files with binary content in Drive.
 This is automatically updated when the name field changes, however it is not cleared if the new name does not contain a valid extension.
+* @property {boolean} hasThumbnail Whether this file has a thumbnail.
 * @property {string} headRevisionId The ID of the file&#39;s head revision. This is currently only available for files with binary content in Drive.
 * @property {string} iconLink A static, unauthenticated link to the file&#39;s icon.
 * @property {string} id The ID of the file.
@@ -1462,7 +1463,8 @@ Entries with null values are cleared in update and copy requests.
 * @property {string} size The size of the file&#39;s content in bytes. This is only applicable to files with binary content in Drive.
 * @property {string[]} spaces The list of spaces which contain the file. The currently supported values are &#39;drive&#39;, &#39;appDataFolder&#39; and &#39;photos&#39;.
 * @property {boolean} starred Whether the user has starred the file.
-* @property {string} thumbnailLink A short-lived link to the file&#39;s thumbnail, if available. Typically lasts on the order of hours.
+* @property {string} thumbnailLink A short-lived link to the file&#39;s thumbnail, if available. Typically lasts on the order of hours. Only populated when the requesting app can access the file&#39;s content.
+* @property {string} thumbnailVersion The thumbnail version for use in client-contructable thumbnail URLs or thumbnail cache invalidation.
 * @property {boolean} trashed Whether the file has been trashed, either explicitly or from a trashed parent folder. Only the owner may trash a file, and other users cannot see files in the owner&#39;s trash.
 * @property {string} version A monotonically increasing version number for the file. This reflects every change made to the file on the server, even those not visible to the user.
 * @property {object} videoMediaMetadata Additional metadata about video media. This may not be available immediately upon upload.

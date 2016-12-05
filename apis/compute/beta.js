@@ -4071,11 +4071,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter 
      * @param {string} params.instanceGroupManager The name of the managed instance group.
-     * @param {integer=} params.maxResults 
-     * @param {string=} params.order_by 
-     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5561,6 +5557,44 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.instances.setServiceAccount
+     *
+     * @desc Sets the service account on the instance.
+     *
+     * @alias compute.instances.setServiceAccount
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance resource to start.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(beta).InstancesSetServiceAccountRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setServiceAccount: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/zones/{zone}/instances/{instance}/setServiceAccount',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.instances.setTags
      *
      * @desc Sets tags for the specified instance to the data included in the request.
@@ -6161,6 +6195,77 @@ function Compute(options) { // eslint-disable-line
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/beta/projects/{project}',
           method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.projects.getXpnHost
+     *
+     * @desc Get the XPN host project that this project links to. May be empty if no link exists.
+     *
+     * @alias compute.projects.getXpnHost
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getXpnHost: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/getXpnHost',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.projects.listXpnHosts
+     *
+     * @desc List all XPN host projects visible to the user in an organization.
+     *
+     * @alias compute.projects.listXpnHosts
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {compute(beta).ProjectsListXpnHostsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listXpnHosts: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/listXpnHosts',
+          method: 'POST'
         }, options),
         params: params,
         requiredParams: ['project'],
@@ -7131,11 +7236,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter 
      * @param {string} params.instanceGroupManager The name of the managed instance group.
-     * @param {integer=} params.maxResults 
-     * @param {string=} params.order_by 
-     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11932,6 +12033,7 @@ When the load balancing scheme is INTERNAL, this field is not used.
 * @property {string[]} healthChecks The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required.
 
 For internal load balancing, a URL to a HealthCheck resource must be specified instead.
+* @property {compute(beta).BackendServiceIAP} iap 
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of resource. Always compute#backendService for backend services.
 * @property {string} loadBalancingScheme 
@@ -11974,6 +12076,15 @@ When the protocol is UDP, this field is not used.
  * @type object
  * @property {compute(beta).HealthStatus[]} healthStatus 
  * @property {string} kind [Output Only] Type of resource. Always compute#backendServiceGroupHealth for the health of backend services.
+ */
+/**
+ * @typedef BackendServiceIAP
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {boolean} enabled 
+ * @property {string} oauth2ClientId 
+ * @property {string} oauth2ClientSecret 
+ * @property {string} oauth2ClientSecretSha256 
  */
 /**
  * @typedef BackendServiceList
@@ -12326,17 +12437,7 @@ This field is not used for internal load balancing.
  * @typedef GuestOsFeature
  * @memberOf! compute(beta)
  * @type object
- * @property {string} type The type of supported feature. Currenty only VIRTIO_SCSI_MULTIQUEUE is supported.
- */
-/**
- * @typedef HTTP2HealthCheck
- * @memberOf! compute(beta)
- * @type object
- * @property {string} host The value of the host header in the HTTP/2 health check request. If left empty (default value), the IP on behalf of which this health check is performed will be used.
- * @property {integer} port The TCP port number for the health check request. The default value is 443.
- * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
- * @property {string} proxyHeader Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
- * @property {string} requestPath The request path of the HTTP/2 health check request. The default value is /.
+ * @property {string} type The type of supported feature. Currenty only VIRTIO_SCSI_MULTIQUEUE is supported. For newer Windows images, the server might also populate this property with the value WINDOWS to indicate that this is a Windows image. This value is purely informational and does not enable or disable any features.
  */
 /**
  * @typedef HTTPHealthCheck
@@ -12366,7 +12467,6 @@ This field is not used for internal load balancing.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in 3339 text format.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {integer} healthyThreshold A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
- * @property {compute(beta).HTTP2HealthCheck} http2HealthCheck 
  * @property {compute(beta).HTTPHealthCheck} httpHealthCheck 
  * @property {compute(beta).HTTPSHealthCheck} httpsHealthCheck 
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -12377,6 +12477,7 @@ This field is not used for internal load balancing.
  * @property {compute(beta).TCPHealthCheck} tcpHealthCheck 
  * @property {integer} timeoutSec How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
  * @property {string} type Specifies the type of the healthCheck, either TCP, UDP, SSL, HTTP, HTTPS or HTTP2. If not specified, the default is TCP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
+ * @property {compute(beta).UDPHealthCheck} udpHealthCheck 
  * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
  */
 /**
@@ -12478,7 +12579,9 @@ This field is not used for internal load balancing.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} diskSizeGb Size of the image when restored onto a persistent disk (in GB).
 * @property {string} family The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
-* @property {compute(beta).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable images only. Currently, only one feature is supported, VIRTIO_SCSCI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows images, you can only enable VIRTIO_SCSCI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux images with kernel versions 3.17 and higher will support VIRTIO_SCSCI_MULTIQUEUE.
+* @property {compute(beta).GuestOsFeature[]} guestOsFeatures A list of features to enable on the guest OS. Applicable for bootable images only. Currently, only one feature can be enabled, VIRTIO_SCSCI_MULTIQUEUE, which allows each virtual CPU to have its own queue. For Windows images, you can only enable VIRTIO_SCSCI_MULTIQUEUE on images with driver version 1.2.0.1621 or higher. Linux images with kernel versions 3.17 and higher will support VIRTIO_SCSCI_MULTIQUEUE.
+
+For new Windows images, the server might also populate this field with the value WINDOWS, to indicate that this is a Windows image. This value is purely informational and does not enable or disable any features.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {compute(beta).CustomerEncryptionKey} imageEncryptionKey Encrypts the image using a customer-supplied encryption key.
 
@@ -12496,7 +12599,7 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {object} rawDisk The parameters of the raw disk image.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
-* @property {string} sourceDisk URL of the The source disk used to create this image. This can be a full or valid partial URL. You must provide either this property or the rawDisk.source property but not both to create an image. For example, the following are valid values:  
+* @property {string} sourceDisk URL of the source disk used to create this image. This can be a full or valid partial URL. You must provide either this property or the rawDisk.source property but not both to create an image. For example, the following are valid values:  
 - https://www.googleapis.com/compute/v1/projects/project/zones/zone/disks/disk 
 - projects/project/zones/zone/disks/disk 
 - zones/zone/disks/disk
@@ -12623,6 +12726,7 @@ Named ports apply to all instances in this instance group.
  * @property {compute(beta).NamedPort[]} namedPorts Named ports configured for the Instance Groups complementary to this Instance Group Manager.
  * @property {string} region [Output Only] The URL of the region where the managed instance group resides (for regional resources).
  * @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
+ * @property {string} serviceAccount Service account will be used as credentials for all operations performed by managed instance group on instances. The service accounts needs all permissions required to create and delete instances. When not specified, the service account {projectNumber}@cloudservices.gserviceaccount.com will be used.
  * @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
  * @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
  * @property {string} zone [Output Only] The URL of the zone where the managed instance group is located (for zonal resources).
@@ -12656,7 +12760,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @typedef InstanceGroupManagerAutoHealingPolicy
  * @memberOf! compute(beta)
  * @type object
- * @property {string} healthCheck The URL for the HealthCheck that signals autohealing.
+ * @property {string} healthCheck The URL for the HttpHealthCheck or HttpsHealthCheck that signals autohealing.
  * @property {integer} initialDelaySec The number of seconds that the managed instance group waits before it applies autohealing policies to new instances or recently recreated instances. This initial delay allows instances to initialize and run their startup scripts before the instance group determines that they are UNHEALTHY. This prevents the managed instance group from recreating its instances prematurely. This value must be from range [0, 3600].
  */
 /**
@@ -12869,6 +12973,13 @@ Each label key &amp; value must comply with RFC1035. Specifically, the name must
  * @memberOf! compute(beta)
  * @type object
  * @property {string} machineType Full or partial URL of the machine type resource. See Machine Types for a full list of machine types. For example: zones/us-central1-f/machineTypes/n1-standard-1
+ */
+/**
+ * @typedef InstancesSetServiceAccountRequest
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} email Email address of the service account.
+ * @property {string[]} scopes The list of scopes to be made available for this service account.
  */
 /**
  * @typedef InstancesStartWithEncryptionKeyRequest
@@ -13137,6 +13248,12 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  * @property {compute(beta).UsageExportLocation} usageExportLocation The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
  * @property {string} xpnProjectStatus [Output Only] The role this project has in a Cross Project Network (XPN) configuration. Currently only HOST projects are differentiated.
+ */
+/**
+ * @typedef ProjectsListXpnHostsRequest
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} organization Optional organization ID managed by Cloud Resource Manager, for which to list XPN host projects. If not specified, the organization will be inferred from the project.
  */
 /**
  * @typedef Quota
@@ -13890,6 +14007,15 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
  */
 /**
+ * @typedef UDPHealthCheck
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {integer} port The UDP port number for the health check request.
+ * @property {string} portName Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
+ * @property {string} request Raw data of request to send in payload of UDP packet. It is an error if this is empty. The request data can only be ASCII.
+ * @property {string} response The bytes to match against the beginning of the response data. It is an error if this is empty. The response data can only be ASCII.
+ */
+/**
  * @typedef UrlMap
  * @memberOf! compute(beta)
  * @type object
@@ -14006,6 +14132,16 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
  * @type object
  * @property {compute(beta).VpnTunnel[]} vpnTunnels List of vpn tunnels contained in this scope.
  * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
+ */
+/**
+ * @typedef XpnHostList
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(beta).Project[]} items [Output Only] A list of XPN host project URLs.
+ * @property {string} kind [Output Only] Type of resource. Always compute#xpnHostList for lists of XPN hosts.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef Zone
