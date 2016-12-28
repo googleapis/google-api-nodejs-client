@@ -12,8 +12,8 @@ cache:
   directories:
   - node_modules/
 
-script:
-  - npm run prepare
+before_install:
+  - yarn global add nyc codecov
 
 after_success:
-  - npm run codecov
+  - nyc report --reporter=lcov > coverage.lcov && codecov

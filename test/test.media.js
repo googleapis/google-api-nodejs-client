@@ -13,7 +13,7 @@
 
 'use strict';
 
-var assert = require('assert');
+var assert = require('power-assert');
 var async = require('async');
 var fs = require('fs');
 var googleapis = require('../');
