@@ -9,11 +9,12 @@ node_js:
   - "stable"
 
 cache:
+  yarn: true
   directories:
   - node_modules/
 
 before_install:
-  - yarn global add nyc codecov
+  - npm i -g nyc codecov
 
 after_success:
   - nyc report --reporter=lcov > coverage.lcov && codecov
