@@ -1081,6 +1081,8 @@ function Dataflow(options) { // eslint-disable-line
  * @property {integer} maxWorkers The maximum number of workers to start for the job.
  * @property {string} zone The zone to start the workers in.
  * @property {string} serviceAccountEmail The service account to run the job as.
+ * @property {string} tempLocation The temp location to use for the job.
+ * @property {boolean} bypassTempDirValidation Bypass the safety checks for the job&#39;s temp directory. Use with caution.
  */
 /**
  * @typedef ReportWorkItemStatusRequest

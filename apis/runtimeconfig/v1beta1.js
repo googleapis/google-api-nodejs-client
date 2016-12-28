@@ -861,18 +861,6 @@ user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
 */
 /**
- * @typedef ListConfigsResponse
- * @memberOf! runtimeconfig(v1beta1)
- * @type object
-* @property {string} nextPageToken This token allows you to get the next page of results for list requests.
-If the number of results is larger than `pageSize`, use the `nextPageToken`
-as a value for the query parameter `pageToken` in the next list request.
-Subsequent list requests will have their own `nextPageToken` to continue
-paging through the results
-* @property {runtimeconfig(v1beta1).RuntimeConfig[]} configs A list of the configurations in the project. The order of returned
-objects is arbitrary; that is, it is not ordered in any particular way.
-*/
-/**
  * @typedef Variable
  * @memberOf! runtimeconfig(v1beta1)
  * @type object
@@ -902,6 +890,18 @@ character. Each path segment should follow RFC 1035 segment specification.
 The length of a `[VARIABLE_NAME]` must be less than 256 bytes.
 
 Once you create a variable, you cannot change the variable name.
+*/
+/**
+ * @typedef ListConfigsResponse
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+* @property {string} nextPageToken This token allows you to get the next page of results for list requests.
+If the number of results is larger than `pageSize`, use the `nextPageToken`
+as a value for the query parameter `pageToken` in the next list request.
+Subsequent list requests will have their own `nextPageToken` to continue
+paging through the results
+* @property {runtimeconfig(v1beta1).RuntimeConfig[]} configs A list of the configurations in the project. The order of returned
+objects is arbitrary; that is, it is not ordered in any particular way.
 */
 /**
  * @typedef Operation

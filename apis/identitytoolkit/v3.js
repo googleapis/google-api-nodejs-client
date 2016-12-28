@@ -734,6 +734,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} delegatedProjectNumber GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
  * @property {integer} maxResults The max number of results to return in the response.
  * @property {string} nextPageToken The token for the next page. This should be taken from the previous response.
+ * @property {string} targetProjectId Specify which project (field value is actually project id) to operate. Only used when provided credential.
  */
 /**
  * @typedef IdentitytoolkitRelyingpartyGetAccountInfoRequest

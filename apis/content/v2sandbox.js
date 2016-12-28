@@ -45,7 +45,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.acknowledge
      *
-     * @desc Marks an order as acknowledged.
+     * @desc Marks an order as acknowledged. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.acknowledge
      * @memberOf! content(v2sandbox)
@@ -82,7 +82,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.advancetestorder
      *
-     * @desc Sandbox only. Moves a test order from state "inProgress" to state "pendingShipment".
+     * @desc Sandbox only. Moves a test order from state "inProgress" to state "pendingShipment". This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.advancetestorder
      * @memberOf! content(v2sandbox)
@@ -118,7 +118,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.cancel
      *
-     * @desc Cancels all line items in an order.
+     * @desc Cancels all line items in an order. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.cancel
      * @memberOf! content(v2sandbox)
@@ -155,7 +155,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.cancellineitem
      *
-     * @desc Cancels a line item.
+     * @desc Cancels a line item. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.cancellineitem
      * @memberOf! content(v2sandbox)
@@ -192,7 +192,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.createtestorder
      *
-     * @desc Sandbox only. Creates a test order.
+     * @desc Sandbox only. Creates a test order. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.createtestorder
      * @memberOf! content(v2sandbox)
@@ -228,7 +228,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.custombatch
      *
-     * @desc Retrieves or modifies multiple orders in a single request.
+     * @desc Retrieves or modifies multiple orders in a single request. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.custombatch
      * @memberOf! content(v2sandbox)
@@ -263,7 +263,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.get
      *
-     * @desc Retrieves an order from your Merchant Center account.
+     * @desc Retrieves an order from your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.get
      * @memberOf! content(v2sandbox)
@@ -299,7 +299,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.getbymerchantorderid
      *
-     * @desc Retrieves an order using merchant order id.
+     * @desc Retrieves an order using merchant order id. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.getbymerchantorderid
      * @memberOf! content(v2sandbox)
@@ -335,7 +335,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.gettestordertemplate
      *
-     * @desc Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox.
+     * @desc Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.gettestordertemplate
      * @memberOf! content(v2sandbox)
@@ -371,7 +371,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.list
      *
-     * @desc Lists the orders in your Merchant Center account.
+     * @desc Lists the orders in your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.list
      * @memberOf! content(v2sandbox)
@@ -413,7 +413,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.refund
      *
-     * @desc Refund a portion of the order, up to the full amount paid.
+     * @desc Refund a portion of the order, up to the full amount paid. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.refund
      * @memberOf! content(v2sandbox)
@@ -450,7 +450,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.returnlineitem
      *
-     * @desc Returns a line item.
+     * @desc Returns a line item. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.returnlineitem
      * @memberOf! content(v2sandbox)
@@ -487,7 +487,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.shiplineitems
      *
-     * @desc Marks line item(s) as shipped.
+     * @desc Marks line item(s) as shipped. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.shiplineitems
      * @memberOf! content(v2sandbox)
@@ -524,7 +524,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.updatemerchantorderid
      *
-     * @desc Updates the merchant order ID for a given order.
+     * @desc Updates the merchant order ID for a given order. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.updatemerchantorderid
      * @memberOf! content(v2sandbox)
@@ -561,7 +561,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.updateshipment
      *
-     * @desc Updates a shipment's status, carrier, and/or tracking ID.
+     * @desc Updates a shipment's status, carrier, and/or tracking ID. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.updateshipment
      * @memberOf! content(v2sandbox)
@@ -671,7 +671,7 @@ United States
  * @memberOf! content(v2sandbox)
  * @type object
  * @property {string} email Email address of the customer.
- * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the Purchases on Google checkout flow.
+ * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the checkout flow.
  * @property {string} fullName Full name of the customer.
  */
 /**
@@ -1112,7 +1112,7 @@ Start date and end date are separated by a forward slash (/). The start date is 
  * @memberOf! content(v2sandbox)
  * @type object
  * @property {string} email Email address of the customer.
- * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the Purchases on Google checkout flow. Optional.
+ * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the checkout flow. Optional.
  * @property {string} fullName Full name of the customer.
  */
 /**

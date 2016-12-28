@@ -4799,7 +4799,11 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter 
      * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.order_by 
+     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6905,6 +6909,43 @@ function Compute(options) { // eslint-disable-line
   self.networks = {
 
     /**
+     * compute.networks.addPeering
+     *
+     * @desc Adds a peering to the specified network.
+     *
+     * @alias compute.networks.addPeering
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.network Name of the network resource to add peering to.
+     * @param {string} params.project Project ID for this request.
+     * @param {compute(alpha).NetworksAddPeeringRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addPeering: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{network}/addPeering',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.networks.delete
      *
      * @desc Deletes the specified network.
@@ -7045,6 +7086,43 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.networks.removePeering
+     *
+     * @desc Removes a peering from the specified network.
+     *
+     * @alias compute.networks.removePeering
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.network Name of the network resource to remove peering from.
+     * @param {string} params.project Project ID for this request.
+     * @param {compute(alpha).NetworksRemovePeeringRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    removePeering: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{network}/removePeering',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'network'],
+        pathParams: ['network', 'project'],
         context: self
       };
 
@@ -8797,7 +8875,11 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter 
      * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.order_by 
+     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13741,8 +13823,16 @@ Instance templates do not store customer-supplied encryption keys, so you cannot
  * @typedef AuditConfig
  * @memberOf! compute(alpha)
  * @type object
+ * @property {compute(alpha).AuditLogConfig[]} auditLogConfigs The configuration for each type of logging
  * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit logging for the `service` specified above. Follows the same format of Binding.members.
- * @property {string} service Specifies a service that will be enabled for &quot;data access&quot; audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
+ * @property {string} service Specifies a service that will be enabled for audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
+ */
+/**
+ * @typedef AuditLogConfig
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string[]} exemptedMembers Specifies the identities that are exempted from this type of logging Follows the same format of Binding.members.
+ * @property {string} logType The log type that this config enables.
  */
 /**
  * @typedef Autoscaler
@@ -13866,6 +13956,7 @@ This cannot be used for internal load balancing.
 
 This cannot be used for internal load balancing.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {boolean} failover This field designates whether this is a failover backend. More than one failover backend can be configured for a given BackendService.
 * @property {string} group The fully-qualified URL of a zonal Instance Group resource. This instance group defines the list of instances that serve traffic. Member virtual machine instances from each instance group must live in the same zone as the instance group itself. No two backends in a backend service are allowed to use same Instance Group resource.
 
 Note that you must specify an Instance Group resource using the fully-qualified URL, rather than a partial URL.
@@ -13928,6 +14019,7 @@ When the load balancing scheme is INTERNAL, this field is not used.
 * @property {compute(alpha).BackendServiceCdnPolicy} cdnPolicy Cloud CDN configuration for this BackendService.
 * @property {compute(alpha).ConnectionDraining} connectionDraining 
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string[]} customRequestHeaders Headers that the HTTP/S load balancer should add to proxied requests.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {boolean} enableCDN If true, enable Cloud CDN for this BackendService.
 
@@ -14297,7 +14389,10 @@ global/images/family/my-private-family
  * @type object
 * @property {object[]} allowed The list of ALLOW rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {object[]} denied The list of DENY rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string[]} destinationRanges If destination ranges are specified, the firewall will apply only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format.
+* @property {string} direction Direction of traffic to which this firewall applies; default is INGRESS. Note: For INGRESS traffic, it is NOT supported to specify destinationRanges; For EGRESS traffic, it is NOT supported to specify sourceRanges OR sourceTags.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Ony] Type of the resource. Always compute#firewall for firewall rules.
 * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
@@ -14307,6 +14402,7 @@ If you choose to specify this property, you can specify the network as a full or
 - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network 
 - projects/myproject/global/networks/my-network 
 - global/networks/default
+* @property {integer} priority Priority for this rule. This is an integer between 0 and 65535, both inclusive. When not specified, the value assumed is 1000. Relative priorities determine precedence of conflicting rules. Lower value of priority implies higher precedence (eg, a rule with priority 0 has higher precedence than a rule with priority 1). DENY rules take precedence over ALLOW rules having equal priority.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string[]} sourceRanges If source ranges are specified, the firewall will apply only to traffic that has source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
 * @property {string[]} sourceTags If source tags are specified, the firewall will apply only to traffic with source IP that belongs to a tag listed in source tags. Source tags cannot be used to control traffic to an instance&#39;s external IP address. Because tags are associated with an instance, not an IP address. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
@@ -14477,7 +14573,7 @@ This field is not used for internal load balancing.
  * @property {compute(alpha).SSLHealthCheck} sslHealthCheck 
  * @property {compute(alpha).TCPHealthCheck} tcpHealthCheck 
  * @property {integer} timeoutSec How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
- * @property {string} type Specifies the type of the healthCheck, either TCP, UDP, SSL, HTTP, HTTPS or HTTP2. If not specified, the default is TCP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
+ * @property {string} type Specifies the type of the healthCheck, either TCP, SSL, HTTP or HTTPS. If not specified, the default is TCP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
  * @property {compute(alpha).UDPHealthCheck} udpHealthCheck 
  * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
  */
@@ -14808,6 +14904,7 @@ If you have disabled creation retries, this field will not be populated; instead
 * @property {integer} recreating [Output Only] The number of instances in the managed instance group that are scheduled to be recreated or are currently being being recreated. Recreating an instance deletes the existing root persistent disk and creates a new disk from the image that is defined in the instance template.
 * @property {integer} refreshing [Output Only] The number of instances in the managed instance group that are being reconfigured with properties that do not require a restart or a recreate action. For example, setting or removing target pools for the instance.
 * @property {integer} restarting [Output Only] The number of instances in the managed instance group that are scheduled to be restarted or are currently being restarted.
+* @property {integer} verifying [Output Only] The number of instances in the managed instance group that are being verified.
 */
 /**
  * @typedef InstanceGroupManagerAggregatedList
@@ -14823,7 +14920,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @typedef InstanceGroupManagerAutoHealingPolicy
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} healthCheck The URL for the HttpHealthCheck or HttpsHealthCheck that signals autohealing.
+ * @property {string} healthCheck The URL for the health check that signals autohealing.
  * @property {integer} initialDelaySec The number of seconds that the managed instance group waits before it applies autohealing policies to new instances or recently recreated instances. This initial delay allows instances to initialize and run their startup scripts before the instance group determines that they are UNHEALTHY. This prevents the managed instance group from recreating its instances prematurely. This value must be from range [0, 3600].
  * @property {compute(alpha).FixedOrPercent} maxUnavailable Maximum number of instances that can be unavailable when auto-healing. The instance is considered available if all of the following conditions are satisfied: 1. instance&#39;s status is RUNNING 2. instance&#39;s liveness health check result was observed to be HEALTHY at least once By default, a percent value of 100% is used.
  */
@@ -15258,6 +15355,20 @@ If you specify this property, you can specify the network as a full or partial U
  * @property {string} network The URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
  * @property {string} state [Output Only] State for the peering.
  * @property {string} stateDetails [Output Only] Details about the current state of the peering.
+ */
+/**
+ * @typedef NetworksAddPeeringRequest
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {boolean} autoCreateRoutes Whether Google Compute Engine manages the routes automatically.
+ * @property {string} name Name of the peering, which should conform to RFC1035.
+ * @property {string} peerNetwork URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
+ */
+/**
+ * @typedef NetworksRemovePeeringRequest
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} name Name of the peering, which should conform to RFC1035.
  */
 /**
  * @typedef Operation
@@ -15796,7 +15907,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
- * @property {string} privateKey A write-only private key in PEM format. Only insert RPCs will include this field.
+ * @property {string} privateKey A write-only private key in PEM format. Only insert requests will include this field.
  * @property {string} selfLink [Output only] Server-defined URL for the resource.
  */
 /**

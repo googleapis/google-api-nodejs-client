@@ -115,7 +115,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.delete
      *
-     * @desc Deletes a Merchant Center sub-account.
+     * @desc Deletes a Merchant Center sub-account. This method can only be called for multi-client accounts.
      *
      * @alias content.accounts.delete
      * @memberOf! content(v2)
@@ -152,7 +152,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.get
      *
-     * @desc Retrieves a Merchant Center account.
+     * @desc Retrieves a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
      *
      * @alias content.accounts.get
      * @memberOf! content(v2)
@@ -188,7 +188,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.insert
      *
-     * @desc Creates a Merchant Center sub-account.
+     * @desc Creates a Merchant Center sub-account. This method can only be called for multi-client accounts.
      *
      * @alias content.accounts.insert
      * @memberOf! content(v2)
@@ -225,7 +225,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.list
      *
-     * @desc Lists the sub-accounts in your Merchant Center account.
+     * @desc Lists the sub-accounts in your Merchant Center account. This method can only be called for multi-client accounts.
      *
      * @alias content.accounts.list
      * @memberOf! content(v2)
@@ -262,7 +262,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.patch
      *
-     * @desc Updates a Merchant Center account. This method supports patch semantics.
+     * @desc Updates a Merchant Center account. This method can only be called for multi-client accounts. This method supports patch semantics.
      *
      * @alias content.accounts.patch
      * @memberOf! content(v2)
@@ -300,7 +300,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.update
      *
-     * @desc Updates a Merchant Center account.
+     * @desc Updates a Merchant Center account. This method can only be called for multi-client accounts.
      *
      * @alias content.accounts.update
      * @memberOf! content(v2)
@@ -378,7 +378,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accountshipping.get
      *
-     * @desc Retrieves the shipping settings of the account.
+     * @desc Retrieves the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
      *
      * @alias content.accountshipping.get
      * @memberOf! content(v2)
@@ -414,7 +414,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accountshipping.list
      *
-     * @desc Lists the shipping settings of the sub-accounts in your Merchant Center account.
+     * @desc Lists the shipping settings of the sub-accounts in your Merchant Center account. This method can only be called for multi-client accounts.
      *
      * @alias content.accountshipping.list
      * @memberOf! content(v2)
@@ -451,7 +451,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accountshipping.patch
      *
-     * @desc Updates the shipping settings of the account. This method supports patch semantics.
+     * @desc Updates the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account. This method supports patch semantics.
      *
      * @alias content.accountshipping.patch
      * @memberOf! content(v2)
@@ -489,7 +489,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accountshipping.update
      *
-     * @desc Updates the shipping settings of the account.
+     * @desc Updates the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
      *
      * @alias content.accountshipping.update
      * @memberOf! content(v2)
@@ -566,7 +566,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accountstatuses.get
      *
-     * @desc Retrieves the status of a Merchant Center account.
+     * @desc Retrieves the status of a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
      *
      * @alias content.accountstatuses.get
      * @memberOf! content(v2)
@@ -602,7 +602,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accountstatuses.list
      *
-     * @desc Lists the statuses of the sub-accounts in your Merchant Center account.
+     * @desc Lists the statuses of the sub-accounts in your Merchant Center account. This method can only be called for multi-client accounts.
      *
      * @alias content.accountstatuses.list
      * @memberOf! content(v2)
@@ -679,7 +679,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounttax.get
      *
-     * @desc Retrieves the tax settings of the account.
+     * @desc Retrieves the tax settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
      *
      * @alias content.accounttax.get
      * @memberOf! content(v2)
@@ -715,7 +715,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounttax.list
      *
-     * @desc Lists the tax settings of the sub-accounts in your Merchant Center account.
+     * @desc Lists the tax settings of the sub-accounts in your Merchant Center account. This method can only be called for multi-client accounts.
      *
      * @alias content.accounttax.list
      * @memberOf! content(v2)
@@ -752,7 +752,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounttax.patch
      *
-     * @desc Updates the tax settings of the account. This method supports patch semantics.
+     * @desc Updates the tax settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account. This method supports patch semantics.
      *
      * @alias content.accounttax.patch
      * @memberOf! content(v2)
@@ -790,7 +790,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounttax.update
      *
-     * @desc Updates the tax settings of the account.
+     * @desc Updates the tax settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
      *
      * @alias content.accounttax.update
      * @memberOf! content(v2)
@@ -868,7 +868,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.delete
      *
-     * @desc Deletes a datafeed from your Merchant Center account.
+     * @desc Deletes a datafeed from your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.datafeeds.delete
      * @memberOf! content(v2)
@@ -905,7 +905,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.get
      *
-     * @desc Retrieves a datafeed from your Merchant Center account.
+     * @desc Retrieves a datafeed from your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.datafeeds.get
      * @memberOf! content(v2)
@@ -941,7 +941,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.insert
      *
-     * @desc Registers a datafeed with your Merchant Center account.
+     * @desc Registers a datafeed with your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.datafeeds.insert
      * @memberOf! content(v2)
@@ -978,7 +978,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.list
      *
-     * @desc Lists the datafeeds in your Merchant Center account.
+     * @desc Lists the datafeeds in your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.datafeeds.list
      * @memberOf! content(v2)
@@ -1015,7 +1015,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.patch
      *
-     * @desc Updates a datafeed of your Merchant Center account. This method supports patch semantics.
+     * @desc Updates a datafeed of your Merchant Center account. This method can only be called for non-multi-client accounts. This method supports patch semantics.
      *
      * @alias content.datafeeds.patch
      * @memberOf! content(v2)
@@ -1053,7 +1053,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeeds.update
      *
-     * @desc Updates a datafeed of your Merchant Center account.
+     * @desc Updates a datafeed of your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.datafeeds.update
      * @memberOf! content(v2)
@@ -1130,7 +1130,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeedstatuses.get
      *
-     * @desc Retrieves the status of a datafeed from your Merchant Center account.
+     * @desc Retrieves the status of a datafeed from your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.datafeedstatuses.get
      * @memberOf! content(v2)
@@ -1166,7 +1166,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.datafeedstatuses.list
      *
-     * @desc Lists the statuses of the datafeeds in your Merchant Center account.
+     * @desc Lists the statuses of the datafeeds in your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.datafeedstatuses.list
      * @memberOf! content(v2)
@@ -1207,7 +1207,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.inventory.custombatch
      *
-     * @desc Updates price and availability for multiple products or stores in a single request. This operation does not update the expiration date of the products.
+     * @desc Updates price and availability for multiple products or stores in a single request. This operation does not update the expiration date of the products. This method can only be called for non-multi-client accounts.
      *
      * @alias content.inventory.custombatch
      * @memberOf! content(v2)
@@ -1243,7 +1243,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.inventory.set
      *
-     * @desc Updates price and availability of a product in your Merchant Center account. This operation does not update the expiration date of the product.
+     * @desc Updates price and availability of a product in your Merchant Center account. This operation does not update the expiration date of the product. This method can only be called for non-multi-client accounts.
      *
      * @alias content.inventory.set
      * @memberOf! content(v2)
@@ -1286,7 +1286,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.acknowledge
      *
-     * @desc Marks an order as acknowledged.
+     * @desc Marks an order as acknowledged. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.acknowledge
      * @memberOf! content(v2)
@@ -1323,7 +1323,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.advancetestorder
      *
-     * @desc Sandbox only. Moves a test order from state "inProgress" to state "pendingShipment".
+     * @desc Sandbox only. Moves a test order from state "inProgress" to state "pendingShipment". This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.advancetestorder
      * @memberOf! content(v2)
@@ -1359,7 +1359,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.cancel
      *
-     * @desc Cancels all line items in an order.
+     * @desc Cancels all line items in an order. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.cancel
      * @memberOf! content(v2)
@@ -1396,7 +1396,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.cancellineitem
      *
-     * @desc Cancels a line item.
+     * @desc Cancels a line item. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.cancellineitem
      * @memberOf! content(v2)
@@ -1433,7 +1433,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.createtestorder
      *
-     * @desc Sandbox only. Creates a test order.
+     * @desc Sandbox only. Creates a test order. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.createtestorder
      * @memberOf! content(v2)
@@ -1469,7 +1469,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.custombatch
      *
-     * @desc Retrieves or modifies multiple orders in a single request.
+     * @desc Retrieves or modifies multiple orders in a single request. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.custombatch
      * @memberOf! content(v2)
@@ -1504,7 +1504,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.get
      *
-     * @desc Retrieves an order from your Merchant Center account.
+     * @desc Retrieves an order from your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.get
      * @memberOf! content(v2)
@@ -1540,7 +1540,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.getbymerchantorderid
      *
-     * @desc Retrieves an order using merchant order id.
+     * @desc Retrieves an order using merchant order id. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.getbymerchantorderid
      * @memberOf! content(v2)
@@ -1576,7 +1576,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.gettestordertemplate
      *
-     * @desc Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox.
+     * @desc Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.gettestordertemplate
      * @memberOf! content(v2)
@@ -1612,7 +1612,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.list
      *
-     * @desc Lists the orders in your Merchant Center account.
+     * @desc Lists the orders in your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.list
      * @memberOf! content(v2)
@@ -1654,7 +1654,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.refund
      *
-     * @desc Refund a portion of the order, up to the full amount paid.
+     * @desc Refund a portion of the order, up to the full amount paid. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.refund
      * @memberOf! content(v2)
@@ -1691,7 +1691,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.returnlineitem
      *
-     * @desc Returns a line item.
+     * @desc Returns a line item. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.returnlineitem
      * @memberOf! content(v2)
@@ -1728,7 +1728,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.shiplineitems
      *
-     * @desc Marks line item(s) as shipped.
+     * @desc Marks line item(s) as shipped. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.shiplineitems
      * @memberOf! content(v2)
@@ -1765,7 +1765,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.updatemerchantorderid
      *
-     * @desc Updates the merchant order ID for a given order.
+     * @desc Updates the merchant order ID for a given order. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.updatemerchantorderid
      * @memberOf! content(v2)
@@ -1802,7 +1802,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.updateshipment
      *
-     * @desc Updates a shipment's status, carrier, and/or tracking ID.
+     * @desc Updates a shipment's status, carrier, and/or tracking ID. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.updateshipment
      * @memberOf! content(v2)
@@ -1843,7 +1843,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.products.custombatch
      *
-     * @desc Retrieves, inserts, and deletes multiple products in a single request.
+     * @desc Retrieves, inserts, and deletes multiple products in a single request. This method can only be called for non-multi-client accounts.
      *
      * @alias content.products.custombatch
      * @memberOf! content(v2)
@@ -1879,7 +1879,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.products.delete
      *
-     * @desc Deletes a product from your Merchant Center account.
+     * @desc Deletes a product from your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.products.delete
      * @memberOf! content(v2)
@@ -1916,7 +1916,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.products.get
      *
-     * @desc Retrieves a product from your Merchant Center account.
+     * @desc Retrieves a product from your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.products.get
      * @memberOf! content(v2)
@@ -1952,7 +1952,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.products.insert
      *
-     * @desc Uploads a product to your Merchant Center account.
+     * @desc Uploads a product to your Merchant Center account. If an item with the same channel, contentLanguage, offerId, and targetCountry already exists, this method updates that entry. This method can only be called for non-multi-client accounts.
      *
      * @alias content.products.insert
      * @memberOf! content(v2)
@@ -1989,7 +1989,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.products.list
      *
-     * @desc Lists the products in your Merchant Center account.
+     * @desc Lists the products in your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.products.list
      * @memberOf! content(v2)
@@ -2031,7 +2031,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.productstatuses.custombatch
      *
-     * @desc Gets the statuses of multiple products in a single request.
+     * @desc Gets the statuses of multiple products in a single request. This method can only be called for non-multi-client accounts.
      *
      * @alias content.productstatuses.custombatch
      * @memberOf! content(v2)
@@ -2066,7 +2066,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.productstatuses.get
      *
-     * @desc Gets the status of a product from your Merchant Center account.
+     * @desc Gets the status of a product from your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.productstatuses.get
      * @memberOf! content(v2)
@@ -2102,7 +2102,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.productstatuses.list
      *
-     * @desc Lists the statuses of the products in your Merchant Center account.
+     * @desc Lists the statuses of the products in your Merchant Center account. This method can only be called for non-multi-client accounts.
      *
      * @alias content.productstatuses.list
      * @memberOf! content(v2)
@@ -2180,7 +2180,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.shippingsettings.get
      *
-     * @desc Retrieves the shipping settings of the account.
+     * @desc Retrieves the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
      *
      * @alias content.shippingsettings.get
      * @memberOf! content(v2)
@@ -2251,7 +2251,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.shippingsettings.list
      *
-     * @desc Lists the shipping settings of the sub-accounts in your Merchant Center account.
+     * @desc Lists the shipping settings of the sub-accounts in your Merchant Center account. This method can only be called for multi-client accounts.
      *
      * @alias content.shippingsettings.list
      * @memberOf! content(v2)
@@ -2288,7 +2288,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.shippingsettings.patch
      *
-     * @desc Updates the shipping settings of the account. This method supports patch semantics.
+     * @desc Updates the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account. This method supports patch semantics.
      *
      * @alias content.shippingsettings.patch
      * @memberOf! content(v2)
@@ -2326,7 +2326,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.shippingsettings.update
      *
-     * @desc Updates the shipping settings of the account.
+     * @desc Updates the shipping settings of the account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
      *
      * @alias content.shippingsettings.update
      * @memberOf! content(v2)
@@ -3062,7 +3062,7 @@ United States
  * @memberOf! content(v2)
  * @type object
  * @property {string} email Email address of the customer.
- * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the Purchases on Google checkout flow.
+ * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the checkout flow.
  * @property {string} fullName Full name of the customer.
  */
 /**
@@ -3886,7 +3886,7 @@ Acceptable values are:
  * @memberOf! content(v2)
  * @type object
  * @property {string} email Email address of the customer.
- * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the Purchases on Google checkout flow. Optional.
+ * @property {boolean} explicitMarketingPreference If set, this indicates the user explicitly chose to opt in or out of providing marketing rights to the merchant. If unset, this indicates the user has already made this choice in a previous purchase, and was thus not shown the marketing right opt in/out checkbox during the checkout flow. Optional.
  * @property {string} fullName Full name of the customer.
  */
 /**
