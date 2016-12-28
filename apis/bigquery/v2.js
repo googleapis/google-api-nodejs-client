@@ -2088,6 +2088,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} fieldDelimiter [Optional] The separator for fields in a CSV file. The separator can be any ISO-8859-1 single-byte character. To use a character in the range 128-255, you must encode the character as UTF8. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence &quot;\t&quot; to specify a tab separator. The default value is a comma (&#39;,&#39;).
  * @property {boolean} ignoreUnknownValues [Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don&#39;t match any column names
  * @property {integer} maxBadRecords [Optional] The maximum number of bad records that BigQuery can ignore when running the job. If the number of bad records exceeds this value, an invalid error is returned in the job result. The default value is 0, which requires that all records are valid.
+ * @property {string} nullMarker [Optional] This string will be interpreted as a null value when it appears in a CSV file. The default value is the empty string. Please refer to the documentation for further information.
  * @property {string[]} projectionFields [Experimental] If sourceFormat is set to &quot;DATASTORE_BACKUP&quot;, indicates which entity properties to load into BigQuery from a Cloud Datastore backup. Property names are case sensitive and must be top-level properties. If no properties are specified, BigQuery loads all properties. If any named property isn&#39;t found in the Cloud Datastore backup, an invalid error is returned in the job result.
  * @property {string} quote [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote (&#39;&quot;&#39;). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
  * @property {bigquery(v2).TableSchema} schema [Optional] The schema for the destination table. The schema can be omitted if the destination table already exists, or if you&#39;re loading data from Google Cloud Datastore.
@@ -2170,6 +2171,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).ExplainQueryStage[]} queryPlan [Output-only, Experimental] Describes execution plan for the query.
  * @property {bigquery(v2).TableReference[]} referencedTables [Output-only, Experimental] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
  * @property {bigquery(v2).TableSchema} schema [Output-only, Experimental] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
+ * @property {string} statementType [Output-only, Experimental] The type of query statement, if valid.
  * @property {string} totalBytesBilled [Output-only] Total bytes billed for the job.
  * @property {string} totalBytesProcessed [Output-only] Total bytes processed for the job.
  * @property {bigquery(v2).QueryParameter[]} undeclaredQueryParameters [Output-only, Experimental] Standard SQL only: list of undeclared query parameters detected during a dry run validation.
@@ -2299,6 +2301,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} friendlyName [Optional] A descriptive name for this table.
  * @property {string} id [Output-only] An opaque ID uniquely identifying the table.
  * @property {string} kind [Output-only] The type of the resource.
+ * @property {object} labels [Experimental] The labels associated with this table. You can use these to organize and group your tables. Label keys and values can be no longer than 63 characters, can only contain letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and must be unique within a dataset. Both keys and values are additionally constrained to be &lt;= 128 bytes in size.
  * @property {string} lastModifiedTime [Output-only] The time when this table was last modified, in milliseconds since the epoch.
  * @property {string} location [Output-only] The geographic location where the table resides. This value is inherited from the dataset.
  * @property {string} numBytes [Output-only] The size of this table in bytes, excluding any data in the streaming buffer.
@@ -2353,7 +2356,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).TableFieldSchema[]} fields [Optional] Describes the nested schema fields if the type property is set to RECORD.
  * @property {string} mode [Optional] The field mode. Possible values include NULLABLE, REQUIRED and REPEATED. The default value is NULLABLE.
  * @property {string} name [Required] The field name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 128 characters.
- * @property {string} type [Required] The field data type. Possible values include STRING, BYTES, INTEGER, FLOAT, BOOLEAN, TIMESTAMP, DATE, TIME, DATETIME, or RECORD (where RECORD indicates that the field contains a nested schema).
+ * @property {string} type [Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).
  */
 /**
  * @typedef TableList

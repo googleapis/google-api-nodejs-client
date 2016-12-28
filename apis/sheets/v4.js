@@ -1753,7 +1753,13 @@ This parameter is ignored if a field mask was set in the request.
 * @property {integer} index The index of the sheet within the spreadsheet.
 When adding or updating sheet properties, if this field
 is excluded then the sheet will be added or moved to the end
-of the sheet list.
+of the sheet list. When updating sheet indices or inserting
+sheets, movement is considered in &quot;before the move&quot; indexes.
+For example, if there were 3 sheets (S1, S2, S3) in order to
+move S1 ahead of S2 the index would have to be set to 2. A sheet
+index update request will be ignored if the requested index is
+identical to the sheets current index or if the requested new
+index is equal to the current sheet index + 1.
 * @property {boolean} hidden True if the sheet is hidden in the UI, false if it&#39;s visible.
 * @property {sheets(v4).GridProperties} gridProperties Additional properties of the sheet if this sheet is a grid.
 (If the sheet is an object sheet, containing a chart or image, then
@@ -1942,6 +1948,8 @@ range.  Domain protection is only supported on documents within a domain.
 * @property {string} spreadsheetId The ID of the spreadsheet.
 This field is read-only.
 * @property {sheets(v4).SpreadsheetProperties} properties Overall properties of a spreadsheet.
+* @property {string} spreadsheetUrl The url of the spreadsheet.
+This field is read-only.
 * @property {sheets(v4).Sheet[]} sheets The sheets that are part of a spreadsheet.
 * @property {sheets(v4).NamedRange[]} namedRanges The named ranges defined in a spreadsheet.
 */
@@ -2165,12 +2173,12 @@ Only COLUMNS are supported.
  * @memberOf! sheets(v4)
  * @type object
 * @property {sheets(v4).Color} footerColor The color of the last row or column. If this field is not set, the last
-row or column will be filled with either first_row_color or
-second_row_color, depending on the color of the previous row or
+row or column will be filled with either first_band_color or
+second_band_color, depending on the color of the previous row or
 column.
 * @property {sheets(v4).Color} headerColor The color of the first row or column. If this field is set, the first
 row or column will be filled with this color and the colors will
-alternate between first_band_color and [second_band_color[] starting
+alternate between first_band_color and second_band_color starting
 from the second row or column. Otherwise, the first row or column will be
 filled with first_band_color and the colors will proceed to alternate
 as they normally would.

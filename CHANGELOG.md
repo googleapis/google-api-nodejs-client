@@ -1,3 +1,10 @@
+##### 15.1.0 - 28 December 2016
+
+###### Backwards compatible changes
+- Added new methods to the `androidpublisher` `v2` API
+- Added new methods to the `compute` `alpha` API
+- Added new methods to the `sqladmin` `v1beta4` API
+
 ##### 15.0.0 - 05 December 2016
 
 ###### Breaking changes

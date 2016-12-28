@@ -184,6 +184,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @memberOf! deploymentmanager(v2)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string} params.project The project ID for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1489,8 +1490,16 @@ function Deploymentmanager(options) { // eslint-disable-line
  * @typedef AuditConfig
  * @memberOf! deploymentmanager(v2)
  * @type object
+ * @property {deploymentmanager(v2).AuditLogConfig[]} auditLogConfigs The configuration for each type of logging
  * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit logging for the `service` specified above. Follows the same format of Binding.members.
- * @property {string} service Specifies a service that will be enabled for &quot;data access&quot; audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
+ * @property {string} service Specifies a service that will be enabled for audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
+ */
+/**
+ * @typedef AuditLogConfig
+ * @memberOf! deploymentmanager(v2)
+ * @type object
+ * @property {string[]} exemptedMembers Specifies the identities that are exempted from this type of logging Follows the same format of Binding.members.
+ * @property {string} logType The log type that this config enables.
  */
 /**
  * @typedef Binding

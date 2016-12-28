@@ -194,9 +194,7 @@ automatically detected). Both ISO and BCP-47 language codes are
 accepted.&lt;br&gt;
 **Current Language Restrictions:**
 
- * Only English, Spanish, and Japanese textual content
-   are supported, with the following additional restriction:
-   * `analyzeSentiment` only supports English text.
+ * Only English, Spanish, and Japanese textual content are supported.
 If the language (either specified by the caller or automatically detected)
 is not supported by the called API method, an `INVALID_ARGUMENT` error
 is returned.
@@ -371,7 +369,7 @@ supports proper noun mentions.
  * @memberOf! language(v1beta1)
  * @type object
 * @property {number} score Sentiment score between -1.0 (negative sentiment) and 1.0
-(positive sentiment.)
+(positive sentiment).
 * @property {number} polarity DEPRECATED FIELD - This field is being deprecated in
 favor of score. Please refer to our documentation at
 https://cloud.google.com/natural-language/docs for more information.
@@ -383,12 +381,11 @@ negative).
  * @typedef Token
  * @memberOf! language(v1beta1)
  * @type object
-* @property {language(v1beta1).TextSpan} text The token text.
-* @property {language(v1beta1).PartOfSpeech} partOfSpeech Parts of speech tag for this token.
-* @property {language(v1beta1).DependencyEdge} dependencyEdge Dependency tree parse for this token.
-* @property {string} lemma &lt;a href=&quot;https://en.wikipedia.org/wiki/Lemma_(morphology)&quot;&gt;
-Lemma&lt;/a&gt; of the token.
-*/
+ * @property {language(v1beta1).TextSpan} text The token text.
+ * @property {language(v1beta1).PartOfSpeech} partOfSpeech Parts of speech tag for this token.
+ * @property {language(v1beta1).DependencyEdge} dependencyEdge Dependency tree parse for this token.
+ * @property {string} lemma [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
+ */
 /**
  * @typedef AnalyzeEntitiesResponse
  * @memberOf! language(v1beta1)

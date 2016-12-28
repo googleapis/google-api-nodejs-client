@@ -7277,7 +7277,11 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter 
      * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.order_by 
+     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone where the managed instance group is located.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12433,7 +12437,11 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter 
      * @param {string} params.instanceGroupManager The name of the managed instance group.
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.order_by 
+     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20454,6 +20462,7 @@ When the protocol is UDP, this field is not used.
  * @typedef CacheInvalidationRule
  * @memberOf! compute(v1)
  * @type object
+ * @property {string} host If set, this invalidation rule will only apply to requests with a Host header matching host.
  * @property {string} path 
  */
 /**
@@ -20772,7 +20781,7 @@ This field is not used for internal load balancing.
  * @property {compute(v1).SSLHealthCheck} sslHealthCheck 
  * @property {compute(v1).TCPHealthCheck} tcpHealthCheck 
  * @property {integer} timeoutSec How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
- * @property {string} type Specifies the type of the healthCheck, either TCP, UDP, SSL, HTTP, HTTPS or HTTP2. If not specified, the default is TCP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
+ * @property {string} type Specifies the type of the healthCheck, either TCP, SSL, HTTP or HTTPS. If not specified, the default is TCP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
  * @property {integer} unhealthyThreshold A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
  */
 /**
@@ -21810,7 +21819,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
  * @property {string} kind [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
  * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
- * @property {string} privateKey A write-only private key in PEM format. Only insert RPCs will include this field.
+ * @property {string} privateKey A write-only private key in PEM format. Only insert requests will include this field.
  * @property {string} selfLink [Output only] Server-defined URL for the resource.
  */
 /**

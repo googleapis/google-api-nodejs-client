@@ -1545,7 +1545,9 @@ used in the type-specific API&#39;s.
 * @property {cloudresourcemanager(v1beta1).ResourceId} parent An optional reference to a parent Resource.
 
 The only supported parent type is &quot;organization&quot;. Once set, the parent
-cannot be modified.
+cannot be modified. The `parent` can be set on creation or using the
+`UpdateProject` method; the end user must have the
+`resourcemanager.projects.create` permission on the parent.
 
 Read-write.
 * @property {object} labels The labels associated with this Project.

@@ -687,7 +687,7 @@ function Gmail(options) { // eslint-disable-line
       /**
        * gmail.users.messages.batchModify
        *
-       * @desc Modifies labels on the given labels.
+       * @desc Modifies the labels on the specified messages.
        *
        * @alias gmail.users.messages.batchModify
        * @memberOf! gmail(v1)

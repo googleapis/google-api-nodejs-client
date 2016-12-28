@@ -2076,6 +2076,49 @@ function Androidpublisher(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       }
+    },
+
+    voidedpurchases: {
+
+      /**
+       * androidpublisher.purchases.voidedpurchases.list
+       *
+       * @desc Lists the purchases that were cancelled, refunded or charged-back.
+       *
+       * @alias androidpublisher.purchases.voidedpurchases.list
+       * @memberOf! androidpublisher(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.endTime The end time of list window, in milliseconds since the epoch (Jan 1, 1970). If not specified, default to current time, which is also the latest accepted end time. This parameter will be ignored if pagination token is set.
+       * @param {integer=} params.maxResults 
+       * @param {string} params.packageName The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').
+       * @param {integer=} params.startIndex 
+       * @param {string=} params.startTime The start time of list window, in milliseconds since the epoch (Jan 1, 1970). If not specified, default to current time - 30 days, which is also the earlies accepted start time. This parameter will be ignored if pagination token is set.
+       * @param {string=} params.token 
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://www.googleapis.com/androidpublisher/v2/applications/{packageName}/purchases/voidedpurchases',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['packageName'],
+          pathParams: ['packageName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
     }
   };
 
@@ -2092,6 +2135,7 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
      * @param {string} params.reviewId 
+     * @param {string=} params.translationLanguage 
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2130,6 +2174,7 @@ function Androidpublisher(options) { // eslint-disable-line
      * @param {string} params.packageName Unique identifier for the Android app for which we want reviews; for example, "com.spiffygame".
      * @param {integer=} params.startIndex 
      * @param {string=} params.token 
+     * @param {string=} params.translationLanguage 
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2282,6 +2327,22 @@ function Androidpublisher(options) { // eslint-disable-line
  * @type object
  * @property {androidpublisher(v2).Timestamp} lastModified The last time at which this comment was updated.
  * @property {string} text The content of the comment, i.e. reply body.
+ */
+/**
+ * @typedef DeviceMetadata
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} cpuMake Device CPU make e.g. &quot;Qualcomm&quot;
+ * @property {string} cpuModel Device CPU model e.g. &quot;MSM8974&quot;
+ * @property {string} deviceClass Device class (e.g. tablet)
+ * @property {integer} glEsVersion OpenGL version
+ * @property {string} manufacturer Device manufacturer (e.g. Motorola)
+ * @property {string} nativePlatform Comma separated list of native platforms (e.g. &quot;arm&quot;, &quot;arm7&quot;)
+ * @property {string} productName Device model name (e.g. Droid)
+ * @property {integer} ramMb Device RAM in Megabytes e.g. &quot;2048&quot;
+ * @property {integer} screenDensityDpi Screen density in DPI
+ * @property {integer} screenHeightPx Screen height in pixels
+ * @property {integer} screenWidthPx Screen width in pixels
  */
 /**
  * @typedef Entitlement
@@ -2639,9 +2700,30 @@ function Androidpublisher(options) { // eslint-disable-line
  * @property {integer} appVersionCode Integer version code of the app as installed at the time the review was written. May be absent.
  * @property {string} appVersionName String version name of the app as installed at the time the review was written. May be absent.
  * @property {string} device Codename for the reviewer&#39;s device, e.g. klte, flounder. May be absent.
+ * @property {androidpublisher(v2).DeviceMetadata} deviceMetadata Some information about the characteristics of the user&#39;s device
  * @property {androidpublisher(v2).Timestamp} lastModified The last time at which this comment was updated.
+ * @property {string} originalText Untranslated text of the review, in the case where the review has been translated. If the review has not been translated this is left blank.
  * @property {string} reviewerLanguage Language code for the reviewer. This is taken from the device settings so is not guaranteed to match the language the review is written in. May be absent.
  * @property {integer} starRating The star rating associated with the review, from 1 to 5.
  * @property {string} text The content of the comment, i.e. review body. In some cases users have been able to write a review with separate title and body; in those cases the title and body are concatenated and separated by a tab character.
+ * @property {integer} thumbsDownCount Number of users who have given this review a thumbs down
+ * @property {integer} thumbsUpCount Number of users who have given this review a thumbs up
+ */
+/**
+ * @typedef VoidedPurchase
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {string} kind This kind represents a voided purchase object in the androidpublisher service.
+ * @property {string} purchaseTimeMillis The time the purchase was made, in milliseconds since the epoch (Jan 1, 1970).
+ * @property {string} purchaseToken The token that was generated when a purchase was made and uniquely identifies a purchase.
+ * @property {string} voidedTimeMillis The time when the purchase was cancelled/refunded/chargeback, in milliseconds since the epoch (Jan 1, 1970).
+ */
+/**
+ * @typedef VoidedPurchasesListResponse
+ * @memberOf! androidpublisher(v2)
+ * @type object
+ * @property {androidpublisher(v2).PageInfo} pageInfo 
+ * @property {androidpublisher(v2).TokenPagination} tokenPagination 
+ * @property {androidpublisher(v2).VoidedPurchase[]} voidedPurchases 
  */
 module.exports = Androidpublisher;

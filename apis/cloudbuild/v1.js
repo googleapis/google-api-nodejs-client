@@ -654,14 +654,14 @@ Default time is ten minutes.
 * @property {string[]} images A list of images to be pushed upon the successful completion of all build
 steps.
 
-The images will be pushed using the builder
-service account&#39;s credentials.
+The images will be pushed using the builder service account&#39;s credentials.
 
 The digests of the pushed images will be stored in the Build resource&#39;s
 results field.
 
 If any of the images fail to be pushed, the build is marked FAILURE.
 * @property {string} startTime Time at which execution of the build was started.
+@OutputOnly
 * @property {string} buildTriggerId The ID of the BuildTrigger that triggered this build, if it was
 triggered automatically.
 @OutputOnly
@@ -730,10 +730,9 @@ an entrypoint, the first element in args will be used as the entrypoint,
 and the remainder will be used as arguments.
 * @property {string} name The name of the container image that will run this particular build step.
 
-If the image is already available in the host&#39;s
-Docker daemon&#39;s cache, it will be run directly. If not, the host will
-attempt to pull the image first, using the builder service account&#39;s
-credentials if necessary.
+If the image is already available in the host&#39;s Docker daemon&#39;s cache, it
+will be run directly. If not, the host will attempt to pull the image
+first, using the builder service account&#39;s credentials if necessary.
 
 The Docker daemon&#39;s cache will already have the latest versions of all of
 the officially supported build steps

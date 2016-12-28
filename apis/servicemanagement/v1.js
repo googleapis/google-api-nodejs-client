@@ -40,6 +40,45 @@ function Servicemanagement(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
 
+  self.operations = {
+
+    /**
+     * servicemanagement.operations.get
+     *
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @alias servicemanagement.operations.get
+     * @memberOf! servicemanagement(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://servicemanagement.googleapis.com/v1/{name}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.services = {
 
     /**
@@ -258,7 +297,7 @@ function Servicemanagement(options) { // eslint-disable-line
     /**
      * servicemanagement.services.list
      *
-     * @desc Lists all managed services. The result is limited to services that the caller has "servicemanagement.services.get" permission for. If the request is made without authentication, it returns only public services that are available to everyone.
+     * @desc Lists managed services.  If called without any authentication, it returns only the public services. If called with authentication, it returns all services that the caller has "servicemanagement.services.get" permission for.  **BETA:** If the caller specifies the `consumer_id`, it returns only the services enabled on the consumer. The `consumer_id` must have the format of "project:{PROJECT-ID}".
      *
      * @alias servicemanagement.services.list
      * @memberOf! servicemanagement(v1)
@@ -730,45 +769,6 @@ function Servicemanagement(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     }
-  };
-
-  self.operations = {
-
-    /**
-     * servicemanagement.operations.get
-     *
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     *
-     * @alias servicemanagement.operations.get
-     * @memberOf! servicemanagement(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://servicemanagement.googleapis.com/v1/{name}',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
   };
 }
 
@@ -1379,6 +1379,11 @@ is used.
  * @typedef SetIamPolicyRequest
  * @memberOf! servicemanagement(v1)
  * @type object
+* @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+the fields in the mask will be modified. If no mask is provided, a default
+mask is used:
+paths: &quot;bindings, etag&quot;
+This field is only used by Cloud IAM.
 * @property {servicemanagement(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
 the policy is limited to a few 10s of KB. An empty policy is a
 valid policy but certain Cloud Platform services (such as Projects)
@@ -1470,9 +1475,15 @@ Refer to selector for syntax details.
  * @typedef Option
  * @memberOf! servicemanagement(v1)
  * @type object
- * @property {object} value The option&#39;s value. For example, `&quot;com.google.protobuf&quot;`.
- * @property {string} name The option&#39;s name. For example, `&quot;java_package&quot;`.
- */
+* @property {object} value The option&#39;s value packed in an Any message. If the value is a primitive,
+the corresponding wrapper type defined in google/protobuf/wrappers.proto
+should be used. If the value is an enum, it should be stored as an int32
+value using the google.protobuf.Int32Value type.
+* @property {string} name The option&#39;s name. For protobuf built-in options (options defined in
+descriptor.proto), this is the short name. For example, `&quot;map_entry&quot;`.
+For custom options, it should be the fully-qualified name. For example,
+`&quot;google.api.http&quot;`.
+*/
 /**
  * @typedef HttpRule
  * @memberOf! servicemanagement(v1)

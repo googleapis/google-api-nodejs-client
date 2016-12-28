@@ -2257,7 +2257,7 @@ function Books(options) { // eslint-disable-line
  * @memberOf! books(v1)
  * @type object
  * @property {string} kind Resource type.
- * @property {object[]} series Series info list. The client always expects this element in the JSON output, hence declared here as OutputAlways.
+ * @property {object[]} series 
  */
 /**
  * @typedef Seriesmembership

@@ -1008,6 +1008,43 @@ function Sqladmin(options) { // eslint-disable-line
     },
 
     /**
+     * sql.instances.truncateLog
+     *
+     * @desc Truncate MySQL general and slow query log tables
+     *
+     * @alias sql.instances.truncateLog
+     * @memberOf! sqladmin(v1beta4)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
+     * @param {string} params.project Project ID of the Cloud SQL project.
+     * @param {sqladmin(v1beta4).InstancesTruncateLogRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    truncateLog: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/sql/v1beta4/projects/{project}/instances/{instance}/truncateLog',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * sql.instances.update
      *
      * @desc Updates settings of a Cloud SQL instance. Caution: This is not a partial update, so you must include values for all the settings that you want to retain. For partial updates, use patch.
@@ -1723,6 +1760,12 @@ CSV: The file contains CSV data.
  * @property {sqladmin(v1beta4).RestoreBackupContext} restoreBackupContext Parameters required to perform the restore backup operation.
  */
 /**
+ * @typedef InstancesTruncateLogRequest
+ * @memberOf! sqladmin(v1beta4)
+ * @type object
+ * @property {sqladmin(v1beta4).TruncateLogContext} truncateLogContext Contains details about the truncate log operation.
+ */
+/**
  * @typedef IpConfiguration
  * @memberOf! sqladmin(v1beta4)
  * @type object
@@ -1928,6 +1971,13 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
  * @type object
  * @property {sqladmin(v1beta4).Tier[]} items List of tiers.
  * @property {string} kind This is always sql#tiersList.
+ */
+/**
+ * @typedef TruncateLogContext
+ * @memberOf! sqladmin(v1beta4)
+ * @type object
+ * @property {string} kind This is always sql#truncateLogContext.
+ * @property {string} logType The type of log to truncate. Valid values are MYSQL_GENERAL_TABLE and MYSQL_SLOW_TABLE.
  */
 /**
  * @typedef User
