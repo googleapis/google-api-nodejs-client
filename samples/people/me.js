@@ -15,7 +15,6 @@
 
 var google = require('../../');
 var sampleClient = require('../sampleclient');
-var fs = require('fs');
 
 var auth = sampleClient.oAuth2Client;
 
