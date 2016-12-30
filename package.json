@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "15.1.0",
+  "version": "16.0.0",
   "author": "Google Inc.",
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "async": "~2.1.4",
-    "google-auth-library": "~0.9.10",
+    "google-auth-library": "~0.10.0",
     "string-template": "~1.0.0"
   },
   "devDependencies": {

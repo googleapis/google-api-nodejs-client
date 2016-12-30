@@ -1,3 +1,8 @@
+##### 16.0.0 - 29 December 2016
+
+###### Breaking changes
+- Upgraded to google-auth-library-nodejs 0.10.0, which has a breaking bug fix
+
 ##### 15.1.0 - 28 December 2016
 
 ###### Backwards compatible changes
