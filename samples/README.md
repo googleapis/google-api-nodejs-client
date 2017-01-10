@@ -1,6 +1,6 @@
 # Samples by API
 
-The following samples show basic usage of various APIs. 
+The following samples show basic usage of various APIs.
 
 ## ![](http://www.google.com/images/icons/product/analytics-32.png) Google Analytics API
 
@@ -32,7 +32,7 @@ Documentation for the Blogger API in
 
 ## ![](https://www.google.com/images/icons/product/compute_engine-32.png) Google Compute Engine Metadata API
 
-Lets you set key/value pairs using the GCE metadata service. 
+Lets you set key/value pairs using the GCE metadata service.
 
 Documentation for the Google Compute Engine Metadata API in
 [JSDoc](http://google.github.io/google-api-nodejs-client/2.1.7/compute.html).
@@ -98,6 +98,6 @@ Documentation for the YouTube Data API in
 <table>
   <tr>
     <td><a href="youtube">samples/youtube</a></td>
-    <td>Samples for working with playlists and search.</td>
+    <td>Samples for working with playlists, search and videos.</td>
   </tr>
 </table>
