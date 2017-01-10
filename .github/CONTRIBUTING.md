@@ -79,7 +79,7 @@ Follow either of the two links above to access the appropriate CLA and
 instructions for how to sign and return it. Once we receive it, we'll add you
 to the official list of contributors and be able to accept your patches.
 
-[js-guide]: https://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml
+[js-guide]: https://google.github.io/styleguide/jsguide.html
 [c-linter]: https://code.google.com/p/closure-linter/
 [indv-cla]: https://developers.google.com/open-source/cla/individual
 [corp-cla]: https://developers.google.com/open-source/cla/corporate
