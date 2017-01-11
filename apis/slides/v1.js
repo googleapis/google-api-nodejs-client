@@ -545,8 +545,8 @@ field mask but leave the field itself unset.
 * @property {slides(v1).CreateSheetsChartResponse} createSheetsChart The result of creating a Google Sheets chart.
 * @property {slides(v1).CreateSlideResponse} createSlide The result of creating a slide.
 * @property {slides(v1).CreateShapeResponse} createShape The result of creating a shape.
-* @property {slides(v1).ReplaceAllShapesWithImageResponse} replaceAllShapesWithImage The result of replacing all shapes containing the specified text with
-an image.
+* @property {slides(v1).ReplaceAllShapesWithImageResponse} replaceAllShapesWithImage The result of replacing all shapes matching some criteria with an
+image.
 * @property {slides(v1).CreateVideoResponse} createVideo The result of creating a video.
 * @property {slides(v1).CreateImageResponse} createImage The result of creating an image.
 * @property {slides(v1).DuplicateObjectResponse} duplicateObject The result of duplicating an object.

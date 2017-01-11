@@ -841,10 +841,13 @@ google.rpc.Status.details field, or localized by the client.
  * @typedef GoogleCloudMlV1beta1__TrainingOutput
  * @memberOf! ml(v1beta1)
  * @type object
- * @property {number} consumedMLUnits The amount of ML units consumed by the job.
- * @property {string} completedTrialCount The number of hyperparameter tuning trials that completed successfully.
- * @property {ml(v1beta1).GoogleCloudMlV1beta1__HyperparameterOutput[]} trials Results for individual Hyperparameter trials.
- */
+* @property {number} consumedMLUnits The amount of ML units consumed by the job.
+* @property {string} completedTrialCount The number of hyperparameter tuning trials that completed successfully.
+Only set for hyperparameter tuning jobs.
+* @property {boolean} isHyperparameterTuningJob Whether this job is a hyperparameter tuning job.
+* @property {ml(v1beta1).GoogleCloudMlV1beta1__HyperparameterOutput[]} trials Results for individual Hyperparameter trials.
+Only set for hyperparameter tuning jobs.
+*/
 /**
  * @typedef GoogleLongrunning__ListOperationsResponse
  * @memberOf! ml(v1beta1)
@@ -857,6 +860,7 @@ google.rpc.Status.details field, or localized by the client.
  * @memberOf! ml(v1beta1)
  * @type object
  * @property {string} errorCount The number of data instances which resulted in errors.
+ * @property {number} nodeHours Node hours used by the batch prediction job.
  * @property {string} predictionCount The number of generated predictions.
  * @property {string} outputPath The output Google Cloud Storage location provided at the job creation time.
  */
@@ -1014,6 +1018,8 @@ When passing Version to
 the model service uses the specified location as the source of the model.
 Once deployed, the model version is hosted by the prediction service, so
 this location is useful only as a historical record.
+* @property {boolean} onlinePredictionLogging Optional. If true, enables StackDriver Logging for online prediction.
+Default is false.
 * @property {string} createTime Output only. The time the version was created.
 * @property {string} lastUseTime Output only. The time the version was last used for prediction.
 * @property {string} name Required.The name specified for the version when it was created.

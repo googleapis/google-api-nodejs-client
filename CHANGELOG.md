@@ -1,3 +1,9 @@
+##### 16.1.0 - 11 January 2017
+
+###### Backwards compatible changes
+- Added `cloudkms` `v1beta1` API
+- Added methods to the `classroom` `v1` API
+
 ##### 16.0.0 - 29 December 2016
 
 ###### Breaking changes
