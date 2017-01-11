@@ -728,6 +728,8 @@ If the image used to run the step&#39;s container has an entrypoint, these args
 will be used as arguments to that entrypoint. If the image does not define
 an entrypoint, the first element in args will be used as the entrypoint,
 and the remainder will be used as arguments.
+* @property {string} entrypoint Optional entrypoint to be used instead of the build step image&#39;s default
+If unset, the image&#39;s default will be used.
 * @property {string} name The name of the container image that will run this particular build step.
 
 If the image is already available in the host&#39;s Docker daemon&#39;s cache, it

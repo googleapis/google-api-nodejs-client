@@ -1785,7 +1785,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string} externalDealId The external deal id assigned to this deal once the deal is finalized. This is the deal-id that shows up in serving/reporting etc. (readonly)
  * @property {string} flightEndTimeMs Proposed flight end time of the deal (ms since epoch) This will generally be stored in a granularity of a second. (updatable)
  * @property {string} flightStartTimeMs Proposed flight start time of the deal (ms since epoch) This will generally be stored in a granularity of a second. (updatable)
- * @property {string} inventoryDescription Description for the deal terms. (updatable)
+ * @property {string} inventoryDescription Description for the deal terms. (buyer-readonly)
  * @property {boolean} isRfpTemplate Indicates whether the current deal is a RFP template. RFP template is created by buyer and not based on seller created products.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;adexchangebuyer#marketplaceDeal&quot;.
  * @property {string} lastUpdateTimeMs The time (ms since epoch) when the deal was last updated. (readonly)
@@ -1881,6 +1881,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {boolean} isActive Whether this config is active. Required for all requests.
  * @property {string} kind The kind of the resource, i.e. &quot;adexchangebuyer#pretargetingConfig&quot;.
  * @property {string[]} languages Request containing any of these language codes will match.
+ * @property {integer} minimumViewabilityDecile Requests where the predicted viewability is below the specified decile will not match. E.g. if the buyer sets this value to 5, requests from slots where the predicted viewability is below 50% will not match. If the predicted viewability is unknown this field will be ignored.
  * @property {string[]} mobileCarriers Requests containing any of these mobile carrier ids will match. Values are from mobile-carriers.csv in the downloadable files section.
  * @property {string[]} mobileDevices Requests containing any of these mobile device ids will match. Values are from mobile-devices.csv in the downloadable files section.
  * @property {string[]} mobileOperatingSystemVersions Requests containing any of these mobile operating system version ids will match. Values are from mobile-os.csv in the downloadable files section.
@@ -1939,6 +1940,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {adexchangebuyer(v1.4).MarketplaceLabel[]} labels Optional List of labels for the product (optional, buyer-readonly).
  * @property {string} lastUpdateTimeMs Time of last update in ms. since epoch (readonly)
  * @property {string} legacyOfferId Optional legacy offer id if this offer is a preferred deal offer.
+ * @property {string} marketplacePublisherProfileId Marketplace publisher profile Id. This Id differs from the regular publisher_profile_id in that 1. This is a new id, the old Id will be deprecated in 2017. 2. This id uniquely identifies a publisher profile by itself.
  * @property {string} name The name for this product as set by the seller. (buyer-readonly)
  * @property {string} privateAuctionId Optional private auction id if this offer is a private auction offer.
  * @property {string} productId The unique id for the product (readonly)

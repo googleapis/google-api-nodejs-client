@@ -73,13 +73,13 @@ function {{ Name }} (options) { // eslint-disable-line
 {% if schema.properties -%}
 {%- for pname, p in schema.properties -%}
 {%- if p.$ref -%}
- * @property {{ lb }}{{ name }}({{ version }}).{{ p.$ref }}{{ rb }} {{ pname }} {{ p.description }}
+ * @property {{ lb }}{{ name }}({{ version }}).{{ p.$ref }}{{ rb }} {{ pname }} {{ p.description | cleanPaths }}
 {%- elif p.items and p.items.type -%}
- * @property {{ lb }}{{ p.items.type }}[]{{ rb }} {{ pname }} {{ p.description }}
+ * @property {{ lb }}{{ p.items.type }}[]{{ rb }} {{ pname }} {{ p.description | cleanPaths }}
 {%- elif p.items and p.items.$ref -%}
- * @property {{ lb }}{{ name }}({{ version }}).{{ p.items.$ref }}[]{{ rb }} {{ pname }} {{ p.description }}
+ * @property {{ lb }}{{ name }}({{ version }}).{{ p.items.$ref }}[]{{ rb }} {{ pname }} {{ p.description | cleanPaths }}
 {%- else -%}
- * @property {{ lb }}{{ p.type }}{{ rb }} {{ pname }} {{ p.description }}
+ * @property {{ lb }}{{ p.type }}{{ rb }} {{ pname }} {{ p.description | cleanPaths }}
 {%- endif -%}
 {%- endfor -%}
 {%- endif -%}
