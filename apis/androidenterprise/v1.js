@@ -679,7 +679,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.enterprises.createWebToken
      *
-     * @desc Returns a unique token to access an embeddable UI. To generate a web UI, pass the generated token into the Play for Work javascript API. Each token may only be used to start one UI session. See the javascript API documentation for further information.
+     * @desc Returns a unique token to access an embeddable UI. To generate a web UI, pass the generated token into the managed Google Play javascript API. Each token may only be used to start one UI session. See the javascript API documentation for further information.
      *
      * @alias androidenterprise.enterprises.createWebToken
      * @memberOf! androidenterprise(v1)
@@ -1104,7 +1104,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.enterprises.setStoreLayout
      *
-     * @desc Sets the store layout for the enterprise. By default, storeLayoutType is set to "basic" and the basic store layout is enabled. The basic layout only contains apps approved by the administrator, and that have been added to the available product set for a user (using the  setAvailableProductSet call). Apps on the page are sorted in order of their product ID value. If you create a custom store layout (by setting storeLayoutType = "custom"), the basic store layout is disabled.
+     * @desc Sets the store layout for the enterprise. By default, storeLayoutType is set to "basic" and the basic store layout is enabled. The basic layout only contains apps approved by the admin, and that have been added to the available product set for a user (using the  setAvailableProductSet call). Apps on the page are sorted in order of their product ID value. If you create a custom store layout (by setting storeLayoutType = "custom"), the basic store layout is disabled.
      *
      * @alias androidenterprise.enterprises.setStoreLayout
      * @memberOf! androidenterprise(v1)
@@ -2106,7 +2106,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.products.approve
      *
-     * @desc Approves the specified product and the relevant app permissions, if any. The maximum number of products that you can approve per enterprise customer is 1,000.  To learn how to use Google Play for Work to design and create a store layout to display approved products to your users, see Store Layout Design.
+     * @desc Approves the specified product and the relevant app permissions, if any. The maximum number of products that you can approve per enterprise customer is 1,000.  To learn how to use managed Google Play to design and create a store layout to display approved products to your users, see Store Layout Design.
      *
      * @alias androidenterprise.products.approve
      * @memberOf! androidenterprise(v1)
@@ -2217,7 +2217,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.products.getAppRestrictionsSchema
      *
-     * @desc Retrieves the schema that defines the configurable properties for this product. All products have a schema, but this schema may be empty if no managed configurations have been defined. This schema can be used to populate a UI that allows an administrator to configure the product. To apply a managed configuration based on the schema obtained using this API, see Managed Configurations through Play.
+     * @desc Retrieves the schema that defines the configurable properties for this product. All products have a schema, but this schema may be empty if no managed configurations have been defined. This schema can be used to populate a UI that allows an admin to configure the product. To apply a managed configuration based on the schema obtained using this API, see Managed Configurations through Play.
      *
      * @alias androidenterprise.products.getAppRestrictionsSchema
      * @memberOf! androidenterprise(v1)
@@ -2300,7 +2300,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string} params.enterpriseId The ID of the enterprise.
      * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de"). Results are returned in the language best matching the preferred language.
      * @param {integer=} params.maxResults Specifies the maximum number of products that can be returned per request. If not specified, uses a default value of 100, which is also the maximum retrievable within a single response.
-     * @param {string=} params.query The search query as typed in the Google Play Store search box. If omitted, all approved apps will be returned (using the pagination parameters), including apps that are not available in the store (e.g. unpublished apps).
+     * @param {string=} params.query The search query as typed in the Google Play store search box. If omitted, all approved apps will be returned (using the pagination parameters), including apps that are not available in the store (e.g. unpublished apps).
      * @param {string=} params.token A pagination token is contained in a requests response when there are more products. The token can be used in a subsequent request to obtain more products, and so forth. This parameter cannot be used in the initial request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -3038,7 +3038,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.users.generateToken
      *
-     * @desc Generates a token (activation code) to allow this user to configure their work account in the Android Setup Wizard. Revokes any previously generated token.  This call only works with Google managed accounts.
+     * @desc Generates a token (activation code) to allow this user to configure their managed account in the Android Setup Wizard. Revokes any previously generated token.  This call only works with Google managed accounts.
      *
      * @alias androidenterprise.users.generateToken
      * @memberOf! androidenterprise(v1)
@@ -3369,7 +3369,7 @@ function Androidenterprise(options) { // eslint-disable-line
  * @typedef Administrator
  * @memberOf! androidenterprise(v1)
  * @type object
- * @property {string} email The administrator&#39;s email address.
+ * @property {string} email The admin&#39;s email address.
  */
 /**
  * @typedef AdministratorWebToken
@@ -3433,7 +3433,7 @@ function Androidenterprise(options) { // eslint-disable-line
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {integer} versionCode Unique increasing identifier for the app version.
- * @property {string} versionString The string used in the Play Store by the app developer to identify the version. The string is not necessarily unique or localized (for example, the string could be &quot;1.4&quot;).
+ * @property {string} versionString The string used in the Play store by the app developer to identify the version. The string is not necessarily unique or localized (for example, the string could be &quot;1.4&quot;).
  */
 /**
  * @typedef ApprovalUrlInfo
@@ -3472,7 +3472,7 @@ The &quot;allUsers&quot; setting is deprecated, and will be removed.
  * @typedef CollectionsListResponse
  * @memberOf! androidenterprise(v1)
  * @type object
- * @property {androidenterprise(v1).Collection[]} collection An ordered collection of products which can be made visible on the Google Play Store to a selected group of users.
+ * @property {androidenterprise(v1).Collection[]} collection An ordered collection of products which can be made visible on the Google Play store to a selected group of users.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#collectionsListResponse&quot;.
  */
 /**
@@ -3481,13 +3481,13 @@ The &quot;allUsers&quot; setting is deprecated, and will be removed.
  * @type object
 * @property {string} androidId The Google Play Services Android ID for the device encoded as a lowercase hex string, e.g. &quot;123456789abcdef0&quot;.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#device&quot;.
-* @property {string} managementType Identifies the extent to which the device is controlled by an Android for Work EMM in various deployment configurations.
+* @property {string} managementType Identifies the extent to which the device is controlled by a managed Google Play EMM in various deployment configurations.
 
 Possible values include: 
 - &quot;managedDevice&quot;, a device that has the EMM&#39;s device policy controller (DPC) as the device owner, 
-- &quot;managedProfile&quot;, a device that has a work profile managed by the DPC (DPC is profile owner) in addition to a separate, personal profile that is unavailable to the DPC, 
-- &quot;containerApp&quot;, a device running the Android for Work App. The Android for Work App is managed by the DPC, 
-- &quot;unmanagedProfile&quot;, a device that has been allowed (by the domain&#39;s admin, using the Admin Console to enable the privilege) to use Android for Work apps or Google Apps for Work, but the profile is itself not owned by a DPC.
+- &quot;managedProfile&quot;, a device that has a profile managed by the DPC (DPC is profile owner) in addition to a separate, personal profile that is unavailable to the DPC, 
+- &quot;containerApp&quot;, a device running the container App. The container App is managed by the DPC, 
+- &quot;unmanagedProfile&quot;, a device that has been allowed (by the domain&#39;s admin, using the Admin Console to enable the privilege) to use managed Google Play, but the profile is itself not owned by a DPC.
 */
 /**
  * @typedef DeviceState
@@ -3507,7 +3507,7 @@ Possible values include:
  * @typedef Enterprise
  * @memberOf! androidenterprise(v1)
  * @type object
- * @property {androidenterprise(v1).Administrator[]} administrator Administrators of the enterprise. This is only supported for enterprises created via the EMM-initiated flow.
+ * @property {androidenterprise(v1).Administrator[]} administrator Admins of the enterprise. This is only supported for enterprises created via the EMM-initiated flow.
  * @property {string} id The unique ID for the enterprise.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#enterprise&quot;.
  * @property {string} name The name of the enterprise, for example, &quot;Example, Inc&quot;.
@@ -3700,15 +3700,15 @@ Possible values include:
  * @property {androidenterprise(v1).AppVersion[]} appVersion App versions currently available for this product. The returned list contains only public versions. Alpha and beta versions are not included.
  * @property {string} authorName The name of the author of the product (e.g. the app developer).
  * @property {string} detailsUrl A link to the (consumer) Google Play details page for the product.
- * @property {string} distributionChannel How and to whom the package is made available. The value publicGoogleHosted means that the package is available through the Play Store and not restricted to a specific enterprise. The value privateGoogleHosted means that the package is a private app (restricted to an enterprise) but hosted by Google. The value privateSelfHosted means that the package is a private app (restricted to an enterprise) and is privately hosted.
+ * @property {string} distributionChannel How and to whom the package is made available. The value publicGoogleHosted means that the package is available through the Play store and not restricted to a specific enterprise. The value privateGoogleHosted means that the package is a private app (restricted to an enterprise) but hosted by Google. The value privateSelfHosted means that the package is a private app (restricted to an enterprise) and is privately hosted.
  * @property {string} iconUrl A link to an image that can be used as an icon for the product. This image is suitable for use at up to 512px x 512px.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#product&quot;.
  * @property {string} productId A string of the form app:&lt;package name&gt;. For example, app:com.google.android.gm represents the Gmail app.
  * @property {string} productPricing Whether this product is free, free with in-app purchases, or paid. If the pricing is unknown, this means the product is not generally available anymore (even though it might still be available to people who own it).
- * @property {boolean} requiresContainerApp Whether this app can only be installed on devices using the Android for Work container app.
+ * @property {boolean} requiresContainerApp Whether this app can only be installed on devices using the Android container app.
  * @property {string} smallIconUrl A link to a smaller image that can be used as an icon for the product. This image is suitable for use at up to 128px x 128px.
  * @property {string} title The name of the product.
- * @property {string} workDetailsUrl A link to the Google Play for Work details page for the product, for use by an Enterprise administrator.
+ * @property {string} workDetailsUrl A link to the managed Google Play details page for the product, for use by an Enterprise admin.
  */
 /**
  * @typedef ProductApprovalEvent
@@ -3765,7 +3765,7 @@ Possible values include:
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#productsListResponse&quot;.
  * @property {androidenterprise(v1).PageInfo} pageInfo General pagination information.
- * @property {androidenterprise(v1).Product[]} product Information about a product (e.g. an app) in the Google Play Store, for display to an enterprise admin.
+ * @property {androidenterprise(v1).Product[]} product Information about a product (e.g. an app) in the Google Play store, for display to an enterprise admin.
  * @property {androidenterprise(v1).TokenPagination} tokenPagination Pagination information for token pagination.
  */
 /**
@@ -3816,7 +3816,7 @@ The value of this field is never visible to a user, it is used solely for the pu
  * @typedef StoreLayout
  * @memberOf! androidenterprise(v1)
  * @type object
-* @property {string} homepageId The ID of the store page to be used as the homepage. The homepage will be used as the first page shown in the Google Play for Work store.
+* @property {string} homepageId The ID of the store page to be used as the homepage. The homepage will be used as the first page shown in the managed Google Play store.
 
 If a homepage has not been set, the Play store shown on devices will be empty. Not specifying a homepage on a store layout effectively empties the store.
 

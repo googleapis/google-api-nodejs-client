@@ -673,7 +673,7 @@ function Classroom(options) { // eslint-disable-line
       /**
        * classroom.courses.courseWork.create
        *
-       * @desc Creates course work. The resulting course work (and corresponding student submissions) are associated with the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to make the request. Classroom API requests to modify course work and student submissions must be made with an OAuth client ID from the associated Developer Console project. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create course work in the requested course, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
+       * @desc Creates course work. The resulting course work (and corresponding student submissions) are associated with the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to make the request. Classroom API requests to modify course work and student submissions must be made with an OAuth client ID from the associated Developer Console project. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create course work in the requested course, share a Drive attachment, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist. * `FAILED_PRECONDITION` for the following request error: * AttachmentNotVisible
        *
        * @alias classroom.courses.courseWork.create
        * @memberOf! classroom(v1)
@@ -700,6 +700,80 @@ function Classroom(options) { // eslint-disable-line
           params: params,
           requiredParams: ['courseId'],
           pathParams: ['courseId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.courses.courseWork.patch
+       *
+       * @desc Updates one or more fields of a course work. See google.classroom.v1.CourseWork for details of which fields may be updated and who may change them. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding course work, if the user is not permitted to make the requested modification to the student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `FAILED_PRECONDITION` if the requested course work has already been deleted. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
+       *
+       * @alias classroom.courses.courseWork.patch
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.id Identifier of the course work.
+       * @param {string=} params.updateMask Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error will be returned. The following fields may be specified by teachers: * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `submission_modification_mode`
+       * @param {classroom(v1).CourseWork} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{id}',
+            method: 'PATCH'
+          }, options),
+          params: params,
+          requiredParams: ['courseId', 'id'],
+          pathParams: ['courseId', 'id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * classroom.courses.courseWork.delete
+       *
+       * @desc Deletes a course work. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding course work, if the requesting user is not permitted to delete the requested course or for access errors. * `FAILED_PRECONDITION` if the requested course work has already been deleted. * `NOT_FOUND` if no course exists with the requested ID.
+       *
+       * @alias classroom.courses.courseWork.delete
+       * @memberOf! classroom(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.courseId Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
+       * @param {string} params.id Identifier of the course work to delete. This identifier is a Classroom-assigned identifier.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{id}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['courseId', 'id'],
+          pathParams: ['courseId', 'id'],
           context: self
         };
 
@@ -941,7 +1015,7 @@ function Classroom(options) { // eslint-disable-line
         /**
          * classroom.courses.courseWork.studentSubmissions.reclaim
          *
-         * @desc Reclaims a student submission on behalf of the student that owns it. Reclaiming a student submission transfers ownership of attached Drive files to the student and update the submission state. Only the student that ownes the requested student submission may call this method, and only for a student submission that has been turned in. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, unsubmit the requested student submission, or for access errors. * `FAILED_PRECONDITION` if the student submission has not been turned in. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
+         * @desc Reclaims a student submission on behalf of the student that owns it. Reclaiming a student submission transfers ownership of attached Drive files to the student and update the submission state. Only the student that owns the requested student submission may call this method, and only for a student submission that has been turned in. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, unsubmit the requested student submission, or for access errors. * `FAILED_PRECONDITION` if the student submission has not been turned in. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
          *
          * @alias classroom.courses.courseWork.studentSubmissions.reclaim
          * @memberOf! classroom(v1)
@@ -1017,7 +1091,7 @@ function Classroom(options) { // eslint-disable-line
         /**
          * classroom.courses.courseWork.studentSubmissions.modifyAttachments
          *
-         * @desc Modifies attachments of student submission. Attachments may only be added to student submissions whose type is `ASSIGNMENT`. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, if the user is not permitted to modify attachments on the requested student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
+         * @desc Modifies attachments of student submission. Attachments may only be added to student submissions belonging to course work objects with a `workType` of `ASSIGNMENT`. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, if the user is not permitted to modify attachments on the requested student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
          *
          * @alias classroom.courses.courseWork.studentSubmissions.modifyAttachments
          * @memberOf! classroom(v1)
@@ -1060,7 +1134,7 @@ function Classroom(options) { // eslint-disable-line
     /**
      * classroom.userProfiles.get
      *
-     * @desc Returns a user profile. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access this user profile or if no profile exists with the requested ID or for access errors.
+     * @desc Returns a user profile. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access this user profile, if no profile exists with the requested ID, or for access errors.
      *
      * @alias classroom.userProfiles.get
      * @memberOf! classroom(v1)
@@ -1287,7 +1361,7 @@ function Classroom(options) { // eslint-disable-line
       /**
        * classroom.userProfiles.guardians.get
        *
-       * @desc Returns a specific guardian. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to view guardian information for the student identified by the `student_id`, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). * `NOT_FOUND` if Classroom cannot find any record of the given student or `guardian_id`, or if the guardian has been disabled.
+       * @desc Returns a specific guardian. This method returns the following error codes: * `PERMISSION_DENIED` if no user that matches the provided `student_id` is visible to the requesting user, if the requesting user is not permitted to view guardian information for the student identified by the `student_id`, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). * `NOT_FOUND` if the requesting user is permitted to view guardians for the requested `student_id`, but no `Guardian` record exists for that student that matches the provided `guardian_id`.
        *
        * @alias classroom.userProfiles.guardians.get
        * @memberOf! classroom(v1)
@@ -1323,7 +1397,7 @@ function Classroom(options) { // eslint-disable-line
       /**
        * classroom.userProfiles.guardians.delete
        *
-       * @desc Deletes a guardian. The guardian will no longer receive guardian notifications and the guardian will no longer be accessible via the API. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to manage guardians for the student identified by the `student_id`, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API). * `NOT_FOUND` if Classroom cannot find any record of the given `student_id` or `guardian_id`, or if the guardian has already been disabled.
+       * @desc Deletes a guardian. The guardian will no longer receive guardian notifications and the guardian will no longer be accessible via the API. This method returns the following error codes: * `PERMISSION_DENIED` if no user that matches the provided `student_id` is visible to the requesting user, if the requesting user is not permitted to manage guardians for the student identified by the `student_id`, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API). * `NOT_FOUND` if the requesting user is permitted to modify guardians for the requested `student_id`, but no `Guardian` record exists for that student with the provided `guardian_id`.
        *
        * @alias classroom.userProfiles.guardians.delete
        * @memberOf! classroom(v1)
@@ -1665,22 +1739,6 @@ function Classroom(options) { // eslint-disable-line
  * @property {string} creationTime The time that this invitation was created. Read-only.
  */
 /**
- * @typedef ListGuardiansResponse
- * @memberOf! classroom(v1)
- * @type object
- * @property {classroom(v1).Guardian[]} guardians Guardians on this page of results that met the criteria specified in the request.
- * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
- */
-/**
- * @typedef Guardian
- * @memberOf! classroom(v1)
- * @type object
- * @property {string} studentId Identifier for the student to whom the guardian relationship applies.
- * @property {string} guardianId Identifier for the guardian.
- * @property {classroom(v1).UserProfile} guardianProfile User profile for the guardian.
- * @property {string} invitedEmailAddress The email address to which the initial guardian invitation was sent. This field is only visible to domain administrators.
- */
-/**
  * @typedef UserProfile
  * @memberOf! classroom(v1)
  * @type object
@@ -1736,6 +1794,22 @@ function Classroom(options) { // eslint-disable-line
  * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
  */
 /**
+ * @typedef ListGuardiansResponse
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {classroom(v1).Guardian[]} guardians Guardians on this page of results that met the criteria specified in the request.
+ * @property {string} nextPageToken Token identifying the next page of results to return. If empty, no further results are available.
+ */
+/**
+ * @typedef Guardian
+ * @memberOf! classroom(v1)
+ * @type object
+ * @property {string} studentId Identifier for the student to whom the guardian relationship applies.
+ * @property {string} guardianId Identifier for the guardian.
+ * @property {classroom(v1).UserProfile} guardianProfile User profile for the guardian.
+ * @property {string} invitedEmailAddress The email address to which the initial guardian invitation was sent. This field is only visible to domain administrators.
+ */
+/**
  * @typedef Invitation
  * @memberOf! classroom(v1)
  * @type object
@@ -1767,11 +1841,11 @@ function Classroom(options) { // eslint-disable-line
  * @property {classroom(v1).Date} dueDate Optional date, in UTC, that submissions for this this course work are due. This must be specified if `due_time` is specified.
  * @property {classroom(v1).TimeOfDay} dueTime Optional time of day, in UTC, that submissions for this this course work are due. This must be specified if `due_date` is specified.
  * @property {number} maxPoints Maximum grade for this course work. If zero or unspecified, this assignment is considered ungraded. This must be a non-negative integer value.
- * @property {string} workType Type of this course work. The type is set when the course work is created and cannot be changed. When creating course work, this must be `ASSIGNMENT`.
+ * @property {string} workType Type of this course work. The type is set when the course work is created and cannot be changed.
  * @property {boolean} associatedWithDeveloper Whether this course work item is associated with the Developer Console project making the request. See google.classroom.Work.CreateCourseWork for more details. Read-only.
  * @property {string} submissionModificationMode Setting to determine when students are allowed to modify submissions. If unspecified, the default value is `MODIFIABLE_UNTIL_TURNED_IN`.
- * @property {classroom(v1).Assignment} assignment Assignment details. This is populated only when `work_type` is `ASSIGNMENT`.
- * @property {classroom(v1).MultipleChoiceQuestion} multipleChoiceQuestion Multiple choice question details. This is populated only when `work_type` is `MULTIPLE_CHOICE_QUESTION`.
+ * @property {classroom(v1).Assignment} assignment Assignment details. This is populated only when `work_type` is `ASSIGNMENT`. Read-only.
+ * @property {classroom(v1).MultipleChoiceQuestion} multipleChoiceQuestion Multiple choice question details. For read operations, this field is populated only when `work_type` is `MULTIPLE_CHOICE_QUESTION`. For write operations, this field must be specified when creating course work with a `work_type` of `MULTIPLE_CHOICE_QUESTION`, and it must not be set otherwise.
  */
 /**
  * @typedef Material
@@ -1779,7 +1853,7 @@ function Classroom(options) { // eslint-disable-line
  * @type object
  * @property {classroom(v1).SharedDriveFile} driveFile Google Drive file material.
  * @property {classroom(v1).YouTubeVideo} youtubeVideo YouTube video material.
- * @property {classroom(v1).Link} link Link material.
+ * @property {classroom(v1).Link} link Link material. On creation, will be upgraded to a more appropriate type if possible, and this will be reflected in the response.
  * @property {classroom(v1).Form} form Google Forms material.
  */
 /**
@@ -1850,7 +1924,7 @@ function Classroom(options) { // eslint-disable-line
  * @typedef AssignmentSubmission
  * @memberOf! classroom(v1)
  * @type object
- * @property {classroom(v1).Attachment[]} attachments Attachments added by the student. Drive files that correspond to materials with a share mode of SUBMISSION_COPY may not exist yet if the student has not accessed the assignment in Classroom. Some attachment metadata is only populated if the requesting user has permission to access it. Identifier and alternate_link fields are available, but others (e.g. title) may not be.
+ * @property {classroom(v1).Attachment[]} attachments Attachments added by the student. Drive files that correspond to materials with a share mode of STUDENT_COPY may not exist yet if the student has not accessed the assignment in Classroom. Some attachment metadata is only populated if the requesting user has permission to access it. Identifier and alternate_link fields are always available, but others (e.g. title) may not be.
  */
 /**
  * @typedef Attachment
@@ -1899,6 +1973,6 @@ function Classroom(options) { // eslint-disable-line
  * @typedef ModifyAttachmentsRequest
  * @memberOf! classroom(v1)
  * @type object
- * @property {classroom(v1).Attachment[]} addAttachments Attachments to add. A student submission may not have more than 20 attachments. This may only contain link attachments.
+ * @property {classroom(v1).Attachment[]} addAttachments Attachments to add. A student submission may not have more than 20 attachments. Form attachments are not supported.
  */
 module.exports = Classroom;

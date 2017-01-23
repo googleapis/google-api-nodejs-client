@@ -118,7 +118,12 @@ describe('Clients', function () {
 
     assert.doesNotThrow(function () {
       for (var i in apiFiles) {
-        require(apiFiles[i]);
+        try {
+          require(apiFiles[i]);
+        } catch (err) {
+          console.error(err);
+          throw err;
+        }
       }
     });
   });
