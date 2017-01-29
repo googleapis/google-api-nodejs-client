@@ -173,7 +173,7 @@ var url = oauth2Client.generateAuthUrl({
   scope: scopes,
 
   // Optional property that passes state parameters to redirect URI
-  state: { foo: 'bar' }
+  // state: { foo: 'bar' }
 });
 ```
 
