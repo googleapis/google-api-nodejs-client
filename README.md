@@ -169,8 +169,11 @@ var url = oauth2Client.generateAuthUrl({
   // 'online' (default) or 'offline' (gets refresh_token)
   access_type: 'offline',
 
-  // If you only need one scope you can pass it as string
-  scope: scopes
+  // If you only need one scope you can pass it as a string
+  scope: scopes,
+
+  // Optional property that passes state parameters to redirect URI
+  state: { foo: 'bar' }
 });
 ```
 
