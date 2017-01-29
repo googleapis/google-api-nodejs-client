@@ -10,3 +10,4 @@ To run this sample, add your client id, client secret, and redirect url in secre
 
 - `node playlist`
 - `node search`
+- `node upload`
