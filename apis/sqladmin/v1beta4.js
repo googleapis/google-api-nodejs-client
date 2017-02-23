@@ -431,6 +431,7 @@ function Sqladmin(options) { // eslint-disable-line
      * @memberOf! sqladmin(v1beta4)
      *
      * @param {object=} params Parameters for request
+     * @param {string=} params.databaseVersion Database version for flag retrieval. Flags are specific to the database version.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -725,6 +726,7 @@ function Sqladmin(options) { // eslint-disable-line
      * @memberOf! sqladmin(v1beta4)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter A filter expression for filtering listed instances.
      * @param {integer=} params.maxResults The maximum number of results to return per response.
      * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
      * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
@@ -1782,6 +1784,13 @@ CSV: The file contains CSV data.
  * @property {string} type The type of this IP address. A PRIMARY address is an address that can accept incoming connections. An OUTGOING address is the source address of connections originating from the instance, if supported.
  */
 /**
+ * @typedef Labels
+ * @memberOf! sqladmin(v1beta4)
+ * @type object
+ * @property {string} key The key of the label.
+ * @property {string} value The value of the label.
+ */
+/**
  * @typedef LocationPreference
  * @memberOf! sqladmin(v1beta4)
  * @type object
@@ -1890,6 +1899,7 @@ ALWAYS: The instance is on; it is not deactivated by inactivity.
 NEVER: The instance is off; it is not activated, even if a connection request arrives.
 ON_DEMAND: The instance responds to incoming requests, and turns itself off when not in use. Instances with PER_USE pricing turn off after 15 minutes of inactivity. Instances with PER_PACKAGE pricing turn off after 12 hours of inactivity.
 * @property {string[]} authorizedGaeApplications The App Engine app IDs that can access this instance. This property is only applicable to First Generation instances.
+* @property {string} availabilityType Reserved for future use.
 * @property {sqladmin(v1beta4).BackupConfiguration} backupConfiguration The daily backup configuration for the instance.
 * @property {boolean} crashSafeReplicationEnabled Configuration specific to read replica instances. Indicates whether database flags for crash-safe replication are enabled. This property is only applicable to First Generation instances.
 * @property {string} dataDiskSizeGb The size of data disk, in GB. The data disk size minimum is 10GB. Applies only to Second Generation instances.
@@ -1898,12 +1908,14 @@ ON_DEMAND: The instance responds to incoming requests, and turns itself off when
 * @property {boolean} databaseReplicationEnabled Configuration specific to read replica instances. Indicates whether replication is enabled or not.
 * @property {sqladmin(v1beta4).IpConfiguration} ipConfiguration The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled for Second Generation instances.
 * @property {string} kind This is always sql#settings.
+* @property {sqladmin(v1beta4).Labels[]} labels User defined labels.
 * @property {sqladmin(v1beta4).LocationPreference} locationPreference The location preference settings. This allows the instance to be located as near as possible to either an App Engine app or GCE zone for better performance. App Engine co-location is only applicable to First Generation instances.
 * @property {sqladmin(v1beta4).MaintenanceWindow} maintenanceWindow The maintenance window for this instance. This specifies when the instance may be restarted for maintenance purposes. Applies only to Second Generation instances.
 * @property {string} pricingPlan The pricing plan for this instance. This can be either PER_USE or PACKAGE. Only PER_USE is supported for Second Generation instances.
 * @property {string} replicationType The type of replication this instance uses. This can be either ASYNCHRONOUS or SYNCHRONOUS. This property is only applicable to First Generation instances.
 * @property {string} settingsVersion The version of instance settings. This is a required field for update method to make sure concurrent updates are handled properly. During update, use the most recent settingsVersion value for this instance and do not try to update this value.
 * @property {boolean} storageAutoResize Configuration to increase storage size automatically. The default value is false. Applies only to Second Generation instances.
+* @property {string} storageAutoResizeLimit The maximum size to which storage capacity can be automatically increased. The default value is 0, which specifies that there is no limit. Applies only to Second Generation instances.
 * @property {string} tier The tier of service for this instance, for example D1, D2. For more information, see pricing.
 */
 /**

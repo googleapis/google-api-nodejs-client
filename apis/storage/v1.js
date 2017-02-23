@@ -56,7 +56,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -142,7 +144,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -231,7 +235,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -244,7 +250,7 @@ function Storage(options) { // eslint-disable-line
      *     bucket: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body.
      *     },
      *
      *     auth: authClient
@@ -320,7 +326,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -404,7 +412,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -421,7 +431,7 @@ function Storage(options) { // eslint-disable-line
      *     entity: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
@@ -499,7 +509,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -516,7 +528,8 @@ function Storage(options) { // eslint-disable-line
      *     entity: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
      *     },
      *
      *     auth: authClient
@@ -597,7 +610,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -680,7 +695,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -767,7 +784,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -780,7 +799,7 @@ function Storage(options) { // eslint-disable-line
      *     project: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body.
      *     },
      *
      *     auth: authClient
@@ -859,7 +878,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -960,7 +981,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -973,7 +996,7 @@ function Storage(options) { // eslint-disable-line
      *     bucket: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
@@ -1055,7 +1078,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1068,7 +1093,8 @@ function Storage(options) { // eslint-disable-line
      *     bucket: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
      *     },
      *
      *     auth: authClient
@@ -1153,7 +1179,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1163,7 +1191,7 @@ function Storage(options) { // eslint-disable-line
      * authorize(function(authClient) {
      *   var request = {
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body.
      *     },
      *
      *     auth: authClient
@@ -1239,7 +1267,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1325,7 +1355,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1414,7 +1446,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1427,7 +1461,7 @@ function Storage(options) { // eslint-disable-line
      *     bucket: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body.
      *     },
      *
      *     auth: authClient
@@ -1503,7 +1537,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1589,7 +1625,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1606,7 +1644,7 @@ function Storage(options) { // eslint-disable-line
      *     entity: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
@@ -1684,7 +1722,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1701,7 +1741,8 @@ function Storage(options) { // eslint-disable-line
      *     entity: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
      *     },
      *
      *     auth: authClient
@@ -1782,7 +1823,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1874,7 +1917,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1969,7 +2014,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -1986,7 +2033,7 @@ function Storage(options) { // eslint-disable-line
      *     object: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body.
      *     },
      *
      *     auth: authClient
@@ -2064,7 +2111,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2154,7 +2203,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2175,7 +2226,7 @@ function Storage(options) { // eslint-disable-line
      *     entity: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
@@ -2255,7 +2306,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2276,7 +2329,8 @@ function Storage(options) { // eslint-disable-line
      *     entity: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
      *     },
      *
      *     auth: authClient
@@ -2359,7 +2413,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2376,7 +2432,7 @@ function Storage(options) { // eslint-disable-line
      *     destinationObject: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body.
      *     },
      *
      *     // TODO: To download media content, use:
@@ -2460,7 +2516,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2486,7 +2544,7 @@ function Storage(options) { // eslint-disable-line
      *     destinationObject: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body.
      *     },
      *
      *     // TODO: To download media content, use:
@@ -2580,7 +2638,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2671,7 +2731,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2770,7 +2832,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2784,11 +2848,11 @@ function Storage(options) { // eslint-disable-line
      *     bucket: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body.
      *     },
      *
      *     media: {
-     *       // TODO: Add desired media content for upload. See:
+     *       // TODO: Add desired media content for upload. See
      *       // https://github.com/google/google-api-nodejs-client#media-uploads
      *       mimeType: '',  // See https://www.w3.org/Protocols/rfc1341/4_Content-Type.html
      *       body: {}
@@ -2879,7 +2943,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2982,7 +3048,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -2999,7 +3067,7 @@ function Storage(options) { // eslint-disable-line
      *     object: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body. Only added properties
+     *       // TODO: Add desired properties to the request body. Only these properties
      *       // will be changed.
      *     },
      *
@@ -3084,7 +3152,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3110,7 +3180,7 @@ function Storage(options) { // eslint-disable-line
      *     destinationObject: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body.
      *     },
      *
      *     auth: authClient
@@ -3202,7 +3272,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3219,7 +3291,8 @@ function Storage(options) { // eslint-disable-line
      *     object: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
      *     },
      *
      *     // TODO: To download media content, use:
@@ -3307,7 +3380,9 @@ function Storage(options) { // eslint-disable-line
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
      * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
      * // 3. Install the Node.js client library by running
      * //    `npm install googleapis --save`
      *
@@ -3320,7 +3395,7 @@ function Storage(options) { // eslint-disable-line
      *     bucket: '',  // TODO: Update placeholder value.
      *
      *     resource: {
-     *       // TODO: Add desired properties of the request body.
+     *       // TODO: Add desired properties to the request body.
      *     },
      *
      *     auth: authClient
@@ -3399,7 +3474,7 @@ function Storage(options) { // eslint-disable-line
  * @property {object[]} cors The bucket&#39;s Cross-Origin Resource Sharing (CORS) configuration.
  * @property {storage(v1).ObjectAccessControl[]} defaultObjectAcl Default access controls to apply to new objects when no ACL is provided.
  * @property {string} etag HTTP 1.1 Entity tag for the bucket.
- * @property {string} id The ID of the bucket.
+ * @property {string} id The ID of the bucket. For buckets, the id and name properities are the same.
  * @property {string} kind The kind of item this is. For buckets, this is always storage#bucket.
  * @property {object} lifecycle The bucket&#39;s lifecycle configuration. See lifecycle management for more information.
  * @property {string} location The location of the bucket. Object data for objects in the bucket resides in physical storage within this region. Defaults to US. See the developer&#39;s guide for the authoritative list.
@@ -3496,13 +3571,13 @@ function Storage(options) { // eslint-disable-line
  * @property {object} customerEncryption Metadata of customer-supplied encryption key, if the object is encrypted by such a key.
  * @property {string} etag HTTP 1.1 Entity tag for the object.
  * @property {string} generation The content generation of this object. Used for object versioning.
- * @property {string} id The ID of the object.
+ * @property {string} id The ID of the object, including the bucket name, object name, and generation number.
  * @property {string} kind The kind of item this is. For objects, this is always storage#object.
  * @property {string} md5Hash MD5 hash of the data; encoded using base64. For more information about using the MD5 hash, see Hashes and ETags: Best Practices.
  * @property {string} mediaLink Media download link.
  * @property {object} metadata User-provided metadata, in key/value pairs.
  * @property {string} metageneration The version of the metadata for this object at this generation. Used for preconditions and for detecting changes in metadata. A metageneration number is only meaningful in the context of a particular generation of a particular object.
- * @property {string} name The name of this object. Required if not specified by URL parameter.
+ * @property {string} name The name of the object. Required if not specified by URL parameter.
  * @property {object} owner The owner of the object. This will always be the uploader of the object.
  * @property {string} selfLink The link to this object.
  * @property {string} size Content-Length of the data in bytes.

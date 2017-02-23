@@ -55,42 +55,50 @@ function Cloudbilling(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/cloudbilling
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var cloudbilling = google.cloudbilling('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *     // The resource name of the billing account to retrieve. For example,
+     *     // `billingAccounts/012345-567890-ABCDEF`.
+     *     name: '',  // TODO: Update placeholder value.
+     *     // ex: 'billingAccounts/my-billingAccount'
      *
-     *     // * The resource name of the billing account to retrieve. For example,
-     *     //   `billingAccounts/012345-567890-ABCDEF`.
-     *     name: "billingAccounts/{MY-BILLINGACCOUNT}",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   cloudbilling.billingAccounts.get(request, function(err, result) {
+     *   cloudbilling.billingAccounts.get(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudbilling.billingAccounts.get
      * @memberOf! cloudbilling(v1)
@@ -135,45 +143,58 @@ function Cloudbilling(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/cloudbilling
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var cloudbilling = google.cloudbilling('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *
-     *   var recur = function(err, result) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *       if (result.nextPageToken) {
-     *         request.pageToken = result.nextPageToken;
-     *         cloudbilling.billingAccounts.list(request, recur);
-     *       }
+     *       return;
+     *     }
+     *
+     *     var billingAccountsPage = response['billingAccounts'];
+     *     if (!billingAccountsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < billingAccountsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `billingAccountsPage`:
+     *       console.log(JSON.stringify(billingAccountsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       cloudbilling.billingAccounts.list(request, handlePage);
      *     }
      *   };
      *
-     *   cloudbilling.billingAccounts.list(request, recur);
+     *   cloudbilling.billingAccounts.list(request, handlePage);
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudbilling.billingAccounts.list
      * @memberOf! cloudbilling(v1)
@@ -221,49 +242,63 @@ function Cloudbilling(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/cloudbilling
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud beta auth application-default login'
-       * // 3. Install the Node.js client library and Application Default Credentials
-       * //    library by running 'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
        * var google = require('googleapis');
        * var cloudbilling = google.cloudbilling('v1');
        *
-       * google.auth.getApplicationDefault(function(err, authClient) {
-       *   if (err) {
-       *     console.log('Authentication failed because of ', err);
-       *     return;
-       *   }
-       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *     authClient = authClient.createScoped(scopes);
-       *   }
-       *
+       * authorize(function(authClient) {
        *   var request = {
-       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+       *     // The resource name of the billing account associated with the projects that you want to list. For
+       *     // example, `billingAccounts/012345-567890-ABCDEF`.
+       *     name: '',  // TODO: Update placeholder value.
+       *     // ex: 'billingAccounts/my-billingAccount'
        *
-       *     // * The resource name of the billing account associated with the projects that you want to list. For
-       *     //   example, `billingAccounts/012345-567890-ABCDEF`.
-       *     name: "billingAccounts/{MY-BILLINGACCOUNT}",
-       *
-       *     // Auth client
        *     auth: authClient
        *   };
        *
-       *
-       *   var recur = function(err, result) {
+       *   var handlePage = function(err, response) {
        *     if (err) {
        *       console.log(err);
-       *     } else {
-       *       console.log(result);
-       *       if (result.nextPageToken) {
-       *         request.pageToken = result.nextPageToken;
-       *         cloudbilling.billingAccounts.projects.list(request, recur);
-       *       }
+       *       return;
+       *     }
+       *
+       *     var projectBillingInfoPage = response['projectBillingInfo'];
+       *     if (!projectBillingInfoPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < projectBillingInfoPage.length; i++) {
+       *       // TODO: Change code below to process each resource in `projectBillingInfoPage`:
+       *       console.log(JSON.stringify(projectBillingInfoPage[i], null, 2));
+       *     }
+       *
+       *     if (response.nextPageToken) {
+       *       request.pageToken = response.nextPageToken;
+       *       cloudbilling.billingAccounts.projects.list(request, handlePage);
        *     }
        *   };
        *
-       *   cloudbilling.billingAccounts.projects.list(request, recur);
+       *   cloudbilling.billingAccounts.projects.list(request, handlePage);
        * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *     if (err) {
+       *       console.log('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
        *
        * @alias cloudbilling.billingAccounts.projects.list
        * @memberOf! cloudbilling(v1)
@@ -314,42 +349,50 @@ function Cloudbilling(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/cloudbilling
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var cloudbilling = google.cloudbilling('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'getBillingInfo' method:
+     *     // The resource name of the project for which billing information is retrieved. For example,
+     *     // `projects/tokyo-rain-123`.
+     *     name: '',  // TODO: Update placeholder value.
+     *     // ex: 'projects/my-project'
      *
-     *     // * The resource name of the project for which billing information is retrieved. For example,
-     *     //   `projects/tokyo-rain-123`.
-     *     name: "projects/{MY-PROJECT}",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   cloudbilling.projects.getBillingInfo(request, function(err, result) {
+     *   cloudbilling.projects.getBillingInfo(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudbilling.projects.getBillingInfo
      * @memberOf! cloudbilling(v1)
@@ -394,44 +437,55 @@ function Cloudbilling(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/cloudbilling
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var cloudbilling = google.cloudbilling('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'updateBillingInfo' method:
+     *     // The resource name of the project associated with the billing information that you want to update.
+     *     // For example, `projects/tokyo-rain-123`.
+     *     name: '',  // TODO: Update placeholder value.
+     *     // ex: 'projects/my-project'
      *
-     *     // * The resource name of the project associated with the billing information that you want to update.
-     *     //   For example, `projects/tokyo-rain-123`.
-     *     name: "projects/{MY-PROJECT}",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   cloudbilling.projects.updateBillingInfo(request, function(err, result) {
+     *   cloudbilling.projects.updateBillingInfo(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudbilling.projects.updateBillingInfo
      * @memberOf! cloudbilling(v1)

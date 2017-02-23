@@ -1569,10 +1569,10 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {integer} accountId Account id.
  * @property {string} adChoicesDestinationUrl The link to the Ad Preferences page. This is only supported for native ads.
  * @property {string[]} advertiserId Detected advertiser id, if any. Read-only. This field should not be set in requests.
- * @property {string} advertiserName The name of the company being advertised in the creative.
+ * @property {string} advertiserName The name of the company being advertised in the creative. The value provided must exist in the advertisers.txt file.
  * @property {string} agencyId The agency id for this creative.
  * @property {string} apiUploadTimestamp The last upload timestamp of this creative if it was uploaded via API. Read-only. The value of this field is generated, and will be ignored for uploads. (formatted RFC 3339 timestamp).
- * @property {integer[]} attribute All attributes for the ads that may be shown from this snippet.
+ * @property {integer[]} attribute List of buyer selectable attributes for the ads that may be shown from this snippet. Each attribute is represented by an integer as defined in  buyer-declarable-creative-attributes.txt.
  * @property {string} buyerCreativeId A buyer-specific id identifying the creative in this ad.
  * @property {string[]} clickThroughUrl The set of destination urls for the snippet.
  * @property {object[]} corrections Shows any corrections that were applied to this creative. Read-only. This field should not be set in requests.
@@ -1585,11 +1585,11 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @property {string[]} languages Detected languages for this creative. Read-only. This field should not be set in requests.
  * @property {object} nativeAd If nativeAd is set, HTMLSnippet and the videoURL outside of nativeAd should not be set. (The videoURL inside nativeAd can be set.)
  * @property {string} openAuctionStatus Top-level open auction status. Read-only. This field should not be set in requests. If disapproved, an entry for auctionType=OPEN_AUCTION (or ALL) in servingRestrictions will also exist. Note that this may be nuanced with other contextual restrictions, in which case it may be preferable to read from ServingRestrictions directly.
- * @property {integer[]} productCategories Detected product categories, if any. Read-only. This field should not be set in requests.
- * @property {integer[]} restrictedCategories All restricted categories for the ads that may be shown from this snippet.
- * @property {integer[]} sensitiveCategories Detected sensitive categories, if any. Read-only. This field should not be set in requests.
+ * @property {integer[]} productCategories Detected product categories, if any. Each category is represented by an integer as defined in  ad-product-categories.txt. Read-only. This field should not be set in requests.
+ * @property {integer[]} restrictedCategories All restricted categories for the ads that may be shown from this snippet. Each category is represented by an integer as defined in the  ad-restricted-categories.txt.
+ * @property {integer[]} sensitiveCategories Detected sensitive categories, if any. Each category is represented by an integer as defined in  ad-sensitive-categories.txt. Read-only. This field should not be set in requests.
  * @property {object[]} servingRestrictions The granular status of this ad in specific contexts. A context here relates to where something ultimately serves (for example, a physical location, a platform, an HTTPS vs HTTP request, or the type of auction). Read-only. This field should not be set in requests.
- * @property {integer[]} vendorType All vendor types for the ads that may be shown from this snippet.
+ * @property {integer[]} vendorType List of vendor types for the ads that may be shown from this snippet. Each vendor type is represented by an integer as defined in vendors.txt.
  * @property {integer} version The version for this creative. Read-only. This field should not be set in requests.
  * @property {string} videoURL The URL to fetch a video ad. If set, HTMLSnippet and the nativeAd should not be set. Note, this is different from resource.native_ad.video_url above.
  * @property {integer} width Ad width.
@@ -1613,6 +1613,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
  * @typedef DealServingMetadata
  * @memberOf! adexchangebuyer(v1.4)
  * @type object
+ * @property {boolean} alcoholAdsAllowed True if alcohol ads are allowed for this deal (read-only). This field is only populated when querying for finalized orders using the method GetFinalizedOrderDeals
  * @property {adexchangebuyer(v1.4).DealServingMetadataDealPauseStatus} dealPauseStatus Tracks which parties (if any) have paused a deal. (readonly, except via PauseResumeOrderDeals action)
  */
 /**

@@ -447,7 +447,8 @@ function Doubleclicksearch(options) { // eslint-disable-line
 - &quot;local&quot;: a physical store 
 - &quot;online&quot;: an online store
 * @property {string} clickId DS click ID for the conversion.
-* @property {string} conversionId For offline conversions, this is an ID that advertisers are required to provide. Advertisers can specify any ID that is meaningful to them. For online conversions, DS copies the dsConversionId or floodlightOrderId into this property depending on the advertiser&#39;s Floodlight instructions.
+* @property {string} conversionId For offline conversions, advertisers provide this ID. Advertisers can specify any ID that is meaningful to them. Each conversion in a request must specify a unique ID, and the combination of ID and timestamp must be unique amongst all conversions within the advertiser.
+For online conversions, DS copies the dsConversionId or floodlightOrderId into this property depending on the advertiser&#39;s Floodlight instructions.
 * @property {string} conversionModifiedTimestamp The time at which the conversion was last modified, in epoch millis UTC.
 * @property {string} conversionTimestamp The time at which the conversion took place, in epoch millis UTC.
 * @property {string} countMillis Available to advertisers only after contacting DoubleClick Search customer support.

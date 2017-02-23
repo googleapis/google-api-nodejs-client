@@ -849,6 +849,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {boolean} emailVerified Mark the email as verified or not. Only can be used by service account.
  * @property {string} idToken The GITKit token of the authenticated user.
  * @property {string} instanceId Instance id token of the app.
+ * @property {string} localId Privileged caller can create user with specified user id.
  * @property {string} password The new password of the user.
  * @property {string} photoUrl The photo url of the user.
  */
@@ -944,6 +945,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @type object
  * @property {string} displayName The name of the user.
  * @property {string} email The email of the user.
+ * @property {boolean} emailVerified If email has been verified.
  * @property {string} expiresIn If idToken is STS id token, then this field will be expiration time of STS id token in seconds.
  * @property {string} idToken The Gitkit id token to login the newly sign up user.
  * @property {string} kind The fixed string &quot;identitytoolkit#SetAccountInfoResponse&quot;.
@@ -1015,6 +1017,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} fullName The full name of the user.
  * @property {string} idToken The ID token.
  * @property {string} inputEmail It&#39;s the identifier param in the createAuthUri request if the identifier is an email. It can be used to check whether the user input email is different from the asserted email.
+ * @property {boolean} isNewUser True if it&#39;s a new user sign-in, false if it&#39;s a returning user.
  * @property {string} kind The fixed string &quot;identitytoolkit#VerifyAssertionResponse&quot;.
  * @property {string} language The language preference of the user.
  * @property {string} lastName The last name of the user.

@@ -55,42 +55,49 @@ function Storagetransfer(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *     // The ID of the Google Developers Console project that the Google service account is associated with.
+     *     // Required.
+     *     projectId: '',  // TODO: Update placeholder value.
      *
-     *     // * The ID of the Google Developers Console project that the Google service account is associated
-     *     //   with. Required.
-     *     projectId: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   storagetransfer.googleServiceAccounts.get(request, function(err, result) {
+     *   storagetransfer.googleServiceAccounts.get(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storagetransfer.googleServiceAccounts.get
      * @memberOf! storagetransfer(v1)
@@ -178,40 +185,49 @@ function Storagetransfer(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'create' method:
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   storagetransfer.transferJobs.create(request, function(err, result) {
+     *   storagetransfer.transferJobs.create(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storagetransfer.transferJobs.create
      * @memberOf! storagetransfer(v1)
@@ -256,43 +272,53 @@ function Storagetransfer(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *     // The name of job to update. Required.
+     *     jobName: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of job to update. Required.
-     *     jobName: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   storagetransfer.transferJobs.patch(request, function(err, result) {
+     *   storagetransfer.transferJobs.patch(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storagetransfer.transferJobs.patch
      * @memberOf! storagetransfer(v1)
@@ -338,41 +364,48 @@ function Storagetransfer(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *     // The job to get. Required.
+     *     jobName: '',  // TODO: Update placeholder value.
      *
-     *     // * The job to get. Required.
-     *     jobName: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   storagetransfer.transferJobs.get(request, function(err, result) {
+     *   storagetransfer.transferJobs.get(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storagetransfer.transferJobs.get
      * @memberOf! storagetransfer(v1)
@@ -418,45 +451,58 @@ function Storagetransfer(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *
-     *   var recur = function(err, result) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *       if (result.nextPageToken) {
-     *         request.pageToken = result.nextPageToken;
-     *         storagetransfer.transferJobs.list(request, recur);
-     *       }
+     *       return;
+     *     }
+     *
+     *     var transferJobsPage = response['transferJobs'];
+     *     if (!transferJobsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < transferJobsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `transferJobsPage`:
+     *       console.log(JSON.stringify(transferJobsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       storagetransfer.transferJobs.list(request, handlePage);
      *     }
      *   };
      *
-     *   storagetransfer.transferJobs.list(request, recur);
+     *   storagetransfer.transferJobs.list(request, handlePage);
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storagetransfer.transferJobs.list
      * @memberOf! storagetransfer(v1)
@@ -507,43 +553,49 @@ function Storagetransfer(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'pause' method:
+     *     // The name of the transfer operation. Required.
+     *     name: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the transfer operation. Required.
-     *     name: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   storagetransfer.transferOperations.pause(request, function(err, result) {
+     *   storagetransfer.transferOperations.pause(request, function(err) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storagetransfer.transferOperations.pause
      * @memberOf! storagetransfer(v1)
@@ -589,43 +641,49 @@ function Storagetransfer(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'resume' method:
+     *     // The name of the transfer operation. Required.
+     *     name: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the transfer operation. Required.
-     *     name: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   storagetransfer.transferOperations.resume(request, function(err, result) {
+     *   storagetransfer.transferOperations.resume(request, function(err) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storagetransfer.transferOperations.resume
      * @memberOf! storagetransfer(v1)
@@ -671,41 +729,48 @@ function Storagetransfer(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *     // The name of the operation resource.
+     *     name: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the operation resource.
-     *     name: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   storagetransfer.transferOperations.get(request, function(err, result) {
+     *   storagetransfer.transferOperations.get(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storagetransfer.transferOperations.get
      * @memberOf! storagetransfer(v1)
@@ -750,48 +815,61 @@ function Storagetransfer(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *     // The value `transferOperations`.
+     *     name: '',  // TODO: Update placeholder value.
      *
-     *     // * The value `transferOperations`.
-     *     name: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *
-     *   var recur = function(err, result) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *       if (result.nextPageToken) {
-     *         request.pageToken = result.nextPageToken;
-     *         storagetransfer.transferOperations.list(request, recur);
-     *       }
+     *       return;
+     *     }
+     *
+     *     var operationsPage = response['operations'];
+     *     if (!operationsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < operationsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `operationsPage`:
+     *       console.log(JSON.stringify(operationsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       storagetransfer.transferOperations.list(request, handlePage);
      *     }
      *   };
      *
-     *   storagetransfer.transferOperations.list(request, recur);
+     *   storagetransfer.transferOperations.list(request, handlePage);
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storagetransfer.transferOperations.list
      * @memberOf! storagetransfer(v1)
@@ -839,41 +917,45 @@ function Storagetransfer(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'cancel' method:
+     *     // The name of the operation resource to be cancelled.
+     *     name: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the operation resource to be cancelled.
-     *     name: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   storagetransfer.transferOperations.cancel(request, function(err, result) {
+     *   storagetransfer.transferOperations.cancel(request, function(err) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storagetransfer.transferOperations.cancel
      * @memberOf! storagetransfer(v1)
@@ -918,41 +1000,45 @@ function Storagetransfer(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/storagetransfer
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
      * var storagetransfer = google.storagetransfer('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *     // The name of the operation resource to be deleted.
+     *     name: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the operation resource to be deleted.
-     *     name: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   storagetransfer.transferOperations.delete(request, function(err, result) {
+     *   storagetransfer.transferOperations.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias storagetransfer.transferOperations.delete
      * @memberOf! storagetransfer(v1)

@@ -195,6 +195,40 @@ function Drive(options) { // eslint-disable-line
     },
 
     /**
+     * drive.changes.getStartPageToken
+     *
+     * @desc Gets the starting pageToken for listing future changes.
+     *
+     * @alias drive.changes.getStartPageToken
+     * @memberOf! drive(v2)
+     *
+     * @param {object=} params Parameters for request
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getStartPageToken: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/drive/v2/changes/startPageToken',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * drive.changes.list
      *
      * @desc Lists the changes for a user.
@@ -206,7 +240,7 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.includeDeleted Whether to include deleted items.
      * @param {boolean=} params.includeSubscribed Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
      * @param {integer=} params.maxResults Maximum number of changes to return.
-     * @param {string=} params.pageToken Page token for changes.
+     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Change ID to start listing changes from.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -246,7 +280,7 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.includeDeleted Whether to include deleted items.
      * @param {boolean=} params.includeSubscribed Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
      * @param {integer=} params.maxResults Maximum number of changes to return.
-     * @param {string=} params.pageToken Page token for changes.
+     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Change ID to start listing changes from.
      * @param {drive(v2).Channel} params.resource Request body data
@@ -2458,7 +2492,7 @@ function Drive(options) { // eslint-disable-line
  * @type object
  * @property {string[]} defaultAppIds List of app IDs that the user has specified to use by default. The list is in reverse-priority order (lowest to highest).
  * @property {string} etag The ETag of the list.
- * @property {drive(v2).App[]} items The actual list of apps.
+ * @property {drive(v2).App[]} items The list of apps.
  * @property {string} kind This is always drive#appList.
  * @property {string} selfLink A link back to this list.
  */
@@ -2479,11 +2513,11 @@ function Drive(options) { // eslint-disable-line
  * @memberOf! drive(v2)
  * @type object
  * @property {string} etag The ETag of the list.
- * @property {drive(v2).Change[]} items The actual list of changes.
+ * @property {drive(v2).Change[]} items The list of changes. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  * @property {string} kind This is always drive#changeList.
  * @property {string} largestChangeId The current largest change ID.
  * @property {string} nextLink A link to the next page of changes.
- * @property {string} nextPageToken The page token for the next page of changes.
+ * @property {string} nextPageToken The page token for the next page of changes. This will be absent if the end of the changes list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
 /**
@@ -2506,10 +2540,10 @@ function Drive(options) { // eslint-disable-line
  * @memberOf! drive(v2)
  * @type object
  * @property {string} etag The ETag of the list.
- * @property {drive(v2).ChildReference[]} items The actual list of children.
+ * @property {drive(v2).ChildReference[]} items The list of children. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  * @property {string} kind This is always drive#childList.
  * @property {string} nextLink A link to the next page of children.
- * @property {string} nextPageToken The page token for the next page of children.
+ * @property {string} nextPageToken The page token for the next page of children. This will be absent if the end of the children list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
 /**
@@ -2547,10 +2581,10 @@ function Drive(options) { // eslint-disable-line
  * @typedef CommentList
  * @memberOf! drive(v2)
  * @type object
- * @property {drive(v2).Comment[]} items List of comments.
+ * @property {drive(v2).Comment[]} items The list of comments. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  * @property {string} kind This is always drive#commentList.
  * @property {string} nextLink A link to the next page of comments.
- * @property {string} nextPageToken The token to use to request the next page of results.
+ * @property {string} nextPageToken The page token for the next page of comments. This will be absent if the end of the comments list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
 /**
@@ -2573,10 +2607,10 @@ function Drive(options) { // eslint-disable-line
  * @typedef CommentReplyList
  * @memberOf! drive(v2)
  * @type object
- * @property {drive(v2).CommentReply[]} items List of reply.
+ * @property {drive(v2).CommentReply[]} items The list of replies. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  * @property {string} kind This is always drive#commentReplyList.
  * @property {string} nextLink A link to the next page of replies.
- * @property {string} nextPageToken The token to use to request the next page of results.
+ * @property {string} nextPageToken The page token for the next page of replies. This will be absent if the end of the replies list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
 /**
@@ -2636,7 +2670,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 * @property {string[]} spaces The list of spaces which contain the file. Supported values are &#39;drive&#39;, &#39;appDataFolder&#39; and &#39;photos&#39;.
 * @property {object} thumbnail A thumbnail for the file. This will only be used if Drive cannot generate a standard thumbnail.
 * @property {string} thumbnailLink A short-lived link to the file&#39;s thumbnail. Typically lasts on the order of hours. Only populated when the requesting app can access the file&#39;s content.
-* @property {string} thumbnailVersion The thumbnail version for use in client-contructable thumbnail URLs or thumbnail cache invalidation.
+* @property {string} thumbnailVersion The thumbnail version for use in thumbnail cache invalidation.
 * @property {string} title The title of this file.
 * @property {drive(v2).Permission} userPermission The permissions for the authenticated user on this file.
 * @property {string} version A monotonically increasing version number for the file. This reflects every change made to the file on the server, even those not visible to the requesting user.
@@ -2650,10 +2684,10 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @memberOf! drive(v2)
  * @type object
  * @property {string} etag The ETag of the list.
- * @property {drive(v2).File[]} items The actual list of files.
+ * @property {drive(v2).File[]} items The list of files. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  * @property {string} kind This is always drive#fileList.
  * @property {string} nextLink A link to the next page of files.
- * @property {string} nextPageToken The page token for the next page of files.
+ * @property {string} nextPageToken The page token for the next page of files. This will be absent if the end of the files list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
 /**
@@ -2669,7 +2703,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @memberOf! drive(v2)
  * @type object
  * @property {string} etag The ETag of the list.
- * @property {drive(v2).ParentReference[]} items The actual list of parents.
+ * @property {drive(v2).ParentReference[]} items The list of parents.
  * @property {string} kind This is always drive#parentList.
  * @property {string} selfLink A link back to this list.
  */
@@ -2722,7 +2756,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @memberOf! drive(v2)
  * @type object
  * @property {string} etag The ETag of the list.
- * @property {drive(v2).Permission[]} items The actual list of permissions.
+ * @property {drive(v2).Permission[]} items The list of permissions.
  * @property {string} kind This is always drive#permissionList.
  * @property {string} selfLink A link back to this list.
  */
@@ -2774,10 +2808,17 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @memberOf! drive(v2)
  * @type object
  * @property {string} etag The ETag of the list.
- * @property {drive(v2).Revision[]} items The actual list of revisions.
+ * @property {drive(v2).Revision[]} items The list of revisions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  * @property {string} kind This is always drive#revisionList.
  * @property {string} nextPageToken The page token for the next page of revisions. This field will be absent if the end of the revisions list has been reached. If the token is rejected for any reason, it should be discarded and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
+ */
+/**
+ * @typedef StartPageToken
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#startPageToken&quot;.
+ * @property {string} startPageToken The starting page token for listing changes.
  */
 /**
  * @typedef User

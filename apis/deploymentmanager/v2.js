@@ -55,46 +55,55 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'cancelPreview' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
+     *     // The name of the deployment for this request.
+     *     deployment: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the deployment for this request.
-     *     deployment: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   deploymentmanager.deployments.cancelPreview(request, function(err, result) {
+     *   deploymentManager.deployments.cancelPreview(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.deployments.cancelPreview
      * @memberOf! deploymentmanager(v2)
@@ -141,44 +150,51 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
+     *     // The name of the deployment for this request.
+     *     deployment: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the deployment for this request.
-     *     deployment: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   deploymentmanager.deployments.delete(request, function(err, result) {
+     *   deploymentManager.deployments.delete(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.deployments.delete
      * @memberOf! deploymentmanager(v2)
@@ -225,44 +241,51 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
+     *     // The name of the deployment for this request.
+     *     deployment: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the deployment for this request.
-     *     deployment: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   deploymentmanager.deployments.get(request, function(err, result) {
+     *   deploymentManager.deployments.get(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.deployments.get
      * @memberOf! deploymentmanager(v2)
@@ -299,6 +322,60 @@ function Deploymentmanager(options) { // eslint-disable-line
      * deploymentmanager.deployments.getIamPolicy
      *
      * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var deploymentManager = google.deploymentmanager('v2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
+     *
+     *     // Name of the resource for this request.
+     *     resource_: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   deploymentManager.deployments.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.deployments.getIamPolicy
      * @memberOf! deploymentmanager(v2)
@@ -344,43 +421,52 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   deploymentmanager.deployments.insert(request, function(err, result) {
+     *   deploymentManager.deployments.insert(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.deployments.insert
      * @memberOf! deploymentmanager(v2)
@@ -427,55 +513,68 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *
-     *   var recur = function(err, result) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *       if (result.nextPageToken) {
-     *         request.pageToken = result.nextPageToken;
-     *         deploymentmanager.deployments.list(request, recur);
-     *       }
+     *       return;
+     *     }
+     *
+     *     var deploymentsPage = response['deployments'];
+     *     if (!deploymentsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < deploymentsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `deploymentsPage`:
+     *       console.log(JSON.stringify(deploymentsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       deploymentManager.deployments.list(request, handlePage);
      *     }
      *   };
      *
-     *   deploymentmanager.deployments.list(request, recur);
+     *   deploymentManager.deployments.list(request, handlePage);
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.deployments.list
      * @memberOf! deploymentmanager(v2)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
@@ -517,46 +616,56 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'patch' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
+     *     // The name of the deployment for this request.
+     *     deployment: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the deployment for this request.
-     *     deployment: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   deploymentmanager.deployments.patch(request, function(err, result) {
+     *   deploymentManager.deployments.patch(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.deployments.patch
      * @memberOf! deploymentmanager(v2)
@@ -597,6 +706,64 @@ function Deploymentmanager(options) { // eslint-disable-line
      * deploymentmanager.deployments.setIamPolicy
      *
      * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var deploymentManager = google.deploymentmanager('v2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
+     *
+     *     // Name of the resource for this request.
+     *     resource_: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   deploymentManager.deployments.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.deployments.setIamPolicy
      * @memberOf! deploymentmanager(v2)
@@ -643,46 +810,55 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'stop' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
+     *     // The name of the deployment for this request.
+     *     deployment: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the deployment for this request.
-     *     deployment: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   deploymentmanager.deployments.stop(request, function(err, result) {
+     *   deploymentManager.deployments.stop(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.deployments.stop
      * @memberOf! deploymentmanager(v2)
@@ -720,6 +896,64 @@ function Deploymentmanager(options) { // eslint-disable-line
      * deploymentmanager.deployments.testIamPermissions
      *
      * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Deployment Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/deploymentmanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var deploymentManager = google.deploymentmanager('v2');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
+     *
+     *     // Name of the resource for this request.
+     *     resource_: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   deploymentManager.deployments.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.deployments.testIamPermissions
      * @memberOf! deploymentmanager(v2)
@@ -766,46 +1000,56 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'update' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
+     *     // The name of the deployment for this request.
+     *     deployment: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the deployment for this request.
-     *     deployment: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   deploymentmanager.deployments.update(request, function(err, result) {
+     *   deploymentManager.deployments.update(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.deployments.update
      * @memberOf! deploymentmanager(v2)
@@ -859,47 +1103,54 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
+     *     // The name of the deployment for this request.
+     *     deployment: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the deployment for this request.
-     *     deployment: "",
+     *     // The name of the manifest for this request.
+     *     manifest: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the manifest for this request.
-     *     manifest: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   deploymentmanager.manifests.get(request, function(err, result) {
+     *   deploymentManager.manifests.get(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.manifests.get
      * @memberOf! deploymentmanager(v2)
@@ -946,51 +1197,64 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
+     *     // The name of the deployment for this request.
+     *     deployment: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the deployment for this request.
-     *     deployment: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *
-     *   var recur = function(err, result) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *       if (result.nextPageToken) {
-     *         request.pageToken = result.nextPageToken;
-     *         deploymentmanager.manifests.list(request, recur);
-     *       }
+     *       return;
+     *     }
+     *
+     *     var manifestsPage = response['manifests'];
+     *     if (!manifestsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < manifestsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `manifestsPage`:
+     *       console.log(JSON.stringify(manifestsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       deploymentManager.manifests.list(request, handlePage);
      *     }
      *   };
      *
-     *   deploymentmanager.manifests.list(request, recur);
+     *   deploymentManager.manifests.list(request, handlePage);
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.manifests.list
      * @memberOf! deploymentmanager(v2)
@@ -998,7 +1262,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
@@ -1044,44 +1308,51 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
+     *     // The name of the operation for this request.
+     *     operation: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the operation for this request.
-     *     operation: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   deploymentmanager.operations.get(request, function(err, result) {
+     *   deploymentManager.operations.get(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.operations.get
      * @memberOf! deploymentmanager(v2)
@@ -1127,55 +1398,68 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *
-     *   var recur = function(err, result) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *       if (result.nextPageToken) {
-     *         request.pageToken = result.nextPageToken;
-     *         deploymentmanager.operations.list(request, recur);
-     *       }
+     *       return;
+     *     }
+     *
+     *     var operationsPage = response['operations'];
+     *     if (!operationsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < operationsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `operationsPage`:
+     *       console.log(JSON.stringify(operationsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       deploymentManager.operations.list(request, handlePage);
      *     }
      *   };
      *
-     *   deploymentmanager.operations.list(request, recur);
+     *   deploymentManager.operations.list(request, handlePage);
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.operations.list
      * @memberOf! deploymentmanager(v2)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
@@ -1221,47 +1505,54 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
+     *     // The name of the deployment for this request.
+     *     deployment: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the deployment for this request.
-     *     deployment: "",
+     *     // The name of the resource for this request.
+     *     resource_: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the resource for this request.
-     *     resource_: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   deploymentmanager.resources.get(request, function(err, result) {
+     *   deploymentManager.resources.get(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.resources.get
      * @memberOf! deploymentmanager(v2)
@@ -1308,51 +1599,64 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
+     *     // The name of the deployment for this request.
+     *     deployment: '',  // TODO: Update placeholder value.
      *
-     *     // * The name of the deployment for this request.
-     *     deployment: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *
-     *   var recur = function(err, result) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *       if (result.nextPageToken) {
-     *         request.pageToken = result.nextPageToken;
-     *         deploymentmanager.resources.list(request, recur);
-     *       }
+     *       return;
+     *     }
+     *
+     *     var resourcesPage = response['resources'];
+     *     if (!resourcesPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < resourcesPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `resourcesPage`:
+     *       console.log(JSON.stringify(resourcesPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       deploymentManager.resources.list(request, handlePage);
      *     }
      *   };
      *
-     *   deploymentmanager.resources.list(request, recur);
+     *   deploymentManager.resources.list(request, handlePage);
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.resources.list
      * @memberOf! deploymentmanager(v2)
@@ -1360,7 +1664,7 @@ function Deploymentmanager(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.deployment The name of the deployment for this request.
      * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
@@ -1406,55 +1710,68 @@ function Deploymentmanager(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/deploymentmanager
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var deploymentmanager = google.deploymentmanager('v2');
+     * var deploymentManager = google.deploymentmanager('v2');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *     // The project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * The project ID for this request.
-     *     project: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *
-     *   var recur = function(err, result) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *       if (result.nextPageToken) {
-     *         request.pageToken = result.nextPageToken;
-     *         deploymentmanager.types.list(request, recur);
-     *       }
+     *       return;
+     *     }
+     *
+     *     var typesPage = response['types'];
+     *     if (!typesPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < typesPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `typesPage`:
+     *       console.log(JSON.stringify(typesPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       deploymentManager.types.list(request, handlePage);
      *     }
      *   };
      *
-     *   deploymentmanager.types.list(request, recur);
+     *   deploymentManager.types.list(request, handlePage);
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias deploymentmanager.types.list
      * @memberOf! deploymentmanager(v2)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
      * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
      * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
      * @param {string} params.project The project ID for this request.
@@ -1490,15 +1807,15 @@ function Deploymentmanager(options) { // eslint-disable-line
  * @typedef AuditConfig
  * @memberOf! deploymentmanager(v2)
  * @type object
- * @property {deploymentmanager(v2).AuditLogConfig[]} auditLogConfigs The configuration for each type of logging
- * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit logging for the `service` specified above. Follows the same format of Binding.members.
+ * @property {deploymentmanager(v2).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
+ * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit logging for the `service` specified above. Follows the same format of Binding.members. This field is deprecated in favor of per-permission-type exemptions.
  * @property {string} service Specifies a service that will be enabled for audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
  */
 /**
  * @typedef AuditLogConfig
  * @memberOf! deploymentmanager(v2)
  * @type object
- * @property {string[]} exemptedMembers Specifies the identities that are exempted from this type of logging Follows the same format of Binding.members.
+ * @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
  * @property {string} logType The log type that this config enables.
  */
 /**
@@ -1568,6 +1885,7 @@ The fingerprint is initially generated by Deployment Manager and changes after e
  * @typedef DeploymentUpdate
  * @memberOf! deploymentmanager(v2)
  * @type object
+ * @property {string} description [Output Only] An optional user-provided description of the deployment after the current update has been applied.
  * @property {deploymentmanager(v2).DeploymentUpdateLabelEntry[]} labels [Output Only] Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: [a-z]([-a-z0-9]*[a-z0-9])? Label values must be between 0 and 63 characters long and must conform to the regular expression ([a-z]([-a-z0-9]*[a-z0-9])?)?
  * @property {string} manifest [Output Only] URL of the manifest representing the update configuration of this deployment.
  */
@@ -1646,7 +1964,7 @@ The fingerprint is initially generated by Deployment Manager and changes after e
  * @memberOf! deploymentmanager(v2)
  * @type object
  * @property {string} clientOperationId [Output Only] Reserved for future use.
- * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} creationTimestamp [Deprecated] This field is deprecated.
  * @property {string} description [Output Only] A textual description of the operation, which is set when the operation is created.
  * @property {string} endTime [Output Only] The time that this operation was completed. This value is in RFC3339 text format.
  * @property {object} error [Output Only] If errors are generated during processing of the operation, this field will be populated.
@@ -1680,9 +1998,7 @@ The fingerprint is initially generated by Deployment Manager and changes after e
  * @typedef Policy
  * @memberOf! deploymentmanager(v2)
  * @type object
-* @property {deploymentmanager(v2).AuditConfig[]} auditConfigs Specifies audit logging configs for &quot;data access&quot;. &quot;data access&quot;: generally refers to data reads/writes and admin reads. &quot;admin activity&quot;: generally refers to admin writes.
-
-Note: `AuditConfig` doesn&#39;t apply to &quot;admin activity&quot;, which always enables audit logging.
+* @property {deploymentmanager(v2).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
 * @property {deploymentmanager(v2).Binding[]} bindings Associates a list of `members` to a `role`. Multiple `bindings` must not be specified for the same `role`. `bindings` with no members will result in an error.
 * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.
 

@@ -22,9 +22,10 @@ var createAPIRequest = require('../../lib/apirequest');
 var utils = require('../../lib/utils');
 
 /**
- * Google Cloud Trace API
+ * Stackdriver Trace API
  *
- * Send and retrieve trace data from Google Cloud Trace. Data is generated and available by default for all App Engine applications. Data from other applications can be written to Cloud Trace for display, reporting, and analysis.
+ * Send and retrieve trace data from Stackdriver Trace. Data is generated and available by default for all App Engine applications. Data from other applications can be written to Stackdriver Trace for display, reporting, and analysis.
+
  *
  * @example
  * var google = require('googleapis');
@@ -55,43 +56,50 @@ function Cloudtrace(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/cloudtrace
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var cloudtrace = google.cloudtrace('v1');
+     * var cloudTrace = google.cloudtrace('v1');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'patchTraces' method:
+     *     // ID of the Cloud project where the trace data is stored.
+     *     projectId: '',  // TODO: Update placeholder value.
      *
-     *     // * ID of the Cloud project where the trace data is stored.
-     *     projectId: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   cloudtrace.projects.patchTraces(request, function(err, result) {
+     *   cloudTrace.projects.patchTraces(request, function(err) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias cloudtrace.projects.patchTraces
      * @memberOf! cloudtrace(v1)
@@ -139,61 +147,74 @@ function Cloudtrace(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/cloudtrace
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud beta auth application-default login'
-       * // 3. Install the Node.js client library and Application Default Credentials
-       * //    library by running 'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
        * var google = require('googleapis');
-       * var cloudtrace = google.cloudtrace('v1');
+       * var cloudTrace = google.cloudtrace('v1');
        *
-       * google.auth.getApplicationDefault(function(err, authClient) {
-       *   if (err) {
-       *     console.log('Authentication failed because of ', err);
-       *     return;
-       *   }
-       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *     authClient = authClient.createScoped(scopes);
-       *   }
-       *
+       * authorize(function(authClient) {
        *   var request = {
-       *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+       *     // ID of the Cloud project where the trace data is stored.
+       *     projectId: '',  // TODO: Update placeholder value.
        *
-       *     // * ID of the Cloud project where the trace data is stored.
-       *     projectId: "",
-       *
-       *     // Auth client
        *     auth: authClient
        *   };
        *
-       *
-       *   var recur = function(err, result) {
+       *   var handlePage = function(err, response) {
        *     if (err) {
        *       console.log(err);
-       *     } else {
-       *       console.log(result);
-       *       if (result.nextPageToken) {
-       *         request.pageToken = result.nextPageToken;
-       *         cloudtrace.projects.traces.list(request, recur);
-       *       }
+       *       return;
+       *     }
+       *
+       *     var tracesPage = response['traces'];
+       *     if (!tracesPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < tracesPage.length; i++) {
+       *       // TODO: Change code below to process each resource in `tracesPage`:
+       *       console.log(JSON.stringify(tracesPage[i], null, 2));
+       *     }
+       *
+       *     if (response.nextPageToken) {
+       *       request.pageToken = response.nextPageToken;
+       *       cloudTrace.projects.traces.list(request, handlePage);
        *     }
        *   };
        *
-       *   cloudtrace.projects.traces.list(request, recur);
+       *   cloudTrace.projects.traces.list(request, handlePage);
        * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *     if (err) {
+       *       console.log('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
        *
        * @alias cloudtrace.projects.traces.list
        * @memberOf! cloudtrace(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
-       * @param {string=} params.view Type of data returned for traces in the list. Optional. Default is `MINIMAL`.
-       * @param {integer=} params.pageSize Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value. The implementation may return fewer traces than the requested page size. Optional.
+       * @param {string=} params.filter An optional filter for the request.
+       * @param {string=} params.endTime Start of the time interval (inclusive) during which the trace data was collected from the application.
        * @param {string=} params.pageToken Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request. Optional.
        * @param {string=} params.startTime End of the time interval (inclusive) during which the trace data was collected from the application.
-       * @param {string=} params.endTime Start of the time interval (inclusive) during which the trace data was collected from the application.
-       * @param {string=} params.filter An optional filter for the request.
-       * @param {string=} params.orderBy Field used to sort the returned traces. Optional. Can be one of the following: * `trace_id` * `name` (`name` field of root span in the trace) * `duration` (difference between `end_time` and `start_time` fields of the root span) * `start` (`start_time` field of the root span) Descending order can be specified by appending `desc` to the sort field (for example, `name desc`). Only one sort field is permitted.
+       * @param {integer=} params.pageSize Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size. Optional.
+       * @param {string=} params.view Type of data returned for traces in the list. Optional. Default is `MINIMAL`.
+       * @param {string=} params.orderBy Field used to sort the returned traces. Optional. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
+       * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -232,44 +253,51 @@ function Cloudtrace(options) { // eslint-disable-line
        * //    https://console.developers.google.com/apis/api/cloudtrace
        * // 2. This sample uses Application Default Credentials for authentication.
        * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk/ and run
-       * //    'gcloud beta auth application-default login'
-       * // 3. Install the Node.js client library and Application Default Credentials
-       * //    library by running 'npm install googleapis --save'
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
        * var google = require('googleapis');
-       * var cloudtrace = google.cloudtrace('v1');
+       * var cloudTrace = google.cloudtrace('v1');
        *
-       * google.auth.getApplicationDefault(function(err, authClient) {
-       *   if (err) {
-       *     console.log('Authentication failed because of ', err);
-       *     return;
-       *   }
-       *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *     authClient = authClient.createScoped(scopes);
-       *   }
-       *
+       * authorize(function(authClient) {
        *   var request = {
-       *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+       *     // ID of the Cloud project where the trace data is stored.
+       *     projectId: '',  // TODO: Update placeholder value.
        *
-       *     // * ID of the Cloud project where the trace data is stored.
-       *     projectId: "",
+       *     // ID of the trace to return.
+       *     traceId: '',  // TODO: Update placeholder value.
        *
-       *     // * ID of the trace to return.
-       *     traceId: "",
-       *
-       *     // Auth client
        *     auth: authClient
        *   };
        *
-       *   cloudtrace.projects.traces.get(request, function(err, result) {
+       *   cloudTrace.projects.traces.get(request, function(err, response) {
        *     if (err) {
        *       console.log(err);
-       *     } else {
-       *       console.log(result);
+       *       return;
        *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
        *   });
        * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *     if (err) {
+       *       console.log('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
        *
        * @alias cloudtrace.projects.traces.get
        * @memberOf! cloudtrace(v1)
@@ -306,41 +334,54 @@ function Cloudtrace(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef TraceSpan
+ * @memberOf! cloudtrace(v1)
+ * @type object
+* @property {object} labels Collection of labels associated with the span. Label keys must be less than
+128 bytes. Label values must be less than 16 kilobytes.
+* @property {string} name Name of the span. Must be less than 128 bytes. The span name is sanitized
+and displayed in the Stackdriver Trace tool in the
+{% dynamic print site_values.console_name %}.
+The name may be a method name or some other per-call site name.
+For the same executable and the same call point, a best practice is
+to use a consistent name, which makes it easier to correlate
+cross-trace spans.
+* @property {string} spanId Identifier for the span. Must be a 64-bit integer other than 0 and
+unique within a trace.
+* @property {string} parentSpanId ID of the parent span, if any. Optional.
+* @property {string} endTime End time of the span in nanoseconds from the UNIX epoch.
+* @property {string} startTime Start time of the span in nanoseconds from the UNIX epoch.
+* @property {string} kind Distinguishes between spans generated in a particular context. For example,
+two spans with the same name may be distinguished using `RPC_CLIENT`
+and `RPC_SERVER` to identify queueing latency associated with the span.
+*/
+/**
  * @typedef ListTracesResponse
  * @memberOf! cloudtrace(v1)
  * @type object
- * @property {cloudtrace(v1).Trace[]} traces List of trace records returned.
- * @property {string} nextPageToken If defined, indicates that there are more traces that match the request and that this value should be passed to the next request to continue retrieving additional traces.
+* @property {cloudtrace(v1).Trace[]} traces List of trace records returned.
+* @property {string} nextPageToken If defined, indicates that there are more traces that match the request
+and that this value should be passed to the next request to continue
+retrieving additional traces.
+*/
+/**
+ * @typedef Empty
+ * @memberOf! cloudtrace(v1)
+ * @type object
  */
 /**
  * @typedef Trace
  * @memberOf! cloudtrace(v1)
  * @type object
- * @property {string} projectId Project ID of the Cloud project where the trace data is stored.
- * @property {string} traceId Globally unique identifier for the trace. This identifier is a 128-bit numeric value formatted as a 32-byte hex string.
- * @property {cloudtrace(v1).TraceSpan[]} spans Collection of spans in the trace.
- */
-/**
- * @typedef TraceSpan
- * @memberOf! cloudtrace(v1)
- * @type object
- * @property {string} spanId Identifier for the span. This identifier must be unique within a trace.
- * @property {string} kind Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `RPC_CLIENT` and `RPC_SERVER` to identify queueing latency associated with the span.
- * @property {string} name Name of the trace. The trace name is sanitized and displayed in the Stackdriver Trace tool in the {% dynamic print site_values.console_name %}. The name may be a method name or some other per-call site name. For the same executable and the same call point, a best practice is to use a consistent name, which makes it easier to correlate cross-trace spans.
- * @property {string} startTime Start time of the span in nanoseconds from the UNIX epoch.
- * @property {string} endTime End time of the span in nanoseconds from the UNIX epoch.
- * @property {string} parentSpanId ID of the parent span, if any. Optional.
- * @property {object} labels Collection of labels associated with the span.
- */
+* @property {string} traceId Globally unique identifier for the trace. This identifier is a 128-bit
+numeric value formatted as a 32-byte hex string.
+* @property {string} projectId Project ID of the Cloud project where the trace data is stored.
+* @property {cloudtrace(v1).TraceSpan[]} spans Collection of spans in the trace.
+*/
 /**
  * @typedef Traces
  * @memberOf! cloudtrace(v1)
  * @type object
  * @property {cloudtrace(v1).Trace[]} traces List of traces.
- */
-/**
- * @typedef Empty
- * @memberOf! cloudtrace(v1)
- * @type object
  */
 module.exports = Cloudtrace;

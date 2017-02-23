@@ -40,6 +40,126 @@ function Compute(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
 
+  self.acceleratorTypes = {
+
+    /**
+     * compute.acceleratorTypes.aggregatedList
+     *
+     * @desc Retrieves an aggregated list of accelerator types.
+     *
+     * @alias compute.acceleratorTypes.aggregatedList
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/acceleratorTypes',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.acceleratorTypes.get
+     *
+     * @desc Returns the specified accelerator type. Get a list of available accelerator types by making a list() request.
+     *
+     * @alias compute.acceleratorTypes.get
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.acceleratorType Name of the accelerator type to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/acceleratorTypes/{acceleratorType}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'acceleratorType'],
+        pathParams: ['acceleratorType', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.acceleratorTypes.list
+     *
+     * @desc Retrieves a list of accelerator types available to the specified project.
+     *
+     * @alias compute.acceleratorTypes.list
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/acceleratorTypes',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.addresses = {
 
     /**
@@ -226,6 +346,44 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.addresses.setLabels
+     *
+     * @desc Sets the labels on an Address. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     *
+     * @alias compute.addresses.setLabels
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).RegionSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setLabels: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/addresses/{resource}/setLabels',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
         context: self
       };
 
@@ -2487,6 +2645,44 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.forwardingRules.setLabels
+     *
+     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     *
+     * @alias compute.forwardingRules.setLabels
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).RegionSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setLabels: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules/{resource}/setLabels',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.forwardingRules.setTarget
      *
      * @desc Changes target URL for forwarding rule. The new target should be of the same type as the old target.
@@ -2714,6 +2910,43 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.globalAddresses.setLabels
+     *
+     * @desc Sets the labels on a GlobalAddress. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     *
+     * @alias compute.globalAddresses.setLabels
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).GlobalSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setLabels: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/addresses/{resource}/setLabels',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.globalAddresses.testIamPermissions
      *
      * @desc Returns permissions that a caller has on the specified resource.
@@ -2895,6 +3128,43 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.globalForwardingRules.setLabels
+     *
+     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     *
+     * @alias compute.globalForwardingRules.setLabels
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).GlobalSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setLabels: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules/{resource}/setLabels',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
         context: self
       };
 
@@ -3393,6 +3663,126 @@ function Compute(options) { // eslint-disable-line
 
   };
 
+  self.hostTypes = {
+
+    /**
+     * compute.hostTypes.aggregatedList
+     *
+     * @desc Retrieves an aggregated list of host types.
+     *
+     * @alias compute.hostTypes.aggregatedList
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/hostTypes',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.hostTypes.get
+     *
+     * @desc Returns the specified host type. Get a list of available host types by making a list() request.
+     *
+     * @alias compute.hostTypes.get
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.hostType Name of the host type to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hostTypes/{hostType}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'hostType'],
+        pathParams: ['hostType', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.hostTypes.list
+     *
+     * @desc Retrieves a list of host types available to the specified project.
+     *
+     * @alias compute.hostTypes.list
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests.
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hostTypes',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone'],
+        pathParams: ['project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.hosts = {
 
     /**
@@ -3858,7 +4248,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
+     * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).HttpHealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4380,6 +4770,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
+     * @param {boolean=} params.forceCreation Force image creation if true.
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).Image} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4834,7 +5225,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.patch
      *
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports patch semantics.
+     * @desc Updates a managed instance group using the information that you specify in the request. The field statefulPolicy is updated using PATCH semantics. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports patch semantics.
      *
      * @alias compute.instanceGroupManagers.patch
      * @memberOf! compute(alpha)
@@ -5138,7 +5529,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.update
      *
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method.
+     * @desc Updates a managed instance group using the information that you specify in the request. The field statefulPolicy is updated using PATCH semantics. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method.
      *
      * @alias compute.instanceGroupManagers.update
      * @memberOf! compute(alpha)
@@ -6327,6 +6718,44 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.instances.setMachineResources
+     *
+     * @desc Changes the number and/or type of accelerator for a stopped instance to the values specified in the request.
+     *
+     * @alias compute.instances.setMachineResources
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.instance Name of the instance scoping this request.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {compute(alpha).InstancesSetMachineResourcesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setMachineResources: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setMachineResources',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.instances.setMachineType
      *
      * @desc Changes the machine type for a stopped instance to the machine type specified in the request.
@@ -6600,7 +7029,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.discardLocalSsd If true, discard the contents of any attached localSSD partitions. Default value is false.
+     * @param {boolean=} params.discardLocalSsd If true, discard the contents of any attached localSSD partitions. Default value is false (== preserve localSSD data).
      * @param {string} params.instance Name of the instance resource to stop.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
@@ -6638,7 +7067,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.discardLocalSsd If true, discard the contents of any attached localSSD partitions. Default value is false.
+     * @param {boolean=} params.discardLocalSsd If true, discard the contents of any attached localSSD partitions. Default value is false (== preserve localSSD data).
      * @param {string} params.instance Name of the instance resource to suspend.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone The name of the zone for this request.
@@ -7427,6 +7856,10 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter 
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.order_by 
+     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -7462,6 +7895,10 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter 
+     * @param {integer=} params.maxResults 
+     * @param {string=} params.order_by 
+     * @param {string=} params.pageToken 
      * @param {string} params.project Project ID for this request.
      * @param {compute(alpha).ProjectsListXpnHostsRequest} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13442,6 +13879,44 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.vpnTunnels.setLabels
+     *
+     * @desc Sets the labels on a VpnTunnel. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     *
+     * @alias compute.vpnTunnels.setLabels
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).RegionSetLabelsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setLabels: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/vpnTunnels/{resource}/setLabels',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.vpnTunnels.testIamPermissions
      *
      * @desc Returns permissions that a caller has on the specified resource.
@@ -13680,34 +14155,83 @@ function Compute(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef AcceleratorConfig
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {integer} acceleratorCount The number of the guest accelerator cards exposed to this instance.
+ * @property {string} acceleratorType Full or partial URL of the accelerator type resource to expose to this instance.
+ */
+/**
+ * @typedef AcceleratorType
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {compute(alpha).DeprecationStatus} deprecated [Output Only] The deprecation status associated with this accelerator type.
+ * @property {string} description [Output Only] An optional textual description of the resource.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] The type of the resource. Always compute#acceleratorType for accelerator types.
+ * @property {integer} maximumCardsPerInstance [Output Only] Maximum accelerator cards allowed per instance.
+ * @property {string} name [Output Only] Name of the resource.
+ * @property {string} selfLink [Output Only] Server-defined fully-qualified URL for this resource.
+ * @property {string} zone [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a.
+ */
+/**
+ * @typedef AcceleratorTypeAggregatedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items [Output Only] A map of scoped accelerator type lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#acceleratorTypeAggregatedList for aggregated lists of accelerator types.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef AcceleratorTypeList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(alpha).AcceleratorType[]} items A list of AcceleratorType resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#acceleratorTypeList for lists of accelerator types.
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef AcceleratorTypesScopedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).AcceleratorType[]} acceleratorTypes [Output Only] List of accelerator types contained in this scope.
+ * @property {object} warning [Output Only] An informational warning that appears when the accelerator types list is empty.
+ */
+/**
  * @typedef AccessConfig
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} dnsName [Output Only] The public DNS domain name for the instance.
  * @property {string} kind [Output Only] Type of the resource. Always compute#accessConfig for access configs.
  * @property {string} name Name of this access configuration.
  * @property {string} natIP An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
- * @property {string} networkTier This signifies the networking tier used for configuring this access configuration and can only take the following values: CLOUD_NETWORK_PREMIUM , CLOUD_NETWORK_STANDARD. If this field is not specified, it is assumed to be CLOUD_NETWORK_PREMIUM.
- * @property {string} ptrDomainName The DNS domain name for the public PTR record. This field can only be set when the set_ptr field is enabled.
- * @property {boolean} setPtr Specifies whether a public DNS ?PTR? record should be created to map the external IP address of the instance to a DNS domain name.
+ * @property {string} networkTier This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM , SELECT. If this field is not specified, it is assumed to be PREMIUM.
+ * @property {string} publicDnsName [Output Only] The public DNS domain name for the instance.
+ * @property {string} publicPtrDomainName The DNS domain name for the public PTR record. This field can only be set when the set_public_ptr field is enabled.
  * @property {boolean} setPublicDns Specifies whether a public DNS ?A? record should be created for the external IP address of this access configuration.
+ * @property {boolean} setPublicPtr Specifies whether a public DNS ?PTR? record should be created to map the external IP address of the instance to a DNS domain name.
  * @property {string} type The type of configuration. The default and only option is ONE_TO_ONE_NAT.
  */
 /**
  * @typedef Address
  * @memberOf! compute(alpha)
  * @type object
-* @property {string} address The static external IP address represented by this resource.
+* @property {string} address The static external IP address represented by this resource. Only IPv4 is supported.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} ipVersion The IP Version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
 * @property {string} kind [Output Only] Type of the resource. Always compute#address for addresses.
 * @property {string} labelFingerprint A fingerprint for the labels being applied to this Address, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.
 
 To see the latest fingerprint, make a get() request to retrieve an Address.
 * @property {object} labels Labels to apply to this Address resource. These can be later modified by the setLabels method. Each label key/value must comply with RFC1035. Label values may be empty.
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-* @property {string} networkTier This signifies the networking tier used for configuring this Address and can only take the following values: CLOUD_NETWORK_PREMIUM , CLOUD_NETWORK_STANDARD. If this field is not specified, it is assumed to be CLOUD_NETWORK_PREMIUM.
+* @property {string} networkTier This signifies the networking tier used for configuring this Address and can only take the following values: PREMIUM , SELECT. If this field is not specified, it is assumed to be PREMIUM.
 * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string} status [Output Only] The status of the address, which can be either IN_USE or RESERVED. An address that is RESERVED is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
@@ -13823,15 +14347,15 @@ Instance templates do not store customer-supplied encryption keys, so you cannot
  * @typedef AuditConfig
  * @memberOf! compute(alpha)
  * @type object
- * @property {compute(alpha).AuditLogConfig[]} auditLogConfigs The configuration for each type of logging
- * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit logging for the `service` specified above. Follows the same format of Binding.members.
+ * @property {compute(alpha).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
+ * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit logging for the `service` specified above. Follows the same format of Binding.members. This field is deprecated in favor of per-permission-type exemptions.
  * @property {string} service Specifies a service that will be enabled for audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
  */
 /**
  * @typedef AuditLogConfig
  * @memberOf! compute(alpha)
  * @type object
- * @property {string[]} exemptedMembers Specifies the identities that are exempted from this type of logging Follows the same format of Binding.members.
+ * @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
  * @property {string} logType The log type that this config enables.
  */
 /**
@@ -14002,19 +14526,12 @@ This cannot be used for internal load balancing.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
- * @typedef BackendSSLPolicy
- * @memberOf! compute(alpha)
- * @type object
- * @property {string[]} pinnedPeerCertificates List of PEM-encoded peer certificates, from which the public keys are extracted for authenticating the backend service.
- */
-/**
  * @typedef BackendService
  * @memberOf! compute(alpha)
  * @type object
 * @property {integer} affinityCookieTtlSec Lifetime of cookies in seconds if session_affinity is GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts only until the end of the browser session (or equivalent). The maximum allowed value for TTL is one day.
 
 When the load balancing scheme is INTERNAL, this field is not used.
-* @property {compute(alpha).BackendSSLPolicy} backendSslPolicy Backend SSL policies to enforce.
 * @property {compute(alpha).Backend[]} backends The list of backends that serve this BackendService.
 * @property {compute(alpha).BackendServiceCdnPolicy} cdnPolicy Cloud CDN configuration for this BackendService.
 * @property {compute(alpha).ConnectionDraining} connectionDraining 
@@ -14309,10 +14826,10 @@ global/images/family/my-private-family
  * @typedef DiskList
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {compute(alpha).Disk[]} items [Output Only] A list of persistent disks.
+ * @property {string} id [Output Only] Unique identifier for the resource; defined by the server.
+ * @property {compute(alpha).Disk[]} items A list of Disk resources.
  * @property {string} kind [Output Only] Type of resource. Always compute#diskList for lists of disks.
- * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} nextPageToken [Output Only] A token used to continue a truncated list request.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
@@ -14391,7 +14908,7 @@ global/images/family/my-private-family
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {object[]} denied The list of DENY rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
-* @property {string[]} destinationRanges If destination ranges are specified, the firewall will apply only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format.
+* @property {string[]} destinationRanges If destination ranges are specified, the firewall will apply only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.
 * @property {string} direction Direction of traffic to which this firewall applies; default is INGRESS. Note: For INGRESS traffic, it is NOT supported to specify destinationRanges; For EGRESS traffic, it is NOT supported to specify sourceRanges OR sourceTags.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Ony] Type of the resource. Always compute#firewall for firewall rules.
@@ -14404,8 +14921,10 @@ If you choose to specify this property, you can specify the network as a full or
 - global/networks/default
 * @property {integer} priority Priority for this rule. This is an integer between 0 and 65535, both inclusive. When not specified, the value assumed is 1000. Relative priorities determine precedence of conflicting rules. Lower value of priority implies higher precedence (eg, a rule with priority 0 has higher precedence than a rule with priority 1). DENY rules take precedence over ALLOW rules having equal priority.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
-* @property {string[]} sourceRanges If source ranges are specified, the firewall will apply only to traffic that has source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
+* @property {string[]} sourceRanges If source ranges are specified, the firewall will apply only to traffic that has source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply. Only IPv4 is supported.
+* @property {string[]} sourceServiceAccounts If source service accounts are specified, the firewall will apply only to traffic originating from an instance with a service account in this list. Source service accounts cannot be used to control traffic to an instance&#39;s external IP address because service accounts are associated with an instance, not an IP address. sourceRanges can be set at the same time as sourceServiceAccounts. If both are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP belongs to an instance with service account listed in sourceServiceAccount. The connection does not need to match both properties for the firewall to apply. sourceServiceAccounts cannot be used at the same time as sourceTags or targetTags.
 * @property {string[]} sourceTags If source tags are specified, the firewall will apply only to traffic with source IP that belongs to a tag listed in source tags. Source tags cannot be used to control traffic to an instance&#39;s external IP address. Because tags are associated with an instance, not an IP address. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
+* @property {string[]} targetServiceAccounts A list of service accounts indicating sets of instances located in the network that may make network connections as specified in allowed[]. targetServiceAccounts cannot be used at the same time as targetTags or sourceTags. If neither targetServiceAccounts nor targetTags are specified, the firewall rule applies to all instances on the specified network.
 * @property {string[]} targetTags A list of instance tags indicating sets of instances located in the network that may make network connections as specified in allowed[]. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
 */
 /**
@@ -14432,29 +14951,30 @@ If you choose to specify this property, you can specify the network as a full or
  * @type object
 * @property {string} IPAddress The IP address that this forwarding rule is serving on behalf of.
 
-For global forwarding rules, the address must be a global IP; for regional forwarding rules, the address must live in the same region as the forwarding rule. By default, this field is empty and an ephemeral IP from the same scope (global or regional) will be assigned.
+For global forwarding rules, the address must be a global IP. For regional forwarding rules, the address must live in the same region as the forwarding rule. By default, this field is empty and an ephemeral IP from the same scope (global or regional) will be assigned.
 
-When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP address belonging to the network/subnetwork configured for the forwarding rule. A reserved address cannot be used. If the field is empty, the IP address will be automatically allocated from the internal IP range of the subnetwork or network configured for this forwarding rule.
+When the load balancing scheme is INTERNAL, this can only be an RFC 1918 IP address belonging to the network/subnetwork configured for the forwarding rule. A reserved address cannot be used. If the field is empty, the IP address will be automatically allocated from the internal IP range of the subnetwork or network configured for this forwarding rule. Only IPv4 is supported.
 * @property {string} IPProtocol The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP.
 
-When the load balancing scheme is INTERNAL&lt;/code, only TCP and UDP are valid.
+When the load balancing scheme is INTERNAL, only TCP and UDP are valid.
 * @property {string} backendService This field is not used for external load balancing.
 
 For internal load balancing, this field identifies the BackendService resource to receive the matched traffic.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} ipVersion The IP Version that will be used by this forwarding rule. Valid options are IPV4 or IPV6. This can only be specified for a global forwarding rule.
 * @property {string} kind [Output Only] Type of the resource. Always compute#forwardingRule for Forwarding Rule resources.
 * @property {string} labelFingerprint A fingerprint for the labels being applied to this resource, which is essentially a hash of the labels set used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update labels. You must always provide an up-to-date fingerprint hash in order to update or change labels.
 
 To see the latest fingerprint, make a get() request to retrieve a ForwardingRule.
 * @property {object} labels Labels to apply to this resource. These can be later modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
-* @property {string} loadBalancingScheme This signifies what the ForwardingRule will be used for and can only take the following values: INTERNAL EXTERNAL The value of INTERNAL means that this will be used for Internal Network Load Balancing (TCP, UDP). The value of EXTERNAL means that this will be used for External Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
+* @property {string} loadBalancingScheme This signifies what the ForwardingRule will be used for and can only take the following values: INTERNAL, EXTERNAL The value of INTERNAL means that this will be used for Internal Network Load Balancing (TCP, UDP). The value of EXTERNAL means that this will be used for External Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy)
 * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {string} network This field is not used for external load balancing.
 
 For internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.
-* @property {string} networkTier This signifies the networking tier used for configuring this load balancer and can only take the following values: CLOUD_NETWORK_PREMIUM , CLOUD_NETWORK_STANDARD. If this field is not specified, it is assumed to be CLOUD_NETWORK_PREMIUM.
+* @property {string} networkTier This signifies the networking tier used for configuring this load balancer and can only take the following values: PREMIUM , SELECT. If this field is not specified, it is assumed to be PREMIUM.
 * @property {string} portRange Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
 
 This field is not used for internal load balancing.
@@ -14610,7 +15130,7 @@ This field is not used for internal load balancing.
 * @property {string} description [Output Only] An optional textual description of the resource.
 * @property {string} hostType Full or partial URL of the host type resource to use for this host, in the format: zones/zone/hostTypes/host-type. This is provided by the client when the host is created. For example, the following is a valid partial url to a predefined host type:
 
-zones/us-central1-f/hostTypes/n1-host-64-416
+zones/us-central1-b/hostTypes/n1-host-64-416
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string[]} instances A list of resource URLs to the virtual machine instances in this host. They must live in zones contained in the same region as this host.
 * @property {string} kind [Output Only] The type of the resource. Always compute#host for host.
@@ -14647,6 +15167,50 @@ zones/us-central1-f/hostTypes/n1-host-64-416
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string[]} hosts The list of host patterns to match. They must be valid hostnames, except * will match any string of ([a-z0-9-.]*). In that case, * must be the first character and must be followed in the pattern by either - or ..
  * @property {string} pathMatcher The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL&#39;s host portion.
+ */
+/**
+ * @typedef HostType
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} cpuPlatform [Output Only] The CPU platform used by this host type.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {compute(alpha).DeprecationStatus} deprecated [Output Only] The deprecation status associated with this host type.
+ * @property {string} description [Output Only] An optional textual description of the resource.
+ * @property {integer} guestCpus [Output Only] The number of virtual CPUs that are available to the host type.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] The type of the resource. Always compute#hostType for host types.
+ * @property {integer} localSsdGb [Output Only] Local SSD available to the host type, defined in GB.
+ * @property {integer} memoryMb [Output Only] The amount of physical memory available to the host type, defined in MB.
+ * @property {string} name [Output Only] Name of the resource.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} zone [Output Only] The name of the zone where the host type resides, such as us-central1-a.
+ */
+/**
+ * @typedef HostTypeAggregatedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items [Output Only] A map of scoped host type lists.
+ * @property {string} kind [Output Only] Type of resource.Always compute#hostTypeAggregatedList for aggregated lists of host types.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef HostTypeList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(alpha).HostType[]} items [Output Only] A list of Host Type resources.
+ * @property {string} kind [Output Only] Type of resource.Always compute#hostTypeList for lists of host types.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef HostTypesScopedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).HostType[]} hostTypes [Output Only] List of host types contained in this scope.
+ * @property {object} warning [Output Only] An informational warning that appears when the host types list is empty.
  */
 /**
  * @typedef HostsScopedList
@@ -14769,6 +15333,7 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {compute(alpha).AttachedDisk[]} disks Array of disks associated with this instance. Persistent disks must be created before you can assign them.
+* @property {compute(alpha).AcceleratorConfig[]} guestAccelerators 
 * @property {string} host Full or partial URL of the host resource that the instance should be placed on, in the format: zones/zone/hosts/host.
 
 Optional, Private Host (physical machine) that the instance will be placed on when it&#39;s created. The instance is guaranteed to be placed on the same machine as other instances with the same private host.
@@ -14801,6 +15366,7 @@ For example: zones/us-central1-f/machineTypes/custom-4-5120
 
 For a full list of restrictions, read the Specifications for custom machine types.
 * @property {compute(alpha).Metadata} metadata The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
+* @property {string} minCpuPlatform Minimum cpu/platform to be used by this instance. We may schedule on the specified or later cpu/platform.
 * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {compute(alpha).NetworkInterface[]} networkInterfaces An array of configurations for this interface. This specifies how this interface is configured to interact with other network services, such as connecting to the internet. Only one interface is supported per instance.
 * @property {compute(alpha).Scheduling} scheduling Scheduling options for this instance.
@@ -14884,6 +15450,7 @@ Named ports apply to all instances in this instance group.
  * @property {string} region [Output Only] The URL of the region where the managed instance group resides (for regional resources).
  * @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
  * @property {string} serviceAccount Service account will be used as credentials for all operations performed by managed instance group on instances. The service accounts needs all permissions required to create and delete instances. When not specified, the service account {projectNumber}@cloudservices.gserviceaccount.com will be used.
+ * @property {compute(alpha).SpreadingPolicy} spreadingPolicy Policy valid only for regional managed instance groups.
  * @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
  * @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
  * @property {compute(alpha).InstanceGroupManagerUpdatePolicy} updatePolicy The update policy for this managed instance group.
@@ -14904,7 +15471,7 @@ If you have disabled creation retries, this field will not be populated; instead
 * @property {integer} recreating [Output Only] The number of instances in the managed instance group that are scheduled to be recreated or are currently being being recreated. Recreating an instance deletes the existing root persistent disk and creates a new disk from the image that is defined in the instance template.
 * @property {integer} refreshing [Output Only] The number of instances in the managed instance group that are being reconfigured with properties that do not require a restart or a recreate action. For example, setting or removing target pools for the instance.
 * @property {integer} restarting [Output Only] The number of instances in the managed instance group that are scheduled to be restarted or are currently being restarted.
-* @property {integer} verifying [Output Only] The number of instances in the managed instance group that are being verified.
+* @property {integer} verifying [Output Only] The number of instances in the managed instance group that are being verified. More details regarding verification process are covered in the documentation of ManagedInstance.InstanceAction.VERIFYING enum field.
 */
 /**
  * @typedef InstanceGroupManagerAggregatedList
@@ -14922,7 +15489,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @type object
  * @property {string} healthCheck The URL for the health check that signals autohealing.
  * @property {integer} initialDelaySec The number of seconds that the managed instance group waits before it applies autohealing policies to new instances or recently recreated instances. This initial delay allows instances to initialize and run their startup scripts before the instance group determines that they are UNHEALTHY. This prevents the managed instance group from recreating its instances prematurely. This value must be from range [0, 3600].
- * @property {compute(alpha).FixedOrPercent} maxUnavailable Maximum number of instances that can be unavailable when auto-healing. The instance is considered available if all of the following conditions are satisfied: 1. instance&#39;s status is RUNNING 2. instance&#39;s liveness health check result was observed to be HEALTHY at least once By default, a percent value of 100% is used.
+ * @property {compute(alpha).FixedOrPercent} maxUnavailable Maximum number of instances that can be unavailable when autohealing. The instance is considered available if all of the following conditions are satisfied: 1. Instance&#39;s status is RUNNING. 2. Instance&#39;s liveness health check result was observed to be HEALTHY at least once. By default, a percent value of 100% is used.
  */
 /**
  * @typedef InstanceGroupManagerList
@@ -14948,7 +15515,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @memberOf! compute(alpha)
  * @type object
  * @property {compute(alpha).FixedOrPercent} maxSurge Maximum number of instances that can be created above the InstanceGroupManager.targetSize during the update process. By default, a fixed value of 1 is used. Using maxSurge &gt; 0 will cause instance names to change during the update process. At least one of { maxSurge, maxUnavailable } must be greater than 0.
- * @property {compute(alpha).FixedOrPercent} maxUnavailable Maximum number of instances that can be unavailable during the update process. The instance is considered available if all of the following conditions are satisfied: 1. instance&#39;s status is RUNNING 2. instance&#39;s liveness health check result was observed to be HEALTHY at least once By default, a fixed value of 1 is used. At least one of { maxSurge, maxUnavailable } must be greater than 0.
+ * @property {compute(alpha).FixedOrPercent} maxUnavailable Maximum number of instances that can be unavailable during the update process. The instance is considered available if all of the following conditions are satisfied: 1. Instance&#39;s status is RUNNING. 2. Instance&#39;s liveness health check result was observed to be HEALTHY at least once. By default, a fixed value of 1 is used. At least one of { maxSurge, maxUnavailable } must be greater than 0.
  * @property {integer} minReadySec Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600].
  * @property {string} minimalAction Minimal action to be taken on an instance. The order of action types is: RESTART &lt; REPLACE.
  * @property {string} type 
@@ -14958,7 +15525,8 @@ If you have disabled creation retries, this field will not be populated; instead
  * @memberOf! compute(alpha)
  * @type object
  * @property {string} instanceTemplate 
- * @property {string} tag Tag describing the version. Used to trigger rollout of a target version even if instance_template remains unchanged.
+ * @property {string} name Name of the version. Unique among all versions in the scope of this managed instance group.
+ * @property {string} tag Tag describing the version. Used to trigger rollout of a target version even if instance_template remains unchanged. Deprecated in favor of &#39;name&#39;.
  * @property {compute(alpha).FixedOrPercent} targetSize Intended number of instances that are created from instanceTemplate. The final number of instances created from instanceTemplate will be equal to: * if expressed as fixed number: min(targetSize.fixed, instanceGroupManager.targetSize), * if expressed as percent: ceiling(targetSize.percent * InstanceGroupManager.targetSize). If unset, this version will handle all the remaining instances.
  */
 /**
@@ -14978,6 +15546,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @memberOf! compute(alpha)
  * @type object
  * @property {compute(alpha).ManagedInstance[]} managedInstances [Output Only] The list of instances in the managed instance group.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  */
 /**
  * @typedef InstanceGroupManagersRecreateInstancesRequest
@@ -15160,6 +15729,12 @@ You can see which instances is being creating in which mode by calling the get o
 Each label key &amp; value must comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. For example, &quot;webserver-frontend&quot;: &quot;images&quot;. A label value can also be empty (e.g. &quot;my-label&quot;: &quot;&quot;).
 */
 /**
+ * @typedef InstancesSetMachineResourcesRequest
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).AcceleratorConfig[]} guestAccelerators 
+ */
+/**
  * @typedef InstancesSetMachineTypeRequest
  * @memberOf! compute(alpha)
  * @type object
@@ -15274,12 +15849,20 @@ If the instance you are starting is protected with a customer-supplied encryptio
 * @property {compute(alpha).ManagedInstanceLastAttempt} lastAttempt [Output Only] Information about the last attempt to create or delete the instance.
 * @property {string} standbyMode [Output Only] Standby mode of the instance. This field is non-empty iff the instance is a standby.
 * @property {string} tag [Output Only] Tag describing the version.
+* @property {compute(alpha).ManagedInstanceVersion} version [Output Only] Intended version of this instance.
 */
 /**
  * @typedef ManagedInstanceLastAttempt
  * @memberOf! compute(alpha)
  * @type object
  * @property {object} errors [Output Only] Encountered errors during the last attempt to create or delete the instance.
+ */
+/**
+ * @typedef ManagedInstanceVersion
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} instanceTemplate [Output Only] The intended template of the instance. This field is empty when current_action is one of { DELETING, ABANDONING }.
+ * @property {string} name [Output Only] Name of the version.
  */
 /**
  * @typedef Metadata
@@ -15322,10 +15905,11 @@ In &quot;auto subnet mode&quot;, a newly created network is assigned the default
  * @type object
 * @property {compute(alpha).AccessConfig[]} accessConfigs An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If there are no accessConfigs specified, then this instance will have no external internet access.
 * @property {compute(alpha).AliasIpRange[]} aliasIpRanges An array of alias IP ranges for this network interface. Can only be specified for network interfaces on subnet-mode networks.
+* @property {string} kind [Output Only] Type of the resource. Always compute#networkInterface for network interfaces.
 * @property {string} name [Output Only] The name of the network interface, generated by the server. For network devices, these are eth0, eth1, etc.
-* @property {string} network URL of the network resource for this instance. This is required for creating an instance but optional when creating a firewall rule. If not specified when creating a firewall rule, the default network is used:
+* @property {string} network URL of the network resource for this instance. When creating an instance, if neither the network nor the subnetwork is specified, the default network global/networks/default is used; if the network is not specified but the subnetwork is specified, the network is inferred.
 
-global/networks/default 
+This field is optional when creating a firewall rule. If not specified when creating a firewall rule, the default network global/networks/default is used.
 
 If you specify this property, you can specify the network as a full or partial URL. For example, the following are all valid URLs:  
 - https://www.googleapis.com/compute/v1/projects/project/global/networks/network 
@@ -15448,9 +16032,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @typedef Policy
  * @memberOf! compute(alpha)
  * @type object
-* @property {compute(alpha).AuditConfig[]} auditConfigs Specifies audit logging configs for &quot;data access&quot;. &quot;data access&quot;: generally refers to data reads/writes and admin reads. &quot;admin activity&quot;: generally refers to admin writes.
-
-Note: `AuditConfig` doesn&#39;t apply to &quot;admin activity&quot;, which always enables audit logging.
+* @property {compute(alpha).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
 * @property {compute(alpha).Binding[]} bindings Associates a list of `members` to a `role`. Multiple `bindings` must not be specified for the same `role`. `bindings` with no members will result in an error.
 * @property {string} etag `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.
 
@@ -15493,6 +16075,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @memberOf! compute(alpha)
  * @type object
  * @property {string} kind [Output Only] Type of resource. Always compute#projectsGetXpnResources for lists of XPN resources.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {compute(alpha).XpnResourceId[]} resources XPN resources attached to this project as their XPN host.
  */
 /**
@@ -15593,6 +16176,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @memberOf! compute(alpha)
  * @type object
  * @property {compute(alpha).ManagedInstance[]} managedInstances List of managed instances.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  */
 /**
  * @typedef RegionInstanceGroupManagersRecreateRequest
@@ -15679,7 +16263,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @type object
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
-* @property {string} destRange The destination range of outgoing packets that this route applies to.
+* @property {string} destRange The destination range of outgoing packets that this route applies to. Only IPv4 is supported.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of this resource. Always compute#routes for Route resources.
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
@@ -15687,7 +16271,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
 * @property {string} nextHopGateway The URL to a gateway that should handle matching packets. You can only specify the internet gateway using a full or partial valid URL:  projects/&lt;project-id&gt;/global/gateways/default-internet-gateway
 * @property {string} nextHopInstance The URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example:
 https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
-* @property {string} nextHopIp The network IP address of an instance that should handle matching packets.
+* @property {string} nextHopIp The network IP address of an instance that should handle matching packets. Only IPv4 is supported.
 * @property {string} nextHopNetwork The URL of the local network if it should handle matching packets.
 * @property {string} nextHopPeering [Output Only] The network peering name that should handle matching packets, which should conform to RFC1035.
 * @property {string} nextHopVpnTunnel The URL to a VpnTunnel that should handle matching packets.
@@ -15744,10 +16328,10 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @type object
  * @property {integer} advertisedRoutePriority The priority of routes advertised to this BGP peer. In the case where there is more than one matching route of maximum length, the routes with lowest priority value win.
  * @property {string} interfaceName Name of the interface the BGP peer is associated with.
- * @property {string} ipAddress IP address of the interface inside Google Cloud Platform.
+ * @property {string} ipAddress IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
  * @property {string} name Name of this BGP peer. The name must be 1-63 characters long and comply with RFC1035.
  * @property {integer} peerAsn Peer BGP Autonomous System Number (ASN). For VPN use case, this value can be different for every tunnel.
- * @property {string} peerIpAddress IP address of the BGP interface outside Google cloud.
+ * @property {string} peerIpAddress IP address of the BGP interface outside Google cloud. Only IPv4 is supported.
  */
 /**
  * @typedef RouterInterface
@@ -15772,6 +16356,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @memberOf! compute(alpha)
  * @type object
  * @property {compute(alpha).Route[]} bestRoutes Best routes for this router&#39;s network.
+ * @property {compute(alpha).Route[]} bestRoutesForRouter Best routes learned by this router.
  * @property {compute(alpha).RouterStatusBgpPeerStatus[]} bgpPeerStatus 
  * @property {string} network URI of the network to which this router belongs.
  */
@@ -15898,6 +16483,18 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
+ * @typedef SpreadingPolicy
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).SpreadingPolicyZoneConfiguration[]} zones 
+ */
+/**
+ * @typedef SpreadingPolicyZoneConfiguration
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} zone URL of the zone where managed instance group is spawning instances (for regional resources). Zone has to belong to the region where managed instance group is located.
+ */
+/**
  * @typedef SslCertificate
  * @memberOf! compute(alpha)
  * @type object
@@ -15928,7 +16525,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} gatewayAddress [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
- * @property {string} ipCidrRange The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network.
+ * @property {string} ipCidrRange The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported.
  * @property {string} kind [Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.
  * @property {string} name The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks.
@@ -15961,7 +16558,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @typedef SubnetworkSecondaryRange
  * @memberOf! compute(alpha)
  * @type object
- * @property {string} ipCidrRange The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network.
+ * @property {string} ipCidrRange The range of IP addresses belonging to this subnetwork secondary range. Provide this property when you create the subnetwork. Ranges must be unique and non-overlapping with all primary and secondary IP ranges within a network. Only IPv4 is supported.
  * @property {string} rangeName The name associated with this subnetwork secondary range, used when adding an alias IP range to a VM instance. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.
  */
 /**
@@ -16433,11 +17030,11 @@ CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol w
 
 To see the latest fingerprint, make a get() request to retrieve a VpnTunnel.
 * @property {object} labels Labels to apply to this VpnTunnel. These can be later modified by the setLabels method. Each label key/value pair must comply with RFC1035. Label values may be empty.
-* @property {string[]} localTrafficSelector Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint.
+* @property {string[]} localTrafficSelector Local traffic selector to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
 * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-* @property {string} peerIp IP address of the peer VPN gateway.
+* @property {string} peerIp IP address of the peer VPN gateway. Only IPv4 is supported.
 * @property {string} region [Output Only] URL of the region where the VPN tunnel resides.
-* @property {string[]} remoteTrafficSelector Remote traffic selectors to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint.
+* @property {string[]} remoteTrafficSelector Remote traffic selectors to use when establishing the VPN tunnel with peer VPN gateway. The value should be a CIDR formatted string, for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is supported.
 * @property {string} router URL of router resource to be used for dynamic routing.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string} sharedSecret Shared secret used to set the secure session between the Cloud VPN gateway and the peer VPN gateway.
@@ -16493,6 +17090,7 @@ To see the latest fingerprint, make a get() request to retrieve a VpnTunnel.
  * @typedef Zone
  * @memberOf! compute(alpha)
  * @type object
+ * @property {string[]} availableCpuPlatforms [Output Only] Available cpu/platform selections for the zone.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {compute(alpha).DeprecationStatus} deprecated [Output Only] The deprecation status associated with this zone.
  * @property {string} description [Output Only] Textual description of the resource.

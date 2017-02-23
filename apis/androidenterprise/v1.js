@@ -40,417 +40,6 @@ function Androidenterprise(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
 
-  self.collections = {
-
-    /**
-     * androidenterprise.collections.delete
-     *
-     * @desc Deletes a collection.
-     *
-     * @alias androidenterprise.collections.delete
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.collectionId The ID of the collection.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}',
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'collectionId'],
-        pathParams: ['collectionId', 'enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.collections.get
-     *
-     * @desc Retrieves the details of a collection.
-     *
-     * @alias androidenterprise.collections.get
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.collectionId The ID of the collection.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'collectionId'],
-        pathParams: ['collectionId', 'enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.collections.insert
-     *
-     * @desc Creates a new collection.
-     *
-     * @alias androidenterprise.collections.insert
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {androidenterprise(v1).Collection} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.collections.list
-     *
-     * @desc Retrieves the IDs of all the collections for an enterprise.
-     *
-     * @alias androidenterprise.collections.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId'],
-        pathParams: ['enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.collections.patch
-     *
-     * @desc Updates a collection. This method supports patch semantics.
-     *
-     * @alias androidenterprise.collections.patch
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.collectionId The ID of the collection.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {androidenterprise(v1).Collection} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}',
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'collectionId'],
-        pathParams: ['collectionId', 'enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.collections.update
-     *
-     * @desc Updates a collection.
-     *
-     * @alias androidenterprise.collections.update
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.collectionId The ID of the collection.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {androidenterprise(v1).Collection} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}',
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'collectionId'],
-        pathParams: ['collectionId', 'enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  self.collectionviewers = {
-
-    /**
-     * androidenterprise.collectionviewers.delete
-     *
-     * @desc Removes the user from the list of those specifically allowed to see the collection. If the collection's visibility is set to viewersOnly then only such users will see the collection.
-     *
-     * @alias androidenterprise.collectionviewers.delete
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.collectionId The ID of the collection.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}',
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'collectionId', 'userId'],
-        pathParams: ['collectionId', 'enterpriseId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.collectionviewers.get
-     *
-     * @desc Retrieves the ID of the user if they have been specifically allowed to see the collection. If the collection's visibility is set to viewersOnly then only these users will see the collection.
-     *
-     * @alias androidenterprise.collectionviewers.get
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.collectionId The ID of the collection.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'collectionId', 'userId'],
-        pathParams: ['collectionId', 'enterpriseId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.collectionviewers.list
-     *
-     * @desc Retrieves the IDs of the users who have been specifically allowed to see the collection. If the collection's visibility is set to viewersOnly then only these users will see the collection.
-     *
-     * @alias androidenterprise.collectionviewers.list
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.collectionId The ID of the collection.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'collectionId'],
-        pathParams: ['collectionId', 'enterpriseId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.collectionviewers.patch
-     *
-     * @desc Adds the user to the list of those specifically allowed to see the collection. If the collection's visibility is set to viewersOnly then only such users will see the collection. This method supports patch semantics.
-     *
-     * @alias androidenterprise.collectionviewers.patch
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.collectionId The ID of the collection.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    patch: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}',
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'collectionId', 'userId'],
-        pathParams: ['collectionId', 'enterpriseId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.collectionviewers.update
-     *
-     * @desc Adds the user to the list of those specifically allowed to see the collection. If the collection's visibility is set to viewersOnly then only such users will see the collection.
-     *
-     * @alias androidenterprise.collectionviewers.update
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.collectionId The ID of the collection.
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.userId The ID of the user.
-     * @param {androidenterprise(v1).User} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/collections/{collectionId}/users/{userId}',
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'collectionId', 'userId'],
-        pathParams: ['collectionId', 'enterpriseId', 'userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
   self.devices = {
 
     /**
@@ -715,7 +304,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.enterprises.delete
      *
-     * @desc Deletes the binding between the EMM and enterprise. This is now deprecated; use this to unenroll customers that were previously enrolled with the 'insert' call, then enroll them again with the 'enroll' call.
+     * @desc Deletes the binding between the EMM and enterprise. This is now deprecated. Use this method only to unenroll customers that were previously enrolled with the insert call, then enroll them again with the enroll call.
      *
      * @alias androidenterprise.enterprises.delete
      * @memberOf! androidenterprise(v1)
@@ -998,7 +587,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.enterprises.pullNotificationSet
      *
-     * @desc Pulls and returns a notification set for the enterprises associated with the service account authenticated for the request. The notification set may be empty if no notification are pending. A notification set returned needs to be acknowledged within 20 seconds by calling Enterprises​.AcknowledgeNotificationSet, unless the notification set is empty. Notifications that are not acknowledged within the 20 seconds will eventually be included again in the response to another PullNotificationSet request, and those that are never acknowledged will ultimately be deleted according to the Google Cloud Platform Pub/Sub system policy. Multiple requests might be performed concurrently to retrieve notifications, in which case the pending notifications (if any) will be split among each caller, if any are pending. If no notifications are present, an empty notification list is returned. Subsequent requests may return more notifications once they become available.
+     * @desc Pulls and returns a notification set for the enterprises associated with the service account authenticated for the request. The notification set may be empty if no notification are pending. A notification set returned needs to be acknowledged within 20 seconds by calling Enterprises.AcknowledgeNotificationSet, unless the notification set is empty. Notifications that are not acknowledged within the 20 seconds will eventually be included again in the response to another PullNotificationSet request, and those that are never acknowledged will ultimately be deleted according to the Google Cloud Platform Pub/Sub system policy. Multiple requests might be performed concurrently to retrieve notifications, in which case the pending notifications (if any) will be split among each caller, if any are pending. If no notifications are present, an empty notification list is returned. Subsequent requests may return more notifications once they become available.
      *
      * @alias androidenterprise.enterprises.pullNotificationSet
      * @memberOf! androidenterprise(v1)
@@ -1068,7 +657,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.enterprises.setAccount
      *
-     * @desc Set the account that will be used to authenticate to the API as the enterprise.
+     * @desc Sets the account that will be used to authenticate to the API as the enterprise.
      *
      * @alias androidenterprise.enterprises.setAccount
      * @memberOf! androidenterprise(v1)
@@ -1179,7 +768,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.entitlements.delete
      *
-     * @desc Removes an entitlement to an app for a user and uninstalls it.
+     * @desc Removes an entitlement to an app for a user.
      *
      * @alias androidenterprise.entitlements.delete
      * @memberOf! androidenterprise(v1)
@@ -1253,7 +842,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.entitlements.list
      *
-     * @desc List of all entitlements for the specified user. Only the ID is set.
+     * @desc Lists all entitlements for the specified user. Only the ID is set.
      *
      * @alias androidenterprise.entitlements.list
      * @memberOf! androidenterprise(v1)
@@ -1599,7 +1188,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.installs.patch
      *
-     * @desc Requests to install the latest version of an app to a device. If the app is already installed then it is updated to the latest version if necessary. This method supports patch semantics.
+     * @desc Requests to install the latest version of an app to a device. If the app is already installed, then it is updated to the latest version if necessary. This method supports patch semantics.
      *
      * @alias androidenterprise.installs.patch
      * @memberOf! androidenterprise(v1)
@@ -1638,7 +1227,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.installs.update
      *
-     * @desc Requests to install the latest version of an app to a device. If the app is already installed then it is updated to the latest version if necessary.
+     * @desc Requests to install the latest version of an app to a device. If the app is already installed, then it is updated to the latest version if necessary.
      *
      * @alias androidenterprise.installs.update
      * @memberOf! androidenterprise(v1)
@@ -2301,7 +1890,7 @@ function Androidenterprise(options) { // eslint-disable-line
      * @param {string=} params.language The BCP47 tag for the user's preferred language (e.g. "en-US", "de"). Results are returned in the language best matching the preferred language.
      * @param {integer=} params.maxResults Specifies the maximum number of products that can be returned per request. If not specified, uses a default value of 100, which is also the maximum retrievable within a single response.
      * @param {string=} params.query The search query as typed in the Google Play store search box. If omitted, all approved apps will be returned (using the pagination parameters), including apps that are not available in the store (e.g. unpublished apps).
-     * @param {string=} params.token A pagination token is contained in a requests response when there are more products. The token can be used in a subsequent request to obtain more products, and so forth. This parameter cannot be used in the initial request.
+     * @param {string=} params.token A pagination token is contained in a request''s response when there are more products. The token can be used in a subsequent request to obtain more products, and so forth. This parameter cannot be used in the initial request.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2353,43 +1942,6 @@ function Androidenterprise(options) { // eslint-disable-line
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/unapprove',
           method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['enterpriseId', 'productId'],
-        pathParams: ['enterpriseId', 'productId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * androidenterprise.products.updatePermissions
-     *
-     * @desc This method has been deprecated. To programmatically approve applications, you must use the iframe mechanism via the  generateApprovalUrl and  approve methods of the Products resource. For more information, see the  Play EMM API usage requirements.  The updatePermissions method (deprecated) updates the set of Android app permissions for this app that have been accepted by the enterprise.
-     *
-     * @alias androidenterprise.products.updatePermissions
-     * @memberOf! androidenterprise(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.enterpriseId The ID of the enterprise.
-     * @param {string} params.productId The ID of the product.
-     * @param {androidenterprise(v1).ProductPermissions} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    updatePermissions: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions',
-          method: 'PUT'
         }, options),
         params: params,
         requiredParams: ['enterpriseId', 'productId'],
@@ -3291,7 +2843,7 @@ function Androidenterprise(options) { // eslint-disable-line
     /**
      * androidenterprise.users.setAvailableProductSet
      *
-     * @desc Modifies the set of products a user is entitled to access.
+     * @desc Modifies the set of products that a user is entitled to access (referred to as whitelisted products). Only products that are approved or products that were previously approved (products with revoked approval) can be whitelisted.
      *
      * @alias androidenterprise.users.setAvailableProductSet
      * @memberOf! androidenterprise(v1)
@@ -3450,36 +3002,10 @@ function Androidenterprise(options) { // eslint-disable-line
  * @property {string} token The authentication token to be passed to the device policy client on the device where it can be used to provision the account for which this token was generated.
  */
 /**
- * @typedef Collection
- * @memberOf! androidenterprise(v1)
- * @type object
-* @property {string} collectionId Arbitrary unique ID, allocated by the API on creation.
-* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#collection&quot;.
-* @property {string} name A user-friendly name for the collection (should be unique), e.g. &quot;Accounting apps&quot;.
-* @property {string[]} productId The IDs of the products in the collection, in the order in which they should be displayed.
-* @property {string} visibility Whether this collection is visible to all users, or only to the users that have been granted access through the &quot;Collectionviewers&quot; API. With the launch of the &quot;setAvailableProductSet&quot; API, this property should always be set to &quot;viewersOnly&quot;, as the &quot;allUsers&quot; option will bypass the &quot;availableProductSet&quot; for all users within a domain.
-
-The &quot;allUsers&quot; setting is deprecated, and will be removed.
-*/
-/**
- * @typedef CollectionViewersListResponse
- * @memberOf! androidenterprise(v1)
- * @type object
- * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#collectionViewersListResponse&quot;.
- * @property {androidenterprise(v1).User[]} user A user of an enterprise.
- */
-/**
- * @typedef CollectionsListResponse
- * @memberOf! androidenterprise(v1)
- * @type object
- * @property {androidenterprise(v1).Collection[]} collection An ordered collection of products which can be made visible on the Google Play store to a selected group of users.
- * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#collectionsListResponse&quot;.
- */
-/**
  * @typedef Device
  * @memberOf! androidenterprise(v1)
  * @type object
-* @property {string} androidId The Google Play Services Android ID for the device encoded as a lowercase hex string, e.g. &quot;123456789abcdef0&quot;.
+* @property {string} androidId The Google Play Services Android ID for the device encoded as a lowercase hex string. For example, &quot;123456789abcdef0&quot;.
 * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#device&quot;.
 * @property {string} managementType Identifies the extent to which the device is controlled by a managed Google Play EMM in various deployment configurations.
 
@@ -3539,8 +3065,8 @@ Possible values include:
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#entitlement&quot;.
- * @property {string} productId The ID of the product that the entitlement is for, e.g. &quot;app:com.google.android.gm&quot;.
- * @property {string} reason The reason for the entitlement, e.g. &quot;free&quot; for free apps. This is temporary, it will be replaced by the acquisition kind field of group licenses.
+ * @property {string} productId The ID of the product that the entitlement is for. For example, &quot;app:com.google.android.gm&quot;.
+ * @property {string} reason The reason for the entitlement. For example, &quot;free&quot; for free apps. This property is temporary: it will be replaced by the acquisition kind field of group licenses.
  */
 /**
  * @typedef EntitlementsListResponse
@@ -3553,12 +3079,12 @@ Possible values include:
  * @typedef GroupLicense
  * @memberOf! androidenterprise(v1)
  * @type object
- * @property {string} acquisitionKind How this group license was acquired. &quot;bulkPurchase&quot; means that this group license object was created because the enterprise purchased licenses for this product; this is &quot;free&quot; otherwise (for free products).
- * @property {string} approval Whether the product to which this group license relates is currently approved by the enterprise, as either &quot;approved&quot; or &quot;unapproved&quot;. Products are approved when a group license is first created, but this approval may be revoked by an enterprise admin via Google Play. Unapproved products will not be visible to end users in collections and new entitlements to them should not normally be created.
+ * @property {string} acquisitionKind How this group license was acquired. &quot;bulkPurchase&quot; means that this Grouplicenses resource was created because the enterprise purchased licenses for this product; otherwise, the value is &quot;free&quot; (for free products).
+ * @property {string} approval Whether the product to which this group license relates is currently approved by the enterprise. Products are approved when a group license is first created, but this approval may be revoked by an enterprise admin via Google Play. Unapproved products will not be visible to end users in collections, and new entitlements to them should not normally be created.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#groupLicense&quot;.
  * @property {integer} numProvisioned The total number of provisioned licenses for this product. Returned by read operations, but ignored in write operations.
- * @property {integer} numPurchased The number of purchased licenses (possibly in multiple purchases). If this field is omitted then there is no limit on the number of licenses that can be provisioned (e.g. if the acquisition kind is &quot;free&quot;).
- * @property {string} productId The ID of the product that the license is for, e.g. &quot;app:com.google.android.gm&quot;.
+ * @property {integer} numPurchased The number of purchased licenses (possibly in multiple purchases). If this field is omitted, then there is no limit on the number of licenses that can be provisioned (for example, if the acquisition kind is &quot;free&quot;).
+ * @property {string} productId The ID of the product that the license is for. For example, &quot;app:com.google.android.gm&quot;.
  */
 /**
  * @typedef GroupLicenseUsersListResponse
@@ -3580,7 +3106,7 @@ Possible values include:
  * @type object
  * @property {string} installState Install state. The state &quot;installPending&quot; means that an install request has recently been made and download to the device is in progress. The state &quot;installed&quot; means that the app has been installed. This field is read-only.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#install&quot;.
- * @property {string} productId The ID of the product that the install is for, e.g. &quot;app:com.google.android.gm&quot;.
+ * @property {string} productId The ID of the product that the install is for. For example, &quot;app:com.google.android.gm&quot;.
  * @property {integer} versionCode The version of the installed product. Guaranteed to be set only if the install state is &quot;installed&quot;.
  */
 /**
@@ -3648,6 +3174,18 @@ Possible values include:
  * @property {androidenterprise(v1).ManagedProperty[]} managedProperty The list of managed properties.
  */
 /**
+ * @typedef NewDeviceEvent
+ * @memberOf! androidenterprise(v1)
+ * @type object
+* @property {string} deviceId The Android ID of the device. This field will always be present.
+* @property {string} managementType Identifies the extent to which the device is controlled by an Android EMM in various deployment configurations.
+
+Possible values include: 
+- &quot;managedDevice&quot;, a device where the DPC is set as device owner, 
+- &quot;managedProfile&quot;, a device where the DPC is set as profile owner.
+* @property {string} userId The ID of the user. This field will always be present.
+*/
+/**
  * @typedef NewPermissionsEvent
  * @memberOf! androidenterprise(v1)
  * @type object
@@ -3663,6 +3201,7 @@ Possible values include:
  * @property {androidenterprise(v1).AppUpdateEvent} appUpdateEvent Notifications about app updates.
  * @property {string} enterpriseId The ID of the enterprise for which the notification is sent. This will always be present.
  * @property {androidenterprise(v1).InstallFailureEvent} installFailureEvent Notifications about an app installation failure.
+ * @property {androidenterprise(v1).NewDeviceEvent} newDeviceEvent Notifications about new devices.
  * @property {androidenterprise(v1).NewPermissionsEvent} newPermissionsEvent Notifications about new app permissions.
  * @property {androidenterprise(v1).ProductApprovalEvent} productApprovalEvent Notifications about changes to a product&#39;s approval status.
  * @property {androidenterprise(v1).ProductAvailabilityChangeEvent} productAvailabilityChangeEvent Notifications about product availability changes.
@@ -3688,7 +3227,7 @@ Possible values include:
  * @typedef Permission
  * @memberOf! androidenterprise(v1)
  * @type object
- * @property {string} description A longer description of the permissions giving more details of what it affects.
+ * @property {string} description A longer description of the Permissions resource, giving more details of what it affects.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#permission&quot;.
  * @property {string} name The name of the permission.
  * @property {string} permissionId An opaque string uniquely identifying the permission.
@@ -3698,7 +3237,7 @@ Possible values include:
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {androidenterprise(v1).AppVersion[]} appVersion App versions currently available for this product. The returned list contains only public versions. Alpha and beta versions are not included.
- * @property {string} authorName The name of the author of the product (e.g. the app developer).
+ * @property {string} authorName The name of the author of the product (for example, the app developer).
  * @property {string} detailsUrl A link to the (consumer) Google Play details page for the product.
  * @property {string} distributionChannel How and to whom the package is made available. The value publicGoogleHosted means that the package is available through the Play store and not restricted to a specific enterprise. The value privateGoogleHosted means that the package is a private app (restricted to an enterprise) but hosted by Google. The value privateSelfHosted means that the package is a private app (restricted to an enterprise) and is privately hosted.
  * @property {string} iconUrl A link to an image that can be used as an icon for the product. This image is suitable for use at up to 512px x 512px.
@@ -3745,7 +3284,7 @@ Possible values include:
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#productSet&quot;.
  * @property {string[]} productId The list of product IDs making up the set of products.
- * @property {string} productSetBehavior The interpretation of this product set. &quot;unknown&quot; should never be sent and ignored if received. &quot;whitelist&quot; means that this product set constitutes a whitelist. &quot;includeAll&quot; means that all products are accessible, including products that are approved, not approved, and even products where approval has been revoked. If the value is &quot;includeAll&quot;, the value of the productId field is therefore ignored. If a value is not supplied, it is interpreted to be &quot;whitelist&quot; for backwards compatibility.
+ * @property {string} productSetBehavior The interpretation of this product set. &quot;unknown&quot; should never be sent and is ignored if received. &quot;whitelist&quot; means that this product set constitutes a whitelist. &quot;includeAll&quot; means that all products are accessible, including products that are approved, products with revoked approval, and products that have never been approved. If the value is &quot;includeAll&quot;, the value of the productId field is therefore ignored. If a value is not supplied, it is interpreted to be &quot;whitelist&quot; for backwards compatibility.
  */
 /**
  * @typedef ProductsApproveRequest

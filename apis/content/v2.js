@@ -262,7 +262,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.patch
      *
-     * @desc Updates a Merchant Center account. This method can only be called for multi-client accounts. This method supports patch semantics.
+     * @desc Updates a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account. This method supports patch semantics.
      *
      * @alias content.accounts.patch
      * @memberOf! content(v2)
@@ -300,7 +300,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.accounts.update
      *
-     * @desc Updates a Merchant Center account. This method can only be called for multi-client accounts.
+     * @desc Updates a Merchant Center account. This method can only be called for accounts to which the managing account has access: either the managing account itself or sub-accounts if the managing account is a multi-client account.
      *
      * @alias content.accounts.update
      * @memberOf! content(v2)
@@ -2369,7 +2369,7 @@ function Content(options) { // eslint-disable-line
  * @memberOf! content(v2)
  * @type object
  * @property {boolean} adultContent Indicates whether the merchant sells adult content.
- * @property {content(v2).AccountAdwordsLink[]} adwordsLinks List of linked AdWords accounts, active or pending approval. To create a new link request, add a new link with status active to the list. It will remain is state pending until approved or rejected in the AdWords interface. To delete an active link or to cancel a link request, remove it from the list.
+ * @property {content(v2).AccountAdwordsLink[]} adwordsLinks List of linked AdWords accounts that are active or pending approval. To create a new link request, add a new link with status active to the list. It will remain in a pending state until approved or rejected either in the AdWords interface or through the  AdWords API. To delete an active link, or to cancel a link request, remove it from the list.
  * @property {string} id Merchant Center account ID.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;content#account&quot;.
  * @property {string} name Display name for the account.
@@ -2504,10 +2504,12 @@ function Content(options) { // eslint-disable-line
  * @memberOf! content(v2)
  * @type object
  * @property {string} country Country for which this issue is reported.
+ * @property {string} detail A more detailed description of the issue.
  * @property {string} displayedValue Actual value displayed on the landing page.
  * @property {content(v2).AccountStatusExampleItem[]} exampleItems Example items featuring the issue.
  * @property {string} id Issue identifier.
  * @property {string} lastChecked Last time the account was checked for this issue.
+ * @property {string} location The attribute name that is relevant for the issue.
  * @property {integer} numItems Number of items in the account found to have the said issue.
  * @property {string} severity Severity of the problem.
  * @property {string} submittedValue Submitted value that causes the issue.

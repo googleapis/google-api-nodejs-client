@@ -1370,10 +1370,10 @@ function Drive(options) { // eslint-disable-line
  * @typedef ChangeList
  * @memberOf! drive(v3)
  * @type object
- * @property {drive(v3).Change[]} changes The page of changes.
+ * @property {drive(v3).Change[]} changes The list of changes. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#changeList&quot;.
  * @property {string} newStartPageToken The starting page token for future changes. This will be present only if the end of the current changes list has been reached.
- * @property {string} nextPageToken The page token for the next page of changes. This will be absent if the end of the current changes list has been reached.
+ * @property {string} nextPageToken The page token for the next page of changes. This will be absent if the end of the changes list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  */
 /**
  * @typedef Channel
@@ -1411,9 +1411,9 @@ function Drive(options) { // eslint-disable-line
  * @typedef CommentList
  * @memberOf! drive(v3)
  * @type object
- * @property {drive(v3).Comment[]} comments The page of comments.
+ * @property {drive(v3).Comment[]} comments The list of comments. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#commentList&quot;.
- * @property {string} nextPageToken The page token for the next page of comments. This will be absent if the end of the comments list has been reached.
+ * @property {string} nextPageToken The page token for the next page of comments. This will be absent if the end of the comments list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  */
 /**
  * @typedef File
@@ -1464,7 +1464,7 @@ Entries with null values are cleared in update and copy requests.
 * @property {string[]} spaces The list of spaces which contain the file. The currently supported values are &#39;drive&#39;, &#39;appDataFolder&#39; and &#39;photos&#39;.
 * @property {boolean} starred Whether the user has starred the file.
 * @property {string} thumbnailLink A short-lived link to the file&#39;s thumbnail, if available. Typically lasts on the order of hours. Only populated when the requesting app can access the file&#39;s content.
-* @property {string} thumbnailVersion The thumbnail version for use in client-contructable thumbnail URLs or thumbnail cache invalidation.
+* @property {string} thumbnailVersion The thumbnail version for use in thumbnail cache invalidation.
 * @property {boolean} trashed Whether the file has been trashed, either explicitly or from a trashed parent folder. Only the owner may trash a file, and other users cannot see files in the owner&#39;s trash.
 * @property {string} version A monotonically increasing version number for the file. This reflects every change made to the file on the server, even those not visible to the user.
 * @property {object} videoMediaMetadata Additional metadata about video media. This may not be available immediately upon upload.
@@ -1479,9 +1479,9 @@ Entries with null values are cleared in update and copy requests.
  * @typedef FileList
  * @memberOf! drive(v3)
  * @type object
- * @property {drive(v3).File[]} files The page of files.
+ * @property {drive(v3).File[]} files The list of files. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#fileList&quot;.
- * @property {string} nextPageToken The page token for the next page of files. This will be absent if the end of the files list has been reached.
+ * @property {string} nextPageToken The page token for the next page of files. This will be absent if the end of the files list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  */
 /**
  * @typedef GeneratedIds
@@ -1519,7 +1519,7 @@ Entries with null values are cleared in update and copy requests.
  * @memberOf! drive(v3)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#permissionList&quot;.
- * @property {drive(v3).Permission[]} permissions The full list of permissions.
+ * @property {drive(v3).Permission[]} permissions The list of permissions.
  */
 /**
  * @typedef Reply
@@ -1542,8 +1542,8 @@ Entries with null values are cleared in update and copy requests.
  * @memberOf! drive(v3)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#replyList&quot;.
- * @property {string} nextPageToken The page token for the next page of replies. This will be absent if the end of the replies list has been reached.
- * @property {drive(v3).Reply[]} replies The page of replies.
+ * @property {string} nextPageToken The page token for the next page of replies. This will be absent if the end of the replies list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
+ * @property {drive(v3).Reply[]} replies The list of replies. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  */
 /**
  * @typedef Revision
@@ -1568,8 +1568,8 @@ This field is only applicable to files with binary content in Drive.
  * @memberOf! drive(v3)
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#revisionList&quot;.
- * @property {string} nextPageToken The page token for the next page of revisions. This will be absent if the end of the revisions list has been reached.
- * @property {drive(v3).Revision[]} revisions The full list of revisions.
+ * @property {string} nextPageToken The page token for the next page of revisions. This will be absent if the end of the revisions list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
+ * @property {drive(v3).Revision[]} revisions The list of revisions. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  */
 /**
  * @typedef StartPageToken

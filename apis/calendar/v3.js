@@ -1560,7 +1560,7 @@ function Calendar(options) { // eslint-disable-line
  * @type object
 * @property {string} method The method used to deliver the notification. Possible values are:  
 - &quot;email&quot; - Reminders are sent via email. 
-- &quot;sms&quot; - Reminders are sent via SMS. This value is read-only and is ignored on inserts and updates. SMS reminders are only available for Google Apps for Work, Education, and Government customers.
+- &quot;sms&quot; - Reminders are sent via SMS. This value is read-only and is ignored on inserts and updates. SMS reminders are only available for G Suite customers.
 * @property {string} type The type of notification. Possible values are:  
 - &quot;eventCreation&quot; - Notification sent when a new event is put on the calendar. 
 - &quot;eventChange&quot; - Notification sent when an event is changed. 
@@ -1714,7 +1714,7 @@ For adding Google Drive file attachments use the same format as in alternateLink
  * @type object
 * @property {string} method The method used by this reminder. Possible values are:  
 - &quot;email&quot; - Reminders are sent via email. 
-- &quot;sms&quot; - Reminders are sent via SMS. These are only available for Google Apps for Work, Education, and Government customers. Requests to set SMS reminders for other account types are ignored. 
+- &quot;sms&quot; - Reminders are sent via SMS. These are only available for G Suite customers. Requests to set SMS reminders for other account types are ignored. 
 - &quot;popup&quot; - Reminders are sent via a UI popup.
 * @property {integer} minutes Number of minutes before the start of the event when the reminder should trigger. Valid values are between 0 and 40320 (4 weeks in minutes).
 */

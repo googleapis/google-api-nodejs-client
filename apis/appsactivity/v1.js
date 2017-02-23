@@ -22,7 +22,7 @@ var createAPIRequest = require('../../lib/apirequest');
 var utils = require('../../lib/utils');
 
 /**
- * Google Apps Activity API
+ * G Suite Activity API
  *
  * Provides a historical view of activity.
  *

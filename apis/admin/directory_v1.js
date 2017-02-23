@@ -4108,6 +4108,8 @@ function Admin(options) { // eslint-disable-line
  * @property {boolean} ipWhitelisted Boolean indicating if ip is whitelisted
  * @property {boolean} isAdmin Boolean indicating if the user is admin (Read-only)
  * @property {boolean} isDelegatedAdmin Boolean indicating if the user is delegated admin (Read-only)
+ * @property {boolean} isEnforcedIn2Sv Is 2-step verification enforced (Read-only)
+ * @property {boolean} isEnrolledIn2Sv Is enrolled in 2-step verification (Read-only)
  * @property {boolean} isMailboxSetup Is mailbox setup (Read-only)
  * @property {string} kind Kind of resource this is.
  * @property {string} lastLoginTime User&#39;s last login time. (Read-only)

@@ -55,44 +55,48 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     // Name of the Operations resource to delete.
+     *     operation: '',  // TODO: Update placeholder value.
      *
-     *     // * Name of the Operations resource to delete.
-     *     operation: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.globalAccountsOperations.delete(request, function(err, result) {
+     *   cloudUserAccounts.globalAccountsOperations.delete(request, function(err) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.globalAccountsOperations.delete
      * @memberOf! clouduseraccounts(beta)
@@ -138,44 +142,51 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     // Name of the Operations resource to return.
+     *     operation: '',  // TODO: Update placeholder value.
      *
-     *     // * Name of the Operations resource to return.
-     *     operation: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.globalAccountsOperations.get(request, function(err, result) {
+     *   cloudUserAccounts.globalAccountsOperations.get(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.globalAccountsOperations.get
      * @memberOf! clouduseraccounts(beta)
@@ -221,48 +232,61 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *
-     *   var recur = function(err, result) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *       if (result.nextPageToken) {
-     *         request.pageToken = result.nextPageToken;
-     *         clouduseraccounts.globalAccountsOperations.list(request, recur);
-     *       }
+     *       return;
+     *     }
+     *
+     *     var itemsPage = response['items'];
+     *     if (!itemsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < itemsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `itemsPage`:
+     *       console.log(JSON.stringify(itemsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       cloudUserAccounts.globalAccountsOperations.list(request, handlePage);
      *     }
      *   };
      *
-     *   clouduseraccounts.globalAccountsOperations.list(request, recur);
+     *   cloudUserAccounts.globalAccountsOperations.list(request, handlePage);
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.globalAccountsOperations.list
      * @memberOf! clouduseraccounts(beta)
@@ -315,46 +339,55 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'addMember' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     // Name of the group for this request.
+     *     groupName: '',  // TODO: Update placeholder value.
      *
-     *     // * Name of the group for this request.
-     *     groupName: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.groups.addMember(request, function(err, result) {
+     *   cloudUserAccounts.groups.addMember(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.groups.addMember
      * @memberOf! clouduseraccounts(beta)
@@ -401,44 +434,51 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     // Name of the Group resource to delete.
+     *     groupName: '',  // TODO: Update placeholder value.
      *
-     *     // * Name of the Group resource to delete.
-     *     groupName: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.groups.delete(request, function(err, result) {
+     *   cloudUserAccounts.groups.delete(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.groups.delete
      * @memberOf! clouduseraccounts(beta)
@@ -484,44 +524,51 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     // Name of the Group resource to return.
+     *     groupName: '',  // TODO: Update placeholder value.
      *
-     *     // * Name of the Group resource to return.
-     *     groupName: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.groups.get(request, function(err, result) {
+     *   cloudUserAccounts.groups.get(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.groups.get
      * @memberOf! clouduseraccounts(beta)
@@ -567,43 +614,52 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.groups.insert(request, function(err, result) {
+     *   cloudUserAccounts.groups.insert(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.groups.insert
      * @memberOf! clouduseraccounts(beta)
@@ -649,48 +705,61 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *
-     *   var recur = function(err, result) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *       if (result.nextPageToken) {
-     *         request.pageToken = result.nextPageToken;
-     *         clouduseraccounts.groups.list(request, recur);
-     *       }
+     *       return;
+     *     }
+     *
+     *     var itemsPage = response['items'];
+     *     if (!itemsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < itemsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `itemsPage`:
+     *       console.log(JSON.stringify(itemsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       cloudUserAccounts.groups.list(request, handlePage);
      *     }
      *   };
      *
-     *   clouduseraccounts.groups.list(request, recur);
+     *   cloudUserAccounts.groups.list(request, handlePage);
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.groups.list
      * @memberOf! clouduseraccounts(beta)
@@ -739,46 +808,55 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'removeMember' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     // Name of the group for this request.
+     *     groupName: '',  // TODO: Update placeholder value.
      *
-     *     // * Name of the group for this request.
-     *     groupName: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.groups.removeMember(request, function(err, result) {
+     *   cloudUserAccounts.groups.removeMember(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.groups.removeMember
      * @memberOf! clouduseraccounts(beta)
@@ -829,50 +907,57 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'getAuthorizedKeysView' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     // Name of the zone for this request.
+     *     zone: '',  // TODO: Update placeholder value.
      *
-     *     // * Name of the zone for this request.
-     *     zone: "",
+     *     // The user account for which you want to get a list of authorized public keys.
+     *     user: '',  // TODO: Update placeholder value.
      *
-     *     // * The user account for which you want to get a list of authorized public keys.
-     *     user: "",
+     *     // The fully-qualified URL of the virtual machine requesting the view.
+     *     instance: '',  // TODO: Update placeholder value.
      *
-     *     // * The fully-qualified URL of the virtual machine requesting the view.
-     *     instance: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.linux.getAuthorizedKeysView(request, function(err, result) {
+     *   cloudUserAccounts.linux.getAuthorizedKeysView(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.linux.getAuthorizedKeysView
      * @memberOf! clouduseraccounts(beta)
@@ -921,47 +1006,54 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'getLinuxAccountViews' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     // Name of the zone for this request.
+     *     zone: '',  // TODO: Update placeholder value.
      *
-     *     // * Name of the zone for this request.
-     *     zone: "",
+     *     // The fully-qualified URL of the virtual machine requesting the views.
+     *     instance: '',  // TODO: Update placeholder value.
      *
-     *     // * The fully-qualified URL of the virtual machine requesting the views.
-     *     instance: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.linux.getLinuxAccountViews(request, function(err, result) {
+     *   cloudUserAccounts.linux.getLinuxAccountViews(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.linux.getLinuxAccountViews
      * @memberOf! clouduseraccounts(beta)
@@ -1016,46 +1108,55 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'addPublicKey' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     // Name of the user for this request.
+     *     user: '',  // TODO: Update placeholder value.
      *
-     *     // * Name of the user for this request.
-     *     user: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.users.addPublicKey(request, function(err, result) {
+     *   cloudUserAccounts.users.addPublicKey(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.users.addPublicKey
      * @memberOf! clouduseraccounts(beta)
@@ -1102,44 +1203,51 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'delete' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     // Name of the user resource to delete.
+     *     user: '',  // TODO: Update placeholder value.
      *
-     *     // * Name of the user resource to delete.
-     *     user: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.users.delete(request, function(err, result) {
+     *   cloudUserAccounts.users.delete(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.users.delete
      * @memberOf! clouduseraccounts(beta)
@@ -1185,44 +1293,51 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'get' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     // Name of the user resource to return.
+     *     user: '',  // TODO: Update placeholder value.
      *
-     *     // * Name of the user resource to return.
-     *     user: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.users.get(request, function(err, result) {
+     *   cloudUserAccounts.users.get(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.users.get
      * @memberOf! clouduseraccounts(beta)
@@ -1268,43 +1383,52 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'insert' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
      *
-     *     resource: {},
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.users.insert(request, function(err, result) {
+     *   cloudUserAccounts.users.insert(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.users.insert
      * @memberOf! clouduseraccounts(beta)
@@ -1350,48 +1474,61 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'list' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *
-     *   var recur = function(err, result) {
+     *   var handlePage = function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
-     *       if (result.nextPageToken) {
-     *         request.pageToken = result.nextPageToken;
-     *         clouduseraccounts.users.list(request, recur);
-     *       }
+     *       return;
+     *     }
+     *
+     *     var itemsPage = response['items'];
+     *     if (!itemsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < itemsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `itemsPage`:
+     *       console.log(JSON.stringify(itemsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       cloudUserAccounts.users.list(request, handlePage);
      *     }
      *   };
      *
-     *   clouduseraccounts.users.list(request, recur);
+     *   cloudUserAccounts.users.list(request, handlePage);
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.users.list
      * @memberOf! clouduseraccounts(beta)
@@ -1440,48 +1577,55 @@ function Clouduseraccounts(options) { // eslint-disable-line
      * //    https://console.developers.google.com/apis/api/clouduseraccounts
      * // 2. This sample uses Application Default Credentials for authentication.
      * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk/ and run
-     * //    'gcloud beta auth application-default login'
-     * // 3. Install the Node.js client library and Application Default Credentials
-     * //    library by running 'npm install googleapis --save'
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
      * var google = require('googleapis');
-     * var clouduseraccounts = google.clouduseraccounts('beta');
+     * var cloudUserAccounts = google.clouduseraccounts('beta');
      *
-     * google.auth.getApplicationDefault(function(err, authClient) {
-     *   if (err) {
-     *     console.log('Authentication failed because of ', err);
-     *     return;
-     *   }
-     *   if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *     var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *     authClient = authClient.createScoped(scopes);
-     *   }
-     *
+     * authorize(function(authClient) {
      *   var request = {
-     *     // TODO: Change placeholders below to appropriate parameter values for the 'removePublicKey' method:
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
      *
-     *     // * Project ID for this request.
-     *     project: "",
+     *     // Name of the user for this request.
+     *     user: '',  // TODO: Update placeholder value.
      *
-     *     // * Name of the user for this request.
-     *     user: "",
+     *     // The fingerprint of the public key to delete. Public keys are identified by their fingerprint, which
+     *     // is defined by RFC4716 to be the MD5 digest of the public key.
+     *     fingerprint: '',  // TODO: Update placeholder value.
      *
-     *     // * The fingerprint of the public key to delete. Public keys are identified by their fingerprint,
-     *     //   which is defined by RFC4716 to be the MD5 digest of the public key.
-     *     fingerprint: "",
-     *
-     *     // Auth client
      *     auth: authClient
      *   };
      *
-     *   clouduseraccounts.users.removePublicKey(request, function(err, result) {
+     *   cloudUserAccounts.users.removePublicKey(request, function(err, response) {
      *     if (err) {
      *       console.log(err);
-     *     } else {
-     *       console.log(result);
+     *       return;
      *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
      *   });
      * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias clouduseraccounts.users.removePublicKey
      * @memberOf! clouduseraccounts(beta)

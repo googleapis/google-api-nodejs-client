@@ -83,7 +83,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -172,7 +172,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -254,7 +254,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -342,7 +342,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -424,7 +424,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -512,7 +512,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -598,7 +598,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -693,7 +693,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -791,7 +791,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -879,7 +879,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -968,7 +968,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -1063,7 +1063,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -1159,7 +1159,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -1247,7 +1247,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -1336,7 +1336,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -1422,7 +1422,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -1517,7 +1517,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -1629,7 +1629,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -1717,7 +1717,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -1803,7 +1803,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -1888,7 +1888,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -1974,7 +1974,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -2069,7 +2069,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -2164,7 +2164,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -2252,7 +2252,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -2341,7 +2341,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -2427,7 +2427,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -2522,7 +2522,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -2623,7 +2623,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -2711,7 +2711,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -2797,7 +2797,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -2889,7 +2889,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -2988,7 +2988,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -3080,7 +3080,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -3172,7 +3172,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -3269,7 +3269,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -3371,7 +3371,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -3459,7 +3459,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -3548,7 +3548,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -3643,7 +3643,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -3738,7 +3738,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -3830,7 +3830,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -3912,7 +3912,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -3997,7 +3997,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -4082,7 +4082,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -4168,7 +4168,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -4263,7 +4263,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -4358,7 +4358,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -4446,7 +4446,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -4536,7 +4536,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/ddmconversions'
@@ -4625,7 +4625,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -4707,7 +4707,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -4806,7 +4806,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -4900,7 +4900,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -4989,7 +4989,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -5079,7 +5079,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -5178,7 +5178,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -5277,7 +5277,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -5369,7 +5369,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -5456,7 +5456,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -5541,7 +5541,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -5627,7 +5627,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -5722,7 +5722,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -5818,7 +5818,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -5906,7 +5906,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -5995,7 +5995,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -6081,7 +6081,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -6176,7 +6176,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -6273,7 +6273,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -6361,7 +6361,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -6450,7 +6450,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -6536,7 +6536,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -6631,7 +6631,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -6736,7 +6736,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -6824,7 +6824,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -6927,7 +6927,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -7018,7 +7018,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -7113,7 +7113,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -7208,7 +7208,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -7294,7 +7294,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -7389,7 +7389,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -7494,7 +7494,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -7582,7 +7582,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -7664,7 +7664,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -7753,7 +7753,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -7838,7 +7838,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -7924,7 +7924,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -8006,7 +8006,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -8105,7 +8105,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -8193,7 +8193,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -8286,7 +8286,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -8381,7 +8381,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -8471,7 +8471,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -8553,7 +8553,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -8638,7 +8638,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -8724,7 +8724,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -8819,7 +8819,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -8921,7 +8921,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -9009,7 +9009,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -9098,7 +9098,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -9184,7 +9184,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -9279,7 +9279,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -9377,7 +9377,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -9465,7 +9465,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -9554,7 +9554,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -9636,7 +9636,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -9726,7 +9726,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -9814,7 +9814,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -9906,7 +9906,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -10005,7 +10005,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -10103,7 +10103,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -10192,7 +10192,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -10282,7 +10282,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -10368,7 +10368,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -10461,7 +10461,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -10553,7 +10553,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -10640,7 +10640,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -10725,7 +10725,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -10813,7 +10813,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -10895,7 +10895,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -10983,7 +10983,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -11065,7 +11065,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -11153,7 +11153,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -11235,7 +11235,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -11326,7 +11326,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -11425,7 +11425,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -11526,7 +11526,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -11625,7 +11625,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -11721,7 +11721,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -11807,7 +11807,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -11902,7 +11902,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -12010,7 +12010,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -12098,7 +12098,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -12184,7 +12184,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -12269,7 +12269,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -12355,7 +12355,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -12450,7 +12450,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -12545,7 +12545,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -12633,7 +12633,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -12719,7 +12719,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -12806,7 +12806,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -12892,7 +12892,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -12987,7 +12987,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -13098,7 +13098,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -13186,7 +13186,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -13275,7 +13275,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -13357,7 +13357,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -13445,7 +13445,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -13527,7 +13527,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -13615,7 +13615,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -13710,7 +13710,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -13802,7 +13802,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -13890,7 +13890,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -13980,7 +13980,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -14068,7 +14068,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -14157,7 +14157,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -14243,7 +14243,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -14341,7 +14341,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -14438,7 +14438,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -14526,7 +14526,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -14612,7 +14612,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -14697,7 +14697,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -14783,7 +14783,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -14878,7 +14878,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -14972,7 +14972,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -15058,7 +15058,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -15149,7 +15149,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -15238,7 +15238,7 @@ function Dfareporting(options) { // eslint-disable-line
        *
        * function authorize(callback) {
        *   // TODO: Change placeholder below to generate authentication credentials. See
-       *   //
+       *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
        *   //
        *   // Authorize using the following scope:
        *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -15333,7 +15333,7 @@ function Dfareporting(options) { // eslint-disable-line
        *
        * function authorize(callback) {
        *   // TODO: Change placeholder below to generate authentication credentials. See
-       *   //
+       *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
        *   //
        *   // Authorize using the following scope:
        *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -15432,7 +15432,7 @@ function Dfareporting(options) { // eslint-disable-line
        *
        * function authorize(callback) {
        *   // TODO: Change placeholder below to generate authentication credentials. See
-       *   //
+       *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
        *   //
        *   // Authorize using the following scope:
        *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -15525,7 +15525,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -15611,7 +15611,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -15706,7 +15706,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -15810,7 +15810,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -15898,7 +15898,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -15987,7 +15987,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -16073,7 +16073,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -16155,7 +16155,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -16247,7 +16247,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -16333,7 +16333,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -16428,7 +16428,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -16523,7 +16523,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -16611,7 +16611,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -16700,7 +16700,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -16798,7 +16798,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -16893,7 +16893,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -16979,7 +16979,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -17074,7 +17074,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -17170,7 +17170,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -17258,7 +17258,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -17344,7 +17344,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -17423,7 +17423,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using one of the following scopes:
      *   //   'https://www.googleapis.com/auth/dfareporting'
@@ -17511,7 +17511,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -17593,7 +17593,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -17681,7 +17681,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -17763,7 +17763,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -17849,7 +17849,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -17934,7 +17934,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -18020,7 +18020,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -18115,7 +18115,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -18212,7 +18212,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -18300,7 +18300,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -18389,7 +18389,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'
@@ -18471,7 +18471,7 @@ function Dfareporting(options) { // eslint-disable-line
      *
      * function authorize(callback) {
      *   // TODO: Change placeholder below to generate authentication credentials. See
-     *   //
+     *   // https://developers.google.com/doubleclick-advertisers/authorizing#examples
      *   //
      *   // Authorize using the following scope:
      *   //   'https://www.googleapis.com/auth/dfatrafficking'

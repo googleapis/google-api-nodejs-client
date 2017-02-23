@@ -2406,6 +2406,48 @@ function Youtube(options) { // eslint-disable-line
 
   };
 
+  self.superChatEvents = {
+
+    /**
+     * youtube.superChatEvents.list
+     *
+     * @desc Lists Super Chat events for a channel.
+     *
+     * @alias youtube.superChatEvents.list
+     * @memberOf! youtube(v3)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.hl The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
+     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
+     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
+     * @param {string} params.part The part parameter specifies the superChatEvent resource parts that the API response will include. Supported values are id and snippet.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/youtube/v3/superChatEvents',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['part'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.thumbnails = {
 
     /**
@@ -3291,6 +3333,7 @@ function Youtube(options) { // eslint-disable-line
  * @typedef ChannelTopicDetails
  * @memberOf! youtube(v3)
  * @type object
+ * @property {string[]} topicCategories A list of Wikipedia URLs that describe the channel&#39;s content.
  * @property {string[]} topicIds A list of Freebase topic IDs associated with the channel. You can retrieve information about each topic using the Freebase Topic API.
  */
 /**
@@ -3837,7 +3880,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @typedef LiveChatMessageSnippet
  * @memberOf! youtube(v3)
  * @type object
- * @property {string} authorChannelId The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action
+ * @property {string} authorChannelId The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase
  * @property {string} displayMessage Contains a string that can be displayed to the user. If this field is not present the message is silent, at the moment only messages of type TOMBSTONE and CHAT_ENDED_EVENT are silent.
  * @property {youtube(v3).LiveChatFanFundingEventDetails} fanFundingEventDetails Details about the funding event, this is only set if the type is &#39;fanFundingEvent&#39;.
  * @property {boolean} hasDisplayContent Whether the message has display content that should be displayed to users.
@@ -3849,6 +3892,7 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @property {youtube(v3).LiveChatPollOpenedDetails} pollOpenedDetails 
  * @property {youtube(v3).LiveChatPollVotedDetails} pollVotedDetails 
  * @property {string} publishedAt The date and time when the message was orignally published. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+ * @property {youtube(v3).LiveChatSuperChatDetails} superChatDetails Details about the Super Chat event, this is only set if the type is &#39;superChatEvent&#39;.
  * @property {youtube(v3).LiveChatTextMessageDetails} textMessageDetails Details about the text message, this is only set if the type is &#39;textMessageEvent&#39;.
  * @property {string} type The type of message, this will always be present, it determines the contents of the message as well as which fields will be present.
  * @property {youtube(v3).LiveChatUserBannedMessageDetails} userBannedDetails 
@@ -3918,6 +3962,16 @@ Important: You must also set the enableDvr property&#39;s value to true if you w
  * @type object
  * @property {string} itemId The poll item the user chose.
  * @property {string} pollId The poll the user voted on.
+ */
+/**
+ * @typedef LiveChatSuperChatDetails
+ * @memberOf! youtube(v3)
+ * @type object
+ * @property {string} amountDisplayString A rendered string that displays the fund amount and currency to the user.
+ * @property {string} amountMicros The amount purchased by the user, in micros (1,750,000 micros = 1.75).
+ * @property {string} currency The currency in which the purchase was made.
+ * @property {integer} tier The tier in which the amount belongs to. Lower amounts belong to lower tiers. Starts at 1.
+ * @property {string} userComment The comment added by the user to this Super Chat event.
  */
 /**
  * @typedef LiveChatTextMessageDetails
@@ -4315,6 +4369,41 @@ Note: This property cannot be updated once the broadcast is in the testing or li
  * @property {string} title The title of the subscriber.
  */
 /**
+ * @typedef SuperChatEvent
+ * @memberOf! youtube(v3)
+ * @type object
+ * @property {string} etag Etag of this resource.
+ * @property {string} id The ID that YouTube assigns to uniquely identify the Super Chat event.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#superChatEvent&quot;.
+ * @property {youtube(v3).SuperChatEventSnippet} snippet The snippet object contains basic details about the Super Chat event.
+ */
+/**
+ * @typedef SuperChatEventListResponse
+ * @memberOf! youtube(v3)
+ * @type object
+ * @property {string} etag Etag of this resource.
+ * @property {string} eventId Serialized EventId of the request which produced this response.
+ * @property {youtube(v3).SuperChatEvent[]} items A list of Super Chat purchases that match the request criteria.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;youtube#superChatEventListResponse&quot;.
+ * @property {string} nextPageToken The token that can be used as the value of the pageToken parameter to retrieve the next page in the result set.
+ * @property {youtube(v3).PageInfo} pageInfo 
+ * @property {youtube(v3).TokenPagination} tokenPagination 
+ * @property {string} visitorId The visitorId identifies the visitor.
+ */
+/**
+ * @typedef SuperChatEventSnippet
+ * @memberOf! youtube(v3)
+ * @type object
+ * @property {string} amountMicros The purchase amount, in micros of the purchase currency. e.g., 1 is represented as 1000000.
+ * @property {string} channelId Channel id where the event occurred.
+ * @property {string} commentText The text contents of the comment left by the user.
+ * @property {string} createdAt The date and time when the event occurred. The value is specified in ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
+ * @property {string} currency The currency in which the purchase was made. ISO 4217.
+ * @property {string} displayString A rendered string that displays the purchase amount and currency (e.g., &quot;$1.00&quot;). The string is rendered for the given language.
+ * @property {integer} messageType The tier for the paid message, which is based on the amount of money spent to purchase the message.
+ * @property {youtube(v3).ChannelProfileDetails} supporterDetails Details about the supporter.
+ */
+/**
  * @typedef Thumbnail
  * @memberOf! youtube(v3)
  * @type object
@@ -4678,6 +4767,7 @@ Note that since the estimated number of parts could increase without a correspon
  * @memberOf! youtube(v3)
  * @type object
  * @property {string[]} relevantTopicIds Similar to topic_id, except that these topics are merely relevant to the video. These are topics that may be mentioned in, or appear in the video. You can retrieve information about each topic using Freebase Topic API.
+ * @property {string[]} topicCategories A list of Wikipedia URLs that provide a high-level description of the video&#39;s content.
  * @property {string[]} topicIds A list of Freebase topic IDs that are centrally associated with the video. These are topics that are centrally featured in the video, and it can be said that the video is mainly about each of these. You can retrieve information about each topic using the Freebase Topic API.
  */
 /**

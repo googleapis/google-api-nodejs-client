@@ -395,6 +395,7 @@ function Gmail(options) { // eslint-disable-line
        * @memberOf! gmail(v1)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.historyTypes History types to be returned by the function
        * @param {string=} params.labelId Only return messages with a label matching the ID.
        * @param {integer=} params.maxResults The maximum number of history records to return.
        * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
@@ -803,7 +804,7 @@ function Gmail(options) { // eslint-disable-line
        * @memberOf! gmail(v1)
        *
        * @param {object} params Parameters for request
-       * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Apps Vault to a Vault administrator. Only used for Google Apps for Work accounts.
+       * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
        * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
        * @param {boolean=} params.neverMarkSpam Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
        * @param {boolean=} params.processForCalendar Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
@@ -847,7 +848,7 @@ function Gmail(options) { // eslint-disable-line
        * @memberOf! gmail(v1)
        *
        * @param {object} params Parameters for request
-       * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Apps Vault to a Vault administrator. Only used for Google Apps for Work accounts.
+       * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
        * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
        * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
        * @param  {object} params.resource Media resource metadata
@@ -1941,6 +1942,193 @@ function Gmail(options) { // eslint-disable-line
           };
 
           return createAPIRequest(parameters, callback);
+        },
+
+        smimeInfo: {
+
+          /**
+           * gmail.users.settings.sendAs.smimeInfo.delete
+           *
+           * @desc Deletes the specified S/MIME config for the specified send-as alias.
+           *
+           * @alias gmail.users.settings.sendAs.smimeInfo.delete
+           * @memberOf! gmail(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.id The immutable ID for the SmimeInfo.
+           * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
+           * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          delete: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            var parameters = {
+              options: utils.extend({
+                url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}',
+                method: 'DELETE'
+              }, options),
+              params: params,
+              requiredParams: ['userId', 'sendAsEmail', 'id'],
+              pathParams: ['id', 'sendAsEmail', 'userId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * gmail.users.settings.sendAs.smimeInfo.get
+           *
+           * @desc Gets the specified S/MIME config for the specified send-as alias.
+           *
+           * @alias gmail.users.settings.sendAs.smimeInfo.get
+           * @memberOf! gmail(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.id The immutable ID for the SmimeInfo.
+           * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
+           * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          get: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            var parameters = {
+              options: utils.extend({
+                url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}',
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['userId', 'sendAsEmail', 'id'],
+              pathParams: ['id', 'sendAsEmail', 'userId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * gmail.users.settings.sendAs.smimeInfo.insert
+           *
+           * @desc Insert (upload) the given S/MIME config for the specified send-as alias. Note that pkcs12 format is required for the key.
+           *
+           * @alias gmail.users.settings.sendAs.smimeInfo.insert
+           * @memberOf! gmail(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
+           * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+           * @param {gmail(v1).SmimeInfo} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          insert: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            var parameters = {
+              options: utils.extend({
+                url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo',
+                method: 'POST'
+              }, options),
+              params: params,
+              requiredParams: ['userId', 'sendAsEmail'],
+              pathParams: ['sendAsEmail', 'userId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * gmail.users.settings.sendAs.smimeInfo.list
+           *
+           * @desc Lists S/MIME configs for the specified send-as alias.
+           *
+           * @alias gmail.users.settings.sendAs.smimeInfo.list
+           * @memberOf! gmail(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
+           * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          list: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            var parameters = {
+              options: utils.extend({
+                url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo',
+                method: 'GET'
+              }, options),
+              params: params,
+              requiredParams: ['userId', 'sendAsEmail'],
+              pathParams: ['sendAsEmail', 'userId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * gmail.users.settings.sendAs.smimeInfo.setDefault
+           *
+           * @desc Sets the default S/MIME config for the specified send-as alias.
+           *
+           * @alias gmail.users.settings.sendAs.smimeInfo.setDefault
+           * @memberOf! gmail(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.id The immutable ID for the SmimeInfo.
+           * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
+           * @param {string} params.userId The user's email address. The special value me can be used to indicate the authenticated user.
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          setDefault: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            var parameters = {
+              options: utils.extend({
+                url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}/setDefault',
+                method: 'POST'
+              }, options),
+              params: params,
+              requiredParams: ['userId', 'sendAsEmail', 'id'],
+              pathParams: ['id', 'sendAsEmail', 'userId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          }
         }
       }
     },
@@ -2348,6 +2536,12 @@ function Gmail(options) { // eslint-disable-line
  * @property {gmail(v1).SendAs[]} sendAs List of send-as aliases.
  */
 /**
+ * @typedef ListSmimeInfoResponse
+ * @memberOf! gmail(v1)
+ * @type object
+ * @property {gmail(v1).SmimeInfo[]} smimeInfo List of SmimeInfo.
+ */
+/**
  * @typedef ListThreadsResponse
  * @memberOf! gmail(v1)
  * @type object
@@ -2443,6 +2637,18 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} verificationStatus Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom &quot;from&quot; aliases.
  */
 /**
+ * @typedef SmimeInfo
+ * @memberOf! gmail(v1)
+ * @type object
+ * @property {string} encryptedKeyPassword Encrypted key password, when key is encrypted.
+ * @property {string} expiration When the certificate expires (in milliseconds since epoch).
+ * @property {string} id The immutable ID for the SmimeInfo.
+ * @property {boolean} isDefault Whether this SmimeInfo is the default one for this user&#39;s send-as address.
+ * @property {string} issuerCn The S/MIME certificate issuer&#39;s common name.
+ * @property {string} pem PEM formatted X509 concatenated certificate string (standard base64 encoding). Format used for returning key, which includes public key as well as certificate chain (not private key).
+ * @property {string} pkcs12 PKCS#12 format containing a single private/public key pair and certificate chain. This format is only accepted from client for creating a new SmimeInfo and is never returned, because the private key is not intended to be exported. PKCS#12 may be encrypted, in which case encryptedKeyPassword should be set appropriately.
+ */
+/**
  * @typedef SmtpMsa
  * @memberOf! gmail(v1)
  * @type object
@@ -2471,7 +2677,7 @@ function Gmail(options) { // eslint-disable-line
  * @property {string} responseBodyPlainText Response body in plain text format.
  * @property {string} responseSubject Optional text to prepend to the subject line in vacation responses. In order to enable auto-replies, either the response subject or the response body must be nonempty.
  * @property {boolean} restrictToContacts Flag that determines whether responses are sent to recipients who are not in the user&#39;s list of contacts.
- * @property {boolean} restrictToDomain Flag that determines whether responses are sent to recipients who are outside of the user&#39;s domain. This feature is only available for Google Apps users.
+ * @property {boolean} restrictToDomain Flag that determines whether responses are sent to recipients who are outside of the user&#39;s domain. This feature is only available for G Suite users.
  * @property {string} startTime An optional start time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives after the start time. If both startTime and endTime are specified, startTime must precede endTime.
  */
 /**

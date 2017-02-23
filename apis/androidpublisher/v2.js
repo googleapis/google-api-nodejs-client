@@ -2089,11 +2089,11 @@ function Androidpublisher(options) { // eslint-disable-line
        * @memberOf! androidpublisher(v2)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.endTime The end time of list window, in milliseconds since the epoch (Jan 1, 1970). If not specified, default to current time, which is also the latest accepted end time. This parameter will be ignored if pagination token is set.
+       * @param {string=} params.endTime The time, in milliseconds since the Epoch, of the newest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be greater than the current time and is ignored if a pagination token is set. Default value is current time.
        * @param {integer=} params.maxResults 
        * @param {string} params.packageName The package name of the application for which voided purchases need to be returned (for example, 'com.some.thing').
        * @param {integer=} params.startIndex 
-       * @param {string=} params.startTime The start time of list window, in milliseconds since the epoch (Jan 1, 1970). If not specified, default to current time - 30 days, which is also the earlies accepted start time. This parameter will be ignored if pagination token is set.
+       * @param {string=} params.startTime The time, in milliseconds since the Epoch, of the oldest voided in-app product purchase that you want to see in the response. The value of this parameter cannot be older than 30 days and is ignored if a pagination token is set. Default value is current time minus 30 days.
        * @param {string=} params.token 
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -2714,9 +2714,9 @@ function Androidpublisher(options) { // eslint-disable-line
  * @memberOf! androidpublisher(v2)
  * @type object
  * @property {string} kind This kind represents a voided purchase object in the androidpublisher service.
- * @property {string} purchaseTimeMillis The time the purchase was made, in milliseconds since the epoch (Jan 1, 1970).
- * @property {string} purchaseToken The token that was generated when a purchase was made and uniquely identifies a purchase.
- * @property {string} voidedTimeMillis The time when the purchase was cancelled/refunded/chargeback, in milliseconds since the epoch (Jan 1, 1970).
+ * @property {string} purchaseTimeMillis The time at which the purchase was made, in milliseconds since the epoch (Jan 1, 1970).
+ * @property {string} purchaseToken The token that was generated when a purchase was made. This uniquely identifies a purchase.
+ * @property {string} voidedTimeMillis The time at which the purchase was cancelled/refunded/charged-back, in milliseconds since the epoch (Jan 1, 1970).
  */
 /**
  * @typedef VoidedPurchasesListResponse
