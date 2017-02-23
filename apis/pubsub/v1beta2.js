@@ -226,42 +226,6 @@ function Pubsub(options) { // eslint-disable-line
       },
 
       /**
-       * pubsub.projects.subscriptions.setIamPolicy
-       *
-       * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
-       *
-       * @alias pubsub.projects.subscriptions.setIamPolicy
-       * @memberOf! pubsub(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
-       * @param {pubsub(v1beta2).SetIamPolicyRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      setIamPolicy: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:setIamPolicy',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * pubsub.projects.subscriptions.create
        *
        * @desc Creates a subscription to a given topic. If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`.  If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic. Note that for REST API requests, you must specify a name.
@@ -291,6 +255,42 @@ function Pubsub(options) { // eslint-disable-line
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.setIamPolicy
+       *
+       * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+       *
+       * @alias pubsub.projects.subscriptions.setIamPolicy
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
+       * @param {pubsub(v1beta2).SetIamPolicyRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      setIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:setIamPolicy',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['resource'],
+          pathParams: ['resource'],
           context: self
         };
 
@@ -441,78 +441,6 @@ function Pubsub(options) { // eslint-disable-line
     },
 
     topics: {
-
-      /**
-       * pubsub.projects.topics.delete
-       *
-       * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
-       *
-       * @alias pubsub.projects.topics.delete
-       * @memberOf! pubsub(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.topic Name of the topic to delete.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{topic}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['topic'],
-          pathParams: ['topic'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * pubsub.projects.topics.list
-       *
-       * @desc Lists matching topics.
-       *
-       * @alias pubsub.projects.topics.list
-       * @memberOf! pubsub(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.pageToken The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
-       * @param {integer=} params.pageSize Maximum number of topics to return.
-       * @param {string} params.project The name of the cloud project that topics belong to.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{project}/topics',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['project'],
-          pathParams: ['project'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
 
       /**
        * pubsub.projects.topics.create
@@ -728,6 +656,78 @@ function Pubsub(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       },
 
+      /**
+       * pubsub.projects.topics.delete
+       *
+       * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
+       *
+       * @alias pubsub.projects.topics.delete
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.topic Name of the topic to delete.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1beta2/{topic}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['topic'],
+          pathParams: ['topic'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.topics.list
+       *
+       * @desc Lists matching topics.
+       *
+       * @alias pubsub.projects.topics.list
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.pageToken The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
+       * @param {integer=} params.pageSize Maximum number of topics to return.
+       * @param {string} params.project The name of the cloud project that topics belong to.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1beta2/{project}/topics',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['project'],
+          pathParams: ['project'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
       subscriptions: {
 
         /**
@@ -772,6 +772,107 @@ function Pubsub(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef PublishRequest
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {pubsub(v1beta2).PubsubMessage[]} messages The messages to publish.
+ */
+/**
+ * @typedef PublishResponse
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+* @property {string[]} messageIds The server-assigned ID of each published message, in the same order as
+the messages in the request. IDs are guaranteed to be unique within
+the topic.
+*/
+/**
+ * @typedef Subscription
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+* @property {integer} ackDeadlineSeconds This value is the maximum time after a subscriber receives a message
+before the subscriber should acknowledge the message. After message
+delivery but before the ack deadline expires and before the message is
+acknowledged, it is an outstanding message and will not be delivered
+again during that time (on a best-effort basis).
+
+For pull subscriptions, this value is used as the initial value for the ack
+deadline. To override this value for a given message, call
+`ModifyAckDeadline` with the corresponding `ack_id` if using pull.
+The maximum custom deadline you can specify is 600 seconds (10 minutes).
+
+For push delivery, this value is also used to set the request timeout for
+the call to the push endpoint.
+
+If the subscriber never acknowledges the message, the Pub/Sub
+system will eventually redeliver the message.
+
+If this parameter is 0, a default value of 10 seconds is used.
+* @property {string} name The name of the subscription. It must have the format
+`&quot;projects/{project}/subscriptions/{subscription}&quot;`. `{subscription}` must
+start with a letter, and contain only letters (`[A-Za-z]`), numbers
+(`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
+plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
+in length, and it must not start with `&quot;goog&quot;`.
+* @property {string} topic The name of the topic from which this subscription is receiving messages.
+The value of this field will be `_deleted-topic_` if the topic has been
+deleted.
+* @property {pubsub(v1beta2).PushConfig} pushConfig If push delivery is used with this subscription, this field is
+used to configure it. An empty `pushConfig` signifies that the subscriber
+will pull and ack messages using API methods.
+*/
+/**
+ * @typedef TestIamPermissionsRequest
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+* @property {string[]} permissions The set of permissions to check for the `resource`. Permissions with
+wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more
+information see
+[IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+*/
+/**
+ * @typedef Policy
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
+prevent simultaneous updates of a policy from overwriting each other.
+It is strongly suggested that systems make use of the `etag` in the
+read-modify-write cycle to perform policy updates in order to avoid race
+conditions: An `etag` is returned in the response to `getIamPolicy`, and
+systems are expected to put that etag in the request to `setIamPolicy` to
+ensure that their change will be applied to the same version of the policy.
+
+If no `etag` is provided in the call to `setIamPolicy`, then the existing
+policy is overwritten blindly.
+* @property {integer} version Version of the `Policy`. The default version is 0.
+* @property {pubsub(v1beta2).Binding[]} bindings Associates a list of `members` to a `role`.
+Multiple `bindings` must not be specified for the same `role`.
+`bindings` with no members will result in an error.
+*/
+/**
+ * @typedef Topic
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+* @property {string} name The name of the topic. It must have the format
+`&quot;projects/{project}/topics/{topic}&quot;`. `{topic}` must start with a letter,
+and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
+underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
+signs (`%`). It must be between 3 and 255 characters in length, and it
+must not start with `&quot;goog&quot;`.
+*/
+/**
+ * @typedef ModifyAckDeadlineRequest
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+* @property {string} ackId The acknowledgment ID. Either this or ack_ids must be populated, but not
+both.
+* @property {integer} ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
+the Pub/Sub system. Must be &gt;= 0. For example, if the value is 10, the new
+ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
+was made. Specifying zero may immediately make the message available for
+another pull request.
+* @property {string[]} ackIds List of acknowledgment IDs.
+*/
+/**
  * @typedef SetIamPolicyRequest
  * @memberOf! pubsub(v1beta2)
  * @type object
@@ -784,6 +885,8 @@ might reject them.
  * @typedef PubsubMessage
  * @memberOf! pubsub(v1beta2)
  * @type object
+* @property {string} data The message payload. For JSON requests, the value of this field must be
+[base64-encoded](https://tools.ietf.org/html/rfc4648).
 * @property {object} attributes Optional attributes for this message.
 * @property {string} messageId ID of this message, assigned by the server when the message is published.
 Guaranteed to be unique within the topic. This value may be read by a
@@ -792,8 +895,6 @@ delivery. It must not be populated by the publisher in a `Publish` call.
 * @property {string} publishTime The time at which the message was published, populated by the server when
 it receives the `Publish` call. It must not be populated by the
 publisher in a `Publish` call.
-* @property {string} data The message payload. For JSON requests, the value of this field must be
-[base64-encoded](https://tools.ietf.org/html/rfc4648).
 */
 /**
  * @typedef ModifyPushConfigRequest
@@ -838,12 +939,11 @@ For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
 Required
 */
 /**
- * @typedef ListTopicsResponse
+ * @typedef AcknowledgeRequest
  * @memberOf! pubsub(v1beta2)
  * @type object
-* @property {string} nextPageToken If not empty, indicates that there may be more topics that match the
-request; this value should be passed in a new `ListTopicsRequest`.
-* @property {pubsub(v1beta2).Topic[]} topics The resulting topics.
+* @property {string[]} ackIds The acknowledgment ID for the messages being acknowledged that was returned
+by the Pub/Sub system in the `Pull` response. Must not be empty.
 */
 /**
  * @typedef Empty
@@ -851,11 +951,12 @@ request; this value should be passed in a new `ListTopicsRequest`.
  * @type object
  */
 /**
- * @typedef AcknowledgeRequest
+ * @typedef ListTopicsResponse
  * @memberOf! pubsub(v1beta2)
  * @type object
-* @property {string[]} ackIds The acknowledgment ID for the messages being acknowledged that was returned
-by the Pub/Sub system in the `Pull` response. Must not be empty.
+* @property {string} nextPageToken If not empty, indicates that there may be more topics that match the
+request; this value should be passed in a new `ListTopicsRequest`.
+* @property {pubsub(v1beta2).Topic[]} topics The resulting topics.
 */
 /**
  * @typedef ListTopicSubscriptionsResponse
@@ -938,106 +1039,5 @@ system may return fewer than the number specified.
 the request; this value should be passed in a new
 `ListSubscriptionsRequest` to get more subscriptions.
 * @property {pubsub(v1beta2).Subscription[]} subscriptions The subscriptions that match the request.
-*/
-/**
- * @typedef PublishRequest
- * @memberOf! pubsub(v1beta2)
- * @type object
- * @property {pubsub(v1beta2).PubsubMessage[]} messages The messages to publish.
- */
-/**
- * @typedef PublishResponse
- * @memberOf! pubsub(v1beta2)
- * @type object
-* @property {string[]} messageIds The server-assigned ID of each published message, in the same order as
-the messages in the request. IDs are guaranteed to be unique within
-the topic.
-*/
-/**
- * @typedef Subscription
- * @memberOf! pubsub(v1beta2)
- * @type object
-* @property {integer} ackDeadlineSeconds This value is the maximum time after a subscriber receives a message
-before the subscriber should acknowledge the message. After message
-delivery but before the ack deadline expires and before the message is
-acknowledged, it is an outstanding message and will not be delivered
-again during that time (on a best-effort basis).
-
-For pull subscriptions, this value is used as the initial value for the ack
-deadline. To override this value for a given message, call
-`ModifyAckDeadline` with the corresponding `ack_id` if using pull.
-The maximum custom deadline you can specify is 600 seconds (10 minutes).
-
-For push delivery, this value is also used to set the request timeout for
-the call to the push endpoint.
-
-If the subscriber never acknowledges the message, the Pub/Sub
-system will eventually redeliver the message.
-
-If this parameter is 0, a default value of 10 seconds is used.
-* @property {string} name The name of the subscription. It must have the format
-`&quot;projects/{project}/subscriptions/{subscription}&quot;`. `{subscription}` must
-start with a letter, and contain only letters (`[A-Za-z]`), numbers
-(`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
-plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
-in length, and it must not start with `&quot;goog&quot;`.
-* @property {string} topic The name of the topic from which this subscription is receiving messages.
-The value of this field will be `_deleted-topic_` if the topic has been
-deleted.
-* @property {pubsub(v1beta2).PushConfig} pushConfig If push delivery is used with this subscription, this field is
-used to configure it. An empty `pushConfig` signifies that the subscriber
-will pull and ack messages using API methods.
-*/
-/**
- * @typedef TestIamPermissionsRequest
- * @memberOf! pubsub(v1beta2)
- * @type object
-* @property {string[]} permissions The set of permissions to check for the `resource`. Permissions with
-wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more
-information see
-[IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-*/
-/**
- * @typedef Topic
- * @memberOf! pubsub(v1beta2)
- * @type object
-* @property {string} name The name of the topic. It must have the format
-`&quot;projects/{project}/topics/{topic}&quot;`. `{topic}` must start with a letter,
-and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
-underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
-signs (`%`). It must be between 3 and 255 characters in length, and it
-must not start with `&quot;goog&quot;`.
-*/
-/**
- * @typedef Policy
- * @memberOf! pubsub(v1beta2)
- * @type object
-* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
-prevent simultaneous updates of a policy from overwriting each other.
-It is strongly suggested that systems make use of the `etag` in the
-read-modify-write cycle to perform policy updates in order to avoid race
-conditions: An `etag` is returned in the response to `getIamPolicy`, and
-systems are expected to put that etag in the request to `setIamPolicy` to
-ensure that their change will be applied to the same version of the policy.
-
-If no `etag` is provided in the call to `setIamPolicy`, then the existing
-policy is overwritten blindly.
-* @property {integer} version Version of the `Policy`. The default version is 0.
-* @property {pubsub(v1beta2).Binding[]} bindings Associates a list of `members` to a `role`.
-Multiple `bindings` must not be specified for the same `role`.
-`bindings` with no members will result in an error.
-*/
-/**
- * @typedef ModifyAckDeadlineRequest
- * @memberOf! pubsub(v1beta2)
- * @type object
-* @property {integer} ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
-the Pub/Sub system. Must be &gt;= 0. For example, if the value is 10, the new
-ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
-was made. Specifying zero may immediately make the message available for
-another pull request.
-* @property {string[]} ackIds List of acknowledgment IDs.
-* @property {string} ackId The acknowledgment ID. Either this or ack_ids must be populated, but not
-both.
 */
 module.exports = Pubsub;

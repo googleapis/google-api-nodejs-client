@@ -83,6 +83,84 @@ function Dataflow(options) { // eslint-disable-line
       jobs: {
 
         /**
+         * dataflow.projects.locations.jobs.get
+         *
+         * @desc Gets the state of the specified Cloud Dataflow job.
+         *
+         * @alias dataflow.projects.locations.jobs.get
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.location The location that contains this job.
+         * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
+         * @param {string} params.jobId The job ID.
+         * @param {string=} params.view The level of information requested in response.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        get: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          var parameters = {
+            options: utils.extend({
+              url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['projectId', 'location', 'jobId'],
+            pathParams: ['location', 'projectId', 'jobId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * dataflow.projects.locations.jobs.list
+         *
+         * @desc List the jobs of a project.
+         *
+         * @alias dataflow.projects.locations.jobs.list
+         * @memberOf! dataflow(v1b3)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.projectId The project which owns the jobs.
+         * @param {string=} params.filter The kind of filter to use.
+         * @param {string} params.location The location that contains this job.
+         * @param {string=} params.pageToken Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
+         * @param {integer=} params.pageSize If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
+         * @param {string=} params.view Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          var parameters = {
+            options: utils.extend({
+              url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/locations/{location}/jobs',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['projectId', 'location'],
+            pathParams: ['projectId', 'location'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
          * dataflow.projects.locations.jobs.update
          *
          * @desc Updates the state of an existing Cloud Dataflow job.
@@ -91,9 +169,9 @@ function Dataflow(options) { // eslint-disable-line
          * @memberOf! dataflow(v1b3)
          *
          * @param {object} params Parameters for request
+         * @param {string} params.location The location that contains this job.
          * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
          * @param {string} params.jobId The job ID.
-         * @param {string} params.location The location that contains this job.
          * @param {dataflow(v1b3).Job} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -113,7 +191,7 @@ function Dataflow(options) { // eslint-disable-line
             }, options),
             params: params,
             requiredParams: ['projectId', 'location', 'jobId'],
-            pathParams: ['projectId', 'jobId', 'location'],
+            pathParams: ['location', 'projectId', 'jobId'],
             context: self
           };
 
@@ -168,10 +246,10 @@ function Dataflow(options) { // eslint-disable-line
          * @memberOf! dataflow(v1b3)
          *
          * @param {object} params Parameters for request
-         * @param {string=} params.startTime Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
          * @param {string} params.projectId A project id.
          * @param {string} params.jobId The job to get messages for.
          * @param {string} params.location The location which contains the job specified by job_id.
+         * @param {string=} params.startTime Return only metric data that has changed since this time. Default is to return all information about all metrics for the job.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -197,123 +275,7 @@ function Dataflow(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         },
 
-        /**
-         * dataflow.projects.locations.jobs.get
-         *
-         * @desc Gets the state of the specified Cloud Dataflow job.
-         *
-         * @alias dataflow.projects.locations.jobs.get
-         * @memberOf! dataflow(v1b3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-         * @param {string} params.jobId The job ID.
-         * @param {string=} params.view The level of information requested in response.
-         * @param {string} params.location The location that contains this job.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        get: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['projectId', 'location', 'jobId'],
-            pathParams: ['projectId', 'jobId', 'location'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * dataflow.projects.locations.jobs.list
-         *
-         * @desc List the jobs of a project.
-         *
-         * @alias dataflow.projects.locations.jobs.list
-         * @memberOf! dataflow(v1b3)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.projectId The project which owns the jobs.
-         * @param {string=} params.filter The kind of filter to use.
-         * @param {string} params.location The location that contains this job.
-         * @param {string=} params.pageToken Set this to the 'next_page_token' field of a previous response to request additional results in a long list.
-         * @param {integer=} params.pageSize If there are many jobs, limit response to at most this many. The actual number of jobs returned will be the lesser of max_responses and an unspecified server-defined limit.
-         * @param {string=} params.view Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        list: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/locations/{location}/jobs',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['projectId', 'location'],
-            pathParams: ['projectId', 'location'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
         workItems: {
-
-          /**
-           * dataflow.projects.locations.jobs.workItems.lease
-           *
-           * @desc Leases a dataflow WorkItem to run.
-           *
-           * @alias dataflow.projects.locations.jobs.workItems.lease
-           * @memberOf! dataflow(v1b3)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.projectId Identifies the project this worker belongs to.
-           * @param {string} params.jobId Identifies the workflow job this worker belongs to.
-           * @param {string} params.location The location which contains the WorkItem's job.
-           * @param {dataflow(v1b3).LeaseWorkItemRequest} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          lease: function (params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options || (options = {});
-
-            var parameters = {
-              options: utils.extend({
-                url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:lease',
-                method: 'POST'
-              }, options),
-              params: params,
-              requiredParams: ['projectId', 'location', 'jobId'],
-              pathParams: ['projectId', 'jobId', 'location'],
-              context: self
-            };
-
-            return createAPIRequest(parameters, callback);
-          },
 
           /**
            * dataflow.projects.locations.jobs.workItems.reportStatus
@@ -351,6 +313,44 @@ function Dataflow(options) { // eslint-disable-line
             };
 
             return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * dataflow.projects.locations.jobs.workItems.lease
+           *
+           * @desc Leases a dataflow WorkItem to run.
+           *
+           * @alias dataflow.projects.locations.jobs.workItems.lease
+           * @memberOf! dataflow(v1b3)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.location The location which contains the WorkItem's job.
+           * @param {string} params.projectId Identifies the project this worker belongs to.
+           * @param {string} params.jobId Identifies the workflow job this worker belongs to.
+           * @param {dataflow(v1b3).LeaseWorkItemRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          lease: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            var parameters = {
+              options: utils.extend({
+                url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:lease',
+                method: 'POST'
+              }, options),
+              params: params,
+              requiredParams: ['projectId', 'location', 'jobId'],
+              pathParams: ['location', 'projectId', 'jobId'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
           }
         },
 
@@ -365,14 +365,14 @@ function Dataflow(options) { // eslint-disable-line
            * @memberOf! dataflow(v1b3)
            *
            * @param {object} params Parameters for request
-           * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
            * @param {string} params.location The location which contains the job specified by job_id.
-           * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
+           * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
            * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
+           * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
            * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
            * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
-           * @param {string} params.jobId The job to get messages about.
            * @param {string} params.projectId A project id.
+           * @param {string} params.jobId The job to get messages about.
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
@@ -391,7 +391,7 @@ function Dataflow(options) { // eslint-disable-line
               }, options),
               params: params,
               requiredParams: ['projectId', 'location', 'jobId'],
-              pathParams: ['location', 'jobId', 'projectId'],
+              pathParams: ['location', 'projectId', 'jobId'],
               context: self
             };
 
@@ -402,42 +402,6 @@ function Dataflow(options) { // eslint-disable-line
     },
 
     templates: {
-
-      /**
-       * dataflow.projects.templates.create
-       *
-       * @desc Creates a Cloud Dataflow job from a template.
-       *
-       * @alias dataflow.projects.templates.create
-       * @memberOf! dataflow(v1b3)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
-       * @param {dataflow(v1b3).CreateJobFromTemplateRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/templates',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
 
       /**
        * dataflow.projects.templates.validate
@@ -505,6 +469,42 @@ function Dataflow(options) { // eslint-disable-line
           params: params,
           requiredParams: ['projectId', 'gcsPath'],
           pathParams: ['projectId', 'gcsPath'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * dataflow.projects.templates.create
+       *
+       * @desc Creates a Cloud Dataflow job from a template.
+       *
+       * @alias dataflow.projects.templates.create
+       * @memberOf! dataflow(v1b3)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId Required. The ID of the Cloud Platform project that the job belongs to.
+       * @param {dataflow(v1b3).CreateJobFromTemplateRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://dataflow.googleapis.com/v1b3/projects/{projectId}/templates',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
           context: self
         };
 
@@ -639,10 +639,10 @@ function Dataflow(options) { // eslint-disable-line
        * @memberOf! dataflow(v1b3)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
-       * @param {string=} params.view The level of information requested in response.
        * @param {string=} params.location The location that contains this job.
        * @param {string=} params.replaceJobId Deprecated. This field is now in the Job message.
+       * @param {string} params.projectId The ID of the Cloud Platform project that the job belongs to.
+       * @param {string=} params.view The level of information requested in response.
        * @param {dataflow(v1b3).Job} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -872,12 +872,12 @@ function Dataflow(options) { // eslint-disable-line
          * @memberOf! dataflow(v1b3)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.jobId The job to get messages about.
          * @param {string} params.projectId A project id.
-         * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
+         * @param {string} params.jobId The job to get messages about.
          * @param {string=} params.location The location which contains the job specified by job_id.
-         * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
+         * @param {string=} params.endTime Return only messages with timestamps < end_time. The default is now (i.e. return up to the latest messages available).
          * @param {string=} params.pageToken If supplied, this should be the value of next_page_token returned by an earlier call. This will cause the next page of results to be returned.
+         * @param {string=} params.startTime If specified, return only messages with timestamps >= start_time. The default is the job creation time (i.e. beginning of messages).
          * @param {integer=} params.pageSize If specified, determines the maximum number of messages to return.  If unspecified, the service may choose an appropriate default, or may return an arbitrarily large number of results.
          * @param {string=} params.minimumImportance Filter to only get messages with importance >= level
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -898,7 +898,7 @@ function Dataflow(options) { // eslint-disable-line
             }, options),
             params: params,
             requiredParams: ['projectId', 'jobId'],
-            pathParams: ['jobId', 'projectId'],
+            pathParams: ['projectId', 'jobId'],
             context: self
           };
 
@@ -910,6 +910,42 @@ function Dataflow(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef ResourceUtilizationReport
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).CPUTime[]} cpuTime CPU utilization samples.
+ */
+/**
+ * @typedef ReportedParallelism
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {boolean} isInfinite Specifies whether the parallelism is infinite. If true, &quot;value&quot; is
+ignored.
+Infinite parallelism means the service will assume that the work item
+can always be split into more non-empty work items by dynamic splitting.
+This is a work-around for lack of support for infinity by the current
+JSON-based Java RPC stack.
+* @property {number} value Specifies the level of parallelism in case it is finite.
+*/
+/**
+ * @typedef TopologyConfig
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {object} userStageToComputationNameMap Maps user stage names to stable computation names.
+ * @property {dataflow(v1b3).ComputationTopology[]} computations The computations associated with a streaming Dataflow job.
+ * @property {dataflow(v1b3).DataDiskAssignment[]} dataDiskAssignments The disks assigned to a streaming Dataflow job.
+ * @property {integer} persistentStateVersion Version number for persistent state.
+ * @property {integer} forwardingKeyBits The size (in bits) of keys that will be assigned to source messages.
+ */
+/**
+ * @typedef SourceSplitOptions
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} desiredBundleSizeBytes The source should be split into a set of bundles where the estimated size
+of each is approximately this many bytes.
+* @property {string} desiredShardSizeBytes DEPRECATED in favor of desired_bundle_size_bytes.
+*/
+/**
  * @typedef ReadInstruction
  * @memberOf! dataflow(v1b3)
  * @type object
@@ -919,6 +955,11 @@ function Dataflow(options) { // eslint-disable-line
  * @typedef WorkerSettings
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {string} servicePath The Cloud Dataflow service path relative to the root URL, for example,
+&quot;dataflow/v1b3/projects&quot;.
+* @property {string} shuffleServicePath The Shuffle service path relative to the root URL, for example,
+&quot;shuffle/v1beta1&quot;.
+* @property {string} workerId The ID of the worker running this pipeline.
 * @property {string} tempStoragePrefix The prefix of the resources the system should use for temporary
 storage.
 
@@ -938,11 +979,17 @@ algorithm used is defined by RFC 1808, &quot;Relative Uniform Resource
 Locators&quot;.
 
 If not specified, the default value is &quot;http://www.googleapis.com/&quot;
-* @property {string} servicePath The Cloud Dataflow service path relative to the root URL, for example,
-&quot;dataflow/v1b3/projects&quot;.
-* @property {string} shuffleServicePath The Shuffle service path relative to the root URL, for example,
-&quot;shuffle/v1beta1&quot;.
-* @property {string} workerId The ID of the worker running this pipeline.
+*/
+/**
+ * @typedef DataDiskAssignment
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} vmInstance VM instance name the data disks mounted to, for example
+&quot;myproject-1014-104817-4c2-harness-0&quot;.
+* @property {string[]} dataDisks Mounted data disks. The order is important a data disk&#39;s 0-based index in
+this list defines which persistent directory the disk is mounted to, for
+example the list of { &quot;myproject-1014-104817-4c2-harness-0-disk-0&quot; },
+{ &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot; }.
 */
 /**
  * @typedef StreamingStageLocation
@@ -950,17 +997,6 @@ If not specified, the default value is &quot;http://www.googleapis.com/&quot;
  * @type object
 * @property {string} streamId Identifies the particular stream within the streaming Dataflow
 job.
-*/
-/**
- * @typedef DataDiskAssignment
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string[]} dataDisks Mounted data disks. The order is important a data disk&#39;s 0-based index in
-this list defines which persistent directory the disk is mounted to, for
-example the list of { &quot;myproject-1014-104817-4c2-harness-0-disk-0&quot; },
-{ &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot; }.
-* @property {string} vmInstance VM instance name the data disks mounted to, for example
-&quot;myproject-1014-104817-4c2-harness-0&quot;.
 */
 /**
  * @typedef ApproximateSplitRequest
@@ -1001,21 +1037,21 @@ streaming Dataflow job.
  * @typedef StreamingComputationConfig
  * @memberOf! dataflow(v1b3)
  * @type object
+ * @property {string} computationId Unique identifier for this computation.
  * @property {string} systemName System defined name for this computation.
  * @property {string} stageName Stage name of this computation.
  * @property {dataflow(v1b3).ParallelInstruction[]} instructions Instructions that comprise the computation.
- * @property {string} computationId Unique identifier for this computation.
  */
 /**
  * @typedef TransformSummary
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {string} id SDK generated id of this transform instance.
- * @property {string[]} outputCollectionName User  names for all collection outputs to this transform.
- * @property {dataflow(v1b3).DisplayData[]} displayData Transform-specific display data.
- * @property {string} kind Type of transform.
  * @property {string[]} inputCollectionName User names for all collection inputs to this transform.
  * @property {string} name User provided name for this transform instance.
+ * @property {string} id SDK generated id of this transform instance.
+ * @property {dataflow(v1b3).DisplayData[]} displayData Transform-specific display data.
+ * @property {string[]} outputCollectionName User  names for all collection outputs to this transform.
+ * @property {string} kind Type of transform.
  */
 /**
  * @typedef LeaseWorkItemResponse
@@ -1027,8 +1063,8 @@ streaming Dataflow job.
  * @typedef Sink
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {object} spec The sink to write to, plus its parameters.
  * @property {object} codec The codec to use to encode data written to the sink.
+ * @property {object} spec The sink to write to, plus its parameters.
  */
 /**
  * @typedef FlattenInstruction
@@ -1040,7 +1076,6 @@ streaming Dataflow job.
  * @typedef PartialGroupByKeyInstruction
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {dataflow(v1b3).InstructionInput} input Describes the input to the partial group-by-key instruction.
 * @property {object} inputElementCodec The codec to use for interpreting an element in the input PTable.
 * @property {object} valueCombiningFn The value combining function to invoke.
 * @property {string} originalCombineValuesInputStoreName If this instruction includes a combining function this is the name of the
@@ -1048,16 +1083,17 @@ intermediate store between the GBK and the CombineValues.
 * @property {string} originalCombineValuesStepName If this instruction includes a combining function, this is the name of the
 CombineValues instruction lifted into this instruction.
 * @property {dataflow(v1b3).SideInputInfo[]} sideInputs Zero or more side inputs.
+* @property {dataflow(v1b3).InstructionInput} input Describes the input to the partial group-by-key instruction.
 */
 /**
  * @typedef StageSource
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {string} name Dataflow service generated name for this source.
-* @property {string} sizeBytes Size of the source, if measurable.
 * @property {string} userName Human-readable name for this source; may be user or system generated.
 * @property {string} originalTransformOrCollection User name for the original user transform or collection with which this
 source is most closely associated.
+* @property {string} name Dataflow service generated name for this source.
+* @property {string} sizeBytes Size of the source, if measurable.
 */
 /**
  * @typedef InstructionInput
@@ -1079,6 +1115,9 @@ containing MapTask.
  * @typedef DisplayData
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {string} strValue Contains value if the data is of string type.
+* @property {string} durationValue Contains value if the data is of duration type.
+* @property {string} int64Value Contains value if the data is of int64 type.
 * @property {string} namespace The namespace for the key. This is usually a class name or programming
 language namespace (i.e. python module) which defines the display data.
 This allows a dax monitoring system to specially handle the data
@@ -1098,30 +1137,27 @@ will be displayed as a tooltip.
 * @property {string} timestampValue Contains value if the data is of timestamp type.
 * @property {boolean} boolValue Contains value if the data is of a boolean type.
 * @property {string} javaClassValue Contains value if the data is of java class type.
-* @property {string} strValue Contains value if the data is of string type.
-* @property {string} durationValue Contains value if the data is of duration type.
-* @property {string} int64Value Contains value if the data is of int64 type.
+*/
+/**
+ * @typedef GetDebugConfigRequest
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} workerId The worker id, i.e., VM hostname.
+* @property {string} componentId The internal component id for which debug configuration is
+requested.
 */
 /**
  * @typedef LeaseWorkItemRequest
  * @memberOf! dataflow(v1b3)
  * @type object
 * @property {string} currentWorkerTime The current timestamp at the worker.
-* @property {string[]} workItemTypes Filter for WorkItem type.
 * @property {string} location The location which contains the WorkItem&#39;s job.
+* @property {string[]} workItemTypes Filter for WorkItem type.
 * @property {string} workerId Identifies the worker leasing work -- typically the ID of the
 virtual machine running the worker.
 * @property {string[]} workerCapabilities Worker capabilities. WorkItems might be limited to workers with specific
 capabilities.
 * @property {string} requestedLeaseDuration The initial lease period.
-*/
-/**
- * @typedef GetDebugConfigRequest
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} componentId The internal component id for which debug configuration is
-requested.
-* @property {string} workerId The worker id, i.e., VM hostname.
 */
 /**
  * @typedef ReportWorkItemStatusRequest
@@ -1138,6 +1174,13 @@ WorkItemServiceState messages in the ReportWorkItemStatusResponse
 corresponds to the order of WorkItemStatus messages here.
 */
 /**
+ * @typedef StreamingConfigTask
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {object} userStepToStateFamilyNameMap Map from user step names to state families.
+ * @property {dataflow(v1b3).StreamingComputationConfig[]} streamingComputationConfigs Set of computation configuration information.
+ */
+/**
  * @typedef PipelineDescription
  * @memberOf! dataflow(v1b3)
  * @type object
@@ -1146,29 +1189,22 @@ corresponds to the order of WorkItemStatus messages here.
  * @property {dataflow(v1b3).ExecutionStageSummary[]} executionPipelineStage Description of each stage of execution of the pipeline.
  */
 /**
- * @typedef StreamingConfigTask
+ * @typedef Step
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {dataflow(v1b3).StreamingComputationConfig[]} streamingComputationConfigs Set of computation configuration information.
- * @property {object} userStepToStateFamilyNameMap Map from user step names to state families.
- */
+* @property {string} kind The kind of step in the Cloud Dataflow job.
+* @property {object} properties Named properties associated with the step. Each kind of
+predefined step has its own required set of properties.
+Must be provided on Create.  Only retrieved with JOB_VIEW_ALL.
+* @property {string} name The name that identifies the step. This must be unique for each
+step with respect to all other steps in the Cloud Dataflow job.
+*/
 /**
  * @typedef JobExecutionInfo
  * @memberOf! dataflow(v1b3)
  * @type object
  * @property {object} stages A mapping from each stage to the information about that stage.
  */
-/**
- * @typedef Step
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} name The name that identifies the step. This must be unique for each
-step with respect to all other steps in the Cloud Dataflow job.
-* @property {string} kind The kind of step in the Cloud Dataflow job.
-* @property {object} properties Named properties associated with the step. Each kind of
-predefined step has its own required set of properties.
-Must be provided on Create.  Only retrieved with JOB_VIEW_ALL.
-*/
 /**
  * @typedef FailedLocation
  * @memberOf! dataflow(v1b3)
@@ -1202,6 +1238,15 @@ compute.googleapis.com/projects/project-id/zones/zone/diskTypes/pd-standard
 * @property {string} mountPoint Directory in a VM where disk is mounted.
 */
 /**
+ * @typedef CounterMetadata
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} kind Counter aggregation kind.
+ * @property {string} description Human-readable description of the counter semantics.
+ * @property {string} standardUnits System defined Units, see above enum.
+ * @property {string} otherUnits A string referring to the unit type.
+ */
+/**
  * @typedef ListJobMessagesResponse
  * @memberOf! dataflow(v1b3)
  * @type object
@@ -1209,18 +1254,18 @@ compute.googleapis.com/projects/project-id/zones/zone/diskTypes/pd-standard
  * @property {string} nextPageToken The token to obtain the next page of results if there are more.
  */
 /**
- * @typedef CounterMetadata
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} standardUnits System defined Units, see above enum.
- * @property {string} otherUnits A string referring to the unit type.
- * @property {string} kind Counter aggregation kind.
- * @property {string} description Human-readable description of the counter semantics.
- */
-/**
  * @typedef ApproximateReportedProgress
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {dataflow(v1b3).Position} position A Position within the work to represent a progress.
+* @property {number} fractionConsumed Completion as fraction of the input consumed, from 0.0 (beginning, nothing
+consumed), to 1.0 (end of the input, entire input consumed).
+* @property {dataflow(v1b3).ReportedParallelism} consumedParallelism Total amount of parallelism in the portion of input of this task that has
+already been consumed and is no longer active. In the first two examples
+above (see remaining_parallelism), the value should be 29 or 2
+respectively.  The sum of remaining_parallelism and consumed_parallelism
+should equal the total amount of parallelism in this work item.  If
+specified, must be finite.
 * @property {dataflow(v1b3).ReportedParallelism} remainingParallelism Total amount of parallelism in the input of this task that remains,
 (i.e. can be delegated to this task and any new tasks via dynamic
 splitting). Always at least 1 for non-finished work items and 0 for
@@ -1246,28 +1291,19 @@ Examples:
   or reading or processing the last record in a perfectly splittable
   input, this value should be 1, because apart from the current task, no
   additional remainder can be split off.
-* @property {dataflow(v1b3).Position} position A Position within the work to represent a progress.
-* @property {number} fractionConsumed Completion as fraction of the input consumed, from 0.0 (beginning, nothing
-consumed), to 1.0 (end of the input, entire input consumed).
-* @property {dataflow(v1b3).ReportedParallelism} consumedParallelism Total amount of parallelism in the portion of input of this task that has
-already been consumed and is no longer active. In the first two examples
-above (see remaining_parallelism), the value should be 29 or 2
-respectively.  The sum of remaining_parallelism and consumed_parallelism
-should equal the total amount of parallelism in this work item.  If
-specified, must be finite.
 */
-/**
- * @typedef IntegerList
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).SplitInt64[]} elements Elements of the list.
- */
 /**
  * @typedef StateFamilyConfig
  * @memberOf! dataflow(v1b3)
  * @type object
  * @property {string} stateFamily The state family value.
  * @property {boolean} isRead If true, this family corresponds to a read operation.
+ */
+/**
+ * @typedef IntegerList
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {dataflow(v1b3).SplitInt64[]} elements Elements of the list.
  */
 /**
  * @typedef ResourceUtilizationReportResponse
@@ -1292,84 +1328,60 @@ This list can be empty, which means the source represents an empty input.
  * @typedef ParallelInstruction
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {dataflow(v1b3).InstructionOutput[]} outputs Describes the outputs of the instruction.
-* @property {string} name User-provided name of this operation.
-* @property {dataflow(v1b3).ParDoInstruction} parDo Additional information for ParDo instructions.
 * @property {dataflow(v1b3).ReadInstruction} read Additional information for Read instructions.
+* @property {dataflow(v1b3).ParDoInstruction} parDo Additional information for ParDo instructions.
 * @property {string} originalName System-defined name for the operation in the original workflow graph.
 * @property {dataflow(v1b3).FlattenInstruction} flatten Additional information for Flatten instructions.
-* @property {dataflow(v1b3).WriteInstruction} write Additional information for Write instructions.
 * @property {string} systemName System-defined name of this operation.
 Unique across the workflow.
+* @property {dataflow(v1b3).WriteInstruction} write Additional information for Write instructions.
 * @property {dataflow(v1b3).PartialGroupByKeyInstruction} partialGroupByKey Additional information for PartialGroupByKey instructions.
-*/
-/**
- * @typedef KeyRangeDataDiskAssignment
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} end The end (exclusive) of the key range.
-* @property {string} start The start (inclusive) of the key range.
-* @property {string} dataDisk The name of the data disk where data for this range is stored.
-This name is local to the Google Cloud Platform project and uniquely
-identifies the disk within that project, for example
-&quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
+* @property {dataflow(v1b3).InstructionOutput[]} outputs Describes the outputs of the instruction.
+* @property {string} name User-provided name of this operation.
 */
 /**
  * @typedef Package
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {string} name The name of the package.
 * @property {string} location The resource to read the package from. The supported resource type is:
 
 Google Cloud Storage:
 
   storage.googleapis.com/{bucket}
   bucket.storage.googleapis.com/
+* @property {string} name The name of the package.
+*/
+/**
+ * @typedef KeyRangeDataDiskAssignment
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} start The start (inclusive) of the key range.
+* @property {string} dataDisk The name of the data disk where data for this range is stored.
+This name is local to the Google Cloud Platform project and uniquely
+identifies the disk within that project, for example
+&quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
+* @property {string} end The end (exclusive) of the key range.
 */
 /**
  * @typedef ParDoInstruction
  * @memberOf! dataflow(v1b3)
  * @type object
+ * @property {integer} numOutputs The number of outputs.
  * @property {dataflow(v1b3).SideInputInfo[]} sideInputs Zero or more side inputs.
  * @property {dataflow(v1b3).MultiOutputInfo[]} multiOutputInfos Information about each of the outputs, if user_fn is a  MultiDoFn.
  * @property {object} userFn The user function to invoke.
  * @property {dataflow(v1b3).InstructionInput} input The input.
- * @property {integer} numOutputs The number of outputs.
  */
-/**
- * @typedef CounterStructuredName
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} executionStepName Name of the stage. An execution step contains multiple component steps.
-* @property {string} name Counter name. Not necessarily globally-unique, but unique within the
-context of the other fields.
-Required.
-* @property {string} origin One of the standard Origins defined above.
-* @property {string} componentStepName Name of the optimized step being executed by the workers.
-* @property {string} portion Portion of this counter, either key or value.
-* @property {string} originalStepName System generated name of the original step in the user&#39;s graph, before
-optimization.
-* @property {string} workerId ID of a particular worker.
-* @property {string} originNamespace A string containing a more specific namespace of the counter&#39;s origin.
-*/
 /**
  * @typedef MetricUpdate
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {string} updateTime Timestamp associated with the metric value. Optional when workers are
-reporting work progress; it will be filled in responses from the
-metrics API.
-* @property {dataflow(v1b3).MetricStructuredName} name Name of the metric.
-* @property {any} set Worker-computed aggregate value for the &quot;Set&quot; aggregation kind.  The only
-possible value type is a list of Values whose type can be Long, Double,
-or String, according to the metric&#39;s type.  All Values in the list must
-be of the same type.
-* @property {any} internal Worker-computed aggregate value for internal use by the Dataflow
-service.
 * @property {boolean} cumulative True if this metric is reported as the total cumulative aggregate
 value accumulated since the worker started working on this WorkItem.
 By default this is false, indicating that this metric is reported
 as a delta that is not associated with any WorkItem.
+* @property {any} internal Worker-computed aggregate value for internal use by the Dataflow
+service.
 * @property {string} kind Metric aggregation kind.  The possible metric aggregation kinds are
 &quot;Sum&quot;, &quot;Max&quot;, &quot;Min&quot;, &quot;Mean&quot;, &quot;Set&quot;, &quot;And&quot;, and &quot;Or&quot;.
 The specified aggregation kind is case-insensitive.
@@ -1386,6 +1398,30 @@ The only possible value type is Long.
 This holds the sum of the aggregated values and is used in combination
 with mean_count below to obtain the actual mean aggregate value.
 The only possible value types are Long and Double.
+* @property {string} updateTime Timestamp associated with the metric value. Optional when workers are
+reporting work progress; it will be filled in responses from the
+metrics API.
+* @property {dataflow(v1b3).MetricStructuredName} name Name of the metric.
+* @property {any} set Worker-computed aggregate value for the &quot;Set&quot; aggregation kind.  The only
+possible value type is a list of Values whose type can be Long, Double,
+or String, according to the metric&#39;s type.  All Values in the list must
+be of the same type.
+*/
+/**
+ * @typedef CounterStructuredName
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {string} portion Portion of this counter, either key or value.
+* @property {string} originalStepName System generated name of the original step in the user&#39;s graph, before
+optimization.
+* @property {string} workerId ID of a particular worker.
+* @property {string} originNamespace A string containing a more specific namespace of the counter&#39;s origin.
+* @property {string} origin One of the standard Origins defined above.
+* @property {string} name Counter name. Not necessarily globally-unique, but unique within the
+context of the other fields.
+Required.
+* @property {string} executionStepName Name of the stage. An execution step contains multiple component steps.
+* @property {string} componentStepName Name of the optimized step being executed by the workers.
 */
 /**
  * @typedef ApproximateProgress
@@ -1406,13 +1442,13 @@ The only possible value types are Long and Double.
  * @typedef TemplateMetadata
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {string} name Required. The name of the template.
-* @property {dataflow(v1b3).ParameterMetadata[]} parameters The parameters for the template.
 * @property {string} description Optional. A description of the template.
 * @property {boolean} bypassTempDirValidation If true, will bypass the validation that the temp directory is
 writable. This should only be used with templates for pipelines
 that are guaranteed not to need to write to the temp directory,
 which is subject to change based on the optimizer.
+* @property {string} name Required. The name of the template.
+* @property {dataflow(v1b3).ParameterMetadata[]} parameters The parameters for the template.
 */
 /**
  * @typedef WorkerMessage
@@ -1450,17 +1486,6 @@ not be used here.
  * @typedef CounterUpdate
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {dataflow(v1b3).CounterStructuredNameAndMetadata} structuredNameAndMetadata Counter structured name and metadata.
-* @property {dataflow(v1b3).IntegerList} integerList List of integers, for Set.
-* @property {dataflow(v1b3).IntegerMean} integerMean Integer mean aggregation value for Mean.
-* @property {number} floatingPoint Floating point value for Sum, Max, Min.
-* @property {boolean} cumulative True if this counter is reported as the total cumulative aggregate
-value accumulated since the worker started working on this WorkItem.
-By default this is false, indicating that this counter is reported
-as a delta.
-* @property {any} internal Value for internally-defined counters used by the Dataflow service.
-* @property {dataflow(v1b3).FloatingPointMean} floatingPointMean Floating point mean aggregation value for Mean.
-* @property {boolean} boolean Boolean value for And, Or.
 * @property {dataflow(v1b3).NameAndKind} nameAndKind Counter name and aggregation type.
 * @property {dataflow(v1b3).StringList} stringList List of strings, for Set.
 * @property {dataflow(v1b3).DistributionUpdate} distribution Distribution data
@@ -1469,6 +1494,17 @@ The short_id -&gt; (name, metadata) mapping is constant for the lifetime of
 a job.
 * @property {dataflow(v1b3).FloatingPointList} floatingPointList List of floating point numbers, for Set.
 * @property {dataflow(v1b3).SplitInt64} integer Integer value for Sum, Max, Min.
+* @property {dataflow(v1b3).CounterStructuredNameAndMetadata} structuredNameAndMetadata Counter structured name and metadata.
+* @property {dataflow(v1b3).IntegerList} integerList List of integers, for Set.
+* @property {number} floatingPoint Floating point value for Sum, Max, Min.
+* @property {dataflow(v1b3).IntegerMean} integerMean Integer mean aggregation value for Mean.
+* @property {boolean} cumulative True if this counter is reported as the total cumulative aggregate
+value accumulated since the worker started working on this WorkItem.
+By default this is false, indicating that this counter is reported
+as a delta.
+* @property {any} internal Value for internally-defined counters used by the Dataflow service.
+* @property {dataflow(v1b3).FloatingPointMean} floatingPointMean Floating point mean aggregation value for Mean.
+* @property {boolean} boolean Boolean value for And, Or.
 */
 /**
  * @typedef SourceMetadata
@@ -1497,10 +1533,10 @@ problem we can detect it and use an additional int64 or a double.
  * @typedef SourceFork
  * @memberOf! dataflow(v1b3)
  * @type object
+ * @property {dataflow(v1b3).SourceSplitShard} residual DEPRECATED
  * @property {dataflow(v1b3).DerivedSource} residualSource DEPRECATED
  * @property {dataflow(v1b3).SourceSplitShard} primary DEPRECATED
  * @property {dataflow(v1b3).DerivedSource} primarySource DEPRECATED
- * @property {dataflow(v1b3).SourceSplitShard} residual DEPRECATED
  */
 /**
  * @typedef WorkerHealthReportResponse
@@ -1516,6 +1552,29 @@ the server.
  * @typedef WorkItemStatus
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {dataflow(v1b3).CounterUpdate[]} counterUpdates Worker output counters for this WorkItem.
+* @property {string} workItemId Identifies the WorkItem.
+* @property {dataflow(v1b3).MetricUpdate[]} metricUpdates DEPRECATED in favor of counter_updates.
+* @property {dataflow(v1b3).Status[]} errors Specifies errors which occurred during processing.  If errors are
+provided, and completed = true, then the WorkItem is considered
+to have failed.
+* @property {dataflow(v1b3).DynamicSourceSplit} dynamicSourceSplit See documentation of stop_position.
+* @property {dataflow(v1b3).SourceOperationResponse} sourceOperationResponse If the work item represented a SourceOperationRequest, and the work
+is completed, contains the result of the operation.
+* @property {dataflow(v1b3).ApproximateProgress} progress DEPRECATED in favor of reported_progress.
+* @property {string} requestedLeaseDuration Amount of time the worker requests for its lease.
+* @property {string} reportIndex The report index.  When a WorkItem is leased, the lease will
+contain an initial report index.  When a WorkItem&#39;s status is
+reported to the system, the report should be sent with
+that report index, and the response will contain the index the
+worker should use for the next report.  Reports received with
+unexpected index values will be rejected by the service.
+
+In order to preserve idempotency, the worker should not alter the
+contents of a report, even if the worker must submit the same
+report multiple times before getting back a response.  The worker
+should not submit a subsequent report until the response for the
+previous report had been received from the service.
 * @property {dataflow(v1b3).Position} stopPosition A worker may split an active map task in two parts, &quot;primary&quot; and
 &quot;residual&quot;, continuing to process the primary part and returning the
 residual part into the pool of available work.
@@ -1549,29 +1608,6 @@ P&#39; and R&#39; must be together equivalent to P, etc.
 * @property {boolean} completed True if the WorkItem was completed (successfully or unsuccessfully).
 * @property {dataflow(v1b3).ApproximateReportedProgress} reportedProgress The worker&#39;s progress through this WorkItem.
 * @property {dataflow(v1b3).SourceFork} sourceFork DEPRECATED in favor of dynamic_source_split.
-* @property {dataflow(v1b3).CounterUpdate[]} counterUpdates Worker output counters for this WorkItem.
-* @property {string} workItemId Identifies the WorkItem.
-* @property {dataflow(v1b3).MetricUpdate[]} metricUpdates DEPRECATED in favor of counter_updates.
-* @property {dataflow(v1b3).Status[]} errors Specifies errors which occurred during processing.  If errors are
-provided, and completed = true, then the WorkItem is considered
-to have failed.
-* @property {dataflow(v1b3).DynamicSourceSplit} dynamicSourceSplit See documentation of stop_position.
-* @property {dataflow(v1b3).SourceOperationResponse} sourceOperationResponse If the work item represented a SourceOperationRequest, and the work
-is completed, contains the result of the operation.
-* @property {dataflow(v1b3).ApproximateProgress} progress DEPRECATED in favor of reported_progress.
-* @property {string} requestedLeaseDuration Amount of time the worker requests for its lease.
-* @property {string} reportIndex The report index.  When a WorkItem is leased, the lease will
-contain an initial report index.  When a WorkItem&#39;s status is
-reported to the system, the report should be sent with
-that report index, and the response will contain the index the
-worker should use for the next report.  Reports received with
-unexpected index values will be rejected by the service.
-
-In order to preserve idempotency, the worker should not alter the
-contents of a report, even if the worker must submit the same
-report multiple times before getting back a response.  The worker
-should not submit a subsequent report until the response for the
-previous report had been received from the service.
 */
 /**
  * @typedef ComponentSource
@@ -1586,6 +1622,8 @@ source is most closely associated.
  * @typedef WorkItemServiceState
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {dataflow(v1b3).ApproximateSplitRequest} splitRequest The progress point in the WorkItem where the Dataflow service
+suggests that the worker truncate the task.
 * @property {dataflow(v1b3).Position} suggestedStopPosition Obsolete, always empty.
 * @property {string} reportStatusInterval New recommended reporting interval.
 * @property {object} harnessData Other data returned by the service, specific to the particular
@@ -1601,8 +1639,6 @@ of the metrics.
 Note: If the report call fails for whatever reason, the worker should
 reuse this index for subsequent report attempts.
 * @property {dataflow(v1b3).ApproximateProgress} suggestedStopPoint DEPRECATED in favor of split_request.
-* @property {dataflow(v1b3).ApproximateSplitRequest} splitRequest The progress point in the WorkItem where the Dataflow service
-suggests that the worker truncate the task.
 */
 /**
  * @typedef MetricStructuredName
@@ -1637,6 +1673,7 @@ might be run by more than one stage.
  * @typedef KeyRangeLocation
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {string} end The end (exclusive) of the key range.
 * @property {string} deliveryEndpoint The physical location of this range assignment to be used for
 streaming computation cross-worker message delivery.
 * @property {string} start The start (inclusive) of the key range.
@@ -1646,7 +1683,6 @@ identifies the disk within that project, for example
 &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
 * @property {string} persistentDirectory The location of the persistent state for this range, as a
 persistent directory in the worker local filesystem.
-* @property {string} end The end (exclusive) of the key range.
 */
 /**
  * @typedef SourceGetMetadataRequest
@@ -1655,17 +1691,9 @@ persistent directory in the worker local filesystem.
  * @property {dataflow(v1b3).Source} source Specification of the source whose metadata should be computed.
  */
 /**
- * @typedef NameAndKind
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} kind Counter aggregation kind.
- * @property {string} name Name of the counter.
- */
-/**
  * @typedef SeqMapTask
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {object} userFn The user function to invoke.
 * @property {string} name The user-provided name of the SeqDo operation.
 * @property {dataflow(v1b3).SeqMapTaskOutputInfo[]} outputInfos Information about each of the outputs.
 * @property {dataflow(v1b3).SideInputInfo[]} inputs Information about each of the inputs.
@@ -1673,7 +1701,15 @@ persistent directory in the worker local filesystem.
 Unique across the workflow.
 * @property {string} stageName System-defined name of the stage containing the SeqDo operation.
 Unique across the workflow.
+* @property {object} userFn The user function to invoke.
 */
+/**
+ * @typedef NameAndKind
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} name Name of the counter.
+ * @property {string} kind Counter aggregation kind.
+ */
 /**
  * @typedef WorkerMessageCode
  * @memberOf! dataflow(v1b3)
@@ -1745,16 +1781,16 @@ resulting in this response.
  * @typedef InstructionOutput
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {boolean} onlyCountValueBytes For system-generated byte and mean byte metrics, certain instructions
+should only report the value size.
 * @property {object} codec The codec to use to encode data being written via this output.
 * @property {string} name The user-provided name of this output.
 * @property {string} originalName System-defined name for this output in the original workflow graph.
 Outputs that do not contribute to an original instruction do not set this.
-* @property {string} systemName System-defined name of this output.
-Unique across the workflow.
 * @property {boolean} onlyCountKeyBytes For system-generated byte and mean byte metrics, certain instructions
 should only report the key size.
-* @property {boolean} onlyCountValueBytes For system-generated byte and mean byte metrics, certain instructions
-should only report the value size.
+* @property {string} systemName System-defined name of this output.
+Unique across the workflow.
 */
 /**
  * @typedef CreateJobFromTemplateRequest
@@ -1771,16 +1807,16 @@ Must be a valid Cloud Storage URL, beginning with `gs://`.
  * @typedef IntegerMean
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {dataflow(v1b3).SplitInt64} count The number of values being aggregated.
  * @property {dataflow(v1b3).SplitInt64} sum The sum of all values being aggregated.
+ * @property {dataflow(v1b3).SplitInt64} count The number of values being aggregated.
  */
 /**
  * @typedef ListJobsResponse
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {dataflow(v1b3).Job[]} jobs A subset of the requested job information.
  * @property {string} nextPageToken Set if there may be more results than fit in this response.
  * @property {dataflow(v1b3).FailedLocation[]} failedLocation Zero or more messages describing locations that failed to respond.
+ * @property {dataflow(v1b3).Job[]} jobs A subset of the requested job information.
  */
 /**
  * @typedef ComputationTopology
@@ -1790,8 +1826,8 @@ Must be a valid Cloud Storage URL, beginning with `gs://`.
  * @property {dataflow(v1b3).StreamLocation[]} outputs The outputs from the computation.
  * @property {dataflow(v1b3).StateFamilyConfig[]} stateFamilies The state family values.
  * @property {string} systemStageName The system stage name.
- * @property {string} computationId The ID of the computation.
  * @property {dataflow(v1b3).StreamLocation[]} inputs The inputs to the computation.
+ * @property {string} computationId The ID of the computation.
  * @property {dataflow(v1b3).KeyRangeLocation[]} keyRanges The key ranges processed by the computation.
  */
 /**
@@ -1821,13 +1857,42 @@ identifies the disk within that project, for example
  * @typedef StreamingSideInputLocation
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {string} tag Identifies the particular side input within the streaming Dataflow job.
  * @property {string} stateFamily Identifies the state family where this side input is stored.
+ * @property {string} tag Identifies the particular side input within the streaming Dataflow job.
  */
+/**
+ * @typedef DerivedSource
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} derivationMode What source to base the produced source on (if any).
+ * @property {dataflow(v1b3).Source} source Specification of the source.
+ */
+/**
+ * @typedef DynamicSourceSplit
+ * @memberOf! dataflow(v1b3)
+ * @type object
+* @property {dataflow(v1b3).DerivedSource} primary Primary part (continued to be processed by worker).
+Specified relative to the previously-current source.
+Becomes current.
+* @property {dataflow(v1b3).DerivedSource} residual Residual part (returned to the pool of work).
+Specified relative to the previously-current source.
+*/
 /**
  * @typedef Job
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {string} type The type of Cloud Dataflow job.
+* @property {string} projectId The ID of the Cloud Platform project that the job belongs to.
+* @property {dataflow(v1b3).PipelineDescription} pipelineDescription Preliminary field: The format of this data may change at any time.
+A description of the user pipeline and stages through which it is executed.
+Created by Cloud Dataflow service.  Only retrieved with
+JOB_VIEW_DESCRIPTION or JOB_VIEW_ALL.
+* @property {string} replaceJobId If this job is an update of an existing job, this field is the job ID
+of the job it replaced.
+
+When sending a `CreateJobRequest`, you can update a job by specifying it
+here. The job named here is stopped, and its intermediate state is
+transferred to this job.
 * @property {string} requestedState The job&#39;s requested state.
 
 `UpdateJob` may be used to switch between the `JOB_STATE_STOPPED` and
@@ -1886,8 +1951,6 @@ callers cannot mutate it.
 * @property {string} currentStateTime The timestamp associated with the current state.
 * @property {object} transformNameMapping The map of transform name prefixes of the job to be replaced to the
 corresponding name prefixes of the new job.
-* @property {string} createTime The timestamp when the job was initially created. Immutable and set by the
-Cloud Dataflow service.
 * @property {dataflow(v1b3).Environment} environment The environment for the job.
 * @property {object} labels User-defined labels for this job.
 
@@ -1898,42 +1961,15 @@ map are UTF8 strings that comply with the following restrictions:
 * Values must conform to regexp:  [\p{Ll}\p{Lo}\p{N}_-]{0,63}
 * Both keys and values are additionally constrained to be &lt;= 128 bytes in
 size.
-* @property {string} type The type of Cloud Dataflow job.
-* @property {string} projectId The ID of the Cloud Platform project that the job belongs to.
-* @property {dataflow(v1b3).PipelineDescription} pipelineDescription Preliminary field: The format of this data may change at any time.
-A description of the user pipeline and stages through which it is executed.
-Created by Cloud Dataflow service.  Only retrieved with
-JOB_VIEW_DESCRIPTION or JOB_VIEW_ALL.
-* @property {string} replaceJobId If this job is an update of an existing job, this field is the job ID
-of the job it replaced.
-
-When sending a `CreateJobRequest`, you can update a job by specifying it
-here. The job named here is stopped, and its intermediate state is
-transferred to this job.
+* @property {string} createTime The timestamp when the job was initially created. Immutable and set by the
+Cloud Dataflow service.
 */
-/**
- * @typedef DynamicSourceSplit
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {dataflow(v1b3).DerivedSource} primary Primary part (continued to be processed by worker).
-Specified relative to the previously-current source.
-Becomes current.
-* @property {dataflow(v1b3).DerivedSource} residual Residual part (returned to the pool of work).
-Specified relative to the previously-current source.
-*/
-/**
- * @typedef DerivedSource
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {string} derivationMode What source to base the produced source on (if any).
- * @property {dataflow(v1b3).Source} source Specification of the source.
- */
 /**
  * @typedef SourceOperationResponse
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {dataflow(v1b3).SourceGetMetadataResponse} getMetadata A response to a request to get metadata about a source.
  * @property {dataflow(v1b3).SourceSplitResponse} split A response to a request to split a source.
+ * @property {dataflow(v1b3).SourceGetMetadataResponse} getMetadata A response to a request to get metadata about a source.
  */
 /**
  * @typedef SideInputInfo
@@ -1953,13 +1989,6 @@ this should correspond to the tag of some MultiOutputInfo.
  * @type object
  */
 /**
- * @typedef CounterStructuredNameAndMetadata
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).CounterStructuredName} name Structured name of the counter.
- * @property {dataflow(v1b3).CounterMetadata} metadata Metadata associated with a counter
- */
-/**
  * @typedef WriteInstruction
  * @memberOf! dataflow(v1b3)
  * @type object
@@ -1974,11 +2003,11 @@ this should correspond to the tag of some MultiOutputInfo.
  * @property {integer} index Index of the inner source.
  */
 /**
- * @typedef StreamingComputationRanges
+ * @typedef CounterStructuredNameAndMetadata
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {string} computationId The ID of the computation.
- * @property {dataflow(v1b3).KeyRangeDataDiskAssignment[]} rangeAssignments Data disk assignments for ranges from this computation.
+ * @property {dataflow(v1b3).CounterMetadata} metadata Metadata associated with a counter
+ * @property {dataflow(v1b3).CounterStructuredName} name Structured name of the counter.
  */
 /**
  * @typedef AutoscalingSettings
@@ -1988,16 +2017,23 @@ this should correspond to the tag of some MultiOutputInfo.
  * @property {integer} maxNumWorkers The maximum number of workers to cap scaling at.
  */
 /**
+ * @typedef StreamingComputationRanges
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {string} computationId The ID of the computation.
+ * @property {dataflow(v1b3).KeyRangeDataDiskAssignment[]} rangeAssignments Data disk assignments for ranges from this computation.
+ */
+/**
  * @typedef ExecutionStageSummary
  * @memberOf! dataflow(v1b3)
  * @type object
+ * @property {string} kind Type of tranform this stage is executing.
  * @property {dataflow(v1b3).StageSource[]} outputSource Output sources for this stage.
  * @property {string} name Dataflow service generated name for this stage.
  * @property {dataflow(v1b3).StageSource[]} inputSource Input sources for this stage.
  * @property {string} id Dataflow service generated id for this stage.
  * @property {dataflow(v1b3).ComponentTransform[]} componentTransform Transforms that comprise this execution stage.
  * @property {dataflow(v1b3).ComponentSource[]} componentSource Collections produced and consumed by component transforms of this stage.
- * @property {string} kind Type of tranform this stage is executing.
  */
 /**
  * @typedef SendWorkerMessagesRequest
@@ -2026,6 +2062,23 @@ sample.
  * @typedef Environment
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {string} dataset The dataset for the current project where various workflow
+related tables are stored.
+
+The supported resource type is:
+
+Google BigQuery:
+  bigquery.googleapis.com/{dataset}
+* @property {string[]} experiments The list of experiments to enable.
+* @property {object} internalExperiments Experimental settings.
+* @property {object} version A structure describing which components and their versions of the service
+are required in order to run the job.
+* @property {string} serviceAccountEmail Identity to run virtual machines as. Defaults to the default account.
+* @property {object} sdkPipelineOptions The Cloud Dataflow SDK pipeline options specified by the user. These
+options are passed through the service and are used to recreate the
+SDK pipeline options on the worker in a language agnostic and platform
+independent way.
+* @property {object} userAgent A description of the process that generated the request.
 * @property {string} clusterManagerApiService The type of cluster manager API to use.  If unknown or
 unspecified, the service will attempt to choose a reasonable
 default.  This should be in the form of the API service name,
@@ -2045,39 +2098,22 @@ Google Cloud Storage:
   bucket.storage.googleapis.com/{object}
 * @property {dataflow(v1b3).WorkerPool[]} workerPools The worker pools. At least one &quot;harness&quot; worker pool must be
 specified in order for the job to have workers.
-* @property {string} dataset The dataset for the current project where various workflow
-related tables are stored.
-
-The supported resource type is:
-
-Google BigQuery:
-  bigquery.googleapis.com/{dataset}
-* @property {string[]} experiments The list of experiments to enable.
-* @property {object} version A structure describing which components and their versions of the service
-are required in order to run the job.
-* @property {object} internalExperiments Experimental settings.
-* @property {string} serviceAccountEmail Identity to run virtual machines as. Defaults to the default account.
-* @property {object} userAgent A description of the process that generated the request.
-* @property {object} sdkPipelineOptions The Cloud Dataflow SDK pipeline options specified by the user. These
-options are passed through the service and are used to recreate the
-SDK pipeline options on the worker in a language agnostic and platform
-independent way.
 */
 /**
  * @typedef StreamingComputationTask
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {dataflow(v1b3).StreamingComputationRanges[]} computationRanges Contains ranges of a streaming computation this task should apply to.
  * @property {dataflow(v1b3).MountedDataDisk[]} dataDisks Describes the set of data disks this task should apply to.
  * @property {string} taskType A type of streaming computation task.
+ * @property {dataflow(v1b3).StreamingComputationRanges[]} computationRanges Contains ranges of a streaming computation this task should apply to.
  */
 /**
  * @typedef SendDebugCaptureRequest
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {string} data The encoded debug information.
  * @property {string} componentId The internal component id for which debug information is sent.
  * @property {string} workerId The worker id, i.e., VM hostname.
+ * @property {string} data The encoded debug information.
  */
 /**
  * @typedef GetDebugConfigResponse
@@ -2109,18 +2145,18 @@ other streaming computation workers.
  * @typedef PubsubLocation
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {boolean} withAttributes If true, then the client has requested to get pubsub attributes.
-* @property {string} idLabel If set, contains a pubsub label from which to extract record ids.
-If left empty, record deduplication will be strictly best effort.
-* @property {string} topic A pubsub topic, in the form of
-&quot;pubsub.googleapis.com/topics/&lt;project-id&gt;/&lt;topic-name&gt;&quot;
 * @property {string} timestampLabel If set, contains a pubsub label from which to extract record timestamps.
 If left empty, record timestamps will be generated upon arrival.
+* @property {string} topic A pubsub topic, in the form of
+&quot;pubsub.googleapis.com/topics/&lt;project-id&gt;/&lt;topic-name&gt;&quot;
 * @property {string} subscription A pubsub subscription, in the form of
 &quot;pubsub.googleapis.com/subscriptions/&lt;project-id&gt;/&lt;subscription-name&gt;&quot;
 * @property {boolean} dropLateData Indicates whether the pipeline allows late-arriving data.
 * @property {string} trackingSubscription If set, specifies the pubsub subscription that will be used for tracking
 custom time timestamps for watermark estimation.
+* @property {boolean} withAttributes If true, then the client has requested to get pubsub attributes.
+* @property {string} idLabel If set, contains a pubsub label from which to extract record ids.
+If left empty, record deduplication will be strictly best effort.
 */
 /**
  * @typedef WorkerHealthReport
@@ -2151,11 +2187,11 @@ service; the caller should treat it as an opaque string.
  * @typedef ParameterMetadata
  * @memberOf! dataflow(v1b3)
  * @type object
+ * @property {string} helpText Required. The help text to display for the parameter.
  * @property {boolean} isOptional Optional. Whether the parameter is optional. Defaults to false.
  * @property {string} name Required. The name of the parameter.
  * @property {string[]} regexes Optional. Regexes that the parameter must match.
  * @property {string} label Required. The label to display for the parameter.
- * @property {string} helpText Required. The help text to display for the parameter.
  */
 /**
  * @typedef MultiOutputInfo
@@ -2185,13 +2221,6 @@ should correspond to the tag of some SideInputInfo.
 will be indicated in the error_details.
 */
 /**
- * @typedef ShellTask
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {integer} exitCode Exit code for the task.
- * @property {string} command The shell command to run.
- */
-/**
  * @typedef MetricShortId
  * @memberOf! dataflow(v1b3)
  * @type object
@@ -2200,9 +2229,32 @@ the ReportWorkItemStatusRequest. Required.
 * @property {string} shortId The service-generated short identifier for the metric.
 */
 /**
+ * @typedef ShellTask
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {integer} exitCode Exit code for the task.
+ * @property {string} command The shell command to run.
+ */
+/**
  * @typedef TaskRunnerSettings
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {string} baseUrl The base URL for the taskrunner to use when accessing Google Cloud APIs.
+
+When workers access Google Cloud APIs, they logically do so via
+relative URLs.  If this field is specified, it supplies the base
+URL to use for resolving these relative URLs.  The normative
+algorithm used is defined by RFC 1808, &quot;Relative Uniform Resource
+Locators&quot;.
+
+If not specified, the default value is &quot;http://www.googleapis.com/&quot;
+* @property {boolean} logToSerialconsole Whether to send taskrunner log info to Google Compute Engine VM serial
+console.
+* @property {boolean} continueOnException Whether to continue taskrunner if an exception is hit.
+* @property {dataflow(v1b3).WorkerSettings} parallelWorkerSettings The settings to pass to the parallel worker harness.
+* @property {string} vmId The ID string of the VM.
+* @property {string} taskUser The UNIX user ID on the worker VM to use for tasks launched by
+taskrunner; e.g. &quot;root&quot;.
 * @property {boolean} alsologtostderr Whether to also send taskrunner log info to stderr.
 * @property {string} taskGroup The UNIX group ID on the worker VM to use for tasks launched by
 taskrunner; e.g. &quot;wheel&quot;.
@@ -2221,6 +2273,8 @@ Google Cloud Storage:
   storage.googleapis.com/{bucket}/{object}
   bucket.storage.googleapis.com/{object}
 * @property {string} workflowFileName The file to store the workflow in.
+* @property {string} commandlinesFileName The file to store preprocessing commands in.
+* @property {string} languageHint The suggested backend language.
 * @property {string} tempStoragePrefix The prefix of the resources the taskrunner should use for
 temporary storage.
 
@@ -2230,30 +2284,11 @@ Google Cloud Storage:
   storage.googleapis.com/{bucket}/{object}
   bucket.storage.googleapis.com/{object}
 * @property {string} baseTaskDir The location on the worker for task-specific subdirectories.
-* @property {string} languageHint The suggested backend language.
-* @property {string} commandlinesFileName The file to store preprocessing commands in.
-* @property {string} baseUrl The base URL for the taskrunner to use when accessing Google Cloud APIs.
-
-When workers access Google Cloud APIs, they logically do so via
-relative URLs.  If this field is specified, it supplies the base
-URL to use for resolving these relative URLs.  The normative
-algorithm used is defined by RFC 1808, &quot;Relative Uniform Resource
-Locators&quot;.
-
-If not specified, the default value is &quot;http://www.googleapis.com/&quot;
-* @property {boolean} logToSerialconsole Whether to send taskrunner log info to Google Compute Engine VM serial
-console.
-* @property {boolean} continueOnException Whether to continue taskrunner if an exception is hit.
-* @property {dataflow(v1b3).WorkerSettings} parallelWorkerSettings The settings to pass to the parallel worker harness.
-* @property {string} taskUser The UNIX user ID on the worker VM to use for tasks launched by
-taskrunner; e.g. &quot;root&quot;.
-* @property {string} vmId The ID string of the VM.
 */
 /**
  * @typedef Position
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {string} key Position is a string key, ordered lexicographically.
 * @property {string} recordIndex Position is a record index.
 * @property {string} shufflePosition CloudPosition is a base64 encoded BatchShufflePosition (with FIXED
 sharding).
@@ -2261,11 +2296,34 @@ sharding).
 * @property {string} byteOffset Position is a byte offset.
 * @property {boolean} end Position is past all other positions. Also useful for the end
 position of an unbounded range.
+* @property {string} key Position is a string key, ordered lexicographically.
 */
+/**
+ * @typedef SplitInt64
+ * @memberOf! dataflow(v1b3)
+ * @type object
+ * @property {integer} lowBits The low order bits: n &amp; 0xffffffff.
+ * @property {integer} highBits The high order bits, including the sign: n &gt;&gt; 32.
+ */
 /**
  * @typedef Source
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {dataflow(v1b3).SourceMetadata} metadata Optionally, metadata for this source can be supplied right away,
+avoiding a SourceGetMetadataOperation roundtrip
+(see SourceOperationRequest).
+
+This field is meaningful only in the Source objects populated
+by the user (e.g. when filling in a DerivedSource).
+Source objects supplied by the framework to the user don&#39;t have
+this field populated.
+* @property {object[]} baseSpecs While splitting, sources may specify the produced bundles
+as differences against another source, in order to save backend-side
+memory and allow bigger jobs. For details, see SourceSplitRequest.
+To support this use case, the full set of parameters of the source
+is logically obtained by taking the latest explicitly specified value
+of each parameter in the order:
+base_specs (later items win), spec (overrides anything in base_specs).
 * @property {object} codec The codec to use to decode data read from the source.
 * @property {boolean} doesNotNeedSplitting Setting this value to true hints to the framework that the source
 doesn&#39;t need splitting, and using SourceSplitRequest on it would
@@ -2285,33 +2343,16 @@ by the user (e.g. when filling in a DerivedSource).
 Source objects supplied by the framework to the user don&#39;t have
 this field populated.
 * @property {object} spec The source to read from, plus its parameters.
-* @property {dataflow(v1b3).SourceMetadata} metadata Optionally, metadata for this source can be supplied right away,
-avoiding a SourceGetMetadataOperation roundtrip
-(see SourceOperationRequest).
-
-This field is meaningful only in the Source objects populated
-by the user (e.g. when filling in a DerivedSource).
-Source objects supplied by the framework to the user don&#39;t have
-this field populated.
-* @property {object[]} baseSpecs While splitting, sources may specify the produced bundles
-as differences against another source, in order to save backend-side
-memory and allow bigger jobs. For details, see SourceSplitRequest.
-To support this use case, the full set of parameters of the source
-is logically obtained by taking the latest explicitly specified value
-of each parameter in the order:
-base_specs (later items win), spec (overrides anything in base_specs).
 */
-/**
- * @typedef SplitInt64
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {integer} lowBits The low order bits: n &amp; 0xffffffff.
- * @property {integer} highBits The high order bits, including the sign: n &gt;&gt; 32.
- */
 /**
  * @typedef WorkerPool
  * @memberOf! dataflow(v1b3)
  * @type object
+* @property {string} onHostMaintenance The action to take on host maintenance, as defined by the Google
+Compute Engine API.
+* @property {object} poolArgs Extra arguments for this worker pool.
+* @property {integer} diskSizeGb Size of root disk for VMs, in GB.  If zero or unspecified, the service will
+attempt to choose a reasonable default.
 * @property {string} workerHarnessContainerImage Required. Docker container image that executes the Cloud Dataflow worker
 harness, residing in Google Container Registry.
 * @property {string} diskType Type of root disk for VMs.  If empty or unspecified, the service will
@@ -2329,16 +2370,16 @@ the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
 using the standard Dataflow task runner.  Users should ignore
 this field.
 * @property {object} metadata Metadata to set on the Google Compute Engine VMs.
+* @property {string} network Network to which VMs will be assigned.  If empty or unspecified,
+the service will use the network &quot;default&quot;.
 * @property {string} defaultPackageSet The default package set to install.  This allows the service to
 select a default set of packages which are useful to worker
 harnesses written in a particular language.
-* @property {string} network Network to which VMs will be assigned.  If empty or unspecified,
-the service will use the network &quot;default&quot;.
+* @property {string} zone Zone to run the worker pools in.  If empty or unspecified, the service
+will attempt to choose a reasonable default.
 * @property {integer} numThreadsPerWorker The number of threads per worker harness. If empty or unspecified, the
 service will choose a number of threads (according to the number of cores
 on the selected machine type for batch, or 1 by convention for streaming).
-* @property {string} zone Zone to run the worker pools in.  If empty or unspecified, the service
-will attempt to choose a reasonable default.
 * @property {integer} numWorkers Number of Google Compute Engine workers in this pool needed to
 execute the job.  If zero or unspecified, the service will
 attempt to choose a reasonable default.
@@ -2360,31 +2401,21 @@ policy except for small, manually supervised test jobs.
 
 If unknown or unspecified, the service will attempt to choose a reasonable
 default.
-* @property {string} onHostMaintenance The action to take on host maintenance, as defined by the Google
-Compute Engine API.
-* @property {object} poolArgs Extra arguments for this worker pool.
-* @property {integer} diskSizeGb Size of root disk for VMs, in GB.  If zero or unspecified, the service will
-attempt to choose a reasonable default.
 */
 /**
  * @typedef SourceOperationRequest
  * @memberOf! dataflow(v1b3)
  * @type object
- * @property {dataflow(v1b3).SourceGetMetadataRequest} getMetadata Information about a request to get metadata about a source.
  * @property {dataflow(v1b3).SourceSplitRequest} split Information about a request to split a source.
+ * @property {dataflow(v1b3).SourceGetMetadataRequest} getMetadata Information about a request to get metadata about a source.
  */
 /**
  * @typedef WorkItem
  * @memberOf! dataflow(v1b3)
  * @type object
-* @property {string} reportStatusInterval Recommended reporting interval.
-* @property {dataflow(v1b3).StreamingSetupTask} streamingSetupTask Additional information for StreamingSetupTask WorkItems.
-* @property {dataflow(v1b3).SourceOperationRequest} sourceOperationTask Additional information for source operation WorkItems.
-* @property {string} leaseExpireTime Time when the lease on this Work will expire.
-* @property {dataflow(v1b3).StreamingConfigTask} streamingConfigTask Additional information for StreamingConfigTask WorkItems.
 * @property {string} initialReportIndex The initial index to use when reporting the status of the WorkItem.
-* @property {dataflow(v1b3).ShellTask} shellTask Additional information for ShellTask WorkItems.
 * @property {dataflow(v1b3).StreamingComputationTask} streamingComputationTask Additional information for StreamingComputationTask WorkItems.
+* @property {dataflow(v1b3).ShellTask} shellTask Additional information for ShellTask WorkItems.
 * @property {string} jobId Identifies the workflow job this WorkItem belongs to.
 * @property {string} id Identifies this WorkItem.
 * @property {string} configuration Work item-specific configuration as an opaque blob.
@@ -2393,41 +2424,10 @@ attempt to choose a reasonable default.
 * @property {dataflow(v1b3).Package[]} packages Any required packages that need to be fetched in order to execute
 this WorkItem.
 * @property {string} projectId Identifies the cloud project this WorkItem belongs to.
-*/
-/**
- * @typedef ResourceUtilizationReport
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {dataflow(v1b3).CPUTime[]} cpuTime CPU utilization samples.
- */
-/**
- * @typedef ReportedParallelism
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {boolean} isInfinite Specifies whether the parallelism is infinite. If true, &quot;value&quot; is
-ignored.
-Infinite parallelism means the service will assume that the work item
-can always be split into more non-empty work items by dynamic splitting.
-This is a work-around for lack of support for infinity by the current
-JSON-based Java RPC stack.
-* @property {number} value Specifies the level of parallelism in case it is finite.
-*/
-/**
- * @typedef TopologyConfig
- * @memberOf! dataflow(v1b3)
- * @type object
- * @property {object} userStageToComputationNameMap Maps user stage names to stable computation names.
- * @property {dataflow(v1b3).ComputationTopology[]} computations The computations associated with a streaming Dataflow job.
- * @property {dataflow(v1b3).DataDiskAssignment[]} dataDiskAssignments The disks assigned to a streaming Dataflow job.
- * @property {integer} persistentStateVersion Version number for persistent state.
- * @property {integer} forwardingKeyBits The size (in bits) of keys that will be assigned to source messages.
- */
-/**
- * @typedef SourceSplitOptions
- * @memberOf! dataflow(v1b3)
- * @type object
-* @property {string} desiredShardSizeBytes DEPRECATED in favor of desired_bundle_size_bytes.
-* @property {string} desiredBundleSizeBytes The source should be split into a set of bundles where the estimated size
-of each is approximately this many bytes.
+* @property {dataflow(v1b3).SourceOperationRequest} sourceOperationTask Additional information for source operation WorkItems.
+* @property {string} reportStatusInterval Recommended reporting interval.
+* @property {dataflow(v1b3).StreamingSetupTask} streamingSetupTask Additional information for StreamingSetupTask WorkItems.
+* @property {dataflow(v1b3).StreamingConfigTask} streamingConfigTask Additional information for StreamingConfigTask WorkItems.
+* @property {string} leaseExpireTime Time when the lease on this Work will expire.
 */
 module.exports = Dataflow;

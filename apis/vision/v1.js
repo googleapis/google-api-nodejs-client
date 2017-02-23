@@ -133,113 +133,6 @@ function Vision(options) { // eslint-disable-line
 }
 
 /**
- * @typedef BoundingPoly
- * @memberOf! vision(v1)
- * @type object
- * @property {vision(v1).Vertex[]} vertices The bounding polygon vertices.
- */
-/**
- * @typedef AnnotateImageResponse
- * @memberOf! vision(v1)
- * @type object
-* @property {vision(v1).Status} error If set, represents the error message for the operation.
-Note that filled-in image annotations are guaranteed to be
-correct, even when `error` is set.
-* @property {vision(v1).EntityAnnotation[]} landmarkAnnotations If present, landmark detection has completed successfully.
-* @property {vision(v1).EntityAnnotation[]} textAnnotations If present, text (OCR) detection has completed successfully.
-* @property {vision(v1).ImageProperties} imagePropertiesAnnotation If present, image properties were extracted successfully.
-* @property {vision(v1).FaceAnnotation[]} faceAnnotations If present, face detection has completed successfully.
-* @property {vision(v1).EntityAnnotation[]} logoAnnotations If present, logo detection has completed successfully.
-* @property {vision(v1).EntityAnnotation[]} labelAnnotations If present, label detection has completed successfully.
-* @property {vision(v1).SafeSearchAnnotation} safeSearchAnnotation If present, safe-search annotation has completed successfully.
-*/
-/**
- * @typedef BatchAnnotateImagesResponse
- * @memberOf! vision(v1)
- * @type object
- * @property {vision(v1).AnnotateImageResponse[]} responses Individual responses to image annotation requests within the batch.
- */
-/**
- * @typedef ImageSource
- * @memberOf! vision(v1)
- * @type object
-* @property {string} gcsImageUri NOTE: For new code `image_uri` below is preferred.
-Google Cloud Storage image URI, which must be in the following form:
-`gs://bucket_name/object_name` (for details, see
-[Google Cloud Storage Request
-URIs](https://cloud.google.com/storage/docs/reference-uris)).
-NOTE: Cloud Storage object versioning is not supported.
-*/
-/**
- * @typedef LocationInfo
- * @memberOf! vision(v1)
- * @type object
- * @property {vision(v1).LatLng} latLng lat/long location coordinates.
- */
-/**
- * @typedef Property
- * @memberOf! vision(v1)
- * @type object
- * @property {string} uint64Value Value of numeric properties.
- * @property {string} name Name of the property.
- * @property {string} value Value of the property.
- */
-/**
- * @typedef Position
- * @memberOf! vision(v1)
- * @type object
- * @property {number} x X coordinate.
- * @property {number} z Z coordinate (or depth).
- * @property {number} y Y coordinate.
- */
-/**
- * @typedef ColorInfo
- * @memberOf! vision(v1)
- * @type object
-* @property {number} score Image-specific score for this color. Value in range [0, 1].
-* @property {number} pixelFraction The fraction of pixels the color occupies in the image.
-Value in range [0, 1].
-* @property {vision(v1).Color} color RGB components of the color.
-*/
-/**
- * @typedef EntityAnnotation
- * @memberOf! vision(v1)
- * @type object
-* @property {string} mid Opaque entity ID. Some IDs may be available in
-[Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
-* @property {number} confidence The accuracy of the entity detection in an image.
-For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected,
-this field represents the confidence that there is a tower in the query
-image. Range [0, 1].
-* @property {string} locale The language code for the locale in which the entity textual
-`description` is expressed.
-* @property {vision(v1).BoundingPoly} boundingPoly Image region to which this entity belongs. Currently not produced
-for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-are produced for the entire text detected in an image region, followed by
-`boundingPoly`s for each word within the detected text.
-* @property {number} topicality The relevancy of the ICA (Image Content Annotation) label to the
-image. For example, the relevancy of &quot;tower&quot; is likely higher to an image
-containing the detected &quot;Eiffel Tower&quot; than to an image containing a
-detected distant towering building, even though the confidence that
-there is a tower in each image may be the same. Range [0, 1].
-* @property {string} description Entity textual description, expressed in its `locale` language.
-* @property {vision(v1).Property[]} properties Some entities may have optional user-supplied `Property` (name/value)
-fields, such a score or string that qualifies the entity.
-* @property {number} score Overall score of the result. Range [0, 1].
-* @property {vision(v1).LocationInfo[]} locations The location information for the detected entity. Multiple
-`LocationInfo` elements can be present because one location may
-indicate the location of the scene in the image, and another location
-may indicate the location of the place where the image was taken.
-Location information is usually present for landmarks.
-*/
-/**
- * @typedef Landmark
- * @memberOf! vision(v1)
- * @type object
- * @property {vision(v1).Position} position Face landmark position.
- * @property {string} type Face landmark type.
- */
-/**
  * @typedef Image
  * @memberOf! vision(v1)
  * @type object
@@ -254,24 +147,13 @@ used to perform the image annotation request.
  * @typedef FaceAnnotation
  * @memberOf! vision(v1)
  * @type object
-* @property {number} tiltAngle Pitch angle, which indicates the upwards/downwards angle that the face is
-pointing relative to the image&#39;s horizontal plane. Range [-180,180].
-* @property {vision(v1).BoundingPoly} fdBoundingPoly The `fd_bounding_poly` bounding polygon is tighter than the
-`boundingPoly`, and encloses only the skin part of the face. Typically, it
-is used to eliminate the face from any image analysis that detects the
-&quot;amount of skin&quot; visible in an image. It is not based on the
-landmarker results, only on the initial face detection, hence
-the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
-* @property {string} surpriseLikelihood Surprise likelihood.
-* @property {vision(v1).Landmark[]} landmarks Detected face landmarks.
-* @property {string} angerLikelihood Anger likelihood.
-* @property {string} joyLikelihood Joy likelihood.
 * @property {number} landmarkingConfidence Face landmarking confidence. Range [0, 1].
-* @property {string} underExposedLikelihood Under-exposed likelihood.
+* @property {string} joyLikelihood Joy likelihood.
 * @property {number} detectionConfidence Detection confidence. Range [0, 1].
 * @property {number} panAngle Yaw angle, which indicates the leftward/rightward angle that the face is
 pointing relative to the vertical plane perpendicular to the image. Range
 [-180,180].
+* @property {string} underExposedLikelihood Under-exposed likelihood.
 * @property {string} blurredLikelihood Blurred likelihood.
 * @property {string} headwearLikelihood Headwear likelihood.
 * @property {vision(v1).BoundingPoly} boundingPoly The bounding polygon around the face. The coordinates of the bounding box
@@ -285,6 +167,17 @@ appears in the image to be annotated.
 of the face relative to the image vertical about the axis perpendicular to
 the face. Range [-180,180].
 * @property {string} sorrowLikelihood Sorrow likelihood.
+* @property {number} tiltAngle Pitch angle, which indicates the upwards/downwards angle that the face is
+pointing relative to the image&#39;s horizontal plane. Range [-180,180].
+* @property {vision(v1).BoundingPoly} fdBoundingPoly The `fd_bounding_poly` bounding polygon is tighter than the
+`boundingPoly`, and encloses only the skin part of the face. Typically, it
+is used to eliminate the face from any image analysis that detects the
+&quot;amount of skin&quot; visible in an image. It is not based on the
+landmarker results, only on the initial face detection, hence
+the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
+* @property {string} surpriseLikelihood Surprise likelihood.
+* @property {vision(v1).Landmark[]} landmarks Detected face landmarks.
+* @property {string} angerLikelihood Anger likelihood.
 */
 /**
  * @typedef BatchAnnotateImagesRequest
@@ -394,5 +287,112 @@ funny or offensive.
  * @type object
  * @property {integer} y Y coordinate.
  * @property {integer} x X coordinate.
+ */
+/**
+ * @typedef BoundingPoly
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {vision(v1).Vertex[]} vertices The bounding polygon vertices.
+ */
+/**
+ * @typedef AnnotateImageResponse
+ * @memberOf! vision(v1)
+ * @type object
+* @property {vision(v1).EntityAnnotation[]} textAnnotations If present, text (OCR) detection has completed successfully.
+* @property {vision(v1).ImageProperties} imagePropertiesAnnotation If present, image properties were extracted successfully.
+* @property {vision(v1).FaceAnnotation[]} faceAnnotations If present, face detection has completed successfully.
+* @property {vision(v1).EntityAnnotation[]} logoAnnotations If present, logo detection has completed successfully.
+* @property {vision(v1).EntityAnnotation[]} labelAnnotations If present, label detection has completed successfully.
+* @property {vision(v1).SafeSearchAnnotation} safeSearchAnnotation If present, safe-search annotation has completed successfully.
+* @property {vision(v1).Status} error If set, represents the error message for the operation.
+Note that filled-in image annotations are guaranteed to be
+correct, even when `error` is set.
+* @property {vision(v1).EntityAnnotation[]} landmarkAnnotations If present, landmark detection has completed successfully.
+*/
+/**
+ * @typedef Property
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {string} value Value of the property.
+ * @property {string} uint64Value Value of numeric properties.
+ * @property {string} name Name of the property.
+ */
+/**
+ * @typedef BatchAnnotateImagesResponse
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {vision(v1).AnnotateImageResponse[]} responses Individual responses to image annotation requests within the batch.
+ */
+/**
+ * @typedef ImageSource
+ * @memberOf! vision(v1)
+ * @type object
+* @property {string} gcsImageUri NOTE: For new code `image_uri` below is preferred.
+Google Cloud Storage image URI, which must be in the following form:
+`gs://bucket_name/object_name` (for details, see
+[Google Cloud Storage Request
+URIs](https://cloud.google.com/storage/docs/reference-uris)).
+NOTE: Cloud Storage object versioning is not supported.
+*/
+/**
+ * @typedef LocationInfo
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {vision(v1).LatLng} latLng lat/long location coordinates.
+ */
+/**
+ * @typedef Position
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {number} x X coordinate.
+ * @property {number} z Z coordinate (or depth).
+ * @property {number} y Y coordinate.
+ */
+/**
+ * @typedef ColorInfo
+ * @memberOf! vision(v1)
+ * @type object
+* @property {number} pixelFraction The fraction of pixels the color occupies in the image.
+Value in range [0, 1].
+* @property {vision(v1).Color} color RGB components of the color.
+* @property {number} score Image-specific score for this color. Value in range [0, 1].
+*/
+/**
+ * @typedef EntityAnnotation
+ * @memberOf! vision(v1)
+ * @type object
+* @property {number} score Overall score of the result. Range [0, 1].
+* @property {vision(v1).LocationInfo[]} locations The location information for the detected entity. Multiple
+`LocationInfo` elements can be present because one location may
+indicate the location of the scene in the image, and another location
+may indicate the location of the place where the image was taken.
+Location information is usually present for landmarks.
+* @property {string} mid Opaque entity ID. Some IDs may be available in
+[Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+* @property {number} confidence The accuracy of the entity detection in an image.
+For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected,
+this field represents the confidence that there is a tower in the query
+image. Range [0, 1].
+* @property {string} locale The language code for the locale in which the entity textual
+`description` is expressed.
+* @property {vision(v1).BoundingPoly} boundingPoly Image region to which this entity belongs. Currently not produced
+for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
+are produced for the entire text detected in an image region, followed by
+`boundingPoly`s for each word within the detected text.
+* @property {number} topicality The relevancy of the ICA (Image Content Annotation) label to the
+image. For example, the relevancy of &quot;tower&quot; is likely higher to an image
+containing the detected &quot;Eiffel Tower&quot; than to an image containing a
+detected distant towering building, even though the confidence that
+there is a tower in each image may be the same. Range [0, 1].
+* @property {string} description Entity textual description, expressed in its `locale` language.
+* @property {vision(v1).Property[]} properties Some entities may have optional user-supplied `Property` (name/value)
+fields, such a score or string that qualifies the entity.
+*/
+/**
+ * @typedef Landmark
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {string} type Face landmark type.
+ * @property {vision(v1).Position} position Face landmark position.
  */
 module.exports = Vision;

@@ -112,35 +112,25 @@ they can only return primitive types such as a `string`, `number`, `array`,
  * @typedef ExecutionError
  * @memberOf! script(v1)
  * @type object
-* @property {script(v1).ScriptStackTraceElement[]} scriptStackTraceElements An array of objects that provide a stack trace through the script to show
-where the execution failed, with the deepest call first.
 * @property {string} errorType The error type, for example `TypeError` or `ReferenceError`. If the error
 type is unavailable, this field is not included.
 * @property {string} errorMessage The error message thrown by Apps Script, usually localized into the user&#39;s
 language.
+* @property {script(v1).ScriptStackTraceElement[]} scriptStackTraceElements An array of objects that provide a stack trace through the script to show
+where the execution failed, with the deepest call first.
 */
 /**
  * @typedef Status
  * @memberOf! script(v1)
  * @type object
+ * @property {integer} code The status code. For this API, this value will always be 3, corresponding to an INVALID_ARGUMENT error.
  * @property {string} message A developer-facing error message, which is in English. Any user-facing error message is localized and sent in the [`google.rpc.Status.details`](google.rpc.Status.details) field, or localized by the client.
  * @property {object[]} details An array that contains a single `ExecutionError` object that provides information about the nature of the error.
- * @property {integer} code The status code. For this API, this value will always be 3, corresponding to an INVALID_ARGUMENT error.
  */
 /**
  * @typedef ExecutionRequest
  * @memberOf! script(v1)
  * @type object
-* @property {string} sessionState For Android add-ons only. An ID that represents the user&#39;s current session
-in the Android app for Google Docs or Sheets, included as extra data in the
-[`Intent`](https://developer.android.com/guide/components/intents-filters.html)
-that launches the add-on. When an Android add-on is run with a session
-state, it gains the privileges of a
-[bound](https://developers.google.com/apps-script/guides/bound) script &amp;mdash;
-that is, it can access information like the user&#39;s current cursor position
-(in Docs) or selected cell (in Sheets). To retrieve the state, call
-`Intent.getStringExtra(&quot;com.google.android.apps.docs.addons.SessionState&quot;)`.
-Optional.
 * @property {string} function The name of the function to execute in the given script. The name does not
 include parentheses or parameters.
 * @property {boolean} devMode If `true` and the user is an owner of the script, the script runs at the
@@ -151,5 +141,15 @@ for each parameter should match the expected type in Apps Script.
 Parameters cannot be Apps Script-specific object types (such as a
 `Document` or a `Calendar`); they can only be primitive types such as
 `string`, `number`, `array`, `object`, or `boolean`. Optional.
+* @property {string} sessionState For Android add-ons only. An ID that represents the user&#39;s current session
+in the Android app for Google Docs or Sheets, included as extra data in the
+[`Intent`](https://developer.android.com/guide/components/intents-filters.html)
+that launches the add-on. When an Android add-on is run with a session
+state, it gains the privileges of a
+[bound](https://developers.google.com/apps-script/guides/bound) script &amp;mdash;
+that is, it can access information like the user&#39;s current cursor position
+(in Docs) or selected cell (in Sheets). To retrieve the state, call
+`Intent.getStringExtra(&quot;com.google.android.apps.docs.addons.SessionState&quot;)`.
+Optional.
 */
 module.exports = Script;

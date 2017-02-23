@@ -81,6 +81,41 @@ function Firebasedynamiclinks(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef DynamicLinkInfo
+ * @memberOf! firebasedynamiclinks(v1)
+ * @type object
+* @property {string} link The link your app will open, You can specify any URL your app can handle.
+This link must be a well-formatted URL, be properly URL-encoded, and use
+the HTTP or HTTPS scheme. See &#39;link&#39; parameters in the
+[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
+
+Required.
+* @property {firebasedynamiclinks(v1).IosInfo} iosInfo iOS related information. See iOS related parameters in the
+[documentation](https://firebase.google.com/docs/dynamic-links/ios#create-a-dynamic-link-programmatically).
+* @property {firebasedynamiclinks(v1).SocialMetaTagInfo} socialMetaTagInfo Parameters for social meta tag params.
+Used to set meta tag data for link previews on social sites.
+* @property {firebasedynamiclinks(v1).AndroidInfo} androidInfo Android related information. See Android related parameters in the
+[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
+* @property {firebasedynamiclinks(v1).AnalyticsInfo} analyticsInfo Parameters used for tracking. See all tracking parameters in the
+[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
+* @property {string} dynamicLinkDomain Dynamic Links domain that the project owns, e.g. abcd.app.goo.gl
+[Learn more](https://firebase.google.com/docs/dynamic-links/android#set-up-firebase-and-the-dynamic-links-sdk)
+on how to set up Dynamic Link domain associated with your Firebase project.
+
+Required.
+*/
+/**
+ * @typedef ITunesConnectAnalytics
+ * @memberOf! firebasedynamiclinks(v1)
+ * @type object
+* @property {string} at Affiliate token used to create affiliate-coded links.
+* @property {string} ct Campaign text that developers can optionally add to any link in order to
+track sales from a specific marketing campaign.
+* @property {string} mt iTune media types, including music, podcasts, audiobooks and so on.
+* @property {string} pt Provider token that enables analytics for Dynamic Links from within iTunes
+Connect.
+*/
+/**
  * @typedef SocialMetaTagInfo
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
@@ -99,11 +134,11 @@ function Firebasedynamiclinks(options) { // eslint-disable-line
  * @typedef AndroidInfo
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
-* @property {string} androidFallbackLink Link to open on Android if the app is not installed.
 * @property {string} androidPackageName Android package name of the app.
 * @property {string} androidMinPackageVersionCode Minimum version code for the Android app. If the installed app’s version
 code is lower, then the user is taken to the Play Store.
 * @property {string} androidLink If specified, this overrides the ‘link’ parameter on Android.
+* @property {string} androidFallbackLink Link to open on Android if the app is not installed.
 */
 /**
  * @typedef CreateShortDynamicLinkResponse
@@ -117,14 +152,14 @@ code is lower, then the user is taken to the Play Store.
  * @typedef IosInfo
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
-* @property {string} iosAppStoreId iOS App Store ID.
-* @property {string} iosIpadFallbackLink If specified, this overrides the ios_fallback_link value on iPads.
-* @property {string} iosIpadBundleId iPad bundle ID of the app.
 * @property {string} iosCustomScheme Custom (destination) scheme to use for iOS. By default, we’ll use the
 bundle ID as the custom scheme. Developer can override this behavior using
 this param.
 * @property {string} iosBundleId iOS bundle ID of the app.
 * @property {string} iosFallbackLink Link to open on iOS if the app is not installed.
+* @property {string} iosAppStoreId iOS App Store ID.
+* @property {string} iosIpadFallbackLink If specified, this overrides the ios_fallback_link value on iPads.
+* @property {string} iosIpadBundleId iPad bundle ID of the app.
 */
 /**
  * @typedef AnalyticsInfo
@@ -155,51 +190,16 @@ For example,
  * @typedef GooglePlayAnalytics
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
+* @property {string} gclid [AdWords autotagging parameter](https://support.google.com/analytics/answer/1033981?hl=en);
+used to measure Google AdWords ads. This value is generated dynamically
+and should never be modified.
+* @property {string} utmCampaign Campaign name; used for keyword analysis to identify a specific product
+promotion or strategic campaign.
+* @property {string} utmContent Campaign content; used for A/B testing and content-targeted ads to
+differentiate ads or links that point to the same URL.
 * @property {string} utmMedium Campaign medium; used to identify a medium such as email or cost-per-click.
 * @property {string} utmTerm Campaign term; used with paid search to supply the keywords for ads.
 * @property {string} utmSource Campaign source; used to identify a search engine, newsletter, or other
 source.
-* @property {string} utmCampaign Campaign name; used for keyword analysis to identify a specific product
-promotion or strategic campaign.
-* @property {string} gclid [AdWords autotagging parameter](https://support.google.com/analytics/answer/1033981?hl=en);
-used to measure Google AdWords ads. This value is generated dynamically
-and should never be modified.
-* @property {string} utmContent Campaign content; used for A/B testing and content-targeted ads to
-differentiate ads or links that point to the same URL.
-*/
-/**
- * @typedef DynamicLinkInfo
- * @memberOf! firebasedynamiclinks(v1)
- * @type object
-* @property {string} dynamicLinkDomain Dynamic Links domain that the project owns, e.g. abcd.app.goo.gl
-[Learn more](https://firebase.google.com/docs/dynamic-links/android#set-up-firebase-and-the-dynamic-links-sdk)
-on how to set up Dynamic Link domain associated with your Firebase project.
-
-Required.
-* @property {string} link The link your app will open, You can specify any URL your app can handle.
-This link must be a well-formatted URL, be properly URL-encoded, and use
-the HTTP or HTTPS scheme. See &#39;link&#39; parameters in the
-[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
-
-Required.
-* @property {firebasedynamiclinks(v1).IosInfo} iosInfo iOS related information. See iOS related parameters in the
-[documentation](https://firebase.google.com/docs/dynamic-links/ios#create-a-dynamic-link-programmatically).
-* @property {firebasedynamiclinks(v1).SocialMetaTagInfo} socialMetaTagInfo Parameters for social meta tag params.
-Used to set meta tag data for link previews on social sites.
-* @property {firebasedynamiclinks(v1).AndroidInfo} androidInfo Android related information. See Android related parameters in the
-[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
-* @property {firebasedynamiclinks(v1).AnalyticsInfo} analyticsInfo Parameters used for tracking. See all tracking parameters in the
-[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
-*/
-/**
- * @typedef ITunesConnectAnalytics
- * @memberOf! firebasedynamiclinks(v1)
- * @type object
-* @property {string} ct Campaign text that developers can optionally add to any link in order to
-track sales from a specific marketing campaign.
-* @property {string} mt iTune media types, including music, podcasts, audiobooks and so on.
-* @property {string} pt Provider token that enables analytics for Dynamic Links from within iTunes
-Connect.
-* @property {string} at Affiliate token used to create affiliate-coded links.
 */
 module.exports = Firebasedynamiclinks;

@@ -45,148 +45,6 @@ function Sourcerepo(options) { // eslint-disable-line
     repos: {
 
       /**
-       * sourcerepo.projects.repos.delete
-       *
-       * @desc Deletes a repo.
-       *
-       * @alias sourcerepo.projects.repos.delete
-       * @memberOf! sourcerepo(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the repo to delete. Values are of the form `projects/<project>/repos/<repo>`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://sourcerepo.googleapis.com/v1/{name}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * sourcerepo.projects.repos.list
-       *
-       * @desc Returns all repos belonging to a project.
-       *
-       * @alias sourcerepo.projects.repos.list
-       * @memberOf! sourcerepo(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The project ID whose repos should be listed. Values are of the form `projects/<project>`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://sourcerepo.googleapis.com/v1/{name}/repos',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * sourcerepo.projects.repos.setIamPolicy
-       *
-       * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
-       *
-       * @alias sourcerepo.projects.repos.setIamPolicy
-       * @memberOf! sourcerepo(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
-       * @param {sourcerepo(v1).SetIamPolicyRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      setIamPolicy: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://sourcerepo.googleapis.com/v1/{resource}:setIamPolicy',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * sourcerepo.projects.repos.create
-       *
-       * @desc Creates a repo in the given project with the given name..  If the named repository already exists, `CreateRepo` returns `ALREADY_EXISTS`.
-       *
-       * @alias sourcerepo.projects.repos.create
-       * @memberOf! sourcerepo(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent The project in which to create the repo. Values are of the form `projects/<project>`.
-       * @param {sourcerepo(v1).Repo} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://sourcerepo.googleapis.com/v1/{parent}/repos',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * sourcerepo.projects.repos.getIamPolicy
        *
        * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
@@ -290,24 +148,180 @@ function Sourcerepo(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sourcerepo.projects.repos.delete
+       *
+       * @desc Deletes a repo.
+       *
+       * @alias sourcerepo.projects.repos.delete
+       * @memberOf! sourcerepo(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the repo to delete. Values are of the form `projects/<project>/repos/<repo>`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://sourcerepo.googleapis.com/v1/{name}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sourcerepo.projects.repos.list
+       *
+       * @desc Returns all repos belonging to a project.
+       *
+       * @alias sourcerepo.projects.repos.list
+       * @memberOf! sourcerepo(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The project ID whose repos should be listed. Values are of the form `projects/<project>`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://sourcerepo.googleapis.com/v1/{name}/repos',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sourcerepo.projects.repos.create
+       *
+       * @desc Creates a repo in the given project with the given name..  If the named repository already exists, `CreateRepo` returns `ALREADY_EXISTS`.
+       *
+       * @alias sourcerepo.projects.repos.create
+       * @memberOf! sourcerepo(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.parent The project in which to create the repo. Values are of the form `projects/<project>`.
+       * @param {sourcerepo(v1).Repo} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://sourcerepo.googleapis.com/v1/{parent}/repos',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sourcerepo.projects.repos.setIamPolicy
+       *
+       * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+       *
+       * @alias sourcerepo.projects.repos.setIamPolicy
+       * @memberOf! sourcerepo(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
+       * @param {sourcerepo(v1).SetIamPolicyRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      setIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://sourcerepo.googleapis.com/v1/{resource}:setIamPolicy',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['resource'],
+          pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     }
   };
 }
 
 /**
+ * @typedef AuditConfig
+ * @memberOf! sourcerepo(v1)
+ * @type object
+* @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit
+logging for the `service` specified above.
+Follows the same format of Binding.members.
+This field is deprecated in favor of per-permission-type exemptions.
+* @property {string} service Specifies a service that will be enabled for audit logging.
+For example, `resourcemanager`, `storage`, `compute`.
+`allServices` is a special value that covers all services.
+* @property {sourcerepo(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
+Next ID: 4
+*/
+/**
  * @typedef SetIamPolicyRequest
  * @memberOf! sourcerepo(v1)
  * @type object
+* @property {sourcerepo(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
+the policy is limited to a few 10s of KB. An empty policy is a
+valid policy but certain Cloud Platform services (such as Projects)
+might reject them.
 * @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
 the fields in the mask will be modified. If no mask is provided, a default
 mask is used:
 paths: &quot;bindings, etag&quot;
 This field is only used by Cloud IAM.
-* @property {sourcerepo(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
-the policy is limited to a few 10s of KB. An empty policy is a
-valid policy but certain Cloud Platform services (such as Projects)
-might reject them.
 */
 /**
  * @typedef CloudAuditOptions
@@ -346,6 +360,11 @@ For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
 Required
 */
 /**
+ * @typedef Empty
+ * @memberOf! sourcerepo(v1)
+ * @type object
+ */
+/**
  * @typedef MirrorConfig
  * @memberOf! sourcerepo(v1)
  * @type object
@@ -358,11 +377,6 @@ and thereby disabling mirroring.
 Removing this key from the other service would deauthorize
 Google Cloud Source Repositories from mirroring.
 */
-/**
- * @typedef Empty
- * @memberOf! sourcerepo(v1)
- * @type object
- */
 /**
  * @typedef Repo
  * @memberOf! sourcerepo(v1)
@@ -377,13 +391,13 @@ Google Cloud Source Repositories from mirroring.
  * @typedef Condition
  * @memberOf! sourcerepo(v1)
  * @type object
-* @property {string} svc Trusted attributes discharged by the service.
-* @property {string} value DEPRECATED. Use &#39;values&#39; instead.
 * @property {string} sys Trusted attributes supplied by any service that owns resources and uses
 the IAM system for access control.
-* @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
+* @property {string} value DEPRECATED. Use &#39;values&#39; instead.
 * @property {string} iam Trusted attributes supplied by the IAM system.
+* @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
 * @property {string} op An operator to apply the subject with.
+* @property {string} svc Trusted attributes discharged by the service.
 */
 /**
  * @typedef ListReposResponse
@@ -454,16 +468,6 @@ information see
  * @typedef Policy
  * @memberOf! sourcerepo(v1)
  * @type object
-* @property {boolean} iamOwned 
-* @property {sourcerepo(v1).Rule[]} rules If more than one rule is specified, the rules are applied in the following
-manner:
-- All matching LOG rules are always applied.
-- If any DENY/DENY_WITH_LOG rule matches, permission is denied.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is
-  granted.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if no rule applies, permission is denied.
 * @property {integer} version Version of the `Policy`. The default version is 0.
 * @property {sourcerepo(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
 * @property {sourcerepo(v1).Binding[]} bindings Associates a list of `members` to a `role`.
@@ -479,24 +483,20 @@ ensure that their change will be applied to the same version of the policy.
 
 If no `etag` is provided in the call to `setIamPolicy`, then the existing
 policy is overwritten blindly.
+* @property {boolean} iamOwned 
+* @property {sourcerepo(v1).Rule[]} rules If more than one rule is specified, the rules are applied in the following
+manner:
+- All matching LOG rules are always applied.
+- If any DENY/DENY_WITH_LOG rule matches, permission is denied.
+  Logging will be applied if one or more matching rule requires logging.
+- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is
+  granted.
+  Logging will be applied if one or more matching rule requires logging.
+- Otherwise, if no rule applies, permission is denied.
 */
 /**
  * @typedef DataAccessOptions
  * @memberOf! sourcerepo(v1)
  * @type object
  */
-/**
- * @typedef AuditConfig
- * @memberOf! sourcerepo(v1)
- * @type object
-* @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit
-logging for the `service` specified above.
-Follows the same format of Binding.members.
-This field is deprecated in favor of per-permission-type exemptions.
-* @property {string} service Specifies a service that will be enabled for audit logging.
-For example, `resourcemanager`, `storage`, `compute`.
-`allServices` is a special value that covers all services.
-* @property {sourcerepo(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
-Next ID: 4
-*/
 module.exports = Sourcerepo;
