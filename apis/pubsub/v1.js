@@ -46,452 +46,6 @@ function Pubsub(options) { // eslint-disable-line
     subscriptions: {
 
       /**
-       * pubsub.projects.subscriptions.acknowledge
-       *
-       * @desc Acknowledges the messages associated with the `ack_ids` in the `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages from the subscription.  Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
-       *
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud Pub/Sub API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //    https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var pubsub = google.pubsub('v1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // The subscription whose message is being acknowledged.
-       *     // Format is `projects/{project}/subscriptions/{sub}`.
-       *     subscription: '',  // TODO: Update placeholder value.
-       *
-       *     resource: {
-       *       // TODO: Add desired properties to the request body.
-       *     },
-       *
-       *     auth: authClient
-       *   };
-       *
-       *   pubsub.projects.subscriptions.acknowledge(request, function(err) {
-       *     if (err) {
-       *       console.log(err);
-       *       return;
-       *     }
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
-       *     if (err) {
-       *       console.log('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *       authClient = authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       *
-       * @alias pubsub.projects.subscriptions.acknowledge
-       * @memberOf! pubsub(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.subscription The subscription whose message is being acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
-       * @param {pubsub(v1).AcknowledgeRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      acknowledge: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1/{subscription}:acknowledge',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['subscription'],
-          pathParams: ['subscription'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * pubsub.projects.subscriptions.modifyAckDeadline
-       *
-       * @desc Modifies the ack deadline for a specific message. This method is useful to indicate that more time is needed to process a message by the subscriber, or to make the message available for redelivery if the processing was interrupted. Note that this does not modify the subscription-level `ackDeadlineSeconds` used for subsequent messages.
-       *
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud Pub/Sub API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //    https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var pubsub = google.pubsub('v1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // The name of the subscription.
-       *     // Format is `projects/{project}/subscriptions/{sub}`.
-       *     subscription: '',  // TODO: Update placeholder value.
-       *
-       *     resource: {
-       *       // TODO: Add desired properties to the request body.
-       *     },
-       *
-       *     auth: authClient
-       *   };
-       *
-       *   pubsub.projects.subscriptions.modifyAckDeadline(request, function(err) {
-       *     if (err) {
-       *       console.log(err);
-       *       return;
-       *     }
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
-       *     if (err) {
-       *       console.log('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *       authClient = authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       *
-       * @alias pubsub.projects.subscriptions.modifyAckDeadline
-       * @memberOf! pubsub(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.subscription The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
-       * @param {pubsub(v1).ModifyAckDeadlineRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      modifyAckDeadline: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1/{subscription}:modifyAckDeadline',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['subscription'],
-          pathParams: ['subscription'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * pubsub.projects.subscriptions.getIamPolicy
-       *
-       * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-       *
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud Pub/Sub API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //    https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var pubsub = google.pubsub('v1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // REQUIRED: The resource for which the policy is being requested.
-       *     // `resource` is usually specified as a path. For example, a Project
-       *     // resource is specified as `projects/{project}`.
-       *     resource_: '',  // TODO: Update placeholder value.
-       *
-       *     auth: authClient
-       *   };
-       *
-       *   pubsub.projects.subscriptions.getIamPolicy(request, function(err, response) {
-       *     if (err) {
-       *       console.log(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
-       *     if (err) {
-       *       console.log('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *       authClient = authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       *
-       * @alias pubsub.projects.subscriptions.getIamPolicy
-       * @memberOf! pubsub(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      getIamPolicy: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1/{resource}:getIamPolicy',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * pubsub.projects.subscriptions.get
-       *
-       * @desc Gets the configuration details of a subscription.
-       *
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud Pub/Sub API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //    https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var pubsub = google.pubsub('v1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // The name of the subscription to get.
-       *     // Format is `projects/{project}/subscriptions/{sub}`.
-       *     subscription: '',  // TODO: Update placeholder value.
-       *
-       *     auth: authClient
-       *   };
-       *
-       *   pubsub.projects.subscriptions.get(request, function(err, response) {
-       *     if (err) {
-       *       console.log(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
-       *     if (err) {
-       *       console.log('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *       authClient = authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       *
-       * @alias pubsub.projects.subscriptions.get
-       * @memberOf! pubsub(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.subscription The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1/{subscription}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['subscription'],
-          pathParams: ['subscription'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * pubsub.projects.subscriptions.testIamPermissions
-       *
-       * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
-       *
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud Pub/Sub API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //    https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var pubsub = google.pubsub('v1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // REQUIRED: The resource for which the policy detail is being requested.
-       *     // `resource` is usually specified as a path. For example, a Project
-       *     // resource is specified as `projects/{project}`.
-       *     resource_: '',  // TODO: Update placeholder value.
-       *
-       *     resource: {
-       *       // TODO: Add desired properties to the request body.
-       *     },
-       *
-       *     auth: authClient
-       *   };
-       *
-       *   pubsub.projects.subscriptions.testIamPermissions(request, function(err, response) {
-       *     if (err) {
-       *       console.log(err);
-       *       return;
-       *     }
-       *
-       *     // TODO: Change code below to process the `response` object:
-       *     console.log(JSON.stringify(response, null, 2));
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
-       *     if (err) {
-       *       console.log('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *       authClient = authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       *
-       * @alias pubsub.projects.subscriptions.testIamPermissions
-       * @memberOf! pubsub(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
-       * @param {pubsub(v1).TestIamPermissionsRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      testIamPermissions: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1/{resource}:testIamPermissions',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * pubsub.projects.subscriptions.modifyPushConfig
        *
        * @desc Modifies the `PushConfig` for a specified subscription.  This may be used to change a push subscription to a pull one (signified by an empty `PushConfig`) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the `PushConfig`.
@@ -1046,6 +600,452 @@ function Pubsub(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.getIamPolicy
+       *
+       * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Pub/Sub API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/pubsub
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // REQUIRED: The resource for which the policy is being requested.
+       *     // `resource` is usually specified as a path. For example, a Project
+       *     // resource is specified as `projects/{project}`.
+       *     resource_: '',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   pubsub.projects.subscriptions.getIamPolicy(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *     if (err) {
+       *       console.log('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       *
+       * @alias pubsub.projects.subscriptions.getIamPolicy
+       * @memberOf! pubsub(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      getIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1/{resource}:getIamPolicy',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['resource'],
+          pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.acknowledge
+       *
+       * @desc Acknowledges the messages associated with the `ack_ids` in the `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages from the subscription.  Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Pub/Sub API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/pubsub
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // The subscription whose message is being acknowledged.
+       *     // Format is `projects/{project}/subscriptions/{sub}`.
+       *     subscription: '',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body.
+       *     },
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   pubsub.projects.subscriptions.acknowledge(request, function(err) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *     if (err) {
+       *       console.log('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       *
+       * @alias pubsub.projects.subscriptions.acknowledge
+       * @memberOf! pubsub(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.subscription The subscription whose message is being acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
+       * @param {pubsub(v1).AcknowledgeRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      acknowledge: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1/{subscription}:acknowledge',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['subscription'],
+          pathParams: ['subscription'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.modifyAckDeadline
+       *
+       * @desc Modifies the ack deadline for a specific message. This method is useful to indicate that more time is needed to process a message by the subscriber, or to make the message available for redelivery if the processing was interrupted. Note that this does not modify the subscription-level `ackDeadlineSeconds` used for subsequent messages.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Pub/Sub API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/pubsub
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // The name of the subscription.
+       *     // Format is `projects/{project}/subscriptions/{sub}`.
+       *     subscription: '',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body.
+       *     },
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   pubsub.projects.subscriptions.modifyAckDeadline(request, function(err) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *     if (err) {
+       *       console.log('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       *
+       * @alias pubsub.projects.subscriptions.modifyAckDeadline
+       * @memberOf! pubsub(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.subscription The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
+       * @param {pubsub(v1).ModifyAckDeadlineRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      modifyAckDeadline: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1/{subscription}:modifyAckDeadline',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['subscription'],
+          pathParams: ['subscription'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.get
+       *
+       * @desc Gets the configuration details of a subscription.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Pub/Sub API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/pubsub
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // The name of the subscription to get.
+       *     // Format is `projects/{project}/subscriptions/{sub}`.
+       *     subscription: '',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   pubsub.projects.subscriptions.get(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *     if (err) {
+       *       console.log('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       *
+       * @alias pubsub.projects.subscriptions.get
+       * @memberOf! pubsub(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.subscription The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1/{subscription}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['subscription'],
+          pathParams: ['subscription'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.testIamPermissions
+       *
+       * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Pub/Sub API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/pubsub
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // REQUIRED: The resource for which the policy detail is being requested.
+       *     // `resource` is usually specified as a path. For example, a Project
+       *     // resource is specified as `projects/{project}`.
+       *     resource_: '',  // TODO: Update placeholder value.
+       *
+       *     resource: {
+       *       // TODO: Add desired properties to the request body.
+       *     },
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   pubsub.projects.subscriptions.testIamPermissions(request, function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     // TODO: Change code below to process the `response` object:
+       *     console.log(JSON.stringify(response, null, 2));
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *     if (err) {
+       *       console.log('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       *
+       * @alias pubsub.projects.subscriptions.testIamPermissions
+       * @memberOf! pubsub(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. `resource` is usually specified as a path. For example, a Project resource is specified as `projects/{project}`.
+       * @param {pubsub(v1).TestIamPermissionsRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      testIamPermissions: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1/{resource}:testIamPermissions',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['resource'],
+          pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     },
 
@@ -1235,7 +1235,7 @@ function Pubsub(options) { // eslint-disable-line
       /**
        * pubsub.projects.snapshots.testIamPermissions
        *
-       * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
+       * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
        *
        * @example
        * // BEFORE RUNNING:
@@ -1327,192 +1327,6 @@ function Pubsub(options) { // eslint-disable-line
     },
 
     topics: {
-
-      /**
-       * pubsub.projects.topics.delete
-       *
-       * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
-       *
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud Pub/Sub API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //    https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var pubsub = google.pubsub('v1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // Name of the topic to delete.
-       *     // Format is `projects/{project}/topics/{topic}`.
-       *     topic: '',  // TODO: Update placeholder value.
-       *
-       *     auth: authClient
-       *   };
-       *
-       *   pubsub.projects.topics.delete(request, function(err) {
-       *     if (err) {
-       *       console.log(err);
-       *       return;
-       *     }
-       *   });
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
-       *     if (err) {
-       *       console.log('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *       authClient = authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       *
-       * @alias pubsub.projects.topics.delete
-       * @memberOf! pubsub(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.topic Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1/{topic}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['topic'],
-          pathParams: ['topic'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * pubsub.projects.topics.list
-       *
-       * @desc Lists matching topics.
-       *
-       * @example
-       * // BEFORE RUNNING:
-       * // ---------------
-       * // 1. If not already done, enable the Google Cloud Pub/Sub API
-       * //    and check the quota for your project at
-       * //    https://console.developers.google.com/apis/api/pubsub
-       * // 2. This sample uses Application Default Credentials for authentication.
-       * //    If not already done, install the gcloud CLI from
-       * //    https://cloud.google.com/sdk and run
-       * //    `gcloud beta auth application-default login`.
-       * //    For more information, see
-       * //    https://developers.google.com/identity/protocols/application-default-credentials
-       * // 3. Install the Node.js client library by running
-       * //    `npm install googleapis --save`
-       *
-       * var google = require('googleapis');
-       * var pubsub = google.pubsub('v1');
-       *
-       * authorize(function(authClient) {
-       *   var request = {
-       *     // The name of the cloud project that topics belong to.
-       *     // Format is `projects/{project}`.
-       *     project: '',  // TODO: Update placeholder value.
-       *
-       *     auth: authClient
-       *   };
-       *
-       *   var handlePage = function(err, response) {
-       *     if (err) {
-       *       console.log(err);
-       *       return;
-       *     }
-       *
-       *     var topicsPage = response['topics'];
-       *     if (!topicsPage) {
-       *       return;
-       *     }
-       *     for (var i = 0; i < topicsPage.length; i++) {
-       *       // TODO: Change code below to process each resource in `topicsPage`:
-       *       console.log(JSON.stringify(topicsPage[i], null, 2));
-       *     }
-       *
-       *     if (response.nextPageToken) {
-       *       request.pageToken = response.nextPageToken;
-       *       pubsub.projects.topics.list(request, handlePage);
-       *     }
-       *   };
-       *
-       *   pubsub.projects.topics.list(request, handlePage);
-       * });
-       *
-       * function authorize(callback) {
-       *   google.auth.getApplicationDefault(function(err, authClient)) {
-       *     if (err) {
-       *       console.log('authentication failed: ', err);
-       *       return;
-       *     }
-       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-       *       authClient = authClient.createScoped(scopes);
-       *     }
-       *     callback(authClient);
-       *   });
-       * }
-       *
-       * @alias pubsub.projects.topics.list
-       * @memberOf! pubsub(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.pageToken The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
-       * @param {integer=} params.pageSize Maximum number of topics to return.
-       * @param {string} params.project The name of the cloud project that topics belong to. Format is `projects/{project}`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1/{project}/topics',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['project'],
-          pathParams: ['project'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
 
       /**
        * pubsub.projects.topics.create
@@ -1974,7 +1788,7 @@ function Pubsub(options) { // eslint-disable-line
       /**
        * pubsub.projects.topics.testIamPermissions
        *
-       * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
+       * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
        *
        * @example
        * // BEFORE RUNNING:
@@ -2058,6 +1872,192 @@ function Pubsub(options) { // eslint-disable-line
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.topics.delete
+       *
+       * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Pub/Sub API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/pubsub
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // Name of the topic to delete.
+       *     // Format is `projects/{project}/topics/{topic}`.
+       *     topic: '',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   pubsub.projects.topics.delete(request, function(err) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *   });
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *     if (err) {
+       *       console.log('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       *
+       * @alias pubsub.projects.topics.delete
+       * @memberOf! pubsub(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.topic Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1/{topic}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['topic'],
+          pathParams: ['topic'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.topics.list
+       *
+       * @desc Lists matching topics.
+       *
+       * @example
+       * // BEFORE RUNNING:
+       * // ---------------
+       * // 1. If not already done, enable the Google Cloud Pub/Sub API
+       * //    and check the quota for your project at
+       * //    https://console.developers.google.com/apis/api/pubsub
+       * // 2. This sample uses Application Default Credentials for authentication.
+       * //    If not already done, install the gcloud CLI from
+       * //    https://cloud.google.com/sdk and run
+       * //    `gcloud beta auth application-default login`.
+       * //    For more information, see
+       * //    https://developers.google.com/identity/protocols/application-default-credentials
+       * // 3. Install the Node.js client library by running
+       * //    `npm install googleapis --save`
+       *
+       * var google = require('googleapis');
+       * var pubsub = google.pubsub('v1');
+       *
+       * authorize(function(authClient) {
+       *   var request = {
+       *     // The name of the cloud project that topics belong to.
+       *     // Format is `projects/{project}`.
+       *     project: '',  // TODO: Update placeholder value.
+       *
+       *     auth: authClient
+       *   };
+       *
+       *   var handlePage = function(err, response) {
+       *     if (err) {
+       *       console.log(err);
+       *       return;
+       *     }
+       *
+       *     var topicsPage = response['topics'];
+       *     if (!topicsPage) {
+       *       return;
+       *     }
+       *     for (var i = 0; i < topicsPage.length; i++) {
+       *       // TODO: Change code below to process each resource in `topicsPage`:
+       *       console.log(JSON.stringify(topicsPage[i], null, 2));
+       *     }
+       *
+       *     if (response.nextPageToken) {
+       *       request.pageToken = response.nextPageToken;
+       *       pubsub.projects.topics.list(request, handlePage);
+       *     }
+       *   };
+       *
+       *   pubsub.projects.topics.list(request, handlePage);
+       * });
+       *
+       * function authorize(callback) {
+       *   google.auth.getApplicationDefault(function(err, authClient)) {
+       *     if (err) {
+       *       console.log('authentication failed: ', err);
+       *       return;
+       *     }
+       *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+       *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+       *       authClient = authClient.createScoped(scopes);
+       *     }
+       *     callback(authClient);
+       *   });
+       * }
+       *
+       * @alias pubsub.projects.topics.list
+       * @memberOf! pubsub(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.pageToken The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
+       * @param {integer=} params.pageSize Maximum number of topics to return.
+       * @param {string} params.project The name of the cloud project that topics belong to. Format is `projects/{project}`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1/{project}/topics',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['project'],
+          pathParams: ['project'],
           context: self
         };
 
@@ -2172,6 +2172,103 @@ function Pubsub(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef ListTopicSubscriptionsResponse
+ * @memberOf! pubsub(v1)
+ * @type object
+* @property {string} nextPageToken If not empty, indicates that there may be more subscriptions that match
+the request; this value should be passed in a new
+`ListTopicSubscriptionsRequest` to get more subscriptions.
+* @property {string[]} subscriptions The names of the subscriptions that match the request.
+*/
+/**
+ * @typedef PullResponse
+ * @memberOf! pubsub(v1)
+ * @type object
+* @property {pubsub(v1).ReceivedMessage[]} receivedMessages Received Pub/Sub messages. The Pub/Sub system will return zero messages if
+there are no more available in the backlog. The Pub/Sub system may return
+fewer than the `maxMessages` requested even if there are more messages
+available in the backlog.
+*/
+/**
+ * @typedef ReceivedMessage
+ * @memberOf! pubsub(v1)
+ * @type object
+ * @property {pubsub(v1).PubsubMessage} message The message.
+ * @property {string} ackId This ID can be used to acknowledge the received message.
+ */
+/**
+ * @typedef PushConfig
+ * @memberOf! pubsub(v1)
+ * @type object
+* @property {string} pushEndpoint A URL locating the endpoint to which messages should be pushed.
+For example, a Webhook endpoint might use &quot;https://example.com/push&quot;.
+* @property {object} attributes Endpoint configuration attributes.
+
+Every endpoint has a set of API supported attributes that can be used to
+control different aspects of the message delivery.
+
+The currently supported attribute is `x-goog-version`, which you can
+use to change the format of the push message. This attribute
+indicates the version of the data expected by the endpoint. This
+controls the shape of the envelope (i.e. its fields and metadata).
+The endpoint version is based on the version of the Pub/Sub
+API.
+
+If not present during the `CreateSubscription` call, it will default to
+the version of the API used to make such call. If not present during a
+`ModifyPushConfig` call, its value will not be changed. `GetSubscription`
+calls will always return a valid version, even if the subscription was
+created without this attribute.
+
+The possible values for this attribute are:
+
+* `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API.
+* `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
+*/
+/**
+ * @typedef TestIamPermissionsResponse
+ * @memberOf! pubsub(v1)
+ * @type object
+* @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is
+allowed.
+*/
+/**
+ * @typedef PullRequest
+ * @memberOf! pubsub(v1)
+ * @type object
+* @property {boolean} returnImmediately If this field set to true, the system will respond immediately even if
+it there are no messages available to return in the `Pull` response.
+Otherwise, the system may wait (for a bounded amount of time) until at
+least one message is available, rather than returning no messages. The
+client may cancel the request if it does not wish to wait any longer for
+the response.
+* @property {integer} maxMessages The maximum number of messages returned for this request. The Pub/Sub
+system may return fewer than the number specified.
+*/
+/**
+ * @typedef ListSubscriptionsResponse
+ * @memberOf! pubsub(v1)
+ * @type object
+* @property {string} nextPageToken If not empty, indicates that there may be more subscriptions that match
+the request; this value should be passed in a new
+`ListSubscriptionsRequest` to get more subscriptions.
+* @property {pubsub(v1).Subscription[]} subscriptions The subscriptions that match the request.
+*/
+/**
+ * @typedef PublishRequest
+ * @memberOf! pubsub(v1)
+ * @type object
+ * @property {pubsub(v1).PubsubMessage[]} messages The messages to publish.
+ */
+/**
+ * @typedef PublishResponse
+ * @memberOf! pubsub(v1)
+ * @type object
+* @property {string[]} messageIds The server-assigned ID of each published message, in the same order as
+the messages in the request. IDs are guaranteed to be unique within
+the topic.
+*/
 /**
  * @typedef Subscription
  * @memberOf! pubsub(v1)
@@ -2327,11 +2424,6 @@ For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
 Required
 */
 /**
- * @typedef Empty
- * @memberOf! pubsub(v1)
- * @type object
- */
-/**
  * @typedef ListTopicsResponse
  * @memberOf! pubsub(v1)
  * @type object
@@ -2347,100 +2439,8 @@ request; this value should be passed in a new `ListTopicsRequest`.
 by the Pub/Sub system in the `Pull` response. Must not be empty.
 */
 /**
- * @typedef ListTopicSubscriptionsResponse
+ * @typedef Empty
  * @memberOf! pubsub(v1)
  * @type object
-* @property {string} nextPageToken If not empty, indicates that there may be more subscriptions that match
-the request; this value should be passed in a new
-`ListTopicSubscriptionsRequest` to get more subscriptions.
-* @property {string[]} subscriptions The names of the subscriptions that match the request.
-*/
-/**
- * @typedef PullResponse
- * @memberOf! pubsub(v1)
- * @type object
-* @property {pubsub(v1).ReceivedMessage[]} receivedMessages Received Pub/Sub messages. The Pub/Sub system will return zero messages if
-there are no more available in the backlog. The Pub/Sub system may return
-fewer than the `maxMessages` requested even if there are more messages
-available in the backlog.
-*/
-/**
- * @typedef ReceivedMessage
- * @memberOf! pubsub(v1)
- * @type object
- * @property {pubsub(v1).PubsubMessage} message The message.
- * @property {string} ackId This ID can be used to acknowledge the received message.
  */
-/**
- * @typedef PushConfig
- * @memberOf! pubsub(v1)
- * @type object
-* @property {string} pushEndpoint A URL locating the endpoint to which messages should be pushed.
-For example, a Webhook endpoint might use &quot;https://example.com/push&quot;.
-* @property {object} attributes Endpoint configuration attributes.
-
-Every endpoint has a set of API supported attributes that can be used to
-control different aspects of the message delivery.
-
-The currently supported attribute is `x-goog-version`, which you can
-use to change the format of the push message. This attribute
-indicates the version of the data expected by the endpoint. This
-controls the shape of the envelope (i.e. its fields and metadata).
-The endpoint version is based on the version of the Pub/Sub
-API.
-
-If not present during the `CreateSubscription` call, it will default to
-the version of the API used to make such call. If not present during a
-`ModifyPushConfig` call, its value will not be changed. `GetSubscription`
-calls will always return a valid version, even if the subscription was
-created without this attribute.
-
-The possible values for this attribute are:
-
-* `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API.
-* `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
-*/
-/**
- * @typedef TestIamPermissionsResponse
- * @memberOf! pubsub(v1)
- * @type object
-* @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is
-allowed.
-*/
-/**
- * @typedef PullRequest
- * @memberOf! pubsub(v1)
- * @type object
-* @property {boolean} returnImmediately If this field set to true, the system will respond immediately even if
-it there are no messages available to return in the `Pull` response.
-Otherwise, the system may wait (for a bounded amount of time) until at
-least one message is available, rather than returning no messages. The
-client may cancel the request if it does not wish to wait any longer for
-the response.
-* @property {integer} maxMessages The maximum number of messages returned for this request. The Pub/Sub
-system may return fewer than the number specified.
-*/
-/**
- * @typedef ListSubscriptionsResponse
- * @memberOf! pubsub(v1)
- * @type object
-* @property {string} nextPageToken If not empty, indicates that there may be more subscriptions that match
-the request; this value should be passed in a new
-`ListSubscriptionsRequest` to get more subscriptions.
-* @property {pubsub(v1).Subscription[]} subscriptions The subscriptions that match the request.
-*/
-/**
- * @typedef PublishRequest
- * @memberOf! pubsub(v1)
- * @type object
- * @property {pubsub(v1).PubsubMessage[]} messages The messages to publish.
- */
-/**
- * @typedef PublishResponse
- * @memberOf! pubsub(v1)
- * @type object
-* @property {string[]} messageIds The server-assigned ID of each published message, in the same order as
-the messages in the request. IDs are guaranteed to be unique within
-the topic.
-*/
 module.exports = Pubsub;

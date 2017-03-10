@@ -124,23 +124,18 @@ function Manufacturers(options) { // eslint-disable-line
  * @typedef Issue
  * @memberOf! manufacturers(v1)
  * @type object
-* @property {string} type The server-generated type of the issue, for example,
-“INCORRECT_TEXT_FORMATTING”, “IMAGE_NOT_SERVEABLE”, etc.
 * @property {string} attribute If present, the attribute that triggered the issue. For more information
 about attributes, see
 https://support.google.com/manufacturers/answer/6124116.
 * @property {string} severity The severity of the issue.
 * @property {string} description Description of the issue.
+* @property {string} type The server-generated type of the issue, for example,
+“INCORRECT_TEXT_FORMATTING”, “IMAGE_NOT_SERVEABLE”, etc.
 */
 /**
  * @typedef Product
  * @memberOf! manufacturers(v1)
  * @type object
-* @property {manufacturers(v1).Issue[]} issues A server-generated list of issues associated with the product.
-@OutputOnly
-* @property {string[]} manuallyDeletedAttributes Names of the attributes of the product deleted manually via the
-Manufacturer Center UI.
-@OutputOnly
 * @property {manufacturers(v1).Attributes} finalAttributes Final attributes of the product. The final attributes are obtained by
 overriding the uploaded attributes with the manually provided and deleted
 attributes. Google systems only process, evaluate, review, and/or use final
@@ -157,11 +152,11 @@ feeds.
 @OutputOnly
 * @property {manufacturers(v1).Attributes} manuallyProvidedAttributes Attributes of the product provided manually via the Manufacturer Center UI.
 @OutputOnly
-* @property {string} contentLanguage The content language of the product as a two-letter ISO 639-1 language code
-(for example, en).
-@OutputOnly
 * @property {string} targetCountry The target country of the product as a CLDR territory code (for example,
 US).
+@OutputOnly
+* @property {string} contentLanguage The content language of the product as a two-letter ISO 639-1 language code
+(for example, en).
 @OutputOnly
 * @property {string} name Name in the format `{target_country}:{content_language}:{product_id}`.
 
@@ -174,17 +169,16 @@ US).
 `product_id`     -   The ID of the product. For more information, see
                      https://support.google.com/manufacturers/answer/6124116#id.
 @OutputOnly
+* @property {string[]} manuallyDeletedAttributes Names of the attributes of the product deleted manually via the
+Manufacturer Center UI.
+@OutputOnly
+* @property {manufacturers(v1).Issue[]} issues A server-generated list of issues associated with the product.
+@OutputOnly
 */
 /**
  * @typedef Attributes
  * @memberOf! manufacturers(v1)
  * @type object
-* @property {string} brand The brand name of the product. For more information, see
-https://support.google.com/manufacturers/answer/6124116#brand.
-* @property {string} productName The canonical name of the product. For more information, see
-https://support.google.com/manufacturers/answer/6124116#productname.
-* @property {string[]} productType The manufacturer&#39;s category of the product. For more information, see
-https://support.google.com/manufacturers/answer/6124116#producttype.
 * @property {string} productPageUrl The URL of the manufacturer&#39;s detail page of the product. For more
 information, see
 https://support.google.com/manufacturers/answer/6124116#productpage.
@@ -197,6 +191,12 @@ https://support.google.com/manufacturers/answer/6124116#title.
 * @property {string} productLine The name of the group of products related to the product. For more
 information, see
 https://support.google.com/manufacturers/answer/6124116#productline.
+* @property {string} brand The brand name of the product. For more information, see
+https://support.google.com/manufacturers/answer/6124116#brand.
+* @property {string} productName The canonical name of the product. For more information, see
+https://support.google.com/manufacturers/answer/6124116#productname.
+* @property {string[]} productType The manufacturer&#39;s category of the product. For more information, see
+https://support.google.com/manufacturers/answer/6124116#producttype.
 */
 /**
  * @typedef ListProductsResponse

@@ -186,99 +186,6 @@ function Language(options) { // eslint-disable-line
 }
 
 /**
- * @typedef Token
- * @memberOf! language(v1beta1)
- * @type object
- * @property {language(v1beta1).TextSpan} text The token text.
- * @property {language(v1beta1).DependencyEdge} dependencyEdge Dependency tree parse for this token.
- * @property {string} lemma [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
- * @property {language(v1beta1).PartOfSpeech} partOfSpeech Parts of speech tag for this token.
- */
-/**
- * @typedef TextSpan
- * @memberOf! language(v1beta1)
- * @type object
-* @property {integer} beginOffset The API calculates the beginning offset of the content in the original
-document according to the EncodingType specified in the API request.
-* @property {string} content The content of the output text.
-*/
-/**
- * @typedef Status
- * @memberOf! language(v1beta1)
- * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-*/
-/**
- * @typedef Features
- * @memberOf! language(v1beta1)
- * @type object
- * @property {boolean} extractEntities Extract entities.
- * @property {boolean} extractSyntax Extract syntax information.
- * @property {boolean} extractDocumentSentiment Extract document-level sentiment.
- */
-/**
- * @typedef EntityMention
- * @memberOf! language(v1beta1)
- * @type object
- * @property {language(v1beta1).TextSpan} text The mention text.
- * @property {string} type The type of the entity mention.
- */
-/**
- * @typedef Document
- * @memberOf! language(v1beta1)
- * @type object
-* @property {string} language The language of the document (if not specified, the language is
-automatically detected). Both ISO and BCP-47 language codes are
-accepted.&lt;br&gt;
-**Current Language Restrictions:**
-
- * Only English, Spanish, and Japanese textual content are supported.
-If the language (either specified by the caller or automatically detected)
-is not supported by the called API method, an `INVALID_ARGUMENT` error
-is returned.
-* @property {string} type Required. If the type is not set or is `TYPE_UNSPECIFIED`,
-returns an `INVALID_ARGUMENT` error.
-* @property {string} content The content of the input in string format.
-* @property {string} gcsContentUri The Google Cloud Storage URI where the file content is located.
-This URI must be of the form: gs://bucket_name/object_name. For more
-details, see https://cloud.google.com/storage/docs/reference-uris.
-NOTE: Cloud Storage object versioning is not supported.
-*/
-/**
- * @typedef Sentence
- * @memberOf! language(v1beta1)
- * @type object
-* @property {language(v1beta1).TextSpan} text The sentence text.
-* @property {language(v1beta1).Sentiment} sentiment For calls to AnalyzeSentiment or if
-AnnotateTextRequest.Features.extract_document_sentiment is set to
-true, this field will contain the sentiment for the sentence.
-*/
-/**
- * @typedef AnalyzeEntitiesRequest
- * @memberOf! language(v1beta1)
- * @type object
- * @property {string} encodingType The encoding type used by the API to calculate offsets.
- * @property {language(v1beta1).Document} document Input document.
- */
-/**
- * @typedef Sentiment
- * @memberOf! language(v1beta1)
- * @type object
-* @property {number} polarity DEPRECATED FIELD - This field is being deprecated in
-favor of score. Please refer to our documentation at
-https://cloud.google.com/natural-language/docs for more information.
-* @property {number} score Sentiment score between -1.0 (negative sentiment) and 1.0
-(positive sentiment).
-* @property {number} magnitude A non-negative number in the [0, +inf) range, which represents
-the absolute magnitude of sentiment regardless of score (positive or
-negative).
-*/
-/**
  * @typedef PartOfSpeech
  * @memberOf! language(v1beta1)
  * @type object
@@ -299,8 +206,8 @@ negative).
  * @typedef AnalyzeSyntaxRequest
  * @memberOf! language(v1beta1)
  * @type object
- * @property {string} encodingType The encoding type used by the API to calculate offsets.
  * @property {language(v1beta1).Document} document Input document.
+ * @property {string} encodingType The encoding type used by the API to calculate offsets.
  */
 /**
  * @typedef AnalyzeSentimentResponse
@@ -315,7 +222,17 @@ in the request or, if not specified, the automatically-detected language.
  * @typedef AnalyzeEntitiesResponse
  * @memberOf! language(v1beta1)
  * @type object
+* @property {string} language The language of the text, which will be the same as the language specified
+in the request or, if not specified, the automatically-detected language.
+See Document.language field for more details.
 * @property {language(v1beta1).Entity[]} entities The recognized entities in the input document.
+*/
+/**
+ * @typedef AnalyzeSyntaxResponse
+ * @memberOf! language(v1beta1)
+ * @type object
+* @property {language(v1beta1).Sentence[]} sentences Sentences in the input document.
+* @property {language(v1beta1).Token[]} tokens Tokens, along with their syntactic information, in the input document.
 * @property {string} language The language of the text, which will be the same as the language specified
 in the request or, if not specified, the automatically-detected language.
 See Document.language field for more details.
@@ -324,9 +241,6 @@ See Document.language field for more details.
  * @typedef Entity
  * @memberOf! language(v1beta1)
  * @type object
-* @property {language(v1beta1).EntityMention[]} mentions The mentions of this entity in the input document. The API currently
-supports proper noun mentions.
-* @property {string} name The representative name for the entity.
 * @property {string} type The entity type.
 * @property {object} metadata Metadata associated with the entity.
 
@@ -338,16 +252,9 @@ The salience score for an entity provides information about the
 importance or centrality of that entity to the entire document text.
 Scores closer to 0 are less salient, while scores closer to 1.0 are highly
 salient.
-*/
-/**
- * @typedef AnalyzeSyntaxResponse
- * @memberOf! language(v1beta1)
- * @type object
-* @property {string} language The language of the text, which will be the same as the language specified
-in the request or, if not specified, the automatically-detected language.
-See Document.language field for more details.
-* @property {language(v1beta1).Sentence[]} sentences Sentences in the input document.
-* @property {language(v1beta1).Token[]} tokens Tokens, along with their syntactic information, in the input document.
+* @property {language(v1beta1).EntityMention[]} mentions The mentions of this entity in the input document. The API currently
+supports proper noun mentions.
+* @property {string} name The representative name for the entity.
 */
 /**
  * @typedef AnnotateTextRequest
@@ -361,10 +268,10 @@ See Document.language field for more details.
  * @typedef AnalyzeSentimentRequest
  * @memberOf! language(v1beta1)
  * @type object
-* @property {string} encodingType The encoding type used by the API to calculate sentence offsets for the
-sentence sentiment.
 * @property {language(v1beta1).Document} document Input document. Currently, `analyzeSentiment` only supports English text
 (Document.language=&quot;EN&quot;).
+* @property {string} encodingType The encoding type used by the API to calculate sentence offsets for the
+sentence sentiment.
 */
 /**
  * @typedef AnnotateTextResponse
@@ -388,11 +295,104 @@ See Document.language field for more details.
  * @typedef DependencyEdge
  * @memberOf! language(v1beta1)
  * @type object
-* @property {string} label The parse label for the token.
 * @property {integer} headTokenIndex Represents the head of this token in the dependency tree.
 This is the index of the token which has an arc going to this token.
 The index is the position of the token in the array of tokens returned
 by the API method. If this token is a root token, then the
 `head_token_index` is its own index.
+* @property {string} label The parse label for the token.
 */
+/**
+ * @typedef Token
+ * @memberOf! language(v1beta1)
+ * @type object
+ * @property {language(v1beta1).TextSpan} text The token text.
+ * @property {language(v1beta1).DependencyEdge} dependencyEdge Dependency tree parse for this token.
+ * @property {string} lemma [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
+ * @property {language(v1beta1).PartOfSpeech} partOfSpeech Parts of speech tag for this token.
+ */
+/**
+ * @typedef TextSpan
+ * @memberOf! language(v1beta1)
+ * @type object
+* @property {integer} beginOffset The API calculates the beginning offset of the content in the original
+document according to the EncodingType specified in the API request.
+* @property {string} content The content of the output text.
+*/
+/**
+ * @typedef Status
+ * @memberOf! language(v1beta1)
+ * @type object
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+*/
+/**
+ * @typedef EntityMention
+ * @memberOf! language(v1beta1)
+ * @type object
+ * @property {language(v1beta1).TextSpan} text The mention text.
+ * @property {string} type The type of the entity mention.
+ */
+/**
+ * @typedef Features
+ * @memberOf! language(v1beta1)
+ * @type object
+ * @property {boolean} extractEntities Extract entities.
+ * @property {boolean} extractSyntax Extract syntax information.
+ * @property {boolean} extractDocumentSentiment Extract document-level sentiment.
+ */
+/**
+ * @typedef Sentence
+ * @memberOf! language(v1beta1)
+ * @type object
+* @property {language(v1beta1).TextSpan} text The sentence text.
+* @property {language(v1beta1).Sentiment} sentiment For calls to AnalyzeSentiment or if
+AnnotateTextRequest.Features.extract_document_sentiment is set to
+true, this field will contain the sentiment for the sentence.
+*/
+/**
+ * @typedef Document
+ * @memberOf! language(v1beta1)
+ * @type object
+* @property {string} language The language of the document (if not specified, the language is
+automatically detected). Both ISO and BCP-47 language codes are
+accepted.&lt;br&gt;
+**Current Language Restrictions:**
+
+ * Only English, Spanish, and Japanese textual content are supported.
+If the language (either specified by the caller or automatically detected)
+is not supported by the called API method, an `INVALID_ARGUMENT` error
+is returned.
+* @property {string} type Required. If the type is not set or is `TYPE_UNSPECIFIED`,
+returns an `INVALID_ARGUMENT` error.
+* @property {string} content The content of the input in string format.
+* @property {string} gcsContentUri The Google Cloud Storage URI where the file content is located.
+This URI must be of the form: gs://bucket_name/object_name. For more
+details, see https://cloud.google.com/storage/docs/reference-uris.
+NOTE: Cloud Storage object versioning is not supported.
+*/
+/**
+ * @typedef Sentiment
+ * @memberOf! language(v1beta1)
+ * @type object
+* @property {number} polarity DEPRECATED FIELD - This field is being deprecated in
+favor of score. Please refer to our documentation at
+https://cloud.google.com/natural-language/docs for more information.
+* @property {number} score Sentiment score between -1.0 (negative sentiment) and 1.0
+(positive sentiment).
+* @property {number} magnitude A non-negative number in the [0, +inf) range, which represents
+the absolute magnitude of sentiment regardless of score (positive or
+negative).
+*/
+/**
+ * @typedef AnalyzeEntitiesRequest
+ * @memberOf! language(v1beta1)
+ * @type object
+ * @property {string} encodingType The encoding type used by the API to calculate offsets.
+ * @property {language(v1beta1).Document} document Input document.
+ */
 module.exports = Language;

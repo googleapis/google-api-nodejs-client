@@ -43,6 +43,41 @@ function Speech(options) { // eslint-disable-line
   self.operations = {
 
     /**
+     * speech.operations.delete
+     *
+     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     *
+     * @alias speech.operations.delete
+     * @memberOf! speech(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be deleted.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://speech.googleapis.com/v1beta1/operations/{name}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * speech.operations.list
      *
      * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
@@ -51,10 +86,10 @@ function Speech(options) { // eslint-disable-line
      * @memberOf! speech(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
      * @param {string=} params.name The name of the operation collection.
      * @param {string=} params.pageToken The standard list page token.
      * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.filter The standard list filter.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -148,41 +183,6 @@ function Speech(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * speech.operations.delete
-     *
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     *
-     * @alias speech.operations.delete
-     * @memberOf! speech(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://speech.googleapis.com/v1beta1/operations/{name}',
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -263,17 +263,18 @@ function Speech(options) { // eslint-disable-line
 }
 
 /**
- * @typedef Empty
+ * @typedef SpeechRecognitionAlternative
  * @memberOf! speech(v1beta1)
  * @type object
- */
-/**
- * @typedef ListOperationsResponse
- * @memberOf! speech(v1beta1)
- * @type object
- * @property {speech(v1beta1).Operation[]} operations A list of operations that matches the specified filter in the request.
- * @property {string} nextPageToken The standard List next-page token.
- */
+* @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
+* @property {number} confidence *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
+indicates an estimated greater likelihood that the recognized words are
+correct. This field is typically provided only for the top hypothesis, and
+only for `is_final=true` results. Clients should not rely on the
+`confidence` field as it is not guaranteed to be accurate, or even set, in
+any of the results.
+The default of 0.0 is a sentinel value indicating `confidence` was not set.
+*/
 /**
  * @typedef SpeechContext
  * @memberOf! speech(v1beta1)
@@ -286,18 +287,12 @@ to add additional words to the vocabulary of the recognizer. See
 [usage limits](https://cloud.google.com/speech/limits#content).
 */
 /**
- * @typedef SpeechRecognitionAlternative
+ * @typedef ListOperationsResponse
  * @memberOf! speech(v1beta1)
  * @type object
-* @property {number} confidence *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
-indicates an estimated greater likelihood that the recognized words are
-correct. This field is typically provided only for the top hypothesis, and
-only for `is_final=true` results. Clients should not rely on the
-`confidence` field as it is not guaranteed to be accurate, or even set, in
-any of the results.
-The default of 0.0 is a sentinel value indicating `confidence` was not set.
-* @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
-*/
+ * @property {speech(v1beta1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ * @property {string} nextPageToken The standard List next-page token.
+ */
 /**
  * @typedef SpeechRecognitionResult
  * @memberOf! speech(v1beta1)
@@ -331,11 +326,6 @@ google.rpc.Code.INVALID_ARGUMENT). For more information, see
  * @typedef Operation
  * @memberOf! speech(v1beta1)
  * @type object
-* @property {speech(v1beta1).Status} error The error result of the operation in case of failure or cancellation.
-* @property {object} metadata Service-specific metadata associated with the operation.  It typically
-contains progress information and common metadata such as create time.
-Some services might not provide such metadata.  Any method that returns a
-long-running operation should document the metadata type, if any.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
@@ -350,11 +340,22 @@ is `TakeSnapshot()`, the inferred response type is
 * @property {string} name The server-assigned name, which is only unique within the same service that
 originally returns it. If you use the default HTTP mapping, the
 `name` should have the format of `operations/some/unique/name`.
+* @property {speech(v1beta1).Status} error The error result of the operation in case of failure or cancellation.
+* @property {object} metadata Service-specific metadata associated with the operation.  It typically
+contains progress information and common metadata such as create time.
+Some services might not provide such metadata.  Any method that returns a
+long-running operation should document the metadata type, if any.
 */
 /**
  * @typedef RecognitionConfig
  * @memberOf! speech(v1beta1)
  * @type object
+* @property {integer} maxAlternatives *Optional* Maximum number of recognition hypotheses to be returned.
+Specifically, the maximum number of `SpeechRecognitionAlternative` messages
+within each `SpeechRecognitionResult`.
+The server may return fewer than `max_alternatives`.
+Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
+one. If omitted, will return a maximum of one.
 * @property {integer} sampleRate *Required* Sample rate in Hertz of the audio data sent in all
 `RecognitionAudio` messages. Valid values are: 8000-48000.
 16000 is optimal. For best results, set the sampling rate of the audio
@@ -365,18 +366,12 @@ Example: &quot;en-GB&quot;  https://www.rfc-editor.org/rfc/bcp/bcp47.txt
 If omitted, defaults to &quot;en-US&quot;. See
 [Language Support](https://cloud.google.com/speech/docs/languages)
 for a list of the currently supported language codes.
+* @property {speech(v1beta1).SpeechContext} speechContext *Optional* A means to provide context to assist the speech recognition.
 * @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
 * @property {boolean} profanityFilter *Optional* If set to `true`, the server will attempt to filter out
 profanities, replacing all but the initial character in each filtered word
 with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities
 won&#39;t be filtered out.
-* @property {speech(v1beta1).SpeechContext} speechContext *Optional* A means to provide context to assist the speech recognition.
-* @property {integer} maxAlternatives *Optional* Maximum number of recognition hypotheses to be returned.
-Specifically, the maximum number of `SpeechRecognitionAlternative` messages
-within each `SpeechRecognitionResult`.
-The server may return fewer than `max_alternatives`.
-Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
-one. If omitted, will return a maximum of one.
 */
 /**
  * @typedef SyncRecognizeRequest
@@ -397,11 +392,16 @@ sequential portions of audio.
  * @typedef Status
  * @memberOf! speech(v1beta1)
  * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
 * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
 */
+/**
+ * @typedef Empty
+ * @memberOf! speech(v1beta1)
+ * @type object
+ */
 module.exports = Speech;

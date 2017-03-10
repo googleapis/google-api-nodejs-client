@@ -40,6 +40,342 @@ function Logging(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
 
+  self.organizations = {
+
+    logs: {
+
+      /**
+       * logging.organizations.logs.list
+       *
+       * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+       *
+       * @alias logging.organizations.logs.list
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+       * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" 
+       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{parent}/logs',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.organizations.logs.delete
+       *
+       * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.
+       *
+       * @alias logging.organizations.logs.delete
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{logName}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['logName'],
+          pathParams: ['logName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    sinks: {
+
+      /**
+       * logging.organizations.sinks.delete
+       *
+       * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
+       *
+       * @alias logging.organizations.sinks.delete
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.organizations.sinks.list
+       *
+       * @desc Lists sinks.
+       *
+       * @alias logging.organizations.sinks.list
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+       * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" 
+       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{parent}/sinks',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.organizations.sinks.get
+       *
+       * @desc Gets a sink.
+       *
+       * @alias logging.organizations.sinks.get
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.organizations.sinks.update
+       *
+       * @desc Updates a sink. If the named sink doesn't exist, then this method is identical to sinks.create. If the named sink does exist, then this method replaces the following fields in the existing sink with values from the new sink: destination, filter, output_version_format, start_time, and end_time. The updated filter might also have a new writer_identity; see the unique_writer_identity field.
+       *
+       * @alias logging.organizations.sinks.update
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
+       * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is false.
+       * @param {logging(v2).LogSink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'PUT'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.organizations.sinks.create
+       *
+       * @desc Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the current time is outside the sink's start and end times or the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.
+       *
+       * @alias logging.organizations.sinks.create
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Stackdriver Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+       * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
+       * @param {logging(v2).LogSink} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{parent}/sinks',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
+  };
+
+  self.entries = {
+
+    /**
+     * logging.entries.list
+     *
+     * @desc Lists log entries. Use this method to retrieve log entries from Stackdriver Logging. For ways to export log entries, see Exporting Logs.
+     *
+     * @alias logging.entries.list
+     * @memberOf! logging(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {logging(v2).ListLogEntriesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://logging.googleapis.com/v2/entries:list',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * logging.entries.write
+     *
+     * @desc Writes log entries to Stackdriver Logging.
+     *
+     * @alias logging.entries.write
+     * @memberOf! logging(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {logging(v2).WriteLogEntriesRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    write: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://logging.googleapis.com/v2/entries:write',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.projects = {
 
     logs: {
@@ -88,9 +424,9 @@ function Logging(options) { // eslint-disable-line
        * @memberOf! logging(v2)
        *
        * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
        * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" 
        * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -120,6 +456,78 @@ function Logging(options) { // eslint-disable-line
     sinks: {
 
       /**
+       * logging.projects.sinks.list
+       *
+       * @desc Lists sinks.
+       *
+       * @alias logging.projects.sinks.list
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+       * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" 
+       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{parent}/sinks',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.projects.sinks.get
+       *
+       * @desc Gets a sink.
+       *
+       * @alias logging.projects.sinks.get
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * logging.projects.sinks.update
        *
        * @desc Updates a sink. If the named sink doesn't exist, then this method is identical to sinks.create. If the named sink does exist, then this method replaces the following fields in the existing sink with values from the new sink: destination, filter, output_version_format, start_time, and end_time. The updated filter might also have a new writer_identity; see the unique_writer_identity field.
@@ -129,7 +537,7 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-       * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value was false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value was true and the new value is false.
+       * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is false.
        * @param {logging(v2).LogSink} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -166,7 +574,7 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-       * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is cloud-logs@system.gserviceaccount.com, the same identity used before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Stackdriver Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
        * @param {logging(v2).LogSink} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -226,20 +634,23 @@ function Logging(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
-      },
+      }
+    },
+
+    metrics: {
 
       /**
-       * logging.projects.sinks.list
+       * logging.projects.metrics.list
        *
-       * @desc Lists sinks.
+       * @desc Lists logs-based metrics.
        *
-       * @alias logging.projects.sinks.list
+       * @alias logging.projects.metrics.list
        * @memberOf! logging(v2)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" 
-       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
        * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+       * @param {string} params.parent Required. The name of the project containing the metrics: "projects/[PROJECT_ID]" 
+       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -253,7 +664,7 @@ function Logging(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{parent}/sinks',
+            url: 'https://logging.googleapis.com/v2/{parent}/metrics',
             method: 'GET'
           }, options),
           params: params,
@@ -266,15 +677,15 @@ function Logging(options) { // eslint-disable-line
       },
 
       /**
-       * logging.projects.sinks.get
+       * logging.projects.metrics.get
        *
-       * @desc Gets a sink.
+       * @desc Gets a logs-based metric.
        *
-       * @alias logging.projects.sinks.get
+       * @alias logging.projects.metrics.get
        * @memberOf! logging(v2)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.sinkName Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
+       * @param {string} params.metricName The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" 
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -288,20 +699,17 @@ function Logging(options) { // eslint-disable-line
 
         var parameters = {
           options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            url: 'https://logging.googleapis.com/v2/{metricName}',
             method: 'GET'
           }, options),
           params: params,
-          requiredParams: ['sinkName'],
-          pathParams: ['sinkName'],
+          requiredParams: ['metricName'],
+          pathParams: ['metricName'],
           context: self
         };
 
         return createAPIRequest(parameters, callback);
-      }
-    },
-
-    metrics: {
+      },
 
       /**
        * logging.projects.metrics.update
@@ -408,78 +816,6 @@ function Logging(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * logging.projects.metrics.list
-       *
-       * @desc Lists logs-based metrics.
-       *
-       * @alias logging.projects.metrics.list
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent Required. The name of the project containing the metrics: "projects/[PROJECT_ID]" 
-       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{parent}/metrics',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * logging.projects.metrics.get
-       *
-       * @desc Gets a logs-based metric.
-       *
-       * @alias logging.projects.metrics.get
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.metricName The resource name of the desired metric: "projects/[PROJECT_ID]/metrics/[METRIC_ID]" 
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{metricName}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['metricName'],
-          pathParams: ['metricName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
       }
     }
   };
@@ -532,9 +868,9 @@ function Logging(options) { // eslint-disable-line
        * @memberOf! logging(v2)
        *
        * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
        * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" 
        * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -564,41 +900,6 @@ function Logging(options) { // eslint-disable-line
     sinks: {
 
       /**
-       * logging.billingAccounts.sinks.delete
-       *
-       * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
-       *
-       * @alias logging.billingAccounts.sinks.delete
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.sinkName Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{sinkName}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['sinkName'],
-          pathParams: ['sinkName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * logging.billingAccounts.sinks.list
        *
        * @desc Lists sinks.
@@ -607,9 +908,9 @@ function Logging(options) { // eslint-disable-line
        * @memberOf! logging(v2)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
        * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
        * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" 
+       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -680,7 +981,7 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-       * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value was false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value was true and the new value is false.
+       * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is false.
        * @param {logging(v2).LogSink} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -717,7 +1018,7 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-       * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is cloud-logs@system.gserviceaccount.com, the same identity used before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Stackdriver Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
        * @param {logging(v2).LogSink} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -742,6 +1043,41 @@ function Logging(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * logging.billingAccounts.sinks.delete
+       *
+       * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
+       *
+       * @alias logging.billingAccounts.sinks.delete
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.sinkName Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{sinkName}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['sinkName'],
+          pathParams: ['sinkName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     }
   };
@@ -749,6 +1085,43 @@ function Logging(options) { // eslint-disable-line
   self.folders = {
 
     logs: {
+
+      /**
+       * logging.folders.logs.list
+       *
+       * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
+       *
+       * @alias logging.folders.logs.list
+       * @memberOf! logging(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+       * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" 
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://logging.googleapis.com/v2/{parent}/logs',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
 
       /**
        * logging.folders.logs.delete
@@ -779,43 +1152,6 @@ function Logging(options) { // eslint-disable-line
           params: params,
           requiredParams: ['logName'],
           pathParams: ['logName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * logging.folders.logs.list
-       *
-       * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
-       *
-       * @alias logging.folders.logs.list
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" 
-       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{parent}/logs',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
           context: self
         };
 
@@ -869,9 +1205,9 @@ function Logging(options) { // eslint-disable-line
        * @memberOf! logging(v2)
        *
        * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
        * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" 
        * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -942,7 +1278,7 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-       * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value was false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value was true and the new value is false.
+       * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value is false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value is true and the new value is false.
        * @param {logging(v2).LogSink} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -979,7 +1315,7 @@ function Logging(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-       * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is cloud-logs@system.gserviceaccount.com, the same identity used before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
+       * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is the same group or service account used by Stackdriver Logging before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
        * @param {logging(v2).LogSink} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -1019,8 +1355,8 @@ function Logging(options) { // eslint-disable-line
      * @memberOf! logging(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1047,344 +1383,74 @@ function Logging(options) { // eslint-disable-line
     }
 
   };
-
-  self.organizations = {
-
-    logs: {
-
-      /**
-       * logging.organizations.logs.delete
-       *
-       * @desc Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.
-       *
-       * @alias logging.organizations.logs.delete
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.logName Required. The resource name of the log to delete: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" [LOG_ID] must be URL-encoded. For example, "projects/my-project-id/logs/syslog", "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". For more information about log names, see LogEntry.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{logName}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['logName'],
-          pathParams: ['logName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * logging.organizations.logs.list
-       *
-       * @desc Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.
-       *
-       * @alias logging.organizations.logs.list
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-       * @param {string} params.parent Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" 
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{parent}/logs',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
-    },
-
-    sinks: {
-
-      /**
-       * logging.organizations.sinks.delete
-       *
-       * @desc Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.
-       *
-       * @alias logging.organizations.sinks.delete
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.sinkName Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{sinkName}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['sinkName'],
-          pathParams: ['sinkName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * logging.organizations.sinks.list
-       *
-       * @desc Lists sinks.
-       *
-       * @alias logging.organizations.sinks.list
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent Required. The parent resource whose sinks are to be listed: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" 
-       * @param {string=} params.pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-       * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{parent}/sinks',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * logging.organizations.sinks.get
-       *
-       * @desc Gets a sink.
-       *
-       * @alias logging.organizations.sinks.get
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.sinkName Required. The resource name of the sink: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{sinkName}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['sinkName'],
-          pathParams: ['sinkName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * logging.organizations.sinks.update
-       *
-       * @desc Updates a sink. If the named sink doesn't exist, then this method is identical to sinks.create. If the named sink does exist, then this method replaces the following fields in the existing sink with values from the new sink: destination, filter, output_version_format, start_time, and end_time. The updated filter might also have a new writer_identity; see the unique_writer_identity field.
-       *
-       * @alias logging.organizations.sinks.update
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.sinkName Required. The full resource name of the sink to update, including the parent resource and the sink identifier: "projects/[PROJECT_ID]/sinks/[SINK_ID]" "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]" "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example: "projects/my-project-id/sinks/my-sink-id".
-       * @param {boolean=} params.uniqueWriterIdentity Optional. See sinks.create for a description of this field. When updating a sink, the effect of this field on the value of writer_identity in the updated sink depends on both the old and new values of this field: If the old and new values of this field are both false or both true, then there is no change to the sink's writer_identity. If the old value was false and the new value is true, then writer_identity is changed to a unique service account. It is an error if the old value was true and the new value is false.
-       * @param {logging(v2).LogSink} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      update: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{sinkName}',
-            method: 'PUT'
-          }, options),
-          params: params,
-          requiredParams: ['sinkName'],
-          pathParams: ['sinkName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * logging.organizations.sinks.create
-       *
-       * @desc Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the current time is outside the sink's start and end times or the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.
-       *
-       * @alias logging.organizations.sinks.create
-       * @memberOf! logging(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent Required. The resource in which to create the sink: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples: "projects/my-logging-project", "organizations/123456789".
-       * @param {boolean=} params.uniqueWriterIdentity Optional. Determines the kind of IAM identity returned as writer_identity in the new sink. If this value is omitted or set to false, and if the sink's parent is a project, then the value returned as writer_identity is cloud-logs@system.gserviceaccount.com, the same identity used before the addition of writer identities to this API. The sink's destination must be in the same project as the sink itself.If this field is set to true, or if the sink is owned by a non-project resource such as an organization, then the value of writer_identity will be a unique service account used only for exports from the new sink. For more information, see writer_identity in LogSink.
-       * @param {logging(v2).LogSink} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://logging.googleapis.com/v2/{parent}/sinks',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
-    }
-  };
-
-  self.entries = {
-
-    /**
-     * logging.entries.list
-     *
-     * @desc Lists log entries. Use this method to retrieve log entries from Stackdriver Logging. For ways to export log entries, see Exporting Logs.
-     *
-     * @alias logging.entries.list
-     * @memberOf! logging(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {logging(v2).ListLogEntriesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://logging.googleapis.com/v2/entries:list',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * logging.entries.write
-     *
-     * @desc Writes log entries to Stackdriver Logging. All log entries are written by this method.
-     *
-     * @alias logging.entries.write
-     * @memberOf! logging(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {logging(v2).WriteLogEntriesRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    write: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://logging.googleapis.com/v2/entries:write',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
 }
 
+/**
+ * @typedef ListLogsResponse
+ * @memberOf! logging(v2)
+ * @type object
+ * @property {string[]} logNames A list of log names. For example, &quot;projects/my-project/syslog&quot; or &quot;organizations/123/cloudresourcemanager.googleapis.com%2Factivity&quot;.
+ * @property {string} nextPageToken If there might be more results than those appearing in this response, then nextPageToken is included. To get the next set of results, call this method again using the value of nextPageToken as pageToken.
+ */
+/**
+ * @typedef ListSinksResponse
+ * @memberOf! logging(v2)
+ * @type object
+ * @property {logging(v2).LogSink[]} sinks A list of sinks.
+ * @property {string} nextPageToken If there might be more results than appear in this response, then nextPageToken is included. To get the next set of results, call the same method again using the value of nextPageToken as pageToken.
+ */
+/**
+ * @typedef HttpRequest
+ * @memberOf! logging(v2)
+ * @type object
+ * @property {string} requestUrl The scheme (http, https), the host name, the path and the query portion of the URL that was requested. Example: &quot;http://example.com/some/info?color=red&quot;.
+ * @property {string} serverIp The IP address (IPv4 or IPv6) of the origin server that the request was sent to.
+ * @property {string} remoteIp The IP address (IPv4 or IPv6) of the client that issued the HTTP request. Examples: &quot;192.168.1.1&quot;, &quot;FE80::0202:B3FF:FE1E:8329&quot;.
+ * @property {boolean} cacheLookup Whether or not a cache lookup was attempted.
+ * @property {boolean} cacheHit Whether or not an entity was served from cache (with or without validation).
+ * @property {boolean} cacheValidatedWithOriginServer Whether or not the response was validated with the origin server before being served from cache. This field is only meaningful if cache_hit is True.
+ * @property {integer} status The response code indicating the status of response. Examples: 200, 404.
+ * @property {string} referer The referer URL of the request, as defined in HTTP/1.1 Header Field Definitions (http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+ * @property {string} userAgent The user agent sent by the client. Example: &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)&quot;.
+ * @property {string} latency The request processing latency on the server, from the time the request was received until the response was sent.
+ * @property {string} cacheFillBytes The number of HTTP response bytes inserted into cache. Set only when a cache fill was attempted.
+ * @property {string} requestMethod The request method. Examples: &quot;GET&quot;, &quot;HEAD&quot;, &quot;PUT&quot;, &quot;POST&quot;.
+ * @property {string} responseSize The size of the HTTP response message sent back to the client, in bytes, including the response headers and the response body.
+ * @property {string} requestSize The size of the HTTP request message in bytes, including the request headers and the request body.
+ */
+/**
+ * @typedef LabelDescriptor
+ * @memberOf! logging(v2)
+ * @type object
+ * @property {string} key The label key.
+ * @property {string} description A human-readable description for the label.
+ * @property {string} valueType The type of data that can be assigned to the label.
+ */
+/**
+ * @typedef MonitoredResourceDescriptor
+ * @memberOf! logging(v2)
+ * @type object
+ * @property {string} displayName Optional. A concise name for the monitored resource type that might be displayed in user interfaces. It should be a Title Cased Noun Phrase, without any article or other determiners. For example, &quot;Google Cloud SQL Database&quot;.
+ * @property {string} description Optional. A detailed description of the monitored resource type that might be used in documentation.
+ * @property {string} type Required. The monitored resource type. For example, the type &quot;cloudsql_database&quot; represents databases in Google Cloud SQL. The maximum length of this value is 256 characters.
+ * @property {logging(v2).LabelDescriptor[]} labels Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels &quot;database_id&quot; and &quot;zone&quot;.
+ * @property {string} name Optional. The resource name of the monitored resource descriptor: &quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot; where {type} is the value of the type field in this object and {project_id} is a project ID that provides API-specific context for accessing the type. APIs that do not use project information can use the resource name format &quot;monitoredResourceDescriptors/{type}&quot;.
+ */
+/**
+ * @typedef LogEntrySourceLocation
+ * @memberOf! logging(v2)
+ * @type object
+ * @property {string} file Optional. Source file name. Depending on the runtime environment, this might be a simple name or a fully-qualified name.
+ * @property {string} function Optional. Human-readable name of the function or method being invoked, with optional context such as the class or package name. This information may be used in contexts such as the logs viewer, where a file and line number are less meaningful. The format can vary by language. For example: qual.if.ied.Class.method (Java), dir/package.func (Go), function (Python).
+ * @property {string} line Optional. Line within the source file. 1-based; 0 indicates no line number available.
+ */
+/**
+ * @typedef ListLogEntriesResponse
+ * @memberOf! logging(v2)
+ * @type object
+ * @property {logging(v2).LogEntry[]} entries A list of log entries.
+ * @property {string} nextPageToken If there might be more results than those appearing in this response, then nextPageToken is included. To get the next set of results, call this method again using the value of nextPageToken as pageToken.If a value for next_page_token appears and the entries field is empty, it means that the search found no log entries so far but it did not have time to search all the possible log entries. Retry the method with this value for page_token to continue the search. Alternatively, consider speeding up the search by changing your filter to specify a single log name or resource type, or to narrow the time range of the search.
+ */
 /**
  * @typedef LogLine
  * @memberOf! logging(v2)
@@ -1402,46 +1468,46 @@ function Logging(options) { // eslint-disable-line
  * @property {string} nextPageToken If there might be more results than appear in this response, then nextPageToken is included. To get the next set of results, call this method again using the value of nextPageToken as pageToken.
  */
 /**
- * @typedef Empty
- * @memberOf! logging(v2)
- * @type object
- */
-/**
  * @typedef LogEntry
  * @memberOf! logging(v2)
  * @type object
-* @property {logging(v2).MonitoredResource} resource Required. The monitored resource associated with this log entry. Example: a log entry that reports a database error would be associated with the monitored resource designating the particular database that reported the error.
-* @property {logging(v2).HttpRequest} httpRequest Optional. Information about the HTTP request associated with this log entry, if applicable.
-* @property {object} jsonPayload The log entry payload, represented as a structure that is expressed as a JSON object.
-* @property {string} insertId Optional. A unique ID for the log entry. If you provide this field, the logging service considers other log entries in the same project with the same ID as duplicates which can be removed. If omitted, Stackdriver Logging will generate a unique ID for this log entry.
-* @property {logging(v2).LogEntryOperation} operation Optional. Information about an operation associated with the log entry, if applicable.
-* @property {string} textPayload The log entry payload, represented as a Unicode string (UTF-8).
-* @property {object} protoPayload The log entry payload, represented as a protocol buffer. Some Google Cloud Platform services use this field for their log entry payloads.
-* @property {object} labels Optional. A set of user-defined (key, value) data that provides additional information about the log entry.
 * @property {string} trace Optional. Resource name of the trace associated with the log entry, if any. If it contains a relative resource name, the name is assumed to be relative to //tracing.googleapis.com. Example: projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824
+* @property {object} labels Optional. A set of user-defined (key, value) data that provides additional information about the log entry.
 * @property {string} severity Optional. The severity of the log entry. The default value is LogSeverity.DEFAULT.
 * @property {logging(v2).LogEntrySourceLocation} sourceLocation Optional. Source code location information associated with the log entry, if any.
-* @property {string} timestamp Optional. The time the event described by the log entry occurred. If omitted, Stackdriver Logging will use the time the log entry is received.
+* @property {string} timestamp Optional. The time the event described by the log entry occurred. If omitted in a new log entry, Stackdriver Logging will insert the time the log entry is received. Stackdriver Logging might reject log entries whose time stamps are more than a couple of hours in the future. Log entries with time stamps in the past are accepted.
 * @property {string} logName Required. The resource name of the log to which this log entry belongs:
 &quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot;
 &quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot;
 &quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot;
 &quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot;
 [LOG_ID] must be URL-encoded within log_name. Example: &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;. [LOG_ID] must be less than 512 characters long and can only include the following characters: upper and lower case alphanumeric characters, forward-slash, underscore, hyphen, and period.For backward compatibility, if log_name begins with a forward-slash, such as /projects/..., then the log entry is ingested as usual but the forward-slash is removed. Listing the log entry will not show the leading slash and filtering for a log name with a leading slash will never return any results.
+* @property {logging(v2).HttpRequest} httpRequest Optional. Information about the HTTP request associated with this log entry, if applicable.
+* @property {logging(v2).MonitoredResource} resource Required. The monitored resource associated with this log entry. Example: a log entry that reports a database error would be associated with the monitored resource designating the particular database that reported the error.
+* @property {object} jsonPayload The log entry payload, represented as a structure that is expressed as a JSON object.
+* @property {logging(v2).LogEntryOperation} operation Optional. Information about an operation associated with the log entry, if applicable.
+* @property {string} insertId Optional. A unique identifier for the log entry. If you provide a value, then Stackdriver Logging considers other log entries in the same project, with the same timestamp, and with the same insert_id to be duplicates which can be removed. If omitted in new log entries, then Stackdriver Logging will insert its own unique identifier. The insert_id is used to order log entries that have the same timestamp value.
+* @property {string} textPayload The log entry payload, represented as a Unicode string (UTF-8).
+* @property {object} protoPayload The log entry payload, represented as a protocol buffer. Some Google Cloud Platform services use this field for their log entry payloads.
 */
+/**
+ * @typedef Empty
+ * @memberOf! logging(v2)
+ * @type object
+ */
 /**
  * @typedef SourceLocation
  * @memberOf! logging(v2)
  * @type object
+ * @property {string} file Source file name. Depending on the runtime environment, this might be a simple name or a fully-qualified name.
  * @property {string} functionName Human-readable name of the function or method being invoked, with optional context such as the class or package name. This information is used in contexts such as the logs viewer, where a file and line number are less meaningful. The format can vary by language. For example: qual.if.ied.Class.method (Java), dir/package.func (Go), function (Python).
  * @property {string} line Line within the source file.
- * @property {string} file Source file name. Depending on the runtime environment, this might be a simple name or a fully-qualified name.
  */
 /**
  * @typedef ListLogEntriesRequest
  * @memberOf! logging(v2)
  * @type object
-* @property {string} orderBy Optional. How the results should be sorted. Presently, the only permitted values are &quot;timestamp asc&quot; (default) and &quot;timestamp desc&quot;. The first option returns entries in order of increasing values of LogEntry.timestamp (oldest first), and the second option returns entries in order of decreasing timestamps (newest first). Entries with equal timestamps are returned in order of LogEntry.insertId.
+* @property {string} orderBy Optional. How the results should be sorted. Presently, the only permitted values are &quot;timestamp asc&quot; (default) and &quot;timestamp desc&quot;. The first option returns entries in order of increasing values of LogEntry.timestamp (oldest first), and the second option returns entries in order of decreasing timestamps (newest first). Entries with equal timestamps are returned in order of their insert_id values.
 * @property {string[]} resourceNames Required. Names of one or more parent resources from which to retrieve log entries:
 &quot;projects/[PROJECT_ID]&quot;
 &quot;organizations/[ORGANIZATION_ID]&quot;
@@ -1450,13 +1516,16 @@ function Logging(options) { // eslint-disable-line
 Projects listed in the project_ids field are added to this list.
 * @property {string[]} projectIds Deprecated. Use resource_names instead. One or more project identifiers or project numbers from which to retrieve log entries. Example: &quot;my-project-1A&quot;. If present, these project identifiers are converted to resource name format and added to the list of resources in resource_names.
 * @property {string} filter Optional. A filter that chooses which log entries to return. See Advanced Logs Filters. Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not listed in resource_names will cause the filter to return no results. The maximum length of the filter is 20000 characters.
-* @property {string} pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
-* @property {integer} pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+* @property {string} pageToken Optional. If present, then retrieve the next batch of results from the preceding call to this method. page_token must be the value of next_page_token from the previous response. The values of other method parameters should be identical to those in the previous call.
+* @property {integer} pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of next_page_token in the response indicates that more results might be available.
 */
 /**
  * @typedef RequestLog
  * @memberOf! logging(v2)
  * @type object
+ * @property {logging(v2).SourceReference[]} sourceReference Source code for the application that handled this request. There can be more than one source reference per deployed application if source code is distributed among multiple repositories.
+ * @property {string} responseSize Size in bytes sent back to client by request.
+ * @property {string} traceId Stackdriver Trace identifier for this request.
  * @property {logging(v2).LogLine[]} line A list of log lines emitted by the application while serving this request.
  * @property {string} taskQueueName Queue name of the request, in the case of an offline request.
  * @property {string} referrer Referrer URL of request.
@@ -1468,8 +1537,8 @@ Projects listed in the project_ids field are added to this list.
  * @property {string} taskName Task name of the request, in the case of an offline request.
  * @property {string} urlMapEntry File or class that handled the request.
  * @property {integer} instanceIndex If the instance processing this request belongs to a manually scaled module, then this is the 0-based index of the instance. Otherwise, this value is -1.
- * @property {string} host Internet host and port number of the resource being requested.
  * @property {boolean} finished Whether this request is finished or active.
+ * @property {string} host Internet host and port number of the resource being requested.
  * @property {string} httpVersion HTTP version of request. Example: &quot;HTTP/1.1&quot;.
  * @property {string} startTime Time when the request started.
  * @property {string} latency Latency of the request.
@@ -1486,9 +1555,6 @@ Projects listed in the project_ids field are added to this list.
  * @property {string} endTime Time when the request finished.
  * @property {string} userAgent User agent that made the request.
  * @property {boolean} wasLoadingRequest Whether this was a loading request for the instance.
- * @property {logging(v2).SourceReference[]} sourceReference Source code for the application that handled this request. There can be more than one source reference per deployed application if source code is distributed among multiple repositories.
- * @property {string} responseSize Size in bytes sent back to client by request.
- * @property {string} traceId Stackdriver Trace identifier for this request.
  */
 /**
  * @typedef ListMonitoredResourceDescriptorsResponse
@@ -1501,19 +1567,19 @@ Projects listed in the project_ids field are added to this list.
  * @typedef SourceReference
  * @memberOf! logging(v2)
  * @type object
- * @property {string} repository Optional. A URI string identifying the repository. Example: &quot;https://github.com/GoogleCloudPlatform/kubernetes.git&quot;
  * @property {string} revisionId The canonical and persistent identifier of the deployed revision. Example (git): &quot;0035781c50ec7aa23385dc841529ce8a4b70db1b&quot;
+ * @property {string} repository Optional. A URI string identifying the repository. Example: &quot;https://github.com/GoogleCloudPlatform/kubernetes.git&quot;
  */
 /**
  * @typedef LogMetric
  * @memberOf! logging(v2)
  * @type object
+* @property {string} description Optional. A description of this metric, which is used in documentation.
 * @property {string} version Output only. The API version that created or updated this metric. The version also dictates the syntax of the filter expression. When a value for this field is missing, the default value of V2 should be assumed.
 * @property {string} filter Required. An advanced logs filter which is used to match log entries. Example:
 &quot;resource.type=gae_app AND severity&gt;=ERROR&quot;
 The maximum length of the filter is 20000 characters.
 * @property {string} name Required. The client-assigned metric identifier. Examples: &quot;error_count&quot;, &quot;nginx/requests&quot;.Metric identifiers are limited to 100 characters and can include only the following characters: A-Z, a-z, 0-9, and the special characters _-.,+!*&#39;,()%/. The forward-slash character (/) denotes a hierarchy of name pieces, and it cannot be the first character of the name.The metric identifier in this field must not be URL-encoded (https://en.wikipedia.org/wiki/Percent-encoding). However, when the metric identifier appears as the [METRIC_ID] part of a metric_name API parameter, then the metric identifier must be URL-encoded. Example: &quot;projects/my-project/metrics/nginx%2Frequests&quot;.
-* @property {string} description Optional. A description of this metric, which is used in documentation.
 */
 /**
  * @typedef LogEntryOperation
@@ -1533,13 +1599,33 @@ The maximum length of the filter is 20000 characters.
  * @typedef MonitoredResource
  * @memberOf! logging(v2)
  * @type object
- * @property {string} type Required. The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor object. For example, the type of a Cloud SQL database is &quot;cloudsql_database&quot;.
  * @property {object} labels Required. Values for all of the labels listed in the associated monitored resource descriptor. For example, Cloud SQL databases use the labels &quot;database_id&quot; and &quot;zone&quot;.
+ * @property {string} type Required. The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor object. For example, the type of a Cloud SQL database is &quot;cloudsql_database&quot;.
  */
+/**
+ * @typedef WriteLogEntriesRequest
+ * @memberOf! logging(v2)
+ * @type object
+* @property {string} logName Optional. A default log resource name that is assigned to all log entries in entries that do not specify a value for log_name:
+&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot;
+&quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot;
+&quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot;
+&quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot;
+[LOG_ID] must be URL-encoded. For example, &quot;projects/my-project-id/logs/syslog&quot; or &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;. For more information about log names, see LogEntry.
+* @property {logging(v2).LogEntry[]} entries Required. The log entries to write. Values supplied for the fields log_name, resource, and labels in this entries.write request are inserted into those log entries in this list that do not provide their own values.Stackdriver Logging also creates and inserts values for timestamp and insert_id if the entries do not provide them. The created insert_id for the N&#39;th entry in this list will be greater than earlier entries and less than later entries. Otherwise, the order of log entries in this list does not matter.To improve throughput and to avoid exceeding the quota limit for calls to entries.write, you should write multiple log entries at once rather than calling this method for each individual log entry.
+* @property {boolean} partialSuccess Optional. Whether valid entries should be written even if some other entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any entry is not written, then the response status is the error associated with one of the failed entries and the response includes error details keyed by the entries&#39; zero-based index in the entries.write method.
+* @property {object} labels Optional. Default labels that are added to the labels field of all log entries in entries. If a log entry already has a label with the same key as a label in this parameter, then the log entry&#39;s label is not changed. See LogEntry.
+* @property {logging(v2).MonitoredResource} resource Optional. A default monitored resource object that is assigned to all log entries in entries that do not specify a value for resource. Example:
+{ &quot;type&quot;: &quot;gce_instance&quot;,
+  &quot;labels&quot;: {
+    &quot;zone&quot;: &quot;us-central1-a&quot;, &quot;instance_id&quot;: &quot;00000000000000000000&quot; }}
+See LogEntry.
+*/
 /**
  * @typedef LogSink
  * @memberOf! logging(v2)
  * @type object
+* @property {string} name Required. The client-assigned sink identifier, unique within the project. Example: &quot;my-syslog-errors-to-pubsub&quot;. Sink identifiers are limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods.
 * @property {string} destination Required. The export destination:
 &quot;storage.googleapis.com/[GCS_BUCKET]&quot;
 &quot;bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]&quot;
@@ -1552,91 +1638,5 @@ logName=&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot; AND severity&gt;=ERROR
 * @property {string} writerIdentity Output only. An IAM identity&amp;mdash;a service account or group&amp;mdash;under which Stackdriver Logging writes the exported log entries to the sink&#39;s destination. This field is set by sinks.create and sinks.update, based on the setting of unique_writer_identity in those methods.Until you grant this identity write-access to the destination, log entry exports from this sink will fail. For more information, see Granting access for a resource. Consult the destination service&#39;s documentation to determine the appropriate IAM roles to assign to the identity.
 * @property {string} startTime Optional. The time at which this sink will begin exporting log entries. Log entries are exported only if their timestamp is not earlier than the start time. The default value of this field is the time the sink is created or updated.
 * @property {string} outputVersionFormat Optional. The log entry format to use for this sink&#39;s exported log entries. The v2 format is used by default. The v1 format is deprecated and should be used only as part of a migration effort to v2. See Migration to the v2 API.
-* @property {string} name Required. The client-assigned sink identifier, unique within the project. Example: &quot;my-syslog-errors-to-pubsub&quot;. Sink identifiers are limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods.
 */
-/**
- * @typedef WriteLogEntriesRequest
- * @memberOf! logging(v2)
- * @type object
-* @property {string} logName Optional. A default log resource name that is assigned to all log entries in entries that do not specify a value for log_name:
-&quot;projects/[PROJECT_ID]/logs/[LOG_ID]&quot;
-&quot;organizations/[ORGANIZATION_ID]/logs/[LOG_ID]&quot;
-&quot;billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]&quot;
-&quot;folders/[FOLDER_ID]/logs/[LOG_ID]&quot;
-[LOG_ID] must be URL-encoded. For example, &quot;projects/my-project-id/logs/syslog&quot; or &quot;organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity&quot;. For more information about log names, see LogEntry.
-* @property {logging(v2).LogEntry[]} entries Required. The log entries to write. Values supplied for the fields log_name, resource, and labels in this entries.write request are added to those log entries that do not provide their own values for the fields.To improve throughput and to avoid exceeding the quota limit for calls to entries.write, you should write multiple log entries at once rather than calling this method for each individual log entry.
-* @property {boolean} partialSuccess Optional. Whether valid entries should be written even if some other entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any entry is not written, the response status will be the error associated with one of the failed entries and include error details in the form of WriteLogEntriesPartialErrors.
-* @property {object} labels Optional. Default labels that are added to the labels field of all log entries in entries. If a log entry already has a label with the same key as a label in this parameter, then the log entry&#39;s label is not changed. See LogEntry.
-* @property {logging(v2).MonitoredResource} resource Optional. A default monitored resource object that is assigned to all log entries in entries that do not specify a value for resource. Example:
-{ &quot;type&quot;: &quot;gce_instance&quot;,
-  &quot;labels&quot;: {
-    &quot;zone&quot;: &quot;us-central1-a&quot;, &quot;instance_id&quot;: &quot;00000000000000000000&quot; }}
-See LogEntry.
-*/
-/**
- * @typedef ListLogsResponse
- * @memberOf! logging(v2)
- * @type object
- * @property {string} nextPageToken If there might be more results than those appearing in this response, then nextPageToken is included. To get the next set of results, call this method again using the value of nextPageToken as pageToken.
- * @property {string[]} logNames A list of log names. For example, &quot;projects/my-project/syslog&quot; or &quot;organizations/123/cloudresourcemanager.googleapis.com%2Factivity&quot;.
- */
-/**
- * @typedef HttpRequest
- * @memberOf! logging(v2)
- * @type object
- * @property {string} requestMethod The request method. Examples: &quot;GET&quot;, &quot;HEAD&quot;, &quot;PUT&quot;, &quot;POST&quot;.
- * @property {string} requestSize The size of the HTTP request message in bytes, including the request headers and the request body.
- * @property {string} responseSize The size of the HTTP response message sent back to the client, in bytes, including the response headers and the response body.
- * @property {string} requestUrl The scheme (http, https), the host name, the path and the query portion of the URL that was requested. Example: &quot;http://example.com/some/info?color=red&quot;.
- * @property {string} remoteIp The IP address (IPv4 or IPv6) of the client that issued the HTTP request. Examples: &quot;192.168.1.1&quot;, &quot;FE80::0202:B3FF:FE1E:8329&quot;.
- * @property {string} serverIp The IP address (IPv4 or IPv6) of the origin server that the request was sent to.
- * @property {boolean} cacheLookup Whether or not a cache lookup was attempted.
- * @property {boolean} cacheHit Whether or not an entity was served from cache (with or without validation).
- * @property {boolean} cacheValidatedWithOriginServer Whether or not the response was validated with the origin server before being served from cache. This field is only meaningful if cache_hit is True.
- * @property {integer} status The response code indicating the status of response. Examples: 200, 404.
- * @property {string} referer The referer URL of the request, as defined in HTTP/1.1 Header Field Definitions (http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
- * @property {string} latency The request processing latency on the server, from the time the request was received until the response was sent.
- * @property {string} userAgent The user agent sent by the client. Example: &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)&quot;.
- * @property {string} cacheFillBytes The number of HTTP response bytes inserted into cache. Set only when a cache fill was attempted.
- */
-/**
- * @typedef ListSinksResponse
- * @memberOf! logging(v2)
- * @type object
- * @property {string} nextPageToken If there might be more results than appear in this response, then nextPageToken is included. To get the next set of results, call the same method again using the value of nextPageToken as pageToken.
- * @property {logging(v2).LogSink[]} sinks A list of sinks.
- */
-/**
- * @typedef LabelDescriptor
- * @memberOf! logging(v2)
- * @type object
- * @property {string} valueType The type of data that can be assigned to the label.
- * @property {string} key The label key.
- * @property {string} description A human-readable description for the label.
- */
-/**
- * @typedef MonitoredResourceDescriptor
- * @memberOf! logging(v2)
- * @type object
- * @property {logging(v2).LabelDescriptor[]} labels Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels &quot;database_id&quot; and &quot;zone&quot;.
- * @property {string} name Optional. The resource name of the monitored resource descriptor: &quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot; where {type} is the value of the type field in this object and {project_id} is a project ID that provides API-specific context for accessing the type. APIs that do not use project information can use the resource name format &quot;monitoredResourceDescriptors/{type}&quot;.
- * @property {string} displayName Optional. A concise name for the monitored resource type that might be displayed in user interfaces. It should be a Title Cased Noun Phrase, without any article or other determiners. For example, &quot;Google Cloud SQL Database&quot;.
- * @property {string} description Optional. A detailed description of the monitored resource type that might be used in documentation.
- * @property {string} type Required. The monitored resource type. For example, the type &quot;cloudsql_database&quot; represents databases in Google Cloud SQL. The maximum length of this value is 256 characters.
- */
-/**
- * @typedef LogEntrySourceLocation
- * @memberOf! logging(v2)
- * @type object
- * @property {string} function Optional. Human-readable name of the function or method being invoked, with optional context such as the class or package name. This information may be used in contexts such as the logs viewer, where a file and line number are less meaningful. The format can vary by language. For example: qual.if.ied.Class.method (Java), dir/package.func (Go), function (Python).
- * @property {string} line Optional. Line within the source file. 1-based; 0 indicates no line number available.
- * @property {string} file Optional. Source file name. Depending on the runtime environment, this might be a simple name or a fully-qualified name.
- */
-/**
- * @typedef ListLogEntriesResponse
- * @memberOf! logging(v2)
- * @type object
- * @property {string} nextPageToken If there might be more results than those appearing in this response, then nextPageToken is included. To get the next set of results, call this method again using the value of nextPageToken as pageToken.If a value for next_page_token appears and the entries field is empty, it means that the search found no log entries so far but it did not have time to search all the possible log entries. Retry the method with this value for page_token to continue the search. Alternatively, consider speeding up the search by changing your filter to specify a single log name or resource type, or to narrow the time range of the search.
- * @property {logging(v2).LogEntry[]} entries A list of log entries.
- */
 module.exports = Logging;
