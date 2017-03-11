@@ -169,6 +169,8 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.changeId The ID of the change.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {string=} params.teamDriveId The Team Drive from which the change will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -203,6 +205,8 @@ function Drive(options) { // eslint-disable-line
      * @memberOf! drive(v2)
      *
      * @param {object=} params Parameters for request
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {string=} params.teamDriveId The ID of the Team Drive for which the starting pageToken for listing future changes from that Team Drive will be returned.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -231,18 +235,22 @@ function Drive(options) { // eslint-disable-line
     /**
      * drive.changes.list
      *
-     * @desc Lists the changes for a user.
+     * @desc Lists the changes for a user or Team Drive.
      *
      * @alias drive.changes.list
      * @memberOf! drive(v2)
      *
      * @param {object=} params Parameters for request
-     * @param {boolean=} params.includeDeleted Whether to include deleted items.
+     * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
+     * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      * @param {boolean=} params.includeSubscribed Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
+     * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files or changes should be included in results.
      * @param {integer=} params.maxResults Maximum number of changes to return.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Change ID to start listing changes from.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {string=} params.teamDriveId The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -277,12 +285,16 @@ function Drive(options) { // eslint-disable-line
      * @memberOf! drive(v2)
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.includeDeleted Whether to include deleted items.
+     * @param {boolean=} params.includeCorpusRemovals Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
+     * @param {boolean=} params.includeDeleted Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
      * @param {boolean=} params.includeSubscribed Whether to include public files the user has opened and shared files. When set to false, the list only includes owned files plus any shared or public files the user has explicitly added to a folder they own.
+     * @param {boolean=} params.includeTeamDriveItems Whether Team Drive files or changes should be included in results.
      * @param {integer=} params.maxResults Maximum number of changes to return.
      * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
      * @param {string=} params.startChangeId Change ID to start listing changes from.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {string=} params.teamDriveId The Team Drive from which changes will be returned. If specified the change IDs will be reflective of the Team Drive; use the combined Team Drive ID and change ID as an identifier.
      * @param {drive(v2).Channel} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -434,6 +446,7 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.folderId The ID of the folder.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {drive(v2).ChildReference} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -743,6 +756,7 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param {boolean=} params.pinned Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
      * @param {string=} params.visibility The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
@@ -775,13 +789,14 @@ function Drive(options) { // eslint-disable-line
     /**
      * drive.files.delete
      *
-     * @desc Permanently deletes a file by ID. Skips the trash. The currently authenticated user must own the file.
+     * @desc Permanently deletes a file by ID. Skips the trash. The currently authenticated user must own the file or be an organizer on the parent for Team Drive files.
      *
      * @alias drive.files.delete
      * @memberOf! drive(v2)
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to delete.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -926,6 +941,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID for the file in question.
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -965,6 +981,7 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.ocr Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      * @param {string=} params.ocrLanguage If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
      * @param {boolean=} params.pinned Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
      * @param {boolean=} params.useContentAsIndexableText Whether to use the content as indexable text.
@@ -1008,13 +1025,17 @@ function Drive(options) { // eslint-disable-line
      * @memberOf! drive(v2)
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.corpus The body of items (files/documents) to which the query applies.
+     * @param {string=} params.corpora Comma-separated list of bodies of items (files/documents) to which the query applies. Supported bodies are 'default', 'domain', 'teamDrive' and 'allTeamDrives'. 'allTeamDrives' must be combined with 'default'; all other values must be used in isolation. Prefer 'default' or 'teamDrive' to 'allTeamDrives' for efficiency.
+     * @param {string=} params.corpus The body of items (files/documents) to which the query applies. Deprecated: use 'corpora' instead.
+     * @param {boolean=} params.includeTeamDriveItems Whether Team Drive items should be included in results.
      * @param {integer=} params.maxResults Maximum number of files to return.
      * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      * @param {string=} params.pageToken Page token for files.
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.q Query string for searching files.
      * @param {string=} params.spaces A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
+     * @param {string=} params.teamDriveId ID of Team Drive to search.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1059,6 +1080,7 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
      * @param {boolean=} params.setModifiedDate Whether to set the modified date with the supplied modified date.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
      * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
@@ -1099,6 +1121,7 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to update.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1127,13 +1150,14 @@ function Drive(options) { // eslint-disable-line
     /**
      * drive.files.trash
      *
-     * @desc Moves a file to the trash. The currently authenticated user must own the file.
+     * @desc Moves a file to the trash. The currently authenticated user must own the file or be an organizer on the parent for Team Drive files.
      *
      * @alias drive.files.trash
      * @memberOf! drive(v2)
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to trash.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1169,6 +1193,7 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file to untrash.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1213,6 +1238,7 @@ function Drive(options) { // eslint-disable-line
      * @param {boolean=} params.pinned Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      * @param {string=} params.removeParents Comma-separated list of parent IDs to remove.
      * @param {boolean=} params.setModifiedDate Whether to set the modified date with the supplied modified date.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {string=} params.timedTextLanguage The language of the timed text.
      * @param {string=} params.timedTextTrackName The timed text track name.
      * @param {boolean=} params.updateViewedDate Whether to update the view date after successfully updating the file.
@@ -1260,6 +1286,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string} params.fileId The ID for the file in question.
      * @param {string=} params.projection This parameter is deprecated and has no function.
      * @param {string=} params.revisionId Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {boolean=} params.updateViewedDate Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
      * @param {drive(v2).Channel} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1373,6 +1400,7 @@ function Drive(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.fileId The ID of the file.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {drive(v2).ParentReference} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1441,14 +1469,15 @@ function Drive(options) { // eslint-disable-line
     /**
      * drive.permissions.delete
      *
-     * @desc Deletes a permission from a file.
+     * @desc Deletes a permission from a file or Team Drive.
      *
      * @alias drive.permissions.delete
      * @memberOf! drive(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID for the file.
+     * @param {string} params.fileId The ID for the file or Team Drive.
      * @param {string} params.permissionId The ID for the permission.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1483,8 +1512,9 @@ function Drive(options) { // eslint-disable-line
      * @memberOf! drive(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID for the file.
+     * @param {string} params.fileId The ID for the file or Team Drive.
      * @param {string} params.permissionId The ID for the permission.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1548,15 +1578,16 @@ function Drive(options) { // eslint-disable-line
     /**
      * drive.permissions.insert
      *
-     * @desc Inserts a permission for a file.
+     * @desc Inserts a permission for a file or Team Drive.
      *
      * @alias drive.permissions.insert
      * @memberOf! drive(v2)
      *
      * @param {object} params Parameters for request
      * @param {string=} params.emailMessage A custom message to include in notification emails.
-     * @param {string} params.fileId The ID for the file.
+     * @param {string} params.fileId The ID for the file or Team Drive.
      * @param {boolean=} params.sendNotificationEmails Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {drive(v2).Permission} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1586,13 +1617,16 @@ function Drive(options) { // eslint-disable-line
     /**
      * drive.permissions.list
      *
-     * @desc Lists a file's permissions.
+     * @desc Lists a file's or Team Drive's permissions.
      *
      * @alias drive.permissions.list
      * @memberOf! drive(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID for the file.
+     * @param {string} params.fileId The ID for the file or Team Drive.
+     * @param {integer=} params.maxResults The maximum number of permissions to return per page. When not set for files in a Team Drive, at most 100 results will be returned. When not set for files that are not in a Team Drive, the entire list will be returned.
+     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1627,9 +1661,10 @@ function Drive(options) { // eslint-disable-line
      * @memberOf! drive(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID for the file.
+     * @param {string} params.fileId The ID for the file or Team Drive.
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      * @param {drive(v2).Permission} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1666,9 +1701,10 @@ function Drive(options) { // eslint-disable-line
      * @memberOf! drive(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID for the file.
+     * @param {string} params.fileId The ID for the file or Team Drive.
      * @param {string} params.permissionId The ID for the permission.
      * @param {boolean=} params.removeExpiration Whether to remove the expiration date.
+     * @param {boolean=} params.supportsTeamDrives Whether the requesting application supports Team Drives.
      * @param {boolean=} params.transferOwnership Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
      * @param {drive(v2).Permission} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2420,6 +2456,188 @@ function Drive(options) { // eslint-disable-line
     }
 
   };
+
+  self.teamdrives = {
+
+    /**
+     * drive.teamdrives.delete
+     *
+     * @desc Permanently deletes a Team Drive for which the user is an organizer. The Team Drive cannot contain any untrashed items.
+     *
+     * @alias drive.teamdrives.delete
+     * @memberOf! drive(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.teamDriveId The ID of the Team Drive
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/drive/v2/teamdrives/{teamDriveId}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['teamDriveId'],
+        pathParams: ['teamDriveId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * drive.teamdrives.get
+     *
+     * @desc Gets a Team Drive's metadata by ID.
+     *
+     * @alias drive.teamdrives.get
+     * @memberOf! drive(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.teamDriveId The ID of the Team Drive
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/drive/v2/teamdrives/{teamDriveId}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['teamDriveId'],
+        pathParams: ['teamDriveId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * drive.teamdrives.insert
+     *
+     * @desc Creates a new Team Drive.
+     *
+     * @alias drive.teamdrives.insert
+     * @memberOf! drive(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.requestId An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
+     * @param {drive(v2).TeamDrive} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/drive/v2/teamdrives',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['requestId'],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * drive.teamdrives.list
+     *
+     * @desc Lists the user's Team Drives.
+     *
+     * @alias drive.teamdrives.list
+     * @memberOf! drive(v2)
+     *
+     * @param {object=} params Parameters for request
+     * @param {integer=} params.maxResults Maximum number of Team Drives to return.
+     * @param {string=} params.pageToken Page token for Team Drives.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/drive/v2/teamdrives',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * drive.teamdrives.update
+     *
+     * @desc Updates a Team Drive's metadata
+     *
+     * @alias drive.teamdrives.update
+     * @memberOf! drive(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.teamDriveId The ID of the Team Drive
+     * @param {drive(v2).TeamDrive} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/drive/v2/teamdrives/{teamDriveId}',
+          method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['teamDriveId'],
+        pathParams: ['teamDriveId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
 
 /**
@@ -2500,13 +2718,16 @@ function Drive(options) { // eslint-disable-line
  * @typedef Change
  * @memberOf! drive(v2)
  * @type object
- * @property {boolean} deleted Whether the file has been deleted.
- * @property {drive(v2).File} file The updated state of the file. Present if the file has not been deleted.
+ * @property {boolean} deleted Whether the file or Team Drive has been removed from this list of changes, for example by deletion or loss of access.
+ * @property {drive(v2).File} file The updated state of the file. Present if the type is file and the file has not been removed from this list of changes.
  * @property {string} fileId The ID of the file associated with this change.
  * @property {string} id The ID of the change.
  * @property {string} kind This is always drive#change.
  * @property {string} modificationDate The time of this modification.
  * @property {string} selfLink A link back to this change.
+ * @property {drive(v2).TeamDrive} teamDrive The updated state of the Team Drive. Present if the type is teamDrive, the user is still a member of the Team Drive, and the Team Drive has not been deleted.
+ * @property {string} teamDriveId The ID of the Team Drive associated with this change.
+ * @property {string} type The type of the change. Possible values are file and teamDrive.
  */
 /**
  * @typedef ChangeList
@@ -2516,6 +2737,7 @@ function Drive(options) { // eslint-disable-line
  * @property {drive(v2).Change[]} items The list of changes. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  * @property {string} kind This is always drive#changeList.
  * @property {string} largestChangeId The current largest change ID.
+ * @property {string} newStartPageToken The starting page token for future changes. This will be present only if the end of the current changes list has been reached.
  * @property {string} nextLink A link to the next page of changes.
  * @property {string} nextPageToken The page token for the next page of changes. This will be absent if the end of the changes list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
@@ -2619,22 +2841,24 @@ function Drive(options) { // eslint-disable-line
  * @type object
 * @property {string} alternateLink A link for opening the file in a relevant Google editor or viewer.
 * @property {boolean} appDataContents Whether this file is in the Application Data folder.
-* @property {boolean} canComment Whether the current user can comment on the file.
-* @property {boolean} canReadRevisions Whether the current user has read access to the Revisions resource of the file.
-* @property {boolean} copyable Whether the file can be copied by the current user.
+* @property {boolean} canComment Whether the current user can comment on the file. Deprecated: use capabilities/canComment.
+* @property {boolean} canReadRevisions Whether the current user has read access to the Revisions resource of the file. Deprecated: use capabilities/canReadRevisions.
+* @property {object} capabilities Capabilities the current user has on the file. Each capability corresponds to a fine-grained action that a user may take.
+* @property {boolean} copyable Whether the file can be copied by the current user. Deprecated: use capabilities/canCopy.
 * @property {string} createdDate Create time for this file (formatted RFC 3339 timestamp).
 * @property {string} defaultOpenWithLink A link to open this file with the user&#39;s default app for this file. Only populated when the drive.apps.readonly scope is used.
 * @property {string} description A short description of the file.
 * @property {string} downloadUrl 
-* @property {boolean} editable Whether the file can be edited by the current user.
+* @property {boolean} editable Whether the file can be edited by the current user. Deprecated: use capabilities/canEdit.
 * @property {string} embedLink A link for embedding the file.
 * @property {string} etag ETag of the file.
 * @property {boolean} explicitlyTrashed Whether this file has been explicitly trashed, as opposed to recursively trashed.
 * @property {object} exportLinks Links for exporting Google Docs to specific formats.
 * @property {string} fileExtension The final component of fullFileExtension with trailing text that does not appear to be part of the extension removed. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
 * @property {string} fileSize The size of the file in bytes. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
-* @property {string} folderColorRgb Folder color as an RGB hex string if the file is a folder. The list of supported colors is available in the folderColorPalette field of the About resource. If an unsupported color is specified, it will be changed to the closest color in the palette.
+* @property {string} folderColorRgb Folder color as an RGB hex string if the file is a folder. The list of supported colors is available in the folderColorPalette field of the About resource. If an unsupported color is specified, it will be changed to the closest color in the palette. Not populated for Team Drive files.
 * @property {string} fullFileExtension The full file extension; extracted from the title. May contain multiple concatenated extensions, such as &quot;tar.gz&quot;. Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
+* @property {boolean} hasAugmentedPermissions Whether any users are granted file access directly on this file. This field is only populated for Team Drive files.
 * @property {boolean} hasThumbnail Whether this file has a thumbnail.
 * @property {string} headRevisionId The ID of the file&#39;s head revision. This field is only populated for files with content stored in Drive; it is not populated for Google Docs or shortcut files.
 * @property {string} iconLink A link to the file&#39;s icon.
@@ -2654,36 +2878,40 @@ function Drive(options) { // eslint-disable-line
 * @property {string} modifiedDate Last time this file was modified by anyone (formatted RFC 3339 timestamp). This is only mutable on update when the setModifiedDate parameter is set.
 * @property {object} openWithLinks A map of the id of each of the user&#39;s apps to a link to open this file with that app. Only populated when the drive.apps.readonly scope is used.
 * @property {string} originalFilename The original filename of the uploaded content if available, or else the original value of the title field. This is only available for files with binary content in Drive.
-* @property {boolean} ownedByMe Whether the file is owned by the current user.
-* @property {string[]} ownerNames Name(s) of the owner(s) of this file.
-* @property {drive(v2).User[]} owners The owner(s) of this file.
+* @property {boolean} ownedByMe Whether the file is owned by the current user. Not populated for Team Drive files.
+* @property {string[]} ownerNames Name(s) of the owner(s) of this file. Not populated for Team Drive files.
+* @property {drive(v2).User[]} owners The owner(s) of this file. Not populated for Team Drive files.
 * @property {drive(v2).ParentReference[]} parents Collection of parent folders which contain this file.
 Setting this field will put the file in all of the provided folders. On insert, if no folders are provided, the file will be placed in the default root folder.
-* @property {drive(v2).Permission[]} permissions The list of permissions for users with access to this file.
+* @property {drive(v2).Permission[]} permissions The list of permissions for users with access to this file. Not populated for Team Drive files.
 * @property {drive(v2).Property[]} properties The list of properties.
 * @property {string} quotaBytesUsed The number of quota bytes used by this file.
 * @property {string} selfLink A link back to this file.
-* @property {boolean} shareable Whether the file&#39;s sharing settings can be modified by the current user.
-* @property {boolean} shared Whether the file has been shared.
+* @property {boolean} shareable Whether the file&#39;s sharing settings can be modified by the current user. Deprecated: use capabilities/canShare.
+* @property {boolean} shared Whether the file has been shared. Not populated for Team Drive files.
 * @property {string} sharedWithMeDate Time at which this file was shared with the user (formatted RFC 3339 timestamp).
 * @property {drive(v2).User} sharingUser User that shared the item with the current user, if available.
 * @property {string[]} spaces The list of spaces which contain the file. Supported values are &#39;drive&#39;, &#39;appDataFolder&#39; and &#39;photos&#39;.
+* @property {string} teamDriveId ID of the Team Drive the file resides in.
 * @property {object} thumbnail A thumbnail for the file. This will only be used if Drive cannot generate a standard thumbnail.
 * @property {string} thumbnailLink A short-lived link to the file&#39;s thumbnail. Typically lasts on the order of hours. Only populated when the requesting app can access the file&#39;s content.
 * @property {string} thumbnailVersion The thumbnail version for use in thumbnail cache invalidation.
 * @property {string} title The title of this file.
+* @property {string} trashedDate The time that the item was trashed (formatted RFC 3339 timestamp). Only populated for Team Drive files.
+* @property {drive(v2).User} trashingUser If the file has been explicitly trashed, the user who trashed it. Only populated for Team Drive files.
 * @property {drive(v2).Permission} userPermission The permissions for the authenticated user on this file.
 * @property {string} version A monotonically increasing version number for the file. This reflects every change made to the file on the server, even those not visible to the requesting user.
 * @property {object} videoMediaMetadata Metadata about video media. This will only be present for video types.
 * @property {string} webContentLink A link for downloading the content of the file in a browser using cookie based authentication. In cases where the content is shared publicly, the content can be downloaded without any credentials.
 * @property {string} webViewLink A link only available on public folders for viewing their static web assets (HTML, CSS, JS, etc) via Google Drive&#39;s Website Hosting.
-* @property {boolean} writersCanShare Whether writers can share the document with other users.
+* @property {boolean} writersCanShare Whether writers can share the document with other users. Not populated for Team Drive files.
 */
 /**
  * @typedef FileList
  * @memberOf! drive(v2)
  * @type object
  * @property {string} etag The ETag of the list.
+ * @property {boolean} incompleteSearch Whether the search process was incomplete. If true, then some search results may be missing, since all documents were not searched. This may occur when searching multiple Team Drives with the &quot;default,allTeamDrives&quot; corpora, but all corpora could not be searched. When this happens, it is suggested that clients narrow their query by choosing a different corpus such as &quot;default&quot; or &quot;teamDrive&quot;.
  * @property {drive(v2).File[]} items The list of files. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.
  * @property {string} kind This is always drive#fileList.
  * @property {string} nextLink A link to the next page of files.
@@ -2721,21 +2949,27 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @typedef Permission
  * @memberOf! drive(v2)
  * @type object
-* @property {string[]} additionalRoles Additional roles for this user. Only commenter is currently allowed.
+* @property {string[]} additionalRoles Additional roles for this user. Only commenter is currently allowed, though more may be supported in the future.
 * @property {string} authKey The authkey parameter required for this permission.
 * @property {string} domain The domain name of the entity this permission refers to. This is an output-only field which is present when the permission type is user, group or domain.
 * @property {string} emailAddress The email address of the user or group this permission refers to. This is an output-only field which is present when the permission type is user or group.
 * @property {string} etag The ETag of the permission.
-* @property {string} expirationDate The time at which this permission will expire (RFC 3339 date-time).
+* @property {string} expirationDate The time at which this permission will expire (RFC 3339 date-time). Expiration dates have the following restrictions:  
+- They can only be set on user and group permissions 
+- The date must be in the future 
+- The date cannot be more than a year in the future 
+- The date can only be set on drive.permissions.update requests
 * @property {string} id The ID of the user this permission refers to, and identical to the permissionId in the About and Files resources. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type is anyone, in which case both id and value are ignored.
 * @property {string} kind This is always drive#permission.
 * @property {string} name The name for this permission.
 * @property {string} photoLink A link to the profile photo, if available.
-* @property {string} role The primary role for this user. Allowed values are:  
+* @property {string} role The primary role for this user. While new values may be supported in the future, the following are currently allowed:  
+- organizer 
 - owner 
 - reader 
 - writer
 * @property {string} selfLink A link back to this permission.
+* @property {object[]} teamDrivePermissionDetails Details of whether the Permissions on this Team Drive item are inherited or directly on this item. This is an output-only field which is present only for Team Drive items.
 * @property {string} type The account type. Allowed values are:  
 - user 
 - group 
@@ -2758,6 +2992,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @property {string} etag The ETag of the list.
  * @property {drive(v2).Permission[]} items The list of permissions.
  * @property {string} kind This is always drive#permissionList.
+ * @property {string} nextPageToken The page token for the next page of permissions. This field will be absent if the end of the permissions list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
  * @property {string} selfLink A link back to this list.
  */
 /**
@@ -2819,6 +3054,23 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#startPageToken&quot;.
  * @property {string} startPageToken The starting page token for listing changes.
+ */
+/**
+ * @typedef TeamDrive
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {object} capabilities Capabilities the current user has on this Team Drive.
+ * @property {string} id The ID of this Team Drive which is also the ID of the top level folder for this Team Drive.
+ * @property {string} kind This is always drive#teamDrive
+ * @property {string} name The name of this Team Drive.
+ */
+/**
+ * @typedef TeamDriveList
+ * @memberOf! drive(v2)
+ * @type object
+ * @property {drive(v2).TeamDrive[]} items The list of Team Drives.
+ * @property {string} kind This is always drive#teamDriveList
+ * @property {string} nextPageToken The page token for the next page of Team Drives.
  */
 /**
  * @typedef User

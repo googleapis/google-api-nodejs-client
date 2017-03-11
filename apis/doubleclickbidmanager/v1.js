@@ -392,7 +392,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
  * @memberOf! doubleclickbidmanager(v1)
  * @type object
  * @property {string[]} fileTypes File types that will be returned.
- * @property {string[]} filterIds The IDs of the specified filter type. This is used to filter entities to fetch. At least one ID must be specified. Only one ID is allowed for the ADVERTISER_ID filter type. For INSERTION_ORDER_ID or LINE_ITEM_ID filter types all IDs must be from the same Advertiser.
+ * @property {string[]} filterIds The IDs of the specified filter type. This is used to filter entities to fetch. At least one ID must be specified. Only one ID is allowed for the ADVERTISER_ID filter type. For INSERTION_ORDER_ID or LINE_ITEM_ID filter types, all IDs must be from the same Advertiser.
  * @property {string} filterType Filter type used to filter line items to fetch.
  * @property {string} version SDF Version (column names, types, order) in which the entities will be returned. Default to 3.
  */

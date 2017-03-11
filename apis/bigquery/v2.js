@@ -2275,7 +2275,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {bigquery(v2).JobConfigurationTableCopy} copy [Pick one] Copies a table.
  * @property {boolean} dryRun [Optional] If set, don&#39;t actually run this job. A valid query will return a mostly empty response with some processing statistics, while an invalid query will return the same error it would if it wasn&#39;t a dry run. Behavior of non-query jobs is undefined.
  * @property {bigquery(v2).JobConfigurationExtract} extract [Pick one] Configures an extract job.
- * @property {object} labels [Experimental] The labels associated with this job. You can use these to organize and group your jobs. Label keys and values can be no longer than 63 characters, can only contain letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and must be unique within a dataset. Both keys and values are additionally constrained to be &lt;= 128 bytes in size.
+ * @property {object} labels [Experimental] The labels associated with this job. You can use these to organize and group your jobs. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and each label in the list must have a different key.
  * @property {bigquery(v2).JobConfigurationLoad} load [Pick one] Configures a load job.
  * @property {bigquery(v2).JobConfigurationQuery} query [Pick one] Configures a query job.
  */
@@ -2517,7 +2517,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} friendlyName [Optional] A descriptive name for this table.
  * @property {string} id [Output-only] An opaque ID uniquely identifying the table.
  * @property {string} kind [Output-only] The type of the resource.
- * @property {object} labels [Experimental] The labels associated with this table. You can use these to organize and group your tables. Label keys and values can be no longer than 63 characters, can only contain letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and must be unique within a dataset. Both keys and values are additionally constrained to be &lt;= 128 bytes in size.
+ * @property {object} labels [Experimental] The labels associated with this table. You can use these to organize and group your tables. Label keys and values can be no longer than 63 characters, can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter and each label in the list must have a different key.
  * @property {string} lastModifiedTime [Output-only] The time when this table was last modified, in milliseconds since the epoch.
  * @property {string} location [Output-only] The geographic location where the table resides. This value is inherited from the dataset.
  * @property {string} numBytes [Output-only] The size of this table in bytes, excluding any data in the streaming buffer.

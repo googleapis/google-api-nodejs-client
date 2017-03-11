@@ -2164,7 +2164,7 @@ function Androidpublisher(options) { // eslint-disable-line
     /**
      * androidpublisher.reviews.list
      *
-     * @desc Returns a list of reviews.
+     * @desc Returns a list of reviews. Only reviews from last week will be returned.
      *
      * @alias androidpublisher.reviews.list
      * @memberOf! androidpublisher(v2)
@@ -2643,6 +2643,7 @@ function Androidpublisher(options) { // eslint-disable-line
 * @property {string} priceAmountMicros Price of the subscription, not including tax. Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.
 * @property {string} priceCurrencyCode ISO 4217 currency code for the subscription price. For example, if the price is specified in British pounds sterling, price_currency_code is &quot;GBP&quot;.
 * @property {string} startTimeMillis Time at which the subscription was granted, in milliseconds since the Epoch.
+* @property {string} userCancellationTimeMillis The time at which the subscription was canceled by the user, in milliseconds since the epoch. Only present if cancelReason is 0.
 */
 /**
  * @typedef SubscriptionPurchasesDeferRequest

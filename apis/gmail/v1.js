@@ -1256,7 +1256,7 @@ function Gmail(options) { // eslint-disable-line
       /**
        * gmail.users.settings.updateAutoForwarding
        *
-       * @desc Updates the auto-forwarding setting for the specified account. A verified forwarding address must be specified when auto-forwarding is enabled.
+       * @desc Updates the auto-forwarding setting for the specified account. A verified forwarding address must be specified when auto-forwarding is enabled.  This method is only available to service account clients that have been delegated domain-wide authority.
        *
        * @alias gmail.users.settings.updateAutoForwarding
        * @memberOf! gmail(v1)
@@ -1548,7 +1548,7 @@ function Gmail(options) { // eslint-disable-line
         /**
          * gmail.users.settings.forwardingAddresses.create
          *
-         * @desc Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted.
+         * @desc Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted.  This method is only available to service account clients that have been delegated domain-wide authority.
          *
          * @alias gmail.users.settings.forwardingAddresses.create
          * @memberOf! gmail(v1)
@@ -1584,7 +1584,7 @@ function Gmail(options) { // eslint-disable-line
         /**
          * gmail.users.settings.forwardingAddresses.delete
          *
-         * @desc Deletes the specified forwarding address and revokes any verification that may have been required.
+         * @desc Deletes the specified forwarding address and revokes any verification that may have been required.  This method is only available to service account clients that have been delegated domain-wide authority.
          *
          * @alias gmail.users.settings.forwardingAddresses.delete
          * @memberOf! gmail(v1)
@@ -1694,7 +1694,7 @@ function Gmail(options) { // eslint-disable-line
         /**
          * gmail.users.settings.sendAs.create
          *
-         * @desc Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.
+         * @desc Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.  This method is only available to service account clients that have been delegated domain-wide authority.
          *
          * @alias gmail.users.settings.sendAs.create
          * @memberOf! gmail(v1)
@@ -1730,7 +1730,7 @@ function Gmail(options) { // eslint-disable-line
         /**
          * gmail.users.settings.sendAs.delete
          *
-         * @desc Deletes the specified send-as alias. Revokes any verification that may have been required for using it.
+         * @desc Deletes the specified send-as alias. Revokes any verification that may have been required for using it.  This method is only available to service account clients that have been delegated domain-wide authority.
          *
          * @alias gmail.users.settings.sendAs.delete
          * @memberOf! gmail(v1)
@@ -1837,7 +1837,7 @@ function Gmail(options) { // eslint-disable-line
         /**
          * gmail.users.settings.sendAs.patch
          *
-         * @desc Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias. This method supports patch semantics.
+         * @desc Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.  Addresses other than the primary address for the account can only be updated by service account clients that have been delegated domain-wide authority. This method supports patch semantics.
          *
          * @alias gmail.users.settings.sendAs.patch
          * @memberOf! gmail(v1)
@@ -1874,7 +1874,7 @@ function Gmail(options) { // eslint-disable-line
         /**
          * gmail.users.settings.sendAs.update
          *
-         * @desc Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.
+         * @desc Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.  Addresses other than the primary address for the account can only be updated by service account clients that have been delegated domain-wide authority.
          *
          * @alias gmail.users.settings.sendAs.update
          * @memberOf! gmail(v1)
@@ -1911,7 +1911,7 @@ function Gmail(options) { // eslint-disable-line
         /**
          * gmail.users.settings.sendAs.verify
          *
-         * @desc Sends a verification email to the specified send-as alias address. The verification status must be pending.
+         * @desc Sends a verification email to the specified send-as alias address. The verification status must be pending.  This method is only available to service account clients that have been delegated domain-wide authority.
          *
          * @alias gmail.users.settings.sendAs.verify
          * @memberOf! gmail(v1)

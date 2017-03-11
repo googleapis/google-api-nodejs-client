@@ -1808,7 +1808,7 @@ function Deploymentmanager(options) { // eslint-disable-line
  * @memberOf! deploymentmanager(v2)
  * @type object
  * @property {deploymentmanager(v2).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
- * @property {string[]} exemptedMembers Specifies the identities that are exempted from &quot;data access&quot; audit logging for the `service` specified above. Follows the same format of Binding.members. This field is deprecated in favor of per-permission-type exemptions.
+ * @property {string[]} exemptedMembers 
  * @property {string} service Specifies a service that will be enabled for audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
  */
 /**

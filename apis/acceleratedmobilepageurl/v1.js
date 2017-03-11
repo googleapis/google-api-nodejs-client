@@ -82,23 +82,6 @@ function Acceleratedmobilepageurl(options) { // eslint-disable-line
 }
 
 /**
- * @typedef AmpUrlError
- * @memberOf! acceleratedmobilepageurl(v1)
- * @type object
- * @property {string} errorMessage An optional descriptive error message.
- * @property {string} errorCode The error code of an API call.
- * @property {string} originalUrl The original non-AMP URL.
- */
-/**
- * @typedef BatchGetAmpUrlsRequest
- * @memberOf! acceleratedmobilepageurl(v1)
- * @type object
-* @property {string[]} urls List of URLs to look up for the paired AMP URLs.
-The URLs are case-sensitive. Up to 50 URLs per lookup
-(see [Usage Limits](/amp/cache/reference/limits)).
-* @property {string} lookupStrategy The lookup_strategy being requested.
-*/
-/**
  * @typedef BatchGetAmpUrlsResponse
  * @memberOf! acceleratedmobilepageurl(v1)
  * @type object
@@ -116,5 +99,22 @@ only once.
 the cached document in the Google AMP Cache.
 * @property {string} originalUrl The original non-AMP URL.
 * @property {string} ampUrl The AMP URL pointing to the publisher&#39;s web server.
+*/
+/**
+ * @typedef AmpUrlError
+ * @memberOf! acceleratedmobilepageurl(v1)
+ * @type object
+ * @property {string} errorCode The error code of an API call.
+ * @property {string} originalUrl The original non-AMP URL.
+ * @property {string} errorMessage An optional descriptive error message.
+ */
+/**
+ * @typedef BatchGetAmpUrlsRequest
+ * @memberOf! acceleratedmobilepageurl(v1)
+ * @type object
+* @property {string[]} urls List of URLs to look up for the paired AMP URLs.
+The URLs are case-sensitive. Up to 50 URLs per lookup
+(see [Usage Limits](/amp/cache/reference/limits)).
+* @property {string} lookupStrategy The lookup_strategy being requested.
 */
 module.exports = Acceleratedmobilepageurl;

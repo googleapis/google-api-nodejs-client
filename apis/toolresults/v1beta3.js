@@ -24,7 +24,7 @@ var utils = require('../../lib/utils');
 /**
  * Cloud Tool Results API
  *
- * Reads and publishes results from Cloud Test Lab.
+ * Reads and publishes results from Firebase Test Lab.
  *
  * @example
  * var google = require('googleapis');

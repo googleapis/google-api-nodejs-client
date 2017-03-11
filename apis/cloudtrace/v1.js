@@ -334,21 +334,9 @@ function Cloudtrace(options) { // eslint-disable-line
 }
 
 /**
- * @typedef Traces
- * @memberOf! cloudtrace(v1)
- * @type object
- * @property {cloudtrace(v1).Trace[]} traces List of traces.
- */
-/**
  * @typedef TraceSpan
  * @memberOf! cloudtrace(v1)
  * @type object
-* @property {string} parentSpanId ID of the parent span, if any. Optional.
-* @property {string} endTime End time of the span in nanoseconds from the UNIX epoch.
-* @property {string} startTime Start time of the span in nanoseconds from the UNIX epoch.
-* @property {string} kind Distinguishes between spans generated in a particular context. For example,
-two spans with the same name may be distinguished using `RPC_CLIENT`
-and `RPC_SERVER` to identify queueing latency associated with the span.
 * @property {object} labels Collection of labels associated with the span. Label keys must be less than
 128 bytes. Label values must be less than 16 kilobytes.
 * @property {string} name Name of the span. Must be less than 128 bytes. The span name is sanitized
@@ -360,6 +348,12 @@ to use a consistent name, which makes it easier to correlate
 cross-trace spans.
 * @property {string} spanId Identifier for the span. Must be a 64-bit integer other than 0 and
 unique within a trace.
+* @property {string} parentSpanId ID of the parent span, if any. Optional.
+* @property {string} endTime End time of the span in nanoseconds from the UNIX epoch.
+* @property {string} startTime Start time of the span in nanoseconds from the UNIX epoch.
+* @property {string} kind Distinguishes between spans generated in a particular context. For example,
+two spans with the same name may be distinguished using `RPC_CLIENT`
+and `RPC_SERVER` to identify queueing latency associated with the span.
 */
 /**
  * @typedef ListTracesResponse
@@ -384,4 +378,10 @@ retrieving additional traces.
 * @property {string} traceId Globally unique identifier for the trace. This identifier is a 128-bit
 numeric value formatted as a 32-byte hex string.
 */
+/**
+ * @typedef Traces
+ * @memberOf! cloudtrace(v1)
+ * @type object
+ * @property {cloudtrace(v1).Trace[]} traces List of traces.
+ */
 module.exports = Cloudtrace;

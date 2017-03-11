@@ -2742,7 +2742,7 @@ function Content(options) { // eslint-disable-line
  * @type object
  * @property {string} attributeLanguage The two-letter ISO 639-1 language in which the attributes are defined in the data feed.
  * @property {string} contentLanguage The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for targetCountry.
- * @property {string} contentType The type of data feed.
+ * @property {string} contentType The type of data feed. For product inventory feeds, only feeds for local stores, not online stores, are supported.
  * @property {content(v2).DatafeedFetchSchedule} fetchSchedule Fetch schedule for the feed file.
  * @property {string} fileName The filename of the feed. All feeds must have a unique file name.
  * @property {content(v2).DatafeedFormat} format Format of the feed file.
