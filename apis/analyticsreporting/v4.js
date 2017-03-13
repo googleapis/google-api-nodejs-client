@@ -81,185 +81,6 @@ function Analyticsreporting(options) { // eslint-disable-line
 }
 
 /**
- * @typedef MetricFilterClause
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {string} operator The operator for combining multiple metric filters. If unspecified, it is
-treated as an `OR`.
-* @property {analyticsreporting(v4).MetricFilter[]} filters The repeated set of filters. They are logically combined based on the
-operator specified.
-*/
-/**
- * @typedef Cohort
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {string} name A unique name for the cohort. If not defined name will be auto-generated
-with values cohort_[1234...].
-* @property {analyticsreporting(v4).DateRange} dateRange This is used for `FIRST_VISIT_DATE` cohort, the cohort selects users
-whose first visit date is between start date and end date defined in the
-DateRange. The date ranges should be aligned for cohort requests. If the
-request contains `ga:cohortNthDay` it should be exactly one day long,
-if `ga:cohortNthWeek` it should be aligned to the week boundary (starting
-at Sunday and ending Saturday), and for `ga:cohortNthMonth` the date range
-should be aligned to the month (starting at the first and ending on the
-last day of the month).
-For LTV requests there are no such restrictions.
-You do not need to supply a date range for the
-`reportsRequest.dateRanges` field.
-* @property {string} type Type of the cohort. The only supported type as of now is
-`FIRST_VISIT_DATE`. If this field is unspecified the cohort is treated
-as `FIRST_VISIT_DATE` type cohort.
-*/
-/**
- * @typedef ReportRow
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {analyticsreporting(v4).DateRangeValues[]} metrics List of metrics for each requested DateRange.
- * @property {string[]} dimensions List of requested dimensions.
- */
-/**
- * @typedef OrFiltersForSegment
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {analyticsreporting(v4).SegmentFilterClause[]} segmentFilterClauses List of segment filters to be combined with a `OR` operator.
- */
-/**
- * @typedef MetricHeader
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {analyticsreporting(v4).MetricHeaderEntry[]} metricHeaderEntries Headers for the metrics in the response.
- * @property {analyticsreporting(v4).PivotHeader[]} pivotHeaders Headers for the pivots in the response.
- */
-/**
- * @typedef DimensionFilterClause
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {string} operator The operator for combining multiple dimension filters. If unspecified, it
-is treated as an `OR`.
-* @property {analyticsreporting(v4).DimensionFilter[]} filters The repeated set of filters. They are logically combined based on the
-operator specified.
-*/
-/**
- * @typedef GetReportsResponse
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {analyticsreporting(v4).Report[]} reports Responses corresponding to each of the request.
- */
-/**
- * @typedef SequenceSegment
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {analyticsreporting(v4).SegmentSequenceStep[]} segmentSequenceSteps The list of steps in the sequence.
-* @property {boolean} firstStepShouldMatchFirstHit If set, first step condition must match the first hit of the visitor (in
-the date range).
-*/
-/**
- * @typedef SegmentMetricFilter
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {string} metricName The metric that will be filtered on. A `metricFilter` must contain a
-metric name.
-* @property {string} scope Scope for a metric defines the level at which that metric is defined.  The
-specified metric scope must be equal to or greater than its primary scope
-as defined in the data model. The primary scope is defined by if the
-segment is selecting users or sessions.
-* @property {string} maxComparisonValue Max comparison value is only used for `BETWEEN` operator.
-* @property {string} comparisonValue The value to compare against. If the operator is `BETWEEN`, this value is
-treated as minimum comparison value.
-* @property {string} operator Specifies is the operation to perform to compare the metric. The default
-is `EQUAL`.
-*/
-/**
- * @typedef DateRangeValues
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {string[]} values Each value corresponds to each Metric in the request.
- * @property {analyticsreporting(v4).PivotValueRegion[]} pivotValueRegions The values of each pivot region.
- */
-/**
- * @typedef CohortGroup
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {analyticsreporting(v4).Cohort[]} cohorts The definition for the cohort.
-* @property {boolean} lifetimeValue Enable Life Time Value (LTV).  LTV measures lifetime value for users
-acquired through different channels.
-Please see:
-[Cohort Analysis](https://support.google.com/analytics/answer/6074676) and
-[Lifetime Value](https://support.google.com/analytics/answer/6182550)
-If the value of lifetimeValue is false:
-
-- The metric values are similar to the values in the web interface cohort
-  report.
-- The cohort definition date ranges must be aligned to the calendar week
-  and month. i.e. while requesting `ga:cohortNthWeek` the `startDate` in
-  the cohort definition should be a Sunday and the `endDate` should be the
-  following Saturday, and for `ga:cohortNthMonth`, the `startDate`
-  should be the 1st of the month and `endDate` should be the last day
-  of the month.
-
-When the lifetimeValue is true:
-
-- The metric values will correspond to the values in the web interface
-  LifeTime value report.
-- The Lifetime Value report shows you how user value (Revenue) and
-  engagement (Appviews, Goal Completions, Sessions, and Session Duration)
-  grow during the 90 days after a user is acquired.
-- The metrics are calculated as a cumulative average per user per the time
-  increment.
-- The cohort definition date ranges need not be aligned to the calendar
-  week and month boundaries.
-- The `viewId` must be an
-  [app view ID](https://support.google.com/analytics/answer/2649553#WebVersusAppViews)
-*/
-/**
- * @typedef GetReportsRequest
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {analyticsreporting(v4).ReportRequest[]} reportRequests Requests, each request will have a separate response.
-There can be a maximum of 5 requests. All requests should have the same
-`dateRanges`, `viewId`, `segments`, `samplingLevel`, and `cohortGroup`.
-*/
-/**
- * @typedef Pivot
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {analyticsreporting(v4).Dimension[]} dimensions A list of dimensions to show as pivot columns. A Pivot can have a maximum
-of 4 dimensions. Pivot dimensions are part of the restriction on the
-total number of dimensions allowed in the request.
-* @property {analyticsreporting(v4).DimensionFilterClause[]} dimensionFilterClauses DimensionFilterClauses are logically combined with an `AND` operator: only
-data that is included by all these DimensionFilterClauses contributes to
-the values in this pivot region. Dimension filters can be used to restrict
-the columns shown in the pivot region. For example if you have
-`ga:browser` as the requested dimension in the pivot region, and you
-specify key filters to restrict `ga:browser` to only &quot;IE&quot; or &quot;Firefox&quot;,
-then only those two browsers would show up as columns.
-* @property {integer} maxGroupCount Specifies the maximum number of groups to return.
-The default value is 10, also the maximum value is 1,000.
-* @property {integer} startGroup If k metrics were requested, then the response will contain some
-data-dependent multiple of k columns in the report.  E.g., if you pivoted
-on the dimension `ga:browser` then you&#39;d get k columns for &quot;Firefox&quot;, k
-columns for &quot;IE&quot;, k columns for &quot;Chrome&quot;, etc. The ordering of the groups
-of columns is determined by descending order of &quot;total&quot; for the first of
-the k values.  Ties are broken by lexicographic ordering of the first
-pivot dimension, then lexicographic ordering of the second pivot
-dimension, and so on.  E.g., if the totals for the first value for
-Firefox, IE, and Chrome were 8, 2, 8, respectively, the order of columns
-would be Chrome, Firefox, IE.
-
-The following let you choose which of the groups of k columns are
-included in the response.
-* @property {analyticsreporting(v4).Metric[]} metrics The pivot metrics. Pivot metrics are part of the
-restriction on total number of metrics allowed in the request.
-*/
-/**
- * @typedef PivotHeaderEntry
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {string[]} dimensionValues The values for the dimensions in the pivot.
- * @property {string[]} dimensionNames The name of the dimensions in the pivot response.
- * @property {analyticsreporting(v4).MetricHeaderEntry} metric The metric header for the metric in the pivot.
- */
-/**
  * @typedef SegmentFilter
  * @memberOf! analyticsreporting(v4)
  * @type object
@@ -366,23 +187,23 @@ dimensions as explained in the description of the `IN_LIST` operator.
  * @typedef OrderBy
  * @memberOf! analyticsreporting(v4)
  * @type object
-* @property {string} sortOrder The sorting order for the field.
 * @property {string} fieldName The field which to sort by. The default sort order is ascending. Example:
 `ga:browser`.
 Note, that you can only specify one field for sort here. For example,
 `ga:browser, ga:city` is not valid.
 * @property {string} orderType The order type. The default orderType is `VALUE`.
+* @property {string} sortOrder The sorting order for the field.
 */
 /**
  * @typedef SegmentDimensionFilter
  * @memberOf! analyticsreporting(v4)
  * @type object
+ * @property {string} minComparisonValue Minimum comparison values for `BETWEEN` match type.
+ * @property {string} maxComparisonValue Maximum comparison values for `BETWEEN` match type.
  * @property {string} dimensionName Name of the dimension for which the filter is being applied.
  * @property {string} operator The operator to use to match the dimension with the expressions.
  * @property {string[]} expressions The list of expressions, only the first element is used for all operators
  * @property {boolean} caseSensitive Should the match be case sensitive, ignored for `IN_LIST` operator.
- * @property {string} minComparisonValue Minimum comparison values for `BETWEEN` match type.
- * @property {string} maxComparisonValue Maximum comparison values for `BETWEEN` match type.
  */
 /**
  * @typedef SegmentSequenceStep
@@ -423,9 +244,9 @@ will result in unexpected results.
  * @typedef Report
  * @memberOf! analyticsreporting(v4)
  * @type object
- * @property {analyticsreporting(v4).ColumnHeader} columnHeader The column headers.
  * @property {analyticsreporting(v4).ReportData} data Response data.
  * @property {string} nextPageToken Page token to retrieve the next page of results in the list.
+ * @property {analyticsreporting(v4).ColumnHeader} columnHeader The column headers.
  */
 /**
  * @typedef PivotHeader
@@ -445,6 +266,22 @@ will result in unexpected results.
  * @typedef ReportRequest
  * @memberOf! analyticsreporting(v4)
  * @type object
+* @property {analyticsreporting(v4).MetricFilterClause[]} metricFilterClauses The metric filter clauses. They are logically combined with the `AND`
+operator.  Metric filters look at only the first date range and not the
+comparing date range. Note that filtering on metrics occurs after the
+metrics are aggregated.
+* @property {integer} pageSize Page size is for paging and specifies the maximum number of returned rows.
+Page size should be &gt;= 0. A query returns the default of 1,000 rows.
+The Analytics Core Reporting API returns a maximum of 10,000 rows per
+request, no matter how many you ask for. It can also return fewer rows
+than requested, if there aren&#39;t as many dimension segments as you expect.
+For instance, there are fewer than 300 possible values for `ga:country`,
+so when segmenting only by country, you can&#39;t get more than 300 rows,
+even if you set `pageSize` to a higher value.
+* @property {boolean} hideValueRanges If set to true, hides the minimum and maximum across all matching rows.
+The default is false and the value ranges are returned.
+* @property {boolean} hideTotals If set to true, hides the total of all metrics for all the matching rows,
+for every date range. The default false and will return the totals.
 * @property {string} filtersExpression Dimension or metric filters that restrict the data returned for your
 request. To use the `filtersExpression`, supply a dimension or metric on
 which to filter, followed by the filter expression. For example, the
@@ -503,22 +340,6 @@ contain the same `dateRanges` definition.
 * @property {boolean} includeEmptyRows If set to false, the response does not include rows if all the retrieved
 metrics are equal to zero. The default is false which will exclude these
 rows.
-* @property {analyticsreporting(v4).MetricFilterClause[]} metricFilterClauses The metric filter clauses. They are logically combined with the `AND`
-operator.  Metric filters look at only the first date range and not the
-comparing date range. Note that filtering on metrics occurs after the
-metrics are aggregated.
-* @property {integer} pageSize Page size is for paging and specifies the maximum number of returned rows.
-Page size should be &gt;= 0. A query returns the default of 1,000 rows.
-The Analytics Core Reporting API returns a maximum of 10,000 rows per
-request, no matter how many you ask for. It can also return fewer rows
-than requested, if there aren&#39;t as many dimension segments as you expect.
-For instance, there are fewer than 300 possible values for `ga:country`,
-so when segmenting only by country, you can&#39;t get more than 300 rows,
-even if you set `pageSize` to a higher value.
-* @property {boolean} hideValueRanges If set to true, hides the minimum and maximum across all matching rows.
-The default is false and the value ranges are returned.
-* @property {boolean} hideTotals If set to true, hides the total of all metrics for all the matching rows,
-for every date range. The default false and will return the totals.
 */
 /**
  * @typedef MetricFilter
@@ -598,8 +419,187 @@ operator.
  * @typedef SegmentFilterClause
  * @memberOf! analyticsreporting(v4)
  * @type object
- * @property {analyticsreporting(v4).SegmentMetricFilter} metricFilter Metric Filter for the segment definition.
  * @property {boolean} not Matches the complement (`!`) of the filter.
  * @property {analyticsreporting(v4).SegmentDimensionFilter} dimensionFilter Dimension Filter for the segment definition.
+ * @property {analyticsreporting(v4).SegmentMetricFilter} metricFilter Metric Filter for the segment definition.
+ */
+/**
+ * @typedef ReportRow
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {analyticsreporting(v4).DateRangeValues[]} metrics List of metrics for each requested DateRange.
+ * @property {string[]} dimensions List of requested dimensions.
+ */
+/**
+ * @typedef Cohort
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {string} name A unique name for the cohort. If not defined name will be auto-generated
+with values cohort_[1234...].
+* @property {analyticsreporting(v4).DateRange} dateRange This is used for `FIRST_VISIT_DATE` cohort, the cohort selects users
+whose first visit date is between start date and end date defined in the
+DateRange. The date ranges should be aligned for cohort requests. If the
+request contains `ga:cohortNthDay` it should be exactly one day long,
+if `ga:cohortNthWeek` it should be aligned to the week boundary (starting
+at Sunday and ending Saturday), and for `ga:cohortNthMonth` the date range
+should be aligned to the month (starting at the first and ending on the
+last day of the month).
+For LTV requests there are no such restrictions.
+You do not need to supply a date range for the
+`reportsRequest.dateRanges` field.
+* @property {string} type Type of the cohort. The only supported type as of now is
+`FIRST_VISIT_DATE`. If this field is unspecified the cohort is treated
+as `FIRST_VISIT_DATE` type cohort.
+*/
+/**
+ * @typedef MetricFilterClause
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {string} operator The operator for combining multiple metric filters. If unspecified, it is
+treated as an `OR`.
+* @property {analyticsreporting(v4).MetricFilter[]} filters The repeated set of filters. They are logically combined based on the
+operator specified.
+*/
+/**
+ * @typedef OrFiltersForSegment
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {analyticsreporting(v4).SegmentFilterClause[]} segmentFilterClauses List of segment filters to be combined with a `OR` operator.
+ */
+/**
+ * @typedef MetricHeader
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {analyticsreporting(v4).MetricHeaderEntry[]} metricHeaderEntries Headers for the metrics in the response.
+ * @property {analyticsreporting(v4).PivotHeader[]} pivotHeaders Headers for the pivots in the response.
+ */
+/**
+ * @typedef DimensionFilterClause
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {string} operator The operator for combining multiple dimension filters. If unspecified, it
+is treated as an `OR`.
+* @property {analyticsreporting(v4).DimensionFilter[]} filters The repeated set of filters. They are logically combined based on the
+operator specified.
+*/
+/**
+ * @typedef GetReportsResponse
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {analyticsreporting(v4).Report[]} reports Responses corresponding to each of the request.
+ */
+/**
+ * @typedef SequenceSegment
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {analyticsreporting(v4).SegmentSequenceStep[]} segmentSequenceSteps The list of steps in the sequence.
+* @property {boolean} firstStepShouldMatchFirstHit If set, first step condition must match the first hit of the visitor (in
+the date range).
+*/
+/**
+ * @typedef SegmentMetricFilter
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {string} metricName The metric that will be filtered on. A `metricFilter` must contain a
+metric name.
+* @property {string} scope Scope for a metric defines the level at which that metric is defined.  The
+specified metric scope must be equal to or greater than its primary scope
+as defined in the data model. The primary scope is defined by if the
+segment is selecting users or sessions.
+* @property {string} maxComparisonValue Max comparison value is only used for `BETWEEN` operator.
+* @property {string} comparisonValue The value to compare against. If the operator is `BETWEEN`, this value is
+treated as minimum comparison value.
+* @property {string} operator Specifies is the operation to perform to compare the metric. The default
+is `EQUAL`.
+*/
+/**
+ * @typedef DateRangeValues
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {string[]} values Each value corresponds to each Metric in the request.
+ * @property {analyticsreporting(v4).PivotValueRegion[]} pivotValueRegions The values of each pivot region.
+ */
+/**
+ * @typedef CohortGroup
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {boolean} lifetimeValue Enable Life Time Value (LTV).  LTV measures lifetime value for users
+acquired through different channels.
+Please see:
+[Cohort Analysis](https://support.google.com/analytics/answer/6074676) and
+[Lifetime Value](https://support.google.com/analytics/answer/6182550)
+If the value of lifetimeValue is false:
+
+- The metric values are similar to the values in the web interface cohort
+  report.
+- The cohort definition date ranges must be aligned to the calendar week
+  and month. i.e. while requesting `ga:cohortNthWeek` the `startDate` in
+  the cohort definition should be a Sunday and the `endDate` should be the
+  following Saturday, and for `ga:cohortNthMonth`, the `startDate`
+  should be the 1st of the month and `endDate` should be the last day
+  of the month.
+
+When the lifetimeValue is true:
+
+- The metric values will correspond to the values in the web interface
+  LifeTime value report.
+- The Lifetime Value report shows you how user value (Revenue) and
+  engagement (Appviews, Goal Completions, Sessions, and Session Duration)
+  grow during the 90 days after a user is acquired.
+- The metrics are calculated as a cumulative average per user per the time
+  increment.
+- The cohort definition date ranges need not be aligned to the calendar
+  week and month boundaries.
+- The `viewId` must be an
+  [app view ID](https://support.google.com/analytics/answer/2649553#WebVersusAppViews)
+* @property {analyticsreporting(v4).Cohort[]} cohorts The definition for the cohort.
+*/
+/**
+ * @typedef GetReportsRequest
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {analyticsreporting(v4).ReportRequest[]} reportRequests Requests, each request will have a separate response.
+There can be a maximum of 5 requests. All requests should have the same
+`dateRanges`, `viewId`, `segments`, `samplingLevel`, and `cohortGroup`.
+*/
+/**
+ * @typedef Pivot
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {analyticsreporting(v4).Dimension[]} dimensions A list of dimensions to show as pivot columns. A Pivot can have a maximum
+of 4 dimensions. Pivot dimensions are part of the restriction on the
+total number of dimensions allowed in the request.
+* @property {analyticsreporting(v4).DimensionFilterClause[]} dimensionFilterClauses DimensionFilterClauses are logically combined with an `AND` operator: only
+data that is included by all these DimensionFilterClauses contributes to
+the values in this pivot region. Dimension filters can be used to restrict
+the columns shown in the pivot region. For example if you have
+`ga:browser` as the requested dimension in the pivot region, and you
+specify key filters to restrict `ga:browser` to only &quot;IE&quot; or &quot;Firefox&quot;,
+then only those two browsers would show up as columns.
+* @property {integer} maxGroupCount Specifies the maximum number of groups to return.
+The default value is 10, also the maximum value is 1,000.
+* @property {integer} startGroup If k metrics were requested, then the response will contain some
+data-dependent multiple of k columns in the report.  E.g., if you pivoted
+on the dimension `ga:browser` then you&#39;d get k columns for &quot;Firefox&quot;, k
+columns for &quot;IE&quot;, k columns for &quot;Chrome&quot;, etc. The ordering of the groups
+of columns is determined by descending order of &quot;total&quot; for the first of
+the k values.  Ties are broken by lexicographic ordering of the first
+pivot dimension, then lexicographic ordering of the second pivot
+dimension, and so on.  E.g., if the totals for the first value for
+Firefox, IE, and Chrome were 8, 2, 8, respectively, the order of columns
+would be Chrome, Firefox, IE.
+
+The following let you choose which of the groups of k columns are
+included in the response.
+* @property {analyticsreporting(v4).Metric[]} metrics The pivot metrics. Pivot metrics are part of the
+restriction on total number of metrics allowed in the request.
+*/
+/**
+ * @typedef PivotHeaderEntry
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {string[]} dimensionNames The name of the dimensions in the pivot response.
+ * @property {analyticsreporting(v4).MetricHeaderEntry} metric The metric header for the metric in the pivot.
+ * @property {string[]} dimensionValues The values for the dimensions in the pivot.
  */
 module.exports = Analyticsreporting;

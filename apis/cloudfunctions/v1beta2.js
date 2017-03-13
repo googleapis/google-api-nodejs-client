@@ -51,10 +51,10 @@ function Cloudfunctions(options) { // eslint-disable-line
      * @memberOf! cloudfunctions(v1beta2)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
      * @param {string=} params.name The name of the operation collection.
      * @param {string=} params.pageToken The standard list page token.
      * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.filter The standard list filter.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -130,10 +130,10 @@ function Cloudfunctions(options) { // eslint-disable-line
        * @memberOf! cloudfunctions(v1beta2)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.filter The standard list filter.
        * @param {string} params.name The resource that owns the locations collection, if applicable.
        * @param {string=} params.pageToken The standard list page token.
        * @param {integer=} params.pageSize The standard list page size.
-       * @param {string=} params.filter The standard list filter.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -391,6 +391,13 @@ google.cloud.functions.v1beta2.ListFunctionsRequest
 to get more functions.
 */
 /**
+ * @typedef ListLocationsResponse
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+ * @property {cloudfunctions(v1beta2).Location[]} locations A list of locations that matches the specified filter in the request.
+ * @property {string} nextPageToken The standard List next-page token.
+ */
+/**
  * @typedef CallFunctionResponse
  * @memberOf! cloudfunctions(v1beta2)
  * @type object
@@ -401,21 +408,9 @@ not be populated if function does not return a result through context.
 was not successful.
 */
 /**
- * @typedef ListLocationsResponse
- * @memberOf! cloudfunctions(v1beta2)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {cloudfunctions(v1beta2).Location[]} locations A list of locations that matches the specified filter in the request.
- */
-/**
  * @typedef EventTrigger
  * @memberOf! cloudfunctions(v1beta2)
  * @type object
-* @property {string} resource Which instance of the source&#39;s service should send events. E.g. for Pub/Sub
-this would be a Pub/Sub topic at `projects/x/topics/x. For Google Cloud
-Storage this would be a bucket at `projects/x/buckets/x. For any source
-that only supports one instance per-project, this should be the name of the
-project (`projects/x)
 * @property {string} eventType `event_type` names contain the service that is sending an event and the
 kind of event that was fired. Must be of the form
 `providers/x/eventTypes/x e.g. Directly handle a Message published to
@@ -426,6 +421,11 @@ Google Cloud Pub/Sub `providers/cloud.pubsub/eventTypes/topic.publish`
 
      Handle a write to the Firebase Realtime Database
      `providers/firebase.database/eventTypes/data.write`
+* @property {string} resource Which instance of the source&#39;s service should send events. E.g. for Pub/Sub
+this would be a Pub/Sub topic at `projects/x/topics/x. For Google Cloud
+Storage this would be a bucket at `projects/x/buckets/x. For any source
+that only supports one instance per-project, this should be the name of the
+project (`projects/x)
 */
 /**
  * @typedef HTTPSTrigger
@@ -437,6 +437,9 @@ Google Cloud Pub/Sub `providers/cloud.pubsub/eventTypes/topic.publish`
  * @typedef Operation
  * @memberOf! cloudfunctions(v1beta2)
  * @type object
+* @property {string} name The server-assigned name, which is only unique within the same service that
+originally returns it. If you use the default HTTP mapping, the
+`name` should have the format of `operations/some/unique/name`.
 * @property {cloudfunctions(v1beta2).Status} error The error result of the operation in case of failure or cancellation.
 * @property {object} metadata Service-specific metadata associated with the operation.  It typically
 contains progress information and common metadata such as create time.
@@ -453,9 +456,6 @@ methods, the response should have the type `XxxResponse`, where `Xxx`
 is the original method name.  For example, if the original method name
 is `TakeSnapshot()`, the inferred response type is
 `TakeSnapshotResponse`.
-* @property {string} name The server-assigned name, which is only unique within the same service that
-originally returns it. If you use the default HTTP mapping, the
-`name` should have the format of `operations/some/unique/name`.
 */
 /**
  * @typedef OperationMetadataV1Beta2
@@ -470,12 +470,34 @@ projects/project-1/locations/region-1/functions/function-1
  * @typedef Status
  * @memberOf! cloudfunctions(v1beta2)
  * @type object
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
 * @property {object[]} details A list of messages that carry the error details.  There will be a
 common set of message types for APIs to use.
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+*/
+/**
+ * @typedef SourceRepository
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+* @property {string} branch The name of the branch from which the function should be fetched.
+* @property {string} sourcePath The path within the repository where the function is defined. The path
+should point to the directory where Cloud Functions files are located. Use
+&quot;/&quot; if the function is defined directly in the root directory of a
+repository.
+* @property {string} deployedRevision Output only. The id of the revision that was resolved at the moment of
+function creation or update. For example when a user deployed from a
+branch, it will be the revision id of the latest change on this branch at
+that time. If user deployed from revision then this value will be always
+equal to the revision specified by the user.
+* @property {string} revision The id of the revision that captures the state of the repository from
+which the function should be fetched.
+* @property {string} repositoryUrl URL to the hosted repository where the function is defined. Only paths in
+https://source.developers.google.com domain are supported. The path should
+contain the name of the repository.
+* @property {string} tag The name of the tag that captures the state of the repository from
+which the function should be fetched.
 */
 /**
  * @typedef CallFunctionRequest
@@ -484,36 +506,9 @@ common set of message types for APIs to use.
  * @property {string} data Input to be passed to the function.
  */
 /**
- * @typedef SourceRepository
- * @memberOf! cloudfunctions(v1beta2)
- * @type object
-* @property {string} tag The name of the tag that captures the state of the repository from
-which the function should be fetched.
-* @property {string} branch The name of the branch from which the function should be fetched.
-* @property {string} deployedRevision Output only. The id of the revision that was resolved at the moment of
-function creation or update. For example when a user deployed from a
-branch, it will be the revision id of the latest change on this branch at
-that time. If user deployed from revision then this value will be always
-equal to the revision specified by the user.
-* @property {string} sourcePath The path within the repository where the function is defined. The path
-should point to the directory where Cloud Functions files are located. Use
-&quot;/&quot; if the function is defined directly in the root directory of a
-repository.
-* @property {string} revision The id of the revision that captures the state of the repository from
-which the function should be fetched.
-* @property {string} repositoryUrl URL to the hosted repository where the function is defined. Only paths in
-https://source.developers.google.com domain are supported. The path should
-contain the name of the repository.
-*/
-/**
  * @typedef CloudFunction
  * @memberOf! cloudfunctions(v1beta2)
  * @type object
-* @property {integer} availableMemoryMb The amount of memory in MB available for a function.
-Defaults to 256MB.
-* @property {string} name A user-defined name of the function. Function names must be unique
-globally and match pattern `projects/x/locations/x/functions/x
-* @property {string} serviceAccount Output only. The service account of the function.
 * @property {string} sourceArchiveUrl The URL, starting with gs://, pointing to the zip archive which contains
 the function.
 * @property {cloudfunctions(v1beta2).SourceRepository} sourceRepository The hosted repository where the function is defined.
@@ -533,19 +528,24 @@ can be terminated if the function is not completed at the end of the
 timeout period. Defaults to 60 seconds.
 * @property {string} status Output only. Status of the function deployment.
 * @property {cloudfunctions(v1beta2).EventTrigger} eventTrigger A source that fires events in response to a condition in another service.
+* @property {integer} availableMemoryMb The amount of memory in MB available for a function.
+Defaults to 256MB.
+* @property {string} name A user-defined name of the function. Function names must be unique
+globally and match pattern `projects/x/locations/x/functions/x
+* @property {string} serviceAccount Output only. The service account of the function.
 */
 /**
  * @typedef Location
  * @memberOf! cloudfunctions(v1beta2)
  * @type object
+* @property {object} labels Cross-service attributes for the location. For example
+
+    {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
 * @property {string} name Resource name for the location, which may vary between implementations.
 For example: `&quot;projects/example-project/locations/us-east1&quot;`
 * @property {string} locationId The canonical id for this location. For example: `&quot;us-east1&quot;`.
 * @property {object} metadata Service-specific metadata. For example the available capacity at the given
 location.
-* @property {object} labels Cross-service attributes for the location. For example
-
-    {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
 */
 /**
  * @typedef ListOperationsResponse

@@ -40,1013 +40,7 @@ function Cloudresourcemanager(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
 
-  self.projects = {
-
-    /**
-     * cloudresourcemanager.projects.getIamPolicy
-     *
-     * @desc Returns the IAM access control policy for the specified Project. Permission is denied if the policy or the resource does not exist.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud Resource Manager API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudResourceManager = google.cloudresourcemanager('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // REQUIRED: The resource for which the policy is being requested.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   cloudResourceManager.projects.getIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias cloudresourcemanager.projects.getIamPolicy
-     * @memberOf! cloudresourcemanager(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {cloudresourcemanager(v1).GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{resource}:getIamPolicy',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * cloudresourcemanager.projects.undelete
-     *
-     * @desc Restores the Project identified by the specified `project_id` (for example, `my-project-123`). You can only use this method for a Project that has a lifecycle state of DELETE_REQUESTED. After deletion starts, the Project cannot be restored.  The caller must have modify permissions for this Project.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud Resource Manager API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudResourceManager = google.cloudresourcemanager('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The project ID (for example, `foo-bar-123`).
-     *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   cloudResourceManager.projects.undelete(request, function(err) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias cloudresourcemanager.projects.undelete
-     * @memberOf! cloudresourcemanager(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId The project ID (for example, `foo-bar-123`).  Required.
-     * @param {cloudresourcemanager(v1).UndeleteProjectRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    undelete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}:undelete',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * cloudresourcemanager.projects.get
-     *
-     * @desc Retrieves the Project identified by the specified `project_id` (for example, `my-project-123`).  The caller must have read permissions for this Project.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud Resource Manager API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudResourceManager = google.cloudresourcemanager('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The Project ID (for example, `my-project-123`).
-     *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   cloudResourceManager.projects.get(request, function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias cloudresourcemanager.projects.get
-     * @memberOf! cloudresourcemanager(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId The Project ID (for example, `my-project-123`).  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * cloudresourcemanager.projects.update
-     *
-     * @desc Updates the attributes of the Project identified by the specified `project_id` (for example, `my-project-123`).  The caller must have modify permissions for this Project.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud Resource Manager API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudResourceManager = google.cloudresourcemanager('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The project ID (for example, `my-project-123`).
-     *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body. All existing properties
-     *       // will be replaced.
-     *     },
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   cloudResourceManager.projects.update(request, function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias cloudresourcemanager.projects.update
-     * @memberOf! cloudresourcemanager(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId The project ID (for example, `my-project-123`).  Required.
-     * @param {cloudresourcemanager(v1).Project} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    update: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}',
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * cloudresourcemanager.projects.getAncestry
-     *
-     * @desc Gets a list of ancestors in the resource hierarchy for the Project identified by the specified `project_id` (for example, `my-project-123`).  The caller must have read permissions for this Project.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud Resource Manager API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudResourceManager = google.cloudresourcemanager('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The Project ID (for example, `my-project-123`).
-     *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   cloudResourceManager.projects.getAncestry(request, function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias cloudresourcemanager.projects.getAncestry
-     * @memberOf! cloudresourcemanager(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId The Project ID (for example, `my-project-123`).  Required.
-     * @param {cloudresourcemanager(v1).GetAncestryRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getAncestry: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}:getAncestry',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * cloudresourcemanager.projects.testIamPermissions
-     *
-     * @desc Returns permissions that a caller has on the specified Project.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud Resource Manager API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudResourceManager = google.cloudresourcemanager('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // REQUIRED: The resource for which the policy detail is being requested.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   cloudResourceManager.projects.testIamPermissions(request, function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias cloudresourcemanager.projects.testIamPermissions
-     * @memberOf! cloudresourcemanager(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {cloudresourcemanager(v1).TestIamPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{resource}:testIamPermissions',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * cloudresourcemanager.projects.delete
-     *
-     * @desc Marks the Project identified by the specified `project_id` (for example, `my-project-123`) for deletion. This method will only affect the Project if the following criteria are met:  + The Project does not have a billing account associated with it. + The Project has a lifecycle state of ACTIVE.  This method changes the Project's lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion starts at an unspecified time, at which point the Project is no longer accessible.  Until the deletion completes, you can check the lifecycle state checked by retrieving the Project with GetProject, and the Project remains visible to ListProjects. However, you cannot update the project.  After the deletion completes, the Project is not retrievable by the  GetProject and ListProjects methods.  The caller must have modify permissions for this Project.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud Resource Manager API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudResourceManager = google.cloudresourcemanager('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // The Project ID (for example, `foo-bar-123`).
-     *     // Required.
-     *     projectId: '',  // TODO: Update placeholder value.
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   cloudResourceManager.projects.delete(request, function(err) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias cloudresourcemanager.projects.delete
-     * @memberOf! cloudresourcemanager(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId The Project ID (for example, `foo-bar-123`).  Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}',
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['projectId'],
-        pathParams: ['projectId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * cloudresourcemanager.projects.list
-     *
-     * @desc Lists Projects that are visible to the user and satisfy the specified filter. This method returns Projects in an unspecified order. New Projects do not necessarily appear at the end of the list.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud Resource Manager API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudResourceManager = google.cloudresourcemanager('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     auth: authClient
-     *   };
-     *
-     *   var handlePage = function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     var projectsPage = response['projects'];
-     *     if (!projectsPage) {
-     *       return;
-     *     }
-     *     for (var i = 0; i < projectsPage.length; i++) {
-     *       // TODO: Change code below to process each resource in `projectsPage`:
-     *       console.log(JSON.stringify(projectsPage[i], null, 2));
-     *     }
-     *
-     *     if (response.nextPageToken) {
-     *       request.pageToken = response.nextPageToken;
-     *       cloudResourceManager.projects.list(request, handlePage);
-     *     }
-     *   };
-     *
-     *   cloudResourceManager.projects.list(request, handlePage);
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias cloudresourcemanager.projects.list
-     * @memberOf! cloudresourcemanager(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter An expression for filtering the results of the request.  Filter rules are case insensitive. The fields eligible for filtering are:  + `name` + `id` + <code>labels.<em>key</em></code> where *key* is the name of a label  Some examples of using labels as filters:  |Filter|Description| |------|-----------| |name:*|The project has a name.| |name:Howl|The project's name is `Howl` or `howl`.| |name:HOWL|Equivalent to above.| |NAME:howl|Equivalent to above.| |labels.color:*|The project has the label `color`.| |labels.color:red|The project's label `color` has the value `red`.| |labels.color:red&nbsp;label.size:big|The project's label `color` has the value `red` and its label `size` has the value `big`.  Optional.
-     * @param {string=} params.pageToken A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.  Optional.
-     * @param {integer=} params.pageSize The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.  Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://cloudresourcemanager.googleapis.com/v1/projects',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * cloudresourcemanager.projects.setIamPolicy
-     *
-     * @desc Sets the IAM access control policy for the specified Project. Replaces any existing policy.  The following constraints apply when using `setIamPolicy()`:  + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`.  + The owner role can be granted only to `user` and `serviceAccount`.  + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation.  + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation.  + Invitations to grant the owner role cannot be sent using `setIamPolicy()`; they must be sent only using the Cloud Platform Console.  + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected.  + There must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified.  + Calling this method requires enabling the App Engine Admin API.  Note: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud Resource Manager API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudResourceManager = google.cloudresourcemanager('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // REQUIRED: The resource for which the policy is being specified.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   cloudResourceManager.projects.setIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias cloudresourcemanager.projects.setIamPolicy
-     * @memberOf! cloudresourcemanager(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {cloudresourcemanager(v1).SetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    setIamPolicy: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{resource}:setIamPolicy',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * cloudresourcemanager.projects.create
-     *
-     * @desc Request that a new Project be created. The result is an Operation which can be used to track the creation process. It is automatically deleted after a few hours, so there is no need to call DeleteOperation.  Our SLO permits Project creation to take up to 30 seconds at the 90th percentile. As of 2016-08-29, we are observing 6 seconds 50th percentile latency. 95th percentile latency is around 11 seconds. We recommend polling at the 5th second with an exponential backoff.
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud Resource Manager API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudResourceManager = google.cloudresourcemanager('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   cloudResourceManager.projects.create(request, function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias cloudresourcemanager.projects.create
-     * @memberOf! cloudresourcemanager(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {cloudresourcemanager(v1).Project} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    create: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://cloudresourcemanager.googleapis.com/v1/projects',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
   self.organizations = {
-
-    /**
-     * cloudresourcemanager.organizations.getIamPolicy
-     *
-     * @desc Gets the access control policy for an Organization resource. May be empty if no such policy or resource exists. The `resource` field should be the organization's resource name, e.g. "organizations/123".
-     *
-     * @example
-     * // BEFORE RUNNING:
-     * // ---------------
-     * // 1. If not already done, enable the Google Cloud Resource Manager API
-     * //    and check the quota for your project at
-     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
-     * // 2. This sample uses Application Default Credentials for authentication.
-     * //    If not already done, install the gcloud CLI from
-     * //    https://cloud.google.com/sdk and run
-     * //    `gcloud beta auth application-default login`.
-     * //    For more information, see
-     * //    https://developers.google.com/identity/protocols/application-default-credentials
-     * // 3. Install the Node.js client library by running
-     * //    `npm install googleapis --save`
-     *
-     * var google = require('googleapis');
-     * var cloudResourceManager = google.cloudresourcemanager('v1');
-     *
-     * authorize(function(authClient) {
-     *   var request = {
-     *     // REQUIRED: The resource for which the policy is being requested.
-     *     // `resource` is usually specified as a path. For example, a Project
-     *     // resource is specified as `projects/{project}`.
-     *     resource_: '',  // TODO: Update placeholder value.
-     *
-     *     resource: {
-     *       // TODO: Add desired properties to the request body.
-     *     },
-     *
-     *     auth: authClient
-     *   };
-     *
-     *   cloudResourceManager.organizations.getIamPolicy(request, function(err, response) {
-     *     if (err) {
-     *       console.log(err);
-     *       return;
-     *     }
-     *
-     *     // TODO: Change code below to process the `response` object:
-     *     console.log(JSON.stringify(response, null, 2));
-     *   });
-     * });
-     *
-     * function authorize(callback) {
-     *   google.auth.getApplicationDefault(function(err, authClient)) {
-     *     if (err) {
-     *       console.log('authentication failed: ', err);
-     *       return;
-     *     }
-     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
-     *       authClient = authClient.createScoped(scopes);
-     *     }
-     *     callback(authClient);
-     *   });
-     * }
-     *
-     * @alias cloudresourcemanager.organizations.getIamPolicy
-     * @memberOf! cloudresourcemanager(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {cloudresourcemanager(v1).GetIamPolicyRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    getIamPolicy: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://cloudresourcemanager.googleapis.com/v1/{resource}:getIamPolicy',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
 
     /**
      * cloudresourcemanager.organizations.search
@@ -1418,6 +412,99 @@ function Cloudresourcemanager(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.organizations.getIamPolicy
+     *
+     * @desc Gets the access control policy for an Organization resource. May be empty if no such policy or resource exists. The `resource` field should be the organization's resource name, e.g. "organizations/123".
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // `resource` is usually specified as a path. For example, a Project
+     *     // resource is specified as `projects/{project}`.
+     *     resource_: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   cloudResourceManager.organizations.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias cloudresourcemanager.organizations.getIamPolicy
+     * @memberOf! cloudresourcemanager(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {cloudresourcemanager(v1).GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudresourcemanager.googleapis.com/v1/{resource}:getIamPolicy',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -1468,9 +555,9 @@ function Cloudresourcemanager(options) { // eslint-disable-line
      * @memberOf! cloudresourcemanager(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.parent The name of the resource to list all attached Liens. For example, `projects/1234`.
      * @param {string=} params.pageToken The `next_page_token` value returned from a previous List request, if any.
      * @param {integer=} params.pageSize The maximum number of items to return. This is a suggestion for the server.
+     * @param {string=} params.parent The name of the resource to list all attached Liens. For example, `projects/1234`.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1622,75 +709,921 @@ function Cloudresourcemanager(options) { // eslint-disable-line
     }
 
   };
+
+  self.projects = {
+
+    /**
+     * cloudresourcemanager.projects.create
+     *
+     * @desc Request that a new Project be created. The result is an Operation which can be used to track the creation process. It is automatically deleted after a few hours, so there is no need to call DeleteOperation.  Our SLO permits Project creation to take up to 30 seconds at the 90th percentile. As of 2016-08-29, we are observing 6 seconds 50th percentile latency. 95th percentile latency is around 11 seconds. We recommend polling at the 5th second with an exponential backoff.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   cloudResourceManager.projects.create(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias cloudresourcemanager.projects.create
+     * @memberOf! cloudresourcemanager(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {cloudresourcemanager(v1).Project} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    create: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudresourcemanager.googleapis.com/v1/projects',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.projects.setIamPolicy
+     *
+     * @desc Sets the IAM access control policy for the specified Project. Replaces any existing policy.  The following constraints apply when using `setIamPolicy()`:  + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`.  + The owner role can be granted only to `user` and `serviceAccount`.  + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation.  + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation.  + Invitations to grant the owner role cannot be sent using `setIamPolicy()`; they must be sent only using the Cloud Platform Console.  + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected.  + There must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified.  + Calling this method requires enabling the App Engine Admin API.  Note: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being specified.
+     *     // `resource` is usually specified as a path. For example, a Project
+     *     // resource is specified as `projects/{project}`.
+     *     resource_: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   cloudResourceManager.projects.setIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias cloudresourcemanager.projects.setIamPolicy
+     * @memberOf! cloudresourcemanager(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {cloudresourcemanager(v1).SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{resource}:setIamPolicy',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.projects.getIamPolicy
+     *
+     * @desc Returns the IAM access control policy for the specified Project. Permission is denied if the policy or the resource does not exist.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy is being requested.
+     *     // `resource` is usually specified as a path. For example, a Project
+     *     // resource is specified as `projects/{project}`.
+     *     resource_: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   cloudResourceManager.projects.getIamPolicy(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias cloudresourcemanager.projects.getIamPolicy
+     * @memberOf! cloudresourcemanager(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {cloudresourcemanager(v1).GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{resource}:getIamPolicy',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.projects.undelete
+     *
+     * @desc Restores the Project identified by the specified `project_id` (for example, `my-project-123`). You can only use this method for a Project that has a lifecycle state of DELETE_REQUESTED. After deletion starts, the Project cannot be restored.  The caller must have modify permissions for this Project.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The project ID (for example, `foo-bar-123`).
+     *     // Required.
+     *     projectId: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   cloudResourceManager.projects.undelete(request, function(err) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias cloudresourcemanager.projects.undelete
+     * @memberOf! cloudresourcemanager(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The project ID (for example, `foo-bar-123`).  Required.
+     * @param {cloudresourcemanager(v1).UndeleteProjectRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    undelete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}:undelete',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.projects.get
+     *
+     * @desc Retrieves the Project identified by the specified `project_id` (for example, `my-project-123`).  The caller must have read permissions for this Project.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The Project ID (for example, `my-project-123`).
+     *     // Required.
+     *     projectId: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   cloudResourceManager.projects.get(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias cloudresourcemanager.projects.get
+     * @memberOf! cloudresourcemanager(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The Project ID (for example, `my-project-123`).  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.projects.getAncestry
+     *
+     * @desc Gets a list of ancestors in the resource hierarchy for the Project identified by the specified `project_id` (for example, `my-project-123`).  The caller must have read permissions for this Project.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The Project ID (for example, `my-project-123`).
+     *     // Required.
+     *     projectId: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   cloudResourceManager.projects.getAncestry(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias cloudresourcemanager.projects.getAncestry
+     * @memberOf! cloudresourcemanager(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The Project ID (for example, `my-project-123`).  Required.
+     * @param {cloudresourcemanager(v1).GetAncestryRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getAncestry: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}:getAncestry',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.projects.update
+     *
+     * @desc Updates the attributes of the Project identified by the specified `project_id` (for example, `my-project-123`).  The caller must have modify permissions for this Project.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The project ID (for example, `my-project-123`).
+     *     // Required.
+     *     projectId: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   cloudResourceManager.projects.update(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias cloudresourcemanager.projects.update
+     * @memberOf! cloudresourcemanager(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The project ID (for example, `my-project-123`).  Required.
+     * @param {cloudresourcemanager(v1).Project} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    update: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}',
+          method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.projects.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified Project.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // REQUIRED: The resource for which the policy detail is being requested.
+     *     // `resource` is usually specified as a path. For example, a Project
+     *     // resource is specified as `projects/{project}`.
+     *     resource_: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   cloudResourceManager.projects.testIamPermissions(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias cloudresourcemanager.projects.testIamPermissions
+     * @memberOf! cloudresourcemanager(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {cloudresourcemanager(v1).TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{resource}:testIamPermissions',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.projects.delete
+     *
+     * @desc Marks the Project identified by the specified `project_id` (for example, `my-project-123`) for deletion. This method will only affect the Project if the following criteria are met:  + The Project does not have a billing account associated with it. + The Project has a lifecycle state of ACTIVE.  This method changes the Project's lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion starts at an unspecified time, at which point the Project is no longer accessible.  Until the deletion completes, you can check the lifecycle state checked by retrieving the Project with GetProject, and the Project remains visible to ListProjects. However, you cannot update the project.  After the deletion completes, the Project is not retrievable by the  GetProject and ListProjects methods.  The caller must have modify permissions for this Project.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // The Project ID (for example, `foo-bar-123`).
+     *     // Required.
+     *     projectId: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   cloudResourceManager.projects.delete(request, function(err) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias cloudresourcemanager.projects.delete
+     * @memberOf! cloudresourcemanager(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.projectId The Project ID (for example, `foo-bar-123`).  Required.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudresourcemanager.googleapis.com/v1/projects/{projectId}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudresourcemanager.projects.list
+     *
+     * @desc Lists Projects that are visible to the user and satisfy the specified filter. This method returns Projects in an unspecified order. New Projects do not necessarily appear at the end of the list.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Google Cloud Resource Manager API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/cloudresourcemanager
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var cloudResourceManager = google.cloudresourcemanager('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     auth: authClient
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     var projectsPage = response['projects'];
+     *     if (!projectsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < projectsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `projectsPage`:
+     *       console.log(JSON.stringify(projectsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       cloudResourceManager.projects.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   cloudResourceManager.projects.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
+     * @alias cloudresourcemanager.projects.list
+     * @memberOf! cloudresourcemanager(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter An expression for filtering the results of the request.  Filter rules are case insensitive. The fields eligible for filtering are:  + `name` + `id` + <code>labels.<em>key</em></code> where *key* is the name of a label  Some examples of using labels as filters:  |Filter|Description| |------|-----------| |name:*|The project has a name.| |name:Howl|The project's name is `Howl` or `howl`.| |name:HOWL|Equivalent to above.| |NAME:howl|Equivalent to above.| |labels.color:*|The project has the label `color`.| |labels.color:red|The project's label `color` has the value `red`.| |labels.color:red&nbsp;label.size:big|The project's label `color` has the value `red` and its label `size` has the value `big`.  Optional.
+     * @param {string=} params.pageToken A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.  Optional.
+     * @param {integer=} params.pageSize The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.  Optional.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudresourcemanager.googleapis.com/v1/projects',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
 
-/**
- * @typedef SearchOrganizationsResponse
- * @memberOf! cloudresourcemanager(v1)
- * @type object
-* @property {string} nextPageToken A pagination token to be used to retrieve the next page of results. If the
-result is too large to fit within the page size specified in the request,
-this field will be set with a token that can be used to fetch the next page
-of results. If this field is empty, it indicates that this response
-contains the last page of results.
-* @property {cloudresourcemanager(v1).Organization[]} organizations The list of Organizations that matched the search query, possibly
-paginated.
-*/
-/**
- * @typedef FolderOperationError
- * @memberOf! cloudresourcemanager(v1)
- * @type object
- * @property {string} errorMessageId The type of operation error experienced.
- */
-/**
- * @typedef Lien
- * @memberOf! cloudresourcemanager(v1)
- * @type object
-* @property {string} parent A reference to the resource this Lien is attached to. The server will
-validate the parent against those for which Liens are supported.
-
-Example: `projects/1234`
-* @property {string} createTime The creation time of this Lien.
-* @property {string} name A system-generated unique identifier for this Lien.
-
-Example: `liens/1234abcd`
-* @property {string} reason Concise user-visible strings indicating why an action cannot be performed
-on a resource. Maximum lenth of 200 characters.
-
-Example: &#39;Holds production API key&#39;
-* @property {string} origin A stable, user-visible/meaningful string identifying the origin of the
-Lien, intended to be inspected programmatically. Maximum length of 200
-characters.
-
-Example: &#39;compute.googleapis.com&#39;
-* @property {string[]} restrictions The types of operations which should be blocked as a result of this Lien.
-Each value should correspond to an IAM permission. The server will
-validate the permissions against those for which Liens are supported.
-
-An empty list is meaningless and will be rejected.
-
-Example: [&#39;resourcemanager.projects.delete&#39;]
-*/
-/**
- * @typedef Ancestor
- * @memberOf! cloudresourcemanager(v1)
- * @type object
- * @property {cloudresourcemanager(v1).ResourceId} resourceId Resource id of the ancestor.
- */
-/**
- * @typedef SetIamPolicyRequest
- * @memberOf! cloudresourcemanager(v1)
- * @type object
-* @property {cloudresourcemanager(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
-the policy is limited to a few 10s of KB. An empty policy is a
-valid policy but certain Cloud Platform services (such as Projects)
-might reject them.
-* @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
-the fields in the mask will be modified. If no mask is provided, a default
-mask is used:
-paths: &quot;bindings, etag&quot;
-This field is only used by Cloud IAM.
-*/
 /**
  * @typedef Empty
  * @memberOf! cloudresourcemanager(v1)
@@ -1727,10 +1660,10 @@ etc.
  * @typedef AuditLogConfig
  * @memberOf! cloudresourcemanager(v1)
  * @type object
+* @property {string} logType The log type that this config enables.
 * @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of
 permission.
 Follows the same format of Binding.members.
-* @property {string} logType The log type that this config enables.
 */
 /**
  * @typedef SearchOrganizationsRequest
@@ -1771,6 +1704,17 @@ information see
 [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
 */
 /**
+ * @typedef FolderOperation
+ * @memberOf! cloudresourcemanager(v1)
+ * @type object
+* @property {string} operationType The type of this operation.
+* @property {string} displayName The display name of the folder.
+* @property {string} sourceParent The resource name of the folder&#39;s parent.
+Only applicable when the operation_type is MOVE.
+* @property {string} destinationParent The resource name of the folder or organization we are either creating
+the folder under or moving the folder to.
+*/
+/**
  * @typedef Policy
  * @memberOf! cloudresourcemanager(v1)
  * @type object
@@ -1791,24 +1735,23 @@ Multiple `bindings` must not be specified for the same `role`.
 `bindings` with no members will result in an error.
 */
 /**
- * @typedef FolderOperation
- * @memberOf! cloudresourcemanager(v1)
- * @type object
-* @property {string} operationType The type of this operation.
-* @property {string} displayName The display name of the folder.
-* @property {string} sourceParent The resource name of the folder&#39;s parent.
-Only applicable when the operation_type is MOVE.
-* @property {string} destinationParent The resource name of the folder or organization we are either creating
-the folder under or moving the folder to.
-*/
-/**
  * @typedef ResourceId
  * @memberOf! cloudresourcemanager(v1)
  * @type object
-* @property {string} id Required field for the type-specific id. This should correspond to the id
-used in the type-specific API&#39;s.
 * @property {string} type Required field representing the resource type this id is for.
 At present, the valid types are: &quot;organization&quot;
+* @property {string} id Required field for the type-specific id. This should correspond to the id
+used in the type-specific API&#39;s.
+*/
+/**
+ * @typedef AuditConfig
+ * @memberOf! cloudresourcemanager(v1)
+ * @type object
+* @property {string} service Specifies a service that will be enabled for audit logging.
+For example, `resourcemanager`, `storage`, `compute`.
+`allServices` is a special value that covers all services.
+* @property {cloudresourcemanager(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
+Next ID: 4
 */
 /**
  * @typedef Operation
@@ -1835,33 +1778,23 @@ Some services might not provide such metadata.  Any method that returns a
 long-running operation should document the metadata type, if any.
 */
 /**
- * @typedef AuditConfig
- * @memberOf! cloudresourcemanager(v1)
- * @type object
-* @property {string} service Specifies a service that will be enabled for audit logging.
-For example, `resourcemanager`, `storage`, `compute`.
-`allServices` is a special value that covers all services.
-* @property {cloudresourcemanager(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
-Next ID: 4
-*/
-/**
  * @typedef ListLiensResponse
  * @memberOf! cloudresourcemanager(v1)
  * @type object
+* @property {cloudresourcemanager(v1).Lien[]} liens A list of Liens.
 * @property {string} nextPageToken Token to retrieve the next page of results, or empty if there are no more
 results in the list.
-* @property {cloudresourcemanager(v1).Lien[]} liens A list of Liens.
 */
 /**
  * @typedef Status
  * @memberOf! cloudresourcemanager(v1)
  * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
 * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
 */
 /**
  * @typedef Binding
@@ -1931,6 +1864,8 @@ allowed.
  * @typedef ListProjectsResponse
  * @memberOf! cloudresourcemanager(v1)
  * @type object
+* @property {cloudresourcemanager(v1).Project[]} projects The list of Projects that matched the list filter. This list can
+be paginated.
 * @property {string} nextPageToken Pagination token.
 
 If the result set is too large to fit in a single response, this token
@@ -1942,13 +1877,25 @@ When `next_page_token` is not filled in, there is no next page and
 the list returned is the last page in the result set.
 
 Pagination tokens have a limited lifetime.
-* @property {cloudresourcemanager(v1).Project[]} projects The list of Projects that matched the list filter. This list can
-be paginated.
 */
 /**
  * @typedef Project
  * @memberOf! cloudresourcemanager(v1)
  * @type object
+* @property {string} name The user-assigned display name of the Project.
+It must be 4 to 30 characters.
+Allowed characters are: lowercase and uppercase letters, numbers,
+hyphen, single-quote, double-quote, space, and exclamation point.
+
+Example: &lt;code&gt;My Project&lt;/code&gt;
+Read-write.
+* @property {string} projectId The unique, user-assigned ID of the Project.
+It must be 6 to 30 lowercase letters, digits, or hyphens.
+It must start with a letter.
+Trailing hyphens are prohibited.
+
+Example: &lt;code&gt;tokyo-rain-123&lt;/code&gt;
+Read-only after creation.
 * @property {string} lifecycleState The Project lifecycle state.
 
 Read-only.
@@ -1982,19 +1929,72 @@ depend on specific characters being disallowed.
 
 Example: &lt;code&gt;&quot;environment&quot; : &quot;dev&quot;&lt;/code&gt;
 Read-write.
-* @property {string} name The user-assigned display name of the Project.
-It must be 4 to 30 characters.
-Allowed characters are: lowercase and uppercase letters, numbers,
-hyphen, single-quote, double-quote, space, and exclamation point.
+*/
+/**
+ * @typedef SearchOrganizationsResponse
+ * @memberOf! cloudresourcemanager(v1)
+ * @type object
+* @property {cloudresourcemanager(v1).Organization[]} organizations The list of Organizations that matched the search query, possibly
+paginated.
+* @property {string} nextPageToken A pagination token to be used to retrieve the next page of results. If the
+result is too large to fit within the page size specified in the request,
+this field will be set with a token that can be used to fetch the next page
+of results. If this field is empty, it indicates that this response
+contains the last page of results.
+*/
+/**
+ * @typedef FolderOperationError
+ * @memberOf! cloudresourcemanager(v1)
+ * @type object
+ * @property {string} errorMessageId The type of operation error experienced.
+ */
+/**
+ * @typedef Lien
+ * @memberOf! cloudresourcemanager(v1)
+ * @type object
+* @property {string} name A system-generated unique identifier for this Lien.
 
-Example: &lt;code&gt;My Project&lt;/code&gt;
-Read-write.
-* @property {string} projectId The unique, user-assigned ID of the Project.
-It must be 6 to 30 lowercase letters, digits, or hyphens.
-It must start with a letter.
-Trailing hyphens are prohibited.
+Example: `liens/1234abcd`
+* @property {string} reason Concise user-visible strings indicating why an action cannot be performed
+on a resource. Maximum lenth of 200 characters.
 
-Example: &lt;code&gt;tokyo-rain-123&lt;/code&gt;
-Read-only after creation.
+Example: &#39;Holds production API key&#39;
+* @property {string} origin A stable, user-visible/meaningful string identifying the origin of the
+Lien, intended to be inspected programmatically. Maximum length of 200
+characters.
+
+Example: &#39;compute.googleapis.com&#39;
+* @property {string[]} restrictions The types of operations which should be blocked as a result of this Lien.
+Each value should correspond to an IAM permission. The server will
+validate the permissions against those for which Liens are supported.
+
+An empty list is meaningless and will be rejected.
+
+Example: [&#39;resourcemanager.projects.delete&#39;]
+* @property {string} parent A reference to the resource this Lien is attached to. The server will
+validate the parent against those for which Liens are supported.
+
+Example: `projects/1234`
+* @property {string} createTime The creation time of this Lien.
+*/
+/**
+ * @typedef Ancestor
+ * @memberOf! cloudresourcemanager(v1)
+ * @type object
+ * @property {cloudresourcemanager(v1).ResourceId} resourceId Resource id of the ancestor.
+ */
+/**
+ * @typedef SetIamPolicyRequest
+ * @memberOf! cloudresourcemanager(v1)
+ * @type object
+* @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+the fields in the mask will be modified. If no mask is provided, a default
+mask is used:
+paths: &quot;bindings, etag&quot;
+This field is only used by Cloud IAM.
+* @property {cloudresourcemanager(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
+the policy is limited to a few 10s of KB. An empty policy is a
+valid policy but certain Cloud Platform services (such as Projects)
+might reject them.
 */
 module.exports = Cloudresourcemanager;

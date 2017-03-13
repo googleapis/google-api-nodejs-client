@@ -40,6 +40,83 @@ function Servicemanagement(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
 
+  self.operations = {
+
+    /**
+     * servicemanagement.operations.list
+     *
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
+     *
+     * @alias servicemanagement.operations.list
+     * @memberOf! servicemanagement(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
+     * @param {string} params.name The name of the operation collection.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://servicemanagement.googleapis.com/v1/{name}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * servicemanagement.operations.get
+     *
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @alias servicemanagement.operations.get
+     * @memberOf! servicemanagement(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://servicemanagement.googleapis.com/v1/{name}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.services = {
 
     /**
@@ -158,10 +235,10 @@ function Servicemanagement(options) { // eslint-disable-line
      * @memberOf! servicemanagement(v1)
      *
      * @param {object} params Parameters for request
+     * @param {integer=} params.pageSize Requested size of the next page of data.
      * @param {string=} params.producerProjectId Include services produced by the specified project.
      * @param {string=} params.consumerId Include services consumed by the specified consumer.  The Google Service Management implementation accepts the following forms: - project:<project_id>
      * @param {string=} params.pageToken Token identifying which result to start with; returned by a previous list call.
-     * @param {integer=} params.pageSize Requested size of the next page of data.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -366,6 +443,41 @@ function Servicemanagement(options) { // eslint-disable-line
     },
 
     /**
+     * servicemanagement.services.delete
+     *
+     * @desc Deletes a managed service. This method will change the service to the `Soft-Delete` state for 30 days. Within this period, service producers may call UndeleteService to restore the service. After 30 days, the service will be permanently deleted.  Operation<response: google.protobuf.Empty>
+     *
+     * @alias servicemanagement.services.delete
+     * @memberOf! servicemanagement(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['serviceName'],
+        pathParams: ['serviceName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * servicemanagement.services.enable
      *
      * @desc Enables a service for a project, so it can be used for the project. See [Cloud Auth Guide](https://cloud.google.com/docs/authentication) for more information.  Operation<response: EnableServiceResponse>
@@ -391,41 +503,6 @@ function Servicemanagement(options) { // eslint-disable-line
         options: utils.extend({
           url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}:enable',
           method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['serviceName'],
-        pathParams: ['serviceName'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * servicemanagement.services.delete
-     *
-     * @desc Deletes a managed service. This method will change the service to the `Soft-Delete` state for 30 days. Within this period, service producers may call UndeleteService to restore the service. After 30 days, the service will be permanently deleted.  Operation<response: google.protobuf.Empty>
-     *
-     * @alias servicemanagement.services.delete
-     * @memberOf! servicemanagement(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    delete: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}',
-          method: 'DELETE'
         }, options),
         params: params,
         requiredParams: ['serviceName'],
@@ -470,155 +547,6 @@ function Servicemanagement(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
-    },
-
-    configs: {
-
-      /**
-       * servicemanagement.services.configs.submit
-       *
-       * @desc Creates a new service configuration (version) for a managed service based on user-supplied configuration source files (for example: OpenAPI Specification). This method stores the source configurations as well as the generated service configuration. To rollout the service configuration to other services, please call CreateServiceRollout.  Operation<response: SubmitConfigSourceResponse>
-       *
-       * @alias servicemanagement.services.configs.submit
-       * @memberOf! servicemanagement(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-       * @param {servicemanagement(v1).SubmitConfigSourceRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      submit: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/configs:submit',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * servicemanagement.services.configs.list
-       *
-       * @desc Lists the history of the service configuration for a managed service, from the newest to the oldest.
-       *
-       * @alias servicemanagement.services.configs.list
-       * @memberOf! servicemanagement(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-       * @param {string=} params.pageToken The token of the page to retrieve.
-       * @param {integer=} params.pageSize The max number of items to include in the response list.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/configs',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * servicemanagement.services.configs.get
-       *
-       * @desc Gets a service configuration (version) for a managed service.
-       *
-       * @alias servicemanagement.services.configs.get
-       * @memberOf! servicemanagement(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-       * @param {string} params.configId The id of the service configuration resource.
-       * @param {string=} params.view Specifies which parts of the Service Config should be returned in the response.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/configs/{configId}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['serviceName', 'configId'],
-          pathParams: ['serviceName', 'configId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * servicemanagement.services.configs.create
-       *
-       * @desc Creates a new service configuration (version) for a managed service. This method only stores the service configuration. To roll out the service configuration to backend systems please call CreateServiceRollout.
-       *
-       * @alias servicemanagement.services.configs.create
-       * @memberOf! servicemanagement(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
-       * @param {servicemanagement(v1).Service} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/configs',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['serviceName'],
-          pathParams: ['serviceName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
     },
 
     rollouts: {
@@ -731,87 +659,695 @@ function Servicemanagement(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       }
-    }
-  };
-
-  self.operations = {
-
-    /**
-     * servicemanagement.operations.list
-     *
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
-     *
-     * @alias servicemanagement.operations.list
-     * @memberOf! servicemanagement(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation collection.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.filter The standard list filter.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://servicemanagement.googleapis.com/v1/{name}',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
     },
 
-    /**
-     * servicemanagement.operations.get
-     *
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     *
-     * @alias servicemanagement.operations.get
-     * @memberOf! servicemanagement(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
+    configs: {
+
+      /**
+       * servicemanagement.services.configs.submit
+       *
+       * @desc Creates a new service configuration (version) for a managed service based on user-supplied configuration source files (for example: OpenAPI Specification). This method stores the source configurations as well as the generated service configuration. To rollout the service configuration to other services, please call CreateServiceRollout.  Operation<response: SubmitConfigSourceResponse>
+       *
+       * @alias servicemanagement.services.configs.submit
+       * @memberOf! servicemanagement(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+       * @param {servicemanagement(v1).SubmitConfigSourceRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      submit: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/configs:submit',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['serviceName'],
+          pathParams: ['serviceName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * servicemanagement.services.configs.list
+       *
+       * @desc Lists the history of the service configuration for a managed service, from the newest to the oldest.
+       *
+       * @alias servicemanagement.services.configs.list
+       * @memberOf! servicemanagement(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize The max number of items to include in the response list.
+       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+       * @param {string=} params.pageToken The token of the page to retrieve.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/configs',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['serviceName'],
+          pathParams: ['serviceName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * servicemanagement.services.configs.get
+       *
+       * @desc Gets a service configuration (version) for a managed service.
+       *
+       * @alias servicemanagement.services.configs.get
+       * @memberOf! servicemanagement(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+       * @param {string} params.configId The id of the service configuration resource.
+       * @param {string=} params.view Specifies which parts of the Service Config should be returned in the response.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/configs/{configId}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['serviceName', 'configId'],
+          pathParams: ['serviceName', 'configId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * servicemanagement.services.configs.create
+       *
+       * @desc Creates a new service configuration (version) for a managed service. This method only stores the service configuration. To roll out the service configuration to backend systems please call CreateServiceRollout.
+       *
+       * @alias servicemanagement.services.configs.create
+       * @memberOf! servicemanagement(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.serviceName The name of the service.  See the [overview](/service-management/overview) for naming requirements.  For example: `example.googleapis.com`.
+       * @param {servicemanagement(v1).Service} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://servicemanagement.googleapis.com/v1/services/{serviceName}/configs',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['serviceName'],
+          pathParams: ['serviceName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://servicemanagement.googleapis.com/v1/{name}',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
     }
-
   };
 }
 
+/**
+ * @typedef Advice
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} description Useful description for why this advice was applied and what actions should
+be taken to mitigate any implied risks.
+*/
+/**
+ * @typedef ManagedService
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} producerProjectId ID of the project that produces and owns this service.
+* @property {string} serviceName The name of the service. See the [overview](/service-management/overview)
+for naming requirements.
+*/
+/**
+ * @typedef UsageRule
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {boolean} allowUnregisteredCalls True, if the method allows unregistered calls; false otherwise.
+* @property {string} selector Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all
+methods in all APIs.
+
+Refer to selector for syntax details.
+*/
+/**
+ * @typedef AuthRequirement
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} providerId id from authentication provider.
+
+Example:
+
+    provider_id: bookstore_auth
+* @property {string} audiences NOTE: This will be deprecated soon, once AuthProvider.audiences is
+implemented and accepted in all the runtime components.
+
+The list of JWT
+[audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3).
+that are allowed to access. A JWT containing any of these audiences will
+be accepted. When this setting is absent, only JWTs with audience
+&quot;https://Service_name/API_name&quot;
+will be accepted. For example, if no audiences are in the setting,
+LibraryService API will only accept JWTs with the following audience
+&quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.
+
+Example:
+
+    audiences: bookstore_android.apps.googleusercontent.com,
+               bookstore_web.apps.googleusercontent.com
+*/
+/**
+ * @typedef TrafficPercentStrategy
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {object} percentages Maps service configuration IDs to their corresponding traffic percentage.
+Key is the service configuration ID, Value is the traffic percentage
+which must be greater than 0.0 and the sum must equal to 100.0.
+*/
+/**
+ * @typedef Condition
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
+* @property {string} iam Trusted attributes supplied by the IAM system.
+* @property {string} op An operator to apply the subject with.
+* @property {string} svc Trusted attributes discharged by the service.
+* @property {string} sys Trusted attributes supplied by any service that owns resources and uses
+the IAM system for access control.
+* @property {string} value DEPRECATED. Use &#39;values&#39; instead.
+*/
+/**
+ * @typedef Documentation
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} summary A short summary of what the service does. Can only be provided by
+plain text.
+* @property {string} documentationRootUrl The URL to the root of documentation.
+* @property {servicemanagement(v1).DocumentationRule[]} rules A list of documentation rules that apply to individual API elements.
+
+**NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+* @property {string} overview Declares a single overview page. For example:
+&lt;pre&gt;&lt;code&gt;documentation:
+  summary: ...
+  overview: &amp;#40;== include overview.md ==&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;
+This is a shortcut for the following declaration (using pages style):
+&lt;pre&gt;&lt;code&gt;documentation:
+  summary: ...
+  pages:
+  - name: Overview
+    content: &amp;#40;== include overview.md ==&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;
+Note: you cannot specify both `overview` field and `pages` field.
+* @property {servicemanagement(v1).Page[]} pages The top level pages for the documentation set.
+*/
+/**
+ * @typedef AuditLogConfig
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} logType The log type that this config enables.
+* @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of
+permission.
+Follows the same format of Binding.members.
+*/
+/**
+ * @typedef ConfigSource
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} id A unique ID for a specific instance of this message, typically assigned
+by the client for tracking purpose. If empty, the server may choose to
+generate one instead.
+* @property {servicemanagement(v1).ConfigFile[]} files Set of source configuration files that are used to generate a service
+configuration (`google.api.Service`).
+*/
+/**
+ * @typedef BackendRule
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {number} deadline The number of seconds to wait for a response from a request.  The
+default depends on the deployment context.
+* @property {string} address The address of the API backend.
+* @property {string} selector Selects the methods to which this rule applies.
+
+Refer to selector for syntax details.
+*/
+/**
+ * @typedef AuthenticationRule
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {servicemanagement(v1).AuthRequirement[]} requirements Requirements for additional authentication providers.
+* @property {string} selector Selects the methods to which this rule applies.
+
+Refer to selector for syntax details.
+* @property {boolean} allowWithoutCredential Whether to allow requests without a credential. The credential can be
+an OAuth token, Google cookies (first-party auth) or EndUserCreds.
+
+For requests without credentials, if the service control environment is
+specified, each incoming request **must** be associated with a service
+consumer. This can be done by passing an API key that belongs to a consumer
+project.
+* @property {servicemanagement(v1).OAuthRequirements} oauth The requirements for OAuth credentials.
+*/
+/**
+ * @typedef Policy
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
+prevent simultaneous updates of a policy from overwriting each other.
+It is strongly suggested that systems make use of the `etag` in the
+read-modify-write cycle to perform policy updates in order to avoid race
+conditions: An `etag` is returned in the response to `getIamPolicy`, and
+systems are expected to put that etag in the request to `setIamPolicy` to
+ensure that their change will be applied to the same version of the policy.
+
+If no `etag` is provided in the call to `setIamPolicy`, then the existing
+policy is overwritten blindly.
+* @property {boolean} iamOwned 
+* @property {servicemanagement(v1).Rule[]} rules If more than one rule is specified, the rules are applied in the following
+manner:
+- All matching LOG rules are always applied.
+- If any DENY/DENY_WITH_LOG rule matches, permission is denied.
+  Logging will be applied if one or more matching rule requires logging.
+- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is
+  granted.
+  Logging will be applied if one or more matching rule requires logging.
+- Otherwise, if no rule applies, permission is denied.
+* @property {integer} version Version of the `Policy`. The default version is 0.
+* @property {servicemanagement(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
+* @property {servicemanagement(v1).Binding[]} bindings Associates a list of `members` to a `role`.
+Multiple `bindings` must not be specified for the same `role`.
+`bindings` with no members will result in an error.
+*/
+/**
+ * @typedef UndeleteServiceResponse
+ * @memberOf! servicemanagement(v1)
+ * @type object
+ * @property {servicemanagement(v1).ManagedService} service Revived service resource.
+ */
+/**
+ * @typedef Api
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} syntax The source syntax of the service.
+* @property {servicemanagement(v1).SourceContext} sourceContext Source context for the protocol buffer service represented by this
+message.
+* @property {string} version A version string for this api. If specified, must have the form
+`major-version.minor-version`, as in `1.10`. If the minor version
+is omitted, it defaults to zero. If the entire version field is
+empty, the major version is derived from the package name, as
+outlined below. If the field is not empty, the version in the
+package name will be verified to be consistent with what is
+provided here.
+
+The versioning schema uses [semantic
+versioning](http://semver.org) where the major version number
+indicates a breaking change and the minor version an additive,
+non-breaking change. Both version numbers are signals to users
+what to expect from different versions, and should be carefully
+chosen based on the product plan.
+
+The major version is also reflected in the package name of the
+API, which must end in `v&lt;major-version&gt;`, as in
+`google.feature.v1`. For major versions 0 and 1, the suffix can
+be omitted. Zero major versions must only be used for
+experimental, none-GA apis.
+
+* @property {servicemanagement(v1).Mixin[]} mixins Included APIs. See Mixin.
+* @property {servicemanagement(v1).Option[]} options Any metadata attached to the API.
+* @property {servicemanagement(v1).Method[]} methods The methods of this api, in unspecified order.
+* @property {string} name The fully qualified name of this api, including package name
+followed by the api&#39;s simple name.
+*/
+/**
+ * @typedef DataAccessOptions
+ * @memberOf! servicemanagement(v1)
+ * @type object
+ */
+/**
+ * @typedef Authentication
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {servicemanagement(v1).AuthProvider[]} providers Defines a set of authentication providers that a service supports.
+* @property {servicemanagement(v1).AuthenticationRule[]} rules A list of authentication rules that apply to individual API methods.
+
+**NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+*/
+/**
+ * @typedef Operation
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
+* @property {object} response The normal response of the operation in case of success.  If the original
+method returns no data on success, such as `Delete`, the response is
+`google.protobuf.Empty`.  If the original method is standard
+`Get`/`Create`/`Update`, the response should be the resource.  For other
+methods, the response should have the type `XxxResponse`, where `Xxx`
+is the original method name.  For example, if the original method name
+is `TakeSnapshot()`, the inferred response type is
+`TakeSnapshotResponse`.
+* @property {string} name The server-assigned name, which is only unique within the same service that
+originally returns it. If you use the default HTTP mapping, the
+`name` should have the format of `operations/some/unique/name`.
+* @property {servicemanagement(v1).Status} error The error result of the operation in case of failure or cancellation.
+* @property {object} metadata Service-specific metadata associated with the operation.  It typically
+contains progress information and common metadata such as create time.
+Some services might not provide such metadata.  Any method that returns a
+long-running operation should document the metadata type, if any.
+*/
+/**
+ * @typedef Page
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {servicemanagement(v1).Page[]} subpages Subpages of this page. The order of subpages specified here will be
+honored in the generated docset.
+* @property {string} name The name of the page. It will be used as an identity of the page to
+generate URI of the page, text of the link to this page in navigation,
+etc. The full page name (start from the root page name to this page
+concatenated with `.`) can be used as reference to the page in your
+documentation. For example:
+&lt;pre&gt;&lt;code&gt;pages:
+- name: Tutorial
+  content: &amp;#40;== include tutorial.md ==&amp;#41;
+  subpages:
+  - name: Java
+    content: &amp;#40;== include tutorial_java.md ==&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;
+You can reference `Java` page using Markdown reference link syntax:
+`Java`.
+* @property {string} content The Markdown content of the page. You can use &lt;code&gt;&amp;#40;== include {path} ==&amp;#41;&lt;/code&gt;
+to include content from a Markdown file.
+*/
+/**
+ * @typedef Status
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+*/
+/**
+ * @typedef Binding
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource.
+`members` can have the following values:
+
+* `allUsers`: A special identifier that represents anyone who is
+   on the internet; with or without a Google account.
+
+* `allAuthenticatedUsers`: A special identifier that represents anyone
+   who is authenticated with a Google account or a service account.
+
+* `user:{emailid}`: An email address that represents a specific Google
+   account. For example, `alice@gmail.com` or `joe@example.com`.
+
+
+* `serviceAccount:{emailid}`: An email address that represents a service
+   account. For example, `my-other-app@appspot.gserviceaccount.com`.
+
+* `group:{emailid}`: An email address that represents a Google group.
+   For example, `admins@example.com`.
+
+* `domain:{domain}`: A Google Apps domain name that represents all the
+   users of that domain. For example, `google.com` or `example.com`.
+
+
+* @property {string} role Role that is assigned to `members`.
+For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+Required
+*/
+/**
+ * @typedef AuthProvider
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} jwksUri URL of the provider&#39;s public key set to validate signature of the JWT. See
+[OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).
+Optional if the key set document:
+ - can be retrieved from
+   [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html
+   of the issuer.
+ - can be inferred from the email domain of the issuer (e.g. a Google service account).
+
+Example: https://www.googleapis.com/oauth2/v1/certs
+* @property {string} audiences The list of JWT
+[audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3).
+that are allowed to access. A JWT containing any of these audiences will
+be accepted. When this setting is absent, only JWTs with audience
+&quot;https://Service_name/API_name&quot;
+will be accepted. For example, if no audiences are in the setting,
+LibraryService API will only accept JWTs with the following audience
+&quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.
+
+Example:
+
+    audiences: bookstore_android.apps.googleusercontent.com,
+               bookstore_web.apps.googleusercontent.com
+* @property {string} id The unique identifier of the auth provider. It will be referred to by
+`AuthRequirement.provider_id`.
+
+Example: &quot;bookstore_auth&quot;.
+* @property {string} issuer Identifies the principal that issued the JWT. See
+https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1
+Usually a URL or an email address.
+
+Example: https://securetoken.google.com
+Example: 1234567-compute@developer.gserviceaccount.com
+*/
+/**
+ * @typedef Service
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {servicemanagement(v1).CustomError} customError Custom error configuration.
+* @property {string} title The product title associated with this service.
+* @property {servicemanagement(v1).Endpoint[]} endpoints Configuration for network endpoints.  If this is empty, then an endpoint
+with the same name as the service is automatically generated to service all
+defined APIs.
+* @property {servicemanagement(v1).Api[]} apis A list of API interfaces exported by this service. Only the `name` field
+of the google.protobuf.Api needs to be provided by the configuration
+author, as the remaining fields will be derived from the IDL during the
+normalization process. It is an error to specify an API interface here
+which cannot be resolved against the associated IDL files.
+* @property {servicemanagement(v1).LogDescriptor[]} logs Defines the logs used by this service.
+* @property {servicemanagement(v1).Type[]} types A list of all proto message types included in this API service.
+Types referenced directly or indirectly by the `apis` are
+automatically included.  Messages which are not referenced but
+shall be included, such as types used by the `google.protobuf.Any` type,
+should be listed here by name. Example:
+
+    types:
+    - name: google.protobuf.Int32
+* @property {servicemanagement(v1).SourceInfo} sourceInfo Output only. The source information for this configuration if available.
+* @property {servicemanagement(v1).Http} http HTTP configuration.
+* @property {servicemanagement(v1).SystemParameters} systemParameters System parameter configuration.
+* @property {servicemanagement(v1).Backend} backend API backend configuration.
+* @property {servicemanagement(v1).Documentation} documentation Additional API documentation.
+* @property {servicemanagement(v1).MonitoredResourceDescriptor[]} monitoredResources Defines the monitored resources used by this service. This is required
+by the Service.monitoring and Service.logging configurations.
+* @property {servicemanagement(v1).Logging} logging Logging configuration.
+* @property {servicemanagement(v1).Context} context Context configuration.
+* @property {servicemanagement(v1).Enum[]} enums A list of all enum types included in this API service.  Enums
+referenced directly or indirectly by the `apis` are automatically
+included.  Enums which are not referenced but shall be included
+should be listed here by name. Example:
+
+    enums:
+    - name: google.someapi.v1.SomeEnum
+* @property {string} id A unique ID for a specific instance of this message, typically assigned
+by the client for tracking purpose. If empty, the server may choose to
+generate one instead.
+* @property {servicemanagement(v1).Usage} usage Configuration controlling usage of this service.
+* @property {servicemanagement(v1).MetricDescriptor[]} metrics Defines the metrics used by this service.
+* @property {servicemanagement(v1).Authentication} authentication Auth configuration.
+* @property {servicemanagement(v1).Experimental} experimental Experimental configuration.
+* @property {servicemanagement(v1).Control} control Configuration for the service control plane.
+* @property {integer} configVersion The version of the service configuration. The config version may
+influence interpretation of the configuration, for example, to
+determine defaults. This is documented together with applicable
+options. The current default for the config version itself is `3`.
+* @property {servicemanagement(v1).Monitoring} monitoring Monitoring configuration.
+* @property {string} producerProjectId The id of the Google developer project that owns the service.
+Members of this project can manage the service configuration,
+manage consumption of the service, etc.
+* @property {servicemanagement(v1).Type[]} systemTypes A list of all proto message types included in this API service.
+It serves similar purpose as [google.api.Service.types], except that
+these types are not needed by user-defined APIs. Therefore, they will not
+show up in the generated discovery doc. This field should only be used
+to define system APIs in ESF.
+* @property {servicemanagement(v1).Visibility} visibility API visibility configuration.
+* @property {string} name The DNS address at which this service is available,
+e.g. `calendar.googleapis.com`.
+*/
+/**
+ * @typedef EnumValue
+ * @memberOf! servicemanagement(v1)
+ * @type object
+ * @property {string} name Enum value name.
+ * @property {servicemanagement(v1).Option[]} options Protocol buffer options.
+ * @property {integer} number Enum value number.
+ */
+/**
+ * @typedef ListOperationsResponse
+ * @memberOf! servicemanagement(v1)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {servicemanagement(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+/**
+ * @typedef CustomHttpPattern
+ * @memberOf! servicemanagement(v1)
+ * @type object
+ * @property {string} kind The name of this custom HTTP verb.
+ * @property {string} path The path matched by this custom verb.
+ */
+/**
+ * @typedef OperationMetadata
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string[]} resourceNames The full name of the resources that this operation is directly
+associated with.
+* @property {servicemanagement(v1).Step[]} steps Detailed status information for each step. The order is undetermined.
+* @property {integer} progressPercentage Percentage of completion of this operation, ranging from 0 to 100.
+* @property {string} startTime The start time of the operation.
+*/
+/**
+ * @typedef SystemParameterRule
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {servicemanagement(v1).SystemParameter[]} parameters Define parameters. Multiple names may be defined for a parameter.
+For a given method call, only one of them should be used. If multiple
+names are used the behavior is implementation-dependent.
+If none of the specified names are present the behavior is
+parameter-dependent.
+* @property {string} selector Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all
+methods in all APIs.
+
+Refer to selector for syntax details.
+*/
+/**
+ * @typedef HttpRule
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {servicemanagement(v1).MediaUpload} mediaUpload Use this only for Scotty Requests. Do not use this for media support using
+Bytestream, add instead
+[][google.bytestream.RestByteStream] as an API to your
+configuration for Bytestream methods.
+* @property {string} selector Selects methods to which this rule applies.
+
+Refer to selector for syntax details.
+* @property {servicemanagement(v1).CustomHttpPattern} custom Custom pattern is used for defining custom verbs.
+* @property {string} patch Used for updating a resource.
+* @property {string} get Used for listing and getting information about resources.
+* @property {string} put Used for updating a resource.
+* @property {string} delete Used for deleting a resource.
+* @property {string} body The name of the request field whose value is mapped to the HTTP body, or
+`*` for mapping all fields not captured by the path pattern to the HTTP
+body. NOTE: the referred field must not be a repeated field and must be
+present at the top-level of request message type.
+* @property {string} post Used for creating a resource.
+* @property {servicemanagement(v1).MediaDownload} mediaDownload Use this only for Scotty Requests. Do not use this for bytestream methods.
+For media support, add instead [][google.bytestream.RestByteStream] as an
+API to your configuration.
+* @property {servicemanagement(v1).HttpRule[]} additionalBindings Additional HTTP bindings for the selector. Nested bindings must
+not contain an `additional_bindings` field themselves (that is,
+the nesting may only be one level deep).
+* @property {string} responseBody The name of the response field whose value is mapped to the HTTP body of
+response. Other response fields are ignored. This field is optional. When
+not set, the response message will be used as HTTP body of response.
+NOTE: the referred field must be not a repeated field and must be present
+at the top-level of response message type.
+*/
+/**
+ * @typedef VisibilityRule
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} restriction A comma-separated list of visibility labels that apply to the `selector`.
+Any of the listed labels can be used to grant the visibility.
+
+If a rule has multiple labels, removing one of the labels but not all of
+them can break clients.
+
+Example:
+
+    visibility:
+      rules:
+      - selector: google.calendar.Calendar.EnhancedSearch
+        restriction: GOOGLE_INTERNAL, TRUSTED_TESTER
+
+Removing GOOGLE_INTERNAL from this restriction will break clients that
+rely on this method and only had access to it through GOOGLE_INTERNAL.
+* @property {string} selector Selects methods, messages, fields, enums, etc. to which this rule applies.
+
+Refer to selector for syntax details.
+*/
+/**
+ * @typedef MonitoringDestination
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} monitoredResource The monitored resource type. The type must be defined in
+Service.monitored_resources section.
+* @property {string[]} metrics Names of the metrics to report to this monitoring destination.
+Each name must be defined in Service.metrics section.
+*/
+/**
+ * @typedef Visibility
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {servicemanagement(v1).VisibilityRule[]} rules A list of visibility rules that apply to individual API elements.
+
+**NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+*/
 /**
  * @typedef ConfigChange
  * @memberOf! servicemanagement(v1)
@@ -871,8 +1407,6 @@ Example: define 2 api key names for a specific method.
  * @typedef Rollout
  * @memberOf! servicemanagement(v1)
  * @type object
-* @property {servicemanagement(v1).DeleteServiceStrategy} deleteServiceStrategy The strategy associated with a rollout to delete a `ManagedService`.
-Readonly.
 * @property {string} createTime Creation time of the rollout. Readonly.
 * @property {string} status The status of this rollout. Readonly. In case of a failed rollout,
 the system will automatically rollback to the current Rollout
@@ -889,6 +1423,8 @@ will have the form of &lt;date&gt;&lt;revision number&gt;, where &quot;date&quot
 date in ISO 8601 format.  &quot;revision number&quot; is a monotonically increasing
 positive number that is reset every day for each service.
 An example of the generated rollout_id is &#39;2016-02-16r1&#39;
+* @property {servicemanagement(v1).DeleteServiceStrategy} deleteServiceStrategy The strategy associated with a rollout to delete a `ManagedService`.
+Readonly.
 */
 /**
  * @typedef GenerateConfigReportRequest
@@ -909,27 +1445,27 @@ and google.api.Service
  * @typedef SetIamPolicyRequest
  * @memberOf! servicemanagement(v1)
  * @type object
-* @property {servicemanagement(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
-the policy is limited to a few 10s of KB. An empty policy is a
-valid policy but certain Cloud Platform services (such as Projects)
-might reject them.
 * @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
 the fields in the mask will be modified. If no mask is provided, the
 following default mask is used:
 paths: &quot;bindings, etag&quot;
 This field is only used by Cloud IAM.
+* @property {servicemanagement(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
+the policy is limited to a few 10s of KB. An empty policy is a
+valid policy but certain Cloud Platform services (such as Projects)
+might reject them.
 */
+/**
+ * @typedef DeleteServiceStrategy
+ * @memberOf! servicemanagement(v1)
+ * @type object
+ */
 /**
  * @typedef Step
  * @memberOf! servicemanagement(v1)
  * @type object
  * @property {string} status The status code.
  * @property {string} description The short description of the step.
- */
-/**
- * @typedef DeleteServiceStrategy
- * @memberOf! servicemanagement(v1)
- * @type object
  */
 /**
  * @typedef LoggingDestination
@@ -959,26 +1495,26 @@ value using the google.protobuf.Int32Value type.
  * @typedef Logging
  * @memberOf! servicemanagement(v1)
  * @type object
-* @property {servicemanagement(v1).LoggingDestination[]} producerDestinations Logging configurations for sending logs to the producer project.
-There can be multiple producer destinations, each one must have a
-different monitored resource type. A log can be used in at most
-one producer destination.
 * @property {servicemanagement(v1).LoggingDestination[]} consumerDestinations Logging configurations for sending logs to the consumer project.
 There can be multiple consumer destinations, each one must have a
 different monitored resource type. A log can be used in at most
 one consumer destination.
+* @property {servicemanagement(v1).LoggingDestination[]} producerDestinations Logging configurations for sending logs to the producer project.
+There can be multiple producer destinations, each one must have a
+different monitored resource type. A log can be used in at most
+one producer destination.
 */
 /**
  * @typedef Method
  * @memberOf! servicemanagement(v1)
  * @type object
+ * @property {boolean} responseStreaming If true, the response is streamed.
  * @property {string} name The simple name of this method.
  * @property {string} requestTypeUrl A URL of the input message type.
  * @property {boolean} requestStreaming If true, the request is streamed.
  * @property {string} syntax The source syntax of this method.
  * @property {string} responseTypeUrl The URL of the output message type.
  * @property {servicemanagement(v1).Option[]} options Any metadata attached to the method.
- * @property {boolean} responseStreaming If true, the response is streamed.
  */
 /**
  * @typedef ListServiceRolloutsResponse
@@ -1050,23 +1586,6 @@ insensitive.
 sensitive.
 */
 /**
- * @typedef Field
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} jsonName The field JSON name.
-* @property {string} kind The field type.
-* @property {servicemanagement(v1).Option[]} options The protocol buffer options.
-* @property {integer} oneofIndex The index of the field type in `Type.oneofs`, for message or enumeration
-types. The first type has index 1; zero means the type is not in the list.
-* @property {boolean} packed Whether to use alternative packed wire representation.
-* @property {string} cardinality The field cardinality.
-* @property {string} defaultValue The string value of the default value of this field. Proto2 syntax only.
-* @property {string} name The field name.
-* @property {string} typeUrl The field type URL, without the scheme, for message or enumeration
-types. Example: `&quot;type.googleapis.com/google.protobuf.Timestamp&quot;`.
-* @property {integer} number The field number.
-*/
-/**
  * @typedef Monitoring
  * @memberOf! servicemanagement(v1)
  * @type object
@@ -1078,6 +1597,23 @@ one consumer destination.
 There can be multiple producer destinations, each one must have a
 different monitored resource type. A metric can be used in at most
 one producer destination.
+*/
+/**
+ * @typedef Field
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} jsonName The field JSON name.
+* @property {string} kind The field type.
+* @property {servicemanagement(v1).Option[]} options The protocol buffer options.
+* @property {integer} oneofIndex The index of the field type in `Type.oneofs`, for message or enumeration
+types. The first type has index 1; zero means the type is not in the list.
+* @property {string} cardinality The field cardinality.
+* @property {boolean} packed Whether to use alternative packed wire representation.
+* @property {string} defaultValue The string value of the default value of this field. Proto2 syntax only.
+* @property {string} name The field name.
+* @property {string} typeUrl The field type URL, without the scheme, for message or enumeration
+types. Example: `&quot;type.googleapis.com/google.protobuf.Timestamp&quot;`.
+* @property {integer} number The field number.
 */
 /**
  * @typedef TestIamPermissionsRequest
@@ -1092,27 +1628,27 @@ information see
  * @typedef Enum
  * @memberOf! servicemanagement(v1)
  * @type object
- * @property {string} name Enum type name.
- * @property {servicemanagement(v1).EnumValue[]} enumvalue Enum value definitions.
  * @property {servicemanagement(v1).Option[]} options Protocol buffer options.
  * @property {servicemanagement(v1).SourceContext} sourceContext The source context.
  * @property {string} syntax The source syntax.
- */
-/**
- * @typedef LabelDescriptor
- * @memberOf! servicemanagement(v1)
- * @type object
- * @property {string} key The label key.
- * @property {string} description A human-readable description for the label.
- * @property {string} valueType The type of data that can be assigned to the label.
+ * @property {string} name Enum type name.
+ * @property {servicemanagement(v1).EnumValue[]} enumvalue Enum value definitions.
  */
 /**
  * @typedef Diagnostic
  * @memberOf! servicemanagement(v1)
  * @type object
- * @property {string} location File name and line number of the error or warning.
  * @property {string} kind The kind of diagnostic information provided.
  * @property {string} message Message describing the error or warning.
+ * @property {string} location File name and line number of the error or warning.
+ */
+/**
+ * @typedef LabelDescriptor
+ * @memberOf! servicemanagement(v1)
+ * @type object
+ * @property {string} description A human-readable description for the label.
+ * @property {string} valueType The type of data that can be assigned to the label.
+ * @property {string} key The label key.
  */
 /**
  * @typedef EnableServiceRequest
@@ -1132,24 +1668,24 @@ google.api.servicecontrol.v1.Operation.consumer_id.
  * @typedef Type
  * @memberOf! servicemanagement(v1)
  * @type object
- * @property {servicemanagement(v1).Option[]} options The protocol buffer options.
- * @property {servicemanagement(v1).Field[]} fields The list of fields.
- * @property {string} name The fully qualified message name.
  * @property {string[]} oneofs The list of types appearing in `oneof` definitions in this type.
  * @property {string} syntax The source syntax.
  * @property {servicemanagement(v1).SourceContext} sourceContext The source context.
+ * @property {servicemanagement(v1).Option[]} options The protocol buffer options.
+ * @property {servicemanagement(v1).Field[]} fields The list of fields.
+ * @property {string} name The fully qualified message name.
  */
 /**
  * @typedef GenerateConfigReportResponse
  * @memberOf! servicemanagement(v1)
  * @type object
+* @property {servicemanagement(v1).ChangeReport[]} changeReports list of ChangeReport, each corresponding to comparison between two
+service configurations.
 * @property {string} id ID of the service configuration this report belongs to.
 * @property {servicemanagement(v1).Diagnostic[]} diagnostics Errors / Linter warnings associated with the service definition this
 report
 belongs to.
 * @property {string} serviceName Name of the service this report belongs to.
-* @property {servicemanagement(v1).ChangeReport[]} changeReports list of ChangeReport, each corresponding to comparison between two
-service configurations.
 */
 /**
  * @typedef ListServiceConfigsResponse
@@ -1176,12 +1712,12 @@ service configurations.
  * @typedef AuditConfig
  * @memberOf! servicemanagement(v1)
  * @type object
-* @property {servicemanagement(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
-Next ID: 4
-* @property {string[]} exemptedMembers 
 * @property {string} service Specifies a service that will be enabled for audit logging.
 For example, `resourcemanager`, `storage`, `compute`.
 `allServices` is a special value that covers all services.
+* @property {servicemanagement(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
+Next ID: 4
+* @property {string[]} exemptedMembers 
 */
 /**
  * @typedef SubmitConfigSourceRequest
@@ -1196,6 +1732,7 @@ but the generated config and the sources will NOT be persisted.
  * @typedef DocumentationRule
  * @memberOf! servicemanagement(v1)
  * @type object
+* @property {string} description Description of the selected API(s).
 * @property {string} deprecationDescription Deprecation description of the selected element(s). It can be provided if an
 element is marked as `deprecated`.
 * @property {string} selector The selector is a comma-separated list of patterns. Each pattern is a
@@ -1204,7 +1741,6 @@ Wildcards are only allowed at the end and for a whole component of the
 qualified name, i.e. &quot;foo.*&quot; is ok, but not &quot;foo.b*&quot; or &quot;foo.*.bar&quot;. To
 specify a default for all applicable elements, the whole pattern &quot;*&quot;
 is used.
-* @property {string} description Description of the selected API(s).
 */
 /**
  * @typedef AuthorizationConfig
@@ -1217,11 +1753,11 @@ firebaserules.googleapis.com.
  * @typedef ContextRule
  * @memberOf! servicemanagement(v1)
  * @type object
+* @property {string[]} provided A list of full type names of provided contexts.
+* @property {string[]} requested A list of full type names of requested contexts.
 * @property {string} selector Selects the methods to which this rule applies.
 
 Refer to selector for syntax details.
-* @property {string[]} provided A list of full type names of provided contexts.
-* @property {string[]} requested A list of full type names of requested contexts.
 */
 /**
  * @typedef CloudAuditOptions
@@ -1229,14 +1765,44 @@ Refer to selector for syntax details.
  * @type object
  */
 /**
+ * @typedef SourceContext
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string} fileName The path-qualified name of the .proto file that contained the associated
+protobuf element.  For example: `&quot;google/protobuf/source_context.proto&quot;`.
+*/
+/**
  * @typedef MetricDescriptor
  * @memberOf! servicemanagement(v1)
  * @type object
+* @property {servicemanagement(v1).LabelDescriptor[]} labels The set of labels that can be used to describe a specific
+instance of this metric type. For example, the
+`appengine.googleapis.com/http/server/response_latencies` metric
+type has a label for the HTTP response code, `response_code`, so
+you can look at latencies for successful responses or just
+for responses that failed.
+* @property {string} name The resource name of the metric descriptor. Depending on the
+implementation, the name typically includes: (1) the parent resource name
+that defines the scope of the metric type or of its data; and (2) the
+metric&#39;s URL-encoded type, which also appears in the `type` field of this
+descriptor. For example, following is the resource name of a custom
+metric within the GCP project `my-project-id`:
+
+    &quot;projects/my-project-id/metricDescriptors/custom.googleapis.com%2Finvoice%2Fpaid%2Famount&quot;
+* @property {string} type The metric type, including its DNS name prefix. The type is not
+URL-encoded.  All user-defined custom metric types have the DNS name
+`custom.googleapis.com`.  Metric types should use a natural hierarchical
+grouping. For example:
+
+    &quot;custom.googleapis.com/invoice/paid/amount&quot;
+    &quot;appengine.googleapis.com/http/server/response_latencies&quot;
+* @property {string} valueType Whether the measurement is an integer, a floating-point number, etc.
+Some combinations of `metric_kind` and `value_type` might not be supported.
 * @property {string} metricKind Whether the metric records instantaneous values, changes to a value, etc.
 Some combinations of `metric_kind` and `value_type` might not be supported.
+* @property {string} description A detailed description of the metric, which can be used in documentation.
 * @property {string} displayName A concise name for the metric, which can be displayed in user interfaces.
 Use sentence case without an ending period, for example &quot;Request count&quot;.
-* @property {string} description A detailed description of the metric, which can be used in documentation.
 * @property {string} unit The unit in which the metric value is reported. It is only applicable
 if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The
 supported units are a subset of [The Unified Code for Units of
@@ -1301,36 +1867,6 @@ Notes:
    `{requests}/s == 1/s`, `By{transmitted}/s == By/s`.
 * `NAME` is a sequence of non-blank printable ASCII characters not
    containing &#39;{&#39; or &#39;}&#39;.
-* @property {servicemanagement(v1).LabelDescriptor[]} labels The set of labels that can be used to describe a specific
-instance of this metric type. For example, the
-`appengine.googleapis.com/http/server/response_latencies` metric
-type has a label for the HTTP response code, `response_code`, so
-you can look at latencies for successful responses or just
-for responses that failed.
-* @property {string} name The resource name of the metric descriptor. Depending on the
-implementation, the name typically includes: (1) the parent resource name
-that defines the scope of the metric type or of its data; and (2) the
-metric&#39;s URL-encoded type, which also appears in the `type` field of this
-descriptor. For example, following is the resource name of a custom
-metric within the GCP project `my-project-id`:
-
-    &quot;projects/my-project-id/metricDescriptors/custom.googleapis.com%2Finvoice%2Fpaid%2Famount&quot;
-* @property {string} type The metric type, including its DNS name prefix. The type is not
-URL-encoded.  All user-defined custom metric types have the DNS name
-`custom.googleapis.com`.  Metric types should use a natural hierarchical
-grouping. For example:
-
-    &quot;custom.googleapis.com/invoice/paid/amount&quot;
-    &quot;appengine.googleapis.com/http/server/response_latencies&quot;
-* @property {string} valueType Whether the measurement is an integer, a floating-point number, etc.
-Some combinations of `metric_kind` and `value_type` might not be supported.
-*/
-/**
- * @typedef SourceContext
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} fileName The path-qualified name of the .proto file that contained the associated
-protobuf element.  For example: `&quot;google/protobuf/source_context.proto&quot;`.
 */
 /**
  * @typedef ListServicesResponse
@@ -1343,7 +1879,6 @@ protobuf element.  For example: `&quot;google/protobuf/source_context.proto&quot
  * @typedef Endpoint
  * @memberOf! servicemanagement(v1)
  * @type object
-* @property {string[]} apis The list of APIs served by this endpoint.
 * @property {string[]} aliases DEPRECATED: This field is no longer supported. Instead of using aliases,
 please specify multiple google.api.Endpoint for each of the intented
 alias.
@@ -1357,6 +1892,7 @@ receive and respond to HTTP OPTIONS requests. The response will be used by
 the browser to determine whether the subsequent cross-origin request is
 allowed to proceed.
 * @property {string} name The canonical name of this endpoint.
+* @property {string[]} apis The list of APIs served by this endpoint.
 */
 /**
  * @typedef OAuthRequirements
@@ -1370,6 +1906,18 @@ Example:
      canonical_scopes: https://www.googleapis.com/auth/calendar,
                        https://www.googleapis.com/auth/calendar.read
 */
+/**
+ * @typedef TestIamPermissionsResponse
+ * @memberOf! servicemanagement(v1)
+ * @type object
+* @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is
+allowed.
+*/
+/**
+ * @typedef GetIamPolicyRequest
+ * @memberOf! servicemanagement(v1)
+ * @type object
+ */
 /**
  * @typedef Usage
  * @memberOf! servicemanagement(v1)
@@ -1390,18 +1938,6 @@ service. Each requirement is of the form &lt;service.name&gt;/&lt;requirement-id
 for example &#39;serviceusage.googleapis.com/billing-enabled&#39;.
 */
 /**
- * @typedef GetIamPolicyRequest
- * @memberOf! servicemanagement(v1)
- * @type object
- */
-/**
- * @typedef TestIamPermissionsResponse
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is
-allowed.
-*/
-/**
  * @typedef Context
  * @memberOf! servicemanagement(v1)
  * @type object
@@ -1413,6 +1949,12 @@ allowed.
  * @typedef Rule
  * @memberOf! servicemanagement(v1)
  * @type object
+* @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
+if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+The format for in and not_in entries is the same as for members in a
+Binding (see google/iam/v1/policy.proto).
+* @property {string} description Human-readable description of the rule.
+* @property {servicemanagement(v1).Condition[]} conditions Additional restrictions that must be met
 * @property {servicemanagement(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
 that match the LOG action.
 * @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
@@ -1421,12 +1963,6 @@ the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
 (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
 and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
 * @property {string} action Required
-* @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
-if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
-The format for in and not_in entries is the same as for members in a
-Binding (see google/iam/v1/policy.proto).
-* @property {string} description Human-readable description of the rule.
-* @property {servicemanagement(v1).Condition[]} conditions Additional restrictions that must be met
 */
 /**
  * @typedef LogConfig
@@ -1464,15 +2000,6 @@ the user interface and should be concise.
  * @typedef MonitoredResourceDescriptor
  * @memberOf! servicemanagement(v1)
  * @type object
-* @property {servicemanagement(v1).LabelDescriptor[]} labels Required. A set of labels used to describe instances of this monitored
-resource type. For example, an individual Google Cloud SQL database is
-identified by values for the labels `&quot;database_id&quot;` and `&quot;zone&quot;`.
-* @property {string} name Optional. The resource name of the monitored resource descriptor:
-`&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;` where
-{type} is the value of the `type` field in this object and
-{project_id} is a project ID that provides API-specific context for
-accessing the type.  APIs that do not use project information can use the
-resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
 * @property {string} displayName Optional. A concise name for the monitored resource type that might be
 displayed in user interfaces. It should be a Title Cased Noun Phrase,
 without any article or other determiners. For example,
@@ -1482,6 +2009,15 @@ be used in documentation.
 * @property {string} type Required. The monitored resource type. For example, the type
 `&quot;cloudsql_database&quot;` represents databases in Google Cloud SQL.
 The maximum length of this value is 256 characters.
+* @property {servicemanagement(v1).LabelDescriptor[]} labels Required. A set of labels used to describe instances of this monitored
+resource type. For example, an individual Google Cloud SQL database is
+identified by values for the labels `&quot;database_id&quot;` and `&quot;zone&quot;`.
+* @property {string} name Optional. The resource name of the monitored resource descriptor:
+`&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;` where
+{type} is the value of the `type` field in this object and
+{project_id} is a project ID that provides API-specific context for
+accessing the type.  APIs that do not use project information can use the
+resource name format `&quot;monitoredResourceDescriptors/{type}&quot;`.
 */
 /**
  * @typedef CustomErrorRule
@@ -1536,545 +2072,9 @@ google.api.servicecontrol.v1.Operation.consumer_id.
  * @typedef MediaUpload
  * @memberOf! servicemanagement(v1)
  * @type object
-* @property {boolean} enabled Whether upload is enabled.
 * @property {string} uploadService DO NOT USE THIS FIELD UNTIL THIS WARNING IS REMOVED.
 
 Specify name of the upload service if one is used for upload.
-*/
-/**
- * @typedef Advice
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} description Useful description for why this advice was applied and what actions should
-be taken to mitigate any implied risks.
-*/
-/**
- * @typedef ManagedService
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} producerProjectId ID of the project that produces and owns this service.
-* @property {string} serviceName The name of the service. See the [overview](/service-management/overview)
-for naming requirements.
-*/
-/**
- * @typedef UsageRule
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {boolean} allowUnregisteredCalls True, if the method allows unregistered calls; false otherwise.
-* @property {string} selector Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all
-methods in all APIs.
-
-Refer to selector for syntax details.
-*/
-/**
- * @typedef AuthRequirement
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} providerId id from authentication provider.
-
-Example:
-
-    provider_id: bookstore_auth
-* @property {string} audiences NOTE: This will be deprecated soon, once AuthProvider.audiences is
-implemented and accepted in all the runtime components.
-
-The list of JWT
-[audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3).
-that are allowed to access. A JWT containing any of these audiences will
-be accepted. When this setting is absent, only JWTs with audience
-&quot;https://Service_name/API_name&quot;
-will be accepted. For example, if no audiences are in the setting,
-LibraryService API will only accept JWTs with the following audience
-&quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.
-
-Example:
-
-    audiences: bookstore_android.apps.googleusercontent.com,
-               bookstore_web.apps.googleusercontent.com
-*/
-/**
- * @typedef TrafficPercentStrategy
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {object} percentages Maps service configuration IDs to their corresponding traffic percentage.
-Key is the service configuration ID, Value is the traffic percentage
-which must be greater than 0.0 and the sum must equal to 100.0.
-*/
-/**
- * @typedef Condition
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} sys Trusted attributes supplied by any service that owns resources and uses
-the IAM system for access control.
-* @property {string} value DEPRECATED. Use &#39;values&#39; instead.
-* @property {string} iam Trusted attributes supplied by the IAM system.
-* @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
-* @property {string} op An operator to apply the subject with.
-* @property {string} svc Trusted attributes discharged by the service.
-*/
-/**
- * @typedef Documentation
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {servicemanagement(v1).Page[]} pages The top level pages for the documentation set.
-* @property {string} summary A short summary of what the service does. Can only be provided by
-plain text.
-* @property {string} documentationRootUrl The URL to the root of documentation.
-* @property {servicemanagement(v1).DocumentationRule[]} rules A list of documentation rules that apply to individual API elements.
-
-**NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
-* @property {string} overview Declares a single overview page. For example:
-&lt;pre&gt;&lt;code&gt;documentation:
-  summary: ...
-  overview: &amp;#40;== include overview.md ==&amp;#41;
-&lt;/code&gt;&lt;/pre&gt;
-This is a shortcut for the following declaration (using pages style):
-&lt;pre&gt;&lt;code&gt;documentation:
-  summary: ...
-  pages:
-  - name: Overview
-    content: &amp;#40;== include overview.md ==&amp;#41;
-&lt;/code&gt;&lt;/pre&gt;
-Note: you cannot specify both `overview` field and `pages` field.
-*/
-/**
- * @typedef AuditLogConfig
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of
-permission.
-Follows the same format of Binding.members.
-* @property {string} logType The log type that this config enables.
-*/
-/**
- * @typedef ConfigSource
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} id A unique ID for a specific instance of this message, typically assigned
-by the client for tracking purpose. If empty, the server may choose to
-generate one instead.
-* @property {servicemanagement(v1).ConfigFile[]} files Set of source configuration files that are used to generate a service
-configuration (`google.api.Service`).
-*/
-/**
- * @typedef AuthenticationRule
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {servicemanagement(v1).AuthRequirement[]} requirements Requirements for additional authentication providers.
-* @property {string} selector Selects the methods to which this rule applies.
-
-Refer to selector for syntax details.
-* @property {boolean} allowWithoutCredential Whether to allow requests without a credential. The credential can be
-an OAuth token, Google cookies (first-party auth) or EndUserCreds.
-
-For requests without credentials, if the service control environment is
-specified, each incoming request **must** be associated with a service
-consumer. This can be done by passing an API key that belongs to a consumer
-project.
-* @property {servicemanagement(v1).OAuthRequirements} oauth The requirements for OAuth credentials.
-*/
-/**
- * @typedef BackendRule
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} address The address of the API backend.
-* @property {string} selector Selects the methods to which this rule applies.
-
-Refer to selector for syntax details.
-* @property {number} deadline The number of seconds to wait for a response from a request.  The
-default depends on the deployment context.
-*/
-/**
- * @typedef UndeleteServiceResponse
- * @memberOf! servicemanagement(v1)
- * @type object
- * @property {servicemanagement(v1).ManagedService} service Revived service resource.
- */
-/**
- * @typedef Policy
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {servicemanagement(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
-* @property {servicemanagement(v1).Binding[]} bindings Associates a list of `members` to a `role`.
-Multiple `bindings` must not be specified for the same `role`.
-`bindings` with no members will result in an error.
-* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
-prevent simultaneous updates of a policy from overwriting each other.
-It is strongly suggested that systems make use of the `etag` in the
-read-modify-write cycle to perform policy updates in order to avoid race
-conditions: An `etag` is returned in the response to `getIamPolicy`, and
-systems are expected to put that etag in the request to `setIamPolicy` to
-ensure that their change will be applied to the same version of the policy.
-
-If no `etag` is provided in the call to `setIamPolicy`, then the existing
-policy is overwritten blindly.
-* @property {boolean} iamOwned 
-* @property {servicemanagement(v1).Rule[]} rules If more than one rule is specified, the rules are applied in the following
-manner:
-- All matching LOG rules are always applied.
-- If any DENY/DENY_WITH_LOG rule matches, permission is denied.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is
-  granted.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if no rule applies, permission is denied.
-* @property {integer} version Version of the `Policy`. The default version is 0.
-*/
-/**
- * @typedef Api
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {servicemanagement(v1).SourceContext} sourceContext Source context for the protocol buffer service represented by this
-message.
-* @property {string} syntax The source syntax of the service.
-* @property {string} version A version string for this api. If specified, must have the form
-`major-version.minor-version`, as in `1.10`. If the minor version
-is omitted, it defaults to zero. If the entire version field is
-empty, the major version is derived from the package name, as
-outlined below. If the field is not empty, the version in the
-package name will be verified to be consistent with what is
-provided here.
-
-The versioning schema uses [semantic
-versioning](http://semver.org) where the major version number
-indicates a breaking change and the minor version an additive,
-non-breaking change. Both version numbers are signals to users
-what to expect from different versions, and should be carefully
-chosen based on the product plan.
-
-The major version is also reflected in the package name of the
-API, which must end in `v&lt;major-version&gt;`, as in
-`google.feature.v1`. For major versions 0 and 1, the suffix can
-be omitted. Zero major versions must only be used for
-experimental, none-GA apis.
-
-* @property {servicemanagement(v1).Mixin[]} mixins Included APIs. See Mixin.
-* @property {servicemanagement(v1).Option[]} options Any metadata attached to the API.
-* @property {servicemanagement(v1).Method[]} methods The methods of this api, in unspecified order.
-* @property {string} name The fully qualified name of this api, including package name
-followed by the api&#39;s simple name.
-*/
-/**
- * @typedef DataAccessOptions
- * @memberOf! servicemanagement(v1)
- * @type object
- */
-/**
- * @typedef Authentication
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {servicemanagement(v1).AuthProvider[]} providers Defines a set of authentication providers that a service supports.
-* @property {servicemanagement(v1).AuthenticationRule[]} rules A list of authentication rules that apply to individual API methods.
-
-**NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
-*/
-/**
- * @typedef Operation
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {servicemanagement(v1).Status} error The error result of the operation in case of failure or cancellation.
-* @property {object} metadata Service-specific metadata associated with the operation.  It typically
-contains progress information and common metadata such as create time.
-Some services might not provide such metadata.  Any method that returns a
-long-running operation should document the metadata type, if any.
-* @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
-available.
-* @property {object} response The normal response of the operation in case of success.  If the original
-method returns no data on success, such as `Delete`, the response is
-`google.protobuf.Empty`.  If the original method is standard
-`Get`/`Create`/`Update`, the response should be the resource.  For other
-methods, the response should have the type `XxxResponse`, where `Xxx`
-is the original method name.  For example, if the original method name
-is `TakeSnapshot()`, the inferred response type is
-`TakeSnapshotResponse`.
-* @property {string} name The server-assigned name, which is only unique within the same service that
-originally returns it. If you use the default HTTP mapping, the
-`name` should have the format of `operations/some/unique/name`.
-*/
-/**
- * @typedef Page
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} name The name of the page. It will be used as an identity of the page to
-generate URI of the page, text of the link to this page in navigation,
-etc. The full page name (start from the root page name to this page
-concatenated with `.`) can be used as reference to the page in your
-documentation. For example:
-&lt;pre&gt;&lt;code&gt;pages:
-- name: Tutorial
-  content: &amp;#40;== include tutorial.md ==&amp;#41;
-  subpages:
-  - name: Java
-    content: &amp;#40;== include tutorial_java.md ==&amp;#41;
-&lt;/code&gt;&lt;/pre&gt;
-You can reference `Java` page using Markdown reference link syntax:
-`Java`.
-* @property {string} content The Markdown content of the page. You can use &lt;code&gt;&amp;#40;== include {path} ==&amp;#41;&lt;/code&gt;
-to include content from a Markdown file.
-* @property {servicemanagement(v1).Page[]} subpages Subpages of this page. The order of subpages specified here will be
-honored in the generated docset.
-*/
-/**
- * @typedef Status
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-*/
-/**
- * @typedef Binding
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string[]} members Specifies the identities requesting access for a Cloud Platform resource.
-`members` can have the following values:
-
-* `allUsers`: A special identifier that represents anyone who is
-   on the internet; with or without a Google account.
-
-* `allAuthenticatedUsers`: A special identifier that represents anyone
-   who is authenticated with a Google account or a service account.
-
-* `user:{emailid}`: An email address that represents a specific Google
-   account. For example, `alice@gmail.com` or `joe@example.com`.
-
-
-* `serviceAccount:{emailid}`: An email address that represents a service
-   account. For example, `my-other-app@appspot.gserviceaccount.com`.
-
-* `group:{emailid}`: An email address that represents a Google group.
-   For example, `admins@example.com`.
-
-* `domain:{domain}`: A Google Apps domain name that represents all the
-   users of that domain. For example, `google.com` or `example.com`.
-
-
-* @property {string} role Role that is assigned to `members`.
-For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
-Required
-*/
-/**
- * @typedef AuthProvider
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} jwksUri URL of the provider&#39;s public key set to validate signature of the JWT. See
-[OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).
-Optional if the key set document:
- - can be retrieved from
-   [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html
-   of the issuer.
- - can be inferred from the email domain of the issuer (e.g. a Google service account).
-
-Example: https://www.googleapis.com/oauth2/v1/certs
-* @property {string} audiences The list of JWT
-[audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3).
-that are allowed to access. A JWT containing any of these audiences will
-be accepted. When this setting is absent, only JWTs with audience
-&quot;https://Service_name/API_name&quot;
-will be accepted. For example, if no audiences are in the setting,
-LibraryService API will only accept JWTs with the following audience
-&quot;https://library-example.googleapis.com/google.example.library.v1.LibraryService&quot;.
-
-Example:
-
-    audiences: bookstore_android.apps.googleusercontent.com,
-               bookstore_web.apps.googleusercontent.com
-* @property {string} id The unique identifier of the auth provider. It will be referred to by
-`AuthRequirement.provider_id`.
-
-Example: &quot;bookstore_auth&quot;.
-* @property {string} issuer Identifies the principal that issued the JWT. See
-https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1
-Usually a URL or an email address.
-
-Example: https://securetoken.google.com
-Example: 1234567-compute@developer.gserviceaccount.com
-*/
-/**
- * @typedef EnumValue
- * @memberOf! servicemanagement(v1)
- * @type object
- * @property {string} name Enum value name.
- * @property {servicemanagement(v1).Option[]} options Protocol buffer options.
- * @property {integer} number Enum value number.
- */
-/**
- * @typedef Service
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {servicemanagement(v1).SystemParameters} systemParameters System parameter configuration.
-* @property {servicemanagement(v1).Backend} backend API backend configuration.
-* @property {servicemanagement(v1).Documentation} documentation Additional API documentation.
-* @property {servicemanagement(v1).Logging} logging Logging configuration.
-* @property {servicemanagement(v1).MonitoredResourceDescriptor[]} monitoredResources Defines the monitored resources used by this service. This is required
-by the Service.monitoring and Service.logging configurations.
-* @property {servicemanagement(v1).Enum[]} enums A list of all enum types included in this API service.  Enums
-referenced directly or indirectly by the `apis` are automatically
-included.  Enums which are not referenced but shall be included
-should be listed here by name. Example:
-
-    enums:
-    - name: google.someapi.v1.SomeEnum
-* @property {servicemanagement(v1).Context} context Context configuration.
-* @property {string} id A unique ID for a specific instance of this message, typically assigned
-by the client for tracking purpose. If empty, the server may choose to
-generate one instead.
-* @property {servicemanagement(v1).Usage} usage Configuration controlling usage of this service.
-* @property {servicemanagement(v1).MetricDescriptor[]} metrics Defines the metrics used by this service.
-* @property {servicemanagement(v1).Authentication} authentication Auth configuration.
-* @property {servicemanagement(v1).Experimental} experimental Experimental configuration.
-* @property {servicemanagement(v1).Control} control Configuration for the service control plane.
-* @property {integer} configVersion The version of the service configuration. The config version may
-influence interpretation of the configuration, for example, to
-determine defaults. This is documented together with applicable
-options. The current default for the config version itself is `3`.
-* @property {servicemanagement(v1).Monitoring} monitoring Monitoring configuration.
-* @property {string} producerProjectId The id of the Google developer project that owns the service.
-Members of this project can manage the service configuration,
-manage consumption of the service, etc.
-* @property {servicemanagement(v1).Type[]} systemTypes A list of all proto message types included in this API service.
-It serves similar purpose as [google.api.Service.types], except that
-these types are not needed by user-defined APIs. Therefore, they will not
-show up in the generated discovery doc. This field should only be used
-to define system APIs in ESF.
-* @property {servicemanagement(v1).Visibility} visibility API visibility configuration.
-* @property {string} name The DNS address at which this service is available,
-e.g. `calendar.googleapis.com`.
-* @property {servicemanagement(v1).CustomError} customError Custom error configuration.
-* @property {string} title The product title associated with this service.
-* @property {servicemanagement(v1).Endpoint[]} endpoints Configuration for network endpoints.  If this is empty, then an endpoint
-with the same name as the service is automatically generated to service all
-defined APIs.
-* @property {servicemanagement(v1).Api[]} apis A list of API interfaces exported by this service. Only the `name` field
-of the google.protobuf.Api needs to be provided by the configuration
-author, as the remaining fields will be derived from the IDL during the
-normalization process. It is an error to specify an API interface here
-which cannot be resolved against the associated IDL files.
-* @property {servicemanagement(v1).LogDescriptor[]} logs Defines the logs used by this service.
-* @property {servicemanagement(v1).Type[]} types A list of all proto message types included in this API service.
-Types referenced directly or indirectly by the `apis` are
-automatically included.  Messages which are not referenced but
-shall be included, such as types used by the `google.protobuf.Any` type,
-should be listed here by name. Example:
-
-    types:
-    - name: google.protobuf.Int32
-* @property {servicemanagement(v1).SourceInfo} sourceInfo Output only. The source information for this configuration if available.
-* @property {servicemanagement(v1).Http} http HTTP configuration.
-*/
-/**
- * @typedef ListOperationsResponse
- * @memberOf! servicemanagement(v1)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {servicemanagement(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-/**
- * @typedef CustomHttpPattern
- * @memberOf! servicemanagement(v1)
- * @type object
- * @property {string} kind The name of this custom HTTP verb.
- * @property {string} path The path matched by this custom verb.
- */
-/**
- * @typedef OperationMetadata
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} startTime The start time of the operation.
-* @property {string[]} resourceNames The full name of the resources that this operation is directly
-associated with.
-* @property {servicemanagement(v1).Step[]} steps Detailed status information for each step. The order is undetermined.
-* @property {integer} progressPercentage Percentage of completion of this operation, ranging from 0 to 100.
-*/
-/**
- * @typedef SystemParameterRule
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} selector Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all
-methods in all APIs.
-
-Refer to selector for syntax details.
-* @property {servicemanagement(v1).SystemParameter[]} parameters Define parameters. Multiple names may be defined for a parameter.
-For a given method call, only one of them should be used. If multiple
-names are used the behavior is implementation-dependent.
-If none of the specified names are present the behavior is
-parameter-dependent.
-*/
-/**
- * @typedef VisibilityRule
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} restriction A comma-separated list of visibility labels that apply to the `selector`.
-Any of the listed labels can be used to grant the visibility.
-
-If a rule has multiple labels, removing one of the labels but not all of
-them can break clients.
-
-Example:
-
-    visibility:
-      rules:
-      - selector: google.calendar.Calendar.EnhancedSearch
-        restriction: GOOGLE_INTERNAL, TRUSTED_TESTER
-
-Removing GOOGLE_INTERNAL from this restriction will break clients that
-rely on this method and only had access to it through GOOGLE_INTERNAL.
-* @property {string} selector Selects methods, messages, fields, enums, etc. to which this rule applies.
-
-Refer to selector for syntax details.
-*/
-/**
- * @typedef HttpRule
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} selector Selects methods to which this rule applies.
-
-Refer to selector for syntax details.
-* @property {servicemanagement(v1).CustomHttpPattern} custom Custom pattern is used for defining custom verbs.
-* @property {string} patch Used for updating a resource.
-* @property {string} get Used for listing and getting information about resources.
-* @property {string} put Used for updating a resource.
-* @property {string} delete Used for deleting a resource.
-* @property {string} body The name of the request field whose value is mapped to the HTTP body, or
-`*` for mapping all fields not captured by the path pattern to the HTTP
-body. NOTE: the referred field must not be a repeated field and must be
-present at the top-level of request message type.
-* @property {string} post Used for creating a resource.
-* @property {servicemanagement(v1).MediaDownload} mediaDownload Use this only for Scotty Requests. Do not use this for bytestream methods.
-For media support, add instead [][google.bytestream.RestByteStream] as an
-API to your configuration.
-* @property {servicemanagement(v1).HttpRule[]} additionalBindings Additional HTTP bindings for the selector. Nested bindings must
-not contain an `additional_bindings` field themselves (that is,
-the nesting may only be one level deep).
-* @property {string} responseBody The name of the response field whose value is mapped to the HTTP body of
-response. Other response fields are ignored. This field is optional. When
-not set, the response message will be used as HTTP body of response.
-NOTE: the referred field must be not a repeated field and must be present
-at the top-level of response message type.
-* @property {servicemanagement(v1).MediaUpload} mediaUpload Use this only for Scotty Requests. Do not use this for media support using
-Bytestream, add instead
-[][google.bytestream.RestByteStream] as an API to your
-configuration for Bytestream methods.
-*/
-/**
- * @typedef MonitoringDestination
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {string} monitoredResource The monitored resource type. The type must be defined in
-Service.monitored_resources section.
-* @property {string[]} metrics Names of the metrics to report to this monitoring destination.
-Each name must be defined in Service.metrics section.
-*/
-/**
- * @typedef Visibility
- * @memberOf! servicemanagement(v1)
- * @type object
-* @property {servicemanagement(v1).VisibilityRule[]} rules A list of visibility rules that apply to individual API elements.
-
-**NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+* @property {boolean} enabled Whether upload is enabled.
 */
 module.exports = Servicemanagement;

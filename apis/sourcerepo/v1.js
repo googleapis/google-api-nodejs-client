@@ -45,41 +45,6 @@ function Sourcerepo(options) { // eslint-disable-line
     repos: {
 
       /**
-       * sourcerepo.projects.repos.delete
-       *
-       * @desc Deletes a repo.
-       *
-       * @alias sourcerepo.projects.repos.delete
-       * @memberOf! sourcerepo(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the repo to delete. Values are of the form `projects/<project>/repos/<repo>`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://sourcerepo.googleapis.com/v1/{name}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * sourcerepo.projects.repos.list
        *
        * @desc Returns all repos belonging to a project.
@@ -108,42 +73,6 @@ function Sourcerepo(options) { // eslint-disable-line
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * sourcerepo.projects.repos.create
-       *
-       * @desc Creates a repo in the given project with the given name..  If the named repository already exists, `CreateRepo` returns `ALREADY_EXISTS`.
-       *
-       * @alias sourcerepo.projects.repos.create
-       * @memberOf! sourcerepo(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent The project in which to create the repo. Values are of the form `projects/<project>`.
-       * @param {sourcerepo(v1).Repo} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://sourcerepo.googleapis.com/v1/{parent}/repos',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
           context: self
         };
 
@@ -180,6 +109,42 @@ function Sourcerepo(options) { // eslint-disable-line
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sourcerepo.projects.repos.create
+       *
+       * @desc Creates a repo in the given project with the given name..  If the named repository already exists, `CreateRepo` returns `ALREADY_EXISTS`.
+       *
+       * @alias sourcerepo.projects.repos.create
+       * @memberOf! sourcerepo(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.parent The project in which to create the repo. Values are of the form `projects/<project>`.
+       * @param {sourcerepo(v1).Repo} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://sourcerepo.googleapis.com/v1/{parent}/repos',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
           context: self
         };
 
@@ -290,11 +255,137 @@ function Sourcerepo(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sourcerepo.projects.repos.delete
+       *
+       * @desc Deletes a repo.
+       *
+       * @alias sourcerepo.projects.repos.delete
+       * @memberOf! sourcerepo(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the repo to delete. Values are of the form `projects/<project>/repos/<repo>`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://sourcerepo.googleapis.com/v1/{name}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     }
   };
 }
 
+/**
+ * @typedef AuditLogConfig
+ * @memberOf! sourcerepo(v1)
+ * @type object
+* @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of
+permission.
+Follows the same format of Binding.members.
+* @property {string} logType The log type that this config enables.
+*/
+/**
+ * @typedef Rule
+ * @memberOf! sourcerepo(v1)
+ * @type object
+* @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
+(e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
+and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
+* @property {string} action Required
+* @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
+if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+The format for in and not_in entries is the same as for members in a
+Binding (see google/iam/v1/policy.proto).
+* @property {string} description Human-readable description of the rule.
+* @property {sourcerepo(v1).Condition[]} conditions Additional restrictions that must be met
+* @property {sourcerepo(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
+that match the LOG action.
+* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
+the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+*/
+/**
+ * @typedef LogConfig
+ * @memberOf! sourcerepo(v1)
+ * @type object
+ * @property {sourcerepo(v1).CounterOptions} counter Counter options.
+ * @property {sourcerepo(v1).DataAccessOptions} dataAccess Data access options.
+ * @property {sourcerepo(v1).CloudAuditOptions} cloudAudit Cloud audit options.
+ */
+/**
+ * @typedef TestIamPermissionsRequest
+ * @memberOf! sourcerepo(v1)
+ * @type object
+* @property {string[]} permissions The set of permissions to check for the `resource`. Permissions with
+wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more
+information see
+[IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+*/
+/**
+ * @typedef Policy
+ * @memberOf! sourcerepo(v1)
+ * @type object
+* @property {boolean} iamOwned 
+* @property {sourcerepo(v1).Rule[]} rules If more than one rule is specified, the rules are applied in the following
+manner:
+- All matching LOG rules are always applied.
+- If any DENY/DENY_WITH_LOG rule matches, permission is denied.
+  Logging will be applied if one or more matching rule requires logging.
+- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is
+  granted.
+  Logging will be applied if one or more matching rule requires logging.
+- Otherwise, if no rule applies, permission is denied.
+* @property {integer} version Version of the `Policy`. The default version is 0.
+* @property {sourcerepo(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
+* @property {sourcerepo(v1).Binding[]} bindings Associates a list of `members` to a `role`.
+Multiple `bindings` must not be specified for the same `role`.
+`bindings` with no members will result in an error.
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
+prevent simultaneous updates of a policy from overwriting each other.
+It is strongly suggested that systems make use of the `etag` in the
+read-modify-write cycle to perform policy updates in order to avoid race
+conditions: An `etag` is returned in the response to `getIamPolicy`, and
+systems are expected to put that etag in the request to `setIamPolicy` to
+ensure that their change will be applied to the same version of the policy.
+
+If no `etag` is provided in the call to `setIamPolicy`, then the existing
+policy is overwritten blindly.
+*/
+/**
+ * @typedef DataAccessOptions
+ * @memberOf! sourcerepo(v1)
+ * @type object
+ */
+/**
+ * @typedef AuditConfig
+ * @memberOf! sourcerepo(v1)
+ * @type object
+* @property {sourcerepo(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
+Next ID: 4
+* @property {string[]} exemptedMembers 
+* @property {string} service Specifies a service that will be enabled for audit logging.
+For example, `resourcemanager`, `storage`, `compute`.
+`allServices` is a special value that covers all services.
+*/
 /**
  * @typedef SetIamPolicyRequest
  * @memberOf! sourcerepo(v1)
@@ -304,8 +395,8 @@ the policy is limited to a few 10s of KB. An empty policy is a
 valid policy but certain Cloud Platform services (such as Projects)
 might reject them.
 * @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
-the fields in the mask will be modified. If no mask is provided, a default
-mask is used:
+the fields in the mask will be modified. If no mask is provided, the
+following default mask is used:
 paths: &quot;bindings, etag&quot;
 This field is only used by Cloud IAM.
 */
@@ -367,11 +458,11 @@ and thereby disabling mirroring.
  * @typedef Repo
  * @memberOf! sourcerepo(v1)
  * @type object
+* @property {string} size The size in bytes of the repo.
 * @property {string} name Resource name of the repository, of the form
 `projects/&lt;project&gt;/repos/&lt;repo&gt;`.
 * @property {sourcerepo(v1).MirrorConfig} mirrorConfig How this repository mirrors a repository managed by another service.
 * @property {string} url URL to clone the repository from Google Cloud Source Repositories.
-* @property {string} size The size in bytes of the repo.
 */
 /**
  * @typedef TestIamPermissionsResponse
@@ -390,13 +481,13 @@ allowed.
  * @typedef Condition
  * @memberOf! sourcerepo(v1)
  * @type object
+* @property {string} svc Trusted attributes discharged by the service.
+* @property {string} sys Trusted attributes supplied by any service that owns resources and uses
+the IAM system for access control.
+* @property {string} value DEPRECATED. Use &#39;values&#39; instead.
 * @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
 * @property {string} iam Trusted attributes supplied by the IAM system.
 * @property {string} op An operator to apply the subject with.
-* @property {string} svc Trusted attributes discharged by the service.
-* @property {string} value DEPRECATED. Use &#39;values&#39; instead.
-* @property {string} sys Trusted attributes supplied by any service that owns resources and uses
-the IAM system for access control.
 */
 /**
  * @typedef CounterOptions
@@ -405,95 +496,4 @@ the IAM system for access control.
  * @property {string} metric The metric to update.
  * @property {string} field The field value to attribute.
  */
-/**
- * @typedef AuditLogConfig
- * @memberOf! sourcerepo(v1)
- * @type object
-* @property {string[]} exemptedMembers Specifies the identities that do not cause logging for this type of
-permission.
-Follows the same format of Binding.members.
-* @property {string} logType The log type that this config enables.
-*/
-/**
- * @typedef Rule
- * @memberOf! sourcerepo(v1)
- * @type object
-* @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
-if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
-The format for in and not_in entries is the same as for members in a
-Binding (see google/iam/v1/policy.proto).
-* @property {string} description Human-readable description of the rule.
-* @property {sourcerepo(v1).Condition[]} conditions Additional restrictions that must be met
-* @property {sourcerepo(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
-that match the LOG action.
-* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
-the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
-* @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
-(e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
-and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
-* @property {string} action Required
-*/
-/**
- * @typedef LogConfig
- * @memberOf! sourcerepo(v1)
- * @type object
- * @property {sourcerepo(v1).DataAccessOptions} dataAccess Data access options.
- * @property {sourcerepo(v1).CloudAuditOptions} cloudAudit Cloud audit options.
- * @property {sourcerepo(v1).CounterOptions} counter Counter options.
- */
-/**
- * @typedef TestIamPermissionsRequest
- * @memberOf! sourcerepo(v1)
- * @type object
-* @property {string[]} permissions The set of permissions to check for the `resource`. Permissions with
-wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more
-information see
-[IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-*/
-/**
- * @typedef Policy
- * @memberOf! sourcerepo(v1)
- * @type object
-* @property {boolean} iamOwned 
-* @property {sourcerepo(v1).Rule[]} rules If more than one rule is specified, the rules are applied in the following
-manner:
-- All matching LOG rules are always applied.
-- If any DENY/DENY_WITH_LOG rule matches, permission is denied.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is
-  granted.
-  Logging will be applied if one or more matching rule requires logging.
-- Otherwise, if no rule applies, permission is denied.
-* @property {integer} version Version of the `Policy`. The default version is 0.
-* @property {sourcerepo(v1).AuditConfig[]} auditConfigs Specifies cloud audit logging configuration for this policy.
-* @property {sourcerepo(v1).Binding[]} bindings Associates a list of `members` to a `role`.
-Multiple `bindings` must not be specified for the same `role`.
-`bindings` with no members will result in an error.
-* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
-prevent simultaneous updates of a policy from overwriting each other.
-It is strongly suggested that systems make use of the `etag` in the
-read-modify-write cycle to perform policy updates in order to avoid race
-conditions: An `etag` is returned in the response to `getIamPolicy`, and
-systems are expected to put that etag in the request to `setIamPolicy` to
-ensure that their change will be applied to the same version of the policy.
-
-If no `etag` is provided in the call to `setIamPolicy`, then the existing
-policy is overwritten blindly.
-*/
-/**
- * @typedef DataAccessOptions
- * @memberOf! sourcerepo(v1)
- * @type object
- */
-/**
- * @typedef AuditConfig
- * @memberOf! sourcerepo(v1)
- * @type object
-* @property {string} service Specifies a service that will be enabled for audit logging.
-For example, `resourcemanager`, `storage`, `compute`.
-`allServices` is a special value that covers all services.
-* @property {sourcerepo(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
-Next ID: 4
-* @property {string[]} exemptedMembers 
-*/
 module.exports = Sourcerepo;

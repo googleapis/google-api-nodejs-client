@@ -998,6 +998,43 @@ function Deploymentmanager(options) { // eslint-disable-line
     },
 
     /**
+     * deploymentmanager.typeProviders.getType
+     *
+     * @desc Gets a type info for a type provided by a TypeProvider.
+     *
+     * @alias deploymentmanager.typeProviders.getType
+     * @memberOf! deploymentmanager(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project The project ID for this request.
+     * @param {string} params.type The name of the type provider for this request.
+     * @param {string} params.typeProvider The name of the type provider for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getType: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/deploymentmanager/alpha/projects/{project}/global/typeProviders/{typeProvider}/types/{type}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'typeProvider', 'type'],
+        pathParams: ['project', 'type', 'typeProvider'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * deploymentmanager.typeProviders.insert
      *
      * @desc Creates a type provider.
@@ -1066,6 +1103,46 @@ function Deploymentmanager(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project'],
         pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * deploymentmanager.typeProviders.listTypes
+     *
+     * @desc Lists all the type info for a TypeProvider.
+     *
+     * @alias deploymentmanager.typeProviders.listTypes
+     * @memberOf! deploymentmanager(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project The project ID for this request.
+     * @param {string} params.typeProvider The name of the type provider for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listTypes: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/deploymentmanager/alpha/projects/{project}/global/typeProviders/{typeProvider}/types',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'typeProvider'],
+        pathParams: ['project', 'typeProvider'],
         context: self
       };
 
@@ -1380,7 +1457,7 @@ function Deploymentmanager(options) { // eslint-disable-line
  * @type object
  * @property {deploymentmanager(alpha).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
  * @property {string[]} exemptedMembers 
- * @property {string} service Specifies a service that will be enabled for audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
+ * @property {string} service Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
  */
 /**
  * @typedef AuditLogConfig
@@ -1749,6 +1826,25 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {string} selfLink [Output Only] Self link for the type.
  */
 /**
+ * @typedef TypeInfo
+ * @memberOf! deploymentmanager(alpha)
+ * @type object
+ * @property {string} description The description of the type.
+ * @property {string} documentationLink For swagger 2.0 externalDocs field will be used. For swagger 1.2 this field will be empty.
+ * @property {string} kind [Output Only] Type of the output. Always deploymentManager#TypeInfo for TypeInfo.
+ * @property {string} name The base type or composite type name.
+ * @property {deploymentmanager(alpha).TypeInfoSchemaInfo} schema For base types with a collection, we return a schema and documentation link For template types, we return only a schema
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ * @property {string} title The title on the API descriptor URL provided.
+ */
+/**
+ * @typedef TypeInfoSchemaInfo
+ * @memberOf! deploymentmanager(alpha)
+ * @type object
+ * @property {string} input The properties that this composite type or base type collection accept as input, represented as a json blob, format is: JSON Schema Draft V4
+ * @property {string} output The properties that this composite type or base type collection exposes as output, these properties can be used for references, represented as json blob, format is: JSON Schema Draft V4
+ */
+/**
  * @typedef TypeLabelEntry
  * @memberOf! deploymentmanager(alpha)
  * @type object
@@ -1784,6 +1880,13 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @type object
  * @property {string} nextPageToken A token used to continue a truncated list request.
  * @property {deploymentmanager(alpha).TypeProvider[]} typeProviders [Output Only] A list of resource type providers supported by Deployment Manager.
+ */
+/**
+ * @typedef TypeProvidersListTypesResponse
+ * @memberOf! deploymentmanager(alpha)
+ * @type object
+ * @property {string} nextPageToken A token used to continue a truncated list request.
+ * @property {deploymentmanager(alpha).TypeInfo[]} types [Output Only] A list of resource type info.
  */
 /**
  * @typedef TypesListResponse

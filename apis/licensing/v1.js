@@ -24,7 +24,7 @@ var utils = require('../../lib/utils');
 /**
  * Enterprise License Manager API
  *
- * Licensing API to view and manage license for your domain.
+ * Views and manages licenses for your domain.
  *
  * @example
  * var google = require('googleapis');
@@ -315,9 +315,11 @@ function Licensing(options) { // eslint-disable-line
  * @type object
  * @property {string} etags ETag of the resource.
  * @property {string} kind Identifies the resource as a LicenseAssignment.
- * @property {string} productId Name of the product.
+ * @property {string} productId Id of the product.
+ * @property {string} productName Display Name of the product.
  * @property {string} selfLink Link to this page.
- * @property {string} skuId Name of the sku of the product.
+ * @property {string} skuId Id of the sku of the product.
+ * @property {string} skuName Display Name of the sku of the product.
  * @property {string} userId Email id of the user.
  */
 /**
