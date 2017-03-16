@@ -54,13 +54,13 @@ function Tracing(options) { // eslint-disable-line
        * @memberOf! tracing(v1)
        *
        * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size. Optional.
        * @param {string} params.parent ID of the Cloud project where the trace data is stored.
        * @param {string=} params.orderBy Field used to sort the returned traces. Optional. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
        * @param {string=} params.filter An optional filter for the request. Example: "version_label_key:a some_label:some_label_key" returns traces from version a and has some_label with some_label_key.
        * @param {string=} params.endTime End of the time interval (inclusive) during which the trace data was collected from the application.
-       * @param {string=} params.startTime Start of the time interval (inclusive) during which the trace data was collected from the application.
        * @param {string=} params.pageToken Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request. Optional.
-       * @param {integer=} params.pageSize Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size. Optional.
+       * @param {string=} params.startTime Start of the time interval (inclusive) during which the trace data was collected from the application.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -197,6 +197,70 @@ function Tracing(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef StackTrace
+ * @memberOf! tracing(v1)
+ * @type object
+* @property {tracing(v1).StackFrame[]} stackFrame Stack frames of this stack trace.
+* @property {string} stackTraceHashId User can choose to use their own hash function to hash large attributes to
+save network bandwidth and storage.
+Typical usage is to pass both stack_frame and stack_trace_hash_id initially
+to inform the storage of the mapping. And in subsequent calls, pass in
+stack_trace_hash_id only. User shall verify the hash value is
+successfully stored.
+*/
+/**
+ * @typedef TimeEvent
+ * @memberOf! tracing(v1)
+ * @type object
+ * @property {tracing(v1).NetworkEvent} networkEvent Optional field that can be used only for network events.
+ * @property {tracing(v1).Annotation} annotation Optional field for user supplied &lt;string, AttributeValue&gt; map
+ * @property {string} localTime The local machine absolute timestamp when this event happened.
+ */
+/**
+ * @typedef ListSpansResponse
+ * @memberOf! tracing(v1)
+ * @type object
+* @property {string} nextPageToken If defined, indicates that there are more spans that match the request
+and that this value should be passed to the next request to continue
+retrieving additional spans.
+* @property {tracing(v1).Span[]} spans The requested spans if they are any in the specified trace.
+*/
+/**
+ * @typedef SpanUpdates
+ * @memberOf! tracing(v1)
+ * @type object
+ * @property {tracing(v1).Span[]} spans A collection of spans.
+ */
+/**
+ * @typedef NetworkEvent
+ * @memberOf! tracing(v1)
+ * @type object
+* @property {string} kernelTime If available, this is the kernel time:
+For sent messages, this is the time at which the first bit was sent.
+For received messages, this is the time at which the last bit was
+received.
+* @property {string} type Type of a NetworkEvent.
+* @property {string} messageId Every message has an identifier, which must be different from all the
+network messages in this span.
+This is especially important when the request/response are streamed.
+* @property {string} messageSize Number of bytes send/receive.
+*/
+/**
+ * @typedef StackFrame
+ * @memberOf! tracing(v1)
+ * @type object
+* @property {string} originalFunctionName Used when function name is ‘mangled’. Not guaranteed to be fully
+qualified but usually it is.
+* @property {string} functionName Fully qualified names which uniquely identify function/method/etc.
+* @property {string} lineNumber Line number of the frame.
+* @property {tracing(v1).Module} loadModule Binary module the code is loaded from.
+* @property {string} columnNumber Column number is important in JavaScript(anonymous functions),
+Might not be available in some languages.
+* @property {string} fileName File name of the frame.
+* @property {string} sourceVersion source_version is deployment specific. It might be
+better to be stored in deployment metadata.
+*/
+/**
  * @typedef Link
  * @memberOf! tracing(v1)
  * @type object
@@ -232,12 +296,12 @@ usually a hash of its contents
  * @typedef Status
  * @memberOf! tracing(v1)
  * @type object
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
 * @property {object[]} details A list of messages that carry the error details.  There will be a
 common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 */
 /**
  * @typedef ListTracesResponse
@@ -249,9 +313,22 @@ and that this value should be passed to the next request to continue
 retrieving additional traces.
 */
 /**
+ * @typedef Empty
+ * @memberOf! tracing(v1)
+ * @type object
+ */
+/**
  * @typedef Span
  * @memberOf! tracing(v1)
  * @type object
+* @property {boolean} hasRemoteParent True if this Span has a remote parent (is an RPC server Span).
+* @property {string} localEndTime Local machine clock time from the UNIX epoch,
+at which span execution ended.
+On the server side these are the times when the server application
+handler finishes running.
+* @property {string} parentId ID of parent span. 0 or missing if this is a root span.
+* @property {tracing(v1).TimeEvent[]} timeEvents A collection of time-stamped events.
+* @property {tracing(v1).Status} status The final status of the Span. This is optional.
 * @property {string} name Name of the span. The span name is sanitized and displayed in the
 Stackdriver Trace tool in the {% dynamic print site_values.console_name %}.
 The name may be a method name or some other per-call site name.
@@ -281,20 +358,7 @@ unique within a trace.
 at which span execution started.
 On the server side these are the times when the server application
 handler starts running.
-* @property {boolean} hasRemoteParent True if this Span has a remote parent (is an RPC server Span).
-* @property {string} localEndTime Local machine clock time from the UNIX epoch,
-at which span execution ended.
-On the server side these are the times when the server application
-handler finishes running.
-* @property {string} parentId ID of parent span. 0 or missing if this is a root span.
-* @property {tracing(v1).TimeEvent[]} timeEvents A collection of time-stamped events.
-* @property {tracing(v1).Status} status The final status of the Span. This is optional.
 */
-/**
- * @typedef Empty
- * @memberOf! tracing(v1)
- * @type object
- */
 /**
  * @typedef AttributeValue
  * @memberOf! tracing(v1)
@@ -309,68 +373,4 @@ handler finishes running.
  * @type object
  * @property {object} spanUpdates A map from trace name to spans to be stored or updated.
  */
-/**
- * @typedef StackTrace
- * @memberOf! tracing(v1)
- * @type object
-* @property {tracing(v1).StackFrame[]} stackFrame Stack frames of this stack trace.
-* @property {string} stackTraceHashId User can choose to use their own hash function to hash large attributes to
-save network bandwidth and storage.
-Typical usage is to pass both stack_frame and stack_trace_hash_id initially
-to inform the storage of the mapping. And in subsequent calls, pass in
-stack_trace_hash_id only. User shall verify the hash value is
-successfully stored.
-*/
-/**
- * @typedef TimeEvent
- * @memberOf! tracing(v1)
- * @type object
- * @property {tracing(v1).Annotation} annotation Optional field for user supplied &lt;string, AttributeValue&gt; map
- * @property {string} localTime The local machine absolute timestamp when this event happened.
- * @property {tracing(v1).NetworkEvent} networkEvent Optional field that can be used only for network events.
- */
-/**
- * @typedef ListSpansResponse
- * @memberOf! tracing(v1)
- * @type object
-* @property {string} nextPageToken If defined, indicates that there are more spans that match the request
-and that this value should be passed to the next request to continue
-retrieving additional spans.
-* @property {tracing(v1).Span[]} spans The requested spans if they are any in the specified trace.
-*/
-/**
- * @typedef NetworkEvent
- * @memberOf! tracing(v1)
- * @type object
-* @property {string} messageSize Number of bytes send/receive.
-* @property {string} kernelTime If available, this is the kernel time:
-For sent messages, this is the time at which the first bit was sent.
-For received messages, this is the time at which the last bit was
-received.
-* @property {string} type Type of a NetworkEvent.
-* @property {string} messageId Every message has an identifier, which must be different from all the
-network messages in this span.
-This is especially important when the request/response are streamed.
-*/
-/**
- * @typedef SpanUpdates
- * @memberOf! tracing(v1)
- * @type object
- * @property {tracing(v1).Span[]} spans A collection of spans.
- */
-/**
- * @typedef StackFrame
- * @memberOf! tracing(v1)
- * @type object
-* @property {string} functionName Fully qualified names which uniquely identify function/method/etc.
-* @property {string} lineNumber Line number of the frame.
-* @property {tracing(v1).Module} loadModule Binary module the code is loaded from.
-* @property {string} columnNumber Column number is important in JavaScript(anonymous functions),
-Might not be available in some languages.
-* @property {string} fileName File name of the frame.
-* @property {string} sourceVersion source_version is deployment specific. It might be
-better to be stored in deployment metadata.
-* @property {string} originalFunctionName Used when function name is ‘mangled’. Not guaranteed to be fully
-qualified but usually it is.
-*/
 module.exports = Tracing;

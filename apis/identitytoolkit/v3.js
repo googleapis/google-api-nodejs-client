@@ -872,6 +872,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @typedef IdentitytoolkitRelyingpartyVerifyAssertionRequest
  * @memberOf! identitytoolkit(v3)
  * @type object
+ * @property {boolean} autoCreate When it&#39;s true, automatically creates a new account if the user doesn&#39;t exist. When it&#39;s false, allows existing user to sign in normally and throws exception if the user doesn&#39;t exist.
  * @property {string} delegatedProjectNumber GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration.
  * @property {string} idToken The GITKit token of the authenticated user.
  * @property {string} instanceId Instance id token of the app.
@@ -921,9 +922,16 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @typedef Relyingparty
  * @memberOf! identitytoolkit(v3)
  * @type object
+ * @property {boolean} androidInstallApp whether or not to install the android app on the device where the link is opened
+ * @property {string} androidMinimumVersion minimum version of the app. if the version on the device is lower than this version then the user is taken to the play store to upgrade the app
+ * @property {string} androidPackageName android package name of the android app to handle the action code
+ * @property {boolean} canHandleCodeInApp whether or not the app can handle the oob code without first going to web
  * @property {string} captchaResp The recaptcha response from the user.
  * @property {string} challenge The recaptcha challenge presented to the user.
+ * @property {string} continueUrl The url to continue to the Gitkit app
  * @property {string} email The email of the user.
+ * @property {string} iOSAppStoreId iOS app store id to download the app if it&#39;s not already installed
+ * @property {string} iOSBundleId the iOS bundle id of iOS app to handle the action code
  * @property {string} idToken The user&#39;s Gitkit login token for email change.
  * @property {string} kind The fixed string &quot;identitytoolkit#relyingparty&quot;.
  * @property {string} newEmail The new email if the code is for email change.

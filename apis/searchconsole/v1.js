@@ -83,22 +83,6 @@ function Searchconsole(options) { // eslint-disable-line
 }
 
 /**
- * @typedef MobileFriendlyIssue
- * @memberOf! searchconsole(v1)
- * @type object
- * @property {string} rule Rule violated.
- */
-/**
- * @typedef RunMobileFriendlyTestResponse
- * @memberOf! searchconsole(v1)
- * @type object
- * @property {searchconsole(v1).TestStatus} testStatus Final state of the test, can be either complete or an error.
- * @property {searchconsole(v1).ResourceIssue[]} resourceIssues Information about embedded resources issues.
- * @property {string} mobileFriendliness Test verdict, whether the page is mobile friendly or not.
- * @property {searchconsole(v1).MobileFriendlyIssue[]} mobileFriendlyIssues List of mobile-usability issues.
- * @property {searchconsole(v1).Image} screenshot Screenshot of the requested URL.
- */
-/**
  * @typedef ResourceIssue
  * @memberOf! searchconsole(v1)
  * @type object
@@ -118,13 +102,6 @@ function Searchconsole(options) { // eslint-disable-line
  * @property {string} details Error details if applicable.
  */
 /**
- * @typedef RunMobileFriendlyTestRequest
- * @memberOf! searchconsole(v1)
- * @type object
- * @property {string} url URL for inspection.
- * @property {boolean} requestScreenshot Whether or not screenshot is requested. Default is false.
- */
-/**
  * @typedef Image
  * @memberOf! searchconsole(v1)
  * @type object
@@ -132,4 +109,27 @@ function Searchconsole(options) { // eslint-disable-line
 * @property {string} data Image data in format determined by the mime type. Currently, the format
 will always be &quot;image/png&quot;, but this might change in the future.
 */
+/**
+ * @typedef RunMobileFriendlyTestRequest
+ * @memberOf! searchconsole(v1)
+ * @type object
+ * @property {boolean} requestScreenshot Whether or not screenshot is requested. Default is false.
+ * @property {string} url URL for inspection.
+ */
+/**
+ * @typedef MobileFriendlyIssue
+ * @memberOf! searchconsole(v1)
+ * @type object
+ * @property {string} rule Rule violated.
+ */
+/**
+ * @typedef RunMobileFriendlyTestResponse
+ * @memberOf! searchconsole(v1)
+ * @type object
+ * @property {searchconsole(v1).TestStatus} testStatus Final state of the test, can be either complete or an error.
+ * @property {searchconsole(v1).ResourceIssue[]} resourceIssues Information about embedded resources issues.
+ * @property {string} mobileFriendliness Test verdict, whether the page is mobile friendly or not.
+ * @property {searchconsole(v1).MobileFriendlyIssue[]} mobileFriendlyIssues List of mobile-usability issues.
+ * @property {searchconsole(v1).Image} screenshot Screenshot of the requested URL.
+ */
 module.exports = Searchconsole;

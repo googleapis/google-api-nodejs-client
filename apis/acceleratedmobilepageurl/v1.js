@@ -112,9 +112,9 @@ the cached document in the Google AMP Cache.
  * @typedef BatchGetAmpUrlsRequest
  * @memberOf! acceleratedmobilepageurl(v1)
  * @type object
+* @property {string} lookupStrategy The lookup_strategy being requested.
 * @property {string[]} urls List of URLs to look up for the paired AMP URLs.
 The URLs are case-sensitive. Up to 50 URLs per lookup
 (see [Usage Limits](/amp/cache/reference/limits)).
-* @property {string} lookupStrategy The lookup_strategy being requested.
 */
 module.exports = Acceleratedmobilepageurl;

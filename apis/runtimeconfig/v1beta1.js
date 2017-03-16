@@ -46,6 +46,41 @@ function Runtimeconfig(options) { // eslint-disable-line
     configs: {
 
       /**
+       * runtimeconfig.projects.configs.delete
+       *
+       * @desc Deletes a RuntimeConfig resource.
+       *
+       * @alias runtimeconfig.projects.configs.delete
+       * @memberOf! runtimeconfig(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The RuntimeConfig resource to delete, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * runtimeconfig.projects.configs.list
        *
        * @desc Lists all the RuntimeConfig resources within project.
@@ -54,9 +89,9 @@ function Runtimeconfig(options) { // eslint-disable-line
        * @memberOf! runtimeconfig(v1beta1)
        *
        * @param {object} params Parameters for request
-       * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
        * @param {string} params.parent The [project ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848) for this request, in the format `projects/[PROJECT_ID]`.
        * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
+       * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -72,43 +107,6 @@ function Runtimeconfig(options) { // eslint-disable-line
           options: utils.extend({
             url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/configs',
             method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * runtimeconfig.projects.configs.create
-       *
-       * @desc Creates a new RuntimeConfig resource. The configuration name must be unique within project.
-       *
-       * @alias runtimeconfig.projects.configs.create
-       * @memberOf! runtimeconfig(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.requestId An optional but recommended unique `request_id`. If the server receives two `create()` requests  with the same `request_id`, then the second request will be ignored and the first resource created and stored in the backend is returned. Empty `request_id` fields are ignored.  It is responsibility of the client to ensure uniqueness of the `request_id` strings.  `request_id` strings are limited to 64 characters.
-       * @param {string} params.parent The [project ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848) for this request, in the format `projects/[PROJECT_ID]`.
-       * @param {runtimeconfig(v1beta1).RuntimeConfig} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/configs',
-            method: 'POST'
           }, options),
           params: params,
           requiredParams: ['parent'],
@@ -149,6 +147,43 @@ function Runtimeconfig(options) { // eslint-disable-line
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * runtimeconfig.projects.configs.create
+       *
+       * @desc Creates a new RuntimeConfig resource. The configuration name must be unique within project.
+       *
+       * @alias runtimeconfig.projects.configs.create
+       * @memberOf! runtimeconfig(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.requestId An optional but recommended unique `request_id`. If the server receives two `create()` requests  with the same `request_id`, then the second request will be ignored and the first resource created and stored in the backend is returned. Empty `request_id` fields are ignored.  It is responsibility of the client to ensure uniqueness of the `request_id` strings.  `request_id` strings are limited to 64 characters.
+       * @param {string} params.parent The [project ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848) for this request, in the format `projects/[PROJECT_ID]`.
+       * @param {runtimeconfig(v1beta1).RuntimeConfig} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/configs',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
           context: self
         };
 
@@ -297,42 +332,155 @@ function Runtimeconfig(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       },
 
-      /**
-       * runtimeconfig.projects.configs.delete
-       *
-       * @desc Deletes a RuntimeConfig resource.
-       *
-       * @alias runtimeconfig.projects.configs.delete
-       * @memberOf! runtimeconfig(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The RuntimeConfig resource to delete, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
       variables: {
+
+        /**
+         * runtimeconfig.projects.configs.variables.testIamPermissions
+         *
+         * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+         *
+         * @alias runtimeconfig.projects.configs.variables.testIamPermissions
+         * @memberOf! runtimeconfig(v1beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.permissions The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+         * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        testIamPermissions: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          var parameters = {
+            options: utils.extend({
+              url: 'https://runtimeconfig.googleapis.com/v1beta1/{resource}:testIamPermissions',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['resource'],
+            pathParams: ['resource'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * runtimeconfig.projects.configs.variables.delete
+         *
+         * @desc Deletes a variable or multiple variables.  If you specify a variable name, then that variable is deleted. If you specify a prefix and `recursive` is true, then all variables with that prefix are deleted. You must set a `recursive` to true if you delete variables by prefix.
+         *
+         * @alias runtimeconfig.projects.configs.variables.delete
+         * @memberOf! runtimeconfig(v1beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {boolean=} params.recursive Set to `true` to recursively delete multiple variables with the same prefix.
+         * @param {string} params.name The name of the variable to delete, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          var parameters = {
+            options: utils.extend({
+              url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
+              method: 'DELETE'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * runtimeconfig.projects.configs.variables.list
+         *
+         * @desc Lists variables within given a configuration, matching any provided filters. This only lists variable names, not the values, unless `return_values` is true, in which case only variables that user has IAM permission to GetVariable will be returned.
+         *
+         * @alias runtimeconfig.projects.configs.variables.list
+         * @memberOf! runtimeconfig(v1beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
+         * @param {boolean=} params.returnValues The flag indicates whether the user wants to return values of variables. If true, then only those variables that user has IAM GetVariable permission will be returned along with their values.
+         * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
+         * @param {string} params.parent The path to the RuntimeConfig resource for which you want to list variables. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+         * @param {string=} params.filter Filters variables by matching the specified filter. For example:  `projects/example-project/config/[CONFIG_NAME]/variables/example-variable`.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          var parameters = {
+            options: utils.extend({
+              url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/variables',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['parent'],
+            pathParams: ['parent'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * runtimeconfig.projects.configs.variables.create
+         *
+         * @desc Creates a variable within the given configuration. You cannot create a variable with a name that is a prefix of an existing variable name, or a name that has an existing variable name as a prefix.  To learn more about creating a variable, read the [Setting and Getting Data](/deployment-manager/runtime-configurator/set-and-get-variables) documentation.
+         *
+         * @alias runtimeconfig.projects.configs.variables.create
+         * @memberOf! runtimeconfig(v1beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.requestId An optional but recommended unique `request_id`. If the server receives two `create()` requests  with the same `request_id`, then the second request will be ignored and the first resource created and stored in the backend is returned. Empty `request_id` fields are ignored.  It is responsibility of the client to ensure uniqueness of the `request_id` strings.  `request_id` strings are limited to 64 characters.
+         * @param {string} params.parent The path to the RutimeConfig resource that this variable should belong to. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+         * @param {runtimeconfig(v1beta1).Variable} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          var parameters = {
+            options: utils.extend({
+              url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/variables',
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['parent'],
+            pathParams: ['parent'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
 
         /**
          * runtimeconfig.projects.configs.variables.get
@@ -439,60 +587,26 @@ function Runtimeconfig(options) { // eslint-disable-line
           };
 
           return createAPIRequest(parameters, callback);
-        },
+        }
+      },
+
+      operations: {
 
         /**
-         * runtimeconfig.projects.configs.variables.testIamPermissions
+         * runtimeconfig.projects.configs.operations.get
          *
-         * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+         * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
          *
-         * @alias runtimeconfig.projects.configs.variables.testIamPermissions
+         * @alias runtimeconfig.projects.configs.operations.get
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-         * @param {string=} params.permissions The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+         * @param {string} params.name The name of the operation resource.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
          */
-        testIamPermissions: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://runtimeconfig.googleapis.com/v1beta1/{resource}:testIamPermissions',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['resource'],
-            pathParams: ['resource'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * runtimeconfig.projects.configs.variables.delete
-         *
-         * @desc Deletes a variable or multiple variables.  If you specify a variable name, then that variable is deleted. If you specify a prefix and `recursive` is true, then all variables with that prefix are deleted. You must set a `recursive` to true if you delete variables by prefix.
-         *
-         * @alias runtimeconfig.projects.configs.variables.delete
-         * @memberOf! runtimeconfig(v1beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {boolean=} params.recursive Set to `true` to recursively delete multiple variables with the same prefix.
-         * @param {string} params.name The name of the variable to delete, in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        delete: function (params, options, callback) {
+        get: function (params, options, callback) {
           if (typeof options === 'function') {
             callback = options;
             options = {};
@@ -502,7 +616,7 @@ function Runtimeconfig(options) { // eslint-disable-line
           var parameters = {
             options: utils.extend({
               url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
-              method: 'DELETE'
+              method: 'GET'
             }, options),
             params: params,
             requiredParams: ['name'],
@@ -512,85 +626,6 @@ function Runtimeconfig(options) { // eslint-disable-line
 
           return createAPIRequest(parameters, callback);
         },
-
-        /**
-         * runtimeconfig.projects.configs.variables.list
-         *
-         * @desc Lists variables within given a configuration, matching any provided filters. This only lists variable names, not the values, unless `return_values` is true, in which case only variables that user has IAM permission to GetVariable will be returned.
-         *
-         * @alias runtimeconfig.projects.configs.variables.list
-         * @memberOf! runtimeconfig(v1beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
-         * @param {string} params.parent The path to the RuntimeConfig resource for which you want to list variables. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
-         * @param {string=} params.filter Filters variables by matching the specified filter. For example:  `projects/example-project/config/[CONFIG_NAME]/variables/example-variable`.
-         * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
-         * @param {boolean=} params.returnValues The flag indicates whether the user wants to return values of variables. If true, then only those variables that user has IAM GetVariable permission will be returned along with their values.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        list: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/variables',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['parent'],
-            pathParams: ['parent'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * runtimeconfig.projects.configs.variables.create
-         *
-         * @desc Creates a variable within the given configuration. You cannot create a variable with a name that is a prefix of an existing variable name, or a name that has an existing variable name as a prefix.  To learn more about creating a variable, read the [Setting and Getting Data](/deployment-manager/runtime-configurator/set-and-get-variables) documentation.
-         *
-         * @alias runtimeconfig.projects.configs.variables.create
-         * @memberOf! runtimeconfig(v1beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.requestId An optional but recommended unique `request_id`. If the server receives two `create()` requests  with the same `request_id`, then the second request will be ignored and the first resource created and stored in the backend is returned. Empty `request_id` fields are ignored.  It is responsibility of the client to ensure uniqueness of the `request_id` strings.  `request_id` strings are limited to 64 characters.
-         * @param {string} params.parent The path to the RutimeConfig resource that this variable should belong to. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
-         * @param {runtimeconfig(v1beta1).Variable} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        create: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://runtimeconfig.googleapis.com/v1beta1/{parent}/variables',
-              method: 'POST'
-            }, options),
-            params: params,
-            requiredParams: ['parent'],
-            pathParams: ['parent'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        }
-      },
-
-      operations: {
 
         /**
          * runtimeconfig.projects.configs.operations.testIamPermissions
@@ -626,116 +661,10 @@ function Runtimeconfig(options) { // eslint-disable-line
           };
 
           return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * runtimeconfig.projects.configs.operations.get
-         *
-         * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
-         *
-         * @alias runtimeconfig.projects.configs.operations.get
-         * @memberOf! runtimeconfig(v1beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name The name of the operation resource.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        get: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
         }
       },
 
       waiters: {
-
-        /**
-         * runtimeconfig.projects.configs.waiters.testIamPermissions
-         *
-         * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-         *
-         * @alias runtimeconfig.projects.configs.waiters.testIamPermissions
-         * @memberOf! runtimeconfig(v1beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-         * @param {string=} params.permissions The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        testIamPermissions: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://runtimeconfig.googleapis.com/v1beta1/{resource}:testIamPermissions',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['resource'],
-            pathParams: ['resource'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * runtimeconfig.projects.configs.waiters.delete
-         *
-         * @desc Deletes the waiter with the specified name.
-         *
-         * @alias runtimeconfig.projects.configs.waiters.delete
-         * @memberOf! runtimeconfig(v1beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name The Waiter resource to delete, in the format:   `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        delete: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
-              method: 'DELETE'
-            }, options),
-            params: params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
 
         /**
          * runtimeconfig.projects.configs.waiters.list
@@ -746,9 +675,9 @@ function Runtimeconfig(options) { // eslint-disable-line
          * @memberOf! runtimeconfig(v1beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
          * @param {integer=} params.pageSize Specifies the number of results to return per page. If there are fewer elements than the specified number, returns all elements.
          * @param {string} params.parent The path to the configuration for which you want to get a list of waiters. The configuration must exist beforehand; the path must by in the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+         * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to a `nextPageToken` returned by a previous list request to get the next page of results.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -844,12 +773,107 @@ function Runtimeconfig(options) { // eslint-disable-line
           };
 
           return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * runtimeconfig.projects.configs.waiters.testIamPermissions
+         *
+         * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+         *
+         * @alias runtimeconfig.projects.configs.waiters.testIamPermissions
+         * @memberOf! runtimeconfig(v1beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+         * @param {string=} params.permissions The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        testIamPermissions: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          var parameters = {
+            options: utils.extend({
+              url: 'https://runtimeconfig.googleapis.com/v1beta1/{resource}:testIamPermissions',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['resource'],
+            pathParams: ['resource'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * runtimeconfig.projects.configs.waiters.delete
+         *
+         * @desc Deletes the waiter with the specified name.
+         *
+         * @alias runtimeconfig.projects.configs.waiters.delete
+         * @memberOf! runtimeconfig(v1beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name The Waiter resource to delete, in the format:   `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          var parameters = {
+            options: utils.extend({
+              url: 'https://runtimeconfig.googleapis.com/v1beta1/{name}',
+              method: 'DELETE'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
         }
       }
     }
   };
 }
 
+/**
+ * @typedef Operation
+ * @memberOf! runtimeconfig(v1beta1)
+ * @type object
+* @property {object} response The normal response of the operation in case of success.  If the original
+method returns no data on success, such as `Delete`, the response is
+`google.protobuf.Empty`.  If the original method is standard
+`Get`/`Create`/`Update`, the response should be the resource.  For other
+methods, the response should have the type `XxxResponse`, where `Xxx`
+is the original method name.  For example, if the original method name
+is `TakeSnapshot()`, the inferred response type is
+`TakeSnapshotResponse`.
+* @property {string} name The server-assigned name, which is only unique within the same service that
+originally returns it. If you use the default HTTP mapping, the
+`name` should have the format of `operations/some/unique/name`.
+* @property {runtimeconfig(v1beta1).Status} error The error result of the operation in case of failure or cancellation.
+* @property {object} metadata Service-specific metadata associated with the operation.  It typically
+contains progress information and common metadata such as create time.
+Some services might not provide such metadata.  Any method that returns a
+long-running operation should document the metadata type, if any.
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
+*/
 /**
  * @typedef SetIamPolicyRequest
  * @memberOf! runtimeconfig(v1beta1)
@@ -1003,6 +1027,20 @@ information see
  * @typedef Waiter
  * @memberOf! runtimeconfig(v1beta1)
  * @type object
+* @property {string} timeout [Required] Specifies the timeout of the waiter in seconds, beginning from
+the instant that `waiters().create` method is called. If this time elapses
+before the success or failure conditions are met, the waiter fails and sets
+the `error` code to `DEADLINE_EXCEEDED`.
+* @property {string} name The name of the Waiter resource, in the format:
+
+    projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]
+
+The `[PROJECT_ID]` must be a valid Google Cloud project ID,
+the `[CONFIG_NAME]` must be a valid RuntimeConfig resource, the
+`[WAITER_NAME]` must match RFC 1035 segment specification, and the length
+of `[WAITER_NAME]` must be less than 64 bytes.
+
+After you create a Waiter resource, you cannot change the resource name.
 * @property {runtimeconfig(v1beta1).Status} error [Output Only] If the waiter ended due to a failure or timeout, this value
 will be set.
 * @property {runtimeconfig(v1beta1).EndCondition} failure [Optional] The failure condition of this waiter. If this condition is met,
@@ -1022,28 +1060,11 @@ or failure, `error` will be set.
 * @property {string} createTime [Output Only] The instant at which this Waiter resource was created. Adding
 the value of `timeout` to this instant yields the timeout deadline for the
 waiter.
-* @property {string} timeout [Required] Specifies the timeout of the waiter in seconds, beginning from
-the instant that `waiters().create` method is called. If this time elapses
-before the success or failure conditions are met, the waiter fails and sets
-the `error` code to `DEADLINE_EXCEEDED`.
-* @property {string} name The name of the Waiter resource, in the format:
-
-    projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]
-
-The `[PROJECT_ID]` must be a valid Google Cloud project ID,
-the `[CONFIG_NAME]` must be a valid RuntimeConfig resource, the
-`[WAITER_NAME]` must match RFC 1035 segment specification, and the length
-of `[WAITER_NAME]` must be less than 64 bytes.
-
-After you create a Waiter resource, you cannot change the resource name.
 */
 /**
  * @typedef Policy
  * @memberOf! runtimeconfig(v1beta1)
  * @type object
-* @property {runtimeconfig(v1beta1).Binding[]} bindings Associates a list of `members` to a `role`.
-Multiple `bindings` must not be specified for the same `role`.
-`bindings` with no members will result in an error.
 * @property {string} etag `etag` is used for optimistic concurrency control as a way to help
 prevent simultaneous updates of a policy from overwriting each other.
 It is strongly suggested that systems make use of the `etag` in the
@@ -1055,6 +1076,9 @@ ensure that their change will be applied to the same version of the policy.
 If no `etag` is provided in the call to `setIamPolicy`, then the existing
 policy is overwritten blindly.
 * @property {integer} version Version of the `Policy`. The default version is 0.
+* @property {runtimeconfig(v1beta1).Binding[]} bindings Associates a list of `members` to a `role`.
+Multiple `bindings` must not be specified for the same `role`.
+`bindings` with no members will result in an error.
 */
 /**
  * @typedef Variable
@@ -1086,29 +1110,5 @@ than 4096 bytes. Empty values are also accepted. For example,
 * @property {string} value The binary value of the variable. The length of the value must be less
 than 4096 bytes. Empty values are also accepted. The value must be
 base64 encoded. Only one of `value` or `text` can be set.
-*/
-/**
- * @typedef Operation
- * @memberOf! runtimeconfig(v1beta1)
- * @type object
-* @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
-available.
-* @property {object} response The normal response of the operation in case of success.  If the original
-method returns no data on success, such as `Delete`, the response is
-`google.protobuf.Empty`.  If the original method is standard
-`Get`/`Create`/`Update`, the response should be the resource.  For other
-methods, the response should have the type `XxxResponse`, where `Xxx`
-is the original method name.  For example, if the original method name
-is `TakeSnapshot()`, the inferred response type is
-`TakeSnapshotResponse`.
-* @property {string} name The server-assigned name, which is only unique within the same service that
-originally returns it. If you use the default HTTP mapping, the
-`name` should have the format of `operations/some/unique/name`.
-* @property {runtimeconfig(v1beta1).Status} error The error result of the operation in case of failure or cancellation.
-* @property {object} metadata Service-specific metadata associated with the operation.  It typically
-contains progress information and common metadata such as create time.
-Some services might not provide such metadata.  Any method that returns a
-long-running operation should document the metadata type, if any.
 */
 module.exports = Runtimeconfig;

@@ -771,6 +771,41 @@ function Storage(options) { // eslint-disable-line
     },
 
     /**
+     * storage.buckets.getIamPolicy
+     *
+     * @desc Returns an IAM policy for the specified bucket.
+     *
+     * @alias storage.buckets.getIamPolicy
+     * @memberOf! storage(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/iam',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * storage.buckets.insert
      *
      * @desc Creates a new bucket.
@@ -1057,6 +1092,78 @@ function Storage(options) { // eslint-disable-line
         }, options),
         params: params,
         requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * storage.buckets.setIamPolicy
+     *
+     * @desc Updates an IAM policy for the specified bucket.
+     *
+     * @alias storage.buckets.setIamPolicy
+     * @memberOf! storage(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {storage(v1).Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/iam',
+          method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * storage.buckets.testIamPermissions
+     *
+     * @desc Tests a set of permissions on the given bucket to see which, if any, are held by the caller.
+     *
+     * @alias storage.buckets.testIamPermissions
+     * @memberOf! storage(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a bucket.
+     * @param {string} params.permissions Permissions to test.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/iam/testPermissions',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['bucket', 'permissions'],
         pathParams: ['bucket'],
         context: self
       };
@@ -2819,6 +2926,43 @@ function Storage(options) { // eslint-disable-line
     },
 
     /**
+     * storage.objects.getIamPolicy
+     *
+     * @desc Returns an IAM policy for the specified object.
+     *
+     * @alias storage.objects.getIamPolicy
+     * @memberOf! storage(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of the bucket in which the object resides.
+     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}/iam',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['bucket', 'object'],
+        pathParams: ['bucket', 'object'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * storage.objects.insert
      *
      * @desc Stores a new object and metadata.
@@ -3259,6 +3403,82 @@ function Storage(options) { // eslint-disable-line
     },
 
     /**
+     * storage.objects.setIamPolicy
+     *
+     * @desc Updates an IAM policy for the specified object.
+     *
+     * @alias storage.objects.setIamPolicy
+     * @memberOf! storage(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of the bucket in which the object resides.
+     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {storage(v1).Policy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}/iam',
+          method: 'PUT'
+        }, options),
+        params: params,
+        requiredParams: ['bucket', 'object'],
+        pathParams: ['bucket', 'object'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * storage.objects.testIamPermissions
+     *
+     * @desc Tests a set of permissions on the given object to see which, if any, are held by the caller.
+     *
+     * @alias storage.objects.testIamPermissions
+     * @memberOf! storage(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of the bucket in which the object resides.
+     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
+     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * @param {string} params.permissions Permissions to test.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}/iam/testPermissions',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['bucket', 'object', 'permissions'],
+        pathParams: ['bucket', 'object'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * storage.objects.update
      *
      * @desc Updates an object's metadata.
@@ -3633,6 +3853,15 @@ function Storage(options) { // eslint-disable-line
  * @property {string[]} prefixes The list of prefixes of objects matching-but-not-listed up to and including the requested delimiter.
  */
 /**
+ * @typedef Policy
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {object[]} bindings An association between a role, which comes with a set of permissions, and members who may assume that role.
+ * @property {string} etag HTTP 1.1  Entity tag for the policy.
+ * @property {string} kind The kind of item this is. For policies, this is always storage#policy. This field is ignored on input.
+ * @property {string} resourceId The ID of the resource to which this policy belongs. Will be of the form buckets/bucket for buckets, and buckets/bucket/objects/object for objects. A specific generation may be specified by appending #generationNumber to the end of the object name, e.g. buckets/my-bucket/objects/data.txt#17. The current generation can be denoted with #0. This field is ignored on input.
+ */
+/**
  * @typedef RewriteResponse
  * @memberOf! storage(v1)
  * @type object
@@ -3643,4 +3872,25 @@ function Storage(options) { // eslint-disable-line
  * @property {string} rewriteToken A token to use in subsequent requests to continue copying data. This token is present in the response only when there is more data to copy.
  * @property {string} totalBytesRewritten The total bytes written so far, which can be used to provide a waiting user with a progress indicator. This property is always present in the response.
  */
+/**
+ * @typedef TestIamPermissionsResponse
+ * @memberOf! storage(v1)
+ * @type object
+* @property {string} kind The kind of item this is.
+* @property {string[]} permissions The permissions held by the caller. Permissions are always of the format storage.resource.capability, where resource is one of buckets or objects. The supported permissions are as follows:  
+- storage.buckets.delete — Delete bucket.  
+- storage.buckets.get — Read bucket metadata.  
+- storage.buckets.getIamPolicy — Read bucket IAM policy.  
+- storage.buckets.create — Create bucket.  
+- storage.buckets.list — List buckets.  
+- storage.buckets.setIamPolicy — Update bucket IAM policy.  
+- storage.buckets.update — Update bucket metadata.  
+- storage.objects.delete — Delete object.  
+- storage.objects.get — Read object data and metadata.  
+- storage.objects.getIamPolicy — Read object IAM policy.  
+- storage.objects.create — Create object.  
+- storage.objects.list — List objects.  
+- storage.objects.setIamPolicy — Update object IAM policy.  
+- storage.objects.update — Update object metadata.
+*/
 module.exports = Storage;

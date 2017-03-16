@@ -160,9 +160,9 @@ function Firebaserules(options) { // eslint-disable-line
        * @memberOf! firebaserules(v1)
        *
        * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.
        * @param {string} params.name Resource name for the project.  Format: `projects/{project_id}`
        * @param {string=} params.pageToken Next page token for loading the next batch of `Ruleset` instances.
-       * @param {integer=} params.pageSize Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -306,10 +306,10 @@ function Firebaserules(options) { // eslint-disable-line
        * @memberOf! firebaserules(v1)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.filter `Release` filter. The list method supports filters with restrictions on the `Release` `name` and also on the `Ruleset` `ruleset_name`.  Example 1) A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v2 | projects/foo/rulesets/uuid8888  Example 2) A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/1234  In the examples, the filter parameters refer to the search filters for release and ruleset names are relative to the project releases and rulesets collections. Fully qualified prefixed may also be used. e.g. `name=projects/foo/releases/prod* ruleset_name=projects/foo/rulesets/uuid1`
        * @param {string} params.name Resource name for the project.  Format: `projects/{project_id}`
        * @param {string=} params.pageToken Next page token for the next batch of `Release` instances.
        * @param {integer=} params.pageSize Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.
-       * @param {string=} params.filter `Release` filter. The list method supports filters with restrictions on the `Release` `name` and also on the `Ruleset` `ruleset_name`.  Example 1) A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v2 | projects/foo/rulesets/uuid8888  Example 2) A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/1234  In the examples, the filter parameters refer to the search filters for release and ruleset names are relative to the project releases and rulesets collections. Fully qualified prefixed may also be used. e.g. `name=projects/foo/releases/prod* ruleset_name=projects/foo/rulesets/uuid1`
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -411,6 +411,42 @@ function Firebaserules(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef ListRulesetsResponse
+ * @memberOf! firebaserules(v1)
+ * @type object
+* @property {string} nextPageToken The pagination token to retrieve the next page of results. If the value is
+empty, no further results remain.
+* @property {firebaserules(v1).Ruleset[]} rulesets List of `Ruleset` instances.
+*/
+/**
+ * @typedef Source
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {firebaserules(v1).File[]} files `File` set constituting the `Source` bundle.
+ */
+/**
+ * @typedef SourcePosition
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {integer} column First column on the source line associated with the source fragment.
+ * @property {string} fileName Name of the `File`.
+ * @property {integer} line Line number of the source fragment. 1-based.
+ */
+/**
+ * @typedef Issue
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {firebaserules(v1).SourcePosition} sourcePosition Position of the issue in the `Source`.
+ * @property {string} severity The severity of the issue.
+ * @property {string} description Short error description.
+ */
+/**
+ * @typedef TestRulesetRequest
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {firebaserules(v1).Source} source `Source` to be checked for correctness.
+ */
+/**
  * @typedef Ruleset
  * @memberOf! firebaserules(v1)
  * @type object
@@ -422,31 +458,9 @@ Format: `projects/{project_id}/rulesets/{ruleset_id}`
 * @property {firebaserules(v1).Source} source `Source` for the `Ruleset`.
 */
 /**
- * @typedef TestRulesetRequest
- * @memberOf! firebaserules(v1)
- * @type object
- * @property {firebaserules(v1).Source} source `Source` to be checked for correctness.
- */
-/**
- * @typedef Issue
- * @memberOf! firebaserules(v1)
- * @type object
- * @property {string} severity The severity of the issue.
- * @property {string} description Short error description.
- * @property {firebaserules(v1).SourcePosition} sourcePosition Position of the issue in the `Source`.
- */
-/**
  * @typedef Empty
  * @memberOf! firebaserules(v1)
  * @type object
- */
-/**
- * @typedef File
- * @memberOf! firebaserules(v1)
- * @type object
- * @property {string} name File name.
- * @property {string} content Textual Content.
- * @property {string} fingerprint Fingerprint (e.g. github sha) associated with the `File`.
  */
 /**
  * @typedef ListReleasesResponse
@@ -456,6 +470,14 @@ Format: `projects/{project_id}/rulesets/{ruleset_id}`
 empty, no further results remain.
 * @property {firebaserules(v1).Release[]} releases List of `Release` instances.
 */
+/**
+ * @typedef File
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {string} content Textual Content.
+ * @property {string} fingerprint Fingerprint (e.g. github sha) associated with the `File`.
+ * @property {string} name File name.
+ */
 /**
  * @typedef Release
  * @memberOf! firebaserules(v1)
@@ -498,26 +520,4 @@ exist the `Release` to be created.
 * @property {firebaserules(v1).Issue[]} issues Syntactic and semantic `Source` issues of varying severity. Issues of
 `ERROR` severity will prevent tests from executing.
 */
-/**
- * @typedef ListRulesetsResponse
- * @memberOf! firebaserules(v1)
- * @type object
-* @property {string} nextPageToken The pagination token to retrieve the next page of results. If the value is
-empty, no further results remain.
-* @property {firebaserules(v1).Ruleset[]} rulesets List of `Ruleset` instances.
-*/
-/**
- * @typedef Source
- * @memberOf! firebaserules(v1)
- * @type object
- * @property {firebaserules(v1).File[]} files `File` set constituting the `Source` bundle.
- */
-/**
- * @typedef SourcePosition
- * @memberOf! firebaserules(v1)
- * @type object
- * @property {integer} line Line number of the source fragment. 1-based.
- * @property {integer} column First column on the source line associated with the source fragment.
- * @property {string} fileName Name of the `File`.
- */
 module.exports = Firebaserules;

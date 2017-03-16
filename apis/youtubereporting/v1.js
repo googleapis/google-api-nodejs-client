@@ -90,10 +90,10 @@ function Youtubereporting(options) { // eslint-disable-line
      * @memberOf! youtubereporting(v1)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListReportTypesResponse.next_page_token returned in response to the previous call to the `ListJobs` method.
      * @param {boolean=} params.includeSystemManaged If set to true, also system-managed jobs will be returned; otherwise only user-created jobs will be returned. System-managed jobs can neither be modified nor deleted.
      * @param {integer=} params.pageSize Requested page size. Server may return fewer jobs than requested. If unspecified, server will pick an appropriate default.
-     * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -128,8 +128,8 @@ function Youtubereporting(options) { // eslint-disable-line
      * @memberOf! youtubereporting(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.jobId The ID of the job to retrieve.
      * @param {string=} params.onBehalfOfContentOwner The content owner's external ID on which behalf the user is acting on. If not set, the user is acting for himself (his own channel).
+     * @param {string} params.jobId The ID of the job to retrieve.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -353,47 +353,6 @@ function Youtubereporting(options) { // eslint-disable-line
 }
 
 /**
- * @typedef Report
- * @memberOf! youtubereporting(v1)
- * @type object
-* @property {string} jobId The ID of the job that created this report.
-* @property {string} id The server-generated ID of the report.
-* @property {string} jobExpireTime The date/time when the job this report belongs to will expire/expired.
-* @property {string} endTime The end of the time period that the report instance covers. The value is
-exclusive.
-* @property {string} downloadUrl The URL from which the report can be downloaded (max. 1000 characters).
-* @property {string} startTime The start of the time period that the report instance covers. The value is
-inclusive.
-* @property {string} createTime The date/time when this report was created.
-*/
-/**
- * @typedef Empty
- * @memberOf! youtubereporting(v1)
- * @type object
- */
-/**
- * @typedef ListReportTypesResponse
- * @memberOf! youtubereporting(v1)
- * @type object
-* @property {youtubereporting(v1).ReportType[]} reportTypes The list of report types.
-* @property {string} nextPageToken A token to retrieve next page of results.
-Pass this value in the
-ListReportTypesRequest.page_token
-field in the subsequent call to `ListReportTypes` method to retrieve the next
-page of results.
-*/
-/**
- * @typedef ReportType
- * @memberOf! youtubereporting(v1)
- * @type object
-* @property {string} id The ID of the report type (max. 100 characters).
-* @property {boolean} systemManaged True if this a system-managed report type; otherwise false. Reporting jobs
-for system-managed report types are created automatically and can thus not
-be used in the `CreateJob` method.
-* @property {string} deprecateTime The date/time when this report type was/will be deprecated.
-* @property {string} name The name of the report type (max. 100 characters).
-*/
-/**
  * @typedef ListJobsResponse
  * @memberOf! youtubereporting(v1)
  * @type object
@@ -408,31 +367,72 @@ page of results.
  * @typedef Job
  * @memberOf! youtubereporting(v1)
  * @type object
-* @property {boolean} systemManaged True if this a system-managed job that cannot be modified by the user;
-otherwise false.
-* @property {string} id The server-generated ID of the job (max. 40 characters).
 * @property {string} createTime The creation date/time of the job.
 * @property {string} expireTime The date/time when this job will expire/expired. After a job expired, no
 new reports are generated.
 * @property {string} reportTypeId The type of reports this job creates. Corresponds to the ID of a
 ReportType.
 * @property {string} name The name of the job (max. 100 characters).
+* @property {boolean} systemManaged True if this a system-managed job that cannot be modified by the user;
+otherwise false.
+* @property {string} id The server-generated ID of the job (max. 40 characters).
 */
 /**
  * @typedef ListReportsResponse
  * @memberOf! youtubereporting(v1)
  * @type object
+* @property {youtubereporting(v1).Report[]} reports The list of report types.
 * @property {string} nextPageToken A token to retrieve next page of results.
 Pass this value in the
 ListReportsRequest.page_token
 field in the subsequent call to `ListReports` method to retrieve the next
 page of results.
-* @property {youtubereporting(v1).Report[]} reports The list of report types.
 */
 /**
  * @typedef Media
  * @memberOf! youtubereporting(v1)
  * @type object
  * @property {string} resourceName Name of the media resource.
+ */
+/**
+ * @typedef ReportType
+ * @memberOf! youtubereporting(v1)
+ * @type object
+* @property {string} name The name of the report type (max. 100 characters).
+* @property {string} id The ID of the report type (max. 100 characters).
+* @property {boolean} systemManaged True if this a system-managed report type; otherwise false. Reporting jobs
+for system-managed report types are created automatically and can thus not
+be used in the `CreateJob` method.
+* @property {string} deprecateTime The date/time when this report type was/will be deprecated.
+*/
+/**
+ * @typedef ListReportTypesResponse
+ * @memberOf! youtubereporting(v1)
+ * @type object
+* @property {youtubereporting(v1).ReportType[]} reportTypes The list of report types.
+* @property {string} nextPageToken A token to retrieve next page of results.
+Pass this value in the
+ListReportTypesRequest.page_token
+field in the subsequent call to `ListReportTypes` method to retrieve the next
+page of results.
+*/
+/**
+ * @typedef Report
+ * @memberOf! youtubereporting(v1)
+ * @type object
+* @property {string} createTime The date/time when this report was created.
+* @property {string} jobId The ID of the job that created this report.
+* @property {string} id The server-generated ID of the report.
+* @property {string} endTime The end of the time period that the report instance covers. The value is
+exclusive.
+* @property {string} jobExpireTime The date/time when the job this report belongs to will expire/expired.
+* @property {string} downloadUrl The URL from which the report can be downloaded (max. 1000 characters).
+* @property {string} startTime The start of the time period that the report instance covers. The value is
+inclusive.
+*/
+/**
+ * @typedef Empty
+ * @memberOf! youtubereporting(v1)
+ * @type object
  */
 module.exports = Youtubereporting;

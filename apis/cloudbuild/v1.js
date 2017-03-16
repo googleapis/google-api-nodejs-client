@@ -89,8 +89,8 @@ function Cloudbuild(options) { // eslint-disable-line
        * @memberOf! cloudbuild(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.triggerId ID of the BuildTrigger to delete.
        * @param {string} params.projectId ID of the project that owns the trigger.
+       * @param {string} params.triggerId ID of the BuildTrigger to delete.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -109,7 +109,7 @@ function Cloudbuild(options) { // eslint-disable-line
           }, options),
           params: params,
           requiredParams: ['projectId', 'triggerId'],
-          pathParams: ['triggerId', 'projectId'],
+          pathParams: ['projectId', 'triggerId'],
           context: self
         };
 
@@ -236,8 +236,8 @@ function Cloudbuild(options) { // eslint-disable-line
        * @memberOf! cloudbuild(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.id ID of the build.
        * @param {string} params.projectId ID of the project.
+       * @param {string} params.id ID of the build.
        * @param {cloudbuild(v1).CancelBuildRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -257,7 +257,7 @@ function Cloudbuild(options) { // eslint-disable-line
           }, options),
           params: params,
           requiredParams: ['projectId', 'id'],
-          pathParams: ['id', 'projectId'],
+          pathParams: ['projectId', 'id'],
           context: self
         };
 
@@ -273,8 +273,8 @@ function Cloudbuild(options) { // eslint-disable-line
        * @memberOf! cloudbuild(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.id ID of the build.
        * @param {string} params.projectId ID of the project.
+       * @param {string} params.id ID of the build.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -293,7 +293,7 @@ function Cloudbuild(options) { // eslint-disable-line
           }, options),
           params: params,
           requiredParams: ['projectId', 'id'],
-          pathParams: ['id', 'projectId'],
+          pathParams: ['projectId', 'id'],
           context: self
         };
 
@@ -309,10 +309,10 @@ function Cloudbuild(options) { // eslint-disable-line
        * @memberOf! cloudbuild(v1)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.filter The raw filter text to constrain the results.
        * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
        * @param {integer=} params.pageSize Number of results to return in the list.
        * @param {string} params.projectId ID of the project.
-       * @param {string=} params.filter The raw filter text to constrain the results.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -377,42 +377,6 @@ function Cloudbuild(options) { // eslint-disable-line
   };
 
   self.operations = {
-
-    /**
-     * cloudbuild.operations.cancel
-     *
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     *
-     * @alias cloudbuild.operations.cancel
-     * @memberOf! cloudbuild(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {cloudbuild(v1).CancelOperationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    cancel: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://cloudbuild.googleapis.com/v1/{name}:cancel',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
 
     /**
      * cloudbuild.operations.list
@@ -485,6 +449,42 @@ function Cloudbuild(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * cloudbuild.operations.cancel
+     *
+     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     *
+     * @alias cloudbuild.operations.cancel
+     * @memberOf! cloudbuild(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {cloudbuild(v1).CancelOperationRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://cloudbuild.googleapis.com/v1/{name}:cancel',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
@@ -494,8 +494,8 @@ function Cloudbuild(options) { // eslint-disable-line
  * @typedef ListBuildsResponse
  * @memberOf! cloudbuild(v1)
  * @type object
- * @property {string} nextPageToken Token to receive the next page of results.
  * @property {cloudbuild(v1).Build[]} builds Builds will be sorted by create_time, descending.
+ * @property {string} nextPageToken Token to receive the next page of results.
  */
 /**
  * @typedef ListOperationsResponse
@@ -508,30 +508,30 @@ function Cloudbuild(options) { // eslint-disable-line
  * @typedef Source
  * @memberOf! cloudbuild(v1)
  * @type object
+* @property {cloudbuild(v1).RepoSource} repoSource If provided, get source from this location in a Cloud Repo.
 * @property {cloudbuild(v1).StorageSource} storageSource If provided, get the source from this location in in Google Cloud
 Storage.
-* @property {cloudbuild(v1).RepoSource} repoSource If provided, get source from this location in a Cloud Repo.
 */
 /**
  * @typedef BuildOptions
  * @memberOf! cloudbuild(v1)
  * @type object
- * @property {string[]} sourceProvenanceHash Requested hash for SourceProvenance.
  * @property {string} requestedVerifyOption Requested verifiability options.
+ * @property {string[]} sourceProvenanceHash Requested hash for SourceProvenance.
  */
 /**
  * @typedef StorageSource
  * @memberOf! cloudbuild(v1)
  * @type object
-* @property {string} bucket Google Cloud Storage bucket containing source (see
-[Bucket Name
-Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
 * @property {string} object Google Cloud Storage object containing source.
 
 This object must be a gzipped archive file (.tar.gz) containing source to
 build.
 * @property {string} generation Google Cloud Storage generation for the object. If the generation is
 omitted, the latest generation will be used.
+* @property {string} bucket Google Cloud Storage bucket containing source (see
+[Bucket Name
+Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
 */
 /**
  * @typedef Results
@@ -550,8 +550,6 @@ omitted, the latest generation will be used.
  * @typedef SourceProvenance
  * @memberOf! cloudbuild(v1)
  * @type object
-* @property {cloudbuild(v1).StorageSource} resolvedStorageSource A copy of the build&#39;s source.storage_source, if exists, with any
-generations resolved.
 * @property {object} fileHashes Hash(es) of the build source, which can be used to verify that the original
 source integrity was maintained in the build. Note that FileHashes will
 only be populated if BuildOptions has requested a SourceProvenanceHash.
@@ -564,6 +562,8 @@ If the build source came in a single package such as a gzipped tarfile
 @OutputOnly
 * @property {cloudbuild(v1).RepoSource} resolvedRepoSource A copy of the build&#39;s source.repo_source, if exists, with any
 revisions resolved.
+* @property {cloudbuild(v1).StorageSource} resolvedStorageSource A copy of the build&#39;s source.storage_source, if exists, with any
+generations resolved.
 */
 /**
  * @typedef CancelOperationRequest
@@ -571,17 +571,15 @@ revisions resolved.
  * @type object
  */
 /**
+ * @typedef ListBuildTriggersResponse
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {cloudbuild(v1).BuildTrigger[]} triggers BuildTriggers for the project, sorted by create_time descending.
+ */
+/**
  * @typedef Operation
  * @memberOf! cloudbuild(v1)
  * @type object
-* @property {object} response The normal response of the operation in case of success.  If the original
-method returns no data on success, such as `Delete`, the response is
-`google.protobuf.Empty`.  If the original method is standard
-`Get`/`Create`/`Update`, the response should be the resource.  For other
-methods, the response should have the type `XxxResponse`, where `Xxx`
-is the original method name.  For example, if the original method name
-is `TakeSnapshot()`, the inferred response type is
-`TakeSnapshotResponse`.
 * @property {string} name The server-assigned name, which is only unique within the same service that
 originally returns it. If you use the default HTTP mapping, the
 `name` should have the format of `operations/some/unique/name`.
@@ -593,13 +591,15 @@ long-running operation should document the metadata type, if any.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
+* @property {object} response The normal response of the operation in case of success.  If the original
+method returns no data on success, such as `Delete`, the response is
+`google.protobuf.Empty`.  If the original method is standard
+`Get`/`Create`/`Update`, the response should be the resource.  For other
+methods, the response should have the type `XxxResponse`, where `Xxx`
+is the original method name.  For example, if the original method name
+is `TakeSnapshot()`, the inferred response type is
+`TakeSnapshotResponse`.
 */
-/**
- * @typedef ListBuildTriggersResponse
- * @memberOf! cloudbuild(v1)
- * @type object
- * @property {cloudbuild(v1).BuildTrigger[]} triggers BuildTriggers for the project, sorted by create_time descending.
- */
 /**
  * @typedef BuiltImage
  * @memberOf! cloudbuild(v1)
@@ -612,17 +612,15 @@ presented to `docker push`.
  * @typedef BuildStep
  * @memberOf! cloudbuild(v1)
  * @type object
-* @property {string} dir Working directory (relative to project source root) to use when running
-this operation&#39;s container.
+* @property {string[]} env A list of environment variable definitions to be used when running a step.
+
+The elements are of the form &quot;KEY=VALUE&quot; for the environment variable &quot;KEY&quot;
+being given the value &quot;VALUE&quot;.
 * @property {string[]} waitFor The ID(s) of the step(s) that this build step depends on.
 This build step will not start until all the build steps in wait_for
 have completed successfully. If wait_for is empty, this build step will
 start when all previous build steps in the Build.Steps list have completed
 successfully.
-* @property {string[]} env A list of environment variable definitions to be used when running a step.
-
-The elements are of the form &quot;KEY=VALUE&quot; for the environment variable &quot;KEY&quot;
-being given the value &quot;VALUE&quot;.
 * @property {string[]} args A list of arguments that will be presented to the step when it is started.
 
 If the image used to run the step&#39;s container has an entrypoint, these args
@@ -649,17 +647,8 @@ later build step.
 If unset, the image&#39;s default will be used.
 * @property {string} id Optional unique identifier for this build step, used in wait_for to
 reference this build step as a dependency.
-*/
-/**
- * @typedef RepoSource
- * @memberOf! cloudbuild(v1)
- * @type object
-* @property {string} tagName Name of the tag to build.
-* @property {string} commitSha Explicit commit SHA to build.
-* @property {string} projectId ID of the project that owns the repo. If omitted, the project ID requesting
-the build is assumed.
-* @property {string} repoName Name of the repo. If omitted, the name &quot;default&quot; is assumed.
-* @property {string} branchName Name of the branch to build.
+* @property {string} dir Working directory (relative to project source root) to use when running
+this operation&#39;s container.
 */
 /**
  * @typedef Hash
@@ -668,6 +657,17 @@ the build is assumed.
  * @property {string} value The hash value.
  * @property {string} type The type of hash that was performed.
  */
+/**
+ * @typedef RepoSource
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {string} projectId ID of the project that owns the repo. If omitted, the project ID requesting
+the build is assumed.
+* @property {string} repoName Name of the repo. If omitted, the name &quot;default&quot; is assumed.
+* @property {string} branchName Name of the branch to build.
+* @property {string} tagName Name of the tag to build.
+* @property {string} commitSha Explicit commit SHA to build.
+*/
 /**
  * @typedef FileHashes
  * @memberOf! cloudbuild(v1)
@@ -678,12 +678,12 @@ the build is assumed.
  * @typedef Status
  * @memberOf! cloudbuild(v1)
  * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
 * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
 */
 /**
  * @typedef Empty
@@ -716,35 +716,12 @@ template.
  * @typedef Build
  * @memberOf! cloudbuild(v1)
  * @type object
-* @property {string} buildTriggerId The ID of the BuildTrigger that triggered this build, if it was
-triggered automatically.
-@OutputOnly
-* @property {string} id Unique identifier of the build.
-@OutputOnly
-* @property {object} substitutions Substitutions data for Build resource.
-* @property {string} startTime Time at which execution of the build was started.
-@OutputOnly
-* @property {cloudbuild(v1).SourceProvenance} sourceProvenance A permanent fixed identifier for source.
-@OutputOnly
-* @property {string} createTime Time at which the request to create the build was received.
-@OutputOnly
-* @property {string[]} images A list of images to be pushed upon the successful completion of all build
-steps.
-
-The images will be pushed using the builder service account&#39;s credentials.
-
-The digests of the pushed images will be stored in the Build resource&#39;s
-results field.
-
-If any of the images fail to be pushed, the build is marked FAILURE.
-* @property {string} projectId ID of the project.
-@OutputOnly.
-* @property {string} logUrl URL to logs for this build in Google Cloud Logging.
-@OutputOnly
 * @property {string} finishTime Time at which execution of the build was finished.
 
 The difference between finish_time and start_time is the duration of the
 build&#39;s execution.
+@OutputOnly
+* @property {string} logUrl URL to logs for this build in Google Cloud Logging.
 @OutputOnly
 * @property {cloudbuild(v1).BuildOptions} options Special options for this build.
 * @property {cloudbuild(v1).Source} source Describes where to find the source files to build.
@@ -764,6 +741,29 @@ Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.
 * @property {cloudbuild(v1).Results} results Results of the build.
 @OutputOnly
 * @property {cloudbuild(v1).BuildStep[]} steps Describes the operations to be performed on the workspace.
+* @property {string} buildTriggerId The ID of the BuildTrigger that triggered this build, if it was
+triggered automatically.
+@OutputOnly
+* @property {string} id Unique identifier of the build.
+@OutputOnly
+* @property {string} startTime Time at which execution of the build was started.
+@OutputOnly
+* @property {object} substitutions Substitutions data for Build resource.
+* @property {string} createTime Time at which the request to create the build was received.
+@OutputOnly
+* @property {cloudbuild(v1).SourceProvenance} sourceProvenance A permanent fixed identifier for source.
+@OutputOnly
+* @property {string[]} images A list of images to be pushed upon the successful completion of all build
+steps.
+
+The images will be pushed using the builder service account&#39;s credentials.
+
+The digests of the pushed images will be stored in the Build resource&#39;s
+results field.
+
+If any of the images fail to be pushed, the build is marked FAILURE.
+* @property {string} projectId ID of the project.
+@OutputOnly.
 */
 /**
  * @typedef CancelBuildRequest

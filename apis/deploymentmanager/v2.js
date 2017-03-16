@@ -1809,7 +1809,7 @@ function Deploymentmanager(options) { // eslint-disable-line
  * @type object
  * @property {deploymentmanager(v2).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
  * @property {string[]} exemptedMembers 
- * @property {string} service Specifies a service that will be enabled for audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
+ * @property {string} service Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
  */
 /**
  * @typedef AuditLogConfig
