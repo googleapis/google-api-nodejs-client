@@ -1914,6 +1914,153 @@ function Storage(options) { // eslint-disable-line
 
   };
 
+  self.notifications = {
+
+    /**
+     * storage.notifications.delete
+     *
+     * @desc Permanently deletes a notification subscription.
+     *
+     * @alias storage.notifications.delete
+     * @memberOf! storage(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket The parent bucket of the notification.
+     * @param {string} params.notification ID of the notification to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/notificationConfigs/{notification}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['bucket', 'notification'],
+        pathParams: ['bucket', 'notification'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * storage.notifications.get
+     *
+     * @desc View a notification configuration.
+     *
+     * @alias storage.notifications.get
+     * @memberOf! storage(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket The parent bucket of the notification.
+     * @param {string} params.notification Notification ID
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/notificationConfigs/{notification}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['bucket', 'notification'],
+        pathParams: ['bucket', 'notification'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * storage.notifications.insert
+     *
+     * @desc Creates a notification subscription for a given bucket.
+     *
+     * @alias storage.notifications.insert
+     * @memberOf! storage(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket The parent bucket of the notification.
+     * @param {storage(v1).Notification} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/notificationConfigs',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * storage.notifications.list
+     *
+     * @desc Retrieves a list of notification subscriptions for a given bucket.
+     *
+     * @alias storage.notifications.list
+     * @memberOf! storage(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.bucket Name of a GCS bucket.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/storage/v1/b/{bucket}/notificationConfigs',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.objectAccessControls = {
 
     /**
@@ -3684,6 +3831,47 @@ function Storage(options) { // eslint-disable-line
     }
 
   };
+
+  self.projects = {
+
+    serviceAccount: {
+
+      /**
+       * storage.projects.serviceAccount.get
+       *
+       * @desc Get the email address of this project's GCS service account.
+       *
+       * @alias storage.projects.serviceAccount.get
+       * @memberOf! storage(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId Project ID
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://www.googleapis.com/storage/v1/projects/{projectId}/serviceAccount',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
+  };
 }
 
 /**
@@ -3696,6 +3884,7 @@ function Storage(options) { // eslint-disable-line
  * @property {string} etag HTTP 1.1 Entity tag for the bucket.
  * @property {string} id The ID of the bucket. For buckets, the id and name properities are the same.
  * @property {string} kind The kind of item this is. For buckets, this is always storage#bucket.
+ * @property {object} labels User-provided labels, in key/value pairs.
  * @property {object} lifecycle The bucket&#39;s lifecycle configuration. See lifecycle management for more information.
  * @property {string} location The location of the bucket. Object data for objects in the bucket resides in physical storage within this region. Defaults to US. See the developer&#39;s guide for the authoritative list.
  * @property {object} logging The bucket&#39;s logging configuration, which defines the destination bucket and optional name prefix for the current bucket&#39;s logs.
@@ -3774,6 +3963,27 @@ function Storage(options) { // eslint-disable-line
  * @property {storage(v1).Object} destination Properties of the resulting object.
  * @property {string} kind The kind of item this is.
  * @property {object[]} sourceObjects The list of source objects that will be concatenated into a single object.
+ */
+/**
+ * @typedef Notification
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {object} custom_attributes An optional list of additional attributes to attach to each Cloud PubSub message published for this notification subscription.
+ * @property {string} etag HTTP 1.1 Entity tag for this subscription notification.
+ * @property {string[]} event_types If present, only send notifications about listed event types. If empty, sent notifications for all event types.
+ * @property {string} id The ID of the notification.
+ * @property {string} kind The kind of item this is. For notifications, this is always storage#notification.
+ * @property {string} object_name_prefix If present, only apply this notification configuration to object names that begin with this prefix.
+ * @property {string} payload_format The desired content of the Payload.
+ * @property {string} selfLink The canonical URL of this notification.
+ * @property {string} topic The Cloud PubSub topic to which this subscription publishes. Formatted as: &#39;//pubsub.googleapis.com/projects/{project-identifier}/topics/{my-topic}&#39;
+ */
+/**
+ * @typedef Notifications
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {storage(v1).Notification[]} items The list of items.
+ * @property {string} kind The kind of item this is. For lists of notifications, this is always storage#notifications.
  */
 /**
  * @typedef Object
@@ -3871,6 +4081,13 @@ function Storage(options) { // eslint-disable-line
  * @property {storage(v1).Object} resource A resource containing the metadata for the copied-to object. This property is present in the response only when copying completes.
  * @property {string} rewriteToken A token to use in subsequent requests to continue copying data. This token is present in the response only when there is more data to copy.
  * @property {string} totalBytesRewritten The total bytes written so far, which can be used to provide a waiting user with a progress indicator. This property is always present in the response.
+ */
+/**
+ * @typedef ServiceAccount
+ * @memberOf! storage(v1)
+ * @type object
+ * @property {string} email_address The ID of the notification.
+ * @property {string} kind The kind of item this is. For notifications, this is always storage#notification.
  */
 /**
  * @typedef TestIamPermissionsResponse

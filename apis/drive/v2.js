@@ -2673,6 +2673,7 @@ function Drive(options) { // eslint-disable-line
 * @property {string} remainingChangeIds The number of remaining change ids, limited to no more than 2500.
 * @property {string} rootFolderId The id of the root folder.
 * @property {string} selfLink A link back to this item.
+* @property {object[]} teamDriveThemes A list of themes that are supported for Team Drives.
 * @property {drive(v2).User} user The authenticated user.
 */
 /**
@@ -2841,15 +2842,15 @@ function Drive(options) { // eslint-disable-line
  * @type object
 * @property {string} alternateLink A link for opening the file in a relevant Google editor or viewer.
 * @property {boolean} appDataContents Whether this file is in the Application Data folder.
-* @property {boolean} canComment Whether the current user can comment on the file. Deprecated: use capabilities/canComment.
-* @property {boolean} canReadRevisions Whether the current user has read access to the Revisions resource of the file. Deprecated: use capabilities/canReadRevisions.
-* @property {object} capabilities Capabilities the current user has on the file. Each capability corresponds to a fine-grained action that a user may take.
-* @property {boolean} copyable Whether the file can be copied by the current user. Deprecated: use capabilities/canCopy.
+* @property {boolean} canComment Deprecated: use capabilities/canComment.
+* @property {boolean} canReadRevisions Deprecated: use capabilities/canReadRevisions.
+* @property {object} capabilities Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take.
+* @property {boolean} copyable Deprecated: use capabilities/canCopy.
 * @property {string} createdDate Create time for this file (formatted RFC 3339 timestamp).
 * @property {string} defaultOpenWithLink A link to open this file with the user&#39;s default app for this file. Only populated when the drive.apps.readonly scope is used.
 * @property {string} description A short description of the file.
 * @property {string} downloadUrl 
-* @property {boolean} editable Whether the file can be edited by the current user. Deprecated: use capabilities/canEdit.
+* @property {boolean} editable Deprecated: use capabilities/canEdit.
 * @property {string} embedLink A link for embedding the file.
 * @property {string} etag ETag of the file.
 * @property {boolean} explicitlyTrashed Whether this file has been explicitly trashed, as opposed to recursively trashed.
@@ -2887,7 +2888,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 * @property {drive(v2).Property[]} properties The list of properties.
 * @property {string} quotaBytesUsed The number of quota bytes used by this file.
 * @property {string} selfLink A link back to this file.
-* @property {boolean} shareable Whether the file&#39;s sharing settings can be modified by the current user. Deprecated: use capabilities/canShare.
+* @property {boolean} shareable Deprecated: use capabilities/canShare.
 * @property {boolean} shared Whether the file has been shared. Not populated for Team Drive files.
 * @property {string} sharedWithMeDate Time at which this file was shared with the user (formatted RFC 3339 timestamp).
 * @property {drive(v2).User} sharingUser User that shared the item with the current user, if available.
@@ -2896,7 +2897,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 * @property {object} thumbnail A thumbnail for the file. This will only be used if Drive cannot generate a standard thumbnail.
 * @property {string} thumbnailLink A short-lived link to the file&#39;s thumbnail. Typically lasts on the order of hours. Only populated when the requesting app can access the file&#39;s content.
 * @property {string} thumbnailVersion The thumbnail version for use in thumbnail cache invalidation.
-* @property {string} title The title of this file.
+* @property {string} title The title of this file. Note that for immutable items such as the top level folders of Team Drives, My Drive root folder, and Application Data folder the title is constant.
 * @property {string} trashedDate The time that the item was trashed (formatted RFC 3339 timestamp). Only populated for Team Drive files.
 * @property {drive(v2).User} trashingUser If the file has been explicitly trashed, the user who trashed it. Only populated for Team Drive files.
 * @property {drive(v2).Permission} userPermission The permissions for the authenticated user on this file.
@@ -2951,6 +2952,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @type object
 * @property {string[]} additionalRoles Additional roles for this user. Only commenter is currently allowed, though more may be supported in the future.
 * @property {string} authKey The authkey parameter required for this permission.
+* @property {boolean} deleted Whether the account of the permission has been deleted. This field only pertains to user and group permissions.
 * @property {string} domain The domain name of the entity this permission refers to. This is an output-only field which is present when the permission type is user, group or domain.
 * @property {string} emailAddress The email address of the user or group this permission refers to. This is an output-only field which is present when the permission type is user or group.
 * @property {string} etag The ETag of the permission.
@@ -2969,7 +2971,7 @@ Setting this field will put the file in all of the provided folders. On insert, 
 - reader 
 - writer
 * @property {string} selfLink A link back to this permission.
-* @property {object[]} teamDrivePermissionDetails Details of whether the Permissions on this Team Drive item are inherited or directly on this item. This is an output-only field which is present only for Team Drive items.
+* @property {object[]} teamDrivePermissionDetails Details of whether the permissions on this Team Drive item are inherited or directly on this item. This is an output-only field which is present only for Team Drive items.
 * @property {string} type The account type. Allowed values are:  
 - user 
 - group 
@@ -3059,10 +3061,14 @@ Setting this field will put the file in all of the provided folders. On insert, 
  * @typedef TeamDrive
  * @memberOf! drive(v2)
  * @type object
+ * @property {object} backgroundImageFile An image file and cropping parameters from which a background image for this Team Drive is set. This is a write only field that can only be set on a drive.teamdrives.update request that does not set themeId. When specified, all fields of the backgroundImageFile must be set.
+ * @property {string} backgroundImageLink A short-lived link to this Team Drive&#39;s background image.
  * @property {object} capabilities Capabilities the current user has on this Team Drive.
+ * @property {string} colorRgb The color of this Team Drive as an RGB hex string. It can only be set on a drive.teamdrives.update request that does not set themeId.
  * @property {string} id The ID of this Team Drive which is also the ID of the top level folder for this Team Drive.
  * @property {string} kind This is always drive#teamDrive
  * @property {string} name The name of this Team Drive.
+ * @property {string} themeId The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.insert request, a random theme is chosen from which the background image and color are set. This is a write only field that can only be set on a request that does not set colorRgb or backgroundImageFile.
  */
 /**
  * @typedef TeamDriveList

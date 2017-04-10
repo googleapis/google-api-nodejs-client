@@ -207,14 +207,14 @@ function Cloudtrace(options) { // eslint-disable-line
        * @memberOf! cloudtrace(v1)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.view Type of data returned for traces in the list. Optional. Default is `MINIMAL`.
+       * @param {string=} params.orderBy Field used to sort the returned traces. Optional. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
        * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
        * @param {string=} params.filter An optional filter for the request.
        * @param {string=} params.endTime Start of the time interval (inclusive) during which the trace data was collected from the application.
        * @param {string=} params.startTime End of the time interval (inclusive) during which the trace data was collected from the application.
        * @param {string=} params.pageToken Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request. Optional.
        * @param {integer=} params.pageSize Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size. Optional.
-       * @param {string=} params.view Type of data returned for traces in the list. Optional. Default is `MINIMAL`.
-       * @param {string=} params.orderBy Field used to sort the returned traces. Optional. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -337,6 +337,10 @@ function Cloudtrace(options) { // eslint-disable-line
  * @typedef TraceSpan
  * @memberOf! cloudtrace(v1)
  * @type object
+* @property {string} spanId Identifier for the span. Must be a 64-bit integer other than 0 and
+unique within a trace.
+* @property {string} parentSpanId ID of the parent span, if any. Optional.
+* @property {string} endTime End time of the span in nanoseconds from the UNIX epoch.
 * @property {string} startTime Start time of the span in nanoseconds from the UNIX epoch.
 * @property {string} kind Distinguishes between spans generated in a particular context. For example,
 two spans with the same name may be distinguished using `RPC_CLIENT`
@@ -350,10 +354,6 @@ The name may be a method name or some other per-call site name.
 For the same executable and the same call point, a best practice is
 to use a consistent name, which makes it easier to correlate
 cross-trace spans.
-* @property {string} spanId Identifier for the span. Must be a 64-bit integer other than 0 and
-unique within a trace.
-* @property {string} parentSpanId ID of the parent span, if any. Optional.
-* @property {string} endTime End time of the span in nanoseconds from the UNIX epoch.
 */
 /**
  * @typedef ListTracesResponse

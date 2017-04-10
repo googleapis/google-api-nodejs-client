@@ -817,6 +817,7 @@ function Books(options) { // eslint-disable-line
        * @memberOf! books(v1)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.annotationId The ID for the annotation to insert.
        * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
        * @param {boolean=} params.showOnlySummaryInResponse Requests that only the summary of the specified layer be provided in the response.
        * @param {string=} params.source String to identify the originator of this request.
