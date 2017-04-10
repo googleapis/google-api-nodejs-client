@@ -2181,7 +2181,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.backendBucket Name of the BackendBucket resource to update.
+     * @param {string} params.backendBucket Name of the BackendBucket resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {compute(beta).BackendBucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2883,7 +2883,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.backendServices.patch
      *
-     * @desc Updates the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
+     * @desc Patches the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
      *
      * @example
      * // BEFORE RUNNING:
@@ -2948,7 +2948,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.backendService Name of the BackendService resource to update.
+     * @param {string} params.backendService Name of the BackendService resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {compute(beta).BackendService} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4282,7 +4282,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.disks.setLabels
      *
-     * @desc Sets the labels on a disk. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets the labels on a disk. To learn more about labels, read the Labeling Resources documentation.
      *
      * @example
      * // BEFORE RUNNING:
@@ -4923,7 +4923,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.firewall Name of the firewall rule to update.
+     * @param {string} params.firewall Name of the firewall rule to patch.
      * @param {string} params.project Project ID for this request.
      * @param {compute(beta).Firewall} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7711,7 +7711,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.healthCheck Name of the HealthCheck resource to update.
+     * @param {string} params.healthCheck Name of the HealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {compute(beta).HealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8376,7 +8376,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
+     * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {compute(beta).HttpHealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9041,7 +9041,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to update.
+     * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {compute(beta).HttpsHealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9826,7 +9826,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.images.setLabels
      *
-     * @desc Sets the labels on an image. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets the labels on an image. To learn more about labels, read the Labeling Resources documentation.
      *
      * @example
      * // BEFORE RUNNING:
@@ -14376,7 +14376,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instances.setLabels
      *
-     * @desc Sets labels on an instance. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets labels on an instance. To learn more about labels, read the Labeling Resources documentation.
      *
      * @example
      * // BEFORE RUNNING:
@@ -18965,7 +18965,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(beta)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.backendService Name of the BackendService resource to update.
+     * @param {string} params.backendService Name of the BackendService resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(beta).BackendService} params.resource Request body data
@@ -22582,7 +22582,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.routers.patch
      *
-     * @desc Updates the specified Router resource with the data included in the request. This method supports patch semantics.
+     * @desc Patches the specified Router resource with the data included in the request. This method supports patch semantics.
      *
      * @example
      * // BEFORE RUNNING:
@@ -22652,7 +22652,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
-     * @param {string} params.router Name of the Router resource to update.
+     * @param {string} params.router Name of the Router resource to patch.
      * @param {compute(beta).Router} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -23740,7 +23740,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.snapshots.setLabels
      *
-     * @desc Sets the labels on a snapshot. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets the labels on a snapshot. To learn more about labels, read the Labeling Resources documentation.
      *
      * @example
      * // BEFORE RUNNING:
@@ -25183,6 +25183,44 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'region', 'resource'],
         pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.subnetworks.setPrivateIpGoogleAccess
+     *
+     * @desc Set whether VMs in this subnet can access Google services without assigning external IP addresses through Cloudpath.
+     *
+     * @alias compute.subnetworks.setPrivateIpGoogleAccess
+     * @memberOf! compute(beta)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.subnetwork Name of the Subnetwork resource.
+     * @param {compute(beta).SubnetworksSetPrivateIpGoogleAccessRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setPrivateIpGoogleAccess: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/beta/projects/{project}/regions/{region}/subnetworks/{subnetwork}/setPrivateIpGoogleAccess',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'subnetwork'],
+        pathParams: ['project', 'region', 'subnetwork'],
         context: self
       };
 
@@ -30704,7 +30742,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.urlMaps.patch
      *
-     * @desc Updates the specified UrlMap resource with the data included in the request. This method supports patch semantics.
+     * @desc Patches the specified UrlMap resource with the data included in the request. This method supports patch semantics.
      *
      * @example
      * // BEFORE RUNNING:
@@ -30770,7 +30808,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.urlMap Name of the UrlMap resource to update.
+     * @param {string} params.urlMap Name of the UrlMap resource to patch.
      * @param {compute(beta).UrlMap} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -32358,7 +32396,7 @@ Instance templates do not store customer-supplied encryption keys, so you cannot
  * @type object
  * @property {compute(beta).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
  * @property {string[]} exemptedMembers 
- * @property {string} service Specifies a service that will be enabled for audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
+ * @property {string} service Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
  */
 /**
  * @typedef AuditLogConfig
@@ -32895,7 +32933,10 @@ global/images/family/my-private-family
  * @type object
 * @property {object[]} allowed The list of ALLOW rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {object[]} denied The list of DENY rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string[]} destinationRanges If destination ranges are specified, the firewall will apply only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.
+* @property {string} direction Direction of traffic to which this firewall applies; default is INGRESS. Note: For INGRESS traffic, it is NOT supported to specify destinationRanges; For EGRESS traffic, it is NOT supported to specify sourceRanges OR sourceTags.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Ony] Type of the resource. Always compute#firewall for firewall rules.
 * @property {string} name Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
@@ -32905,6 +32946,7 @@ If you choose to specify this property, you can specify the network as a full or
 - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network 
 - projects/myproject/global/networks/my-network 
 - global/networks/default
+* @property {integer} priority Priority for this rule. This is an integer between 0 and 65535, both inclusive. When not specified, the value assumed is 1000. Relative priorities determine precedence of conflicting rules. Lower value of priority implies higher precedence (eg, a rule with priority 0 has higher precedence than a rule with priority 1). DENY rules take precedence over ALLOW rules having equal priority.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string[]} sourceRanges If source ranges are specified, the firewall will apply only to traffic that has source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply. Only IPv4 is supported.
 * @property {string[]} sourceTags If source tags are specified, the firewall will apply only to traffic with source IP that belongs to a tag listed in source tags. Source tags cannot be used to control traffic to an instance&#39;s external IP address. Because tags are associated with an instance, not an IP address. One or both of sourceRanges and sourceTags may be set. If both properties are set, the firewall will apply to traffic that has source IP address within sourceRanges OR the source IP that belongs to a tag listed in the sourceTags property. The connection does not need to match both properties for the firewall to apply.
@@ -33191,7 +33233,7 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {compute(beta).AttachedDisk[]} disks Array of disks associated with this instance. Persistent disks must be created before you can assign them.
-* @property {compute(beta).AcceleratorConfig[]} guestAccelerators 
+* @property {compute(beta).AcceleratorConfig[]} guestAccelerators List of the type and count of accelerator cards attached to the instance.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
 * @property {string} kind [Output Only] Type of the resource. Always compute#instance for instances.
 * @property {string} labelFingerprint A fingerprint for this request, which is essentially a hash of the metadata&#39;s contents and used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update metadata. You must always provide an up-to-date fingerprint hash in order to update or change metadata.
@@ -33537,7 +33579,7 @@ You can see which instances is being creating in which mode by calling the get o
  * @typedef InstancesSetMachineResourcesRequest
  * @memberOf! compute(beta)
  * @type object
- * @property {compute(beta).AcceleratorConfig[]} guestAccelerators 
+ * @property {compute(beta).AcceleratorConfig[]} guestAccelerators List of the type and count of accelerator cards attached to the instance.
  */
 /**
  * @typedef InstancesSetMachineTypeRequest
@@ -33646,12 +33688,20 @@ If the disk is not protected with a customer-supplied encryption key it should n
 * @property {string} instance [Output Only] The URL of the instance. The URL can exist even if the instance has not yet been created.
 * @property {string} instanceStatus [Output Only] The status of the instance. This field is empty when the instance does not exist.
 * @property {compute(beta).ManagedInstanceLastAttempt} lastAttempt [Output Only] Information about the last attempt to create or delete the instance.
+* @property {compute(beta).ManagedInstanceVersion} version [Output Only] Intended version of this instance.
 */
 /**
  * @typedef ManagedInstanceLastAttempt
  * @memberOf! compute(beta)
  * @type object
  * @property {object} errors [Output Only] Encountered errors during the last attempt to create or delete the instance.
+ */
+/**
+ * @typedef ManagedInstanceVersion
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {string} instanceTemplate [Output Only] The intended template of the instance. This field is empty when current_action is one of { DELETING, ABANDONING }.
+ * @property {string} name [Output Only] Name of the version.
  */
 /**
  * @typedef Metadata
@@ -34095,7 +34145,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @memberOf! compute(beta)
  * @type object
  * @property {string} ipRange IP address and range of the interface. The IP range must be in the RFC3927 link-local IP space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
- * @property {string} linkedVpnTunnel URI of linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource.
+ * @property {string} linkedVpnTunnel URI of the linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.
  * @property {string} name Name of this interface entry. The name must be 1-63 characters long and comply with RFC1035.
  */
 /**
@@ -34113,6 +34163,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @memberOf! compute(beta)
  * @type object
  * @property {compute(beta).Route[]} bestRoutes Best routes for this router&#39;s network.
+ * @property {compute(beta).Route[]} bestRoutesForRouter Best routes learned by this router.
  * @property {compute(beta).RouterStatusBgpPeerStatus[]} bgpPeerStatus 
  * @property {string} network URI of the network to which this router belongs.
  */
@@ -34317,6 +34368,12 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @type object
  * @property {compute(beta).Subnetwork[]} subnetworks List of subnetworks contained in this scope.
  * @property {object} warning An informational warning that appears when the list of addresses is empty.
+ */
+/**
+ * @typedef SubnetworksSetPrivateIpGoogleAccessRequest
+ * @memberOf! compute(beta)
+ * @type object
+ * @property {boolean} privateIpGoogleAccess 
  */
 /**
  * @typedef TCPHealthCheck

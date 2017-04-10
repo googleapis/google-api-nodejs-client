@@ -1238,6 +1238,60 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Deletes the specified BackendBucket resource.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
+     *
+     *     // Name of the BackendBucket resource to delete.
+     *     backendBucket: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   compute.backendBuckets.delete(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.backendBuckets.delete
      * @memberOf! compute(v1)
      *
@@ -1273,6 +1327,60 @@ function Compute(options) { // eslint-disable-line
      * compute.backendBuckets.get
      *
      * @desc Returns the specified BackendBucket resource. Get a list of available backend buckets by making a list() request.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
+     *
+     *     // Name of the BackendBucket resource to return.
+     *     backendBucket: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   compute.backendBuckets.get(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.backendBuckets.get
      * @memberOf! compute(v1)
@@ -1310,6 +1418,61 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Creates a BackendBucket resource in the specified project using the data included in the request.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   compute.backendBuckets.insert(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.backendBuckets.insert
      * @memberOf! compute(v1)
      *
@@ -1345,6 +1508,70 @@ function Compute(options) { // eslint-disable-line
      * compute.backendBuckets.list
      *
      * @desc Retrieves the list of BackendBucket resources available to the specified project.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   var handlePage = function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     var itemsPage = response['items'];
+     *     if (!itemsPage) {
+     *       return;
+     *     }
+     *     for (var i = 0; i < itemsPage.length; i++) {
+     *       // TODO: Change code below to process each resource in `itemsPage`:
+     *       console.log(JSON.stringify(itemsPage[i], null, 2));
+     *     }
+     *
+     *     if (response.nextPageToken) {
+     *       request.pageToken = response.nextPageToken;
+     *       compute.backendBuckets.list(request, handlePage);
+     *     }
+     *   };
+     *
+     *   compute.backendBuckets.list(request, handlePage);
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.backendBuckets.list
      * @memberOf! compute(v1)
@@ -1385,6 +1612,65 @@ function Compute(options) { // eslint-disable-line
      *
      * @desc Updates the specified BackendBucket resource with the data included in the request. This method supports patch semantics.
      *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
+     *
+     *     // Name of the BackendBucket resource to update.
+     *     backendBucket: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. Only these properties
+     *       // will be changed.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   compute.backendBuckets.patch(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
+     *
      * @alias compute.backendBuckets.patch
      * @memberOf! compute(v1)
      *
@@ -1421,6 +1707,65 @@ function Compute(options) { // eslint-disable-line
      * compute.backendBuckets.update
      *
      * @desc Updates the specified BackendBucket resource with the data included in the request.
+     *
+     * @example
+     * // BEFORE RUNNING:
+     * // ---------------
+     * // 1. If not already done, enable the Compute Engine API
+     * //    and check the quota for your project at
+     * //    https://console.developers.google.com/apis/api/compute
+     * // 2. This sample uses Application Default Credentials for authentication.
+     * //    If not already done, install the gcloud CLI from
+     * //    https://cloud.google.com/sdk and run
+     * //    `gcloud beta auth application-default login`.
+     * //    For more information, see
+     * //    https://developers.google.com/identity/protocols/application-default-credentials
+     * // 3. Install the Node.js client library by running
+     * //    `npm install googleapis --save`
+     *
+     * var google = require('googleapis');
+     * var compute = google.compute('v1');
+     *
+     * authorize(function(authClient) {
+     *   var request = {
+     *     // Project ID for this request.
+     *     project: '',  // TODO: Update placeholder value.
+     *
+     *     // Name of the BackendBucket resource to update.
+     *     backendBucket: '',  // TODO: Update placeholder value.
+     *
+     *     resource: {
+     *       // TODO: Add desired properties to the request body. All existing properties
+     *       // will be replaced.
+     *     },
+     *
+     *     auth: authClient
+     *   };
+     *
+     *   compute.backendBuckets.update(request, function(err, response) {
+     *     if (err) {
+     *       console.log(err);
+     *       return;
+     *     }
+     *
+     *     // TODO: Change code below to process the `response` object:
+     *     console.log(JSON.stringify(response, null, 2));
+     *   });
+     * });
+     *
+     * function authorize(callback) {
+     *   google.auth.getApplicationDefault(function(err, authClient)) {
+     *     if (err) {
+     *       console.log('authentication failed: ', err);
+     *       return;
+     *     }
+     *     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+     *       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+     *       authClient = authClient.createScoped(scopes);
+     *     }
+     *     callback(authClient);
+     *   });
+     * }
      *
      * @alias compute.backendBuckets.update
      * @memberOf! compute(v1)
@@ -25301,6 +25646,7 @@ This cannot be used for internal load balancing.
 
 When the load balancing scheme is INTERNAL, this field is not used.
 * @property {compute(v1).Backend[]} backends The list of backends that serve this BackendService.
+* @property {compute(v1).BackendServiceCdnPolicy} cdnPolicy Cloud CDN configuration for this BackendService.
 * @property {compute(v1).ConnectionDraining} connectionDraining 
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
@@ -25348,6 +25694,12 @@ When the protocol is UDP, this field is not used.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
+ * @typedef BackendServiceCdnPolicy
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {compute(v1).CacheKeyPolicy} cacheKeyPolicy The CacheKeyPolicy for this CdnPolicy.
+ */
+/**
  * @typedef BackendServiceGroupHealth
  * @memberOf! compute(v1)
  * @type object
@@ -25377,6 +25729,16 @@ When the protocol is UDP, this field is not used.
  * @type object
  * @property {string} host If set, this invalidation rule will only apply to requests with a Host header matching host.
  * @property {string} path 
+ */
+/**
+ * @typedef CacheKeyPolicy
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {boolean} includeHost If true, requests to different hosts will be cached separately.
+ * @property {boolean} includeProtocol If true, http and https requests will be cached separately.
+ * @property {boolean} includeQueryString If true, include query string parameters in the cache key according to query_string_whitelist and query_string_blacklist. If neither is set, the entire query string will be included. If false, the query string will be excluded from the cache key entirely.
+ * @property {string[]} queryStringBlacklist Names of query string parameters to exclude in cache keys. All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both. &#39;&amp;&#39; and &#39;=&#39; will be percent encoded and not treated as delimiters.
+ * @property {string[]} queryStringWhitelist Names of query string parameters to include in cache keys. All other parameters will be excluded. Either specify query_string_whitelist or query_string_blacklist, not both. &#39;&amp;&#39; and &#39;=&#39; will be percent encoded and not treated as delimiters.
  */
 /**
  * @typedef ConnectionDraining
@@ -26605,7 +26967,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @memberOf! compute(v1)
  * @type object
  * @property {string} ipRange IP address and range of the interface. The IP range must be in the RFC3927 link-local IP space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
- * @property {string} linkedVpnTunnel URI of linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource.
+ * @property {string} linkedVpnTunnel URI of the linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.
  * @property {string} name Name of this interface entry. The name must be 1-63 characters long and comply with RFC1035.
  */
 /**

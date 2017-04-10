@@ -1563,6 +1563,7 @@ function Drive(options) { // eslint-disable-line
  * @property {object} maxImportSizes A map of maximum import sizes by MIME type, in bytes.
  * @property {string} maxUploadSize The maximum upload size in bytes.
  * @property {object} storageQuota The user&#39;s storage quota limits and usage. All fields are measured in bytes.
+ * @property {object[]} teamDriveThemes A list of themes that are supported for Team Drives.
  * @property {drive(v3).User} user The authenticated user.
  */
 /**
@@ -1633,7 +1634,7 @@ function Drive(options) { // eslint-disable-line
  * @type object
 * @property {object} appProperties A collection of arbitrary key-value pairs which are private to the requesting app.
 Entries with null values are cleared in update and copy requests.
-* @property {object} capabilities Capabilities the current user has on the file. Each capability corresponds to a fine-grained action that a user may take.
+* @property {object} capabilities Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take.
 * @property {object} contentHints Additional information about the content of the file. These fields are never populated in responses.
 * @property {string} createdTime The time at which the file was created (RFC 3339 date-time).
 * @property {string} description A short description of the file.
@@ -1660,7 +1661,7 @@ If a file is created with a Google Doc MIME type, the uploaded content will be i
 * @property {string} modifiedByMeTime The last time the file was modified by the user (RFC 3339 date-time).
 * @property {string} modifiedTime The last time the file was modified by anyone (RFC 3339 date-time).
 Note that setting modifiedTime will also update modifiedByMeTime for the user.
-* @property {string} name The name of the file. This is not necessarily unique within a folder.
+* @property {string} name The name of the file. This is not necessarily unique within a folder. Note that for immutable items such as the top level folders of Team Drives, My Drive root folder, and Application Data folder the name is constant.
 * @property {string} originalFilename The original filename of the uploaded content if available, or else the original value of the name field. This is only available for files with binary content in Drive.
 * @property {boolean} ownedByMe Whether the user owns the file. Not populated for Team Drive files.
 * @property {drive(v3).User[]} owners The owners of the file. Currently, only certain legacy files may have more than one owner. Not populated for Team Drive files.
@@ -1713,6 +1714,7 @@ Entries with null values are cleared in update and copy requests.
  * @memberOf! drive(v3)
  * @type object
 * @property {boolean} allowFileDiscovery Whether the permission allows the file to be discovered through search. This is only applicable for permissions of type domain or anyone.
+* @property {boolean} deleted Whether the account of the permission has been deleted. This field only pertains to user and group permissions.
 * @property {string} displayName A displayable name for users, groups or domains.
 * @property {string} domain The domain to which this permission refers.
 * @property {string} emailAddress The email address of the user or group to which this permission refers.
@@ -1729,7 +1731,7 @@ Entries with null values are cleared in update and copy requests.
 - writer 
 - commenter 
 - reader
-* @property {object[]} teamDrivePermissionDetails Details of whether the Permissions on this Team Drive item are inherited or directly on this item. This is an output-only field which is present only for Team Drive items.
+* @property {object[]} teamDrivePermissionDetails Details of whether the permissions on this Team Drive item are inherited or directly on this item. This is an output-only field which is present only for Team Drive items.
 * @property {string} type The type of the grantee. Valid values are:  
 - user 
 - group 
@@ -1805,10 +1807,14 @@ This field is only applicable to files with binary content in Drive.
  * @typedef TeamDrive
  * @memberOf! drive(v3)
  * @type object
+ * @property {object} backgroundImageFile An image file and cropping parameters from which a background image for this Team Drive is set. This is a write only field that can only be set on a drive.teamdrives.update request that does not set themeId. When specified, all fields of the backgroundImageFile must be set.
+ * @property {string} backgroundImageLink A short-lived link to this Team Drive&#39;s background image.
  * @property {object} capabilities Capabilities the current user has on this Team Drive.
+ * @property {string} colorRgb The color of this Team Drive as an RGB hex string. It can only be set on a drive.teamdrives.update request that does not set themeId.
  * @property {string} id The ID of this Team Drive which is also the ID of the top level folder for this Team Drive.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;drive#teamDrive&quot;.
  * @property {string} name The name of this Team Drive.
+ * @property {string} themeId The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.create request, a random theme is chosen from which the background image and color are set. This is a write only field that can only be set on a request that does not set colorRgb or backgroundImageFile.
  */
 /**
  * @typedef TeamDriveList

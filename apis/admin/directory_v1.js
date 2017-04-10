@@ -4120,8 +4120,10 @@ function Admin(options) { // eslint-disable-line
  * @property {any} organizations 
  * @property {string} password User&#39;s password
  * @property {any} phones 
+ * @property {any} posixAccounts 
  * @property {string} primaryEmail username of User
  * @property {any} relations 
+ * @property {any} sshPublicKeys 
  * @property {boolean} suspended Indicates if user is suspended
  * @property {string} suspensionReason Suspension reason if user is suspended (Read-only)
  * @property {string} thumbnailPhotoEtag ETag of the user&#39;s photo (Read-only)
@@ -4239,12 +4241,33 @@ function Admin(options) { // eslint-disable-line
  * @property {integer} width Width in pixels of the photo
  */
 /**
+ * @typedef UserPosixAccount
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} gecos The GECOS (user information) entry for this account.
+ * @property {integer} gid The default group ID.
+ * @property {string} homeDirectory The path to the home directory for this account.
+ * @property {boolean} primary If this is user&#39;s primary account within the SystemId.
+ * @property {string} shell The path to the login shell for this account.
+ * @property {string} systemId System identifier for which account Username or Uid apply to.
+ * @property {integer} uid The user ID.
+ * @property {string} username The username of the account.
+ */
+/**
  * @typedef UserRelation
  * @memberOf! admin(directory_v1)
  * @type object
  * @property {string} customType Custom Type.
  * @property {string} type The relation of the user. Some of the possible values are mother, father, sister, brother, manager, assistant, partner.
  * @property {string} value The name of the relation.
+ */
+/**
+ * @typedef UserSshPublicKey
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} expirationTimeUsec An expiration time in microseconds since epoch.
+ * @property {string} fingerprint A SHA-256 fingerprint of the SSH public key. (Read-only)
+ * @property {string} key An SSH public key.
  */
 /**
  * @typedef UserUndelete

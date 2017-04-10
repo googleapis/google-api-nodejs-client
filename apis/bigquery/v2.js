@@ -1481,6 +1481,7 @@ function Bigquery(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of results to return
      * @param {string=} params.pageToken Page token, returned by a previous call, identifying the result set
      * @param {string} params.projectId Project ID of the table to read
+     * @param {string=} params.selectedFields List of fields to return (comma-separated). If unspecified, all fields are returned
      * @param {string=} params.startIndex Zero-based index of the starting row to read
      * @param {string} params.tableId Table ID of the table to read
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1671,6 +1672,7 @@ function Bigquery(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.datasetId Dataset ID of the requested table
      * @param {string} params.projectId Project ID of the requested table
+     * @param {string=} params.selectedFields List of fields to return (comma-separated). If unspecified, all fields are returned
      * @param {string} params.tableId Table ID of the requested table
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2153,9 +2155,9 @@ function Bigquery(options) { // eslint-disable-line
  * @property {string} friendlyName [Optional] A descriptive name for the dataset.
  * @property {string} id [Output-only] The fully-qualified unique name of the dataset in the format projectId:datasetId. The dataset name without the project name is given in the datasetId field. When creating a new dataset, leave this field blank, and instead specify the datasetId field.
  * @property {string} kind [Output-only] The resource type.
- * @property {object} labels [Experimental] The labels associated with this dataset. You can use these to organize and group your datasets. You can set this property when inserting or updating a dataset. See Labeling Datasets for more information.
+ * @property {object} labels The labels associated with this dataset. You can use these to organize and group your datasets. You can set this property when inserting or updating a dataset. See Labeling Datasets for more information.
  * @property {string} lastModifiedTime [Output-only] The date when this dataset or any of its tables was last modified, in milliseconds since the epoch.
- * @property {string} location [Experimental] The geographic location where the dataset should reside. Possible values include EU and US. The default value is US.
+ * @property {string} location The geographic location where the dataset should reside. Possible values include EU and US. The default value is US.
  * @property {string} selfLink [Output-only] A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.
  */
 /**
@@ -2213,7 +2215,7 @@ function Bigquery(options) { // eslint-disable-line
  * @typedef ExternalDataConfiguration
  * @memberOf! bigquery(v2)
  * @type object
- * @property {boolean} autodetect [Experimental] Try to detect schema and format options automatically. Any option specified explicitly will be honored.
+ * @property {boolean} autodetect Try to detect schema and format options automatically. Any option specified explicitly will be honored.
  * @property {bigquery(v2).BigtableOptions} bigtableOptions [Optional] Additional options if sourceFormat is set to BIGTABLE.
  * @property {string} compression [Optional] The compression type of the data source. Possible values include GZIP and NONE. The default value is NONE. This setting is ignored for Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.
  * @property {bigquery(v2).CsvOptions} csvOptions Additional properties to set if sourceFormat is set to CSV.
@@ -2221,7 +2223,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} ignoreUnknownValues [Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don&#39;t match any column names Google Cloud Bigtable: This setting is ignored. Google Cloud Datastore backups: This setting is ignored. Avro: This setting is ignored.
  * @property {integer} maxBadRecords [Optional] The maximum number of bad records that BigQuery can ignore when reading data. If the number of bad records exceeds this value, an invalid error is returned in the job result. The default value is 0, which requires that all records are valid. This setting is ignored for Google Cloud Bigtable, Google Cloud Datastore backups and Avro formats.
  * @property {bigquery(v2).TableSchema} schema [Optional] The schema for the data. Schema is required for CSV and JSON formats. Schema is disallowed for Google Cloud Bigtable, Cloud Datastore backups, and Avro formats.
- * @property {string} sourceFormat [Required] The data format. For CSV files, specify &quot;CSV&quot;. For Google sheets, specify &quot;GOOGLE_SHEETS&quot;. For newline-delimited JSON, specify &quot;NEWLINE_DELIMITED_JSON&quot;. For Avro files, specify &quot;AVRO&quot;. For Google Cloud Datastore backups, specify &quot;DATASTORE_BACKUP&quot;. [Experimental] For Google Cloud Bigtable, specify &quot;BIGTABLE&quot;. Please note that reading from Google Cloud Bigtable is experimental and has to be enabled for your project. Please contact Google Cloud Support to enable this for your project.
+ * @property {string} sourceFormat [Required] The data format. For CSV files, specify &quot;CSV&quot;. For Google sheets, specify &quot;GOOGLE_SHEETS&quot;. For newline-delimited JSON, specify &quot;NEWLINE_DELIMITED_JSON&quot;. For Avro files, specify &quot;AVRO&quot;. For Google Cloud Datastore backups, specify &quot;DATASTORE_BACKUP&quot;. [Beta] For Google Cloud Bigtable, specify &quot;BIGTABLE&quot;.
  * @property {string[]} sourceUris [Required] The fully-qualified URIs that point to your data in Google Cloud. For Google Cloud Storage URIs: Each URI can contain one &#39;*&#39; wildcard character and it must come after the &#39;bucket&#39; name. Size limits related to load jobs apply to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table. For Google Cloud Datastore backups, exactly one URI can be specified, and it must end with &#39;.backup_info&#39;. Also, the &#39;*&#39; wildcard character is not allowed.
  */
 /**
@@ -2234,7 +2236,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} jobComplete Whether the query has completed or not. If rows or totalRows are present, this will always be true. If this is false, totalRows will not be available.
  * @property {bigquery(v2).JobReference} jobReference Reference to the BigQuery Job that was created to run the query. This field will be present even if the original request timed out, in which case GetQueryResults can be used to read the results once the query has completed. Since this API only returns the first page of results, subsequent pages can be fetched via the same mechanism (GetQueryResults).
  * @property {string} kind The resource type of the response.
- * @property {string} numDmlAffectedRows [Output-only, Experimental] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
+ * @property {string} numDmlAffectedRows [Output-only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
  * @property {string} pageToken A token used for paging results.
  * @property {bigquery(v2).TableRow[]} rows An object with as many results as can be contained within the maximum permitted reply size. To get any additional rows, you can call GetQueryResults and specify the jobReference returned above. Present only when the query completes successfully.
  * @property {bigquery(v2).TableSchema} schema The schema of the results. Present only when the query completes successfully.
@@ -2297,15 +2299,15 @@ function Bigquery(options) { // eslint-disable-line
  * @type object
  * @property {boolean} allowJaggedRows [Optional] Accept rows that are missing trailing optional columns. The missing values are treated as nulls. If false, records with missing trailing columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. Only applicable to CSV, ignored for other formats.
  * @property {boolean} allowQuotedNewlines Indicates if BigQuery should allow quoted data sections that contain newline characters in a CSV file. The default value is false.
- * @property {boolean} autodetect [Experimental] Indicates if we should automatically infer the options and schema for CSV and JSON sources.
+ * @property {boolean} autodetect Indicates if we should automatically infer the options and schema for CSV and JSON sources.
  * @property {string} createDisposition [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
  * @property {bigquery(v2).TableReference} destinationTable [Required] The destination table to load the data into.
  * @property {string} encoding [Optional] The character encoding of the data. The supported values are UTF-8 or ISO-8859-1. The default value is UTF-8. BigQuery decodes the data after the raw, binary data has been split using the values of the quote and fieldDelimiter properties.
  * @property {string} fieldDelimiter [Optional] The separator for fields in a CSV file. The separator can be any ISO-8859-1 single-byte character. To use a character in the range 128-255, you must encode the character as UTF8. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence &quot;\t&quot; to specify a tab separator. The default value is a comma (&#39;,&#39;).
  * @property {boolean} ignoreUnknownValues [Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don&#39;t match any column names
  * @property {integer} maxBadRecords [Optional] The maximum number of bad records that BigQuery can ignore when running the job. If the number of bad records exceeds this value, an invalid error is returned in the job result. The default value is 0, which requires that all records are valid.
- * @property {string} nullMarker [Optional] Specifies a string that represents a null value in a CSV file. For example, if you specify &quot;\N&quot;, BigQuery interprets &quot;\N&quot; as a null value when loading a CSV file. The default value is the empty string. If you set this property to a custom value, BigQuery still interprets the empty string as a null value for all data types except for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the empty string as an empty value.
- * @property {string[]} projectionFields [Experimental] If sourceFormat is set to &quot;DATASTORE_BACKUP&quot;, indicates which entity properties to load into BigQuery from a Cloud Datastore backup. Property names are case sensitive and must be top-level properties. If no properties are specified, BigQuery loads all properties. If any named property isn&#39;t found in the Cloud Datastore backup, an invalid error is returned in the job result.
+ * @property {string} nullMarker [Optional] Specifies a string that represents a null value in a CSV file. For example, if you specify &quot;\N&quot;, BigQuery interprets &quot;\N&quot; as a null value when loading a CSV file. The default value is the empty string. If you set this property to a custom value, BigQuery throws an error if an empty string is present for all data types except for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the empty string as an empty value.
+ * @property {string[]} projectionFields If sourceFormat is set to &quot;DATASTORE_BACKUP&quot;, indicates which entity properties to load into BigQuery from a Cloud Datastore backup. Property names are case sensitive and must be top-level properties. If no properties are specified, BigQuery loads all properties. If any named property isn&#39;t found in the Cloud Datastore backup, an invalid error is returned in the job result.
  * @property {string} quote [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote (&#39;&quot;&#39;). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
  * @property {bigquery(v2).TableSchema} schema [Optional] The schema for the destination table. The schema can be omitted if the destination table already exists, or if you&#39;re loading data from Google Cloud Datastore.
  * @property {string} schemaInline [Deprecated] The inline schema. For CSV schemas, specify as &quot;Field1:Type1[,Field2:Type2]*&quot;. For example, &quot;foo:STRING, bar:INTEGER, baz:FLOAT&quot;.
@@ -2320,14 +2322,14 @@ function Bigquery(options) { // eslint-disable-line
  * @typedef JobConfigurationQuery
  * @memberOf! bigquery(v2)
  * @type object
- * @property {boolean} allowLargeResults If true, allows the query to produce arbitrarily large result tables at a slight cost in performance. Requires destinationTable to be set.
+ * @property {boolean} allowLargeResults [Optional] If true and query uses legacy SQL dialect, allows the query to produce arbitrarily large result tables at a slight cost in performance. Requires destinationTable to be set. For standard SQL queries, this flag is ignored and large results are always allowed.
  * @property {string} createDisposition [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
  * @property {bigquery(v2).DatasetReference} defaultDataset [Optional] Specifies the default dataset to use for unqualified table names in the query.
  * @property {bigquery(v2).TableReference} destinationTable [Optional] Describes the table where the query results should be stored. If not present, a new table will be created to store the results.
- * @property {boolean} flattenResults [Optional] Flattens all nested and repeated fields in the query results. The default value is true. allowLargeResults must be true if this is set to false.
+ * @property {boolean} flattenResults [Optional] If true and query uses legacy SQL dialect, flattens all nested and repeated fields in the query results. allowLargeResults must be true if this is set to false. For standard SQL queries, this flag is ignored and results are never flattened.
  * @property {integer} maximumBillingTier [Optional] Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge). If unspecified, this will be set to your project default.
  * @property {string} maximumBytesBilled [Optional] Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge). If unspecified, this will be set to your project default.
- * @property {string} parameterMode [Experimental] Standard SQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
+ * @property {string} parameterMode Standard SQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
  * @property {boolean} preserveNulls [Deprecated] This property is deprecated.
  * @property {string} priority [Optional] Specifies a priority for the query. Possible values include INTERACTIVE and BATCH. The default value is INTERACTIVE.
  * @property {string} query [Required] BigQuery SQL query to execute.
@@ -2336,7 +2338,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {object} tableDefinitions [Optional] If querying an external data source outside of BigQuery, describes the data format, location and other properties of the data source. By defining these properties, the data source can then be queried as if it were a standard BigQuery table.
  * @property {boolean} useLegacySql Specifies whether to use BigQuery&#39;s legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the values of allowLargeResults and flattenResults are ignored; query will be run as if allowLargeResults is true and flattenResults is false.
  * @property {boolean} useQueryCache [Optional] Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. Moreover, the query cache is only available when a query does not have a destination table specified. The default value is true.
- * @property {bigquery(v2).UserDefinedFunctionResource[]} userDefinedFunctionResources [Experimental] Describes user-defined function resources used in the query.
+ * @property {bigquery(v2).UserDefinedFunctionResource[]} userDefinedFunctionResources Describes user-defined function resources used in the query.
  * @property {string} writeDisposition [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a &#39;duplicate&#39; error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
  */
 /**
@@ -2383,8 +2385,8 @@ function Bigquery(options) { // eslint-disable-line
  * @type object
  * @property {integer} billingTier [Output-only] Billing tier for the job.
  * @property {boolean} cacheHit [Output-only] Whether the query result was fetched from the query cache.
- * @property {string} numDmlAffectedRows [Output-only, Experimental] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
- * @property {bigquery(v2).ExplainQueryStage[]} queryPlan [Output-only, Experimental] Describes execution plan for the query.
+ * @property {string} numDmlAffectedRows [Output-only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
+ * @property {bigquery(v2).ExplainQueryStage[]} queryPlan [Output-only] Describes execution plan for the query.
  * @property {bigquery(v2).TableReference[]} referencedTables [Output-only, Experimental] Referenced tables for the job. Queries that reference more than 50 tables will not have a complete list.
  * @property {bigquery(v2).TableSchema} schema [Output-only, Experimental] The schema of the results. Present only for successful dry run of non-legacy SQL queries.
  * @property {string} statementType [Output-only, Experimental] The type of query statement, if valid.
@@ -2473,10 +2475,10 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} dryRun [Optional] If set to true, BigQuery doesn&#39;t run the job. Instead, if the query is valid, BigQuery returns statistics about the job such as how many bytes would be processed. If the query is invalid, an error returns. The default value is false.
  * @property {string} kind The resource type of the request.
  * @property {integer} maxResults [Optional] The maximum number of rows of data to return per page of results. Setting this flag to a small value such as 1000 and then paging through results might improve reliability when the query result set is large. In addition to this limit, responses are also limited to 10 MB. By default, there is no maximum row count, and only the byte limit applies.
- * @property {string} parameterMode [Experimental] Standard SQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
+ * @property {string} parameterMode Standard SQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
  * @property {boolean} preserveNulls [Deprecated] This property is deprecated.
  * @property {string} query [Required] A query string, following the BigQuery query syntax, of the query to execute. Example: &quot;SELECT count(f1) FROM [myProjectId:myDatasetId.myTableId]&quot;.
- * @property {bigquery(v2).QueryParameter[]} queryParameters [Experimental] Query parameters for Standard SQL queries.
+ * @property {bigquery(v2).QueryParameter[]} queryParameters Query parameters for Standard SQL queries.
  * @property {integer} timeoutMs [Optional] How long to wait for the query to complete, in milliseconds, before the request times out and returns. Note that this is only a timeout for the request, not the query. If the query takes longer to run than the timeout value, the call returns without any results and with the &#39;jobComplete&#39; flag set to false. You can call GetQueryResults() to wait for the query to complete and read the results. The default value is 10000 milliseconds (10 seconds).
  * @property {boolean} useLegacySql Specifies whether to use BigQuery&#39;s legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the values of allowLargeResults and flattenResults are ignored; query will be run as if allowLargeResults is true and flattenResults is false.
  * @property {boolean} useQueryCache [Optional] Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever tables in the query are modified. The default value is true.
@@ -2490,7 +2492,7 @@ function Bigquery(options) { // eslint-disable-line
  * @property {boolean} jobComplete Whether the query has completed or not. If rows or totalRows are present, this will always be true. If this is false, totalRows will not be available.
  * @property {bigquery(v2).JobReference} jobReference Reference to the Job that was created to run the query. This field will be present even if the original request timed out, in which case GetQueryResults can be used to read the results once the query has completed. Since this API only returns the first page of results, subsequent pages can be fetched via the same mechanism (GetQueryResults).
  * @property {string} kind The resource type.
- * @property {string} numDmlAffectedRows [Output-only, Experimental] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
+ * @property {string} numDmlAffectedRows [Output-only] The number of rows affected by a DML statement. Present only for DML statements INSERT, UPDATE or DELETE.
  * @property {string} pageToken A token used for paging results.
  * @property {bigquery(v2).TableRow[]} rows An object with as many results as can be contained within the maximum permitted reply size. To get any additional rows, you can call GetQueryResults and specify the jobReference returned above.
  * @property {bigquery(v2).TableSchema} schema The schema of the results. Present only when the query completes successfully.
@@ -2624,6 +2626,6 @@ function Bigquery(options) { // eslint-disable-line
  * @type object
  * @property {string} query [Required] A query that BigQuery executes when the view is referenced.
  * @property {boolean} useLegacySql Specifies whether to use BigQuery&#39;s legacy SQL for this view. The default value is true. If set to false, the view will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ Queries and views that reference this view must use the same flag value.
- * @property {bigquery(v2).UserDefinedFunctionResource[]} userDefinedFunctionResources [Experimental] Describes user-defined function resources used in the query.
+ * @property {bigquery(v2).UserDefinedFunctionResource[]} userDefinedFunctionResources Describes user-defined function resources used in the query.
  */
 module.exports = Bigquery;

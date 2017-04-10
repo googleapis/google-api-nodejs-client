@@ -1,3 +1,7 @@
+##### 19.0.0 - 10 April 2017
+
+- Regenerated
+
 ##### 18.1.0 - 13 March 2017
 
 - Regenerated

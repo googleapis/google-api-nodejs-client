@@ -1600,6 +1600,23 @@ function Calendar(options) { // eslint-disable-line
  * @property {string} updated Last modification time of the color palette (as a RFC3339 timestamp). Read-only.
  */
 /**
+ * @typedef DeepLinkData
+ * @memberOf! calendar(v3)
+ * @type object
+ * @property {calendar(v3).Link[]} links 
+ * @property {string} url 
+ */
+/**
+ * @typedef DisplayInfo
+ * @memberOf! calendar(v3)
+ * @type object
+ * @property {string} appIconUrl 
+ * @property {string} appShortTitle 
+ * @property {string} appTitle 
+ * @property {string} linkShortTitle 
+ * @property {string} linkTitle 
+ */
+/**
  * @typedef Error
  * @memberOf! calendar(v3)
  * @type object
@@ -1709,6 +1726,13 @@ For adding Google Drive file attachments use the same format as in alternateLink
  * @property {string} timeZone The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. &quot;Europe/Zurich&quot;.) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end.
  */
 /**
+ * @typedef EventHabitInstance
+ * @memberOf! calendar(v3)
+ * @type object
+ * @property {calendar(v3).HabitInstanceData} data Metadata specific to this instance.
+ * @property {string} parentId Id of the habit this instance belongs to.
+ */
+/**
  * @typedef EventReminder
  * @memberOf! calendar(v3)
  * @type object
@@ -1779,6 +1803,33 @@ For adding Google Drive file attachments use the same format as in alternateLink
  * @property {string} kind Type of the resource (&quot;calendar#freeBusy&quot;).
  * @property {string} timeMax The end of the interval.
  * @property {string} timeMin The start of the interval.
+ */
+/**
+ * @typedef HabitInstanceData
+ * @memberOf! calendar(v3)
+ * @type object
+ * @property {string} status 
+ * @property {boolean} statusInferred 
+ * @property {string} type 
+ */
+/**
+ * @typedef LaunchInfo
+ * @memberOf! calendar(v3)
+ * @type object
+ * @property {string} appId 
+ * @property {string} installUrl 
+ * @property {string} intentAction 
+ * @property {string} uri 
+ */
+/**
+ * @typedef Link
+ * @memberOf! calendar(v3)
+ * @type object
+ * @property {string} applinkingSource 
+ * @property {calendar(v3).DisplayInfo} displayInfo 
+ * @property {calendar(v3).LaunchInfo} launchInfo 
+ * @property {string} platform 
+ * @property {string} url 
  */
 /**
  * @typedef Setting

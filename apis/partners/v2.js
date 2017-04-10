@@ -40,32 +40,31 @@ function Partners(options) { // eslint-disable-line
   var self = this;
   self._options = options || {};
 
-  self.leads = {
+  self.users = {
 
     /**
-     * partners.leads.list
+     * partners.users.get
      *
-     * @desc Lists advertiser leads for a user's associated company. Should only be called within the context of an authorized logged in user.
+     * @desc Gets a user.
      *
-     * @alias partners.leads.list
+     * @alias partners.users.get
      * @memberOf! partners(v2)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
      * @param {string=} params.requestMetadata.locale Locale to use for the current request.
      * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
      * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.orderBy How to order Leads. Currently, only `create_time` and `create_time desc` are supported
      * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string} params.userId Identifier of the user. Can be set to <code>me</code> to mean the currently authenticated user.
      * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
      * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.pageToken A token identifying a page of results that the server returns. Typically, this is the value of `ListLeadsResponse.next_page_token` returned from the previous call to ListLeads.
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer leads than requested. If unspecified, server picks an appropriate default.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.userView Specifies what parts of the user information to return.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, options, callback) {
+    get: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -74,135 +73,40 @@ function Partners(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://partners.googleapis.com/v2/leads',
+          url: 'https://partners.googleapis.com/v2/users/{userId}',
           method: 'GET'
         }, options),
         params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  self.offers = {
-
-    /**
-     * partners.offers.list
-     *
-     * @desc Lists the Offers available for the current user
-     *
-     * @alias partners.offers.list
-     * @memberOf! partners(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://partners.googleapis.com/v2/offers',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
         context: self
       };
 
       return createAPIRequest(parameters, callback);
     },
 
-    history: {
-
-      /**
-       * partners.offers.history.list
-       *
-       * @desc Lists the Historical Offers for the current user (or user's entire company)
-       *
-       * @alias partners.offers.history.list
-       * @memberOf! partners(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-       * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-       * @param {string=} params.pageToken Token to retrieve a specific page.
-       * @param {integer=} params.pageSize Maximum number of rows to return per page.
-       * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-       * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-       * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-       * @param {boolean=} params.entireCompany if true, show history for the entire company.  Requires user to be admin.
-       * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-       * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-       * @param {string=} params.orderBy Comma-separated list of fields to order by, e.g.: "foo,bar,baz". Use "foo desc" to sort descending. List of valid field names is: name, offer_code, expiration_time, status,     last_modified_time, sender_name, creation_time, country_code,     offer_type.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://partners.googleapis.com/v2/offers/history',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: [],
-          pathParams: [],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
-    }
-  };
-
-  self.userStates = {
-
     /**
-     * partners.userStates.list
+     * partners.users.updateProfile
      *
-     * @desc Lists states for current user.
+     * @desc Updates a user's profile. A user can only update their own profile and should only be called within the context of a logged in user.
      *
-     * @alias partners.userStates.list
+     * @alias partners.users.updateProfile
      * @memberOf! partners(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
      * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
      * @param {string=} params.requestMetadata.locale Locale to use for the current request.
      * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
      * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
      * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {partners(v2).UserProfile} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list: function (params, options, callback) {
+    updateProfile: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -211,101 +115,7 @@ function Partners(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://partners.googleapis.com/v2/userStates',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  self.analytics = {
-
-    /**
-     * partners.analytics.list
-     *
-     * @desc Lists analytics data for a user's associated company. Should only be called within the context of an authorized logged in user.
-     *
-     * @alias partners.analytics.list
-     * @memberOf! partners(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.pageToken A token identifying a page of results that the server returns. Typically, this is the value of `ListAnalyticsResponse.next_page_token` returned from the previous call to ListAnalytics. Will be a date string in `YYYY-MM-DD` format representing the end date of the date range of results to return. If unspecified or set to "", default value is the current date.
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer analytics than requested. If unspecified or set to 0, default value is 30. Specifies the number of days in the date range when querying analytics. The `page_token` represents the end date of the date range and the start date is calculated using the `page_size` as the number of days BEFORE the end date. Must be a non-negative integer.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://partners.googleapis.com/v2/analytics',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  self.v2 = {
-
-    /**
-     * partners.updateCompanies
-     *
-     * @desc Update company. Should only be called within the context of an authorized logged in user.
-     *
-     * @alias partners.updateCompanies
-     * @memberOf! partners(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Required with at least 1 value in FieldMask's paths.
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {partners(v2).Company} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    updateCompanies: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://partners.googleapis.com/v2/companies',
+          url: 'https://partners.googleapis.com/v2/users/profile',
           method: 'PATCH'
         }, options),
         params: params,
@@ -318,26 +128,28 @@ function Partners(options) { // eslint-disable-line
     },
 
     /**
-     * partners.getPartnersstatus
+     * partners.users.createCompanyRelation
      *
-     * @desc Gets Partners Status of the logged in user's agency. Should only be called if the logged in user is the admin of the agency.
+     * @desc Creates a user's company relation. Affiliates the user to a company.
      *
-     * @alias partners.getPartnersstatus
+     * @alias partners.users.createCompanyRelation
      * @memberOf! partners(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
      * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
      * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
      * @param {string=} params.requestMetadata.locale Locale to use for the current request.
      * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string} params.userId The ID of the user. Can be set to <code>me</code> to mean the currently authenticated user.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {partners(v2).CompanyRelation} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getPartnersstatus: function (params, options, callback) {
+    createCompanyRelation: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -346,12 +158,12 @@ function Partners(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://partners.googleapis.com/v2/partnersstatus',
-          method: 'GET'
+          url: 'https://partners.googleapis.com/v2/users/{userId}/companyRelation',
+          method: 'PUT'
         }, options),
         params: params,
-        requiredParams: [],
-        pathParams: [],
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
         context: self
       };
 
@@ -359,28 +171,27 @@ function Partners(options) { // eslint-disable-line
     },
 
     /**
-     * partners.updateLeads
+     * partners.users.deleteCompanyRelation
      *
-     * @desc Updates the specified lead.
+     * @desc Deletes a user's company relation. Unaffiliaites the user from a company.
      *
-     * @alias partners.updateLeads
+     * @alias partners.users.deleteCompanyRelation
      * @memberOf! partners(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
      * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
      * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
      * @param {string=} params.requestMetadata.locale Locale to use for the current request.
      * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Required with at least 1 value in FieldMask's paths. Only `state` and `adwords_customer_id` are currently supported.
      * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string} params.userId The ID of the user. Can be set to <code>me</code> to mean the currently authenticated user.
      * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {partners(v2).Lead} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateLeads: function (params, options, callback) {
+    deleteCompanyRelation: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -389,12 +200,12 @@ function Partners(options) { // eslint-disable-line
 
       var parameters = {
         options: utils.extend({
-          url: 'https://partners.googleapis.com/v2/leads',
-          method: 'PATCH'
+          url: 'https://partners.googleapis.com/v2/users/{userId}/companyRelation',
+          method: 'DELETE'
         }, options),
         params: params,
-        requiredParams: [],
-        pathParams: [],
+        requiredParams: ['userId'],
+        pathParams: ['userId'],
         context: self
       };
 
@@ -414,18 +225,18 @@ function Partners(options) { // eslint-disable-line
      * @memberOf! partners(v2)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.view The view of `Company` resource to be returned. This must not be `COMPANY_VIEW_UNSPECIFIED`.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.address The address to use for sorting the company's addresses by proximity. If not given, the geo-located address of the request is used. Used when order_by is set.
      * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
      * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
      * @param {string} params.companyId The ID of the company to retrieve.
-     * @param {string=} params.currencyCode If the company's budget is in a different currency code than this one, then the converted budget is converted to this currency code.
      * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string=} params.currencyCode If the company's budget is in a different currency code than this one, then the converted budget is converted to this currency code.
      * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
      * @param {string=} params.orderBy How to order addresses within the returned company. Currently, only `address` and `address desc` is supported which will sorted by closest to farthest in distance from given address and farthest to closest distance from given address respectively.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {string=} params.view The view of `Company` resource to be returned. This must not be `COMPANY_VIEW_UNSPECIFIED`.
+     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+     * @param {string=} params.address The address to use for sorting the company's addresses by proximity. If not given, the geo-located address of the request is used. Used when order_by is set.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -461,8 +272,8 @@ function Partners(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.pageToken A token identifying a page of results that the server returns. Typically, this is the value of `ListCompaniesResponse.next_page_token` returned from the previous call to ListCompanies.
      * @param {string=} params.companyName Company name to search for.
+     * @param {string=} params.pageToken A token identifying a page of results that the server returns. Typically, this is the value of `ListCompaniesResponse.next_page_token` returned from the previous call to ListCompanies.
      * @param {string=} params.industries List of industries the company can help with.
      * @param {string=} params.websiteUrl Website URL that will help to find a better matched company. .
      * @param {string=} params.gpsMotivations List of reasons for using Google Partner Search to get companies.
@@ -483,8 +294,8 @@ function Partners(options) { // eslint-disable-line
      * @param {string=} params.services List of services that the returned agencies should provide. If this is not empty, any returned agency must have at least one of these services, or one of the specializations in the "specializations" field.
      * @param {string=} params.maxMonthlyBudget.units The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
      * @param {integer=} params.minMonthlyBudget.nanos Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -548,180 +359,6 @@ function Partners(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       }
     }
-  };
-
-  self.users = {
-
-    /**
-     * partners.users.get
-     *
-     * @desc Gets a user.
-     *
-     * @alias partners.users.get
-     * @memberOf! partners(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.userView Specifies what parts of the user information to return.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string} params.userId Identifier of the user. Can be set to <code>me</code> to mean the currently authenticated user.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://partners.googleapis.com/v2/users/{userId}',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['userId'],
-        pathParams: ['userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * partners.users.updateProfile
-     *
-     * @desc Updates a user's profile. A user can only update their own profile and should only be called within the context of a logged in user.
-     *
-     * @alias partners.users.updateProfile
-     * @memberOf! partners(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {partners(v2).UserProfile} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    updateProfile: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://partners.googleapis.com/v2/users/profile',
-          method: 'PATCH'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * partners.users.createCompanyRelation
-     *
-     * @desc Creates a user's company relation. Affiliates the user to a company.
-     *
-     * @alias partners.users.createCompanyRelation
-     * @memberOf! partners(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string} params.userId The ID of the user. Can be set to <code>me</code> to mean the currently authenticated user.
-     * @param {partners(v2).CompanyRelation} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    createCompanyRelation: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://partners.googleapis.com/v2/users/{userId}/companyRelation',
-          method: 'PUT'
-        }, options),
-        params: params,
-        requiredParams: ['userId'],
-        pathParams: ['userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * partners.users.deleteCompanyRelation
-     *
-     * @desc Deletes a user's company relation. Unaffiliaites the user from a company.
-     *
-     * @alias partners.users.deleteCompanyRelation
-     * @memberOf! partners(v2)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string} params.userId The ID of the user. Can be set to <code>me</code> to mean the currently authenticated user.
-     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
-     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    deleteCompanyRelation: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://partners.googleapis.com/v2/users/{userId}/companyRelation',
-          method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['userId'],
-        pathParams: ['userId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
   };
 
   self.userEvents = {
@@ -813,14 +450,14 @@ function Partners(options) { // eslint-disable-line
      * @memberOf! partners(v2)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
      * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
      * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
      * @param {string} params.examType The exam type we are requesting a token for.
      * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
      * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
-     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
-     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
-     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -847,8 +484,432 @@ function Partners(options) { // eslint-disable-line
     }
 
   };
+
+  self.leads = {
+
+    /**
+     * partners.leads.list
+     *
+     * @desc Lists advertiser leads for a user's associated company. Should only be called within the context of an authorized logged in user.
+     *
+     * @alias partners.leads.list
+     * @memberOf! partners(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.pageToken A token identifying a page of results that the server returns. Typically, this is the value of `ListLeadsResponse.next_page_token` returned from the previous call to ListLeads.
+     * @param {integer=} params.pageSize Requested page size. Server may return fewer leads than requested. If unspecified, server picks an appropriate default.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string=} params.orderBy How to order Leads. Currently, only `create_time` and `create_time desc` are supported
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://partners.googleapis.com/v2/leads',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.offers = {
+
+    /**
+     * partners.offers.list
+     *
+     * @desc Lists the Offers available for the current user
+     *
+     * @alias partners.offers.list
+     * @memberOf! partners(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://partners.googleapis.com/v2/offers',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    history: {
+
+      /**
+       * partners.offers.history.list
+       *
+       * @desc Lists the Historical Offers for the current user (or user's entire company)
+       *
+       * @alias partners.offers.history.list
+       * @memberOf! partners(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+       * @param {string=} params.orderBy Comma-separated list of fields to order by, e.g.: "foo,bar,baz". Use "foo desc" to sort descending. List of valid field names is: name, offer_code, expiration_time, status,     last_modified_time, sender_name, creation_time, country_code,     offer_type.
+       * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+       * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+       * @param {string=} params.pageToken Token to retrieve a specific page.
+       * @param {integer=} params.pageSize Maximum number of rows to return per page.
+       * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+       * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+       * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
+       * @param {boolean=} params.entireCompany if true, show history for the entire company.  Requires user to be admin.
+       * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        var parameters = {
+          options: utils.extend({
+            url: 'https://partners.googleapis.com/v2/offers/history',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: [],
+          pathParams: [],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
+  };
+
+  self.userStates = {
+
+    /**
+     * partners.userStates.list
+     *
+     * @desc Lists states for current user.
+     *
+     * @alias partners.userStates.list
+     * @memberOf! partners(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://partners.googleapis.com/v2/userStates',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.analytics = {
+
+    /**
+     * partners.analytics.list
+     *
+     * @desc Lists analytics data for a user's associated company. Should only be called within the context of an authorized logged in user.
+     *
+     * @alias partners.analytics.list
+     * @memberOf! partners(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {string=} params.pageToken A token identifying a page of results that the server returns. Typically, this is the value of `ListAnalyticsResponse.next_page_token` returned from the previous call to ListAnalytics. Will be a date string in `YYYY-MM-DD` format representing the end date of the date range of results to return. If unspecified or set to "", default value is the current date.
+     * @param {integer=} params.pageSize Requested page size. Server may return fewer analytics than requested. If unspecified or set to 0, default value is 30. Specifies the number of days in the date range when querying analytics. The `page_token` represents the end date of the date range and the start date is calculated using the `page_size` as the number of days BEFORE the end date. Must be a non-negative integer.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://partners.googleapis.com/v2/analytics',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.v2 = {
+
+    /**
+     * partners.updateCompanies
+     *
+     * @desc Update company. Should only be called within the context of an authorized logged in user.
+     *
+     * @alias partners.updateCompanies
+     * @memberOf! partners(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
+     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Required with at least 1 value in FieldMask's paths.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {partners(v2).Company} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateCompanies: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://partners.googleapis.com/v2/companies',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * partners.getPartnersstatus
+     *
+     * @desc Gets Partners Status of the logged in user's agency. Should only be called if the logged in user is the admin of the agency.
+     *
+     * @alias partners.getPartnersstatus
+     * @memberOf! partners(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getPartnersstatus: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://partners.googleapis.com/v2/partnersstatus',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * partners.updateLeads
+     *
+     * @desc Updates the specified lead.
+     *
+     * @alias partners.updateLeads
+     * @memberOf! partners(v2)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.requestMetadata.partnersSessionId Google Partners session ID.
+     * @param {string=} params.requestMetadata.userOverrides.userId Logged-in user ID to impersonate instead of the user's ID.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSourceId Identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {string=} params.requestMetadata.locale Locale to use for the current request.
+     * @param {string=} params.requestMetadata.userOverrides.ipAddress IP address to use instead of the user's geo-located IP address.
+     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Required with at least 1 value in FieldMask's paths. Only `state` and `adwords_customer_id` are currently supported.
+     * @param {string=} params.requestMetadata.experimentIds Experiment IDs the current request belongs to.
+     * @param {string=} params.requestMetadata.trafficSource.trafficSubId Second level identifier to indicate where the traffic comes from. An identifier has multiple letters created by a team which redirected the traffic to us.
+     * @param {partners(v2).Lead} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    updateLeads: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://partners.googleapis.com/v2/leads',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
 }
 
+/**
+ * @typedef EventData
+ * @memberOf! partners(v2)
+ * @type object
+ * @property {string[]} values Data values.
+ * @property {string} key Data type.
+ */
+/**
+ * @typedef ExamStatus
+ * @memberOf! partners(v2)
+ * @type object
+ * @property {boolean} warning Whether this exam is in the state of warning.
+ * @property {string} expiration Date this exam is due to expire.
+ * @property {string} lastPassed The date the user last passed this exam.
+ * @property {string} examType The type of the exam.
+ * @property {boolean} passed Whether this exam has been passed and not expired.
+ * @property {string} taken The date the user last taken this exam.
+ */
+/**
+ * @typedef ListOffersResponse
+ * @memberOf! partners(v2)
+ * @type object
+ * @property {string} noOfferReason Reason why no Offers are available.
+ * @property {partners(v2).AvailableOffer[]} availableOffers Available Offers to be distributed.
+ * @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
+ */
+/**
+ * @typedef CountryOfferInfo
+ * @memberOf! partners(v2)
+ * @type object
+ * @property {string} getYAmount (localized) Get Y amount for that country&#39;s offer.
+ * @property {string} offerCountryCode Country code for which offer codes may be requested.
+ * @property {string} spendXAmount (localized) Spend X amount for that country&#39;s offer.
+ * @property {string} offerType Type of offer country is eligible for.
+ */
+/**
+ * @typedef ListCompaniesResponse
+ * @memberOf! partners(v2)
+ * @type object
+* @property {partners(v2).Company[]} companies The list of companies.
+* @property {string} nextPageToken A token to retrieve next page of results.
+Pass this value in the `ListCompaniesRequest.page_token` field in the
+subsequent call to
+ListCompanies to retrieve the
+next page of results.
+* @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
+*/
+/**
+ * @typedef OfferCustomer
+ * @memberOf! partners(v2)
+ * @type object
+ * @property {string} spendXAmount Formatted Spend X amount with currency code.
+ * @property {string} adwordsUrl URL to the customer&#39;s AdWords page.
+ * @property {string} creationTime Time the customer was created.
+ * @property {string} countryCode Country code of the customer.
+ * @property {integer} eligibilityDaysLeft Days the customer is still eligible.
+ * @property {string} offerType Type of the offer
+ * @property {string} externalCid External CID for the customer.
+ * @property {string} getYAmount Formatted Get Y amount with currency code.
+ * @property {string} name Name of the customer.
+ */
 /**
  * @typedef CertificationStatus
  * @memberOf! partners(v2)
@@ -862,12 +923,12 @@ function Partners(options) { // eslint-disable-line
  * @typedef LocalizedCompanyInfo
  * @memberOf! partners(v2)
  * @type object
-* @property {string} languageCode Language code of the localized company info, as defined by
-&lt;a href=&quot;https://tools.ietf.org/html/bcp47&quot;&gt;BCP 47&lt;/a&gt;
-(IETF BCP 47, &quot;Tags for Identifying Languages&quot;).
 * @property {string[]} countryCodes List of country codes for the localized company info.
 * @property {string} overview Localized brief description that the company uses to advertise themselves.
 * @property {string} displayName Localized display name.
+* @property {string} languageCode Language code of the localized company info, as defined by
+&lt;a href=&quot;https://tools.ietf.org/html/bcp47&quot;&gt;BCP 47&lt;/a&gt;
+(IETF BCP 47, &quot;Tags for Identifying Languages&quot;).
 */
 /**
  * @typedef LogUserEventResponse
@@ -879,12 +940,12 @@ function Partners(options) { // eslint-disable-line
  * @typedef ListOffersHistoryResponse
  * @memberOf! partners(v2)
  * @type object
- * @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
  * @property {boolean} canShowEntireCompany True if the user has the option to show entire company history.
  * @property {integer} totalResults Number of results across all pages.
  * @property {boolean} showingEntireCompany True if this response is showing entire company history.
  * @property {partners(v2).HistoricalOffer[]} offers Historical offers meeting request.
  * @property {string} nextPageToken Supply this token in a ListOffersHistoryRequest to retrieve the next page.
+ * @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
  */
 /**
  * @typedef LogMessageResponse
@@ -903,16 +964,23 @@ function Partners(options) { // eslint-disable-line
  * @typedef Certification
  * @memberOf! partners(v2)
  * @type object
+ * @property {string} certificationType The type of certification, the area of expertise.
  * @property {string} lastAchieved The date the user last achieved certification.
  * @property {boolean} achieved Whether this certification has been achieved.
  * @property {string} expiration Date this certification is due to expire.
  * @property {boolean} warning Whether this certification is in the state of warning.
- * @property {string} certificationType The type of certification, the area of expertise.
  */
 /**
  * @typedef User
  * @memberOf! partners(v2)
  * @type object
+* @property {string[]} primaryEmails The list of emails the user has access to/can select as primary.
+@OutputOnly
+* @property {partners(v2).AdWordsManagerAccountInfo[]} availableAdwordsManagerAccounts This is the list of AdWords Manager Accounts the user has edit access to.
+If the user has edit access to multiple accounts, the user can choose the
+preferred account and we use this when a personal account is needed. Can
+be empty meaning the user has access to no accounts.
+@OutputOnly
 * @property {partners(v2).ExamStatus[]} examStatus The list of exams the user ever taken. For each type of exam, only one
 entry is listed.
 * @property {string} id The ID of the user.
@@ -928,45 +996,36 @@ If not present, the user is not associated with any company.
 editable user information.
 * @property {string} lastAccessTime The most recent time the user interacted with the Partners site.
 @OutputOnly
-* @property {string[]} primaryEmails The list of emails the user has access to/can select as primary.
-@OutputOnly
-* @property {partners(v2).AdWordsManagerAccountInfo[]} availableAdwordsManagerAccounts This is the list of AdWords Manager Accounts the user has edit access to.
-If the user has edit access to multiple accounts, the user can choose the
-preferred account and we use this when a personal account is needed. Can
-be empty meaning the user has access to no accounts.
-@OutputOnly
 */
 /**
  * @typedef ListAnalyticsResponse
  * @memberOf! partners(v2)
  * @type object
+* @property {string} nextPageToken A token to retrieve next page of results.
+Pass this value in the `ListAnalyticsRequest.page_token` field in the
+subsequent call to
+ListAnalytics to retrieve the
+next page of results.
 * @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
 * @property {partners(v2).AnalyticsSummary} analyticsSummary Aggregated information across the response&#39;s
 analytics.
 * @property {partners(v2).Analytics[]} analytics The list of analytics.
 Sorted in ascending order of
 Analytics.event_date.
-* @property {string} nextPageToken A token to retrieve next page of results.
-Pass this value in the `ListAnalyticsRequest.page_token` field in the
-subsequent call to
-ListAnalytics to retrieve the
-next page of results.
 */
 /**
  * @typedef Company
  * @memberOf! partners(v2)
  * @type object
-* @property {partners(v2).Rank[]} ranks Information related to the ranking of the company within the list of
-companies.
 * @property {string} badgeTier Partner badge tier
 * @property {partners(v2).SpecializationStatus[]} specializationStatus The list of Google Partners specialization statuses for the company.
 * @property {string[]} companyTypes Company type labels listed on the company&#39;s profile.
 * @property {string[]} autoApprovalEmailDomains Email domains that allow users with a matching email address to get
 auto-approved for associating with this company.
-* @property {string} profileStatus The public viewability status of the company&#39;s profile.
 * @property {string} primaryLanguageCode The primary language code of the company, as defined by
 &lt;a href=&quot;https://tools.ietf.org/html/bcp47&quot;&gt;BCP 47&lt;/a&gt;
 (IETF BCP 47, &quot;Tags for Identifying Languages&quot;).
+* @property {string} profileStatus The public viewability status of the company&#39;s profile.
 * @property {partners(v2).Location[]} locations The list of all company locations.
 If set, must include the
 primary_location
@@ -974,10 +1033,10 @@ in the list.
 * @property {partners(v2).Money} convertedMinMonthlyBudget The minimum monthly budget that the company accepts for partner business,
 converted to the requested currency code.
 * @property {string[]} industries Industries the company can help with.
-* @property {string} websiteUrl URL of the company&#39;s website.
 * @property {string[]} additionalWebsites URL of the company&#39;s additional websites used to verify the dynamic badges.
 These are stored as full URLs as entered by the user, but only the TLD will
 be used for the actual verification.
+* @property {string} websiteUrl URL of the company&#39;s website.
 * @property {string} primaryAdwordsManagerAccountId The Primary AdWords Manager Account id.
 * @property {string} name The name of the company.
 * @property {partners(v2).LocalizedCompanyInfo[]} localizedInfos The list of localized info for the company.
@@ -988,12 +1047,13 @@ be used for the actual verification.
 * @property {partners(v2).Location} primaryLocation The primary location of the company.
 * @property {partners(v2).Money} originalMinMonthlyBudget The unconverted minimum monthly budget that the company accepts for partner
 business.
+* @property {partners(v2).Rank[]} ranks Information related to the ranking of the company within the list of
+companies.
 */
 /**
  * @typedef ListLeadsResponse
  * @memberOf! partners(v2)
  * @type object
-* @property {partners(v2).Lead[]} leads The list of leads.
 * @property {string} nextPageToken A token to retrieve next page of results.
 Pass this value in the `ListLeadsRequest.page_token` field in the
 subsequent call to
@@ -1001,41 +1061,42 @@ ListLeads to retrieve the
 next page of results.
 * @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
 * @property {integer} totalSize The total count of leads for the given company.
+* @property {partners(v2).Lead[]} leads The list of leads.
 */
 /**
  * @typedef CreateLeadResponse
  * @memberOf! partners(v2)
  * @type object
-* @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
 * @property {partners(v2).Lead} lead Lead that was created depending on the outcome of
 &lt;a href=&quot;https://www.google.com/recaptcha/&quot;&gt;reCaptcha&lt;/a&gt; validation.
 * @property {string} recaptchaStatus The outcome of &lt;a href=&quot;https://www.google.com/recaptcha/&quot;&gt;reCaptcha&lt;/a&gt;
 validation.
+* @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
 */
 /**
  * @typedef GetCompanyResponse
  * @memberOf! partners(v2)
  * @type object
- * @property {partners(v2).Company} company The company.
  * @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
+ * @property {partners(v2).Company} company The company.
  */
 /**
  * @typedef Location
  * @memberOf! partners(v2)
  * @type object
-* @property {string} address The single string version of the address.
-* @property {string} regionCode CLDR (Common Locale Data Repository) region code .
+* @property {string} administrativeArea Top-level administrative subdivision of this country.
+* @property {string} locality Generally refers to the city/town portion of an address.
+* @property {partners(v2).LatLng} latLng The latitude and longitude of the location, in degrees.
 * @property {string} dependentLocality Dependent locality or sublocality. Used for UK dependent localities, or
 neighborhoods or boroughs in other locations.
+* @property {string} address The single string version of the address.
+* @property {string} regionCode CLDR (Common Locale Data Repository) region code .
 * @property {string} postalCode Values are frequently alphanumeric.
 * @property {string} sortingCode Use of this code is very country-specific, but will refer to a secondary
 classification code for sorting mail.
 * @property {string} languageCode Language code of the address. Should be in BCP 47 format.
 * @property {string[]} addressLine The following address lines represent the most specific part of any
 address.
-* @property {string} locality Generally refers to the city/town portion of an address.
-* @property {string} administrativeArea Top-level administrative subdivision of this country.
-* @property {partners(v2).LatLng} latLng The latitude and longitude of the location, in degrees.
 */
 /**
  * @typedef ExamToken
@@ -1068,24 +1129,21 @@ member-only events and special promotional offers for Google products.
  * @typedef Rank
  * @memberOf! partners(v2)
  * @type object
- * @property {number} value The numerical value of the rank.
  * @property {string} type The type of rank.
- */
-/**
- * @typedef GetPartnersStatusResponse
- * @memberOf! partners(v2)
- * @type object
- * @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
+ * @property {number} value The numerical value of the rank.
  */
 /**
  * @typedef UserProfile
  * @memberOf! partners(v2)
  * @type object
+* @property {string} familyName The user&#39;s family name.
+* @property {partners(v2).OptIns} emailOptIns The list of opt-ins for the user, related to communication preferences.
+* @property {string[]} languages The list of languages this user understands.
 * @property {string[]} markets A list of ids representing which markets the user was interested in.
+* @property {string} phoneNumber The user&#39;s phone number.
 * @property {string} adwordsManagerAccount If the user has edit access to multiple accounts, the user can choose the
 preferred account and it is used when a personal account is needed. Can
 be empty.
-* @property {string} phoneNumber The user&#39;s phone number.
 * @property {string} primaryCountryCode The user&#39;s primary country, an ISO 2-character code.
 * @property {string} emailAddress The email address the user has selected on the Partners site as primary.
 * @property {string[]} channels A list of ids representing which channels the user selected they were in.
@@ -1094,19 +1152,17 @@ be empty.
 * @property {string} givenName The user&#39;s given name.
 * @property {partners(v2).Location} address The user&#39;s mailing address, contains multiple fields.
 * @property {string[]} industries A list of ids representing which industries the user selected.
-* @property {partners(v2).OptIns} emailOptIns The list of opt-ins for the user, related to communication preferences.
-* @property {string} familyName The user&#39;s family name.
-* @property {string[]} languages The list of languages this user understands.
 */
+/**
+ * @typedef GetPartnersStatusResponse
+ * @memberOf! partners(v2)
+ * @type object
+ * @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
+ */
 /**
  * @typedef HistoricalOffer
  * @memberOf! partners(v2)
  * @type object
- * @property {string} clientId ID of client.
- * @property {string} clientName Name of the client.
- * @property {string} lastModifiedTime Time last action was taken.
- * @property {string} adwordsUrl Client&#39;s AdWords page URL.
- * @property {string} offerType Type of offer.
  * @property {string} senderName Name (First + Last) of the partners user to whom the incentive is allocated.
  * @property {string} offerCountryCode Country Code for the offer country.
  * @property {string} expirationTime Time this offer expires.
@@ -1114,18 +1170,23 @@ be empty.
  * @property {string} creationTime Time offer was first created.
  * @property {string} status Status of the offer.
  * @property {string} clientEmail Email address for client.
+ * @property {string} clientId ID of client.
+ * @property {string} clientName Name of the client.
+ * @property {string} lastModifiedTime Time last action was taken.
+ * @property {string} adwordsUrl Client&#39;s AdWords page URL.
+ * @property {string} offerType Type of offer.
  */
 /**
  * @typedef LogUserEventRequest
  * @memberOf! partners(v2)
  * @type object
+ * @property {string} url The URL where the event occurred.
+ * @property {partners(v2).RequestMetadata} requestMetadata Current request metadata.
+ * @property {partners(v2).EventData[]} eventDatas List of event data for the event.
+ * @property {string} eventScope The scope of the event.
  * @property {string} eventCategory The category the action belongs to.
  * @property {partners(v2).Lead} lead Advertiser lead information.
  * @property {string} eventAction The action that occurred.
- * @property {string} url The URL where the event occurred.
- * @property {partners(v2).RequestMetadata} requestMetadata Current request metadata.
- * @property {string} eventScope The scope of the event.
- * @property {partners(v2).EventData[]} eventDatas List of event data for the event.
  */
 /**
  * @typedef UserOverrides
@@ -1138,9 +1199,9 @@ be empty.
  * @typedef AnalyticsDataPoint
  * @memberOf! partners(v2)
  * @type object
+* @property {partners(v2).LatLng[]} eventLocations Location information of where these events occurred.
 * @property {integer} eventCount Number of times the type of event occurred.
 Meaning depends on context (e.g. profile views, contacts, etc.).
-* @property {partners(v2).LatLng[]} eventLocations Location information of where these events occurred.
 */
 /**
  * @typedef Analytics
@@ -1165,11 +1226,11 @@ on the specified date.
  * @typedef PublicProfile
  * @memberOf! partners(v2)
  * @type object
+ * @property {string} displayName The display name of the public profile.
+ * @property {string} displayImageUrl The URL to the main display image of the public profile. Being deprecated.
  * @property {string} id The ID which can be used to retrieve more details about the public profile.
  * @property {string} url The URL of the public profile.
  * @property {string} profileImage The URL to the main profile image of the public profile.
- * @property {string} displayName The display name of the public profile.
- * @property {string} displayImageUrl The URL to the main display image of the public profile. Being deprecated.
  */
 /**
  * @typedef ResponseMetadata
@@ -1181,8 +1242,8 @@ on the specified date.
  * @typedef RecaptchaChallenge
  * @memberOf! partners(v2)
  * @type object
- * @property {string} response The response to the reCaptcha challenge.
  * @property {string} id The ID of the reCaptcha challenge.
+ * @property {string} response The response to the reCaptcha challenge.
  */
 /**
  * @typedef AvailableOffer
@@ -1212,6 +1273,7 @@ on the specified date.
  * @typedef Money
  * @memberOf! partners(v2)
  * @type object
+* @property {string} currencyCode The 3-letter currency code defined in ISO 4217.
 * @property {integer} nanos Number of nano (10^-9) units of the amount.
 The value must be between -999,999,999 and +999,999,999 inclusive.
 If `units` is positive, `nanos` must be positive or zero.
@@ -1220,26 +1282,33 @@ If `units` is negative, `nanos` must be negative or zero.
 For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
 * @property {string} units The whole units of the amount.
 For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
-* @property {string} currencyCode The 3-letter currency code defined in ISO 4217.
 */
 /**
  * @typedef AnalyticsSummary
  * @memberOf! partners(v2)
  * @type object
+* @property {integer} profileViewsCount Aggregated number of profile views for the `Company` for given date range.
 * @property {integer} searchViewsCount Aggregated number of times users saw the `Company`
 in Google Partners Search results for given date range.
 * @property {integer} contactsCount Aggregated number of times users contacted the `Company`
 for given date range.
-* @property {integer} profileViewsCount Aggregated number of profile views for the `Company` for given date range.
 */
 /**
  * @typedef LogMessageRequest
  * @memberOf! partners(v2)
  * @type object
- * @property {string} level Message level of client message.
- * @property {string} details Details about the client message.
  * @property {object} clientInfo Map of client info, such as URL, browser navigator, browser platform, etc.
  * @property {partners(v2).RequestMetadata} requestMetadata Current request metadata.
+ * @property {string} level Message level of client message.
+ * @property {string} details Details about the client message.
+ */
+/**
+ * @typedef DebugInfo
+ * @memberOf! partners(v2)
+ * @type object
+ * @property {string} serviceUrl URL of the service that handled this request.
+ * @property {string} serverInfo Info about the server that serviced this request.
+ * @property {string} serverTraceInfo Server-side debug stack trace.
  */
 /**
  * @typedef Lead
@@ -1250,66 +1319,58 @@ for given date range.
 * @property {string} createTime Timestamp of when this lead was created.
 * @property {boolean} marketingOptIn Whether or not the lead signed up for marketing emails
 * @property {string} type Type of lead.
-* @property {string} givenName First name of lead source.
 * @property {partners(v2).Money} minMonthlyBudget The minimum monthly budget lead source is willing to spend.
-* @property {string} websiteUrl Website URL of lead source.
+* @property {string} givenName First name of lead source.
 * @property {string} languageCode Language code of the lead&#39;s language preference, as defined by
 &lt;a href=&quot;https://tools.ietf.org/html/bcp47&quot;&gt;BCP 47&lt;/a&gt;
 (IETF BCP 47, &quot;Tags for Identifying Languages&quot;).
+* @property {string} websiteUrl Website URL of lead source.
 * @property {string} state The lead&#39;s state in relation to the company.
 * @property {string[]} gpsMotivations List of reasons for using Google Partner Search and creating a lead.
 * @property {string} email Email address of lead source.
 * @property {string} familyName Last name of lead source.
-* @property {string} comments Comments lead source gave.
 * @property {string} id ID of the lead.
+* @property {string} comments Comments lead source gave.
 */
-/**
- * @typedef DebugInfo
- * @memberOf! partners(v2)
- * @type object
- * @property {string} serviceUrl URL of the service that handled this request.
- * @property {string} serverInfo Info about the server that serviced this request.
- * @property {string} serverTraceInfo Server-side debug stack trace.
- */
 /**
  * @typedef ListUserStatesResponse
  * @memberOf! partners(v2)
  * @type object
- * @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
  * @property {string[]} userStates User&#39;s states.
+ * @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
  */
 /**
  * @typedef CompanyRelation
  * @memberOf! partners(v2)
  * @type object
-* @property {boolean} companyAdmin Indicates if the user is an admin for this company.
-* @property {string} address The primary address for this company.
-* @property {boolean} isPending The flag that indicates if the company is pending verification.
-* @property {string} creationTime The timestamp of when affiliation was requested.
-@OutputOnly
 * @property {string} state The state of relationship, in terms of approvals.
-* @property {string} managerAccount The AdWords manager account # associated this company.
 * @property {string} name The name (in the company&#39;s primary language) for the company.
+* @property {string} managerAccount The AdWords manager account # associated this company.
 * @property {string[]} segment The segment the company is classified as.
 * @property {partners(v2).SpecializationStatus[]} specializationStatus The list of Google Partners specialization statuses for the company.
 * @property {string} badgeTier Whether the company is a Partner.
-* @property {string} website The website URL for this company.
 * @property {string} phoneNumber The phone number for the company&#39;s primary address.
+* @property {string} website The website URL for this company.
 * @property {string} companyId The ID of the company. There may be no id if this is a
 pending company.5
 * @property {string} logoUrl A URL to a profile photo, e.g. a G+ profile photo.
 * @property {string} resolvedTimestamp The timestamp when the user was approved.
+@OutputOnly
+* @property {boolean} companyAdmin Indicates if the user is an admin for this company.
+* @property {string} address The primary address for this company.
+* @property {boolean} isPending The flag that indicates if the company is pending verification.
+* @property {string} creationTime The timestamp of when affiliation was requested.
 @OutputOnly
 */
 /**
  * @typedef Date
  * @memberOf! partners(v2)
  * @type object
-* @property {integer} month Month of year. Must be from 1 to 12.
 * @property {integer} year Year of date. Must be from 1 to 9999, or 0 if specifying a date without
 a year.
 * @property {integer} day Day of month. Must be from 1 to 31 and valid for the year and month, or 0
 if specifying a year/month where the day is not significant.
+* @property {integer} month Month of year. Must be from 1 to 12.
 */
 /**
  * @typedef Empty
@@ -1328,84 +1389,23 @@ An identifier has multiple letters created by a team which redirected the
 traffic to us.
 */
 /**
- * @typedef CreateLeadRequest
- * @memberOf! partners(v2)
- * @type object
-* @property {partners(v2).Lead} lead The lead resource. The `LeadType` must not be `LEAD_TYPE_UNSPECIFIED`
-and either `email` or `phone_number` must be provided.
-* @property {partners(v2).RecaptchaChallenge} recaptchaChallenge &lt;a href=&quot;https://www.google.com/recaptcha/&quot;&gt;reCaptcha&lt;/a&gt; challenge info.
-* @property {partners(v2).RequestMetadata} requestMetadata Current request metadata.
-*/
-/**
  * @typedef RequestMetadata
  * @memberOf! partners(v2)
  * @type object
+* @property {string[]} experimentIds Experiment IDs the current request belongs to.
+* @property {partners(v2).TrafficSource} trafficSource Source of traffic for the current request.
 * @property {string} locale Locale to use for the current request.
 * @property {partners(v2).UserOverrides} userOverrides Values to use instead of the user&#39;s respective defaults for the current
 request. These are only honored by whitelisted products.
 * @property {string} partnersSessionId Google Partners session ID.
-* @property {string[]} experimentIds Experiment IDs the current request belongs to.
-* @property {partners(v2).TrafficSource} trafficSource Source of traffic for the current request.
 */
 /**
- * @typedef EventData
+ * @typedef CreateLeadRequest
  * @memberOf! partners(v2)
  * @type object
- * @property {string} key Data type.
- * @property {string[]} values Data values.
- */
-/**
- * @typedef ExamStatus
- * @memberOf! partners(v2)
- * @type object
- * @property {string} expiration Date this exam is due to expire.
- * @property {boolean} warning Whether this exam is in the state of warning.
- * @property {string} lastPassed The date the user last passed this exam.
- * @property {string} examType The type of the exam.
- * @property {boolean} passed Whether this exam has been passed and not expired.
- * @property {string} taken The date the user last taken this exam.
- */
-/**
- * @typedef ListOffersResponse
- * @memberOf! partners(v2)
- * @type object
- * @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
- * @property {string} noOfferReason Reason why no Offers are available.
- * @property {partners(v2).AvailableOffer[]} availableOffers Available Offers to be distributed.
- */
-/**
- * @typedef CountryOfferInfo
- * @memberOf! partners(v2)
- * @type object
- * @property {string} getYAmount (localized) Get Y amount for that country&#39;s offer.
- * @property {string} offerCountryCode Country code for which offer codes may be requested.
- * @property {string} spendXAmount (localized) Spend X amount for that country&#39;s offer.
- * @property {string} offerType Type of offer country is eligible for.
- */
-/**
- * @typedef ListCompaniesResponse
- * @memberOf! partners(v2)
- * @type object
-* @property {partners(v2).Company[]} companies The list of companies.
-* @property {string} nextPageToken A token to retrieve next page of results.
-Pass this value in the `ListCompaniesRequest.page_token` field in the
-subsequent call to
-ListCompanies to retrieve the
-next page of results.
-* @property {partners(v2).ResponseMetadata} responseMetadata Current response metadata.
+* @property {partners(v2).RequestMetadata} requestMetadata Current request metadata.
+* @property {partners(v2).Lead} lead The lead resource. The `LeadType` must not be `LEAD_TYPE_UNSPECIFIED`
+and either `email` or `phone_number` must be provided.
+* @property {partners(v2).RecaptchaChallenge} recaptchaChallenge &lt;a href=&quot;https://www.google.com/recaptcha/&quot;&gt;reCaptcha&lt;/a&gt; challenge info.
 */
-/**
- * @typedef OfferCustomer
- * @memberOf! partners(v2)
- * @type object
- * @property {string} adwordsUrl URL to the customer&#39;s AdWords page.
- * @property {string} countryCode Country code of the customer.
- * @property {string} externalCid External CID for the customer.
- * @property {string} creationTime Time the customer was created.
- * @property {integer} eligibilityDaysLeft Days the customer is still eligible.
- * @property {string} offerType Type of the offer
- * @property {string} getYAmount Formatted Get Y amount with currency code.
- * @property {string} name Name of the customer.
- * @property {string} spendXAmount Formatted Spend X amount with currency code.
- */
 module.exports = Partners;

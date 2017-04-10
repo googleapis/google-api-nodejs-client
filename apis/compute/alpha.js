@@ -357,7 +357,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.addresses.setLabels
      *
-     * @desc Sets the labels on an Address. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets the labels on an Address. To learn more about labels, read the Labeling Resources documentation.
      *
      * @alias compute.addresses.setLabels
      * @memberOf! compute(alpha)
@@ -636,7 +636,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.autoscaler Name of the autoscaler to update.
+     * @param {string=} params.autoscaler Name of the autoscaler to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
      * @param {string} params.zone Name of the zone for this request.
@@ -658,7 +658,7 @@ function Compute(options) { // eslint-disable-line
           method: 'PATCH'
         }, options),
         params: params,
-        requiredParams: ['project', 'zone', 'autoscaler'],
+        requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
         context: self
       };
@@ -748,6 +748,44 @@ function Compute(options) { // eslint-disable-line
   self.backendBuckets = {
 
     /**
+     * compute.backendBuckets.addSignedUrlKey
+     *
+     * @desc Adds the given Signed URL Key to the backend bucket.
+     *
+     * @alias compute.backendBuckets.addSignedUrlKey
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendBucket Name of the BackendBucket resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {compute(alpha).SignedUrlKey} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addSignedUrlKey: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{backendBucket}/addSignedUrlKey',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.backendBuckets.delete
      *
      * @desc Deletes the specified BackendBucket resource.
@@ -777,6 +815,44 @@ function Compute(options) { // eslint-disable-line
         }, options),
         params: params,
         requiredParams: ['project', 'backendBucket'],
+        pathParams: ['backendBucket', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.backendBuckets.deleteSignedUrlKey
+     *
+     * @desc Deletes the given Signed URL Key from the backend bucket.
+     *
+     * @alias compute.backendBuckets.deleteSignedUrlKey
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendBucket Name of the BackendBucket resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param {string} params.keyName The name of the Signed URL Key to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteSignedUrlKey: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{backendBucket}/deleteSignedUrlKey',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'backendBucket', 'keyName'],
         pathParams: ['backendBucket', 'project'],
         context: self
       };
@@ -1087,6 +1163,44 @@ function Compute(options) { // eslint-disable-line
   self.backendServices = {
 
     /**
+     * compute.backendServices.addSignedUrlKey
+     *
+     * @desc Adds the given Signed URL Key to the specified backend service.
+     *
+     * @alias compute.backendServices.addSignedUrlKey
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {compute(alpha).SignedUrlKey} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    addSignedUrlKey: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}/addSignedUrlKey',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.backendServices.aggregatedList
      *
      * @desc Retrieves the list of all BackendService resources, regional and global, available to the specified project.
@@ -1155,6 +1269,44 @@ function Compute(options) { // eslint-disable-line
         }, options),
         params: params,
         requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.backendServices.deleteSignedUrlKey
+     *
+     * @desc Deletes the given Signed URL Key from the specified backend service.
+     *
+     * @alias compute.backendServices.deleteSignedUrlKey
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
+     * @param {string} params.keyName The name of the Signed URL Key to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    deleteSignedUrlKey: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}/deleteSignedUrlKey',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'backendService', 'keyName'],
         pathParams: ['backendService', 'project'],
         context: self
       };
@@ -1339,6 +1491,44 @@ function Compute(options) { // eslint-disable-line
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}',
           method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'backendService'],
+        pathParams: ['backendService', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.backendServices.setSecurityPolicy
+     *
+     * @desc Sets the security policy for the specified backend service.
+     *
+     * @alias compute.backendServices.setSecurityPolicy
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.backendService Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {compute(alpha).SecurityPolicyReference} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setSecurityPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}/setSecurityPolicy',
+          method: 'POST'
         }, options),
         params: params,
         requiredParams: ['project', 'backendService'],
@@ -2135,7 +2325,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.disks.setLabels
      *
-     * @desc Sets the labels on a disk. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets the labels on a disk. To learn more about labels, read the Labeling Resources documentation.
      *
      * @alias compute.disks.setLabels
      * @memberOf! compute(alpha)
@@ -2674,7 +2864,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.forwardingRules.setLabels
      *
-     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling Resources documentation.
      *
      * @alias compute.forwardingRules.setLabels
      * @memberOf! compute(alpha)
@@ -2943,7 +3133,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalAddresses.setLabels
      *
-     * @desc Sets the labels on a GlobalAddress. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets the labels on a GlobalAddress. To learn more about labels, read the Labeling Resources documentation.
      *
      * @alias compute.globalAddresses.setLabels
      * @memberOf! compute(alpha)
@@ -3170,7 +3360,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalForwardingRules.setLabels
      *
-     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling Resources documentation.
      *
      * @alias compute.globalForwardingRules.setLabels
      * @memberOf! compute(alpha)
@@ -4964,7 +5154,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.images.setLabels
      *
-     * @desc Sets the labels on an image. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets the labels on an image. To learn more about labels, read the Labeling Resources documentation.
      *
      * @alias compute.images.setLabels
      * @memberOf! compute(alpha)
@@ -5353,7 +5543,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.patch
      *
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports patch semantics.
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group have not yet been patchd. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports patch semantics.
      *
      * @alias compute.instanceGroupManagers.patch
      * @memberOf! compute(alpha)
@@ -6715,6 +6905,47 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.instances.listReferrers
+     *
+     * @desc Retrieves the list of referrers to instances contained within the specified zone.
+     *
+     * @alias compute.instances.listReferrers
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {string} params.instance Name of the target instance scoping this request, or '-' if the request should span over all instances in the container.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.zone The name of the zone for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    listReferrers: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/referrers',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'zone', 'instance'],
+        pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.instances.reset
      *
      * @desc Performs a hard reset on the instance.
@@ -6833,7 +7064,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instances.setLabels
      *
-     * @desc Sets labels on an instance. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets labels on an instance. To learn more about labels, read the Labeling Resources documentation.
      *
      * @alias compute.instances.setLabels
      * @memberOf! compute(alpha)
@@ -8562,7 +8793,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.autoscaler Name of the autoscaler to update.
+     * @param {string=} params.autoscaler Name of the autoscaler to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
@@ -8584,7 +8815,7 @@ function Compute(options) { // eslint-disable-line
           method: 'PATCH'
         }, options),
         params: params,
-        requiredParams: ['project', 'region', 'autoscaler'],
+        requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
         context: self
       };
@@ -9811,7 +10042,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.patch
      *
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports patch semantics.
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group have not yet been patched. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports patch semantics.
      *
      * @alias compute.regionInstanceGroupManagers.patch
      * @memberOf! compute(alpha)
@@ -11095,6 +11326,234 @@ function Compute(options) { // eslint-disable-line
 
   };
 
+  self.securityPolicies = {
+
+    /**
+     * compute.securityPolicies.delete
+     *
+     * @desc Deletes the specified policy.
+     *
+     * @alias compute.securityPolicies.delete
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {string} params.securityPolicy Name of the security policy to delete.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/securityPolicies/{securityPolicy}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.get
+     *
+     * @desc List all of the ordered rules present in a single specified policy.
+     *
+     * @alias compute.securityPolicies.get
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.securityPolicy Name of the security policy to update.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/securityPolicies/{securityPolicy}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.insert
+     *
+     * @desc Creates a new policy in the specified project using the data included in the request.
+     *
+     * @alias compute.securityPolicies.insert
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {compute(alpha).SecurityPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/securityPolicies',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.list
+     *
+     * @desc List all the policies that have been configured for the specified project.
+     *
+     * @alias compute.securityPolicies.list
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/securityPolicies',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.patch
+     *
+     * @desc Patches the specified policy with the data included in the request.
+     *
+     * @alias compute.securityPolicies.patch
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {string} params.securityPolicy Name of the security policy to update.
+     * @param {compute(alpha).SecurityPolicy} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/securityPolicies/{securityPolicy}',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'securityPolicy'],
+        pathParams: ['project', 'securityPolicy'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.securityPolicies.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.securityPolicies.testIamPermissions
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      var parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/securityPolicies/{resource}/testIamPermissions',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
   self.snapshots = {
 
     /**
@@ -11285,7 +11744,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.snapshots.setLabels
      *
-     * @desc Sets the labels on a snapshot. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets the labels on a snapshot. To learn more about labels, read the Labeling Resources documentation.
      *
      * @alias compute.snapshots.setLabels
      * @memberOf! compute(alpha)
@@ -14473,7 +14932,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.vpnTunnels.setLabels
      *
-     * @desc Sets the labels on a VpnTunnel. To learn more about labels, read the Labeling or Tagging Resources documentation.
+     * @desc Sets the labels on a VpnTunnel. To learn more about labels, read the Labeling Resources documentation.
      *
      * @alias compute.vpnTunnels.setLabels
      * @memberOf! compute(alpha)
@@ -14814,6 +15273,7 @@ function Compute(options) { // eslint-disable-line
  * @memberOf! compute(alpha)
  * @type object
 * @property {string} address The static external IP address represented by this resource. Only IPv4 is supported.
+* @property {string} addressType The type of address to reserve. If unspecified, defaults to EXTERNAL.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -14828,6 +15288,9 @@ To see the latest fingerprint, make a get() request to retrieve an Address.
 * @property {string} region [Output Only] URL of the region where the regional address resides. This field is not applicable to global addresses.
 * @property {string} selfLink [Output Only] Server-defined URL for the resource.
 * @property {string} status [Output Only] The status of the address, which can be either IN_USE or RESERVED. An address that is RESERVED is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
+* @property {string} subnetwork For external addresses, this field should not be used.
+
+The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork&#39;s IP range.
 * @property {string[]} users [Output Only] The URLs of the resources that are using this address.
 */
 /**
@@ -14942,7 +15405,7 @@ Instance templates do not store customer-supplied encryption keys, so you cannot
  * @type object
  * @property {compute(alpha).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
  * @property {string[]} exemptedMembers 
- * @property {string} service Specifies a service that will be enabled for audit logging. For example, `resourcemanager`, `storage`, `compute`. `allServices` is a special value that covers all services.
+ * @property {string} service Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
  */
 /**
  * @typedef AuditLogConfig
@@ -15936,6 +16399,8 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 - this property, or  
 - the rawDisk.source property, or  
 - the sourceDisk property   in order to create an image.
+* @property {compute(alpha).CustomerEncryptionKey} sourceImageEncryptionKey The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
+* @property {string} sourceImageId [Output Only] The ID value of the image used to create this image. This value may be used to determine whether the image was taken from the current or a previous instance of a given image name.
 * @property {string} sourceType The type of the image used to create this disk. The default and only value is RAW
 * @property {string} status [Output Only] The status of the image. An image can be used to create other resources, such as instances, only after the image has been successfully created and the status is set to READY. Possible values are FAILED, PENDING, or READY.
 */
@@ -15958,7 +16423,7 @@ To see the latest fingerprint, make a get() request to retrieve an image.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
 * @property {compute(alpha).AttachedDisk[]} disks Array of disks associated with this instance. Persistent disks must be created before you can assign them.
-* @property {compute(alpha).AcceleratorConfig[]} guestAccelerators 
+* @property {compute(alpha).AcceleratorConfig[]} guestAccelerators List of the type and count of accelerator cards attached to the instance.
 * @property {string} host Full or partial URL of the host resource that the instance should be placed on, in the format: zones/zone/hosts/host.
 
 Optional, Private Host (physical machine) that the instance will be placed on when it&#39;s created. The instance is guaranteed to be placed on the same machine as other instances with the same private host.
@@ -16274,6 +16739,16 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
+ * @typedef InstanceListReferrers
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(alpha).Reference[]} items [Output Only] A list of referrers.
+ * @property {string} kind [Output Only] Type of resource. Always compute#instanceListReferrers for lists of Instance referrers.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
  * @typedef InstanceMoveRequest
  * @memberOf! compute(alpha)
  * @type object
@@ -16293,6 +16768,7 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {boolean} canIpForward Enables instances created based on this template to send packets with source IP addresses other than their own and receive packets with destination IP addresses other than their own. If these instances will be used as an IP gateway or it will be set as the next-hop in a Route resource, specify true. If unsure, leave this set to false. See the Enable IP forwarding for instances documentation for more information.
  * @property {string} description An optional text description for the instances that are created from this instance template.
  * @property {compute(alpha).AttachedDisk[]} disks An array of disks that are associated with the instances that are created from this template.
+ * @property {compute(alpha).AcceleratorConfig[]} guestAccelerators A list of guest accelerator cards&#39; type and count to use for instances created from the instance template.
  * @property {object} labels Labels to apply to instances that are created from this template.
  * @property {string} machineType The machine type to use for instances that are created from this template.
  * @property {compute(alpha).Metadata} metadata The metadata key/value pairs to assign to instances that are created from this template. These pairs can consist of custom metadata or predefined keys. See Project and instance metadata for more information.
@@ -16358,7 +16834,7 @@ You can see which instances is being creating in which mode by calling the get o
  * @typedef InstancesSetMachineResourcesRequest
  * @memberOf! compute(alpha)
  * @type object
- * @property {compute(alpha).AcceleratorConfig[]} guestAccelerators 
+ * @property {compute(alpha).AcceleratorConfig[]} guestAccelerators List of the type and count of accelerator cards attached to the instance.
  */
 /**
  * @typedef InstancesSetMachineTypeRequest
@@ -16742,6 +17218,16 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @property {number} usage [Output Only] Current usage of this metric.
  */
 /**
+ * @typedef Reference
+ * @memberOf! compute(alpha)
+ * @type object
+* @property {string} kind [Output Only] Type of the resource. Always compute#reference for references.
+* @property {string} referenceType A description of the reference type with no implied semantics. Possible values include:  
+- MEMBER_OF
+* @property {string} referrer URL of the resource which refers to the target.
+* @property {string} target URL of the resource to which this reference points.
+*/
+/**
  * @typedef Region
  * @memberOf! compute(alpha)
  * @type object
@@ -16981,7 +17467,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @memberOf! compute(alpha)
  * @type object
  * @property {string} ipRange IP address and range of the interface. The IP range must be in the RFC3927 link-local IP space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
- * @property {string} linkedVpnTunnel URI of linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource.
+ * @property {string} linkedVpnTunnel URI of the linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.
  * @property {string} name Name of this interface entry. The name must be 1-63 characters long and comply with RFC1035.
  */
 /**
@@ -17069,6 +17555,53 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {boolean} preemptible Whether the instance is preemptible.
  */
 /**
+ * @typedef SecurityPoliciesList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(alpha).SecurityPolicy[]} items [Output Only] A list of SecurityPolicy resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#securityPoliciesList for listsof securityPolicies
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ */
+/**
+ * @typedef SecurityPolicy
+ * @memberOf! compute(alpha)
+ * @type object
+* @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+* @property {string} description An optional description of this resource. Provide this property when you create the resource.
+* @property {string} fingerprint Specifies a fingerprint for this resource, which is essentially a hash of the metadata&#39;s contents and used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update metadata. You must always provide an up-to-date fingerprint hash in order to update or change metadata.
+
+To see the latest fingerprint, make get() request to the security policy.
+* @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+* @property {string} kind [Output only] Type of the resource. Always compute#securityPolicyfor security policies
+* @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+* @property {compute(alpha).SecurityPolicyRule[]} rules List of rules that belong to this policy. There must always be a default rule (rule with priority 2147483647 and match &quot;*&quot;). If no rules are provided when creating a security policy, a default rule with action &quot;allow&quot; will be added.
+* @property {string} selfLink [Output Only] Server-defined URL for the resource.
+*/
+/**
+ * @typedef SecurityPolicyReference
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} securityPolicy 
+ */
+/**
+ * @typedef SecurityPolicyRule
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} action The Action to preform when the client connection triggers the rule. Can currently be either &quot;allow&quot; or &quot;deny()&quot; where valid values for status are 403, 404, and 502.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} kind [Output only] Type of the resource. Always compute#rulefor security policies
+ * @property {compute(alpha).SecurityPolicyRuleMatcher} match A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding ?action? is enforced.
+ * @property {boolean} preview If set to true, the specified action is not enforced.
+ * @property {integer} priority An integer indicating the priority of a rule in the list. Rules are evaluated in the increasing order of priority.
+ */
+/**
+ * @typedef SecurityPolicyRuleMatcher
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string[]} srcIpRanges CIDR IP address range. Only IPv4 is supported.
+ */
+/**
  * @typedef SerialPortOutput
  * @memberOf! compute(alpha)
  * @type object
@@ -17084,6 +17617,13 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @type object
  * @property {string} email Email address of the service account.
  * @property {string[]} scopes The list of scopes to be made available for this service account.
+ */
+/**
+ * @typedef SignedUrlKey
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} keyName Name of the key. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} keyValue 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
  */
 /**
  * @typedef Snapshot

@@ -156,6 +156,11 @@ function Runtimeconfig(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef Empty
+ * @memberOf! runtimeconfig(v1)
+ * @type object
+ */
+/**
  * @typedef CancelOperationRequest
  * @memberOf! runtimeconfig(v1)
  * @type object
@@ -164,12 +169,12 @@ function Runtimeconfig(options) { // eslint-disable-line
  * @typedef Status
  * @memberOf! runtimeconfig(v1)
  * @type object
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
 * @property {object[]} details A list of messages that carry the error details.  There will be a
 common set of message types for APIs to use.
 * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
 */
 /**
  * @typedef ListOperationsResponse
@@ -182,6 +187,9 @@ common set of message types for APIs to use.
  * @typedef Operation
  * @memberOf! runtimeconfig(v1)
  * @type object
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
 * @property {object} response The normal response of the operation in case of success.  If the original
 method returns no data on success, such as `Delete`, the response is
 `google.protobuf.Empty`.  If the original method is standard
@@ -198,13 +206,5 @@ originally returns it. If you use the default HTTP mapping, the
 contains progress information and common metadata such as create time.
 Some services might not provide such metadata.  Any method that returns a
 long-running operation should document the metadata type, if any.
-* @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
-available.
 */
-/**
- * @typedef Empty
- * @memberOf! runtimeconfig(v1)
- * @type object
- */
 module.exports = Runtimeconfig;
