@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "alwaysStrict": true
+    },
+    "files": [
+        "scripts/generate.ts",
+        "lib/generator.ts",
+        "lib/generator_utils.ts",
+        "lib/transporters.ts"
+    ]
+}
