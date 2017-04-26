@@ -16,8 +16,8 @@
 
 /* jshint maxlen: false */
 
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 {% set Name = name|capitalize %}
 {% set Version = version|replace('\.', '_')|capitalize %}
@@ -29,8 +29,8 @@ var utils = require('../../lib/utils');
  * {{ description }}
  *
  * @example
- * var google = require('googleapis');
- * var {{ name }} = google.{{ name }}('{{ version }}');
+ * const google = require('googleapis');
+ * const {{ name }} = google.{{ name }}('{{ version }}');
  *
  * @namespace {{ name }}
  * @type {Function}
@@ -39,7 +39,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for {{ Name }}
  */
 function {{ Name }} (options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
 {% if methods %}

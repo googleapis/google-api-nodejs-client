@@ -11,19 +11,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function getDiscoveryUrl (name, version) {
-  return 'https://www.googleapis.com/discovery/v1/apis/' + name +
-    '/' + version + '/rest';
-}
-
-function loadApi (google, name, version, options, cb) {
-  if (typeof options === 'function') {
-    cb = options;
-    options = {};
+abstract class utils {
+  public static getDiscoveryUrl (name, version) {
+    return 'https://www.googleapis.com/discovery/v1/apis/' + name +
+      '/' + version + '/rest';
   }
-  return google.discoverAPI(getDiscoveryUrl(name, version), options, cb);
-}
 
-exports.getDiscoveryUrl = getDiscoveryUrl;
-exports.loadApi = loadApi;
-exports.noop = function () {};
+  public static loadApi (google, name, version, options, cb) {
+    if (typeof options === 'function') {
+      cb = options;
+      options = {};
+    }
+    return google.discoverAPI(utils.getDiscoveryUrl(name, version), options, cb);
+  }
+
+  public static readonly noop = () => {};
+}
+export default utils;
+

@@ -11,19 +11,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var assert = require('power-assert');
-var googleapis = require('../');
-var nock = require('nock');
-var utils = require('./utils');
+import * as assert from 'power-assert';
+import * as nock from 'nock';
+import utils from './utils';
+let googleapis = require('../');
 
 describe('drive:v2', () => {
-  var localDrive, remoteDrive;
+  let localDrive, remoteDrive;
 
   before((done) => {
     nock.cleanAll();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
-    utils.loadApi(google, 'drive', 'v2', (err, drive) => {
+    utils.loadApi(google, 'drive', 'v2', {}, (err, drive) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
@@ -36,7 +36,7 @@ describe('drive:v2', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     localDrive = google.drive('v2');
   });
 
@@ -89,7 +89,7 @@ describe('drive:v2', () => {
       });
 
       it('should return a Request object', (done) => {
-        var req = localDrive.files.insert({}, utils.noop);
+        let req = localDrive.files.insert({}, utils.noop);
         assert.equal(req.constructor.name, 'Request');
         req = remoteDrive.files.insert({}, utils.noop);
         assert.equal(req.constructor.name, 'Request');
@@ -109,14 +109,14 @@ describe('drive:v2', () => {
       });
 
       it('should return a Request object', () => {
-        var req = localDrive.files.get({ fileId: '123' }, utils.noop);
+        let req = localDrive.files.get({ fileId: '123' }, utils.noop);
         assert.equal(req.constructor.name, 'Request');
         req = remoteDrive.files.get({ fileId: '123' }, utils.noop);
         assert.equal(req.constructor.name, 'Request');
       });
 
       it('should use logError callback if no callback specified', (done) => {
-        var scope = nock('https://www.googleapis.com')
+        const scope = nock('https://www.googleapis.com')
           .get('/drive/v2/files?q=hello')
           .times(2)
           .reply(501, { error: 'not a real error' });
@@ -124,8 +124,8 @@ describe('drive:v2', () => {
         // logError internally uses console.error - let's monkey-patch the
         // function to intercept calls to it, then restore the original function
         // once we are done testing
-        var origFn = console.error;
-        var count = 0;
+        const origFn = console.error;
+        let count = 0;
         console.error = (err) => {
           count++;
           assert.equal(err.code, 501);
@@ -158,7 +158,7 @@ describe('drive:v2', () => {
 
   describe('.files.list()', () => {
     it('should not return missing param error', (done) => {
-      var scope = nock('https://www.googleapis.com')
+      const scope = nock('https://www.googleapis.com')
         .get('/drive/v2/files?q=hello')
         .times(2)
         .reply(200);

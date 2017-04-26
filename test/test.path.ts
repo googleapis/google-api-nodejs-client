@@ -11,19 +11,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var assert = require('power-assert');
-var googleapis = require('../');
-var nock = require('nock');
-var utils = require('./utils');
+import * as assert from 'power-assert';
+import * as nock from 'nock';
+import utils from './utils';
+let googleapis = require('../');
 
 describe('Path params', () => {
-  var localDrive, remoteDrive;
+  let localDrive, remoteDrive;
 
   before((done) => {
     nock.cleanAll();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
-    utils.loadApi(google, 'drive', 'v2', (err, drive) => {
+    utils.loadApi(google, 'drive', 'v2', {}, (err, drive) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
@@ -36,7 +36,7 @@ describe('Path params', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     localDrive = google.drive('v2');
   });
 
@@ -81,21 +81,21 @@ describe('Path params', () => {
   });
 
   it('should return null request object if not included and required', () => {
-    var req = localDrive.files.get({}, utils.noop);
+    let req = localDrive.files.get({}, utils.noop);
     assert.equal(req, null);
     req = remoteDrive.files.get({}, utils.noop);
     assert.equal(req, null);
   });
 
   it('should return null request object if not included and required and no callback', () => {
-    var req = localDrive.files.get({}, utils.noop);
+    let req = localDrive.files.get({}, utils.noop);
     assert.equal(req, null);
     req = remoteDrive.files.get({}, utils.noop);
     assert.equal(req, null);
   });
 
   it('should not be modifiable directly', () => {
-    var options = { fileId: '123' };
+    const options = { fileId: '123' };
     assert.doesNotThrow(() => {
       // should not modify options object
       localDrive.files.get(options, utils.noop);
@@ -106,35 +106,35 @@ describe('Path params', () => {
   });
 
   it('should be put in URL of path', () => {
-    var req = localDrive.files.get({ fileId: 'abc123' }, utils.noop);
+    let req = localDrive.files.get({ fileId: 'abc123' }, utils.noop);
     assert.equal(req.uri.path, '/drive/v2/files/abc123');
     req = remoteDrive.files.get({ fileId: 'abc123' }, utils.noop);
     assert.equal(req.uri.path, '/drive/v2/files/abc123');
   });
 
   it('should be put in URL of pathname', () => {
-    var req = localDrive.files.get({ fileId: '123abc' }, utils.noop);
+    let req = localDrive.files.get({ fileId: '123abc' }, utils.noop);
     assert.equal(req.uri.pathname, '/drive/v2/files/123abc');
     req = remoteDrive.files.get({ fileId: '123abc' }, utils.noop);
     assert.equal(req.uri.pathname, '/drive/v2/files/123abc');
   });
 
   it('should not be urlencoded', () => {
-    var req = localDrive.files.get({ fileId: 'p@ram' }, utils.noop);
+    let req = localDrive.files.get({ fileId: 'p@ram' }, utils.noop);
     assert.equal(req.uri.path.split('/').pop(), 'p@ram');
     req = remoteDrive.files.get({ fileId: 'p@ram' }, utils.noop);
     assert.equal(req.uri.path.split('/').pop(), 'p@ram');
   });
 
   it('should keep query params null if only path params', () => {
-    var req = localDrive.files.get({ fileId: '123abc' }, utils.noop);
+    let req = localDrive.files.get({ fileId: '123abc' }, utils.noop);
     assert.equal(req.uri.query, null);
     req = remoteDrive.files.get({ fileId: '123abc' }, utils.noop);
     assert.equal(req.uri.query, null);
   });
 
   it('should keep query params as is', () => {
-    var req = localDrive.files.get({ fileId: '123abc', hello: 'world' }, utils.noop);
+    let req = localDrive.files.get({ fileId: '123abc', hello: 'world' }, utils.noop);
     assert.equal(req.uri.query, 'hello=world');
     req = remoteDrive.files.get({ fileId: '123abc', hello: 'world' }, utils.noop);
     assert.equal(req.uri.query, 'hello=world');

@@ -11,11 +11,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var googleauth = require('./googleauth.js');
-var utils = googleauth.utils;
-var DefaultTransporter = googleauth.transporters;
-var stream = require('stream');
-var parseString = require('string-template');
+const googleauth = require('./googleauth.js');
+const utils = googleauth.utils;
+const DefaultTransporter = googleauth.transporters;
+const stream = require('stream');
+const parseString = require('string-template');
 
 function isReadableStream (obj) {
   return obj instanceof stream.Stream &&
@@ -34,7 +34,7 @@ function createCallback (callback) {
 }
 
 function getMissingParams (params, required) {
-  var missing = [];
+  const missing = [];
 
   required.forEach(function (param) {
     // Is the required param in the params object?
@@ -54,9 +54,9 @@ function getMissingParams (params, required) {
  * @return {Request}             Returns Request object or null
  */
 function createAPIRequest (parameters, callback) {
-  var req, body, missingParams;
-  var params = parameters.params;
-  var options = utils.extend({}, parameters.options);
+  let req, body, missingParams;
+  let params = parameters.params;
+  let options = utils.extend({}, parameters.options);
 
   // If the params are not present, and callback was passed instead,
   // use params as the callback and create empty params.
@@ -74,25 +74,25 @@ function createAPIRequest (parameters, callback) {
     params // API call params
   );
 
-  var media = params.media || {};
-  var resource = params.resource;
-  var authClient = params.auth ||
+  const media = params.media || {};
+  const resource = params.resource;
+  let authClient = params.auth ||
     parameters.context._options.auth ||
     parameters.context.google._options.auth;
 
-  var defaultMime = typeof media.body === 'string' ? 'text/plain' : 'application/octet-stream';
+  const defaultMime = typeof media.body === 'string' ? 'text/plain' : 'application/octet-stream';
   delete params.media;
   delete params.resource;
   delete params.auth;
 
   // Grab headers from user provided options
-  var headers = params.headers || {};
+  const headers = params.headers || {};
   delete params.headers;
 
   // Un-alias parameters that were modified due to conflicts with reserved names
   Object.keys(params).forEach(function (key) {
     if (key.slice(-1) === '_') {
-      var newKey = key.slice(0, -1);
+      const newKey = key.slice(0, -1);
       params[newKey] = params[key];
       delete params[key];
     }

@@ -43,7 +43,7 @@
   }
   options || (options = {});
 
-  var parameters = {
+  const parameters = {
     options: utils.extend({
       url: {{ (rootUrl + servicePath + m.path)|buildurl }},
       method: '{{ m.httpMethod }}'

@@ -11,26 +11,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var assert = require('power-assert');
-var async = require('async');
-var googleapis = require('../');
-var nock = require('nock');
-var utils = require('./utils');
+import * as assert from 'power-assert';
+import * as async from 'async';
+import * as nock from 'nock';
+import utils from './utils';
+let googleapis = require('../');
 
 describe('Query params', () => {
-  var localDrive, remoteDrive;
-  var localGmail, remoteGmail;
+  let localDrive, remoteDrive;
+  let localGmail, remoteGmail;
 
   before((done) => {
     nock.cleanAll();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
-        utils.loadApi(google, 'drive', 'v2', cb);
+        utils.loadApi(google, 'drive', 'v2', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'gmail', 'v1', cb);
+        utils.loadApi(google, 'gmail', 'v1', {}, cb);
       }
     ], (err, apis) => {
       if (err) {
@@ -46,55 +46,55 @@ describe('Query params', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     localDrive = google.drive('v2');
     localGmail = google.gmail('v1');
   });
 
   it('should not append ? with no query parameters', () => {
-    var uri = localDrive.files.get({ fileId: 'ID' }, utils.noop).uri;
+    let uri = localDrive.files.get({ fileId: 'ID' }, utils.noop).uri;
     assert.equal(-1, uri.href.indexOf('?'));
     uri = remoteDrive.files.get({ fileId: 'ID' }, utils.noop).uri;
     assert.equal(-1, uri.href.indexOf('?'));
   });
 
   it('should be null if no object passed', () => {
-    var req = localDrive.files.list(utils.noop);
+    let req = localDrive.files.list(utils.noop);
     assert.equal(req.uri.query, null);
     req = remoteDrive.files.list(utils.noop);
     assert.equal(req.uri.query, null);
   });
 
   it('should be null if params passed are in path', () => {
-    var req = localDrive.files.get({ fileId: '123' }, utils.noop);
+    let req = localDrive.files.get({ fileId: '123' }, utils.noop);
     assert.equal(req.uri.query, null);
     req = remoteDrive.files.get({ fileId: '123' }, utils.noop);
     assert.equal(req.uri.query, null);
   });
 
   it('should be set if params passed are optional query params', () => {
-    var req = localDrive.files.get({ fileId: '123', updateViewedDate: true }, utils.noop);
+    let req = localDrive.files.get({ fileId: '123', updateViewedDate: true }, utils.noop);
     assert.equal(req.uri.query, 'updateViewedDate=true');
     req = remoteDrive.files.get({ fileId: '123', updateViewedDate: true }, utils.noop);
     assert.equal(req.uri.query, 'updateViewedDate=true');
   });
 
   it('should be set if params passed are unknown params', () => {
-    var req = localDrive.files.get({ fileId: '123', madeThisUp: 'hello' }, utils.noop);
+    let req = localDrive.files.get({ fileId: '123', madeThisUp: 'hello' }, utils.noop);
     assert.equal(req.uri.query, 'madeThisUp=hello');
     req = remoteDrive.files.get({ fileId: '123', madeThisUp: 'hello' }, utils.noop);
     assert.equal(req.uri.query, 'madeThisUp=hello');
   });
 
   it('should be set if params passed are aliased names', () => {
-    var req = localDrive.files.get({ fileId: '123', resource_: 'hello' }, utils.noop);
+    let req = localDrive.files.get({ fileId: '123', resource_: 'hello' }, utils.noop);
     assert.equal(req.uri.query, 'resource=hello');
     req = remoteDrive.files.get({ fileId: '123', resource_: 'hello' }, utils.noop);
     assert.equal(req.uri.query, 'resource=hello');
   });
 
   it('should chain together with & in order', () => {
-    var req = localDrive.files.get({
+    let req = localDrive.files.get({
       fileId: '123',
       madeThisUp: 'hello',
       thisToo: 'world'
@@ -109,13 +109,13 @@ describe('Query params', () => {
   });
 
   it('should not include auth if auth is an OAuth2Client object', () => {
-    var oauth2client = new googleapis.auth.OAuth2(
+    const oauth2client = new googleapis.auth.OAuth2(
       'CLIENT_ID',
       'CLIENT_SECRET',
       'REDIRECT_URI'
     );
     oauth2client.setCredentials({ access_token: 'abc123' });
-    var req = localDrive.files.get({
+    let req = localDrive.files.get({
       fileId: '123',
       auth: oauth2client
     }, utils.noop);
@@ -128,7 +128,7 @@ describe('Query params', () => {
   });
 
   it('should handle multi-value query params properly', () => {
-    var req = localGmail.users.messages.get({
+    let req = localGmail.users.messages.get({
       userId: 'me',
       id: 'abc123',
       metadataHeaders: ['To', 'Date']

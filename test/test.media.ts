@@ -11,24 +11,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var assert = require('power-assert');
-var async = require('async');
-var fs = require('fs');
-var googleapis = require('../');
-var nock = require('nock');
-var path = require('path');
-var utils = require('./utils');
+import * as assert from 'power-assert';
+import * as async from 'async';
+import * as fs from 'fs';
+import * as nock from 'nock';
+import * as path from 'path';
+import utils from './utils';
+let googleapis = require('../');
 
-var boundaryPrefix = 'multipart/related; boundary=';
+const boundaryPrefix = 'multipart/related; boundary=';
 
 function testMultpart (drive, cb) {
-  var resource = { title: 'title', mimeType: 'text/plain' };
-  var media = { body: 'hey' };
-  var expectedResp = fs.readFileSync(
+  const resource = { title: 'title', mimeType: 'text/plain' };
+  const media = { body: 'hey' };
+  let expectedResp = fs.readFileSync(
     path.join(__dirname, '/fixtures/media-response.txt'),
     { encoding: 'utf8' }
   );
-  var req = drive.files.insert({ resource: resource, media: media }, (err, body) => {
+  const req = drive.files.insert({ resource: resource, media: media }, (err, body) => {
     if (err) {
       return cb(err);
     }
@@ -38,7 +38,7 @@ function testMultpart (drive, cb) {
       'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart'
     );
     assert.equal(req.headers['content-type'].indexOf('multipart/related;'), 0);
-    var boundary = req.headers['content-type'].replace(boundaryPrefix, '');
+    const boundary = req.headers['content-type'].replace(boundaryPrefix, '');
     expectedResp = expectedResp
         .replace(/\n/g, '\r\n')
         .replace(/\$boundary/g, boundary)
@@ -52,13 +52,13 @@ function testMultpart (drive, cb) {
 }
 
 function testMediaBody (drive, cb) {
-  var resource = { title: 'title' };
-  var media = { body: 'hey' };
-  var expectedResp = fs.readFileSync(
+  const resource = { title: 'title' };
+  const media = { body: 'hey' };
+  let expectedResp = fs.readFileSync(
     path.join(__dirname, '/fixtures/media-response.txt'),
     { encoding: 'utf8' }
   );
-  var req = drive.files.insert({ resource: resource, media: media }, (err, body) => {
+  const req = drive.files.insert({ resource: resource, media: media }, (err, body) => {
     if (err) {
       return cb(err);
     }
@@ -68,7 +68,7 @@ function testMediaBody (drive, cb) {
       'https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart'
     );
     assert.equal(req.headers['content-type'].indexOf('multipart/related;'), 0);
-    var boundary = req.headers['content-type'].replace(boundaryPrefix, '');
+    const boundary = req.headers['content-type'].replace(boundaryPrefix, '');
     expectedResp = expectedResp
         .replace(/\n/g, '\r\n')
         .replace(/\$boundary/g, boundary)
@@ -82,19 +82,19 @@ function testMediaBody (drive, cb) {
 }
 
 describe('Media', () => {
-  var localDrive, remoteDrive;
-  var localGmail, remoteGmail;
+  let localDrive, remoteDrive;
+  let localGmail, remoteGmail;
 
   before((done) => {
     nock.cleanAll();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
-        utils.loadApi(google, 'drive', 'v2', cb);
+        utils.loadApi(google, 'drive', 'v2', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'gmail', 'v1', cb);
+      utils.loadApi(google, 'gmail', 'v1', {}, cb);
       }
     ], (err, apis) => {
       if (err) {
@@ -110,13 +110,13 @@ describe('Media', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     localDrive = google.drive('v2');
     localGmail = google.gmail('v1');
   });
 
   it('should post with uploadType=multipart if resource and media set', (done) => {
-    var scope = nock('https://www.googleapis.com')
+    const scope = nock('https://www.googleapis.com')
         .post('/upload/drive/v2/files?uploadType=multipart')
         .times(2)
         .reply(200, { fileId: 'abc123' });
@@ -138,7 +138,7 @@ describe('Media', () => {
   });
 
   it('should post with uploadType=media media set but not resource', (done) => {
-    var scope = nock('https://www.googleapis.com')
+    const scope = nock('https://www.googleapis.com')
         .post('/upload/drive/v2/files?uploadType=media')
         .times(2)
         .reply(200, { fileId: 'abc123' });
@@ -159,14 +159,14 @@ describe('Media', () => {
   });
 
   it('should generate a valid media upload if media is set, metadata is not set', (done) => {
-    var scope = nock('https://www.googleapis.com')
+    const scope = nock('https://www.googleapis.com')
       .post('/upload/drive/v2/files?uploadType=media')
       .times(2)
       .reply(201, (uri, reqBody) => {
         return reqBody; // return request body as response for testing purposes
       });
-    var media = { body: 'hey' };
-    var req = localDrive.files.insert({ media: media }, (err, body) => {
+    const media = { body: 'hey' };
+    let req = localDrive.files.insert({ media: media }, (err, body) => {
       if (err) {
         return done(err);
       }
@@ -193,7 +193,7 @@ describe('Media', () => {
   });
 
   it('should generate valid multipart upload if media and metadata are both set', (done) => {
-    var scope = nock('https://www.googleapis.com')
+    const scope = nock('https://www.googleapis.com')
       .post('/upload/drive/v2/files?uploadType=multipart')
       .times(2)
       .reply(201, (uri, reqBody) => {
@@ -215,7 +215,7 @@ describe('Media', () => {
   });
 
   it('should not require parameters for insertion requests', () => {
-    var req = localDrive.files.insert({
+    let req = localDrive.files.insert({
       someAttr: 'someValue',
       media: { body: 'wat' }
     }, utils.noop);
@@ -228,14 +228,14 @@ describe('Media', () => {
   });
 
   it('should not multipart upload if no media body given', () => {
-    var req = localDrive.files.insert({ someAttr: 'someValue' }, utils.noop);
+    let req = localDrive.files.insert({ someAttr: 'someValue' }, utils.noop);
     assert.equal(req.uri.query, 'someAttr=someValue');
     req = remoteDrive.files.insert({ someAttr: 'someValue' }, utils.noop);
     assert.equal(req.uri.query, 'someAttr=someValue');
   });
 
   it('should set text/plain when passed a string as media body', (done) => {
-    var scope = nock('https://www.googleapis.com')
+    const scope = nock('https://www.googleapis.com')
       .post('/upload/drive/v2/files?uploadType=multipart')
       .times(2)
       .reply(201, (uri, reqBody) => {
@@ -257,14 +257,14 @@ describe('Media', () => {
   });
 
   it('should handle metadata-only media requests properly', (done) => {
-    var scope = nock('https://www.googleapis.com')
+    const scope = nock('https://www.googleapis.com')
       .post('/gmail/v1/users/me/drafts')
       .times(2)
       .reply(201, (uri, reqBody) => {
         return reqBody; // return request body as response for testing purposes
       });
-    var resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
-    var req = localGmail.users.drafts.create(
+    const resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
+    let req = localGmail.users.drafts.create(
       { userId: 'me', resource: resource, media: { mimeType: 'message/rfc822' } },
       (err, resp) => {
         if (err) {
@@ -289,15 +289,15 @@ describe('Media', () => {
   });
 
   it('should accept readable stream as media body without metadata', (done) => {
-    var scope = nock('https://www.googleapis.com')
+    const scope = nock('https://www.googleapis.com')
       .post('/upload/gmail/v1/users/me/drafts?uploadType=media')
       .times(2)
       .reply(201, (uri, reqBody) => {
         return reqBody; // return request body as response for testing purposes
       });
 
-    var body = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
-    var expectedBody = fs.readFileSync(path.join(__dirname, '/fixtures/mediabody.txt'));
+    let body = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
+    let expectedBody = fs.readFileSync(path.join(__dirname, '/fixtures/mediabody.txt'));
     localGmail.users.drafts.create({
       userId: 'me',
       media: {
@@ -329,22 +329,22 @@ describe('Media', () => {
   });
 
   it('should accept readable stream as media body with metadata', (done) => {
-    var scope = nock('https://www.googleapis.com')
+    const scope = nock('https://www.googleapis.com')
       .post('/upload/gmail/v1/users/me/drafts?uploadType=multipart')
       .times(2)
       .reply(201, (uri, reqBody) => {
         return reqBody; // return request body as response for testing purposes
       });
 
-    var resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
-    var body = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
-    var bodyString = fs.readFileSync(path.join(__dirname, '/fixtures/mediabody.txt'), { encoding: 'utf8' });
-    var media = { mimeType: 'message/rfc822', body: body };
-    var expectedBody = fs.readFileSync(
+    let resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
+    let body = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
+    let bodyString = fs.readFileSync(path.join(__dirname, '/fixtures/mediabody.txt'), { encoding: 'utf8' });
+    let media = { mimeType: 'message/rfc822', body: body };
+    let expectedBody = fs.readFileSync(
       path.join(__dirname, '/fixtures/media-response.txt'),
       { encoding: 'utf8' }
     );
-    var req = localGmail.users.drafts.create({
+    let req = localGmail.users.drafts.create({
       userId: 'me',
       resource: resource,
       media: media
@@ -352,7 +352,7 @@ describe('Media', () => {
       if (err) {
         return done(err);
       }
-      var boundary = req.headers['content-type'].replace(boundaryPrefix, '');
+      const boundary = req.headers['content-type'].replace(boundaryPrefix, '');
       expectedBody = expectedBody
           .replace(/\n/g, '\r\n')
           .replace(/\$boundary/g, boundary)
@@ -377,7 +377,7 @@ describe('Media', () => {
         if (err) {
           return done(err);
         }
-        var boundary = req.headers['content-type'].replace(boundaryPrefix, '');
+        const boundary = req.headers['content-type'].replace(boundaryPrefix, '');
         expectedBody = expectedBody
             .replace(/\n/g, '\r\n')
             .replace(/\$boundary/g, boundary)
@@ -393,16 +393,16 @@ describe('Media', () => {
   });
 
   it('should return err, {object}body, resp for streaming media requests', (done) => {
-    var scope = nock('https://www.googleapis.com')
+    const scope = nock('https://www.googleapis.com')
       .post('/upload/gmail/v1/users/me/drafts?uploadType=multipart')
       .times(2)
       .reply(201, () => {
         return JSON.stringify({ hello: 'world' });
       });
 
-    var resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
-    var body = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
-    var media = { mimeType: 'message/rfc822', body: body };
+    let resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
+    let body = fs.createReadStream(path.join(__dirname, '/fixtures/mediabody.txt'));
+    let media = { mimeType: 'message/rfc822', body: body };
     localGmail.users.drafts.create({
       userId: 'me',
       resource: resource,

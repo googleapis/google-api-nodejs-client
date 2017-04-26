@@ -11,18 +11,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var path = require('path');
-var fs = require('fs');
-var util = require('util');
-var Discovery = require('./discovery');
-var discovery = new Discovery({ debug: false, includePrivate: false });
+const path = require('path');
+const fs = require('fs');
+const util = require('util');
+const Discovery = require('./discovery');
+const discovery = new Discovery({ debug: false, includePrivate: false });
 
 /**
  * Load the apis from apis index file
  * This file holds all version information
  * @private
  */
-var apis = {};
+const apis = {};
 
 /**
  * Return a Function that requires an API from the disk
@@ -32,8 +32,8 @@ var apis = {};
  */
 function requireAPI (filename) {
   return function (options) {
-    var type = typeof options;
-    var version;
+    const type = typeof options;
+    let version;
     if (type === 'string') {
       version = options;
       options = {};
@@ -44,9 +44,9 @@ function requireAPI (filename) {
       throw new Error('Argument error: Accepts only string or object');
     }
     try {
-      var endpointPath = path.join(__dirname, filename, path.basename(version));
-      var Endpoint = require(endpointPath);
-      var ep = new Endpoint(options);
+      const endpointPath = path.join(__dirname, filename, path.basename(version));
+      const Endpoint = require(endpointPath);
+      const ep = new Endpoint(options);
       ep.google = this; // for drive.google.transporter
       return Object.freeze(ep); // create new & freeze
     } catch (e) {
@@ -64,14 +64,14 @@ fs.readdirSync(path.join(__dirname, '../apis')).forEach(function (file) {
 /**
  * @class GoogleAuth
  */
-var GoogleAuth = require('google-auth-library');
+const GoogleAuth = require('google-auth-library');
 
 /**
  * GoogleApis constructor.
  *
  * @example
- * var GoogleApis = require('googleapis').GoogleApis;
- * var google = new GoogleApis();
+ * const GoogleApis = require('googleapis').GoogleApis;
+ * const google = new GoogleApis();
  *
  * @class GoogleApis
  * @param {Object} [options] Configuration options.
@@ -117,7 +117,7 @@ GoogleApis.prototype.options = function (options) {
  * @private
  */
 GoogleApis.prototype.addAPIs = function (apis) {
-  for (var apiName in apis) {
+  for (const apiName in apis) {
     this[apiName] = apis[apiName].bind(this);
   }
 };
@@ -127,10 +127,10 @@ GoogleApis.prototype.addAPIs = function (apis) {
  * discovered APIs.
  *
  * @example
- * var google = require('googleapis');
- * var discoveryUrl = 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/';
+ * const google = require('googleapis');
+ * const discoveryUrl = 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/';
  * google.discover(discoveryUrl, function (err) {
- *   var someapi = google.someapi('v1');
+ *   const someapi = google.someapi('v1');
  * });
  *
  * @name GoogleApis#discover
@@ -140,7 +140,7 @@ GoogleApis.prototype.addAPIs = function (apis) {
  * @param {Function} callback Callback function.
  */
 GoogleApis.prototype.discover = function (url, callback) {
-  var self = this;
+  const self = this;
 
   discovery.discoverAllAPIs(url, function (err, apis) {
     if (err) {
@@ -155,8 +155,8 @@ GoogleApis.prototype.discover = function (url, callback) {
  * Dynamically generate an Endpoint object from a discovery doc.
  *
  * @example
- * var google = require('google');
- * var discoveryDocUrl = 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/someapi/v1/rest';
+ * const google = require('google');
+ * const discoveryDocUrl = 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/someapi/v1/rest';
  * google.discoverApi(discoveryDocUrl, function (err, someapi) {
  *   // use someapi
  * });
@@ -169,7 +169,7 @@ GoogleApis.prototype.discover = function (url, callback) {
  * @param {Function} callback Callback function.
  */
 GoogleApis.prototype.discoverAPI = function (path, options, callback) {
-  var self = this;
+  const self = this;
   if (typeof options === 'function') {
     callback = options;
     options = {};
@@ -181,7 +181,7 @@ GoogleApis.prototype.discoverAPI = function (path, options, callback) {
     if (err) {
       return callback(err);
     }
-    var ep = new Endpoint(options);
+    const ep = new Endpoint(options);
     ep.google = self; // for drive.google.transporter
     return callback(null, Object.freeze(ep)); // create new & freeze
   });
@@ -205,7 +205,7 @@ GoogleApis.prototype.discoverAPI = function (path, options, callback) {
 
 /**
  * @example
- * var google = require('googleapis');
+ * const google = require('googleapis');
  *
  * @module googleapis
  * @type {GoogleApis}

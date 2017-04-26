@@ -11,28 +11,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var assert = require('power-assert');
-var async = require('async');
-var fs = require('fs');
-var googleapis = require('../');
-var nock = require('nock');
-var path = require('path');
-var utils = require('./utils');
+import * as assert from 'power-assert';
+import * as async from 'async';
+import * as fs from 'fs';
+import * as nock from 'nock';
+import * as path from 'path';
+import utils from './utils';
+let googleapis = require('../');
 
 describe('Clients', () => {
-  var localPlus, remotePlus;
-  var localOauth2, remoteOauth2;
+  let localPlus, remotePlus;
+  let localOauth2, remoteOauth2;
 
   before((done) => {
     nock.cleanAll();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
-        utils.loadApi(google, 'plus', 'v1', cb);
+        utils.loadApi(google, 'plus', 'v1', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'oauth2', 'v2', cb);
+        utils.loadApi(google, 'oauth2', 'v2', {}, cb);
       }
     ], (err, apis) => {
       if (err) {
@@ -48,13 +48,13 @@ describe('Clients', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     localPlus = google.plus('v1');
     localOauth2 = google.oauth2('v2');
   });
 
   it('should create request helpers according to resource on discovery API response', () => {
-    var plus = localPlus;
+    let plus = localPlus;
     assert.equal(typeof plus.people.get, 'function');
     assert.equal(typeof plus.activities.search, 'function');
     assert.equal(typeof plus.comments.list, 'function');
@@ -70,7 +70,7 @@ describe('Clients', () => {
   });
 
   it('should be able to gen top level methods and resources', () => {
-    var oauth2 = localOauth2;
+    let oauth2 = localOauth2;
     assert.equal(typeof oauth2.tokeninfo, 'function');
     assert.equal(typeof oauth2.userinfo, 'object');
     oauth2 = remoteOauth2;
@@ -79,7 +79,7 @@ describe('Clients', () => {
   });
 
   it('should be able to gen nested resources and methods', () => {
-    var oauth2 = localOauth2;
+    let oauth2 = localOauth2;
     assert.equal(typeof oauth2.userinfo, 'object');
     assert.equal(typeof oauth2.userinfo.v2, 'object');
     assert.equal(typeof oauth2.userinfo.v2.me, 'object');
@@ -97,12 +97,12 @@ describe('Clients', () => {
       if (typeof files_ === 'undefined') {
         files_ = [];
       }
-      var files = fs.readdirSync(dir);
-      for (var i in files) {
+      const files = fs.readdirSync(dir);
+      for (const i in files) {
         if (!files.hasOwnProperty(i)) {
           continue;
         }
-        var name = dir + '/' + files[i];
+        const name = dir + '/' + files[i];
         if (fs.statSync(name).isDirectory()) {
           getFiles(name, files_);
         } else {
@@ -114,10 +114,10 @@ describe('Clients', () => {
       return files_;
     }
 
-    var apiFiles = getFiles(path.join(__dirname, '/../apis'));
+    const apiFiles = getFiles(path.join(__dirname, '/../apis'));
 
     assert.doesNotThrow(() => {
-      for (var i in apiFiles) {
+      for (const i in apiFiles) {
         try {
           require(apiFiles[i]);
         } catch (err) {
@@ -129,16 +129,16 @@ describe('Clients', () => {
   });
 
   it('should support default params', (done) => {
-    var google = new googleapis.GoogleApis();
-    var datastore = google.datastore({
+    const google = new googleapis.GoogleApis();
+    const datastore = google.datastore({
       version: 'v1beta3',
       params: { myParam: '123' }
     });
-    var req = datastore.projects.lookup({ projectId: 'test-project-id' }, utils.noop);
+    const req = datastore.projects.lookup({ projectId: 'test-project-id' }, utils.noop);
     // If the default param handling is broken, query might be undefined, thus
     // concealing the assertion message with some generic "cannot call .indexOf
     // of undefined"
-    var query = req.uri.query || '';
+    const query = req.uri.query || '';
 
     assert.notEqual(
       query.indexOf('myParam=123'),
@@ -153,8 +153,8 @@ describe('Clients', () => {
       if (err) {
         return done(err);
       }
-      var req = datastore.projects.lookup({ projectId: 'test-project-id' }, utils.noop);
-      var query = req.uri.query || '';
+      const req = datastore.projects.lookup({ projectId: 'test-project-id' }, utils.noop);
+      const query = req.uri.query || '';
 
       assert.notEqual(
         query.indexOf('myParam=123'),
@@ -166,19 +166,19 @@ describe('Clients', () => {
   });
 
   it('should allow default params to be overriden per-request', (done) => {
-    var google = new googleapis.GoogleApis();
-    var datastore = google.datastore({
+    const google = new googleapis.GoogleApis();
+    const datastore = google.datastore({
       version: 'v1beta3',
       params: { myParam: '123' }
     });
     // Override the default datasetId param for this particular API call
-    var req = datastore.projects.lookup({
+    const req = datastore.projects.lookup({
       projectId: 'test-project-id', myParam: '456'
     }, utils.noop);
     // If the default param handling is broken, query might be undefined, thus
     // concealing the assertion message with some generic "cannot call .indexOf
     // of undefined"
-    var query = req.uri.query || '';
+    const query = req.uri.query || '';
 
     assert.notEqual(
       query.indexOf('myParam=456'),
@@ -195,13 +195,13 @@ describe('Clients', () => {
         return done(err);
       }
       // Override the default datasetId param for this particular API call
-      var req = datastore.projects.lookup({
+      const req = datastore.projects.lookup({
         projectId: 'test-project-id', myParam: '456'
       }, utils.noop);
       // If the default param handling is broken, query might be undefined, thus
       // concealing the assertion message with some generic "cannot call .indexOf
       // of undefined"
-      var query = req.uri.query || '';
+      const query = req.uri.query || '';
 
       assert.notEqual(
         query.indexOf('myParam=456'),
@@ -213,8 +213,8 @@ describe('Clients', () => {
   });
 
   it('should include default params when only callback is provided to API call', (done) => {
-    var google = new googleapis.GoogleApis();
-    var datastore = google.datastore({
+    const google = new googleapis.GoogleApis();
+    const datastore = google.datastore({
       version: 'v1beta3',
       params: {
         projectId: 'test-project-id', // We must set this here - it is a required param
@@ -222,10 +222,10 @@ describe('Clients', () => {
       }
     });
     // No params given - only callback
-    var req = datastore.projects.lookup(utils.noop);
+    const req = datastore.projects.lookup(utils.noop);
     // If the default param handling is broken, req or query might be undefined, thus concealing the
     // assertion message with some generic "cannot call .indexOf of undefined"
-    var query = (req && req.uri.query) || '';
+    const query = (req && req.uri.query) || '';
 
     assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
 
@@ -241,11 +241,11 @@ describe('Clients', () => {
         return done(err);
       }
       // No params given - only callback
-      var req = datastore.projects.lookup(utils.noop);
+      const req = datastore.projects.lookup(utils.noop);
       // If the default param handling is broken, req or query might be
       // undefined, thus concealing the assertion message with some generic
       // "cannot call .indexOf of undefined"
-      var query = (req && req.uri.query) || '';
+      const query = (req && req.uri.query) || '';
 
       assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
       done();

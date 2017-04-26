@@ -11,14 +11,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var assert = require('power-assert');
-var async = require('async');
-var googleapis = require('../');
-var nock = require('nock');
-var utils = require('./utils');
+import * as assert from 'power-assert';
+import * as async from 'async';
+import * as nock from 'nock';
+import utils from './utils';
+let googleapis = require('../');
 
 function testHeaders (drive) {
-  var req = drive.comments.insert({
+  const req = drive.comments.insert({
     fileId: 'a',
     headers: {
       'If-None-Match': '12345'
@@ -28,20 +28,20 @@ function testHeaders (drive) {
 }
 
 function testContentType (drive) {
-  var req = drive.comments.insert({
+  const req = drive.comments.insert({
     fileId: 'a'
   }, utils.noop);
   assert.equal(req.headers['content-type'], 'application/json');
 }
 
 function testBody (drive) {
-  var req = drive.files.list(utils.noop);
+  const req = drive.files.list(utils.noop);
   assert.equal(req.headers['content-type'], null);
   assert.equal(req.body, null);
 }
 
 function testBodyDelete (drive) {
-  var req = drive.files.delete({
+  const req = drive.files.delete({
     fileId: 'test'
   }, utils.noop);
   assert.equal(req.headers['content-type'], null);
@@ -67,7 +67,7 @@ function testNotObjectError (oauth2, cb) {
 }
 
 function testBackendError (urlshortener, cb) {
-  var obj = { longUrl: 'http://google.com/' };
+  const obj = { longUrl: 'http://google.com/' };
   urlshortener.url.insert({ resource: obj }, (err, result) => {
     assert(err instanceof Error);
     assert.equal(err.code, 500);
@@ -78,23 +78,23 @@ function testBackendError (urlshortener, cb) {
 }
 
 describe('Transporters', () => {
-  var localDrive, remoteDrive;
-  var localOauth2, remoteOauth2;
-  var localUrlshortener, remoteUrlshortener;
+  let localDrive, remoteDrive;
+  let localOauth2, remoteOauth2;
+  let localUrlshortener, remoteUrlshortener;
 
   before((done) => {
     nock.cleanAll();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
     async.parallel([
       (cb) => {
-        utils.loadApi(google, 'drive', 'v2', cb);
+        utils.loadApi(google, 'drive', 'v2', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'oauth2', 'v2', cb);
+        utils.loadApi(google, 'oauth2', 'v2', {}, cb);
       },
       (cb) => {
-        utils.loadApi(google, 'urlshortener', 'v1', cb);
+        utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
       }
     ], (err, apis) => {
       if (err) {
@@ -111,7 +111,7 @@ describe('Transporters', () => {
   beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     localDrive = google.drive('v2');
     localOauth2 = google.oauth2('v2');
     localUrlshortener = google.urlshortener('v1');
@@ -138,7 +138,7 @@ describe('Transporters', () => {
   });
 
   it('should return errors within response body as instances of Error', (done) => {
-    var scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
       .get('/drive/v2/files?q=hello')
       .times(2)
       // Simulate an error returned via response body from Google's API endpoint
@@ -153,7 +153,7 @@ describe('Transporters', () => {
   });
 
   it('should return error message correctly when error is not an object', (done) => {
-    var scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
       .post('/oauth2/v2/tokeninfo?access_token=hello')
       .times(2)
       // Simulate an error returned via response body from Google's tokeninfo endpoint
@@ -168,7 +168,7 @@ describe('Transporters', () => {
   });
 
   it('should return 5xx responses as errors', (done) => {
-    var scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
       .post('/urlshortener/v1/url')
       .times(2)
       .reply(500, 'There was an error!');
@@ -182,7 +182,7 @@ describe('Transporters', () => {
   });
 
   it('should handle 5xx responses that include errors', (done) => {
-    var scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
       .post('/urlshortener/v1/url')
       .times(2)
       .reply(500, { error: { message: 'There was an error!' } });
@@ -196,7 +196,7 @@ describe('Transporters', () => {
   });
 
   it('should handle a Backend Error', (done) => {
-    var scope = nock('https://www.googleapis.com', { allowUnmocked: true })
+    const scope = nock('https://www.googleapis.com', { allowUnmocked: true })
       .post('/urlshortener/v1/url')
       .times(2)
       .reply(500, {

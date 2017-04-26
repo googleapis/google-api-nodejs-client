@@ -11,27 +11,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var generatorUtils = require('./generator_utils');
-var DefaultTransporter = generatorUtils.DefaultTransporter;
-var buildurl = generatorUtils.buildurl;
-var handleError = generatorUtils.handleError;
-var async = require('async');
-var swig = require('swig');
-var beautify = require('js-beautify').js_beautify;
-var path = require('path');
-var mkdirp = require('mkdirp');
-var fs = require('fs');
-var url = require('url');
-var argv = require('minimist')(process.argv.slice(2));
-var args = argv._;
+const generatorUtils = require('./generator_utils');
+const DefaultTransporter = generatorUtils.DefaultTransporter;
+const buildurl = generatorUtils.buildurl;
+const handleError = generatorUtils.handleError;
+const async = require('async');
+const swig = require('swig');
+const beautify = require('js-beautify').js_beautify;
+const path = require('path');
+const mkdirp = require('mkdirp');
+const fs = require('fs');
+const url = require('url');
+const argv = require('minimist')(process.argv.slice(2));
+const args = argv._;
 
-var DISCOVERY_URL = argv['discovery-url'] ? argv['discovery-url'] : (
+const DISCOVERY_URL = argv['discovery-url'] ? argv['discovery-url'] : (
   args.length ? args[0] : 'https://www.googleapis.com/discovery/v1/apis/'
 );
-var FRAGMENT_URL = 'https://storage.googleapis.com/apisnippets-staging/public/';
+const FRAGMENT_URL = 'https://storage.googleapis.com/apisnippets-staging/public/';
 
-var API_TEMPLATE = './templates/api-endpoint.ts';
-var BEAUTIFY_OPTIONS = {
+const API_TEMPLATE = './templates/api-endpoint.ts';
+const BEAUTIFY_OPTIONS = {
   'indent_size': 2,
   'indent_char': ' ',
   'eol': '\n',
@@ -53,9 +53,9 @@ var BEAUTIFY_OPTIONS = {
   'wrap_attributes_indent_size': 4,
   'end_with_newline': true
 };
-var RESERVED_PARAMS = ['resource', 'media', 'auth'];
-var templateContents = fs.readFileSync(API_TEMPLATE, { encoding: 'utf8' });
-var transporter = new DefaultTransporter();
+const RESERVED_PARAMS = ['resource', 'media', 'auth'];
+const templateContents = fs.readFileSync(API_TEMPLATE, { encoding: 'utf8' });
+const transporter = new DefaultTransporter();
 
 /**
  * A multi-line string is turned into one line.
@@ -88,15 +88,15 @@ function cleanComments (str) {
  * @return {array}        Array of api names
  */
 function getAPIs (items) {
-  var apis = [];
-  for (var i in items) {
+  const apis = [];
+  for (const i in items) {
     apis.push(items[i].name);
   }
   return apis;
 }
 
 function getPathParams (params) {
-  var pathParams = [];
+  const pathParams = [];
   if (typeof params !== 'object') {
     params = {};
   }
@@ -158,8 +158,8 @@ Generator.prototype.log = function () {
  * @throws {Error} If there is an error generating any of the APIs
  */
 Generator.prototype.generateAllAPIs = function (callback) {
-  var self = this;
-  var headers = this.options.includePrivate ? {} : { 'X-User-Ip': '0.0.0.0' };
+  const self = this;
+  const headers = this.options.includePrivate ? {} : { 'X-User-Ip': '0.0.0.0' };
   transporter.request({
     uri: DISCOVERY_URL,
     headers: headers
@@ -167,9 +167,9 @@ Generator.prototype.generateAllAPIs = function (callback) {
     if (err) {
       return handleError(err, callback);
     }
-    var apis = resp.items;
+    const apis = resp.items;
 
-    var queue = async.queue(function (api, next) {
+    const queue = async.queue(function (api, next) {
       self.log('Generating API for %s...', api.id);
       self.generateAPI(api.discoveryRestUrl, function (err, filename) {
         if (err) {
@@ -191,8 +191,8 @@ Generator.prototype.generateAllAPIs = function (callback) {
 
 function getFragmentsForSchema (schema, path, tasks) {
   if (schema.methods) {
-    for (var methodName in schema.methods) {
-      var methodSchema = schema.methods[methodName];
+    for (const methodName in schema.methods) {
+      const methodSchema = schema.methods[methodName];
       methodSchema.sampleUrl = path + '.' + methodName + '.frag.json';
       (function (schema) {
         tasks.push(function (cb) {
@@ -203,12 +203,12 @@ function getFragmentsForSchema (schema, path, tasks) {
               return cb(err);
             }
             if (response && response.codeFragment && response.codeFragment['Node.js']) {
-              var fragment = response.codeFragment['Node.js'].fragment;
+              let fragment = response.codeFragment['Node.js'].fragment;
               fragment = fragment.replace(/\/\*/gi, '/<');
               fragment = fragment.replace(/\*\//gi, '>/');
               fragment = fragment.replace(/`\*/gi, '`<');
               fragment = fragment.replace(/\*`/gi, '>`');
-              var lines = fragment.split('\n');
+              const lines = fragment.split('\n');
               lines.forEach(function (_line, i) {
                 if (_line) {
                   lines[i] = '* ' + lines[i];
@@ -226,7 +226,7 @@ function getFragmentsForSchema (schema, path, tasks) {
     }
   }
   if (schema.resources) {
-    for (var resourceName in schema.resources) {
+    for (const resourceName in schema.resources) {
       getFragmentsForSchema(
         schema.resources[resourceName],
         path + '.' + resourceName,
@@ -248,7 +248,7 @@ Generator.prototype.generateAPI = function (apiDiscoveryUrl, callback) {
       handleError(err, callback);
       return;
     }
-    var tasks = [];
+    const tasks = [];
     getFragmentsForSchema(
       resp,
       FRAGMENT_URL + resp.name + '/' + resp.version + '/0/' + resp.name,
@@ -256,15 +256,15 @@ Generator.prototype.generateAPI = function (apiDiscoveryUrl, callback) {
     );
 
     // e.g. apis/drive/v2.js
-    var exportFilename = path.join(__dirname, '../apis', resp.name, resp.version + '.ts');
-    var contents;
+    const exportFilename = path.join(__dirname, '../apis', resp.name, resp.version + '.ts');
+    let contents;
 
     async.waterfall([
       function (cb) {
         async.parallel(tasks, cb);
       },
       function (results, cb) {
-        var result = swig.render(templateContents, { locals: resp });
+        const result = swig.render(templateContents, { locals: resp });
         contents = beautify(result, BEAUTIFY_OPTIONS);
 
         mkdirp(path.dirname(exportFilename), cb);
@@ -281,7 +281,7 @@ Generator.prototype.generateAPI = function (apiDiscoveryUrl, callback) {
     });
   }
 
-  var parts = url.parse(apiDiscoveryUrl);
+  const parts = url.parse(apiDiscoveryUrl);
 
   if (apiDiscoveryUrl && !parts.protocol) {
     this.log('Reading from file ' + apiDiscoveryUrl);

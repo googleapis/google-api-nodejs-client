@@ -11,17 +11,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var assert = require('power-assert');
-var fs = require('fs');
-var googleapis = require('../');
-var path = require('path');
+import * as assert from 'power-assert';
+import * as fs from 'fs';
+import * as path from 'path';
+let googleapis = require('../');
 
 describe('GoogleApis#discover', () => {
   it('should generate all apis', (done) => {
 
-    var localApis = fs.readdirSync(path.join(__dirname, '../apis'));
-    var google = new googleapis.GoogleApis();
-    var localDrive = google.drive('v2');
+    const localApis = fs.readdirSync(path.join(__dirname, '../apis'));
+    const google = new googleapis.GoogleApis();
+    const localDrive = google.drive('v2');
 
     assert.equal(typeof google.drive, 'function');
     assert.equal(typeof localDrive, 'object');
@@ -42,11 +42,11 @@ describe('GoogleApis#discover', () => {
         assert(google[name]);
       });
 
-      var remoteDrive = google.drive('v2');
+      const remoteDrive = google.drive('v2');
       assert.equal(typeof google.drive, 'function');
       assert.equal(typeof remoteDrive, 'object');
 
-      for (var key in localDrive) {
+      for (const key in localDrive) {
         assert(remoteDrive[key], 'generated drive has same keys');
       }
       done();
