@@ -12,9 +12,9 @@
 // limitations under the License.
 
 'use strict';
-
-var utils = require('./utils.js');
-var DefaultTransporter = require('./transporters.js');
+var googleauth = require('./googleauth.js');
+var utils = googleauth.utils;
+var DefaultTransporter = googleauth.transporters;
 var stream = require('stream');
 var parseString = require('string-template');
 

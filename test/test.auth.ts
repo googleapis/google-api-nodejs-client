@@ -16,6 +16,7 @@
 var assert = require('power-assert');
 var async = require('async');
 var googleapis = require('../');
+var googleauth = require('../lib/googleauth.js');
 var nock = require('nock');
 var utils = require('./utils');
 
@@ -24,7 +25,7 @@ describe('JWT client', function () {
     assert(googleapis.auth.getApplicationDefault);
   });
   it('should create a jwt', function () {
-    var JWT = require('../lib/auth/jwtclient.js');
+    var JWT = googleauth.jwtclient;
     var jwt = new JWT('someone@somewhere.com', 'file1', 'key1', 'scope1', 'subject1');
     assert.equal(jwt.email, 'someone@somewhere.com');
     assert.equal(jwt.keyFile, 'file1');
@@ -60,7 +61,7 @@ describe('JWT client', function () {
 });
 
 describe('Compute client', function () {
-  var Compute = require('../lib/auth/computeclient.js');
+  var Compute = googleauth.computeclient;
 
   it('should create a computeclient', function () {
     var compute = new Compute();

@@ -52,7 +52,7 @@ function handleError (err, callback) {
 }
 
 export = {
-  DefaultTransporter: require('../lib/transporters'),
+  DefaultTransporter: require('../lib/googleauth.js').transporters,
   buildurl: buildurl,
   handleError: handleError
 }
