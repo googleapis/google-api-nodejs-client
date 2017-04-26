@@ -11,8 +11,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-'use strict';
-
 var path = require('path');
 var fs = require('fs');
 var util = require('util');

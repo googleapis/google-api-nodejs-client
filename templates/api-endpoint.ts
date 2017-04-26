@@ -16,8 +16,6 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
 var createAPIRequest = require('../../lib/apirequest');
 var utils = require('../../lib/utils');
 

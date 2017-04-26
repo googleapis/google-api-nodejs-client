@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-'use strict';
-
 var Generator = require('../lib/generator');
 var rimraf = require('rimraf');
 var path = require('path');

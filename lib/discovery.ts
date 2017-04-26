@@ -11,8 +11,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-'use strict';
-
 var generatorUtils = require('./generator_utils');
 var DefaultTransporter = generatorUtils.DefaultTransporter;
 var handleError = generatorUtils.handleError;

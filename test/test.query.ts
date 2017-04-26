@@ -11,8 +11,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-'use strict';
-
 var assert = require('power-assert');
 var async = require('async');
 var googleapis = require('../');
