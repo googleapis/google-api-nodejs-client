@@ -28,7 +28,7 @@ function testMultpart (drive, cb) {
     path.join(__dirname, '/fixtures/media-response.txt'),
     { encoding: 'utf8' }
   );
-  var req = drive.files.insert({ resource: resource, media: media }, function (err, body) {
+  var req = drive.files.insert({ resource: resource, media: media }, (err, body) => {
     if (err) {
       return cb(err);
     }
@@ -58,7 +58,7 @@ function testMediaBody (drive, cb) {
     path.join(__dirname, '/fixtures/media-response.txt'),
     { encoding: 'utf8' }
   );
-  var req = drive.files.insert({ resource: resource, media: media }, function (err, body) {
+  var req = drive.files.insert({ resource: resource, media: media }, (err, body) => {
     if (err) {
       return cb(err);
     }
@@ -81,22 +81,22 @@ function testMediaBody (drive, cb) {
   });
 }
 
-describe('Media', function () {
+describe('Media', () => {
   var localDrive, remoteDrive;
   var localGmail, remoteGmail;
 
-  before(function (done) {
+  before((done) => {
     nock.cleanAll();
     var google = new googleapis.GoogleApis();
     nock.enableNetConnect();
     async.parallel([
-      function (cb) {
+      (cb) => {
         utils.loadApi(google, 'drive', 'v2', cb);
       },
-      function (cb) {
+      (cb) => {
         utils.loadApi(google, 'gmail', 'v1', cb);
       }
-    ], function (err, apis) {
+    ], (err, apis) => {
       if (err) {
         return done(err);
       }
@@ -107,7 +107,7 @@ describe('Media', function () {
     });
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
     var google = new googleapis.GoogleApis();
@@ -115,18 +115,18 @@ describe('Media', function () {
     localGmail = google.gmail('v1');
   });
 
-  it('should post with uploadType=multipart if resource and media set', function (done) {
+  it('should post with uploadType=multipart if resource and media set', (done) => {
     var scope = nock('https://www.googleapis.com')
         .post('/upload/drive/v2/files?uploadType=multipart')
         .times(2)
         .reply(200, { fileId: 'abc123' });
 
-    localDrive.files.insert({ resource: {}, media: { body: 'hello' } }, function (err, body) {
+    localDrive.files.insert({ resource: {}, media: { body: 'hello' } }, (err, body) => {
       if (err) {
         return done(err);
       }
       assert.equal(JSON.stringify(body), JSON.stringify({ fileId: 'abc123' }));
-      remoteDrive.files.insert({ resource: {}, media: { body: 'hello' } }, function (err, body) {
+      remoteDrive.files.insert({ resource: {}, media: { body: 'hello' } }, (err, body) => {
         if (err) {
           return done(err);
         }
@@ -137,17 +137,17 @@ describe('Media', function () {
     });
   });
 
-  it('should post with uploadType=media media set but not resource', function (done) {
+  it('should post with uploadType=media media set but not resource', (done) => {
     var scope = nock('https://www.googleapis.com')
         .post('/upload/drive/v2/files?uploadType=media')
         .times(2)
         .reply(200, { fileId: 'abc123' });
-    localDrive.files.insert({ media: { body: 'hello' } }, function (err, body) {
+    localDrive.files.insert({ media: { body: 'hello' } }, (err, body) => {
       if (err) {
         return done(err);
       }
       assert.equal(JSON.stringify(body), JSON.stringify({ fileId: 'abc123' }));
-      remoteDrive.files.insert({ media: { body: 'hello' } }, function (err, body) {
+      remoteDrive.files.insert({ media: { body: 'hello' } }, (err, body) => {
         if (err) {
           return done(err);
         }
@@ -158,15 +158,15 @@ describe('Media', function () {
     });
   });
 
-  it('should generate a valid media upload if media is set, metadata is not set', function (done) {
+  it('should generate a valid media upload if media is set, metadata is not set', (done) => {
     var scope = nock('https://www.googleapis.com')
       .post('/upload/drive/v2/files?uploadType=media')
       .times(2)
-      .reply(201, function (uri, reqBody) {
+      .reply(201, (uri, reqBody) => {
         return reqBody; // return request body as response for testing purposes
       });
     var media = { body: 'hey' };
-    var req = localDrive.files.insert({ media: media }, function (err, body) {
+    var req = localDrive.files.insert({ media: media }, (err, body) => {
       if (err) {
         return done(err);
       }
@@ -176,7 +176,7 @@ describe('Media', function () {
         'https://www.googleapis.com/upload/drive/v2/files?uploadType=media'
       );
       assert.strictEqual(media.body, body);
-      req = remoteDrive.files.insert({ media: media }, function (err, body) {
+      req = remoteDrive.files.insert({ media: media }, (err, body) => {
         if (err) {
           return done(err);
         }
@@ -192,19 +192,19 @@ describe('Media', function () {
     });
   });
 
-  it('should generate valid multipart upload if media and metadata are both set', function (done) {
+  it('should generate valid multipart upload if media and metadata are both set', (done) => {
     var scope = nock('https://www.googleapis.com')
       .post('/upload/drive/v2/files?uploadType=multipart')
       .times(2)
-      .reply(201, function (uri, reqBody) {
+      .reply(201, (uri, reqBody) => {
         return reqBody; // return request body as response for testing purposes
       });
 
-    testMultpart(localDrive, function (err) {
+    testMultpart(localDrive, (err) => {
       if (err) {
         return done(err);
       }
-      testMultpart(remoteDrive, function (err) {
+      testMultpart(remoteDrive, (err) => {
         if (err) {
           return done(err);
         }
@@ -214,7 +214,7 @@ describe('Media', function () {
     });
   });
 
-  it('should not require parameters for insertion requests', function () {
+  it('should not require parameters for insertion requests', () => {
     var req = localDrive.files.insert({
       someAttr: 'someValue',
       media: { body: 'wat' }
@@ -227,26 +227,26 @@ describe('Media', function () {
     assert.equal(req.uri.query, 'someAttr=someValue&uploadType=media');
   });
 
-  it('should not multipart upload if no media body given', function () {
+  it('should not multipart upload if no media body given', () => {
     var req = localDrive.files.insert({ someAttr: 'someValue' }, utils.noop);
     assert.equal(req.uri.query, 'someAttr=someValue');
     req = remoteDrive.files.insert({ someAttr: 'someValue' }, utils.noop);
     assert.equal(req.uri.query, 'someAttr=someValue');
   });
 
-  it('should set text/plain when passed a string as media body', function (done) {
+  it('should set text/plain when passed a string as media body', (done) => {
     var scope = nock('https://www.googleapis.com')
       .post('/upload/drive/v2/files?uploadType=multipart')
       .times(2)
-      .reply(201, function (uri, reqBody) {
+      .reply(201, (uri, reqBody) => {
         return reqBody; // return request body as response for testing purposes
       });
 
-    testMediaBody(localDrive, function (err) {
+    testMediaBody(localDrive, (err) => {
       if (err) {
         return done(err);
       }
-      testMediaBody(remoteDrive, function (err) {
+      testMediaBody(remoteDrive, (err) => {
         if (err) {
           return done(err);
         }
@@ -256,17 +256,17 @@ describe('Media', function () {
     });
   });
 
-  it('should handle metadata-only media requests properly', function (done) {
+  it('should handle metadata-only media requests properly', (done) => {
     var scope = nock('https://www.googleapis.com')
       .post('/gmail/v1/users/me/drafts')
       .times(2)
-      .reply(201, function (uri, reqBody) {
+      .reply(201, (uri, reqBody) => {
         return reqBody; // return request body as response for testing purposes
       });
     var resource = { message: { raw: (new Buffer('hello', 'binary')).toString('base64') } };
     var req = localGmail.users.drafts.create(
       { userId: 'me', resource: resource, media: { mimeType: 'message/rfc822' } },
-      function (err, resp) {
+      (err, resp) => {
         if (err) {
           return done(err);
         }
@@ -274,7 +274,7 @@ describe('Media', function () {
         assert.equal(JSON.stringify(resp), JSON.stringify(resource));
         req = remoteGmail.users.drafts.create(
         { userId: 'me', resource: resource, media: { mimeType: 'message/rfc822' } },
-        function (err, resp) {
+        (err, resp) => {
           if (err) {
             return done(err);
           }
@@ -288,11 +288,11 @@ describe('Media', function () {
     );
   });
 
-  it('should accept readable stream as media body without metadata', function (done) {
+  it('should accept readable stream as media body without metadata', (done) => {
     var scope = nock('https://www.googleapis.com')
       .post('/upload/gmail/v1/users/me/drafts?uploadType=media')
       .times(2)
-      .reply(201, function (uri, reqBody) {
+      .reply(201, (uri, reqBody) => {
         return reqBody; // return request body as response for testing purposes
       });
 
@@ -304,7 +304,7 @@ describe('Media', function () {
         mimeType: 'message/rfc822',
         body: body
       }
-    }, function (err, resp) {
+    }, (err, resp) => {
       if (err) {
         return done(err);
       }
@@ -317,7 +317,7 @@ describe('Media', function () {
           mimeType: 'message/rfc822',
           body: body
         }
-      }, function (err, resp) {
+      }, (err, resp) => {
         if (err) {
           return done(err);
         }
@@ -328,11 +328,11 @@ describe('Media', function () {
     });
   });
 
-  it('should accept readable stream as media body with metadata', function (done) {
+  it('should accept readable stream as media body with metadata', (done) => {
     var scope = nock('https://www.googleapis.com')
       .post('/upload/gmail/v1/users/me/drafts?uploadType=multipart')
       .times(2)
-      .reply(201, function (uri, reqBody) {
+      .reply(201, (uri, reqBody) => {
         return reqBody; // return request body as response for testing purposes
       });
 
@@ -348,7 +348,7 @@ describe('Media', function () {
       userId: 'me',
       resource: resource,
       media: media
-    }, function (err, resp) {
+    }, (err, resp) => {
       if (err) {
         return done(err);
       }
@@ -373,7 +373,7 @@ describe('Media', function () {
         userId: 'me',
         resource: resource,
         media: media
-      }, function (err, resp) {
+      }, (err, resp) => {
         if (err) {
           return done(err);
         }
@@ -392,11 +392,11 @@ describe('Media', function () {
     });
   });
 
-  it('should return err, {object}body, resp for streaming media requests', function (done) {
+  it('should return err, {object}body, resp for streaming media requests', (done) => {
     var scope = nock('https://www.googleapis.com')
       .post('/upload/gmail/v1/users/me/drafts?uploadType=multipart')
       .times(2)
-      .reply(201, function () {
+      .reply(201, () => {
         return JSON.stringify({ hello: 'world' });
       });
 
@@ -407,7 +407,7 @@ describe('Media', function () {
       userId: 'me',
       resource: resource,
       media: media
-    }, function (err, body, resp) {
+    }, (err, body, resp) => {
       if (err) {
         return done(err);
       }
@@ -422,7 +422,7 @@ describe('Media', function () {
         userId: 'me',
         resource: resource,
         media: media
-      }, function (err, body, resp) {
+      }, (err, body, resp) => {
         if (err) {
           return done(err);
         }
@@ -436,7 +436,7 @@ describe('Media', function () {
     });
   });
 
-  after(function () {
+  after(() => {
     nock.cleanAll();
     nock.enableNetConnect();
   });

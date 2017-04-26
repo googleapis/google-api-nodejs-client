@@ -36,7 +36,7 @@ function testParams (urlshortener) {
 
 function testInsert (urlshortener, cb) {
   var obj = { longUrl: 'http://google.com/' };
-  urlshortener.url.insert({ resource: obj }, function (err, result) {
+  urlshortener.url.insert({ resource: obj }, (err, result) => {
     assert.equal(err, null);
     assert.notEqual(result, null);
     assert.notEqual(result.kind, null);
@@ -46,14 +46,14 @@ function testInsert (urlshortener, cb) {
   });
 }
 
-describe('Urlshortener', function () {
+describe('Urlshortener', () => {
   var localUrlshortener, remoteUrlshortener;
 
-  before(function (done) {
+  before((done) => {
     nock.cleanAll();
     var google = new googleapis.GoogleApis();
     nock.enableNetConnect();
-    utils.loadApi(google, 'urlshortener', 'v1', function (err, urlshortener) {
+    utils.loadApi(google, 'urlshortener', 'v1', (err, urlshortener) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
@@ -63,24 +63,24 @@ describe('Urlshortener', function () {
     });
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
     var google = new googleapis.GoogleApis();
     localUrlshortener = google.urlshortener('v1');
   });
 
-  it('should generate a valid payload for single requests', function () {
+  it('should generate a valid payload for single requests', () => {
     testSingleRequest(localUrlshortener);
     testSingleRequest(remoteUrlshortener);
   });
 
-  it('should generate valid payload if any params are given', function () {
+  it('should generate valid payload if any params are given', () => {
     testParams(localUrlshortener);
     testParams(remoteUrlshortener);
   });
 
-  it('should return a single response object for single requests', function (done) {
+  it('should return a single response object for single requests', (done) => {
     var scope = nock('https://www.googleapis.com', {
       allowUnmocked: true
     })
@@ -88,11 +88,11 @@ describe('Urlshortener', function () {
       .times(2)
       .replyWithFile(200, path.join(__dirname, '/fixtures/urlshort-insert-res.json'));
 
-    testInsert(localUrlshortener, function (err) {
+    testInsert(localUrlshortener, (err) => {
       if (err) {
         return done(err);
       }
-      testInsert(remoteUrlshortener, function (err) {
+      testInsert(remoteUrlshortener, (err) => {
         if (err) {
           return done(err);
         }
@@ -102,7 +102,7 @@ describe('Urlshortener', function () {
     });
   });
 
-  after(function () {
+  after(() => {
     nock.cleanAll();
     nock.enableNetConnect();
   });

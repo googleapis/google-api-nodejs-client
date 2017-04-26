@@ -16,32 +16,32 @@ var googleapis = require('../');
 var nock = require('nock');
 var utils = require('./utils');
 
-describe('Options', function () {
+describe('Options', () => {
   var authClient;
 
-  beforeEach(function () {
+  beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
   });
 
-  it('should be a function', function () {
+  it('should be a function', () => {
     var google = new googleapis.GoogleApis();
     assert.equal(typeof google.options, 'function');
   });
 
-  it('should expose _options', function () {
+  it('should expose _options', () => {
     var google = new googleapis.GoogleApis();
     google.options({ hello: 'world' });
     assert.equal(JSON.stringify(google._options), JSON.stringify({ hello: 'world' }));
   });
 
-  it('should expose _options values', function () {
+  it('should expose _options values', () => {
     var google = new googleapis.GoogleApis();
     google.options({ hello: 'world' });
     assert.equal(google._options.hello, 'world');
   });
 
-  it('should promote endpoint options over global options', function () {
+  it('should promote endpoint options over global options', () => {
     var google = new googleapis.GoogleApis();
     google.options({ hello: 'world' });
     var drive = google.drive({ version: 'v2', hello: 'changed' });
@@ -49,7 +49,7 @@ describe('Options', function () {
     assert.equal(req.hello, 'changed');
   });
 
-  it('should support global request params', function (done) {
+  it('should support global request params', (done) => {
     var google = new googleapis.GoogleApis();
     google.options({ params: { myParam: '123' } });
     var drive = google.drive('v2');
@@ -59,7 +59,7 @@ describe('Options', function () {
     var query = req.uri.query || '';
     assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
     nock.enableNetConnect();
-    utils.loadApi(google, 'drive', 'v2', function (err, drive) {
+    utils.loadApi(google, 'drive', 'v2', (err, drive) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
@@ -73,7 +73,7 @@ describe('Options', function () {
     });
   });
 
-  it('should promote auth apikey options on request basis', function () {
+  it('should promote auth apikey options on request basis', () => {
     var google = new googleapis.GoogleApis();
     google.options({ auth: 'apikey1' });
     var drive = google.drive({ version: 'v2', auth: 'apikey2' });
@@ -81,7 +81,7 @@ describe('Options', function () {
     assert.equal(req.uri.query, 'key=apikey3');
   });
 
-  it('should apply google options to request object like proxy', function () {
+  it('should apply google options to request object like proxy', () => {
     var google = new googleapis.GoogleApis();
     google.options({ proxy: 'http://proxy.example.com' });
     var drive = google.drive({ version: 'v2', auth: 'apikey2' });
@@ -90,7 +90,7 @@ describe('Options', function () {
     assert.equal(req.proxy.protocol, 'http:');
   });
 
-  it('should apply endpoint options to request object like proxy', function () {
+  it('should apply endpoint options to request object like proxy', () => {
     var google = new googleapis.GoogleApis();
     var drive = google.drive({ version: 'v2', auth: 'apikey2', proxy: 'http://proxy.example.com' });
     var req = drive.files.get({ auth: 'apikey3', fileId: 'woot' }, utils.noop);
@@ -99,7 +99,7 @@ describe('Options', function () {
     assert.equal(req.uri.query, 'key=apikey3');
   });
 
-  it('should allow overriding endpoint options', function () {
+  it('should allow overriding endpoint options', () => {
     var google = new googleapis.GoogleApis();
     var drive = google.drive('v3');
     var req = drive.files.get({ fileId: 'woot' }, { url: 'https://myproxy.com/drive/v3/files/{fileId}', encoding: null }, utils.noop);
@@ -107,7 +107,7 @@ describe('Options', function () {
     assert.equal(req.encoding, null, 'Request used overridden encoding.');
   });
 
-  it('should apply endpoint options like proxy to oauth transporter', function () {
+  it('should apply endpoint options like proxy to oauth transporter', () => {
     var google = new googleapis.GoogleApis();
     var OAuth2 = google.auth.OAuth2;
     authClient = new OAuth2('CLIENTID', 'CLIENTSECRET', 'REDIRECTURI');
@@ -119,7 +119,7 @@ describe('Options', function () {
     assert.equal(req.headers.Authorization, 'Bearer abc');
   });
 
-  after(function () {
+  after(() => {
     nock.cleanAll();
     nock.enableNetConnect();
   });

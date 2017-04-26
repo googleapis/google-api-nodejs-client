@@ -49,7 +49,7 @@ function testBodyDelete (drive) {
 }
 
 function testResponseError (drive, cb) {
-  drive.files.list({ q: 'hello' }, function (err) {
+  drive.files.list({ q: 'hello' }, (err) => {
     assert(err instanceof Error);
     assert.equal(err.message, 'Error!');
     assert.equal(err.code, 400);
@@ -58,7 +58,7 @@ function testResponseError (drive, cb) {
 }
 
 function testNotObjectError (oauth2, cb) {
-  oauth2.tokeninfo({ access_token: 'hello' }, function (err) {
+  oauth2.tokeninfo({ access_token: 'hello' }, (err) => {
     assert(err instanceof Error);
     assert.equal(err.message, 'invalid_grant');
     assert.equal(err.code, 400);
@@ -68,7 +68,7 @@ function testNotObjectError (oauth2, cb) {
 
 function testBackendError (urlshortener, cb) {
   var obj = { longUrl: 'http://google.com/' };
-  urlshortener.url.insert({ resource: obj }, function (err, result) {
+  urlshortener.url.insert({ resource: obj }, (err, result) => {
     assert(err instanceof Error);
     assert.equal(err.code, 500);
     assert.equal(err.message, 'There was an error!');
@@ -77,26 +77,26 @@ function testBackendError (urlshortener, cb) {
   });
 }
 
-describe('Transporters', function () {
+describe('Transporters', () => {
   var localDrive, remoteDrive;
   var localOauth2, remoteOauth2;
   var localUrlshortener, remoteUrlshortener;
 
-  before(function (done) {
+  before((done) => {
     nock.cleanAll();
     var google = new googleapis.GoogleApis();
     nock.enableNetConnect();
     async.parallel([
-      function (cb) {
+      (cb) => {
         utils.loadApi(google, 'drive', 'v2', cb);
       },
-      function (cb) {
+      (cb) => {
         utils.loadApi(google, 'oauth2', 'v2', cb);
       },
-      function (cb) {
+      (cb) => {
         utils.loadApi(google, 'urlshortener', 'v1', cb);
       }
-    ], function (err, apis) {
+    ], (err, apis) => {
       if (err) {
         return done(err);
       }
@@ -108,7 +108,7 @@ describe('Transporters', function () {
     });
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
     var google = new googleapis.GoogleApis();
@@ -117,85 +117,85 @@ describe('Transporters', function () {
     localUrlshortener = google.urlshortener('v1');
   });
 
-  it('should add headers to the request from params', function () {
+  it('should add headers to the request from params', () => {
     testHeaders(localDrive);
     testHeaders(remoteDrive);
   });
 
-  it('should automatically add content-type for POST requests', function () {
+  it('should automatically add content-type for POST requests', () => {
     testContentType(localDrive);
     testContentType(remoteDrive);
   });
 
-  it('should not add body for GET requests', function () {
+  it('should not add body for GET requests', () => {
     testBody(localDrive);
     testBody(remoteDrive);
   });
 
-  it('should not add body for DELETE requests', function () {
+  it('should not add body for DELETE requests', () => {
     testBodyDelete(localDrive);
     testBodyDelete(remoteDrive);
   });
 
-  it('should return errors within response body as instances of Error', function (done) {
+  it('should return errors within response body as instances of Error', (done) => {
     var scope = nock('https://www.googleapis.com', { allowUnmocked: true })
       .get('/drive/v2/files?q=hello')
       .times(2)
       // Simulate an error returned via response body from Google's API endpoint
       .reply(400, { error: { code: 400, message: 'Error!' } });
 
-    testResponseError(localDrive, function () {
-      testResponseError(remoteDrive, function () {
+    testResponseError(localDrive, () => {
+      testResponseError(remoteDrive, () => {
         scope.done();
         done();
       });
     });
   });
 
-  it('should return error message correctly when error is not an object', function (done) {
+  it('should return error message correctly when error is not an object', (done) => {
     var scope = nock('https://www.googleapis.com', { allowUnmocked: true })
       .post('/oauth2/v2/tokeninfo?access_token=hello')
       .times(2)
       // Simulate an error returned via response body from Google's tokeninfo endpoint
       .reply(400, { error: 'invalid_grant', error_description: 'Code was already redeemed.' });
 
-    testNotObjectError(localOauth2, function () {
-      testNotObjectError(remoteOauth2, function () {
+    testNotObjectError(localOauth2, () => {
+      testNotObjectError(remoteOauth2, () => {
         scope.done();
         done();
       });
     });
   });
 
-  it('should return 5xx responses as errors', function (done) {
+  it('should return 5xx responses as errors', (done) => {
     var scope = nock('https://www.googleapis.com', { allowUnmocked: true })
       .post('/urlshortener/v1/url')
       .times(2)
       .reply(500, 'There was an error!');
 
-    testBackendError(localUrlshortener, function () {
-      testBackendError(remoteUrlshortener, function () {
+    testBackendError(localUrlshortener, () => {
+      testBackendError(remoteUrlshortener, () => {
         scope.done();
         done();
       });
     });
   });
 
-  it('should handle 5xx responses that include errors', function (done) {
+  it('should handle 5xx responses that include errors', (done) => {
     var scope = nock('https://www.googleapis.com', { allowUnmocked: true })
       .post('/urlshortener/v1/url')
       .times(2)
       .reply(500, { error: { message: 'There was an error!' } });
 
-    testBackendError(localUrlshortener, function () {
-      testBackendError(remoteUrlshortener, function () {
+    testBackendError(localUrlshortener, () => {
+      testBackendError(remoteUrlshortener, () => {
         scope.done();
         done();
       });
     });
   });
 
-  it('should handle a Backend Error', function (done) {
+  it('should handle a Backend Error', (done) => {
     var scope = nock('https://www.googleapis.com', { allowUnmocked: true })
       .post('/urlshortener/v1/url')
       .times(2)
@@ -213,15 +213,15 @@ describe('Transporters', function () {
         }
       });
 
-    testBackendError(localUrlshortener, function () {
-      testBackendError(remoteUrlshortener, function () {
+    testBackendError(localUrlshortener, () => {
+      testBackendError(remoteUrlshortener, () => {
         scope.done();
         done();
       });
     });
   });
 
-  after(function () {
+  after(() => {
     nock.cleanAll();
     nock.enableNetConnect();
   });

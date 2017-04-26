@@ -16,9 +16,8 @@ var fs = require('fs');
 var googleapis = require('../');
 var path = require('path');
 
-describe('GoogleApis#discover', function () {
-  it('should generate all apis', function (done) {
-    this.timeout(120000);
+describe('GoogleApis#discover', () => {
+  it('should generate all apis', (done) => {
 
     var localApis = fs.readdirSync(path.join(__dirname, '../apis'));
     var google = new googleapis.GoogleApis();
@@ -27,19 +26,19 @@ describe('GoogleApis#discover', function () {
     assert.equal(typeof google.drive, 'function');
     assert.equal(typeof localDrive, 'object');
 
-    localApis.forEach(function (name) {
+    localApis.forEach((name) => {
       assert(google[name]);
       google[name] = undefined;
     });
 
     assert.equal(google.drive, undefined);
 
-    google.discover('https://www.googleapis.com/discovery/v1/apis', function (err) {
+    google.discover('https://www.googleapis.com/discovery/v1/apis', (err) => {
       if (err) {
         return done(err);
       }
       // APIs have all been re-added
-      localApis.forEach(function (name) {
+      localApis.forEach((name) => {
         assert(google[name]);
       });
 
@@ -52,5 +51,5 @@ describe('GoogleApis#discover', function () {
       }
       done();
     });
-  });
+  }).timeout(120000);
 });

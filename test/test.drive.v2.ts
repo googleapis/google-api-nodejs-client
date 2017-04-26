@@ -16,14 +16,14 @@ var googleapis = require('../');
 var nock = require('nock');
 var utils = require('./utils');
 
-describe('drive:v2', function () {
+describe('drive:v2', () => {
   var localDrive, remoteDrive;
 
-  before(function (done) {
+  before((done) => {
     nock.cleanAll();
     var google = new googleapis.GoogleApis();
     nock.enableNetConnect();
-    utils.loadApi(google, 'drive', 'v2', function (err, drive) {
+    utils.loadApi(google, 'drive', 'v2', (err, drive) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
@@ -33,62 +33,62 @@ describe('drive:v2', function () {
     });
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
     var google = new googleapis.GoogleApis();
     localDrive = google.drive('v2');
   });
 
-  it('should exist', function (done) {
+  it('should exist', (done) => {
     assert.notEqual(typeof googleapis.drive, null);
     done();
   });
 
-  it('should be a function', function (done) {
+  it('should be a function', (done) => {
     assert.equal(typeof googleapis.drive, 'function');
     done();
   });
 
-  it('should create a drive object', function (done) {
+  it('should create a drive object', (done) => {
     assert.notEqual(typeof localDrive, 'undefined');
     assert.notEqual(typeof remoteDrive, 'undefined');
     done();
   });
 
-  it('should be frozen (immutable)', function (done) {
+  it('should be frozen (immutable)', (done) => {
     assert.equal(Object.isFrozen(localDrive), true);
     assert.equal(Object.isFrozen(remoteDrive), true);
     done();
   });
 
-  describe('.files', function () {
-    it('should exist', function (done) {
+  describe('.files', () => {
+    it('should exist', (done) => {
       assert.notEqual(typeof localDrive.files, 'undefined');
       assert.notEqual(typeof remoteDrive.files, 'undefined');
       done();
     });
 
-    it('should be an object', function (done) {
+    it('should be an object', (done) => {
       assert.equal(typeof localDrive.files, 'object');
       assert.equal(typeof remoteDrive.files, 'object');
       done();
     });
 
-    describe('.insert', function () {
-      it('should exist', function (done) {
+    describe('.insert', () => {
+      it('should exist', (done) => {
         assert.notEqual(typeof localDrive.files.insert, 'undefined');
         assert.notEqual(typeof remoteDrive.files.insert, 'undefined');
         done();
       });
 
-      it('should be a function', function (done) {
+      it('should be a function', (done) => {
         assert.equal(typeof localDrive.files.insert, 'function');
         assert.equal(typeof remoteDrive.files.insert, 'function');
         done();
       });
 
-      it('should return a Request object', function (done) {
+      it('should return a Request object', (done) => {
         var req = localDrive.files.insert({}, utils.noop);
         assert.equal(req.constructor.name, 'Request');
         req = remoteDrive.files.insert({}, utils.noop);
@@ -97,25 +97,25 @@ describe('drive:v2', function () {
       });
     });
 
-    describe('.get', function () {
-      it('should exist', function () {
+    describe('.get', () => {
+      it('should exist', () => {
         assert.notEqual(typeof localDrive.files.get, 'undefined');
         assert.notEqual(typeof remoteDrive.files.get, 'undefined');
       });
 
-      it('should be a function', function () {
+      it('should be a function', () => {
         assert.equal(typeof localDrive.files.get, 'function');
         assert.equal(typeof remoteDrive.files.get, 'function');
       });
 
-      it('should return a Request object', function () {
+      it('should return a Request object', () => {
         var req = localDrive.files.get({ fileId: '123' }, utils.noop);
         assert.equal(req.constructor.name, 'Request');
         req = remoteDrive.files.get({ fileId: '123' }, utils.noop);
         assert.equal(req.constructor.name, 'Request');
       });
 
-      it('should use logError callback if no callback specified', function (done) {
+      it('should use logError callback if no callback specified', (done) => {
         var scope = nock('https://www.googleapis.com')
           .get('/drive/v2/files?q=hello')
           .times(2)
@@ -126,7 +126,7 @@ describe('drive:v2', function () {
         // once we are done testing
         var origFn = console.error;
         var count = 0;
-        console.error = function (err) {
+        console.error = (err) => {
           count++;
           assert.equal(err.code, 501);
           if (count === 2) {
@@ -136,7 +136,7 @@ describe('drive:v2', function () {
           }
         };
 
-        assert.doesNotThrow(function () {
+        assert.doesNotThrow(() => {
           localDrive.files.list({ q: 'hello' });
           remoteDrive.files.list({ q: 'hello' });
         });
@@ -144,27 +144,27 @@ describe('drive:v2', function () {
     });
   });
 
-  describe('._options', function () {
-    it('should exist', function () {
+  describe('._options', () => {
+    it('should exist', () => {
       assert.notEqual(typeof localDrive._options, 'undefined');
       assert.notEqual(typeof remoteDrive._options, 'undefined');
     });
 
-    it('should be an object', function () {
+    it('should be an object', () => {
       assert.equal(typeof localDrive._options, 'object');
       assert.equal(typeof remoteDrive._options, 'object');
     });
   });
 
-  describe('.files.list()', function () {
-    it('should not return missing param error', function (done) {
+  describe('.files.list()', () => {
+    it('should not return missing param error', (done) => {
       var scope = nock('https://www.googleapis.com')
         .get('/drive/v2/files?q=hello')
         .times(2)
         .reply(200);
-      localDrive.files.list({ q: 'hello' }, function (err) {
+      localDrive.files.list({ q: 'hello' }, (err) => {
         assert.equal(err, null);
-        remoteDrive.files.list({ q: 'hello' }, function (err) {
+        remoteDrive.files.list({ q: 'hello' }, (err) => {
           assert.equal(err, null);
           scope.done();
           done();
@@ -173,7 +173,7 @@ describe('drive:v2', function () {
     });
   });
 
-  after(function () {
+  after(() => {
     nock.cleanAll();
     nock.enableNetConnect();
   });

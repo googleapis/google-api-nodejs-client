@@ -49,23 +49,23 @@ function testAuthKey (urlshortener) {
   assert.equal(req.uri.href.indexOf('key=YOUR%20API%20KEY') > 0, true);
 }
 
-describe('API key', function () {
+describe('API key', () => {
   var localDrive, remoteDrive;
   var localUrlshortener, remoteUrlshortener;
   var authClient;
 
-  before(function (done) {
+  before((done) => {
     nock.cleanAll();
     var google = new googleapis.GoogleApis();
     nock.enableNetConnect();
     async.parallel([
-      function (cb) {
+      (cb) => {
         utils.loadApi(google, 'drive', 'v2', cb);
       },
-      function (cb) {
+      (cb) => {
         utils.loadApi(google, 'urlshortener', 'v1', cb);
       }
-    ], function (err, apis) {
+    ], (err, apis) => {
       if (err) {
         return done(err);
       }
@@ -76,7 +76,7 @@ describe('API key', function () {
     });
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
     var google = new googleapis.GoogleApis();
@@ -87,27 +87,27 @@ describe('API key', function () {
     localUrlshortener = google.urlshortener('v1');
   });
 
-  it('should include auth APIKEY as key=<APIKEY>', function () {
+  it('should include auth APIKEY as key=<APIKEY>', () => {
     testGet(localDrive);
     testGet(remoteDrive);
   });
 
-  it('should properly escape params E.g. API KEY to API%20KEY', function () {
+  it('should properly escape params E.g. API KEY to API%20KEY', () => {
     testParams2(localDrive);
     testParams2(remoteDrive);
   });
 
-  it('should use key param over auth apikey param if both provided', function () {
+  it('should use key param over auth apikey param if both provided', () => {
     testKeyParam(localDrive);
     testKeyParam(remoteDrive);
   });
 
-  it('should set API key parameter if it is present', function () {
+  it('should set API key parameter if it is present', () => {
     testAuthKey(localUrlshortener);
     testAuthKey(remoteUrlshortener);
   });
 
-  after(function () {
+  after(() => {
     nock.cleanAll();
     nock.enableNetConnect();
   });

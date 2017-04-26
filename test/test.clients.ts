@@ -19,22 +19,22 @@ var nock = require('nock');
 var path = require('path');
 var utils = require('./utils');
 
-describe('Clients', function () {
+describe('Clients', () => {
   var localPlus, remotePlus;
   var localOauth2, remoteOauth2;
 
-  before(function (done) {
+  before((done) => {
     nock.cleanAll();
     var google = new googleapis.GoogleApis();
     nock.enableNetConnect();
     async.parallel([
-      function (cb) {
+      (cb) => {
         utils.loadApi(google, 'plus', 'v1', cb);
       },
-      function (cb) {
+      (cb) => {
         utils.loadApi(google, 'oauth2', 'v2', cb);
       }
-    ], function (err, apis) {
+    ], (err, apis) => {
       if (err) {
         return done(err);
       }
@@ -45,7 +45,7 @@ describe('Clients', function () {
     });
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
     var google = new googleapis.GoogleApis();
@@ -53,7 +53,7 @@ describe('Clients', function () {
     localOauth2 = google.oauth2('v2');
   });
 
-  it('should create request helpers according to resource on discovery API response', function () {
+  it('should create request helpers according to resource on discovery API response', () => {
     var plus = localPlus;
     assert.equal(typeof plus.people.get, 'function');
     assert.equal(typeof plus.activities.search, 'function');
@@ -64,12 +64,12 @@ describe('Clients', function () {
     assert.equal(typeof plus.comments.list, 'function');
   });
 
-  it('should be able to gen top level methods', function () {
+  it('should be able to gen top level methods', () => {
     assert.equal(typeof localOauth2.tokeninfo, 'function');
     assert.equal(typeof remoteOauth2.tokeninfo, 'function');
   });
 
-  it('should be able to gen top level methods and resources', function () {
+  it('should be able to gen top level methods and resources', () => {
     var oauth2 = localOauth2;
     assert.equal(typeof oauth2.tokeninfo, 'function');
     assert.equal(typeof oauth2.userinfo, 'object');
@@ -78,7 +78,7 @@ describe('Clients', function () {
     assert.equal(typeof oauth2.userinfo, 'object');
   });
 
-  it('should be able to gen nested resources and methods', function () {
+  it('should be able to gen nested resources and methods', () => {
     var oauth2 = localOauth2;
     assert.equal(typeof oauth2.userinfo, 'object');
     assert.equal(typeof oauth2.userinfo.v2, 'object');
@@ -91,7 +91,7 @@ describe('Clients', function () {
     assert.equal(typeof oauth2.userinfo.v2.me.get, 'function');
   });
 
-  it('should be able to require all api files without error', function () {
+  it('should be able to require all api files without error', () => {
     function getFiles (dir, files_?) {
       files_ = files_ || [];
       if (typeof files_ === 'undefined') {
@@ -116,7 +116,7 @@ describe('Clients', function () {
 
     var apiFiles = getFiles(path.join(__dirname, '/../apis'));
 
-    assert.doesNotThrow(function () {
+    assert.doesNotThrow(() => {
       for (var i in apiFiles) {
         try {
           require(apiFiles[i]);
@@ -128,7 +128,7 @@ describe('Clients', function () {
     });
   });
 
-  it('should support default params', function (done) {
+  it('should support default params', (done) => {
     var google = new googleapis.GoogleApis();
     var datastore = google.datastore({
       version: 'v1beta3',
@@ -148,7 +148,7 @@ describe('Clients', function () {
     nock.enableNetConnect();
     utils.loadApi(google, 'datastore', 'v1beta3', {
       params: { myParam: '123' }
-    }, function (err, datastore) {
+    }, (err, datastore) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
@@ -165,7 +165,7 @@ describe('Clients', function () {
     });
   });
 
-  it('should allow default params to be overriden per-request', function (done) {
+  it('should allow default params to be overriden per-request', (done) => {
     var google = new googleapis.GoogleApis();
     var datastore = google.datastore({
       version: 'v1beta3',
@@ -189,7 +189,7 @@ describe('Clients', function () {
     nock.enableNetConnect();
     utils.loadApi(google, 'datastore', 'v1beta3', {
       params: { myParam: '123' }
-    }, function (err, datastore) {
+    }, (err, datastore) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
@@ -212,7 +212,7 @@ describe('Clients', function () {
     });
   });
 
-  it('should include default params when only callback is provided to API call', function (done) {
+  it('should include default params when only callback is provided to API call', (done) => {
     var google = new googleapis.GoogleApis();
     var datastore = google.datastore({
       version: 'v1beta3',
@@ -235,7 +235,7 @@ describe('Clients', function () {
         projectId: 'test-project-id', // We must set this here - it is a required param
         myParam: '123'
       }
-    }, function (err, datastore) {
+    }, (err, datastore) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
@@ -252,7 +252,7 @@ describe('Clients', function () {
     });
   });
 
-  after(function () {
+  after(() => {
     nock.cleanAll();
     nock.enableNetConnect();
   });
