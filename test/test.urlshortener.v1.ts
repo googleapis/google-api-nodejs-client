@@ -11,17 +11,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-'use strict';
-
-var assert = require('power-assert');
-var googleapis = require('../');
-var nock = require('nock');
-var path = require('path');
-var utils = require('./utils');
+import * as assert from 'power-assert';
+import * as nock from 'nock';
+import * as path from 'path';
+import utils from './utils';
+let googleapis = require('../');
 
 function testSingleRequest (urlshortener) {
-  var obj = { longUrl: 'http://someurl...' };
-  var req = urlshortener.url.insert(obj, utils.noop);
+  const obj = { longUrl: 'http://someurl...' };
+  const req = urlshortener.url.insert(obj, utils.noop);
   assert.equal(
     req.uri.href,
     'https://www.googleapis.com/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...'
@@ -30,15 +28,15 @@ function testSingleRequest (urlshortener) {
 }
 
 function testParams (urlshortener) {
-  var params = { shortUrl: 'a' };
-  var req = urlshortener.url.get(params, utils.noop);
+  const params = { shortUrl: 'a' };
+  const req = urlshortener.url.get(params, utils.noop);
   assert.equal(req.uri.href, 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=a');
   assert.equal(req.method, 'GET');
 }
 
 function testInsert (urlshortener, cb) {
-  var obj = { longUrl: 'http://google.com/' };
-  urlshortener.url.insert({ resource: obj }, function (err, result) {
+  const obj = { longUrl: 'http://google.com/' };
+  urlshortener.url.insert({ resource: obj }, (err, result) => {
     assert.equal(err, null);
     assert.notEqual(result, null);
     assert.notEqual(result.kind, null);
@@ -48,14 +46,14 @@ function testInsert (urlshortener, cb) {
   });
 }
 
-describe('Urlshortener', function () {
-  var localUrlshortener, remoteUrlshortener;
+describe('Urlshortener', () => {
+  let localUrlshortener, remoteUrlshortener;
 
-  before(function (done) {
+  before((done) => {
     nock.cleanAll();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
-    utils.loadApi(google, 'urlshortener', 'v1', function (err, urlshortener) {
+    utils.loadApi(google, 'urlshortener', 'v1', {}, (err, urlshortener) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
@@ -65,36 +63,36 @@ describe('Urlshortener', function () {
     });
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     localUrlshortener = google.urlshortener('v1');
   });
 
-  it('should generate a valid payload for single requests', function () {
+  it('should generate a valid payload for single requests', () => {
     testSingleRequest(localUrlshortener);
     testSingleRequest(remoteUrlshortener);
   });
 
-  it('should generate valid payload if any params are given', function () {
+  it('should generate valid payload if any params are given', () => {
     testParams(localUrlshortener);
     testParams(remoteUrlshortener);
   });
 
-  it('should return a single response object for single requests', function (done) {
-    var scope = nock('https://www.googleapis.com', {
+  it('should return a single response object for single requests', (done) => {
+    const scope = nock('https://www.googleapis.com', {
       allowUnmocked: true
     })
       .post('/urlshortener/v1/url')
       .times(2)
       .replyWithFile(200, path.join(__dirname, '/fixtures/urlshort-insert-res.json'));
 
-    testInsert(localUrlshortener, function (err) {
+    testInsert(localUrlshortener, (err) => {
       if (err) {
         return done(err);
       }
-      testInsert(remoteUrlshortener, function (err) {
+      testInsert(remoteUrlshortener, (err) => {
         if (err) {
           return done(err);
         }
@@ -104,7 +102,7 @@ describe('Urlshortener', function () {
     });
   });
 
-  after(function () {
+  after(() => {
     nock.cleanAll();
     nock.enableNetConnect();
   });

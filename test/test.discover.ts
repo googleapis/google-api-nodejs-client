@@ -11,48 +11,45 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-'use strict';
+import * as assert from 'power-assert';
+import * as fs from 'fs';
+import * as path from 'path';
+let googleapis = require('../');
 
-var assert = require('power-assert');
-var fs = require('fs');
-var googleapis = require('../');
-var path = require('path');
+describe('GoogleApis#discover', () => {
+  it('should generate all apis', (done) => {
 
-describe('GoogleApis#discover', function () {
-  it('should generate all apis', function (done) {
-    this.timeout(120000);
-
-    var localApis = fs.readdirSync(path.join(__dirname, '../apis'));
-    var google = new googleapis.GoogleApis();
-    var localDrive = google.drive('v2');
+    const localApis = fs.readdirSync(path.join(__dirname, '../apis'));
+    const google = new googleapis.GoogleApis();
+    const localDrive = google.drive('v2');
 
     assert.equal(typeof google.drive, 'function');
     assert.equal(typeof localDrive, 'object');
 
-    localApis.forEach(function (name) {
+    localApis.forEach((name) => {
       assert(google[name]);
       google[name] = undefined;
     });
 
     assert.equal(google.drive, undefined);
 
-    google.discover('https://www.googleapis.com/discovery/v1/apis', function (err) {
+    google.discover('https://www.googleapis.com/discovery/v1/apis', (err) => {
       if (err) {
         return done(err);
       }
       // APIs have all been re-added
-      localApis.forEach(function (name) {
+      localApis.forEach((name) => {
         assert(google[name]);
       });
 
-      var remoteDrive = google.drive('v2');
+      const remoteDrive = google.drive('v2');
       assert.equal(typeof google.drive, 'function');
       assert.equal(typeof remoteDrive, 'object');
 
-      for (var key in localDrive) {
+      for (const key in localDrive) {
         assert(remoteDrive[key], 'generated drive has same keys');
       }
       done();
     });
-  });
+  }).timeout(120000);
 });

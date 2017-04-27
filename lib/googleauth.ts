@@ -11,8 +11,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-'use strict';
-
 /**
  * This code has been moved to the google-auth-library repo, at
  * https://github.com/google/google-auth-library-nodejs.
@@ -21,4 +19,14 @@
  * rather than this file.
  */
 
-module.exports = require('google-auth-library/lib/auth/computeclient.js');
+export = {
+   utils: require('google-auth-library/lib/utils.js'),
+   authClient: require('google-auth-library/lib/auth/authclient.js'),
+   computeclient: require('google-auth-library/lib/auth/computeclient.js'),
+   jwtclient: require('google-auth-library/lib/auth/jwtclient.js'),
+   loginticket: require('google-auth-library/lib/auth/loginticket.js'),
+   oauth2client: require('google-auth-library/lib/auth/oauth2client.js'),
+   transporters: require('google-auth-library/lib/transporters.js'),
+   pemverifier: require('google-auth-library/lib/pemverifier.js'),
+}
+

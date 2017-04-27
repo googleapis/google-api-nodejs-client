@@ -14,19 +14,17 @@
  * limitations under the License.
  */
 
-'use strict';
+const Generator = require('../lib/generator');
+const rimraf = require('rimraf');
+const path = require('path');
+const debug = true;
 
-var Generator = require('../lib/generator');
-var rimraf = require('rimraf');
-var path = require('path');
-var debug = true;
-
-var argv = require('minimist')(process.argv.slice(2));
+const argv = require('minimist')(process.argv.slice(2));
 
 // constructors
-var gen = new Generator({ debug: debug, includePrivate: false });
+const gen = new Generator({ debug: debug, includePrivate: false });
 
-var args = argv._;
+const args = argv._;
 
 if (args.length) {
   args.forEach(function (url) {

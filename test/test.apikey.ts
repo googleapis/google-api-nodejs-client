@@ -11,16 +11,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-'use strict';
-
-var assert = require('power-assert');
-var async = require('async');
-var googleapis = require('../');
-var nock = require('nock');
-var utils = require('./utils');
+import * as assert from 'power-assert';
+import * as async from 'async';
+import * as nock from 'nock';
+import utils from './utils';
+let googleapis = require('../');
 
 function testGet (drive) {
-  var req = drive.files.get({
+  const req = drive.files.get({
     fileId: '123',
     auth: 'APIKEY'
   }, utils.noop);
@@ -28,7 +26,7 @@ function testGet (drive) {
 }
 
 function testParams2 (drive) {
-  var req = drive.files.get({
+  const req = drive.files.get({
     fileId: '123',
     auth: 'API KEY'
   }, utils.noop);
@@ -36,7 +34,7 @@ function testParams2 (drive) {
 }
 
 function testKeyParam (drive) {
-  var req = drive.files.get({
+  const req = drive.files.get({
     fileId: '123',
     auth: 'API KEY',
     key: 'abc123'
@@ -45,29 +43,29 @@ function testKeyParam (drive) {
 }
 
 function testAuthKey (urlshortener) {
-  var req = urlshortener.url.list({
+  const req = urlshortener.url.list({
     auth: 'YOUR API KEY'
   }, utils.noop);
   assert.equal(req.uri.href.indexOf('key=YOUR%20API%20KEY') > 0, true);
 }
 
-describe('API key', function () {
-  var localDrive, remoteDrive;
-  var localUrlshortener, remoteUrlshortener;
-  var authClient;
+describe('API key', () => {
+  let localDrive, remoteDrive;
+  let localUrlshortener, remoteUrlshortener;
+  let authClient;
 
-  before(function (done) {
+  before((done) => {
     nock.cleanAll();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
     async.parallel([
-      function (cb) {
-        utils.loadApi(google, 'drive', 'v2', cb);
+      (cb) => {
+        utils.loadApi(google, 'drive', 'v2', {}, cb);
       },
-      function (cb) {
-        utils.loadApi(google, 'urlshortener', 'v1', cb);
+      (cb) => {
+        utils.loadApi(google, 'urlshortener', 'v1', {}, cb);
       }
-    ], function (err, apis) {
+    ], (err, apis) => {
       if (err) {
         return done(err);
       }
@@ -78,38 +76,38 @@ describe('API key', function () {
     });
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    var google = new googleapis.GoogleApis();
-    var OAuth2 = google.auth.OAuth2;
+    const google = new googleapis.GoogleApis();
+    const OAuth2 = google.auth.OAuth2;
     authClient = new OAuth2('CLIENT_ID', 'CLIENT_SECRET', 'REDIRECT_URL');
     authClient.setCredentials({ access_token: 'abc123' });
     localDrive = google.drive('v2');
     localUrlshortener = google.urlshortener('v1');
   });
 
-  it('should include auth APIKEY as key=<APIKEY>', function () {
+  it('should include auth APIKEY as key=<APIKEY>', () => {
     testGet(localDrive);
     testGet(remoteDrive);
   });
 
-  it('should properly escape params E.g. API KEY to API%20KEY', function () {
+  it('should properly escape params E.g. API KEY to API%20KEY', () => {
     testParams2(localDrive);
     testParams2(remoteDrive);
   });
 
-  it('should use key param over auth apikey param if both provided', function () {
+  it('should use key param over auth apikey param if both provided', () => {
     testKeyParam(localDrive);
     testKeyParam(remoteDrive);
   });
 
-  it('should set API key parameter if it is present', function () {
+  it('should set API key parameter if it is present', () => {
     testAuthKey(localUrlshortener);
     testAuthKey(remoteUrlshortener);
   });
 
-  after(function () {
+  after(() => {
     nock.cleanAll();
     nock.enableNetConnect();
   });

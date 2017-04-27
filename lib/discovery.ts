@@ -11,21 +11,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-'use strict';
+const generatorUtils = require('./generator_utils');
+const DefaultTransporter = generatorUtils.DefaultTransporter;
+const handleError = generatorUtils.handleError;
+const async = require('async');
+const fs = require('fs');
+const url = require('url');
+const util = require('util');
+const createAPIRequest = require('./apirequest');
 
-var generatorUtils = require('./generator_utils');
-var DefaultTransporter = generatorUtils.DefaultTransporter;
-var handleError = generatorUtils.handleError;
-var async = require('async');
-var fs = require('fs');
-var url = require('url');
-var util = require('util');
-var createAPIRequest = require('./apirequest');
-
-var transporter = new DefaultTransporter();
+const transporter = new DefaultTransporter();
 
 function getPathParams (params) {
-  var pathParams = [];
+  const pathParams = [];
   if (typeof params !== 'object') {
     params = {};
   }
@@ -48,9 +46,9 @@ function getPathParams (params) {
  */
 function makeMethod (schema, method, context) {
   return function (params, callback) {
-    var url = generatorUtils.buildurl(schema.rootUrl + schema.servicePath + method.path);
+    const url = generatorUtils.buildurl(schema.rootUrl + schema.servicePath + method.path);
 
-    var parameters = {
+    const parameters = {
       options: {
         url: url.substring(1, url.length - 1),
         method: method.httpMethod
@@ -65,7 +63,7 @@ function makeMethod (schema, method, context) {
     if (method.mediaUpload && method.mediaUpload.protocols &&
       method.mediaUpload.protocols.simple &&
       method.mediaUpload.protocols.simple.path) {
-      var mediaUrl = generatorUtils.buildurl(
+      const mediaUrl = generatorUtils.buildurl(
         schema.rootUrl +
         method.mediaUpload.protocols.simple.path
       );
@@ -88,8 +86,8 @@ function makeMethod (schema, method, context) {
  */
 function applyMethodsFromSchema (target, rootSchema, schema, context) {
   if (schema.methods) {
-    for (var name in schema.methods) {
-      var method = schema.methods[name];
+    for (const name in schema.methods) {
+      const method = schema.methods[name];
       target[name] = makeMethod(rootSchema, method, context);
     }
   }
@@ -110,8 +108,8 @@ function applySchema (target, rootSchema, schema, context) {
   applyMethodsFromSchema(target, rootSchema, schema, context);
 
   if (schema.resources) {
-    for (var resourceName in schema.resources) {
-      var resource = schema.resources[resourceName];
+    for (const resourceName in schema.resources) {
+      const resource = schema.resources[resourceName];
       if (!target[resourceName]) {
         target[resourceName] = {};
       }
@@ -128,8 +126,8 @@ function applySchema (target, rootSchema, schema, context) {
  * @return Function The Endpoint.
  */
 function makeEndpoint (schema) {
-  var Endpoint = function (options) {
-    var self = this;
+  const Endpoint = function (options) {
+    const self = this;
     self._options = options || {};
 
     applySchema(self, schema, schema, self);
@@ -165,8 +163,8 @@ Discovery.prototype.log = function () {
  * @throws {Error} If there is an error generating any of the APIs
  */
 Discovery.prototype.discoverAllAPIs = function (discoveryUrl, callback) {
-  var self = this;
-  var headers = this.options.includePrivate ? {} : { 'X-User-Ip': '0.0.0.0' };
+  const self = this;
+  const headers = this.options.includePrivate ? {} : { 'X-User-Ip': '0.0.0.0' };
   transporter.request({
     uri: discoveryUrl,
     headers: headers
@@ -190,15 +188,15 @@ Discovery.prototype.discoverAllAPIs = function (discoveryUrl, callback) {
         return callback(err);
       }
 
-      var versionIndex = {};
-      var apisIndex = {};
+      const versionIndex = {};
+      const apisIndex = {};
 
       apis.forEach(function (api) {
         if (!apisIndex[api.name]) {
           versionIndex[api.name] = {};
           apisIndex[api.name] = function (options) {
-            var type = typeof options;
-            var version;
+            const type = typeof options;
+            let version;
             if (type === 'string') {
               version = options;
               options = {};
@@ -209,8 +207,8 @@ Discovery.prototype.discoverAllAPIs = function (discoveryUrl, callback) {
               throw new Error('Argument error: Accepts only string or object');
             }
             try {
-              var Endpoint = versionIndex[api.name][version];
-              var ep = new Endpoint(options);
+              const Endpoint = versionIndex[api.name][version];
+              const ep = new Endpoint(options);
               ep.google = this; // for drive.google.transporter
               return Object.freeze(ep); // create new & freeze
             } catch (e) {
@@ -243,7 +241,7 @@ Discovery.prototype.discoverAPI = function (apiDiscoveryUrl, callback) {
   }
 
   if (typeof apiDiscoveryUrl === 'string') {
-    var parts = url.parse(apiDiscoveryUrl);
+    const parts = url.parse(apiDiscoveryUrl);
 
     if (apiDiscoveryUrl && !parts.protocol) {
       this.log('Reading from file ' + apiDiscoveryUrl);
@@ -263,9 +261,9 @@ Discovery.prototype.discoverAPI = function (apiDiscoveryUrl, callback) {
       }, _generate);
     }
   } else {
-    var options = apiDiscoveryUrl;
+    const options = apiDiscoveryUrl;
     this.log('Requesting ' + options.url);
-    var parameters = {
+    const parameters = {
       options: {
         url: options.url,
         method: 'GET'

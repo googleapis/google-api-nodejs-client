@@ -11,32 +11,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-'use strict';
+import * as assert from 'power-assert';
+import * as async from 'async';
+import * as fs from 'fs';
+import * as nock from 'nock';
+import * as path from 'path';
+import utils from './utils';
+let googleapis = require('../');
 
-var assert = require('power-assert');
-var async = require('async');
-var fs = require('fs');
-var googleapis = require('../');
-var nock = require('nock');
-var path = require('path');
-var utils = require('./utils');
+describe('Clients', () => {
+  let localPlus, remotePlus;
+  let localOauth2, remoteOauth2;
 
-describe('Clients', function () {
-  var localPlus, remotePlus;
-  var localOauth2, remoteOauth2;
-
-  before(function (done) {
+  before((done) => {
     nock.cleanAll();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     nock.enableNetConnect();
     async.parallel([
-      function (cb) {
-        utils.loadApi(google, 'plus', 'v1', cb);
+      (cb) => {
+        utils.loadApi(google, 'plus', 'v1', {}, cb);
       },
-      function (cb) {
-        utils.loadApi(google, 'oauth2', 'v2', cb);
+      (cb) => {
+        utils.loadApi(google, 'oauth2', 'v2', {}, cb);
       }
-    ], function (err, apis) {
+    ], (err, apis) => {
       if (err) {
         return done(err);
       }
@@ -47,16 +45,16 @@ describe('Clients', function () {
     });
   });
 
-  beforeEach(function () {
+  beforeEach(() => {
     nock.cleanAll();
     nock.disableNetConnect();
-    var google = new googleapis.GoogleApis();
+    const google = new googleapis.GoogleApis();
     localPlus = google.plus('v1');
     localOauth2 = google.oauth2('v2');
   });
 
-  it('should create request helpers according to resource on discovery API response', function () {
-    var plus = localPlus;
+  it('should create request helpers according to resource on discovery API response', () => {
+    let plus = localPlus;
     assert.equal(typeof plus.people.get, 'function');
     assert.equal(typeof plus.activities.search, 'function');
     assert.equal(typeof plus.comments.list, 'function');
@@ -66,13 +64,13 @@ describe('Clients', function () {
     assert.equal(typeof plus.comments.list, 'function');
   });
 
-  it('should be able to gen top level methods', function () {
+  it('should be able to gen top level methods', () => {
     assert.equal(typeof localOauth2.tokeninfo, 'function');
     assert.equal(typeof remoteOauth2.tokeninfo, 'function');
   });
 
-  it('should be able to gen top level methods and resources', function () {
-    var oauth2 = localOauth2;
+  it('should be able to gen top level methods and resources', () => {
+    let oauth2 = localOauth2;
     assert.equal(typeof oauth2.tokeninfo, 'function');
     assert.equal(typeof oauth2.userinfo, 'object');
     oauth2 = remoteOauth2;
@@ -80,8 +78,8 @@ describe('Clients', function () {
     assert.equal(typeof oauth2.userinfo, 'object');
   });
 
-  it('should be able to gen nested resources and methods', function () {
-    var oauth2 = localOauth2;
+  it('should be able to gen nested resources and methods', () => {
+    let oauth2 = localOauth2;
     assert.equal(typeof oauth2.userinfo, 'object');
     assert.equal(typeof oauth2.userinfo.v2, 'object');
     assert.equal(typeof oauth2.userinfo.v2.me, 'object');
@@ -93,18 +91,18 @@ describe('Clients', function () {
     assert.equal(typeof oauth2.userinfo.v2.me.get, 'function');
   });
 
-  it('should be able to require all api files without error', function () {
+  it('should be able to require all api files without error', () => {
     function getFiles (dir, files_?) {
       files_ = files_ || [];
       if (typeof files_ === 'undefined') {
         files_ = [];
       }
-      var files = fs.readdirSync(dir);
-      for (var i in files) {
+      const files = fs.readdirSync(dir);
+      for (const i in files) {
         if (!files.hasOwnProperty(i)) {
           continue;
         }
-        var name = dir + '/' + files[i];
+        const name = dir + '/' + files[i];
         if (fs.statSync(name).isDirectory()) {
           getFiles(name, files_);
         } else {
@@ -116,10 +114,10 @@ describe('Clients', function () {
       return files_;
     }
 
-    var apiFiles = getFiles(path.join(__dirname, '/../apis'));
+    const apiFiles = getFiles(path.join(__dirname, '/../apis'));
 
-    assert.doesNotThrow(function () {
-      for (var i in apiFiles) {
+    assert.doesNotThrow(() => {
+      for (const i in apiFiles) {
         try {
           require(apiFiles[i]);
         } catch (err) {
@@ -130,17 +128,17 @@ describe('Clients', function () {
     });
   });
 
-  it('should support default params', function (done) {
-    var google = new googleapis.GoogleApis();
-    var datastore = google.datastore({
+  it('should support default params', (done) => {
+    const google = new googleapis.GoogleApis();
+    const datastore = google.datastore({
       version: 'v1beta3',
       params: { myParam: '123' }
     });
-    var req = datastore.projects.lookup({ projectId: 'test-project-id' }, utils.noop);
+    const req = datastore.projects.lookup({ projectId: 'test-project-id' }, utils.noop);
     // If the default param handling is broken, query might be undefined, thus
     // concealing the assertion message with some generic "cannot call .indexOf
     // of undefined"
-    var query = req.uri.query || '';
+    const query = req.uri.query || '';
 
     assert.notEqual(
       query.indexOf('myParam=123'),
@@ -150,13 +148,13 @@ describe('Clients', function () {
     nock.enableNetConnect();
     utils.loadApi(google, 'datastore', 'v1beta3', {
       params: { myParam: '123' }
-    }, function (err, datastore) {
+    }, (err, datastore) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
       }
-      var req = datastore.projects.lookup({ projectId: 'test-project-id' }, utils.noop);
-      var query = req.uri.query || '';
+      const req = datastore.projects.lookup({ projectId: 'test-project-id' }, utils.noop);
+      const query = req.uri.query || '';
 
       assert.notEqual(
         query.indexOf('myParam=123'),
@@ -167,20 +165,20 @@ describe('Clients', function () {
     });
   });
 
-  it('should allow default params to be overriden per-request', function (done) {
-    var google = new googleapis.GoogleApis();
-    var datastore = google.datastore({
+  it('should allow default params to be overriden per-request', (done) => {
+    const google = new googleapis.GoogleApis();
+    const datastore = google.datastore({
       version: 'v1beta3',
       params: { myParam: '123' }
     });
     // Override the default datasetId param for this particular API call
-    var req = datastore.projects.lookup({
+    const req = datastore.projects.lookup({
       projectId: 'test-project-id', myParam: '456'
     }, utils.noop);
     // If the default param handling is broken, query might be undefined, thus
     // concealing the assertion message with some generic "cannot call .indexOf
     // of undefined"
-    var query = req.uri.query || '';
+    const query = req.uri.query || '';
 
     assert.notEqual(
       query.indexOf('myParam=456'),
@@ -191,19 +189,19 @@ describe('Clients', function () {
     nock.enableNetConnect();
     utils.loadApi(google, 'datastore', 'v1beta3', {
       params: { myParam: '123' }
-    }, function (err, datastore) {
+    }, (err, datastore) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
       }
       // Override the default datasetId param for this particular API call
-      var req = datastore.projects.lookup({
+      const req = datastore.projects.lookup({
         projectId: 'test-project-id', myParam: '456'
       }, utils.noop);
       // If the default param handling is broken, query might be undefined, thus
       // concealing the assertion message with some generic "cannot call .indexOf
       // of undefined"
-      var query = req.uri.query || '';
+      const query = req.uri.query || '';
 
       assert.notEqual(
         query.indexOf('myParam=456'),
@@ -214,9 +212,9 @@ describe('Clients', function () {
     });
   });
 
-  it('should include default params when only callback is provided to API call', function (done) {
-    var google = new googleapis.GoogleApis();
-    var datastore = google.datastore({
+  it('should include default params when only callback is provided to API call', (done) => {
+    const google = new googleapis.GoogleApis();
+    const datastore = google.datastore({
       version: 'v1beta3',
       params: {
         projectId: 'test-project-id', // We must set this here - it is a required param
@@ -224,10 +222,10 @@ describe('Clients', function () {
       }
     });
     // No params given - only callback
-    var req = datastore.projects.lookup(utils.noop);
+    const req = datastore.projects.lookup(utils.noop);
     // If the default param handling is broken, req or query might be undefined, thus concealing the
     // assertion message with some generic "cannot call .indexOf of undefined"
-    var query = (req && req.uri.query) || '';
+    const query = (req && req.uri.query) || '';
 
     assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
 
@@ -237,24 +235,24 @@ describe('Clients', function () {
         projectId: 'test-project-id', // We must set this here - it is a required param
         myParam: '123'
       }
-    }, function (err, datastore) {
+    }, (err, datastore) => {
       nock.disableNetConnect();
       if (err) {
         return done(err);
       }
       // No params given - only callback
-      var req = datastore.projects.lookup(utils.noop);
+      const req = datastore.projects.lookup(utils.noop);
       // If the default param handling is broken, req or query might be
       // undefined, thus concealing the assertion message with some generic
       // "cannot call .indexOf of undefined"
-      var query = (req && req.uri.query) || '';
+      const query = (req && req.uri.query) || '';
 
       assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param not found in query');
       done();
     });
   });
 
-  after(function () {
+  after(() => {
     nock.cleanAll();
     nock.enableNetConnect();
   });

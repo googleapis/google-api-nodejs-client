@@ -11,8 +11,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-'use strict';
-
 /**
  * Build a string used to create a URL from the discovery doc provided URL.
  *
@@ -52,7 +50,7 @@ function handleError (err, callback) {
 }
 
 export = {
-  DefaultTransporter: require('../lib/transporters'),
+  DefaultTransporter: require('../lib/googleauth.js').transporters,
   buildurl: buildurl,
   handleError: handleError
 }
