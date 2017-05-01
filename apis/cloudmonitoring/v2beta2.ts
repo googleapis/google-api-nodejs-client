@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Cloud Monitoring API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Accesses Google Cloud Monitoring data.
  *
  * @example
- * var google = require('googleapis');
- * var cloudmonitoring = google.cloudmonitoring('v2beta2');
+ * const google = require('googleapis');
+ * const cloudmonitoring = google.cloudmonitoring('v2beta2');
  *
  * @namespace cloudmonitoring
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Cloudmonitoring
  */
 function Cloudmonitoring(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.metricDescriptors = {
@@ -64,7 +62,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors',
           method: 'POST'
@@ -100,7 +98,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors/{metric}',
           method: 'DELETE'
@@ -139,7 +137,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/metricDescriptors',
           method: 'GET'
@@ -188,7 +186,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/timeseries/{metric}',
           method: 'GET'
@@ -224,7 +222,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/timeseries:write',
           method: 'POST'
@@ -273,7 +271,7 @@ function Cloudmonitoring(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/cloudmonitoring/v2beta2/projects/{project}/timeseriesDescriptors/{metric}',
           method: 'GET'

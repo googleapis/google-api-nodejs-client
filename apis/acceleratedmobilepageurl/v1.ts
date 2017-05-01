@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Accelerated Mobile Pages (AMP) URL API
@@ -28,8 +26,8 @@ var utils = require('../../lib/utils');
 
  *
  * @example
- * var google = require('googleapis');
- * var acceleratedmobilepageurl = google.acceleratedmobilepageurl('v1');
+ * const google = require('googleapis');
+ * const acceleratedmobilepageurl = google.acceleratedmobilepageurl('v1');
  *
  * @namespace acceleratedmobilepageurl
  * @type {Function}
@@ -38,7 +36,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Acceleratedmobilepageurl
  */
 function Acceleratedmobilepageurl(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.ampUrls = {
@@ -64,7 +62,7 @@ function Acceleratedmobilepageurl(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://acceleratedmobilepageurl.googleapis.com/v1/ampUrls:batchGet',
           method: 'POST'
@@ -81,6 +79,23 @@ function Acceleratedmobilepageurl(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef AmpUrl
+ * @memberOf! acceleratedmobilepageurl(v1)
+ * @type object
+* @property {string} cdnAmpUrl The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to
+the cached document in the Google AMP Cache.
+* @property {string} originalUrl The original non-AMP URL.
+* @property {string} ampUrl The AMP URL pointing to the publisher&#39;s web server.
+*/
+/**
+ * @typedef AmpUrlError
+ * @memberOf! acceleratedmobilepageurl(v1)
+ * @type object
+ * @property {string} errorCode The error code of an API call.
+ * @property {string} originalUrl The original non-AMP URL.
+ * @property {string} errorMessage An optional descriptive error message.
+ */
 /**
  * @typedef BatchGetAmpUrlsRequest
  * @memberOf! acceleratedmobilepageurl(v1)
@@ -100,21 +115,4 @@ If BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated
 only once.
 * @property {acceleratedmobilepageurl(v1).AmpUrlError[]} urlErrors The errors for requested URLs that have no AMP URL.
 */
-/**
- * @typedef AmpUrl
- * @memberOf! acceleratedmobilepageurl(v1)
- * @type object
-* @property {string} originalUrl The original non-AMP URL.
-* @property {string} ampUrl The AMP URL pointing to the publisher&#39;s web server.
-* @property {string} cdnAmpUrl The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to
-the cached document in the Google AMP Cache.
-*/
-/**
- * @typedef AmpUrlError
- * @memberOf! acceleratedmobilepageurl(v1)
- * @type object
- * @property {string} errorMessage An optional descriptive error message.
- * @property {string} errorCode The error code of an API call.
- * @property {string} originalUrl The original non-AMP URL.
- */
 export = Acceleratedmobilepageurl;

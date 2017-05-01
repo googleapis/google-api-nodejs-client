@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Consumer Surveys API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Creates and conducts surveys, lists the surveys that an authenticated user owns, and retrieves survey results and information about specified surveys.
  *
  * @example
- * var google = require('googleapis');
- * var consumersurveys = google.consumersurveys('v2');
+ * const google = require('googleapis');
+ * const consumersurveys = google.consumersurveys('v2');
  *
  * @namespace consumersurveys
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Consumersurveys
  */
 function Consumersurveys(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.mobileapppanels = {
@@ -63,7 +61,7 @@ function Consumersurveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/mobileAppPanels/{panelId}',
           method: 'GET'
@@ -100,7 +98,7 @@ function Consumersurveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/mobileAppPanels',
           method: 'GET'
@@ -136,7 +134,7 @@ function Consumersurveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/mobileAppPanels/{panelId}',
           method: 'PUT'
@@ -176,7 +174,7 @@ function Consumersurveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{surveyUrlId}/results',
           method: 'GET'
@@ -215,7 +213,7 @@ function Consumersurveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{surveyUrlId}',
           method: 'DELETE'
@@ -250,7 +248,7 @@ function Consumersurveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{surveyUrlId}',
           method: 'GET'
@@ -285,7 +283,7 @@ function Consumersurveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys',
           method: 'POST'
@@ -322,7 +320,7 @@ function Consumersurveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys',
           method: 'GET'
@@ -358,7 +356,7 @@ function Consumersurveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{resourceId}/start',
           method: 'POST'
@@ -393,7 +391,7 @@ function Consumersurveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{resourceId}/stop',
           method: 'POST'
@@ -429,7 +427,7 @@ function Consumersurveys(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/consumersurveys/v2/surveys/{surveyUrlId}',
           method: 'PUT'
@@ -602,14 +600,12 @@ function Consumersurveys(options) { // eslint-disable-line
  * @memberOf! consumersurveys(v2)
  * @type object
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
- * @property {consumersurveys(v2).Survey} resource Survey object containing the specification of the started Survey.
  */
 /**
  * @typedef SurveysStopResponse
  * @memberOf! consumersurveys(v2)
  * @type object
  * @property {string} requestId Unique request ID used for logging and debugging. Please include in any error reporting or troubleshooting requests.
- * @property {consumersurveys(v2).Survey} resource Survey object containing the specification of the stopped Survey.
  */
 /**
  * @typedef TokenPagination

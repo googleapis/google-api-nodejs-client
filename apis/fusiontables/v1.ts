@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Fusion Tables API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * API for working with Fusion Tables data.
  *
  * @example
- * var google = require('googleapis');
- * var fusiontables = google.fusiontables('v1');
+ * const google = require('googleapis');
+ * const fusiontables = google.fusiontables('v1');
  *
  * @namespace fusiontables
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Fusiontables
  */
 function Fusiontables(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.column = {
@@ -64,7 +62,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/columns/{columnId}',
           method: 'DELETE'
@@ -100,7 +98,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/columns/{columnId}',
           method: 'GET'
@@ -136,7 +134,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/columns',
           method: 'POST'
@@ -173,7 +171,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/columns',
           method: 'GET'
@@ -210,7 +208,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/columns/{columnId}',
           method: 'PATCH'
@@ -247,7 +245,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/columns/{columnId}',
           method: 'PUT'
@@ -288,7 +286,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/query',
           method: 'POST'
@@ -325,7 +323,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/query',
           method: 'GET'
@@ -365,7 +363,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/styles/{styleId}',
           method: 'DELETE'
@@ -401,7 +399,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/styles/{styleId}',
           method: 'GET'
@@ -437,7 +435,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/styles',
           method: 'POST'
@@ -474,7 +472,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/styles',
           method: 'GET'
@@ -511,7 +509,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/styles/{styleId}',
           method: 'PATCH'
@@ -548,7 +546,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/styles/{styleId}',
           method: 'PUT'
@@ -588,7 +586,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/copy',
           method: 'POST'
@@ -623,7 +621,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}',
           method: 'DELETE'
@@ -658,7 +656,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}',
           method: 'GET'
@@ -701,7 +699,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/import',
           method: 'POST'
@@ -742,7 +740,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/import',
           method: 'POST'
@@ -778,7 +776,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables',
           method: 'POST'
@@ -814,7 +812,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables',
           method: 'GET'
@@ -851,7 +849,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}',
           method: 'PATCH'
@@ -888,7 +886,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}',
           method: 'PUT'
@@ -928,7 +926,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/tasks/{taskId}',
           method: 'DELETE'
@@ -964,7 +962,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/tasks/{taskId}',
           method: 'GET'
@@ -1002,7 +1000,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/tasks',
           method: 'GET'
@@ -1042,7 +1040,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/templates/{templateId}',
           method: 'DELETE'
@@ -1078,7 +1076,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/templates/{templateId}',
           method: 'GET'
@@ -1114,7 +1112,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/templates',
           method: 'POST'
@@ -1151,7 +1149,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/templates',
           method: 'GET'
@@ -1188,7 +1186,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/templates/{templateId}',
           method: 'PATCH'
@@ -1225,7 +1223,7 @@ function Fusiontables(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/fusiontables/v1/tables/{tableId}/templates/{templateId}',
           method: 'PUT'

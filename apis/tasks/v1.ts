@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Tasks API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Lets you manage your tasks and task lists.
  *
  * @example
- * var google = require('googleapis');
- * var tasks = google.tasks('v1');
+ * const google = require('googleapis');
+ * const tasks = google.tasks('v1');
  *
  * @namespace tasks
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Tasks
  */
 function Tasks(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.tasklists = {
@@ -63,7 +61,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
           method: 'DELETE'
@@ -98,7 +96,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
           method: 'GET'
@@ -133,7 +131,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
           method: 'POST'
@@ -169,7 +167,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists',
           method: 'GET'
@@ -205,7 +203,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
           method: 'PATCH'
@@ -241,7 +239,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/users/@me/lists/{tasklist}',
           method: 'PUT'
@@ -280,7 +278,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/clear',
           method: 'POST'
@@ -316,7 +314,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
           method: 'DELETE'
@@ -352,7 +350,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
           method: 'GET'
@@ -390,7 +388,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks',
           method: 'POST'
@@ -435,7 +433,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks',
           method: 'GET'
@@ -473,7 +471,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}/move',
           method: 'POST'
@@ -510,7 +508,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
           method: 'PATCH'
@@ -547,7 +545,7 @@ function Tasks(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tasks/v1/lists/{tasklist}/tasks/{task}',
           method: 'PUT'

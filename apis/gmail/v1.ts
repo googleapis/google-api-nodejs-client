@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Gmail API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Access Gmail mailboxes including sending user email.
  *
  * @example
- * var google = require('googleapis');
- * var gmail = google.gmail('v1');
+ * const google = require('googleapis');
+ * const gmail = google.gmail('v1');
  *
  * @namespace gmail
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Gmail
  */
 function Gmail(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.users = {
@@ -63,7 +61,7 @@ function Gmail(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/gmail/v1/users/{userId}/profile',
           method: 'GET'
@@ -98,7 +96,7 @@ function Gmail(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/gmail/v1/users/{userId}/stop',
           method: 'POST'
@@ -134,7 +132,7 @@ function Gmail(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/gmail/v1/users/{userId}/watch',
           method: 'POST'
@@ -175,7 +173,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts',
             method: 'POST'
@@ -212,7 +210,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/{id}',
             method: 'DELETE'
@@ -249,7 +247,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/{id}',
             method: 'GET'
@@ -288,7 +286,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts',
             method: 'GET'
@@ -327,7 +325,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/send',
             method: 'POST'
@@ -368,7 +366,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/drafts/{id}',
             method: 'PUT'
@@ -412,7 +410,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/history',
             method: 'GET'
@@ -451,7 +449,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels',
             method: 'POST'
@@ -487,7 +485,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
             method: 'DELETE'
@@ -523,7 +521,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
             method: 'GET'
@@ -558,7 +556,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels',
             method: 'GET'
@@ -595,7 +593,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
             method: 'PATCH'
@@ -632,7 +630,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/labels/{id}',
             method: 'PUT'
@@ -671,7 +669,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/batchDelete',
             method: 'POST'
@@ -707,7 +705,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/batchModify',
             method: 'POST'
@@ -743,7 +741,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}',
             method: 'DELETE'
@@ -781,7 +779,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}',
             method: 'GET'
@@ -824,7 +822,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/import',
             method: 'POST'
@@ -866,7 +864,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages',
             method: 'POST'
@@ -907,7 +905,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages',
             method: 'GET'
@@ -944,7 +942,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}/modify',
             method: 'POST'
@@ -983,7 +981,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/send',
             method: 'POST'
@@ -1020,7 +1018,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}/trash',
             method: 'POST'
@@ -1056,7 +1054,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{id}/untrash',
             method: 'POST'
@@ -1095,7 +1093,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/messages/{messageId}/attachments/{id}',
               method: 'GET'
@@ -1134,7 +1132,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/autoForwarding',
             method: 'GET'
@@ -1169,7 +1167,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/imap',
             method: 'GET'
@@ -1204,7 +1202,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/pop',
             method: 'GET'
@@ -1239,7 +1237,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/vacation',
             method: 'GET'
@@ -1275,7 +1273,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/autoForwarding',
             method: 'PUT'
@@ -1311,7 +1309,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/imap',
             method: 'PUT'
@@ -1347,7 +1345,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/pop',
             method: 'PUT'
@@ -1383,7 +1381,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/vacation',
             method: 'PUT'
@@ -1421,7 +1419,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters',
               method: 'POST'
@@ -1457,7 +1455,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters/{id}',
               method: 'DELETE'
@@ -1493,7 +1491,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters/{id}',
               method: 'GET'
@@ -1528,7 +1526,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/filters',
               method: 'GET'
@@ -1567,7 +1565,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses',
               method: 'POST'
@@ -1603,7 +1601,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}',
               method: 'DELETE'
@@ -1639,7 +1637,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}',
               method: 'GET'
@@ -1674,7 +1672,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses',
               method: 'GET'
@@ -1713,7 +1711,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs',
               method: 'POST'
@@ -1749,7 +1747,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
               method: 'DELETE'
@@ -1785,7 +1783,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
               method: 'GET'
@@ -1820,7 +1818,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs',
               method: 'GET'
@@ -1857,7 +1855,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
               method: 'PATCH'
@@ -1894,7 +1892,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}',
               method: 'PUT'
@@ -1930,7 +1928,7 @@ function Gmail(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify',
               method: 'POST'
@@ -1969,7 +1967,7 @@ function Gmail(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}',
                 method: 'DELETE'
@@ -2006,7 +2004,7 @@ function Gmail(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}',
                 method: 'GET'
@@ -2043,7 +2041,7 @@ function Gmail(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo',
                 method: 'POST'
@@ -2079,7 +2077,7 @@ function Gmail(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo',
                 method: 'GET'
@@ -2116,7 +2114,7 @@ function Gmail(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://www.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}/setDefault',
                 method: 'POST'
@@ -2157,7 +2155,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}',
             method: 'DELETE'
@@ -2195,7 +2193,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}',
             method: 'GET'
@@ -2235,7 +2233,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads',
             method: 'GET'
@@ -2272,7 +2270,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}/modify',
             method: 'POST'
@@ -2308,7 +2306,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}/trash',
             method: 'POST'
@@ -2344,7 +2342,7 @@ function Gmail(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/gmail/v1/users/{userId}/threads/{id}/untrash',
             method: 'POST'

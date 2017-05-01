@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Translate API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Translates text from one language to another.
  *
  * @example
- * var google = require('googleapis');
- * var translate = google.translate('v2');
+ * const google = require('googleapis');
+ * const translate = google.translate('v2');
  *
  * @namespace translate
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Translate
  */
 function Translate(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.detections = {
@@ -63,7 +61,7 @@ function Translate(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/language/translate/v2/detect',
           method: 'GET'
@@ -102,7 +100,7 @@ function Translate(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/language/translate/v2/languages',
           method: 'GET'
@@ -145,7 +143,7 @@ function Translate(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/language/translate/v2',
           method: 'GET'

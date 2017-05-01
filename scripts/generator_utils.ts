@@ -11,6 +11,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { DefaultTransporter } from 'google-auth-library';
+
 /**
  * Build a string used to create a URL from the discovery doc provided URL.
  *
@@ -43,14 +45,14 @@ function buildurl (input) {
  * @param  {Error}   err      Error object to return in callback
  * @param  {Function=} callback Optional callback function
  */
-function handleError (err, callback) {
+function handleError (err: Error, callback: Function) {
   if (callback && typeof callback === 'function') {
     callback(err, null);
   }
 }
 
-export = {
-  DefaultTransporter: require('../lib/googleauth.js').transporters,
+export default {
+  DefaultTransporter: DefaultTransporter,
   buildurl: buildurl,
   handleError: handleError
 }

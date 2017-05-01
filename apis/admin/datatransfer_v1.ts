@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Admin Data Transfer API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Transfers user data from one user to another.
  *
  * @example
- * var google = require('googleapis');
- * var admin = google.admin('datatransfer_v1');
+ * const google = require('googleapis');
+ * const admin = google.admin('datatransfer_v1');
  *
  * @namespace admin
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Admin
  */
 function Admin(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.applications = {
@@ -63,7 +61,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/applications/{applicationId}',
           method: 'GET'
@@ -100,7 +98,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/applications',
           method: 'GET'
@@ -139,7 +137,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers/{dataTransferId}',
           method: 'GET'
@@ -174,7 +172,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers',
           method: 'POST'
@@ -214,7 +212,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/datatransfer/v1/transfers',
           method: 'GET'

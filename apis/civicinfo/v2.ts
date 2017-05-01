@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Civic Information API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Provides polling places, early vote locations, contest data, election officials, and government representatives for U.S. residential addresses.
  *
  * @example
- * var google = require('googleapis');
- * var civicinfo = google.civicinfo('v2');
+ * const google = require('googleapis');
+ * const civicinfo = google.civicinfo('v2');
  *
  * @namespace civicinfo
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Civicinfo
  */
 function Civicinfo(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.divisions = {
@@ -64,7 +62,7 @@ function Civicinfo(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/civicinfo/v2/divisions',
           method: 'GET'
@@ -103,7 +101,7 @@ function Civicinfo(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/civicinfo/v2/elections',
           method: 'GET'
@@ -142,7 +140,7 @@ function Civicinfo(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/civicinfo/v2/voterinfo',
           method: 'GET'
@@ -185,7 +183,7 @@ function Civicinfo(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/civicinfo/v2/representatives',
           method: 'GET'
@@ -224,7 +222,7 @@ function Civicinfo(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/civicinfo/v2/representatives/{ocdId}',
           method: 'GET'

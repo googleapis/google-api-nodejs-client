@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Groups Settings API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Lets you manage permission levels and related settings of a group.
  *
  * @example
- * var google = require('googleapis');
- * var groupssettings = google.groupssettings('v1');
+ * const google = require('googleapis');
+ * const groupssettings = google.groupssettings('v1');
  *
  * @namespace groupssettings
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Groupssettings
  */
 function Groupssettings(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.groups = {
@@ -63,7 +61,7 @@ function Groupssettings(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
           method: 'GET'
@@ -99,7 +97,7 @@ function Groupssettings(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
           method: 'PATCH'
@@ -135,7 +133,7 @@ function Groupssettings(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
           method: 'PUT'

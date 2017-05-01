@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Site Verification API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Verifies ownership of websites or domains with Google.
  *
  * @example
- * var google = require('googleapis');
- * var siteVerification = google.siteVerification('v1');
+ * const google = require('googleapis');
+ * const siteVerification = google.siteVerification('v1');
  *
  * @namespace siteVerification
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Siteverification
  */
 function Siteverification(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.webResource = {
@@ -63,7 +61,7 @@ function Siteverification(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
           method: 'DELETE'
@@ -98,7 +96,7 @@ function Siteverification(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
           method: 'GET'
@@ -133,7 +131,7 @@ function Siteverification(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/siteVerification/v1/token',
           method: 'POST'
@@ -169,7 +167,7 @@ function Siteverification(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/siteVerification/v1/webResource',
           method: 'POST'
@@ -203,7 +201,7 @@ function Siteverification(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/siteVerification/v1/webResource',
           method: 'GET'
@@ -239,7 +237,7 @@ function Siteverification(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
           method: 'PATCH'
@@ -275,7 +273,7 @@ function Siteverification(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
           method: 'PUT'

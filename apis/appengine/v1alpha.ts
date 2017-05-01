@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google App Engine Admin API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * The App Engine Admin API enables developers to provision and manage their App Engine applications.
  *
  * @example
- * var google = require('googleapis');
- * var appengine = google.appengine('v1alpha');
+ * const google = require('googleapis');
+ * const appengine = google.appengine('v1alpha');
  *
  * @namespace appengine
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Appengine
  */
 function Appengine(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.apps = {
@@ -68,7 +66,7 @@ function Appengine(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://appengine.googleapis.com/v1alpha/apps/{appsId}/operations',
             method: 'GET'
@@ -104,7 +102,7 @@ function Appengine(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://appengine.googleapis.com/v1alpha/apps/{appsId}/operations/{operationsId}',
             method: 'GET'
@@ -145,7 +143,7 @@ function Appengine(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://appengine.googleapis.com/v1alpha/apps/{appsId}/locations',
             method: 'GET'
@@ -181,7 +179,7 @@ function Appengine(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://appengine.googleapis.com/v1alpha/apps/{appsId}/locations/{locationsId}',
             method: 'GET'
@@ -198,74 +196,6 @@ function Appengine(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef OperationMetadataV1
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {string} insertTime Time that this operation was created.@OutputOnly
- * @property {string[]} warning Durable messages that persist on every operation poll. @OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
- * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
- * @property {string} method API method that initiated this operation. Example: google.appengine.v1.Versions.CreateVersion.@OutputOnly
- * @property {string} endTime Time that this operation completed.@OutputOnly
- */
-/**
- * @typedef Operation
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {boolean} done If the value is false, it means the operation is still in progress. If true, the operation is completed, and either error or response is available.
- * @property {object} response The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
- * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should have the format of operations/some/unique/name.
- * @property {appengine(v1alpha).Status} error The error result of the operation in case of failure or cancellation.
- * @property {object} metadata Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
- */
-/**
- * @typedef ListOperationsResponse
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {appengine(v1alpha).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-/**
- * @typedef OperationMetadata
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {string} method API method that initiated this operation. Example: google.appengine.v1beta4.Version.CreateVersion.@OutputOnly
- * @property {string} endTime Timestamp that this operation completed.@OutputOnly
- * @property {string} operationType Type of this operation. Deprecated, use method field instead. Example: &quot;create_version&quot;.@OutputOnly
- * @property {string} insertTime Timestamp that this operation was created.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/modules/default.@OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
- */
-/**
- * @typedef OperationMetadataExperimental
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {string} user User who requested this operation.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/customDomains/example.com.@OutputOnly
- * @property {string} method API method that initiated this operation. Example: google.appengine.experimental.CustomDomains.CreateCustomDomain.@OutputOnly
- * @property {string} insertTime Time that this operation was created.@OutputOnly
- * @property {string} endTime Time that this operation completed.@OutputOnly
- */
-/**
- * @typedef OperationMetadataV1Beta5
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {string} insertTime Timestamp that this operation was created.@OutputOnly
- * @property {string} endTime Timestamp that this operation completed.@OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
- * @property {string} method API method name that initiated this operation. Example: google.appengine.v1beta5.Version.CreateVersion.@OutputOnly
- */
-/**
- * @typedef Status
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
- * @property {object[]} details A list of messages that carry the error details. There will be a common set of message types for APIs to use.
- * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
- */
 /**
  * @typedef LocationMetadata
  * @memberOf! appengine(v1alpha)
@@ -286,8 +216,8 @@ function Appengine(options) { // eslint-disable-line
  * @type object
  * @property {string} method API method that initiated this operation. Example: google.appengine.v1beta.Versions.CreateVersion.@OutputOnly
  * @property {string} endTime Time that this operation completed.@OutputOnly
- * @property {string} insertTime Time that this operation was created.@OutputOnly
  * @property {string[]} warning Durable messages that persist on every operation poll. @OutputOnly
+ * @property {string} insertTime Time that this operation was created.@OutputOnly
  * @property {string} user User who requested this operation.@OutputOnly
  * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
  * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
@@ -296,11 +226,79 @@ function Appengine(options) { // eslint-disable-line
  * @typedef Location
  * @memberOf! appengine(v1alpha)
  * @type object
+* @property {string} name Resource name for the location, which may vary between implementations. For example: &quot;projects/example-project/locations/us-east1&quot;
 * @property {string} locationId The canonical id for this location. For example: &quot;us-east1&quot;.
 * @property {object} metadata Service-specific metadata. For example the available capacity at the given location.
 * @property {object} labels Cross-service attributes for the location. For example
 {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
 
-* @property {string} name Resource name for the location, which may vary between implementations. For example: &quot;projects/example-project/locations/us-east1&quot;
 */
+/**
+ * @typedef OperationMetadataV1
+ * @memberOf! appengine(v1alpha)
+ * @type object
+ * @property {string} insertTime Time that this operation was created.@OutputOnly
+ * @property {string[]} warning Durable messages that persist on every operation poll. @OutputOnly
+ * @property {string} user User who requested this operation.@OutputOnly
+ * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
+ * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
+ * @property {string} method API method that initiated this operation. Example: google.appengine.v1.Versions.CreateVersion.@OutputOnly
+ * @property {string} endTime Time that this operation completed.@OutputOnly
+ */
+/**
+ * @typedef Operation
+ * @memberOf! appengine(v1alpha)
+ * @type object
+ * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should have the format of operations/some/unique/name.
+ * @property {appengine(v1alpha).Status} error The error result of the operation in case of failure or cancellation.
+ * @property {object} metadata Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
+ * @property {boolean} done If the value is false, it means the operation is still in progress. If true, the operation is completed, and either error or response is available.
+ * @property {object} response The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
+ */
+/**
+ * @typedef ListOperationsResponse
+ * @memberOf! appengine(v1alpha)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {appengine(v1alpha).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+/**
+ * @typedef OperationMetadata
+ * @memberOf! appengine(v1alpha)
+ * @type object
+ * @property {string} method API method that initiated this operation. Example: google.appengine.v1beta4.Version.CreateVersion.@OutputOnly
+ * @property {string} endTime Timestamp that this operation completed.@OutputOnly
+ * @property {string} operationType Type of this operation. Deprecated, use method field instead. Example: &quot;create_version&quot;.@OutputOnly
+ * @property {string} insertTime Timestamp that this operation was created.@OutputOnly
+ * @property {string} user User who requested this operation.@OutputOnly
+ * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/modules/default.@OutputOnly
+ */
+/**
+ * @typedef OperationMetadataExperimental
+ * @memberOf! appengine(v1alpha)
+ * @type object
+ * @property {string} method API method that initiated this operation. Example: google.appengine.experimental.CustomDomains.CreateCustomDomain.@OutputOnly
+ * @property {string} insertTime Time that this operation was created.@OutputOnly
+ * @property {string} endTime Time that this operation completed.@OutputOnly
+ * @property {string} user User who requested this operation.@OutputOnly
+ * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/customDomains/example.com.@OutputOnly
+ */
+/**
+ * @typedef OperationMetadataV1Beta5
+ * @memberOf! appengine(v1alpha)
+ * @type object
+ * @property {string} user User who requested this operation.@OutputOnly
+ * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
+ * @property {string} method API method name that initiated this operation. Example: google.appengine.v1beta5.Version.CreateVersion.@OutputOnly
+ * @property {string} insertTime Timestamp that this operation was created.@OutputOnly
+ * @property {string} endTime Timestamp that this operation completed.@OutputOnly
+ */
+/**
+ * @typedef Status
+ * @memberOf! appengine(v1alpha)
+ * @type object
+ * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+ * @property {object[]} details A list of messages that carry the error details. There will be a common set of message types for APIs to use.
+ * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+ */
 export = Appengine;

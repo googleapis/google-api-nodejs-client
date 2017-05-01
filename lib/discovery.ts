@@ -12,13 +12,13 @@
 // limitations under the License.
 
 const generatorUtils = require('./generator_utils');
-const DefaultTransporter = generatorUtils.DefaultTransporter;
 const handleError = generatorUtils.handleError;
 const async = require('async');
 const fs = require('fs');
 const url = require('url');
 const util = require('util');
 const createAPIRequest = require('./apirequest');
+import * as DefaultTransporter from 'google-auth-library/lib/transporters';
 
 const transporter = new DefaultTransporter();
 

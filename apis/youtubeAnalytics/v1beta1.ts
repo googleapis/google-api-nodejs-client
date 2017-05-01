@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * YouTube Analytics API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Retrieves your YouTube Analytics data.
  *
  * @example
- * var google = require('googleapis');
- * var youtubeAnalytics = google.youtubeAnalytics('v1beta1');
+ * const google = require('googleapis');
+ * const youtubeAnalytics = google.youtubeAnalytics('v1beta1');
  *
  * @namespace youtubeAnalytics
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Youtubeanalytics
  */
 function Youtubeanalytics(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.groupItems = {
@@ -64,7 +62,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1beta1/groupItems',
           method: 'DELETE'
@@ -100,7 +98,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1beta1/groupItems',
           method: 'POST'
@@ -136,7 +134,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1beta1/groupItems',
           method: 'GET'
@@ -176,7 +174,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1beta1/groups',
           method: 'DELETE'
@@ -212,7 +210,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1beta1/groups',
           method: 'POST'
@@ -250,7 +248,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1beta1/groups',
           method: 'GET'
@@ -286,7 +284,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1beta1/groups',
           method: 'PUT'
@@ -335,7 +333,7 @@ function Youtubeanalytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/youtube/analytics/v1beta1/reports',
           method: 'GET'

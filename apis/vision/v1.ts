@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Cloud Vision API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Integrates Google Vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
  *
  * @example
- * var google = require('googleapis');
- * var vision = google.vision('v1');
+ * const google = require('googleapis');
+ * const vision = google.vision('v1');
  *
  * @namespace vision
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Vision
  */
 function Vision(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.images = {
@@ -115,7 +113,7 @@ function Vision(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://vision.googleapis.com/v1/images:annotate',
           method: 'POST'
@@ -132,6 +130,15 @@ function Vision(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Page
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {integer} width Page width in pixels.
+ * @property {vision(v1).Block[]} blocks List of blocks of text, images etc on this page.
+ * @property {vision(v1).TextProperty} property Additional information detected on the page.
+ * @property {integer} height Page height in pixels.
+ */
 /**
  * @typedef AnnotateImageRequest
  * @memberOf! vision(v1)
@@ -155,8 +162,8 @@ google.rpc.Status.details field, or localized by the client.
  * @typedef LatLongRect
  * @memberOf! vision(v1)
  * @type object
- * @property {vision(v1).LatLng} maxLatLng Max lat/long pair.
  * @property {vision(v1).LatLng} minLatLng Min lat/long pair.
+ * @property {vision(v1).LatLng} maxLatLng Max lat/long pair.
  */
 /**
  * @typedef Symbol
@@ -190,8 +197,8 @@ For example:
  * @typedef LatLng
  * @memberOf! vision(v1)
  * @type object
- * @property {number} longitude The longitude in degrees. It must be in the range [-180.0, +180.0].
  * @property {number} latitude The latitude in degrees. It must be in the range [-90.0, +90.0].
+ * @property {number} longitude The longitude in degrees. It must be in the range [-180.0, +180.0].
  */
 /**
  * @typedef Color
@@ -262,16 +269,18 @@ http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
  * @typedef Vertex
  * @memberOf! vision(v1)
  * @type object
- * @property {integer} x X coordinate.
  * @property {integer} y Y coordinate.
+ * @property {integer} x X coordinate.
  */
 /**
- * @typedef TextProperty
+ * @typedef WebEntity
  * @memberOf! vision(v1)
  * @type object
- * @property {vision(v1).DetectedBreak} detectedBreak Detected start or end of a text segment.
- * @property {vision(v1).DetectedLanguage[]} detectedLanguages A list of detected languages together with confidence.
- */
+* @property {string} entityId Opaque entity ID.
+* @property {string} description Canonical description of the entity, in English.
+* @property {number} score Overall relevancy score for the entity.
+Not normalized and not comparable across different image queries.
+*/
 /**
  * @typedef BoundingPoly
  * @memberOf! vision(v1)
@@ -279,26 +288,16 @@ http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
  * @property {vision(v1).Vertex[]} vertices The bounding polygon vertices.
  */
 /**
- * @typedef WebEntity
+ * @typedef TextProperty
  * @memberOf! vision(v1)
  * @type object
-* @property {string} description Canonical description of the entity, in English.
-* @property {number} score Overall relevancy score for the entity.
-Not normalized and not comparable across different image queries.
-* @property {string} entityId Opaque entity ID.
-*/
+ * @property {vision(v1).DetectedLanguage[]} detectedLanguages A list of detected languages together with confidence.
+ * @property {vision(v1).DetectedBreak} detectedBreak Detected start or end of a text segment.
+ */
 /**
  * @typedef AnnotateImageResponse
  * @memberOf! vision(v1)
  * @type object
-* @property {vision(v1).EntityAnnotation[]} textAnnotations If present, text (OCR) detection has completed successfully.
-* @property {vision(v1).ImageProperties} imagePropertiesAnnotation If present, image properties were extracted successfully.
-* @property {vision(v1).FaceAnnotation[]} faceAnnotations If present, face detection has completed successfully.
-* @property {vision(v1).EntityAnnotation[]} logoAnnotations If present, logo detection has completed successfully.
-* @property {vision(v1).WebDetection} webDetection If present, web detection has completed successfully.
-* @property {vision(v1).CropHintsAnnotation} cropHintsAnnotation If present, crop hints have completed successfully.
-* @property {vision(v1).EntityAnnotation[]} labelAnnotations If present, label detection has completed successfully.
-* @property {vision(v1).SafeSearchAnnotation} safeSearchAnnotation If present, safe-search annotation has completed successfully.
 * @property {vision(v1).Status} error If set, represents the error message for the operation.
 Note that filled-in image annotations are guaranteed to be
 correct, even when `error` is set.
@@ -307,6 +306,14 @@ completed successfully.
 This annotation provides the structural hierarchy for the OCR detected
 text.
 * @property {vision(v1).EntityAnnotation[]} landmarkAnnotations If present, landmark detection has completed successfully.
+* @property {vision(v1).EntityAnnotation[]} textAnnotations If present, text (OCR) detection has completed successfully.
+* @property {vision(v1).ImageProperties} imagePropertiesAnnotation If present, image properties were extracted successfully.
+* @property {vision(v1).FaceAnnotation[]} faceAnnotations If present, face detection has completed successfully.
+* @property {vision(v1).EntityAnnotation[]} logoAnnotations If present, logo detection has completed successfully.
+* @property {vision(v1).CropHintsAnnotation} cropHintsAnnotation If present, crop hints have completed successfully.
+* @property {vision(v1).WebDetection} webDetection If present, web detection has completed successfully.
+* @property {vision(v1).EntityAnnotation[]} labelAnnotations If present, label detection has completed successfully.
+* @property {vision(v1).SafeSearchAnnotation} safeSearchAnnotation If present, safe-search annotation has completed successfully.
 */
 /**
  * @typedef CropHintsParams
@@ -343,24 +350,18 @@ For example:
 * @property {vision(v1).Paragraph[]} paragraphs List of paragraphs in this block (if this blocks is of type text).
 */
 /**
- * @typedef WebDetection
+ * @typedef Property
  * @memberOf! vision(v1)
  * @type object
-* @property {vision(v1).WebImage[]} partialMatchingImages Partial matching images from the Internet.
-Those images are similar enough to share some key-point features. For
-example an original image will likely have partial matching for its crops.
-* @property {vision(v1).WebImage[]} visuallySimilarImages The visually similar image results.
-* @property {vision(v1).WebImage[]} fullMatchingImages Fully matching images from the Internet.
-They&#39;re definite neardups and most often a copy of the query image with
-merely a size change.
-* @property {vision(v1).WebEntity[]} webEntities Deduced entities from similar images on the Internet.
-* @property {vision(v1).WebPage[]} pagesWithMatchingImages Web pages containing the matching images from the Internet.
-*/
+ * @property {string} uint64Value Value of numeric properties.
+ * @property {string} name Name of the property.
+ * @property {string} value Value of the property.
+ */
 /**
- * @typedef BatchAnnotateImagesResponse
+ * @typedef LocationInfo
  * @memberOf! vision(v1)
  * @type object
- * @property {vision(v1).AnnotateImageResponse[]} responses Individual responses to image annotation requests within the batch.
+ * @property {vision(v1).LatLng} latLng lat/long location coordinates.
  */
 /**
  * @typedef ImageSource
@@ -384,36 +385,32 @@ This is preferred over the legacy `gcs_image_uri` above. When both
 precedence.
 */
 /**
- * @typedef LocationInfo
+ * @typedef BatchAnnotateImagesResponse
  * @memberOf! vision(v1)
  * @type object
- * @property {vision(v1).LatLng} latLng lat/long location coordinates.
+ * @property {vision(v1).AnnotateImageResponse[]} responses Individual responses to image annotation requests within the batch.
  */
 /**
- * @typedef Property
+ * @typedef WebDetection
  * @memberOf! vision(v1)
  * @type object
- * @property {string} value Value of the property.
- * @property {string} uint64Value Value of numeric properties.
- * @property {string} name Name of the property.
- */
+* @property {vision(v1).WebImage[]} fullMatchingImages Fully matching images from the Internet.
+Can include resized copies of the query image.
+* @property {vision(v1).WebEntity[]} webEntities Deduced entities from similar images on the Internet.
+* @property {vision(v1).WebPage[]} pagesWithMatchingImages Web pages containing the matching images from the Internet.
+* @property {vision(v1).WebImage[]} partialMatchingImages Partial matching images from the Internet.
+Those images are similar enough to share some key-point features. For
+example an original image will likely have partial matching for its crops.
+* @property {vision(v1).WebImage[]} visuallySimilarImages The visually similar image results.
+*/
 /**
  * @typedef Position
  * @memberOf! vision(v1)
  * @type object
- * @property {number} y Y coordinate.
  * @property {number} x X coordinate.
  * @property {number} z Z coordinate (or depth).
+ * @property {number} y Y coordinate.
  */
-/**
- * @typedef ColorInfo
- * @memberOf! vision(v1)
- * @type object
-* @property {number} pixelFraction The fraction of pixels the color occupies in the image.
-Value in range [0, 1].
-* @property {vision(v1).Color} color RGB components of the color.
-* @property {number} score Image-specific score for this color. Value in range [0, 1].
-*/
 /**
  * @typedef WebPage
  * @memberOf! vision(v1)
@@ -423,9 +420,24 @@ Not normalized and not comparable across different image queries.
 * @property {string} url The result web page URL.
 */
 /**
+ * @typedef ColorInfo
+ * @memberOf! vision(v1)
+ * @type object
+* @property {number} score Image-specific score for this color. Value in range [0, 1].
+* @property {number} pixelFraction The fraction of pixels the color occupies in the image.
+Value in range [0, 1].
+* @property {vision(v1).Color} color RGB components of the color.
+*/
+/**
  * @typedef EntityAnnotation
  * @memberOf! vision(v1)
  * @type object
+* @property {string} mid Opaque entity ID. Some IDs may be available in
+[Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
+* @property {number} confidence The accuracy of the entity detection in an image.
+For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected,
+this field represents the confidence that there is a tower in the query
+image. Range [0, 1].
 * @property {vision(v1).BoundingPoly} boundingPoly Image region to which this entity belongs. Currently not produced
 for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
 are produced for the entire text detected in an image region, followed by
@@ -446,12 +458,6 @@ fields, such a score or string that qualifies the entity.
 indicate the location of the scene in the image, and another location
 may indicate the location of the place where the image was taken.
 Location information is usually present for landmarks.
-* @property {string} mid Opaque entity ID. Some IDs may be available in
-[Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
-* @property {number} confidence The accuracy of the entity detection in an image.
-For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected,
-this field represents the confidence that there is a tower in the query
-image. Range [0, 1].
 */
 /**
  * @typedef CropHint
@@ -482,6 +488,8 @@ Not normalized and not comparable across different image queries.
  * @typedef Word
  * @memberOf! vision(v1)
  * @type object
+* @property {vision(v1).Symbol[]} symbols List of symbols in the word.
+The order of the symbols follows the natural reading order.
 * @property {vision(v1).TextProperty} property Additional information detected for the word.
 * @property {vision(v1).BoundingPoly} boundingBox The bounding box for the word.
 The vertices are in the order of top-left, top-right, bottom-right,
@@ -498,8 +506,6 @@ For example:
      |    |
      1----0
   and the vertice order will still be (0, 1, 2, 3).
-* @property {vision(v1).Symbol[]} symbols List of symbols in the word.
-The order of the symbols follows the natural reading order.
 */
 /**
  * @typedef Paragraph
@@ -538,21 +544,6 @@ used to perform the image annotation request.
  * @typedef FaceAnnotation
  * @memberOf! vision(v1)
  * @type object
-* @property {string} blurredLikelihood Blurred likelihood.
-* @property {string} headwearLikelihood Headwear likelihood.
-* @property {vision(v1).BoundingPoly} boundingPoly The bounding polygon around the face. The coordinates of the bounding box
-are in the original image&#39;s scale, as returned in `ImageParams`.
-The bounding box is computed to &quot;frame&quot; the face in accordance with human
-expectations. It is based on the landmarker results.
-Note that one or more x and/or y coordinates may not be generated in the
-`BoundingPoly` (the polygon will be unbounded) if only a partial face
-appears in the image to be annotated.
-* @property {number} rollAngle Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
-of the face relative to the image vertical about the axis perpendicular to
-the face. Range [-180,180].
-* @property {string} sorrowLikelihood Sorrow likelihood.
-* @property {number} tiltAngle Pitch angle, which indicates the upwards/downwards angle that the face is
-pointing relative to the image&#39;s horizontal plane. Range [-180,180].
 * @property {vision(v1).BoundingPoly} fdBoundingPoly The `fd_bounding_poly` bounding polygon is tighter than the
 `boundingPoly`, and encloses only the skin part of the face. Typically, it
 is used to eliminate the face from any image analysis that detects the
@@ -569,6 +560,21 @@ the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
 pointing relative to the vertical plane perpendicular to the image. Range
 [-180,180].
 * @property {number} detectionConfidence Detection confidence. Range [0, 1].
+* @property {string} blurredLikelihood Blurred likelihood.
+* @property {string} headwearLikelihood Headwear likelihood.
+* @property {vision(v1).BoundingPoly} boundingPoly The bounding polygon around the face. The coordinates of the bounding box
+are in the original image&#39;s scale, as returned in `ImageParams`.
+The bounding box is computed to &quot;frame&quot; the face in accordance with human
+expectations. It is based on the landmarker results.
+Note that one or more x and/or y coordinates may not be generated in the
+`BoundingPoly` (the polygon will be unbounded) if only a partial face
+appears in the image to be annotated.
+* @property {number} rollAngle Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
+of the face relative to the image vertical about the axis perpendicular to
+the face. Range [-180,180].
+* @property {string} sorrowLikelihood Sorrow likelihood.
+* @property {number} tiltAngle Pitch angle, which indicates the upwards/downwards angle that the face is
+pointing relative to the image&#39;s horizontal plane. Range [-180,180].
 */
 /**
  * @typedef BatchAnnotateImagesRequest
@@ -587,7 +593,6 @@ pointing relative to the vertical plane perpendicular to the image. Range
  * @typedef ImageContext
  * @memberOf! vision(v1)
  * @type object
-* @property {vision(v1).LatLongRect} latLongRect lat/long rectangle that specifies the location of the image.
 * @property {vision(v1).CropHintsParams} cropHintsParams Parameters for crop hints annotation request.
 * @property {string[]} languageHints List of languages to use for TEXT_DETECTION. In most cases, an empty value
 yields the best results since it enables automatic language detection. For
@@ -597,14 +602,6 @@ setting a hint will help get better results (although it will be a
 significant hindrance if the hint is wrong). Text detection returns an
 error if one or more of the specified languages is not one of the
 [supported languages](/vision/docs/languages).
+* @property {vision(v1).LatLongRect} latLongRect lat/long rectangle that specifies the location of the image.
 */
-/**
- * @typedef Page
- * @memberOf! vision(v1)
- * @type object
- * @property {integer} width Page width in pixels.
- * @property {vision(v1).Block[]} blocks List of blocks of text, images etc on this page.
- * @property {vision(v1).TextProperty} property Additional information detected on the page.
- * @property {integer} height Page height in pixels.
- */
 export = Vision;
