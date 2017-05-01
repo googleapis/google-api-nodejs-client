@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const generatorUtils = require('./generator_utils');
+import generatorUtils from '../scripts/generator_utils';
 const handleError = generatorUtils.handleError;
 const async = require('async');
 const fs = require('fs');
