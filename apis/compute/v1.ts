@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Compute Engine API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Creates and runs virtual machines on Google Cloud Platform.
  *
  * @example
- * var google = require('googleapis');
- * var compute = google.compute('v1');
+ * const google = require('googleapis');
+ * const compute = google.compute('v1');
  *
  * @namespace compute
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Compute
  */
 function Compute(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.addresses = {
@@ -131,7 +129,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/addresses',
           method: 'GET'
@@ -225,7 +223,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/addresses/{address}',
           method: 'DELETE'
@@ -319,7 +317,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/addresses/{address}',
           method: 'GET'
@@ -414,7 +412,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/addresses',
           method: 'POST'
@@ -521,7 +519,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/addresses',
           method: 'GET'
@@ -628,7 +626,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/autoscalers',
           method: 'GET'
@@ -722,7 +720,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'DELETE'
@@ -816,7 +814,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'GET'
@@ -911,7 +909,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers',
           method: 'POST'
@@ -1018,7 +1016,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers',
           method: 'GET'
@@ -1103,7 +1101,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.autoscaler Name of the autoscaler to update.
+     * @param {string=} params.autoscaler Name of the autoscaler to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.zone Name of the zone for this request.
      * @param {compute(v1).Autoscaler} params.resource Request body data
@@ -1118,13 +1116,13 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers',
           method: 'PATCH'
         }, options),
         params: params,
-        requiredParams: ['project', 'zone', 'autoscaler'],
+        requiredParams: ['project', 'zone'],
         pathParams: ['project', 'zone'],
         context: self
       };
@@ -1215,7 +1213,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/autoscalers',
           method: 'PUT'
@@ -1309,7 +1307,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'DELETE'
@@ -1399,7 +1397,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'GET'
@@ -1490,7 +1488,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendBuckets',
           method: 'POST'
@@ -1593,7 +1591,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendBuckets',
           method: 'GET'
@@ -1675,7 +1673,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.backendBucket Name of the BackendBucket resource to update.
+     * @param {string} params.backendBucket Name of the BackendBucket resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).BackendBucket} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1689,7 +1687,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'PATCH'
@@ -1785,7 +1783,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'PUT'
@@ -1892,7 +1890,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/backendServices',
           method: 'GET'
@@ -1982,7 +1980,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}',
           method: 'DELETE'
@@ -2072,7 +2070,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}',
           method: 'GET'
@@ -2166,7 +2164,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}/getHealth',
           method: 'POST'
@@ -2257,7 +2255,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices',
           method: 'POST'
@@ -2360,7 +2358,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices',
           method: 'GET'
@@ -2377,7 +2375,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.backendServices.patch
      *
-     * @desc Updates the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
+     * @desc Patches the specified BackendService resource with the data included in the request. There are several restrictions and guidelines to keep in mind when updating a backend service. Read  Restrictions and Guidelines for more information. This method supports patch semantics.
      *
      * @example
      * // BEFORE RUNNING:
@@ -2442,7 +2440,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.backendService Name of the BackendService resource to update.
+     * @param {string} params.backendService Name of the BackendService resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).BackendService} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2456,7 +2454,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}',
           method: 'PATCH'
@@ -2552,7 +2550,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}',
           method: 'PUT'
@@ -2659,7 +2657,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/diskTypes',
           method: 'GET'
@@ -2753,7 +2751,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/diskTypes/{diskType}',
           method: 'GET'
@@ -2860,7 +2858,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/diskTypes',
           method: 'GET'
@@ -2967,7 +2965,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/disks',
           method: 'GET'
@@ -3067,7 +3065,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/createSnapshot',
           method: 'POST'
@@ -3161,7 +3159,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk}',
           method: 'DELETE'
@@ -3255,7 +3253,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk}',
           method: 'GET'
@@ -3351,7 +3349,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks',
           method: 'POST'
@@ -3458,7 +3456,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks',
           method: 'GET'
@@ -3557,7 +3555,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/resize',
           method: 'POST'
@@ -3651,7 +3649,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls/{firewall}',
           method: 'DELETE'
@@ -3741,7 +3739,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls/{firewall}',
           method: 'GET'
@@ -3832,7 +3830,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls',
           method: 'POST'
@@ -3935,7 +3933,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls',
           method: 'GET'
@@ -3952,7 +3950,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.firewalls.patch
      *
-     * @desc Updates the specified firewall rule with the data included in the request. This method supports patch semantics.
+     * @desc Updates the specified firewall rule with the data included in the request. Using PUT method, can only update following fields of firewall rule: allowed, description, sourceRanges, sourceTags, targetTags. This method supports patch semantics.
      *
      * @example
      * // BEFORE RUNNING:
@@ -4031,7 +4029,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls/{firewall}',
           method: 'PATCH'
@@ -4048,7 +4046,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.firewalls.update
      *
-     * @desc Updates the specified firewall rule with the data included in the request.
+     * @desc Updates the specified firewall rule with the data included in the request. Using PUT method, can only update following fields of firewall rule: allowed, description, sourceRanges, sourceTags, targetTags.
      *
      * @example
      * // BEFORE RUNNING:
@@ -4127,7 +4125,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/firewalls/{firewall}',
           method: 'PUT'
@@ -4234,7 +4232,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/forwardingRules',
           method: 'GET'
@@ -4328,7 +4326,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
           method: 'DELETE'
@@ -4422,7 +4420,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
           method: 'GET'
@@ -4517,7 +4515,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules',
           method: 'POST'
@@ -4624,7 +4622,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules',
           method: 'GET'
@@ -4723,7 +4721,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}/setTarget',
           method: 'POST'
@@ -4817,7 +4815,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/addresses/{address}',
           method: 'DELETE'
@@ -4907,7 +4905,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/addresses/{address}',
           method: 'GET'
@@ -4998,7 +4996,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/addresses',
           method: 'POST'
@@ -5101,7 +5099,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/addresses',
           method: 'GET'
@@ -5122,7 +5120,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalForwardingRules.delete
      *
-     * @desc Deletes the specified ForwardingRule resource.
+     * @desc Deletes the specified GlobalForwardingRule resource.
      *
      * @example
      * // BEFORE RUNNING:
@@ -5195,7 +5193,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}',
           method: 'DELETE'
@@ -5212,7 +5210,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalForwardingRules.get
      *
-     * @desc Returns the specified ForwardingRule resource. Get a list of available forwarding rules by making a list() request.
+     * @desc Returns the specified GlobalForwardingRule resource. Get a list of available forwarding rules by making a list() request.
      *
      * @example
      * // BEFORE RUNNING:
@@ -5285,7 +5283,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}',
           method: 'GET'
@@ -5302,7 +5300,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalForwardingRules.insert
      *
-     * @desc Creates a ForwardingRule resource in the specified project and region using the data included in the request.
+     * @desc Creates a GlobalForwardingRule resource in the specified project using the data included in the request.
      *
      * @example
      * // BEFORE RUNNING:
@@ -5376,7 +5374,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules',
           method: 'POST'
@@ -5393,7 +5391,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalForwardingRules.list
      *
-     * @desc Retrieves a list of ForwardingRule resources available to the specified project.
+     * @desc Retrieves a list of GlobalForwardingRule resources available to the specified project.
      *
      * @example
      * // BEFORE RUNNING:
@@ -5479,7 +5477,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules',
           method: 'GET'
@@ -5496,7 +5494,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalForwardingRules.setTarget
      *
-     * @desc Changes target URL for forwarding rule. The new target should be of the same type as the old target.
+     * @desc Changes target URL for the GlobalForwardingRule resource. The new target should be of the same type as the old target.
      *
      * @example
      * // BEFORE RUNNING:
@@ -5574,7 +5572,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/forwardingRules/{forwardingRule}/setTarget',
           method: 'POST'
@@ -5681,7 +5679,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/operations',
           method: 'GET'
@@ -5768,7 +5766,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/operations/{operation}',
           method: 'DELETE'
@@ -5858,7 +5856,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/operations/{operation}',
           method: 'GET'
@@ -5961,7 +5959,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/operations',
           method: 'GET'
@@ -6055,7 +6053,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'DELETE'
@@ -6145,7 +6143,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'GET'
@@ -6236,7 +6234,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/healthChecks',
           method: 'POST'
@@ -6339,7 +6337,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/healthChecks',
           method: 'GET'
@@ -6421,7 +6419,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.healthCheck Name of the HealthCheck resource to update.
+     * @param {string} params.healthCheck Name of the HealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).HealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6435,7 +6433,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'PATCH'
@@ -6531,7 +6529,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'PUT'
@@ -6625,7 +6623,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'DELETE'
@@ -6715,7 +6713,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'GET'
@@ -6806,7 +6804,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks',
           method: 'POST'
@@ -6909,7 +6907,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks',
           method: 'GET'
@@ -6991,7 +6989,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to update.
+     * @param {string} params.httpHealthCheck Name of the HttpHealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).HttpHealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7005,7 +7003,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'PATCH'
@@ -7101,7 +7099,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'PUT'
@@ -7195,7 +7193,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'DELETE'
@@ -7285,7 +7283,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'GET'
@@ -7376,7 +7374,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks',
           method: 'POST'
@@ -7479,7 +7477,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks',
           method: 'GET'
@@ -7561,7 +7559,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to update.
+     * @param {string} params.httpsHealthCheck Name of the HttpsHealthCheck resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {compute(v1).HttpsHealthCheck} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7575,7 +7573,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'PATCH'
@@ -7671,7 +7669,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'PUT'
@@ -7765,7 +7763,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images/{image}',
           method: 'DELETE'
@@ -7860,7 +7858,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images/{image}/deprecate',
           method: 'POST'
@@ -7950,7 +7948,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images/{image}',
           method: 'GET'
@@ -8040,7 +8038,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images/family/{family}',
           method: 'GET'
@@ -8131,7 +8129,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images',
           method: 'POST'
@@ -8234,7 +8232,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/images',
           method: 'GET'
@@ -8255,7 +8253,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.abandonInstances
      *
-     * @desc Schedules a group action to remove the specified instances from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.
+     * @desc Schedules a group action to remove the specified instances from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.  You can specify a maximum of 1000 instances with this method per request.
      *
      * @example
      * // BEFORE RUNNING:
@@ -8337,7 +8335,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
           method: 'POST'
@@ -8440,7 +8438,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/instanceGroupManagers',
           method: 'GET'
@@ -8534,7 +8532,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'DELETE'
@@ -8551,7 +8549,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.deleteInstances
      *
-     * @desc Schedules a group action to delete the specified instances in the managed instance group. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.
+     * @desc Schedules a group action to delete the specified instances in the managed instance group. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.  You can specify a maximum of 1000 instances with this method per request.
      *
      * @example
      * // BEFORE RUNNING:
@@ -8633,7 +8631,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
           method: 'POST'
@@ -8727,7 +8725,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'GET'
@@ -8744,7 +8742,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.insert
      *
-     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, it schedules an action to create instances in the group using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.
+     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, it schedules an action to create instances in the group using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.  A managed instance group can have up to 1000 VM instances per group.
      *
      * @example
      * // BEFORE RUNNING:
@@ -8822,7 +8820,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'POST'
@@ -8929,7 +8927,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'GET'
@@ -9027,7 +9025,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances',
           method: 'POST'
@@ -9044,7 +9042,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.recreateInstances
      *
-     * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.
+     * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.  You can specify a maximum of 1000 instances with this method per request.
      *
      * @example
      * // BEFORE RUNNING:
@@ -9126,7 +9124,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
           method: 'POST'
@@ -9226,7 +9224,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resize',
           method: 'POST'
@@ -9325,7 +9323,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
           method: 'POST'
@@ -9424,7 +9422,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
           method: 'POST'
@@ -9527,7 +9525,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/addInstances',
           method: 'POST'
@@ -9630,7 +9628,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/instanceGroups',
           method: 'GET'
@@ -9724,7 +9722,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}',
           method: 'DELETE'
@@ -9818,7 +9816,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}',
           method: 'GET'
@@ -9913,7 +9911,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups',
           method: 'POST'
@@ -10020,7 +10018,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups',
           method: 'GET'
@@ -10136,7 +10134,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/listInstances',
           method: 'POST'
@@ -10235,7 +10233,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/removeInstances',
           method: 'POST'
@@ -10334,7 +10332,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/setNamedPorts',
           method: 'POST'
@@ -10428,7 +10426,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates/{instanceTemplate}',
           method: 'DELETE'
@@ -10518,7 +10516,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates/{instanceTemplate}',
           method: 'GET'
@@ -10609,7 +10607,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates',
           method: 'POST'
@@ -10712,7 +10710,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/instanceTemplates',
           method: 'GET'
@@ -10819,7 +10817,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/addAccessConfig',
           method: 'POST'
@@ -10922,7 +10920,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/instances',
           method: 'GET'
@@ -11021,7 +11019,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/attachDisk',
           method: 'POST'
@@ -11115,7 +11113,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}',
           method: 'DELETE'
@@ -11217,7 +11215,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/deleteAccessConfig',
           method: 'POST'
@@ -11315,7 +11313,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/detachDisk',
           method: 'POST'
@@ -11409,7 +11407,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}',
           method: 'GET'
@@ -11505,7 +11503,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/serialPort',
           method: 'GET'
@@ -11600,7 +11598,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances',
           method: 'POST'
@@ -11707,7 +11705,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances',
           method: 'GET'
@@ -11724,7 +11722,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instances.reset
      *
-     * @desc Performs a hard reset on the instance.
+     * @desc Performs a reset on the instance. For more information, see Resetting an instance.
      *
      * @example
      * // BEFORE RUNNING:
@@ -11801,7 +11799,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/reset',
           method: 'POST'
@@ -11903,7 +11901,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setDiskAutoDelete',
           method: 'POST'
@@ -12002,7 +12000,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMachineType',
           method: 'POST'
@@ -12101,7 +12099,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setMetadata',
           method: 'POST'
@@ -12200,7 +12198,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setScheduling',
           method: 'POST'
@@ -12299,7 +12297,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setServiceAccount',
           method: 'POST'
@@ -12398,7 +12396,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/setTags',
           method: 'POST'
@@ -12492,7 +12490,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/start',
           method: 'POST'
@@ -12591,7 +12589,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/startWithEncryptionKey',
           method: 'POST'
@@ -12685,7 +12683,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/stop',
           method: 'POST'
@@ -12779,7 +12777,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/licenses/{license}',
           method: 'GET'
@@ -12886,7 +12884,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/machineTypes',
           method: 'GET'
@@ -12980,7 +12978,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/machineTypes/{machineType}',
           method: 'GET'
@@ -13087,7 +13085,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/machineTypes',
           method: 'GET'
@@ -13181,7 +13179,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}',
           method: 'DELETE'
@@ -13271,7 +13269,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}',
           method: 'GET'
@@ -13362,7 +13360,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks',
           method: 'POST'
@@ -13465,7 +13463,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks',
           method: 'GET'
@@ -13555,7 +13553,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}/switchToCustomMode',
           method: 'POST'
@@ -13645,7 +13643,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}',
           method: 'GET'
@@ -13736,7 +13734,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/moveDisk',
           method: 'POST'
@@ -13827,7 +13825,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/moveInstance',
           method: 'POST'
@@ -13918,7 +13916,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/setCommonInstanceMetadata',
           method: 'POST'
@@ -14009,7 +14007,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/setUsageExportBucket',
           method: 'POST'
@@ -14107,7 +14105,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/autoscalers/{autoscaler}',
           method: 'DELETE'
@@ -14201,7 +14199,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/autoscalers/{autoscaler}',
           method: 'GET'
@@ -14296,7 +14294,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/autoscalers',
           method: 'POST'
@@ -14403,7 +14401,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/autoscalers',
           method: 'GET'
@@ -14488,7 +14486,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.autoscaler Name of the autoscaler to update.
+     * @param {string=} params.autoscaler Name of the autoscaler to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(v1).Autoscaler} params.resource Request body data
@@ -14503,13 +14501,13 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/autoscalers',
           method: 'PATCH'
         }, options),
         params: params,
-        requiredParams: ['project', 'region', 'autoscaler'],
+        requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
         context: self
       };
@@ -14600,7 +14598,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/autoscalers',
           method: 'PUT'
@@ -14698,7 +14696,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'DELETE'
@@ -14792,7 +14790,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'GET'
@@ -14890,7 +14888,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}/getHealth',
           method: 'POST'
@@ -14985,7 +14983,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices',
           method: 'POST'
@@ -15092,7 +15090,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices',
           method: 'GET'
@@ -15177,7 +15175,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.backendService Name of the BackendService resource to update.
+     * @param {string} params.backendService Name of the BackendService resource to patch.
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region scoping this request.
      * @param {compute(v1).BackendService} params.resource Request body data
@@ -15192,7 +15190,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'PATCH'
@@ -15292,7 +15290,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'PUT'
@@ -15313,7 +15311,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.abandonInstances
      *
-     * @desc Schedules a group action to remove the specified instances from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.
+     * @desc Schedules a group action to remove the specified instances from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.  You can specify a maximum of 1000 instances with this method per request.
      *
      * @example
      * // BEFORE RUNNING:
@@ -15395,7 +15393,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
           method: 'POST'
@@ -15489,7 +15487,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'DELETE'
@@ -15506,7 +15504,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.deleteInstances
      *
-     * @desc Schedules a group action to delete the specified instances in the managed instance group. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.
+     * @desc Schedules a group action to delete the specified instances in the managed instance group. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.  You can specify a maximum of 1000 instances with this method per request.
      *
      * @example
      * // BEFORE RUNNING:
@@ -15588,7 +15586,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
           method: 'POST'
@@ -15682,7 +15680,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'GET'
@@ -15699,7 +15697,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.insert
      *
-     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, it schedules an action to create instances in the group using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.
+     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, it schedules an action to create instances in the group using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.  A regional managed instance group can contain up to 2000 instances.
      *
      * @example
      * // BEFORE RUNNING:
@@ -15777,7 +15775,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers',
           method: 'POST'
@@ -15884,7 +15882,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers',
           method: 'GET'
@@ -15982,7 +15980,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances',
           method: 'POST'
@@ -15999,7 +15997,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.recreateInstances
      *
-     * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.
+     * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.  You can specify a maximum of 1000 instances with this method per request.
      *
      * @example
      * // BEFORE RUNNING:
@@ -16081,7 +16079,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
           method: 'POST'
@@ -16179,7 +16177,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resize',
           method: 'POST'
@@ -16278,7 +16276,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
           method: 'POST'
@@ -16377,7 +16375,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
           method: 'POST'
@@ -16475,7 +16473,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}',
           method: 'GET'
@@ -16582,7 +16580,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroups',
           method: 'GET'
@@ -16698,7 +16696,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/listInstances',
           method: 'POST'
@@ -16797,7 +16795,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/setNamedPorts',
           method: 'POST'
@@ -16892,7 +16890,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
           method: 'DELETE'
@@ -16986,7 +16984,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/operations/{operation}',
           method: 'GET'
@@ -17093,7 +17091,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/operations',
           method: 'GET'
@@ -17187,7 +17185,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}',
           method: 'GET'
@@ -17290,7 +17288,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions',
           method: 'GET'
@@ -17397,7 +17395,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/routers',
           method: 'GET'
@@ -17491,7 +17489,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}',
           method: 'DELETE'
@@ -17585,7 +17583,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}',
           method: 'GET'
@@ -17679,7 +17677,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}/getRouterStatus',
           method: 'GET'
@@ -17774,7 +17772,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers',
           method: 'POST'
@@ -17881,7 +17879,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers',
           method: 'GET'
@@ -17898,7 +17896,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.routers.patch
      *
-     * @desc Updates the specified Router resource with the data included in the request. This method supports patch semantics.
+     * @desc Patches the specified Router resource with the data included in the request. This method supports patch semantics.
      *
      * @example
      * // BEFORE RUNNING:
@@ -17968,7 +17966,7 @@ function Compute(options) { // eslint-disable-line
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
      * @param {string} params.region Name of the region for this request.
-     * @param {string} params.router Name of the Router resource to update.
+     * @param {string} params.router Name of the Router resource to patch.
      * @param {compute(v1).Router} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -17981,7 +17979,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}',
           method: 'PATCH'
@@ -18080,7 +18078,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}/preview',
           method: 'POST'
@@ -18180,7 +18178,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/routers/{router}',
           method: 'PUT'
@@ -18274,7 +18272,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/routes/{route}',
           method: 'DELETE'
@@ -18364,7 +18362,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/routes/{route}',
           method: 'GET'
@@ -18455,7 +18453,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/routes',
           method: 'POST'
@@ -18558,7 +18556,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/routes',
           method: 'GET'
@@ -18652,7 +18650,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/snapshots/{snapshot}',
           method: 'DELETE'
@@ -18742,7 +18740,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/snapshots/{snapshot}',
           method: 'GET'
@@ -18845,7 +18843,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/snapshots',
           method: 'GET'
@@ -18939,7 +18937,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/sslCertificates/{sslCertificate}',
           method: 'DELETE'
@@ -19029,7 +19027,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/sslCertificates/{sslCertificate}',
           method: 'GET'
@@ -19120,7 +19118,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/sslCertificates',
           method: 'POST'
@@ -19223,7 +19221,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/sslCertificates',
           method: 'GET'
@@ -19330,7 +19328,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/subnetworks',
           method: 'GET'
@@ -19424,7 +19422,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
           method: 'DELETE'
@@ -19523,7 +19521,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}/expandIpCidrRange',
           method: 'POST'
@@ -19617,7 +19615,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
           method: 'GET'
@@ -19712,7 +19710,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks',
           method: 'POST'
@@ -19819,7 +19817,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks',
           method: 'GET'
@@ -19827,6 +19825,44 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'region'],
         pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.subnetworks.setPrivateIpGoogleAccess
+     *
+     * @desc Set whether VMs in this subnet can access Google services without assigning external IP addresses through Cloudpath.
+     *
+     * @alias compute.subnetworks.setPrivateIpGoogleAccess
+     * @memberOf! compute(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string} params.subnetwork Name of the Subnetwork resource.
+     * @param {compute(v1).SubnetworksSetPrivateIpGoogleAccessRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setPrivateIpGoogleAccess: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetwork}/setPrivateIpGoogleAccess',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'subnetwork'],
+        pathParams: ['project', 'region', 'subnetwork'],
         context: self
       };
 
@@ -19913,7 +19949,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
           method: 'DELETE'
@@ -20003,7 +20039,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
           method: 'GET'
@@ -20094,7 +20130,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpProxies',
           method: 'POST'
@@ -20197,7 +20233,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpProxies',
           method: 'GET'
@@ -20292,7 +20328,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/targetHttpProxies/{targetHttpProxy}/setUrlMap',
           method: 'POST'
@@ -20386,7 +20422,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
           method: 'DELETE'
@@ -20476,7 +20512,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
           method: 'GET'
@@ -20567,7 +20603,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpsProxies',
           method: 'POST'
@@ -20670,7 +20706,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetHttpsProxies',
           method: 'GET'
@@ -20765,7 +20801,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates',
           method: 'POST'
@@ -20860,7 +20896,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap',
           method: 'POST'
@@ -20967,7 +21003,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/targetInstances',
           method: 'GET'
@@ -21061,7 +21097,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
           method: 'DELETE'
@@ -21155,7 +21191,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
           method: 'GET'
@@ -21250,7 +21286,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/targetInstances',
           method: 'POST'
@@ -21357,7 +21393,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/targetInstances',
           method: 'GET'
@@ -21460,7 +21496,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/addHealthCheck',
           method: 'POST'
@@ -21559,7 +21595,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/addInstance',
           method: 'POST'
@@ -21662,7 +21698,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/targetPools',
           method: 'GET'
@@ -21756,7 +21792,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}',
           method: 'DELETE'
@@ -21850,7 +21886,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}',
           method: 'GET'
@@ -21949,7 +21985,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/getHealth',
           method: 'POST'
@@ -22044,7 +22080,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools',
           method: 'POST'
@@ -22151,7 +22187,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools',
           method: 'GET'
@@ -22250,7 +22286,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/removeHealthCheck',
           method: 'POST'
@@ -22349,7 +22385,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/removeInstance',
           method: 'POST'
@@ -22449,7 +22485,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetPools/{targetPool}/setBackup',
           method: 'POST'
@@ -22543,7 +22579,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}',
           method: 'DELETE'
@@ -22633,7 +22669,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}',
           method: 'GET'
@@ -22724,7 +22760,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies',
           method: 'POST'
@@ -22827,7 +22863,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies',
           method: 'GET'
@@ -22922,7 +22958,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setBackendService',
           method: 'POST'
@@ -23017,7 +23053,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setProxyHeader',
           method: 'POST'
@@ -23112,7 +23148,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslCertificates',
           method: 'POST'
@@ -23219,7 +23255,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/targetVpnGateways',
           method: 'GET'
@@ -23313,7 +23349,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
           method: 'DELETE'
@@ -23407,7 +23443,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
           method: 'GET'
@@ -23502,7 +23538,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetVpnGateways',
           method: 'POST'
@@ -23609,7 +23645,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/targetVpnGateways',
           method: 'GET'
@@ -23703,7 +23739,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}',
           method: 'DELETE'
@@ -23793,7 +23829,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}',
           method: 'GET'
@@ -23884,7 +23920,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps',
           method: 'POST'
@@ -23979,7 +24015,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}/invalidateCache',
           method: 'POST'
@@ -24082,7 +24118,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps',
           method: 'GET'
@@ -24099,7 +24135,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.urlMaps.patch
      *
-     * @desc Updates the specified UrlMap resource with the data included in the request. This method supports patch semantics.
+     * @desc Patches the specified UrlMap resource with the data included in the request. This method supports patch semantics.
      *
      * @example
      * // BEFORE RUNNING:
@@ -24165,7 +24201,7 @@ function Compute(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string} params.project Project ID for this request.
-     * @param {string} params.urlMap Name of the UrlMap resource to update.
+     * @param {string} params.urlMap Name of the UrlMap resource to patch.
      * @param {compute(v1).UrlMap} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -24178,7 +24214,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}',
           method: 'PATCH'
@@ -24274,7 +24310,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}',
           method: 'PUT'
@@ -24369,7 +24405,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/global/urlMaps/{urlMap}/validate',
           method: 'POST'
@@ -24476,7 +24512,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/aggregated/vpnTunnels',
           method: 'GET'
@@ -24570,7 +24606,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
           method: 'DELETE'
@@ -24664,7 +24700,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
           method: 'GET'
@@ -24759,7 +24795,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/vpnTunnels',
           method: 'POST'
@@ -24866,7 +24902,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/vpnTunnels',
           method: 'GET'
@@ -24961,7 +24997,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'DELETE'
@@ -25055,7 +25091,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
@@ -25162,7 +25198,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/operations',
           method: 'GET'
@@ -25256,7 +25292,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}',
           method: 'GET'
@@ -25359,7 +25395,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/v1/projects/{project}/zones',
           method: 'GET'
@@ -25381,7 +25417,7 @@ function Compute(options) { // eslint-disable-line
  * @memberOf! compute(v1)
  * @type object
  * @property {string} kind [Output Only] Type of the resource. Always compute#accessConfig for access configs.
- * @property {string} name Name of this access configuration.
+ * @property {string} name The name of this access configuration. The default and recommended name is External NAT but you can use any arbitrary string you would like. For example, My external IP or Network Access.
  * @property {string} natIP An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
  * @property {string} type The type of configuration. The default and only option is ONE_TO_ONE_NAT.
  */
@@ -25389,7 +25425,7 @@ function Compute(options) { // eslint-disable-line
  * @typedef Address
  * @memberOf! compute(v1)
  * @type object
- * @property {string} address The static external IP address represented by this resource. Only IPv4 is supported.
+ * @property {string} address The static external IP address represented by this resource.
  * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
  * @property {string} description An optional description of this resource. Provide this property when you create the resource.
  * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -25967,12 +26003,19 @@ For internal load balancing, this field identifies the BackendService resource t
 * @property {string} network This field is not used for external load balancing.
 
 For internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.
-* @property {string} portRange Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
+* @property {string} portRange This field is used for external load balancing and VPN.
 
-This field is not used for internal load balancing.
-* @property {string[]} ports This field is not used for external load balancing.
+Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
 
-When the load balancing scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule. If the port list is not provided then all ports are allowed to pass through.
+Some types of forwarding target have constraints on the acceptable ports:  
+- TargetHttpProxy: 80, 8080 
+- TargetHttpsProxy: 443 
+- TargetSslProxy: 443 
+- TargetVpnGateway: 500, 4500
+-
+* @property {string[]} ports This field is only used for internal load balancing.
+
+When the load balancing scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule.
 
 You may specify a maximum of up to 5 ports.
 * @property {string} region [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules.
@@ -25982,7 +26025,7 @@ You may specify a maximum of up to 5 ports.
 For internal load balancing, this field identifies the subnetwork that the load balanced IP should belong to for this Forwarding Rule.
 
 If the network specified is in auto subnet mode, this field is optional. However, if the network is in custom subnet mode, a subnetwork must be specified.
-* @property {string} target The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object. For example, TargetHttpProxy requires HTTP traffic, and TargetHttpsProxy requires HTTPS traffic.
+* @property {string} target The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object.
 
 This field is not used for internal load balancing.
 */
@@ -26218,7 +26261,7 @@ For a full list of restrictions, read the Specifications for custom machine type
 * @property {compute(v1).Metadata} metadata The metadata key/value pairs assigned to this instance. This includes custom metadata and predefined keys.
 * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {compute(v1).NetworkInterface[]} networkInterfaces An array of configurations for this interface. This specifies how this interface is configured to interact with other network services, such as connecting to the internet. Only one interface is supported per instance.
-* @property {compute(v1).Scheduling} scheduling Scheduling options for this instance.
+* @property {compute(v1).Scheduling} scheduling Sets the scheduling options for this instance.
 * @property {string} selfLink [Output Only] Server-defined URL for this resource.
 * @property {compute(v1).ServiceAccount[]} serviceAccounts A list of service accounts, with their specified scopes, authorized for this instance. Only one service account per VM instance is supported.
 
@@ -26340,13 +26383,13 @@ If you have disabled creation retries, this field will not be populated; instead
  * @typedef InstanceGroupManagersAbandonInstancesRequest
  * @memberOf! compute(v1)
  * @type object
- * @property {string[]} instances The URL for one or more instances to abandon from the managed instance group.
+ * @property {string[]} instances The URLs of one or more instances to abandon. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
 /**
  * @typedef InstanceGroupManagersDeleteInstancesRequest
  * @memberOf! compute(v1)
  * @type object
- * @property {string[]} instances The list of instances to delete from this managed instance group. Specify one or more instance URLs.
+ * @property {string[]} instances The URLs of one or more instances to delete. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
 /**
  * @typedef InstanceGroupManagersListManagedInstancesResponse
@@ -26358,7 +26401,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @typedef InstanceGroupManagersRecreateInstancesRequest
  * @memberOf! compute(v1)
  * @type object
- * @property {string[]} instances The URL for one or more instances to recreate.
+ * @property {string[]} instances The URLs of one or more instances to recreate. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
 /**
  * @typedef InstanceGroupManagersScopedList
@@ -26814,13 +26857,13 @@ If you specify this property, you can specify the network as a full or partial U
  * @typedef RegionInstanceGroupManagersAbandonInstancesRequest
  * @memberOf! compute(v1)
  * @type object
- * @property {string[]} instances The names of one or more instances to abandon.
+ * @property {string[]} instances The URLs of one or more instances to abandon. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
 /**
  * @typedef RegionInstanceGroupManagersDeleteInstancesRequest
  * @memberOf! compute(v1)
  * @type object
- * @property {string[]} instances The names of one or more instances to delete.
+ * @property {string[]} instances The URLs of one or more instances to delete. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
 /**
  * @typedef RegionInstanceGroupManagersListInstancesResponse
@@ -26832,7 +26875,7 @@ If you specify this property, you can specify the network as a full or partial U
  * @typedef RegionInstanceGroupManagersRecreateRequest
  * @memberOf! compute(v1)
  * @type object
- * @property {string[]} instances The URL for one or more instances to recreate.
+ * @property {string[]} instances The URLs of one or more instances to recreate. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
 /**
  * @typedef RegionInstanceGroupManagersSetTargetPoolsRequest
@@ -26985,6 +27028,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @memberOf! compute(v1)
  * @type object
  * @property {compute(v1).Route[]} bestRoutes Best routes for this router&#39;s network.
+ * @property {compute(v1).Route[]} bestRoutesForRouter Best routes learned by this router.
  * @property {compute(v1).RouterStatusBgpPeerStatus[]} bgpPeerStatus 
  * @property {string} network URI of the network to which this router belongs.
  */
@@ -27037,10 +27081,12 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @typedef Scheduling
  * @memberOf! compute(v1)
  * @type object
- * @property {boolean} automaticRestart Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted.
- * @property {string} onHostMaintenance Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Setting Instance Scheduling Options.
- * @property {boolean} preemptible Whether the instance is preemptible.
- */
+* @property {boolean} automaticRestart Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted.
+
+By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
+* @property {string} onHostMaintenance Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Setting Instance Scheduling Options.
+* @property {boolean} preemptible Defines whether the instance is preemptible. This can only be set during instance creation, it cannot be set or changed after the instance has been created.
+*/
 /**
  * @typedef SerialPortOutput
  * @memberOf! compute(v1)
@@ -27129,6 +27175,7 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} kind [Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.
  * @property {string} name The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
  * @property {string} network The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks.
+ * @property {boolean} privateIpGoogleAccess Whether the VMs in this subnet can access Google services without assigned external IP addresses.
  * @property {string} region URL of the region where the Subnetwork resides.
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
@@ -27164,6 +27211,12 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @type object
  * @property {compute(v1).Subnetwork[]} subnetworks List of subnetworks contained in this scope.
  * @property {object} warning An informational warning that appears when the list of addresses is empty.
+ */
+/**
+ * @typedef SubnetworksSetPrivateIpGoogleAccessRequest
+ * @memberOf! compute(v1)
+ * @type object
+ * @property {boolean} privateIpGoogleAccess 
  */
 /**
  * @typedef TCPHealthCheck

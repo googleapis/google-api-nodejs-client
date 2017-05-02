@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Content API for Shopping
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Manages product items, inventory, and Merchant Center accounts for Google Shopping.
  *
  * @example
- * var google = require('googleapis');
- * var content = google.content('v2');
+ * const google = require('googleapis');
+ * const content = google.content('v2');
  *
  * @namespace content
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Content
  */
 function Content(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.accounts = {
@@ -62,7 +60,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/accounts/authinfo',
           method: 'GET'
@@ -98,7 +96,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/accounts/batch',
           method: 'POST'
@@ -135,7 +133,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
           method: 'DELETE'
@@ -171,7 +169,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
           method: 'GET'
@@ -208,7 +206,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts',
           method: 'POST'
@@ -245,7 +243,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts',
           method: 'GET'
@@ -283,7 +281,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
           method: 'PATCH'
@@ -321,7 +319,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounts/{accountId}',
           method: 'PUT'
@@ -360,7 +358,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/accountstatuses/batch',
           method: 'POST'
@@ -396,7 +394,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountstatuses/{accountId}',
           method: 'GET'
@@ -433,7 +431,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accountstatuses',
           method: 'GET'
@@ -473,7 +471,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/accounttax/batch',
           method: 'POST'
@@ -509,7 +507,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
           method: 'GET'
@@ -546,7 +544,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax',
           method: 'GET'
@@ -584,7 +582,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
           method: 'PATCH'
@@ -622,7 +620,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/accounttax/{accountId}',
           method: 'PUT'
@@ -662,7 +660,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/datafeeds/batch',
           method: 'POST'
@@ -699,7 +697,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
           method: 'DELETE'
@@ -735,7 +733,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
           method: 'GET'
@@ -772,7 +770,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds',
           method: 'POST'
@@ -809,7 +807,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds',
           method: 'GET'
@@ -847,7 +845,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
           method: 'PATCH'
@@ -885,7 +883,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeeds/{datafeedId}',
           method: 'PUT'
@@ -924,7 +922,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/datafeedstatuses/batch',
           method: 'POST'
@@ -960,7 +958,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeedstatuses/{datafeedId}',
           method: 'GET'
@@ -997,7 +995,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/datafeedstatuses',
           method: 'GET'
@@ -1037,7 +1035,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/inventory/batch',
           method: 'POST'
@@ -1076,7 +1074,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/inventory/{storeCode}/products/{productId}',
           method: 'POST'
@@ -1117,7 +1115,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/acknowledge',
           method: 'POST'
@@ -1153,7 +1151,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/testorders/{orderId}/advance',
           method: 'POST'
@@ -1170,7 +1168,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.cancel
      *
-     * @desc Cancels all line items in an order. This method can only be called for non-multi-client accounts.
+     * @desc Cancels all line items in an order, making a full refund. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.cancel
      * @memberOf! content(v2)
@@ -1190,7 +1188,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/cancel',
           method: 'POST'
@@ -1207,7 +1205,7 @@ function Content(options) { // eslint-disable-line
     /**
      * content.orders.cancellineitem
      *
-     * @desc Cancels a line item. This method can only be called for non-multi-client accounts.
+     * @desc Cancels a line item, making a full refund. This method can only be called for non-multi-client accounts.
      *
      * @alias content.orders.cancellineitem
      * @memberOf! content(v2)
@@ -1227,7 +1225,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/cancelLineItem',
           method: 'POST'
@@ -1263,7 +1261,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/testorders',
           method: 'POST'
@@ -1298,7 +1296,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/orders/batch',
           method: 'POST'
@@ -1334,7 +1332,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}',
           method: 'GET'
@@ -1370,7 +1368,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/ordersbymerchantid/{merchantOrderId}',
           method: 'GET'
@@ -1406,7 +1404,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/testordertemplates/{templateName}',
           method: 'GET'
@@ -1448,7 +1446,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders',
           method: 'GET'
@@ -1485,7 +1483,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/refund',
           method: 'POST'
@@ -1522,7 +1520,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/returnLineItem',
           method: 'POST'
@@ -1559,7 +1557,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/shipLineItems',
           method: 'POST'
@@ -1596,7 +1594,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/updateMerchantOrderId',
           method: 'POST'
@@ -1633,7 +1631,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/orders/{orderId}/updateShipment',
           method: 'POST'
@@ -1673,7 +1671,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/products/batch',
           method: 'POST'
@@ -1710,7 +1708,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/products/{productId}',
           method: 'DELETE'
@@ -1746,7 +1744,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/products/{productId}',
           method: 'GET'
@@ -1783,7 +1781,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/products',
           method: 'POST'
@@ -1821,7 +1819,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/products',
           method: 'GET'
@@ -1860,7 +1858,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/productstatuses/batch',
           method: 'POST'
@@ -1896,7 +1894,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/productstatuses/{productId}',
           method: 'GET'
@@ -1934,7 +1932,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/productstatuses',
           method: 'GET'
@@ -1974,7 +1972,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/shippingsettings/batch',
           method: 'POST'
@@ -2010,7 +2008,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings/{accountId}',
           method: 'GET'
@@ -2045,7 +2043,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/supportedCarriers',
           method: 'GET'
@@ -2082,7 +2080,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings',
           method: 'GET'
@@ -2120,7 +2118,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings/{accountId}',
           method: 'PATCH'
@@ -2158,7 +2156,7 @@ function Content(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/content/v2/{merchantId}/shippingsettings/{accountId}',
           method: 'PUT'

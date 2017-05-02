@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Ad Exchange Buyer API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
  *
  * @example
- * var google = require('googleapis');
- * var adexchangebuyer = google.adexchangebuyer('v1.2');
+ * const google = require('googleapis');
+ * const adexchangebuyer = google.adexchangebuyer('v1.2');
  *
  * @namespace adexchangebuyer
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Adexchangebuyer
  */
 function Adexchangebuyer(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.accounts = {
@@ -63,7 +61,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/{id}',
           method: 'GET'
@@ -97,7 +95,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts',
           method: 'GET'
@@ -133,7 +131,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/{id}',
           method: 'PATCH'
@@ -169,7 +167,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/{id}',
           method: 'PUT'
@@ -209,7 +207,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/creatives/{accountId}/{buyerCreativeId}',
           method: 'GET'
@@ -244,7 +242,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/creatives',
           method: 'POST'
@@ -281,7 +279,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/creatives',
           method: 'GET'

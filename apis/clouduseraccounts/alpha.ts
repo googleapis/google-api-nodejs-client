@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Cloud User Accounts API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Creates and manages users and groups for accessing Google Compute Engine virtual machines.
  *
  * @example
- * var google = require('googleapis');
- * var clouduseraccounts = google.clouduseraccounts('alpha');
+ * const google = require('googleapis');
+ * const clouduseraccounts = google.clouduseraccounts('alpha');
  *
  * @namespace clouduseraccounts
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Clouduseraccounts
  */
 function Clouduseraccounts(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.globalAccountsOperations = {
@@ -64,7 +62,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/operations/{operation}',
           method: 'DELETE'
@@ -100,7 +98,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/operations/{operation}',
           method: 'GET'
@@ -139,7 +137,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/operations',
           method: 'GET'
@@ -180,7 +178,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{groupName}/addMember',
           method: 'POST'
@@ -216,7 +214,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{groupName}',
           method: 'DELETE'
@@ -252,7 +250,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{groupName}',
           method: 'GET'
@@ -288,7 +286,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{resource}/getIamPolicy',
           method: 'GET'
@@ -324,7 +322,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups',
           method: 'POST'
@@ -363,7 +361,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups',
           method: 'GET'
@@ -400,7 +398,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{groupName}/removeMember',
           method: 'POST'
@@ -437,7 +435,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{resource}/setIamPolicy',
           method: 'POST'
@@ -474,7 +472,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/groups/{resource}/testIamPermissions',
           method: 'POST'
@@ -517,7 +515,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/zones/{zone}/authorizedKeysView/{user}',
           method: 'POST'
@@ -558,7 +556,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/zones/{zone}/linuxAccountViews',
           method: 'POST'
@@ -599,7 +597,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{user}/addPublicKey',
           method: 'POST'
@@ -635,7 +633,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{user}',
           method: 'DELETE'
@@ -671,7 +669,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{user}',
           method: 'GET'
@@ -707,7 +705,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{resource}/getIamPolicy',
           method: 'GET'
@@ -743,7 +741,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users',
           method: 'POST'
@@ -782,7 +780,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users',
           method: 'GET'
@@ -819,7 +817,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{user}/removePublicKey',
           method: 'POST'
@@ -856,7 +854,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{resource}/setIamPolicy',
           method: 'POST'
@@ -893,7 +891,7 @@ function Clouduseraccounts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/clouduseraccounts/alpha/projects/{project}/global/users/{resource}/testIamPermissions',
           method: 'POST'

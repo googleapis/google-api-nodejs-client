@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Play Game Services API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * The API for Google Play Game Services.
  *
  * @example
- * var google = require('googleapis');
- * var games = google.games('v1');
+ * const google = require('googleapis');
+ * const games = google.games('v1');
  *
  * @namespace games
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Games
  */
 function Games(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.achievementDefinitions = {
@@ -66,7 +64,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/achievements',
           method: 'GET'
@@ -108,7 +106,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/increment',
           method: 'POST'
@@ -148,7 +146,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/{playerId}/achievements',
           method: 'GET'
@@ -184,7 +182,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/reveal',
           method: 'POST'
@@ -221,7 +219,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/setStepsAtLeast',
           method: 'POST'
@@ -257,7 +255,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/achievements/{achievementId}/unlock',
           method: 'POST'
@@ -293,7 +291,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/achievements/updateMultiple',
           method: 'POST'
@@ -335,7 +333,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/applications/{applicationId}',
           method: 'GET'
@@ -370,7 +368,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/applications/played',
           method: 'POST'
@@ -406,7 +404,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/applications/{applicationId}/verify',
           method: 'GET'
@@ -448,7 +446,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/events',
           method: 'GET'
@@ -486,7 +484,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/eventDefinitions',
           method: 'GET'
@@ -523,7 +521,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/events',
           method: 'POST'
@@ -564,7 +562,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}',
           method: 'GET'
@@ -602,7 +600,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/leaderboards',
           method: 'GET'
@@ -641,7 +639,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/metagameConfig',
           method: 'GET'
@@ -681,7 +679,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/{playerId}/categories/{collection}',
           method: 'GET'
@@ -722,7 +720,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/{playerId}',
           method: 'GET'
@@ -761,7 +759,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/me/players/{collection}',
           method: 'GET'
@@ -801,7 +799,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/pushtokens/remove',
           method: 'POST'
@@ -837,7 +835,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/pushtokens',
           method: 'PUT'
@@ -879,7 +877,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/quests/{questId}/milestones/{milestoneId}/claim',
           method: 'PUT'
@@ -920,7 +918,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/quests/{questId}/accept',
           method: 'POST'
@@ -959,7 +957,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/{playerId}/quests',
           method: 'GET'
@@ -999,7 +997,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/revisions/check',
           method: 'GET'
@@ -1040,7 +1038,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/create',
           method: 'POST'
@@ -1077,7 +1075,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/decline',
           method: 'POST'
@@ -1113,7 +1111,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/dismiss',
           method: 'POST'
@@ -1150,7 +1148,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/{roomId}',
           method: 'GET'
@@ -1188,7 +1186,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/join',
           method: 'POST'
@@ -1226,7 +1224,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/leave',
           method: 'POST'
@@ -1264,7 +1262,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms',
           method: 'GET'
@@ -1302,7 +1300,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/rooms/{roomId}/reportstatus',
           method: 'POST'
@@ -1348,7 +1346,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/{playerId}/leaderboards/{leaderboardId}/scores/{timeSpan}',
           method: 'GET'
@@ -1389,7 +1387,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}/scores/{collection}',
           method: 'GET'
@@ -1432,7 +1430,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}/window/{collection}',
           method: 'GET'
@@ -1471,7 +1469,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/leaderboards/{leaderboardId}/scores',
           method: 'POST'
@@ -1508,7 +1506,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/leaderboards/scores',
           method: 'POST'
@@ -1549,7 +1547,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/snapshots/{snapshotId}',
           method: 'GET'
@@ -1588,7 +1586,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/players/{playerId}/snapshots',
           method: 'GET'
@@ -1628,7 +1626,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/cancel',
           method: 'PUT'
@@ -1665,7 +1663,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/create',
           method: 'POST'
@@ -1702,7 +1700,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/decline',
           method: 'PUT'
@@ -1738,7 +1736,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/dismiss',
           method: 'PUT'
@@ -1776,7 +1774,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/finish',
           method: 'PUT'
@@ -1814,7 +1812,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}',
           method: 'GET'
@@ -1851,7 +1849,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/join',
           method: 'PUT'
@@ -1888,7 +1886,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/leave',
           method: 'PUT'
@@ -1927,7 +1925,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/leaveTurn',
           method: 'PUT'
@@ -1967,7 +1965,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches',
           method: 'GET'
@@ -2005,7 +2003,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/rematch',
           method: 'POST'
@@ -2045,7 +2043,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/sync',
           method: 'GET'
@@ -2083,7 +2081,7 @@ function Games(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1/turnbasedmatches/{matchId}/turn',
           method: 'PUT'

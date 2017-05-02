@@ -38,7 +38,7 @@ describe('GoogleApis#discover', () => {
         return done(err);
       }
       // APIs have all been re-added
-      localApis.forEach((name) => {
+      localApis.forEach(name => {
         assert(google[name]);
       });
 

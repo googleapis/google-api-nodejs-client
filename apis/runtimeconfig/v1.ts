@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Cloud RuntimeConfig API
@@ -28,8 +26,8 @@ var utils = require('../../lib/utils');
 
  *
  * @example
- * var google = require('googleapis');
- * var runtimeconfig = google.runtimeconfig('v1');
+ * const google = require('googleapis');
+ * const runtimeconfig = google.runtimeconfig('v1');
  *
  * @namespace runtimeconfig
  * @type {Function}
@@ -38,46 +36,10 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Runtimeconfig
  */
 function Runtimeconfig(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.operations = {
-
-    /**
-     * runtimeconfig.operations.cancel
-     *
-     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     *
-     * @alias runtimeconfig.operations.cancel
-     * @memberOf! runtimeconfig(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {runtimeconfig(v1).CancelOperationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    cancel: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://runtimeconfig.googleapis.com/v1/{name}:cancel',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
 
     /**
      * runtimeconfig.operations.delete
@@ -100,7 +62,7 @@ function Runtimeconfig(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://runtimeconfig.googleapis.com/v1/{name}',
           method: 'DELETE'
@@ -138,10 +100,46 @@ function Runtimeconfig(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://runtimeconfig.googleapis.com/v1/{name}',
           method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * runtimeconfig.operations.cancel
+     *
+     * @desc Starts asynchronous cancellation on a long-running operation.  The server makes a best effort to cancel the operation, but success is not guaranteed.  If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     *
+     * @alias runtimeconfig.operations.cancel
+     * @memberOf! runtimeconfig(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource to be cancelled.
+     * @param {runtimeconfig(v1).CancelOperationRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    cancel: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://runtimeconfig.googleapis.com/v1/{name}:cancel',
+          method: 'POST'
         }, options),
         params: params,
         requiredParams: ['name'],
@@ -155,11 +153,6 @@ function Runtimeconfig(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef Empty
- * @memberOf! runtimeconfig(v1)
- * @type object
- */
 /**
  * @typedef CancelOperationRequest
  * @memberOf! runtimeconfig(v1)
@@ -180,16 +173,13 @@ google.rpc.Status.details field, or localized by the client.
  * @typedef ListOperationsResponse
  * @memberOf! runtimeconfig(v1)
  * @type object
- * @property {string} nextPageToken The standard List next-page token.
  * @property {runtimeconfig(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ * @property {string} nextPageToken The standard List next-page token.
  */
 /**
  * @typedef Operation
  * @memberOf! runtimeconfig(v1)
  * @type object
-* @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
-available.
 * @property {object} response The normal response of the operation in case of success.  If the original
 method returns no data on success, such as `Delete`, the response is
 `google.protobuf.Empty`.  If the original method is standard
@@ -206,5 +196,13 @@ originally returns it. If you use the default HTTP mapping, the
 contains progress information and common metadata such as create time.
 Some services might not provide such metadata.  Any method that returns a
 long-running operation should document the metadata type, if any.
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
 */
+/**
+ * @typedef Empty
+ * @memberOf! runtimeconfig(v1)
+ * @type object
+ */
 export = Runtimeconfig;

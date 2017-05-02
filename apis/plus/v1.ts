@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google+ API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Builds on top of the Google+ platform.
  *
  * @example
- * var google = require('googleapis');
- * var plus = google.plus('v1');
+ * const google = require('googleapis');
+ * const plus = google.plus('v1');
  *
  * @namespace plus
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Plus
  */
 function Plus(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.activities = {
@@ -63,7 +61,7 @@ function Plus(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/plus/v1/activities/{activityId}',
           method: 'GET'
@@ -101,7 +99,7 @@ function Plus(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/plus/v1/people/{userId}/activities/{collection}',
           method: 'GET'
@@ -140,7 +138,7 @@ function Plus(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/plus/v1/activities',
           method: 'GET'
@@ -179,7 +177,7 @@ function Plus(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/plus/v1/comments/{commentId}',
           method: 'GET'
@@ -217,7 +215,7 @@ function Plus(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/plus/v1/activities/{activityId}/comments',
           method: 'GET'
@@ -256,7 +254,7 @@ function Plus(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/plus/v1/people/{userId}',
           method: 'GET'
@@ -295,7 +293,7 @@ function Plus(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/plus/v1/people/{userId}/people/{collection}',
           method: 'GET'
@@ -333,7 +331,7 @@ function Plus(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/plus/v1/activities/{activityId}/people/{collection}',
           method: 'GET'
@@ -371,7 +369,7 @@ function Plus(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/plus/v1/people',
           method: 'GET'

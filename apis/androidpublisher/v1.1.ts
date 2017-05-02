@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Play Developer API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Lets Android application developers access their Google Play accounts.
  *
  * @example
- * var google = require('googleapis');
- * var androidpublisher = google.androidpublisher('v1.1');
+ * const google = require('googleapis');
+ * const androidpublisher = google.androidpublisher('v1.1');
  *
  * @namespace androidpublisher
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Androidpublisher
  */
 function Androidpublisher(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.inapppurchases = {
@@ -65,7 +63,7 @@ function Androidpublisher(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/{packageName}/inapp/{productId}/purchases/{token}',
           method: 'GET'
@@ -106,7 +104,7 @@ function Androidpublisher(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel',
           method: 'POST'
@@ -143,7 +141,7 @@ function Androidpublisher(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidpublisher/v1.1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}',
           method: 'GET'

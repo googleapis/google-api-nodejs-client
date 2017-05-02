@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * DoubleClick Bid Manager API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * API for viewing and managing your reports in DoubleClick Bid Manager.
  *
  * @example
- * var google = require('googleapis');
- * var doubleclickbidmanager = google.doubleclickbidmanager('v1');
+ * const google = require('googleapis');
+ * const doubleclickbidmanager = google.doubleclickbidmanager('v1');
  *
  * @namespace doubleclickbidmanager
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Doubleclickbidmanager
  */
 function Doubleclickbidmanager(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.lineitems = {
@@ -63,7 +61,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/lineitems/downloadlineitems',
           method: 'POST'
@@ -98,7 +96,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/lineitems/uploadlineitems',
           method: 'POST'
@@ -137,7 +135,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query',
           method: 'POST'
@@ -172,7 +170,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
           method: 'DELETE'
@@ -207,7 +205,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
           method: 'GET'
@@ -241,7 +239,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries',
           method: 'GET'
@@ -277,7 +275,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/query/{queryId}',
           method: 'POST'
@@ -316,7 +314,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/queries/{queryId}/reports',
           method: 'GET'
@@ -355,7 +353,7 @@ function Doubleclickbidmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/doubleclickbidmanager/v1/sdf/download',
           method: 'POST'

@@ -6,10 +6,7 @@
         "sourceMap": true,
         "alwaysStrict": true
     },
-    "files": [
-        "scripts/generate.ts",
-        "lib/generator.ts",
-        "lib/generator_utils.ts",
-        "lib/transporters.ts"
+    "include": [
+        "scripts/**/*.ts"
     ]
 }

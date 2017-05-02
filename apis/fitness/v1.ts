@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Fitness
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Stores and accesses user data in the fitness store from apps on any platform.
  *
  * @example
- * var google = require('googleapis');
- * var fitness = google.fitness('v1');
+ * const google = require('googleapis');
+ * const fitness = google.fitness('v1');
  *
  * @namespace fitness
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Fitness
  */
 function Fitness(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.users = {
@@ -66,7 +64,7 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources',
             method: 'POST'
@@ -102,7 +100,7 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
             method: 'DELETE'
@@ -138,7 +136,7 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
             method: 'GET'
@@ -174,7 +172,7 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources',
             method: 'GET'
@@ -211,7 +209,7 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
             method: 'PATCH'
@@ -248,7 +246,7 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}',
             method: 'PUT'
@@ -289,7 +287,7 @@ function Fitness(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}',
               method: 'DELETE'
@@ -328,7 +326,7 @@ function Fitness(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}',
               method: 'GET'
@@ -367,7 +365,7 @@ function Fitness(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataSources/{dataSourceId}/datasets/{datasetId}',
               method: 'PATCH'
@@ -407,7 +405,7 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/dataset:aggregate',
             method: 'POST'
@@ -447,7 +445,7 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/sessions/{sessionId}',
             method: 'DELETE'
@@ -486,7 +484,7 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/sessions',
             method: 'GET'
@@ -524,7 +522,7 @@ function Fitness(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/fitness/v1/users/{userId}/sessions/{sessionId}',
             method: 'PUT'

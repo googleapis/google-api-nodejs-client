@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Blogger API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * API for access to the data within Blogger.
  *
  * @example
- * var google = require('googleapis');
- * var blogger = google.blogger('v2');
+ * const google = require('googleapis');
+ * const blogger = google.blogger('v2');
  *
  * @namespace blogger
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Blogger
  */
 function Blogger(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.blogs = {
@@ -63,7 +61,7 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}',
           method: 'GET'
@@ -104,7 +102,7 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}',
           method: 'GET'
@@ -144,7 +142,7 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts/{postId}/comments',
           method: 'GET'
@@ -184,7 +182,7 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/pages/{pageId}',
           method: 'GET'
@@ -220,7 +218,7 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/pages',
           method: 'GET'
@@ -260,7 +258,7 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts/{postId}',
           method: 'GET'
@@ -299,7 +297,7 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/blogs/{blogId}/posts',
           method: 'GET'
@@ -338,7 +336,7 @@ function Blogger(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/blogger/v2/users/{userId}',
           method: 'GET'
@@ -375,7 +373,7 @@ function Blogger(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/blogger/v2/users/{userId}/blogs',
             method: 'GET'

@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Books API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Searches for books and manages your Google Books library.
  *
  * @example
- * var google = require('googleapis');
- * var books = google.books('v1');
+ * const google = require('googleapis');
+ * const books = google.books('v1');
  *
  * @namespace books
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Books
  */
 function Books(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.bookshelves = {
@@ -65,7 +63,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}',
           method: 'GET'
@@ -101,7 +99,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves',
           method: 'GET'
@@ -143,7 +141,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/users/{userId}/bookshelves/{shelf}/volumes',
             method: 'GET'
@@ -185,7 +183,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/cloudloading/addBook',
           method: 'POST'
@@ -220,7 +218,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/cloudloading/deleteBook',
           method: 'POST'
@@ -255,7 +253,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/cloudloading/updateBook',
           method: 'POST'
@@ -294,7 +292,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/dictionary/listOfflineMetadata',
           method: 'GET'
@@ -336,7 +334,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layersummary/{summaryId}',
           method: 'GET'
@@ -375,7 +373,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layersummary',
           method: 'GET'
@@ -421,7 +419,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}',
             method: 'GET'
@@ -468,7 +466,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/data',
             method: 'GET'
@@ -510,7 +508,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}',
             method: 'GET'
@@ -559,7 +557,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/layers/{layerId}',
             method: 'GET'
@@ -597,7 +595,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/myconfig/getUserSettings',
           method: 'GET'
@@ -635,7 +633,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/myconfig/releaseDownloadAccess',
           method: 'POST'
@@ -675,7 +673,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/myconfig/requestAccess',
           method: 'POST'
@@ -717,7 +715,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/myconfig/syncVolumeLicenses',
           method: 'POST'
@@ -752,7 +750,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/myconfig/updateUserSettings',
           method: 'POST'
@@ -794,7 +792,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
             method: 'DELETE'
@@ -833,7 +831,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations',
             method: 'POST'
@@ -877,7 +875,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations',
             method: 'GET'
@@ -913,7 +911,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/summary',
             method: 'POST'
@@ -950,7 +948,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/annotations/{annotationId}',
             method: 'PUT'
@@ -991,7 +989,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/addVolume',
             method: 'POST'
@@ -1027,7 +1025,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes',
             method: 'POST'
@@ -1063,7 +1061,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}',
             method: 'GET'
@@ -1098,7 +1096,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves',
             method: 'GET'
@@ -1136,7 +1134,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/moveVolume',
             method: 'POST'
@@ -1174,7 +1172,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/removeVolume',
             method: 'POST'
@@ -1218,7 +1216,7 @@ function Books(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/books/v1/mylibrary/bookshelves/{shelf}/volumes',
               method: 'GET'
@@ -1259,7 +1257,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/{volumeId}',
             method: 'GET'
@@ -1300,7 +1298,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/mylibrary/readingpositions/{volumeId}/setPosition',
             method: 'POST'
@@ -1341,7 +1339,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/notification/get',
           method: 'GET'
@@ -1380,7 +1378,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/onboarding/listCategories',
           method: 'GET'
@@ -1419,7 +1417,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/onboarding/listCategoryVolumes',
           method: 'GET'
@@ -1460,7 +1458,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/personalizedstream/get',
           method: 'GET'
@@ -1506,7 +1504,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/promooffer/accept',
           method: 'POST'
@@ -1547,7 +1545,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/promooffer/dismiss',
           method: 'POST'
@@ -1587,7 +1585,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/promooffer/get',
           method: 'GET'
@@ -1626,7 +1624,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/series/get',
           method: 'GET'
@@ -1665,7 +1663,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/series/membership/get',
             method: 'GET'
@@ -1710,7 +1708,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}',
           method: 'GET'
@@ -1758,7 +1756,7 @@ function Books(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/books/v1/volumes',
           method: 'GET'
@@ -1799,7 +1797,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/{volumeId}/associated',
             method: 'GET'
@@ -1843,7 +1841,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/mybooks',
             method: 'GET'
@@ -1883,7 +1881,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/recommended',
             method: 'GET'
@@ -1921,7 +1919,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/recommended/rate',
             method: 'POST'
@@ -1964,7 +1962,7 @@ function Books(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/books/v1/volumes/useruploaded',
             method: 'GET'
