@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Identity Toolkit API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Help the third party sites to implement federated login.
  *
  * @example
- * var google = require('googleapis');
- * var identitytoolkit = google.identitytoolkit('v3');
+ * const google = require('googleapis');
+ * const identitytoolkit = google.identitytoolkit('v3');
  *
  * @namespace identitytoolkit
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Identitytoolkit
  */
 function Identitytoolkit(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.relyingparty = {
@@ -63,7 +61,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/createAuthUri',
           method: 'POST'
@@ -98,7 +96,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/deleteAccount',
           method: 'POST'
@@ -133,7 +131,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/downloadAccount',
           method: 'POST'
@@ -168,7 +166,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo',
           method: 'POST'
@@ -203,7 +201,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode',
           method: 'POST'
@@ -239,7 +237,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getProjectConfig',
           method: 'GET'
@@ -273,7 +271,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/publicKeys',
           method: 'GET'
@@ -307,7 +305,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getRecaptchaParam',
           method: 'GET'
@@ -342,7 +340,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/resetPassword',
           method: 'POST'
@@ -377,7 +375,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setAccountInfo',
           method: 'POST'
@@ -412,7 +410,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setProjectConfig',
           method: 'POST'
@@ -447,7 +445,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signOutUser',
           method: 'POST'
@@ -482,7 +480,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser',
           method: 'POST'
@@ -517,7 +515,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/uploadAccount',
           method: 'POST'
@@ -552,7 +550,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyAssertion',
           method: 'POST'
@@ -587,7 +585,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken',
           method: 'POST'
@@ -622,7 +620,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword',
           method: 'POST'
@@ -997,6 +995,7 @@ function Identitytoolkit(options) { // eslint-disable-line
  * @property {string} localId The local ID of the user.
  * @property {string} passwordHash The user&#39;s hashed password.
  * @property {number} passwordUpdatedAt The timestamp when the password was last updated.
+ * @property {string} phoneNumber User&#39;s phone number.
  * @property {string} photoUrl The URL of the user profile photo.
  * @property {object[]} providerUserInfo The IDP of the user.
  * @property {string} rawPassword The user&#39;s plain text password.

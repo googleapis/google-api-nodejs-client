@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Ad Exchange Buyer API II
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Accesses the latest features for managing Ad Exchange accounts, Real-Time Bidding configurations and auction metrics, and Marketplace programmatic deals.
  *
  * @example
- * var google = require('googleapis');
- * var adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+ * const google = require('googleapis');
+ * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
  *
  * @namespace adexchangebuyer2
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Adexchangebuyer2
  */
 function Adexchangebuyer2(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.accounts = {
@@ -67,7 +65,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}',
             method: 'PUT'
@@ -103,7 +101,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients',
             method: 'POST'
@@ -139,7 +137,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}',
             method: 'GET'
@@ -176,7 +174,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients',
             method: 'GET'
@@ -191,43 +189,6 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       },
 
       invitations: {
-
-        /**
-         * adexchangebuyer2.accounts.clients.invitations.create
-         *
-         * @desc Creates and sends out an email invitation to access an Ad Exchange client buyer account.
-         *
-         * @alias adexchangebuyer2.accounts.clients.invitations.create
-         * @memberOf! adexchangebuyer2(v2beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
-         * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user should be associated with. (required)
-         * @param {adexchangebuyer2(v2beta1).ClientUserInvitation} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        create: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations',
-              method: 'POST'
-            }, options),
-            params: params,
-            requiredParams: ['accountId', 'clientAccountId'],
-            pathParams: ['accountId', 'clientAccountId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
 
         /**
          * adexchangebuyer2.accounts.clients.invitations.get
@@ -252,7 +213,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations/{invitationId}',
               method: 'GET'
@@ -275,10 +236,10 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientUserInvitationsResponse.nextPageToken returned from the previous call to the clients.invitations.list method.
          * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
          * @param {integer=} params.pageSize Requested page size. Server may return fewer clients than requested. If unspecified, server will pick an appropriate default.
          * @param {string} params.clientAccountId Numerical account ID of the client buyer to list invitations for. (required) You must either specify a string representation of a numerical account identifier or the `-` character to list all the invitations for all the clients of a given sponsor buyer.
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListClientUserInvitationsResponse.nextPageToken returned from the previous call to the clients.invitations.list method.
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -290,10 +251,47 @@ function Adexchangebuyer2(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations',
               method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['accountId', 'clientAccountId'],
+            pathParams: ['accountId', 'clientAccountId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * adexchangebuyer2.accounts.clients.invitations.create
+         *
+         * @desc Creates and sends out an email invitation to access an Ad Exchange client buyer account.
+         *
+         * @alias adexchangebuyer2.accounts.clients.invitations.create
+         * @memberOf! adexchangebuyer2(v2beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+         * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user should be associated with. (required)
+         * @param {adexchangebuyer2(v2beta1).ClientUserInvitation} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: utils.extend({
+              url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/invitations',
+              method: 'POST'
             }, options),
             params: params,
             requiredParams: ['accountId', 'clientAccountId'],
@@ -306,44 +304,6 @@ function Adexchangebuyer2(options) { // eslint-disable-line
       },
 
       users: {
-
-        /**
-         * adexchangebuyer2.accounts.clients.users.update
-         *
-         * @desc Updates an existing client user. Only the user status can be changed on update.
-         *
-         * @alias adexchangebuyer2.accounts.clients.users.update
-         * @memberOf! adexchangebuyer2(v2beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.userId Numerical identifier of the user to retrieve. (required)
-         * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
-         * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
-         * @param {adexchangebuyer2(v2beta1).ClientUser} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        update: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users/{userId}',
-              method: 'PUT'
-            }, options),
-            params: params,
-            requiredParams: ['accountId', 'clientAccountId', 'userId'],
-            pathParams: ['userId', 'accountId', 'clientAccountId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
 
         /**
          * adexchangebuyer2.accounts.clients.users.list
@@ -369,7 +329,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users',
               method: 'GET'
@@ -392,9 +352,9 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
+         * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
          * @param {string} params.userId Numerical identifier of the user to retrieve. (required)
          * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
-         * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
          * @return {object} Request object
@@ -406,10 +366,48 @@ function Adexchangebuyer2(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users/{userId}',
               method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['accountId', 'clientAccountId', 'userId'],
+            pathParams: ['clientAccountId', 'userId', 'accountId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * adexchangebuyer2.accounts.clients.users.update
+         *
+         * @desc Updates an existing client user. Only the user status can be changed on update.
+         *
+         * @alias adexchangebuyer2.accounts.clients.users.update
+         * @memberOf! adexchangebuyer2(v2beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.userId Numerical identifier of the user to retrieve. (required)
+         * @param {string} params.accountId Numerical account ID of the client's sponsor buyer. (required)
+         * @param {string} params.clientAccountId Numerical account ID of the client buyer that the user to be retrieved is associated with. (required)
+         * @param {adexchangebuyer2(v2beta1).ClientUser} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        update: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: utils.extend({
+              url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/clients/{clientAccountId}/users/{userId}',
+              method: 'PUT'
             }, options),
             params: params,
             requiredParams: ['accountId', 'clientAccountId', 'userId'],
@@ -423,6 +421,44 @@ function Adexchangebuyer2(options) { // eslint-disable-line
     },
 
     creatives: {
+
+      /**
+       * adexchangebuyer2.accounts.creatives.list
+       *
+       * @desc Lists creatives.
+       *
+       * @alias adexchangebuyer2.accounts.creatives.list
+       * @memberOf! adexchangebuyer2(v2beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId The account to list the creatives from. Specify "-" to list all creatives the current user has access to.
+       * @param {integer=} params.pageSize Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
+       * @param {string=} params.query An optional query string to filter creatives. If no filter is specified, all active creatives will be returned. Supported queries are: <ul> <li>accountId=<i>account_id_string</i> <li>creativeId=<i>creative_id_string</i> <li>dealsStatus: {approved, conditionally_approved, disapproved,                    not_checked} <li>openAuctionStatus: {approved, conditionally_approved, disapproved,                           not_checked} <li>attribute: {a numeric attribute from the list of attributes} <li>disapprovalReason: {a reason from DisapprovalReason </ul> Example: 'accountId=12345 AND (dealsStatus:disapproved AND disapprovalReason:unacceptable_content) OR attribute:47'
+       * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.next_page_token returned from the previous call to 'ListCreatives' method.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/creatives',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['accountId'],
+          pathParams: ['accountId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
 
       /**
        * adexchangebuyer2.accounts.creatives.create
@@ -447,7 +483,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/creatives',
             method: 'POST'
@@ -484,7 +520,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/creatives/{creativeId}:stopWatching',
             method: 'POST'
@@ -507,8 +543,8 @@ function Adexchangebuyer2(options) { // eslint-disable-line
        * @memberOf! adexchangebuyer2(v2beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.creativeId The ID of the creative to retrieve.
        * @param {string} params.accountId The account the creative belongs to.
+       * @param {string} params.creativeId The ID of the creative to retrieve.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -520,14 +556,14 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/creatives/{creativeId}',
             method: 'GET'
           }, options),
           params: params,
           requiredParams: ['accountId', 'creativeId'],
-          pathParams: ['creativeId', 'accountId'],
+          pathParams: ['accountId', 'creativeId'],
           context: self
         };
 
@@ -557,7 +593,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/creatives/{creativeId}:watch',
             method: 'POST'
@@ -594,7 +630,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/creatives/{creativeId}',
             method: 'PUT'
@@ -608,84 +644,7 @@ function Adexchangebuyer2(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       },
 
-      /**
-       * adexchangebuyer2.accounts.creatives.list
-       *
-       * @desc Lists creatives.
-       *
-       * @alias adexchangebuyer2.accounts.creatives.list
-       * @memberOf! adexchangebuyer2(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.next_page_token returned from the previous call to 'ListCreatives' method.
-       * @param {string} params.accountId The account to list the creatives from. Specify "-" to list all creatives the current user has access to.
-       * @param {integer=} params.pageSize Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
-       * @param {string=} params.query An optional query string to filter creatives. If no filter is specified, all active creatives will be returned. Supported queries are: <ul> <li>accountId=<i>account_id_string</i> <li>creativeId=<i>creative_id_string</i> <li>dealsStatus: {approved, conditionally_approved, disapproved,                    not_checked} <li>openAuctionStatus: {approved, conditionally_approved, disapproved,                           not_checked} <li>attribute: {a numeric attribute from the list of attributes} <li>disapprovalReason: {a reason from DisapprovalReason </ul> Example: 'accountId=12345 AND (dealsStatus:disapproved AND disapprovalReason:unacceptable_content) OR attribute:47'
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/creatives',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
       dealAssociations: {
-
-        /**
-         * adexchangebuyer2.accounts.creatives.dealAssociations.list
-         *
-         * @desc List all creative-deal associations.
-         *
-         * @alias adexchangebuyer2.accounts.creatives.dealAssociations.list
-         * @memberOf! adexchangebuyer2(v2beta1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.creativeId The creative ID to list the associations from. Specify "-" to list all creatives under the above account.
-         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListDealAssociationsResponse.next_page_token returned from the previous call to 'ListDealAssociations' method.
-         * @param {string} params.accountId The account to list the associations from. Specify "-" to list all creatives the current user has access to.
-         * @param {integer=} params.pageSize Requested page size. Server may return fewer associations than requested. If unspecified, server will pick an appropriate default.
-         * @param {string=} params.query An optional query string to filter deal associations. If no filter is specified, all associations will be returned. Supported queries are: <ul> <li>accountId=<i>account_id_string</i> <li>creativeId=<i>creative_id_string</i> <li>dealsId=<i>deals_id_string</i> <li>dealsStatus:{approved, conditionally_approved, disapproved,                   not_checked} <li>openAuctionStatus:{approved, conditionally_approved, disapproved,                          not_checked} </ul> Example: 'dealsId=12345 AND dealsStatus:disapproved'
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        list: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/creatives/{creativeId}/dealAssociations',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['accountId', 'creativeId'],
-            pathParams: ['creativeId', 'accountId'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
 
         /**
          * adexchangebuyer2.accounts.creatives.dealAssociations.add
@@ -696,8 +655,8 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.creativeId The ID of the creative associated with the deal.
          * @param {string} params.accountId The account the creative belongs to.
+         * @param {string} params.creativeId The ID of the creative associated with the deal.
          * @param {adexchangebuyer2(v2beta1).AddDealAssociationRequest} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -710,14 +669,14 @@ function Adexchangebuyer2(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/creatives/{creativeId}/dealAssociations:add',
               method: 'POST'
             }, options),
             params: params,
             requiredParams: ['accountId', 'creativeId'],
-            pathParams: ['creativeId', 'accountId'],
+            pathParams: ['accountId', 'creativeId'],
             context: self
           };
 
@@ -733,8 +692,8 @@ function Adexchangebuyer2(options) { // eslint-disable-line
          * @memberOf! adexchangebuyer2(v2beta1)
          *
          * @param {object} params Parameters for request
-         * @param {string} params.creativeId The ID of the creative associated with the deal.
          * @param {string} params.accountId The account the creative belongs to.
+         * @param {string} params.creativeId The ID of the creative associated with the deal.
          * @param {adexchangebuyer2(v2beta1).RemoveDealAssociationRequest} params.resource Request body data
          * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
          * @param {callback} callback The callback that handles the response.
@@ -747,14 +706,53 @@ function Adexchangebuyer2(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/creatives/{creativeId}/dealAssociations:remove',
               method: 'POST'
             }, options),
             params: params,
             requiredParams: ['accountId', 'creativeId'],
-            pathParams: ['creativeId', 'accountId'],
+            pathParams: ['accountId', 'creativeId'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * adexchangebuyer2.accounts.creatives.dealAssociations.list
+         *
+         * @desc List all creative-deal associations.
+         *
+         * @alias adexchangebuyer2.accounts.creatives.dealAssociations.list
+         * @memberOf! adexchangebuyer2(v2beta1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListDealAssociationsResponse.next_page_token returned from the previous call to 'ListDealAssociations' method.
+         * @param {string} params.accountId The account to list the associations from. Specify "-" to list all creatives the current user has access to.
+         * @param {integer=} params.pageSize Requested page size. Server may return fewer associations than requested. If unspecified, server will pick an appropriate default.
+         * @param {string=} params.query An optional query string to filter deal associations. If no filter is specified, all associations will be returned. Supported queries are: <ul> <li>accountId=<i>account_id_string</i> <li>creativeId=<i>creative_id_string</i> <li>dealsId=<i>deals_id_string</i> <li>dealsStatus:{approved, conditionally_approved, disapproved,                   not_checked} <li>openAuctionStatus:{approved, conditionally_approved, disapproved,                          not_checked} </ul> Example: 'dealsId=12345 AND dealsStatus:disapproved'
+         * @param {string} params.creativeId The creative ID to list the associations from. Specify "-" to list all creatives under the above account.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: utils.extend({
+              url: 'https://adexchangebuyer.googleapis.com/v2beta1/accounts/{accountId}/creatives/{creativeId}/dealAssociations',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['accountId', 'creativeId'],
+            pathParams: ['accountId', 'creativeId'],
             context: self
           };
 
@@ -765,6 +763,141 @@ function Adexchangebuyer2(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Date
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {integer} year Year of date. Must be from 1 to 9999, or 0 if specifying a date without
+a year.
+* @property {integer} day Day of month. Must be from 1 to 31 and valid for the year and month, or 0
+if specifying a year/month where the day is not significant.
+* @property {integer} month Month of year. Must be from 1 to 12.
+*/
+/**
+ * @typedef Empty
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+ */
+/**
+ * @typedef WatchCreativeRequest
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {string} topic The Pub/Sub topic to publish notifications to.
+This topic must already exist and must give permission to
+ad-exchange-buyside-reports@google.com to write to the topic.
+This should be the full resource name in
+&quot;projects/{project_id}/topics/{topic_id}&quot; format.
+*/
+/**
+ * @typedef AppContext
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+ * @property {string[]} appTypes The app types this restriction applies to.
+ */
+/**
+ * @typedef ListClientsResponse
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {string} nextPageToken A token to retrieve the next page of results.
+Pass this value in the
+ListClientsRequest.pageToken
+field in the subsequent call to the
+accounts.clients.list method
+to retrieve the next page of results.
+* @property {adexchangebuyer2(v2beta1).Client[]} clients The returned list of clients.
+*/
+/**
+ * @typedef NativeContent
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+ * @property {string} storeUrl The URL to the app store to purchase/download the promoted app.
+ * @property {string} headline A short title for the ad.
+ * @property {adexchangebuyer2(v2beta1).Image} appIcon The app icon, for app download ads.
+ * @property {string} callToAction A label for the button that the user is supposed to click.
+ * @property {string} body A long description of the ad.
+ * @property {number} starRating The app rating in the app store. Must be in the range [0-5].
+ * @property {string} videoUrl The URL to fetch a native video ad.
+ * @property {adexchangebuyer2(v2beta1).Image} logo A smaller image, for the advertiser&#39;s logo.
+ * @property {string} clickLinkUrl The URL that the browser/SDK will load when the user clicks the ad.
+ * @property {string} priceDisplayText The price of the promoted app including currency info.
+ * @property {adexchangebuyer2(v2beta1).Image} image A large image.
+ * @property {string} clickTrackingUrl The URL to use for click tracking.
+ * @property {string} advertiserName The name of the advertiser or sponsor, to be displayed in the ad creative.
+ */
+/**
+ * @typedef SecurityContext
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+ * @property {string[]} securities The security types in this context.
+ */
+/**
+ * @typedef HtmlContent
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+ * @property {integer} height The height of the HTML snippet in pixels.
+ * @property {integer} width The width of the HTML snippet in pixels.
+ * @property {string} snippet The HTML snippet that displays the ad when inserted in the web page.
+ */
+/**
+ * @typedef ListCreativesResponse
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {adexchangebuyer2(v2beta1).Creative[]} creatives The list of creatives.
+* @property {string} nextPageToken A token to retrieve the next page of results.
+Pass this value in the
+ListCreativesRequest.page_token
+field in the subsequent call to `ListCreatives` method to retrieve the next
+page of results.
+*/
+/**
+ * @typedef ServingContext
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {adexchangebuyer2(v2beta1).AppContext} appType Matches impressions for a particular app type.
+* @property {adexchangebuyer2(v2beta1).SecurityContext} securityType Matches impressions for a particular security type.
+* @property {adexchangebuyer2(v2beta1).PlatformContext} platform Matches impressions coming from a particular platform.
+* @property {adexchangebuyer2(v2beta1).LocationContext} location Matches impressions coming from users *or* publishers in a specific
+location.
+* @property {adexchangebuyer2(v2beta1).AuctionContext} auctionType Matches impressions for a particular auction type.
+* @property {string} all Matches all contexts.
+*/
+/**
+ * @typedef Image
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+ * @property {integer} height Image height in pixels.
+ * @property {integer} width Image width in pixels.
+ * @property {string} url The URL of the image.
+ */
+/**
+ * @typedef Reason
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {integer} status The filtering status code. Please refer to the
+[creative-status-codes.txt](https://storage.googleapis.com/adx-rtb-dictionaries/creative-status-codes.txt)
+file for different statuses.
+* @property {string} count The number of times the creative was filtered for the status. The
+count is aggregated across all publishers on the exchange.
+*/
+/**
+ * @typedef VideoContent
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+ * @property {string} videoUrl The URL to fetch a video ad.
+ */
+/**
+ * @typedef ClientUserInvitation
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {string} email The email address to which the invitation is sent. Email
+addresses should be unique among all client users under each sponsor
+buyer.
+* @property {string} clientAccountId Numerical account ID of the client buyer
+that the invited user is associated with.
+The value of this field is ignored in create operations.
+* @property {string} invitationId The unique numerical ID of the invitation that is sent to the user.
+The value of this field is ignored in create operations.
+*/
 /**
  * @typedef AuctionContext
  * @memberOf! adexchangebuyer2(v2beta1)
@@ -816,6 +949,7 @@ file for different geo criteria IDs.
  * @typedef ClientUser
  * @memberOf! adexchangebuyer2(v2beta1)
  * @type object
+* @property {string} status The status of the client user.
 * @property {string} userId The unique numerical ID of the client user
 that has accepted an invitation.
 The value of this field is ignored in an update operation.
@@ -825,20 +959,50 @@ is ignored in an update operation.
 with which the user is associated; the
 buyer must be a client of the current sponsor buyer.
 The value of this field is ignored in an update operation.
-* @property {string} status The status of the client user.
 */
 /**
  * @typedef CreativeDealAssociation
  * @memberOf! adexchangebuyer2(v2beta1)
  * @type object
+ * @property {string} accountId The account the creative belongs to.
  * @property {string} creativeId The ID of the creative associated with the deal.
  * @property {string} dealsId The externalDealId for the deal associated with the creative.
- * @property {string} accountId The account the creative belongs to.
  */
+/**
+ * @typedef FilteringStats
+ * @memberOf! adexchangebuyer2(v2beta1)
+ * @type object
+* @property {adexchangebuyer2(v2beta1).Reason[]} reasons The set of filtering reasons for this date.
+* @property {adexchangebuyer2(v2beta1).Date} date The day during which the data was collected.
+The data is collected from 00:00:00 to 23:59:59 PT.
+During switches from PST to PDT and back, the day may
+contain 23 or 25 hours of data instead of the usual 24.
+*/
 /**
  * @typedef Creative
  * @memberOf! adexchangebuyer2(v2beta1)
  * @type object
+* @property {string[]} detectedAdvertiserIds @OutputOnly Detected advertiser IDs, if any.
+* @property {string[]} detectedDomains @OutputOnly
+The detected domains for this creative.
+* @property {adexchangebuyer2(v2beta1).FilteringStats} filteringStats @OutputOnly The filtering stats for this creative.
+* @property {string[]} attributes All attributes for the ads that may be shown from this creative.
+Can be used to filter the response of the
+creatives.list
+method.
+* @property {string} apiUpdateTime @OutputOnly The last update timestamp of the creative via API.
+* @property {string[]} detectedLanguages @OutputOnly
+The detected languages for this creative. The order is arbitrary. The codes
+are 2 or 5 characters and are documented at
+https://developers.google.com/adwords/api/docs/appendix/languagecodes.
+* @property {string} creativeId The buyer-defined creative ID of this creative.
+Can be used to filter the response of the
+creatives.list
+method.
+* @property {string} accountId The account that this creative belongs to.
+Can be used to filter the response of the
+creatives.list
+method.
 * @property {adexchangebuyer2(v2beta1).NativeContent} native A native creative.
 * @property {adexchangebuyer2(v2beta1).VideoContent} video A video creative.
 * @property {adexchangebuyer2(v2beta1).ServingRestriction[]} servingRestrictions @OutputOnly The granular status of this ad in specific contexts.
@@ -847,11 +1011,11 @@ a physical location, a platform, an HTTPS vs HTTP request, or the type
 of auction).
 * @property {string} agencyId The agency ID for this creative.
 * @property {string[]} clickThroughUrls The set of destination URLs for the creative.
+* @property {string} adChoicesDestinationUrl The link to AdChoices destination page.
 * @property {integer[]} detectedSensitiveCategories @OutputOnly Detected sensitive categories, if any.
 See the ad-sensitive-categories.txt file in the technical documentation for
 a list of IDs. You should use these IDs along with the
 excluded-sensitive-category field in the bid request to filter your bids.
-* @property {string} adChoicesDestinationUrl The link to AdChoices destination page.
 * @property {string[]} restrictedCategories All restricted categories for the ads that may be shown from this creative.
 * @property {adexchangebuyer2(v2beta1).Correction[]} corrections @OutputOnly Shows any corrections that were applied to this creative.
 * @property {integer} version @OutputOnly The version of this creative.
@@ -880,37 +1044,6 @@ Can be used to filter the response of the
 creatives.list
 method.
 * @property {string} advertiserName The name of the company being advertised in the creative.
-* @property {string[]} detectedAdvertiserIds @OutputOnly Detected advertiser IDs, if any.
-* @property {string[]} detectedDomains @OutputOnly
-The detected domains for this creative.
-* @property {adexchangebuyer2(v2beta1).FilteringStats} filteringStats @OutputOnly The filtering stats for this creative.
-* @property {string[]} attributes All attributes for the ads that may be shown from this creative.
-Can be used to filter the response of the
-creatives.list
-method.
-* @property {string} apiUpdateTime @OutputOnly The last update timestamp of the creative via API.
-* @property {string[]} detectedLanguages @OutputOnly
-The detected languages for this creative. The order is arbitrary. The codes
-are 2 or 5 characters and are documented at
-https://developers.google.com/adwords/api/docs/appendix/languagecodes.
-* @property {string} creativeId The buyer-defined creative ID of this creative.
-Can be used to filter the response of the
-creatives.list
-method.
-* @property {string} accountId The account that this creative belongs to.
-Can be used to filter the response of the
-creatives.list
-method.
-*/
-/**
- * @typedef FilteringStats
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
-* @property {adexchangebuyer2(v2beta1).Reason[]} reasons The set of filtering reasons for this date.
-* @property {adexchangebuyer2(v2beta1).Date} date The day during which the data was collected.
-The data is collected from 00:00:00 to 23:59:59 PT.
-During switches from PST to PDT and back, the day may
-contain 23 or 25 hours of data instead of the usual 24.
 */
 /**
  * @typedef RemoveDealAssociationRequest
@@ -922,6 +1055,15 @@ contain 23 or 25 hours of data instead of the usual 24.
  * @typedef Client
  * @memberOf! adexchangebuyer2(v2beta1)
  * @type object
+* @property {string} entityType The type of the client entity: `ADVERTISER`, `BRAND`, or `AGENCY`.
+* @property {string} clientName Name used to represent this client to publishers.
+You may have multiple clients that map to the same entity,
+but for each client the combination of `clientName` and entity
+must be unique.
+You can specify this field as empty.
+* @property {string} role The role which is assigned to the client buyer. Each role implies a set of
+permissions granted to the client. Must be one of `CLIENT_DEAL_VIEWER`,
+`CLIENT_DEAL_NEGOTIATOR` or `CLIENT_DEAL_APPROVER`.
 * @property {boolean} visibleToSeller Whether the client buyer will be visible to sellers.
 * @property {string} entityId Numerical identifier of the client entity.
 The entity can be an advertiser, a brand, or an agency.
@@ -944,34 +1086,25 @@ The value of this field is ignored in create and update operations.
 the type and ID.
 The value of this field is ignored in create and update operations.
 * @property {string} status The status of the client buyer.
-* @property {string} entityType The type of the client entity: `ADVERTISER`, `BRAND`, or `AGENCY`.
-* @property {string} clientName Name used to represent this client to publishers.
-You may have multiple clients that map to the same entity,
-but for each client the combination of `clientName` and entity
-must be unique.
-You can specify this field as empty.
-* @property {string} role The role which is assigned to the client buyer. Each role implies a set of
-permissions granted to the client. Must be one of `CLIENT_DEAL_VIEWER`,
-`CLIENT_DEAL_NEGOTIATOR` or `CLIENT_DEAL_APPROVER`.
 */
 /**
  * @typedef Correction
  * @memberOf! adexchangebuyer2(v2beta1)
  * @type object
+ * @property {adexchangebuyer2(v2beta1).ServingContext[]} contexts The contexts for the correction.
  * @property {string[]} details Additional details about what was corrected.
  * @property {string} type The type of correction that was applied to the creative.
- * @property {adexchangebuyer2(v2beta1).ServingContext[]} contexts The contexts for the correction.
  */
 /**
  * @typedef ListDealAssociationsResponse
  * @memberOf! adexchangebuyer2(v2beta1)
  * @type object
+* @property {adexchangebuyer2(v2beta1).CreativeDealAssociation[]} associations The list of associations.
 * @property {string} nextPageToken A token to retrieve the next page of results.
 Pass this value in the
 ListDealAssociationsRequest.page_token
 field in the subsequent call to &#39;ListDealAssociation&#39; method to retrieve
 the next page of results.
-* @property {adexchangebuyer2(v2beta1).CreativeDealAssociation[]} associations The list of associations.
 */
 /**
  * @typedef AddDealAssociationRequest
@@ -1003,140 +1136,5 @@ Only present if status=DISAPPROVED.
 Can be used to filter the response of the
 creatives.list
 method.
-*/
-/**
- * @typedef Date
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
-* @property {integer} month Month of year. Must be from 1 to 12.
-* @property {integer} year Year of date. Must be from 1 to 9999, or 0 if specifying a date without
-a year.
-* @property {integer} day Day of month. Must be from 1 to 31 and valid for the year and month, or 0
-if specifying a year/month where the day is not significant.
-*/
-/**
- * @typedef Empty
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
- */
-/**
- * @typedef WatchCreativeRequest
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
-* @property {string} topic The Pub/Sub topic to publish notifications to.
-This topic must already exist and must give permission to
-ad-exchange-buyside-reports@google.com to write to the topic.
-This should be the full resource name in
-&quot;projects/{project_id}/topics/{topic_id}&quot; format.
-*/
-/**
- * @typedef AppContext
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
- * @property {string[]} appTypes The app types this restriction applies to.
- */
-/**
- * @typedef ListClientsResponse
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
-* @property {string} nextPageToken A token to retrieve the next page of results.
-Pass this value in the
-ListClientsRequest.pageToken
-field in the subsequent call to the
-accounts.clients.list method
-to retrieve the next page of results.
-* @property {adexchangebuyer2(v2beta1).Client[]} clients The returned list of clients.
-*/
-/**
- * @typedef NativeContent
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
- * @property {adexchangebuyer2(v2beta1).Image} image A large image.
- * @property {string} clickTrackingUrl The URL to use for click tracking.
- * @property {string} advertiserName The name of the advertiser or sponsor, to be displayed in the ad creative.
- * @property {string} storeUrl The URL to the app store to purchase/download the promoted app.
- * @property {string} headline A short title for the ad.
- * @property {adexchangebuyer2(v2beta1).Image} appIcon The app icon, for app download ads.
- * @property {string} callToAction A label for the button that the user is supposed to click.
- * @property {string} body A long description of the ad.
- * @property {number} starRating The app rating in the app store. Must be in the range [0-5].
- * @property {string} videoUrl The URL to fetch a native video ad.
- * @property {adexchangebuyer2(v2beta1).Image} logo A smaller image, for the advertiser&#39;s logo.
- * @property {string} clickLinkUrl The URL that the browser/SDK will load when the user clicks the ad.
- * @property {string} priceDisplayText The price of the promoted app including currency info.
- */
-/**
- * @typedef SecurityContext
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
- * @property {string[]} securities The security types in this context.
- */
-/**
- * @typedef HtmlContent
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
- * @property {integer} width The width of the HTML snippet in pixels.
- * @property {string} snippet The HTML snippet that displays the ad when inserted in the web page.
- * @property {integer} height The height of the HTML snippet in pixels.
- */
-/**
- * @typedef ListCreativesResponse
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
-* @property {string} nextPageToken A token to retrieve the next page of results.
-Pass this value in the
-ListCreativesRequest.page_token
-field in the subsequent call to `ListCreatives` method to retrieve the next
-page of results.
-* @property {adexchangebuyer2(v2beta1).Creative[]} creatives The list of creatives.
-*/
-/**
- * @typedef ServingContext
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
-* @property {adexchangebuyer2(v2beta1).AuctionContext} auctionType Matches impressions for a particular auction type.
-* @property {string} all Matches all contexts.
-* @property {adexchangebuyer2(v2beta1).AppContext} appType Matches impressions for a particular app type.
-* @property {adexchangebuyer2(v2beta1).SecurityContext} securityType Matches impressions for a particular security type.
-* @property {adexchangebuyer2(v2beta1).PlatformContext} platform Matches impressions coming from a particular platform.
-* @property {adexchangebuyer2(v2beta1).LocationContext} location Matches impressions coming from users *or* publishers in a specific
-location.
-*/
-/**
- * @typedef Image
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
- * @property {integer} width Image width in pixels.
- * @property {string} url The URL of the image.
- * @property {integer} height Image height in pixels.
- */
-/**
- * @typedef Reason
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
-* @property {integer} status The filtering status code. Please refer to the
-[creative-status-codes.txt](https://storage.googleapis.com/adx-rtb-dictionaries/creative-status-codes.txt)
-file for different statuses.
-* @property {string} count The number of times the creative was filtered for the status. The
-count is aggregated across all publishers on the exchange.
-*/
-/**
- * @typedef VideoContent
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
- * @property {string} videoUrl The URL to fetch a video ad.
- */
-/**
- * @typedef ClientUserInvitation
- * @memberOf! adexchangebuyer2(v2beta1)
- * @type object
-* @property {string} invitationId The unique numerical ID of the invitation that is sent to the user.
-The value of this field is ignored in create operations.
-* @property {string} email The email address to which the invitation is sent. Email
-addresses should be unique among all client users under each sponsor
-buyer.
-* @property {string} clientAccountId Numerical account ID of the client buyer
-that the invited user is associated with.
-The value of this field is ignored in create operations.
 */
 export = Adexchangebuyer2;

@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Admin Directory API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * The Admin SDK Directory API lets you view and manage enterprise resources such as users and groups, administrative notifications, security features, and more.
  *
  * @example
- * var google = require('googleapis');
- * var admin = google.admin('directory_v1');
+ * const google = require('googleapis');
+ * const admin = google.admin('directory_v1');
  *
  * @namespace admin
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Admin
  */
 function Admin(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.asps = {
@@ -64,7 +62,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps/{codeId}',
           method: 'DELETE'
@@ -100,7 +98,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps/{codeId}',
           method: 'GET'
@@ -135,7 +133,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/asps',
           method: 'GET'
@@ -174,7 +172,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/admin/directory_v1/channels/stop',
           method: 'POST'
@@ -201,8 +199,8 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
-     * @param {string} params.resourceId Immutable id of Chrome OS Device
+     * @param {string} params.customerId Immutable ID of the G Suite account
+     * @param {string} params.resourceId Immutable ID of Chrome OS Device
      * @param {admin(directory_v1).ChromeOsDeviceAction} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -215,7 +213,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action',
           method: 'POST'
@@ -238,8 +236,8 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
-     * @param {string} params.deviceId Immutable id of Chrome OS Device
+     * @param {string} params.customerId Immutable ID of the G Suite account
+     * @param {string} params.deviceId Immutable ID of Chrome OS Device
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -252,7 +250,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
           method: 'GET'
@@ -275,7 +273,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 100
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
@@ -293,7 +291,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos',
           method: 'GET'
@@ -316,8 +314,8 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
-     * @param {string} params.deviceId Immutable id of Chrome OS Device
+     * @param {string} params.customerId Immutable ID of the G Suite account
+     * @param {string} params.deviceId Immutable ID of Chrome OS Device
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
      * @param {admin(directory_v1).ChromeOsDevice} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -331,7 +329,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
           method: 'PATCH'
@@ -354,8 +352,8 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
-     * @param {string} params.deviceId Immutable id of Chrome OS Device
+     * @param {string} params.customerId Immutable ID of the G Suite account
+     * @param {string} params.deviceId Immutable ID of Chrome OS Device
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
      * @param {admin(directory_v1).ChromeOsDevice} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -369,7 +367,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}',
           method: 'PUT'
@@ -408,7 +406,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
           method: 'GET'
@@ -444,7 +442,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
           method: 'PATCH'
@@ -480,7 +478,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customers/{customerKey}',
           method: 'PUT'
@@ -507,7 +505,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string} params.domainAliasName Name of domain alias to be retrieved.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -520,7 +518,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}',
           method: 'DELETE'
@@ -543,7 +541,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string} params.domainAliasName Name of domain alias to be retrieved.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -556,7 +554,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases/{domainAliasName}',
           method: 'GET'
@@ -579,7 +577,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {admin(directory_v1).DomainAlias} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -592,7 +590,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases',
           method: 'POST'
@@ -615,7 +613,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string=} params.parentDomainName Name of the parent domain for which domain aliases are to be fetched.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -628,7 +626,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domainaliases',
           method: 'GET'
@@ -655,7 +653,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string} params.domainName Name of domain to be deleted
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -668,7 +666,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
           method: 'DELETE'
@@ -691,7 +689,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string} params.domainName Name of domain to be retrieved
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -704,7 +702,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains/{domainName}',
           method: 'GET'
@@ -727,7 +725,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {admin(directory_v1).Domains} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -740,7 +738,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
           method: 'POST'
@@ -763,7 +761,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -775,7 +773,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/domains',
           method: 'GET'
@@ -814,7 +812,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'DELETE'
@@ -849,7 +847,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'GET'
@@ -884,7 +882,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups',
           method: 'POST'
@@ -907,7 +905,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object=} params Parameters for request
-     * @param {string=} params.customer Immutable id of the Google Apps account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
+     * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
      * @param {string=} params.domain Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 200
      * @param {string=} params.pageToken Token to specify next page in the list
@@ -923,7 +921,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups',
           method: 'GET'
@@ -959,7 +957,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'PATCH'
@@ -995,7 +993,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}',
           method: 'PUT'
@@ -1033,7 +1031,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases/{alias}',
             method: 'DELETE'
@@ -1069,7 +1067,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases',
             method: 'POST'
@@ -1104,7 +1102,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/aliases',
             method: 'GET'
@@ -1144,7 +1142,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'DELETE'
@@ -1180,7 +1178,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'GET'
@@ -1216,7 +1214,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members',
           method: 'POST'
@@ -1254,7 +1252,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members',
           method: 'GET'
@@ -1291,7 +1289,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'PATCH'
@@ -1328,7 +1326,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/groups/{groupKey}/members/{memberKey}',
           method: 'PUT'
@@ -1355,8 +1353,8 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
-     * @param {string} params.resourceId Immutable id of Mobile Device
+     * @param {string} params.customerId Immutable ID of the G Suite account
+     * @param {string} params.resourceId Immutable ID of Mobile Device
      * @param {admin(directory_v1).MobileDeviceAction} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1369,7 +1367,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}/action',
           method: 'POST'
@@ -1392,8 +1390,8 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
-     * @param {string} params.resourceId Immutable id of Mobile Device
+     * @param {string} params.customerId Immutable ID of the G Suite account
+     * @param {string} params.resourceId Immutable ID of Mobile Device
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1405,7 +1403,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}',
           method: 'DELETE'
@@ -1428,9 +1426,9 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string} params.resourceId Immutable id of Mobile Device
+     * @param {string} params.resourceId Immutable ID of Mobile Device
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1442,7 +1440,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}',
           method: 'GET'
@@ -1465,7 +1463,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 100
      * @param {string=} params.orderBy Column to use for sorting results
      * @param {string=} params.pageToken Token to specify next page in the list
@@ -1483,7 +1481,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/devices/mobile',
           method: 'GET'
@@ -1510,7 +1508,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's Google account. The customerId is also returned as part of the Users resource.
+     * @param {string} params.customer The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
      * @param {string} params.notificationId The unique ID of the notification.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1523,7 +1521,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'DELETE'
@@ -1546,7 +1544,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's Google account. The customerId is also returned as part of the Users resource.
+     * @param {string} params.customer The unique ID for the customer's G Suite account. The customerId is also returned as part of the Users resource.
      * @param {string} params.notificationId The unique ID of the notification.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1559,7 +1557,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'GET'
@@ -1582,7 +1580,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's Google account.
+     * @param {string} params.customer The unique ID for the customer's G Suite account.
      * @param {string=} params.language The ISO 639-1 code of the language notifications are returned in. The default is English (en).
      * @param {integer=} params.maxResults Maximum number of notifications to return per page. The default is 100.
      * @param {string=} params.pageToken The token to specify the page of results to retrieve.
@@ -1597,7 +1595,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications',
           method: 'GET'
@@ -1620,7 +1618,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's Google account.
+     * @param {string} params.customer The unique ID for the customer's G Suite account.
      * @param {string} params.notificationId The unique ID of the notification.
      * @param {admin(directory_v1).Notification} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1634,7 +1632,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'PATCH'
@@ -1657,7 +1655,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's Google account.
+     * @param {string} params.customer The unique ID for the customer's G Suite account.
      * @param {string} params.notificationId The unique ID of the notification.
      * @param {admin(directory_v1).Notification} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1671,7 +1669,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/notifications/{notificationId}',
           method: 'PUT'
@@ -1698,7 +1696,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.orgUnitPath Full path of the organization unit or its Id
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1711,7 +1709,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'DELETE'
@@ -1734,7 +1732,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.orgUnitPath Full path of the organization unit or its Id
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1747,7 +1745,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'GET'
@@ -1770,7 +1768,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {admin(directory_v1).OrgUnit} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -1783,7 +1781,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits',
           method: 'POST'
@@ -1806,7 +1804,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string=} params.orgUnitPath the URL-encoded organization unit's path or its Id
      * @param {string=} params.type Whether to return all sub-organizations or just immediate children
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1820,7 +1818,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits',
           method: 'GET'
@@ -1843,7 +1841,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.orgUnitPath Full path of the organization unit or its Id
      * @param {admin(directory_v1).OrgUnit} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1857,7 +1855,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'PATCH'
@@ -1880,7 +1878,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.orgUnitPath Full path of the organization unit or its Id
      * @param {admin(directory_v1).OrgUnit} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1894,7 +1892,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}',
           method: 'PUT'
@@ -1921,7 +1919,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1933,7 +1931,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/ALL/privileges',
           method: 'GET'
@@ -1963,7 +1961,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.calendarResourceId The unique ID of the calendar resource to delete.
-       * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -1975,7 +1973,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
             method: 'DELETE'
@@ -1999,7 +1997,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.calendarResourceId The unique ID of the calendar resource to retrieve.
-       * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -2011,7 +2009,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
             method: 'GET'
@@ -2034,7 +2032,7 @@ function Admin(options) { // eslint-disable-line
        * @memberOf! admin(directory_v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
        * @param {admin(directory_v1).CalendarResource} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -2047,7 +2045,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars',
             method: 'POST'
@@ -2070,7 +2068,7 @@ function Admin(options) { // eslint-disable-line
        * @memberOf! admin(directory_v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
        * @param {integer=} params.maxResults Maximum number of results to return.
        * @param {string=} params.pageToken Token to specify the next page in the list.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2084,7 +2082,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars',
             method: 'GET'
@@ -2108,7 +2106,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
-       * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
        * @param {admin(directory_v1).CalendarResource} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -2121,7 +2119,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
             method: 'PATCH'
@@ -2145,7 +2143,7 @@ function Admin(options) { // eslint-disable-line
        *
        * @param {object} params Parameters for request
        * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
-       * @param {string} params.customer The unique ID for the customer's Google account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+       * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
        * @param {admin(directory_v1).CalendarResource} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -2158,7 +2156,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/resources/calendars/{calendarResourceId}',
             method: 'PUT'
@@ -2185,7 +2183,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string} params.roleAssignmentId Immutable ID of the role assignment.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2198,7 +2196,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}',
           method: 'DELETE'
@@ -2221,7 +2219,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string} params.roleAssignmentId Immutable ID of the role assignment.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2234,7 +2232,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments/{roleAssignmentId}',
           method: 'GET'
@@ -2257,7 +2255,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {admin(directory_v1).RoleAssignment} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2270,7 +2268,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments',
           method: 'POST'
@@ -2293,7 +2291,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken Token to specify the next page in the list.
      * @param {string=} params.roleId Immutable ID of a role. If included in the request, returns only role assignments containing this role ID.
@@ -2309,7 +2307,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roleassignments',
           method: 'GET'
@@ -2336,7 +2334,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string} params.roleId Immutable ID of the role.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2349,7 +2347,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
           method: 'DELETE'
@@ -2372,7 +2370,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string} params.roleId Immutable ID of the role.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2385,7 +2383,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
           method: 'GET'
@@ -2408,7 +2406,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {admin(directory_v1).Role} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2421,7 +2419,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles',
           method: 'POST'
@@ -2444,7 +2442,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable id of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken Token to specify the next page in the list.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2458,7 +2456,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles',
           method: 'GET'
@@ -2481,7 +2479,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string} params.roleId Immutable ID of the role.
      * @param {admin(directory_v1).Role} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2495,7 +2493,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
           method: 'PATCH'
@@ -2518,7 +2516,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the Google Apps account.
+     * @param {string} params.customer Immutable ID of the G Suite account.
      * @param {string} params.roleId Immutable ID of the role.
      * @param {admin(directory_v1).Role} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2532,7 +2530,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customer}/roles/{roleId}',
           method: 'PUT'
@@ -2559,7 +2557,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.schemaKey Name or immutable Id of the schema
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2572,7 +2570,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
           method: 'DELETE'
@@ -2595,7 +2593,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.schemaKey Name or immutable Id of the schema
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2608,7 +2606,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
           method: 'GET'
@@ -2631,7 +2629,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {admin(directory_v1).Schema} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -2644,7 +2642,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas',
           method: 'POST'
@@ -2667,7 +2665,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2679,7 +2677,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas',
           method: 'GET'
@@ -2702,7 +2700,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.schemaKey Name or immutable Id of the schema.
      * @param {admin(directory_v1).Schema} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2716,7 +2714,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
           method: 'PATCH'
@@ -2739,7 +2737,7 @@ function Admin(options) { // eslint-disable-line
      * @memberOf! admin(directory_v1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable id of the Google Apps account
+     * @param {string} params.customerId Immutable ID of the G Suite account
      * @param {string} params.schemaKey Name or immutable Id of the schema.
      * @param {admin(directory_v1).Schema} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2753,7 +2751,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/customer/{customerId}/schemas/{schemaKey}',
           method: 'PUT'
@@ -2793,7 +2791,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens/{clientId}',
           method: 'DELETE'
@@ -2829,7 +2827,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens/{clientId}',
           method: 'GET'
@@ -2864,7 +2862,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/tokens',
           method: 'GET'
@@ -2903,7 +2901,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'DELETE'
@@ -2941,7 +2939,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'GET'
@@ -2976,7 +2974,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users',
           method: 'POST'
@@ -3000,7 +2998,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object=} params Parameters for request
      * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     * @param {string=} params.customer Immutable id of the Google Apps account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+     * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
      * @param {string=} params.event Event on which subscription is intended (if subscribing)
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 100. Max allowed is 500
@@ -3022,7 +3020,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users',
           method: 'GET'
@@ -3058,7 +3056,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/makeAdmin',
           method: 'POST'
@@ -3094,7 +3092,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'PATCH'
@@ -3130,7 +3128,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/undelete',
           method: 'POST'
@@ -3166,7 +3164,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}',
           method: 'PUT'
@@ -3190,7 +3188,7 @@ function Admin(options) { // eslint-disable-line
      *
      * @param {object} params Parameters for request
      * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     * @param {string=} params.customer Immutable id of the Google Apps account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+     * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
      * @param {string=} params.event Event on which subscription is intended (if subscribing)
      * @param {integer=} params.maxResults Maximum number of results to return. Default is 100. Max allowed is 500
@@ -3213,7 +3211,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/watch',
           method: 'POST'
@@ -3251,7 +3249,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases/{alias}',
             method: 'DELETE'
@@ -3287,7 +3285,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases',
             method: 'POST'
@@ -3323,7 +3321,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases',
             method: 'GET'
@@ -3360,7 +3358,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/aliases/watch',
             method: 'POST'
@@ -3398,7 +3396,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'DELETE'
@@ -3433,7 +3431,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'GET'
@@ -3469,7 +3467,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'PATCH'
@@ -3505,7 +3503,7 @@ function Admin(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/photos/thumbnail',
             method: 'PUT'
@@ -3544,7 +3542,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes/generate',
           method: 'POST'
@@ -3579,7 +3577,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes/invalidate',
           method: 'POST'
@@ -3614,7 +3612,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/directory/v1/users/{userKey}/verificationCodes',
           method: 'GET'
@@ -3720,7 +3718,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} firmwareVersion Chromebook firmware version (Read-only)
  * @property {string} kind Kind of resource this is.
  * @property {string} lastEnrollmentTime Date and time the device was last enrolled (Read-only)
- * @property {string} lastSync Date and time the device was last synchronized with the policy settings in the Google Apps administrator control panel (Read-only)
+ * @property {string} lastSync Date and time the device was last synchronized with the policy settings in the G Suite administrator control panel (Read-only)
  * @property {string} macAddress Chromebook Mac Address on wifi network interface (Read-only)
  * @property {string} meid Mobile Equipment identifier for the 3G mobile card in the Chromebook (Read-only)
  * @property {string} model Chromebook Model (Read-only)
@@ -3759,7 +3757,7 @@ function Admin(options) { // eslint-disable-line
  * @property {string} customerCreationTime The customer&#39;s creation time (Readonly)
  * @property {string} customerDomain The customer&#39;s primary domain name string. Do not include the www prefix when creating a new customer.
  * @property {string} etag ETag of the resource.
- * @property {string} id The unique ID for the customer&#39;s Google account. (Readonly)
+ * @property {string} id The unique ID for the customer&#39;s G Suite account. (Readonly)
  * @property {string} kind Identifies the resource as a customer. Value: admin#directory#customer
  * @property {string} language The customer&#39;s ISO 639-2 language code. The default value is en-US
  * @property {string} phoneNumber The customer&#39;s contact phone number in E.164 format.
@@ -3881,13 +3879,13 @@ function Admin(options) { // eslint-disable-line
  * @property {string[]} email List of owner user&#39;s email addresses (Read-only)
  * @property {string} encryptionStatus Mobile Device Encryption Status (Read-only)
  * @property {string} etag ETag of the resource.
- * @property {string} firstSync Date and time the device was first synchronized with the policy settings in the Google Apps administrator control panel (Read-only)
+ * @property {string} firstSync Date and time the device was first synchronized with the policy settings in the G Suite administrator control panel (Read-only)
  * @property {string} hardware Mobile Device Hardware (Read-only)
  * @property {string} hardwareId Mobile Device Hardware Id (Read-only)
  * @property {string} imei Mobile Device IMEI number (Read-only)
  * @property {string} kernelVersion Mobile Device Kernel version (Read-only)
  * @property {string} kind Kind of resource this is.
- * @property {string} lastSync Date and time the device was last synchronized with the policy settings in the Google Apps administrator control panel (Read-only)
+ * @property {string} lastSync Date and time the device was last synchronized with the policy settings in the G Suite administrator control panel (Read-only)
  * @property {boolean} managedAccountIsOnOwnerProfile Boolean indicating if this account is on owner/primary profile or not (Read-only)
  * @property {string} manufacturer Mobile Device manufacturer (Read-only)
  * @property {string} meid Mobile Device MEID number (Read-only)
@@ -4094,7 +4092,7 @@ function Admin(options) { // eslint-disable-line
  * @property {boolean} agreedToTerms Indicates if user has agreed to terms (Read-only)
  * @property {string[]} aliases List of aliases (Read-only)
  * @property {boolean} changePasswordAtNextLogin Boolean indicating if the user should change password in next login
- * @property {string} creationTime User&#39;s Google account creation time. (Read-only)
+ * @property {string} creationTime User&#39;s G Suite account creation time. (Read-only)
  * @property {object} customSchemas Custom fields of the user.
  * @property {string} customerId CustomerId of User (Read-only)
  * @property {string} deletionTime 
@@ -4113,6 +4111,7 @@ function Admin(options) { // eslint-disable-line
  * @property {boolean} isMailboxSetup Is mailbox setup (Read-only)
  * @property {string} kind Kind of resource this is.
  * @property {string} lastLoginTime User&#39;s last login time. (Read-only)
+ * @property {any} locations 
  * @property {admin(directory_v1).UserName} name User&#39;s name
  * @property {string[]} nonEditableAliases List of non editable aliases (Read-only)
  * @property {any} notes 
@@ -4189,6 +4188,18 @@ function Admin(options) { // eslint-disable-line
  * @property {string} type Each entry can have a type which indicates standard types of that entry. For example instant messengers could be of home, work etc. In addition to the standard type, an entry can have a custom type and can take any value. Such types should have the CUSTOM value as type and also have a customType value.
  */
 /**
+ * @typedef UserLocation
+ * @memberOf! admin(directory_v1)
+ * @type object
+ * @property {string} area Textual location. This is most useful for display purposes to concisely describe the location. E.g. &quot;Mountain View, CA&quot;, &quot;Near Seattle&quot;, &quot;US-NYC-9TH 9A209A&quot;.
+ * @property {string} buildingId Building Identifier.
+ * @property {string} customType Custom Type.
+ * @property {string} deskCode Most specific textual code of individual desk location.
+ * @property {string} floorName Floor name/number.
+ * @property {string} floorSection Floor Section. More specific location within the floor. E.g. if a floor is divided into sections &quot;A&quot;, &quot;B&quot;, and &quot;C&quot;, this field would identify one of those values.
+ * @property {string} type Each entry can have a type which indicates standard types of that entry. For example location could be of types default and desk. In addition to standard type, an entry can have a custom type and can give it any name. Such types should have &quot;custom&quot; as type and also have a customType value.
+ */
+/**
  * @typedef UserMakeAdmin
  * @memberOf! admin(directory_v1)
  * @type object
@@ -4244,13 +4255,13 @@ function Admin(options) { // eslint-disable-line
  * @typedef UserPosixAccount
  * @memberOf! admin(directory_v1)
  * @type object
- * @property {string} gecos The GECOS (user information) entry for this account.
+ * @property {string} gecos The GECOS (user information) for this account.
  * @property {integer} gid The default group ID.
  * @property {string} homeDirectory The path to the home directory for this account.
  * @property {boolean} primary If this is user&#39;s primary account within the SystemId.
  * @property {string} shell The path to the login shell for this account.
  * @property {string} systemId System identifier for which account Username or Uid apply to.
- * @property {integer} uid The user ID.
+ * @property {integer} uid The POSIX compliant user ID.
  * @property {string} username The username of the account.
  */
 /**

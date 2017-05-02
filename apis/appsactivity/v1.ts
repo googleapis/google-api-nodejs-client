@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * G Suite Activity API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Provides a historical view of activity.
  *
  * @example
- * var google = require('googleapis');
- * var appsactivity = google.appsactivity('v1');
+ * const google = require('googleapis');
+ * const appsactivity = google.appsactivity('v1');
  *
  * @namespace appsactivity
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Appsactivity
  */
 function Appsactivity(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.activities = {
@@ -69,7 +67,7 @@ function Appsactivity(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/appsactivity/v1/activities',
           method: 'GET'

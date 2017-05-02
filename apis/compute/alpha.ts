@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Compute Engine API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Creates and runs virtual machines on Google Cloud Platform.
  *
  * @example
- * var google = require('googleapis');
- * var compute = google.compute('alpha');
+ * const google = require('googleapis');
+ * const compute = google.compute('alpha');
  *
  * @namespace compute
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Compute
  */
 function Compute(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.acceleratorTypes = {
@@ -67,7 +65,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/acceleratorTypes',
           method: 'GET'
@@ -104,7 +102,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/acceleratorTypes/{acceleratorType}',
           method: 'GET'
@@ -144,7 +142,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/acceleratorTypes',
           method: 'GET'
@@ -187,7 +185,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/addresses',
           method: 'GET'
@@ -225,7 +223,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/addresses/{address}',
           method: 'DELETE'
@@ -262,7 +260,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/addresses/{address}',
           method: 'GET'
@@ -300,7 +298,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/addresses',
           method: 'POST'
@@ -340,7 +338,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/addresses',
           method: 'GET'
@@ -357,7 +355,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.addresses.setLabels
      *
-     * @desc Sets the labels on an Address. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on an Address. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.addresses.setLabels
      * @memberOf! compute(alpha)
@@ -379,7 +377,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/addresses/{resource}/setLabels',
           method: 'POST'
@@ -417,7 +415,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/addresses/{resource}/testIamPermissions',
           method: 'POST'
@@ -460,7 +458,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/autoscalers',
           method: 'GET'
@@ -498,7 +496,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'DELETE'
@@ -535,7 +533,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers/{autoscaler}',
           method: 'GET'
@@ -573,7 +571,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers',
           method: 'POST'
@@ -613,7 +611,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers',
           method: 'GET'
@@ -652,7 +650,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers',
           method: 'PATCH'
@@ -690,7 +688,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers/{resource}/testIamPermissions',
           method: 'POST'
@@ -729,7 +727,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/autoscalers',
           method: 'PUT'
@@ -771,7 +769,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{backendBucket}/addSignedUrlKey',
           method: 'POST'
@@ -808,7 +806,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'DELETE'
@@ -846,7 +844,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{backendBucket}/deleteSignedUrlKey',
           method: 'POST'
@@ -882,7 +880,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'GET'
@@ -918,7 +916,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{resource}/getIamPolicy',
           method: 'GET'
@@ -955,7 +953,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets',
           method: 'POST'
@@ -994,7 +992,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets',
           method: 'GET'
@@ -1032,7 +1030,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'PATCH'
@@ -1069,7 +1067,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{resource}/setIamPolicy',
           method: 'POST'
@@ -1106,7 +1104,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{resource}/testIamPermissions',
           method: 'POST'
@@ -1144,7 +1142,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendBuckets/{backendBucket}',
           method: 'PUT'
@@ -1186,7 +1184,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}/addSignedUrlKey',
           method: 'POST'
@@ -1225,7 +1223,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/backendServices',
           method: 'GET'
@@ -1262,7 +1260,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}',
           method: 'DELETE'
@@ -1300,7 +1298,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}/deleteSignedUrlKey',
           method: 'POST'
@@ -1336,7 +1334,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}',
           method: 'GET'
@@ -1373,7 +1371,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}/getHealth',
           method: 'POST'
@@ -1410,7 +1408,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices',
           method: 'POST'
@@ -1449,7 +1447,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices',
           method: 'GET'
@@ -1487,7 +1485,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}',
           method: 'PATCH'
@@ -1525,7 +1523,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}/setSecurityPolicy',
           method: 'POST'
@@ -1562,7 +1560,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{resource}/testIamPermissions',
           method: 'POST'
@@ -1600,7 +1598,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/backendServices/{backendService}',
           method: 'PUT'
@@ -1641,7 +1639,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/clientSslPolicies/{resource}/testIamPermissions',
           method: 'POST'
@@ -1649,202 +1647,6 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'resource'],
         pathParams: ['project', 'resource'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  self.commitments = {
-
-    /**
-     * compute.commitments.aggregatedList
-     *
-     * @desc Retrieves an aggregated list of commitments.
-     *
-     * @alias compute.commitments.aggregatedList
-     * @memberOf! compute(alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    aggregatedList: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/commitments',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['project'],
-        pathParams: ['project'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * compute.commitments.get
-     *
-     * @desc Returns the specified commitment resource. Get a list of available commitments by making a list() request.
-     *
-     * @alias compute.commitments.get
-     * @memberOf! compute(alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.commitment Name of the commitment to return.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.zone Name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/commitments/{commitment}',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'zone', 'commitment'],
-        pathParams: ['commitment', 'project', 'zone'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * compute.commitments.insert
-     *
-     * @desc Creates an commitment in the specified project using the data included in the request.
-     *
-     * @alias compute.commitments.insert
-     * @memberOf! compute(alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
-     * @param {string} params.zone Name of the zone for this request.
-     * @param {compute(alpha).Commitment} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    insert: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/commitments',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'zone'],
-        pathParams: ['project', 'zone'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * compute.commitments.list
-     *
-     * @desc Retrieves a list of commitments contained within the specified zone.
-     *
-     * @alias compute.commitments.list
-     * @memberOf! compute(alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.zone Name of the zone for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/commitments',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'zone'],
-        pathParams: ['project', 'zone'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * compute.commitments.testIamPermissions
-     *
-     * @desc Returns permissions that a caller has on the specified resource.
-     *
-     * @alias compute.commitments.testIamPermissions
-     * @memberOf! compute(alpha)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name of the resource for this request.
-     * @param {string} params.zone The name of the zone for this request.
-     * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    testIamPermissions: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/commitments/{resource}/testIamPermissions',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['project', 'zone', 'resource'],
-        pathParams: ['project', 'resource', 'zone'],
         context: self
       };
 
@@ -1880,7 +1682,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/diskTypes',
           method: 'GET'
@@ -1917,7 +1719,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/diskTypes/{diskType}',
           method: 'GET'
@@ -1957,7 +1759,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/diskTypes',
           method: 'GET'
@@ -2000,7 +1802,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/disks',
           method: 'GET'
@@ -2040,7 +1842,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{disk}/createSnapshot',
           method: 'POST'
@@ -2078,7 +1880,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{disk}',
           method: 'DELETE'
@@ -2115,7 +1917,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{disk}',
           method: 'GET'
@@ -2152,7 +1954,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{resource}/getIamPolicy',
           method: 'GET'
@@ -2191,7 +1993,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks',
           method: 'POST'
@@ -2231,7 +2033,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks',
           method: 'GET'
@@ -2270,7 +2072,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{disk}/resize',
           method: 'POST'
@@ -2308,7 +2110,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{resource}/setIamPolicy',
           method: 'POST'
@@ -2325,7 +2127,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.disks.setLabels
      *
-     * @desc Sets the labels on a disk. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on a disk. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.disks.setLabels
      * @memberOf! compute(alpha)
@@ -2347,7 +2149,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{resource}/setLabels',
           method: 'POST'
@@ -2385,7 +2187,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/disks/{resource}/testIamPermissions',
           method: 'POST'
@@ -2426,7 +2228,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls/{firewall}',
           method: 'DELETE'
@@ -2462,7 +2264,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls/{firewall}',
           method: 'GET'
@@ -2499,7 +2301,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls',
           method: 'POST'
@@ -2538,7 +2340,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls',
           method: 'GET'
@@ -2576,7 +2378,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls/{firewall}',
           method: 'PATCH'
@@ -2613,7 +2415,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls/{resource}/testIamPermissions',
           method: 'POST'
@@ -2630,7 +2432,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.firewalls.update
      *
-     * @desc Updates the specified firewall rule with the data included in the request.
+     * @desc Updates the specified firewall rule with the data included in the request. Using PUT method, can only update following fields of firewall rule: allowed, description, sourceRanges, sourceTags, targetTags.
      *
      * @alias compute.firewalls.update
      * @memberOf! compute(alpha)
@@ -2651,7 +2453,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/firewalls/{firewall}',
           method: 'PUT'
@@ -2694,7 +2496,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/forwardingRules',
           method: 'GET'
@@ -2732,7 +2534,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
           method: 'DELETE'
@@ -2769,7 +2571,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
           method: 'GET'
@@ -2807,7 +2609,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules',
           method: 'POST'
@@ -2847,7 +2649,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules',
           method: 'GET'
@@ -2862,9 +2664,48 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.forwardingRules.patch
+     *
+     * @desc Updates the specified forwarding rule with the data included in the request. This method supports patch semantics. Currently it only allow to patch network_tier field.
+     *
+     * @alias compute.forwardingRules.patch
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.forwardingRule Name of the ForwardingRule resource to patch.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region scoping this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {compute(alpha).ForwardingRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'forwardingRule'],
+        pathParams: ['forwardingRule', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.forwardingRules.setLabels
      *
-     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.forwardingRules.setLabels
      * @memberOf! compute(alpha)
@@ -2886,7 +2727,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules/{resource}/setLabels',
           method: 'POST'
@@ -2925,7 +2766,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules/{forwardingRule}/setTarget',
           method: 'POST'
@@ -2963,7 +2804,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/forwardingRules/{resource}/testIamPermissions',
           method: 'POST'
@@ -3004,7 +2845,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/addresses/{address}',
           method: 'DELETE'
@@ -3040,7 +2881,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/addresses/{address}',
           method: 'GET'
@@ -3077,7 +2918,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/addresses',
           method: 'POST'
@@ -3116,7 +2957,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/addresses',
           method: 'GET'
@@ -3133,7 +2974,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalAddresses.setLabels
      *
-     * @desc Sets the labels on a GlobalAddress. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on a GlobalAddress. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.globalAddresses.setLabels
      * @memberOf! compute(alpha)
@@ -3153,7 +2994,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/addresses/{resource}/setLabels',
           method: 'POST'
@@ -3190,7 +3031,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/addresses/{resource}/testIamPermissions',
           method: 'POST'
@@ -3211,7 +3052,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalForwardingRules.delete
      *
-     * @desc Deletes the specified ForwardingRule resource.
+     * @desc Deletes the specified GlobalForwardingRule resource.
      *
      * @alias compute.globalForwardingRules.delete
      * @memberOf! compute(alpha)
@@ -3231,7 +3072,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules/{forwardingRule}',
           method: 'DELETE'
@@ -3248,7 +3089,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalForwardingRules.get
      *
-     * @desc Returns the specified ForwardingRule resource. Get a list of available forwarding rules by making a list() request.
+     * @desc Returns the specified GlobalForwardingRule resource. Get a list of available forwarding rules by making a list() request.
      *
      * @alias compute.globalForwardingRules.get
      * @memberOf! compute(alpha)
@@ -3267,7 +3108,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules/{forwardingRule}',
           method: 'GET'
@@ -3284,7 +3125,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalForwardingRules.insert
      *
-     * @desc Creates a ForwardingRule resource in the specified project and region using the data included in the request.
+     * @desc Creates a GlobalForwardingRule resource in the specified project using the data included in the request.
      *
      * @alias compute.globalForwardingRules.insert
      * @memberOf! compute(alpha)
@@ -3304,7 +3145,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules',
           method: 'POST'
@@ -3321,7 +3162,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalForwardingRules.list
      *
-     * @desc Retrieves a list of ForwardingRule resources available to the specified project.
+     * @desc Retrieves a list of GlobalForwardingRule resources available to the specified project.
      *
      * @alias compute.globalForwardingRules.list
      * @memberOf! compute(alpha)
@@ -3343,7 +3184,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules',
           method: 'GET'
@@ -3358,9 +3199,47 @@ function Compute(options) { // eslint-disable-line
     },
 
     /**
+     * compute.globalForwardingRules.patch
+     *
+     * @desc Updates the specified forwarding rule with the data included in the request. This method supports patch semantics. Currently it only allow to patch network_tier field.
+     *
+     * @alias compute.globalForwardingRules.patch
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.forwardingRule Name of the ForwardingRule resource to patch.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {compute(alpha).ForwardingRule} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules/{forwardingRule}',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'forwardingRule'],
+        pathParams: ['forwardingRule', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
      * compute.globalForwardingRules.setLabels
      *
-     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on the specified resource. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.globalForwardingRules.setLabels
      * @memberOf! compute(alpha)
@@ -3380,7 +3259,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules/{resource}/setLabels',
           method: 'POST'
@@ -3397,7 +3276,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.globalForwardingRules.setTarget
      *
-     * @desc Changes target URL for forwarding rule. The new target should be of the same type as the old target.
+     * @desc Changes target URL for the GlobalForwardingRule resource. The new target should be of the same type as the old target.
      *
      * @alias compute.globalForwardingRules.setTarget
      * @memberOf! compute(alpha)
@@ -3418,7 +3297,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules/{forwardingRule}/setTarget',
           method: 'POST'
@@ -3455,7 +3334,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/forwardingRules/{resource}/testIamPermissions',
           method: 'POST'
@@ -3498,7 +3377,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/operations',
           method: 'GET'
@@ -3534,7 +3413,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/operations/{operation}',
           method: 'DELETE'
@@ -3570,7 +3449,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/operations/{operation}',
           method: 'GET'
@@ -3609,7 +3488,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/operations',
           method: 'GET'
@@ -3650,7 +3529,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'DELETE'
@@ -3686,7 +3565,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'GET'
@@ -3723,7 +3602,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks',
           method: 'POST'
@@ -3762,7 +3641,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks',
           method: 'GET'
@@ -3800,7 +3679,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'PATCH'
@@ -3837,7 +3716,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks/{resource}/testIamPermissions',
           method: 'POST'
@@ -3875,7 +3754,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/healthChecks/{healthCheck}',
           method: 'PUT'
@@ -3918,7 +3797,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/hostTypes',
           method: 'GET'
@@ -3955,7 +3834,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hostTypes/{hostType}',
           method: 'GET'
@@ -3995,7 +3874,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hostTypes',
           method: 'GET'
@@ -4038,7 +3917,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/hosts',
           method: 'GET'
@@ -4076,7 +3955,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts/{host}',
           method: 'DELETE'
@@ -4113,7 +3992,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts/{host}',
           method: 'GET'
@@ -4150,7 +4029,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts/{resource}/getIamPolicy',
           method: 'GET'
@@ -4188,7 +4067,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts',
           method: 'POST'
@@ -4228,7 +4107,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts',
           method: 'GET'
@@ -4266,7 +4145,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts/{resource}/setIamPolicy',
           method: 'POST'
@@ -4304,7 +4183,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/hosts/{resource}/testIamPermissions',
           method: 'POST'
@@ -4345,7 +4224,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'DELETE'
@@ -4381,7 +4260,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'GET'
@@ -4418,7 +4297,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks',
           method: 'POST'
@@ -4457,7 +4336,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks',
           method: 'GET'
@@ -4495,7 +4374,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'PATCH'
@@ -4532,7 +4411,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks/{resource}/testIamPermissions',
           method: 'POST'
@@ -4570,7 +4449,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpHealthChecks/{httpHealthCheck}',
           method: 'PUT'
@@ -4611,7 +4490,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'DELETE'
@@ -4647,7 +4526,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'GET'
@@ -4684,7 +4563,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks',
           method: 'POST'
@@ -4723,7 +4602,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks',
           method: 'GET'
@@ -4761,7 +4640,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'PATCH'
@@ -4798,7 +4677,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks/{resource}/testIamPermissions',
           method: 'POST'
@@ -4836,7 +4715,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/httpsHealthChecks/{httpsHealthCheck}',
           method: 'PUT'
@@ -4877,7 +4756,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/{image}',
           method: 'DELETE'
@@ -4915,7 +4794,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/{image}/deprecate',
           method: 'POST'
@@ -4951,7 +4830,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/{image}',
           method: 'GET'
@@ -4987,7 +4866,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/family/{family}',
           method: 'GET'
@@ -5023,7 +4902,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/{resource}/getIamPolicy',
           method: 'GET'
@@ -5046,7 +4925,7 @@ function Compute(options) { // eslint-disable-line
      * @memberOf! compute(alpha)
      *
      * @param {object} params Parameters for request
-     * @param {boolean=} params.forceCreation Force image creation if true.
+     * @param {boolean=} params.forceCreate Force image creation if true.
      * @param {string} params.project Project ID for this request.
      * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
      * @param {compute(alpha).Image} params.resource Request body data
@@ -5061,7 +4940,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images',
           method: 'POST'
@@ -5100,7 +4979,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images',
           method: 'GET'
@@ -5137,7 +5016,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/{resource}/setIamPolicy',
           method: 'POST'
@@ -5154,7 +5033,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.images.setLabels
      *
-     * @desc Sets the labels on an image. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on an image. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.images.setLabels
      * @memberOf! compute(alpha)
@@ -5174,7 +5053,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/{resource}/setLabels',
           method: 'POST'
@@ -5211,7 +5090,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/images/{resource}/testIamPermissions',
           method: 'POST'
@@ -5232,7 +5111,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.abandonInstances
      *
-     * @desc Schedules a group action to remove the specified instances from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.
+     * @desc Schedules a group action to remove the specified instances from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.  You can specify a maximum of 1000 instances with this method per request.
      *
      * @alias compute.instanceGroupManagers.abandonInstances
      * @memberOf! compute(alpha)
@@ -5254,7 +5133,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
           method: 'POST'
@@ -5293,7 +5172,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/instanceGroupManagers',
           method: 'GET'
@@ -5331,7 +5210,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'DELETE'
@@ -5348,7 +5227,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.deleteInstances
      *
-     * @desc Schedules a group action to delete the specified instances in the managed instance group. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.
+     * @desc Schedules a group action to delete the specified instances in the managed instance group. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.  You can specify a maximum of 1000 instances with this method per request.
      *
      * @alias compute.instanceGroupManagers.deleteInstances
      * @memberOf! compute(alpha)
@@ -5370,7 +5249,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
           method: 'POST'
@@ -5407,7 +5286,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'GET'
@@ -5424,7 +5303,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.insert
      *
-     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, it schedules an action to create instances in the group using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.
+     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, it schedules an action to create instances in the group using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.  A managed instance group can have up to 1000 VM instances per group.
      *
      * @alias compute.instanceGroupManagers.insert
      * @memberOf! compute(alpha)
@@ -5445,7 +5324,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'POST'
@@ -5485,7 +5364,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'GET'
@@ -5526,7 +5405,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances',
           method: 'POST'
@@ -5543,7 +5422,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.patch
      *
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group have not yet been patchd. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports patch semantics.
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listManagedInstances method. This method supports patch semantics.
      *
      * @alias compute.instanceGroupManagers.patch
      * @memberOf! compute(alpha)
@@ -5565,7 +5444,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'PATCH'
@@ -5582,7 +5461,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.recreateInstances
      *
-     * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.
+     * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.  You can specify a maximum of 1000 instances with this method per request.
      *
      * @alias compute.instanceGroupManagers.recreateInstances
      * @memberOf! compute(alpha)
@@ -5604,7 +5483,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
           method: 'POST'
@@ -5643,7 +5522,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resize',
           method: 'POST'
@@ -5682,7 +5561,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resizeAdvanced',
           method: 'POST'
@@ -5721,7 +5600,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setAutoHealingPolicies',
           method: 'POST'
@@ -5760,7 +5639,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
           method: 'POST'
@@ -5799,7 +5678,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
           method: 'POST'
@@ -5837,7 +5716,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{resource}/testIamPermissions',
           method: 'POST'
@@ -5854,7 +5733,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instanceGroupManagers.update
      *
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listmanagedinstances method.
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is updated even if the instances in the group have not yet been updated. You must separately verify the status of the individual instances with the listManagedInstances method.
      *
      * @alias compute.instanceGroupManagers.update
      * @memberOf! compute(alpha)
@@ -5876,7 +5755,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'PUT'
@@ -5919,7 +5798,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/addInstances',
           method: 'POST'
@@ -5958,7 +5837,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/instanceGroups',
           method: 'GET'
@@ -5996,7 +5875,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}',
           method: 'DELETE'
@@ -6033,7 +5912,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}',
           method: 'GET'
@@ -6071,7 +5950,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups',
           method: 'POST'
@@ -6111,7 +5990,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups',
           method: 'GET'
@@ -6153,7 +6032,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/listInstances',
           method: 'POST'
@@ -6192,7 +6071,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/removeInstances',
           method: 'POST'
@@ -6231,7 +6110,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{instanceGroup}/setNamedPorts',
           method: 'POST'
@@ -6269,7 +6148,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instanceGroups/{resource}/testIamPermissions',
           method: 'POST'
@@ -6310,7 +6189,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/instanceTemplates/{instanceTemplate}',
           method: 'DELETE'
@@ -6346,7 +6225,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/instanceTemplates/{instanceTemplate}',
           method: 'GET'
@@ -6383,7 +6262,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/instanceTemplates',
           method: 'POST'
@@ -6422,7 +6301,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/instanceTemplates',
           method: 'GET'
@@ -6459,7 +6338,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/instanceTemplates/{resource}/testIamPermissions',
           method: 'POST'
@@ -6503,7 +6382,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/addAccessConfig',
           method: 'POST'
@@ -6542,7 +6421,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/instances',
           method: 'GET'
@@ -6582,7 +6461,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/attachDisk',
           method: 'POST'
@@ -6620,7 +6499,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}',
           method: 'DELETE'
@@ -6660,7 +6539,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/deleteAccessConfig',
           method: 'POST'
@@ -6699,7 +6578,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/detachDisk',
           method: 'POST'
@@ -6736,7 +6615,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}',
           method: 'GET'
@@ -6773,7 +6652,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{resource}/getIamPolicy',
           method: 'GET'
@@ -6812,7 +6691,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/serialPort',
           method: 'GET'
@@ -6850,7 +6729,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances',
           method: 'POST'
@@ -6890,7 +6769,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances',
           method: 'GET'
@@ -6931,7 +6810,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/referrers',
           method: 'GET'
@@ -6948,7 +6827,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instances.reset
      *
-     * @desc Performs a hard reset on the instance.
+     * @desc Performs a reset on the instance. For more information, see Resetting an instance.
      *
      * @alias compute.instances.reset
      * @memberOf! compute(alpha)
@@ -6969,7 +6848,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/reset',
           method: 'POST'
@@ -7009,7 +6888,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setDiskAutoDelete',
           method: 'POST'
@@ -7047,7 +6926,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{resource}/setIamPolicy',
           method: 'POST'
@@ -7064,7 +6943,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.instances.setLabels
      *
-     * @desc Sets labels on an instance. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets labels on an instance. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.instances.setLabels
      * @memberOf! compute(alpha)
@@ -7086,7 +6965,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setLabels',
           method: 'POST'
@@ -7125,7 +7004,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setMachineResources',
           method: 'POST'
@@ -7164,7 +7043,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setMachineType',
           method: 'POST'
@@ -7203,7 +7082,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setMetadata',
           method: 'POST'
@@ -7242,7 +7121,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setMinCpuPlatform',
           method: 'POST'
@@ -7281,7 +7160,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setScheduling',
           method: 'POST'
@@ -7320,7 +7199,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setServiceAccount',
           method: 'POST'
@@ -7359,7 +7238,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/setTags',
           method: 'POST'
@@ -7396,7 +7275,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/simulateMaintenanceEvent',
           method: 'POST'
@@ -7434,7 +7313,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/start',
           method: 'POST'
@@ -7473,7 +7352,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/startWithEncryptionKey',
           method: 'POST'
@@ -7512,7 +7391,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/stop',
           method: 'POST'
@@ -7551,7 +7430,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/suspend',
           method: 'POST'
@@ -7589,7 +7468,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{resource}/testIamPermissions',
           method: 'POST'
@@ -7629,7 +7508,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/instances/{instance}/updateAccessConfig',
           method: 'POST'
@@ -7637,6 +7516,621 @@ function Compute(options) { // eslint-disable-line
         params: params,
         requiredParams: ['project', 'zone', 'instance', 'networkInterface'],
         pathParams: ['instance', 'project', 'zone'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.interconnectAttachments = {
+
+    /**
+     * compute.interconnectAttachments.aggregatedList
+     *
+     * @desc Retrieves an aggregated list of interconnect attachments.
+     *
+     * @alias compute.interconnectAttachments.aggregatedList
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/interconnectAttachments',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.delete
+     *
+     * @desc Deletes the specified interconnect attachment.
+     *
+     * @alias compute.interconnectAttachments.delete
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnectAttachment Name of the interconnect attachment to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'interconnectAttachment'],
+        pathParams: ['interconnectAttachment', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.get
+     *
+     * @desc Returns the specified interconnect attachment.
+     *
+     * @alias compute.interconnectAttachments.get
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnectAttachment Name of the interconnect attachment to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/interconnectAttachments/{interconnectAttachment}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'interconnectAttachment'],
+        pathParams: ['interconnectAttachment', 'project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.getIamPolicy
+     *
+     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * @alias compute.interconnectAttachments.getIamPolicy
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/interconnectAttachments/{resource}/getIamPolicy',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.insert
+     *
+     * @desc Creates an InterconnectAttachment in the specified project using the data included in the request.
+     *
+     * @alias compute.interconnectAttachments.insert
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {compute(alpha).InterconnectAttachment} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/interconnectAttachments',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.list
+     *
+     * @desc Retrieves the list of interconnect attachments contained within the specified region.
+     *
+     * @alias compute.interconnectAttachments.list
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region Name of the region for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/interconnectAttachments',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region'],
+        pathParams: ['project', 'region'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectAttachments.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.interconnectAttachments.testIamPermissions
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.region The name of the region for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/interconnectAttachments/{resource}/testIamPermissions',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'region', 'resource'],
+        pathParams: ['project', 'region', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.interconnectLocations = {
+
+    /**
+     * compute.interconnectLocations.get
+     *
+     * @desc Returns the details for the specified interconnect location. Get a list of available interconnect locations by making a list() request.
+     *
+     * @alias compute.interconnectLocations.get
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnectLocation Name of the interconnect location to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/interconnectLocations/{interconnectLocation}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'interconnectLocation'],
+        pathParams: ['interconnectLocation', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectLocations.list
+     *
+     * @desc Retrieves the list of interconnect locations available to the specified project.
+     *
+     * @alias compute.interconnectLocations.list
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/interconnectLocations',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnectLocations.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.interconnectLocations.testIamPermissions
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/interconnectLocations/{resource}/testIamPermissions',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.interconnects = {
+
+    /**
+     * compute.interconnects.delete
+     *
+     * @desc Deletes the specified interconnect.
+     *
+     * @alias compute.interconnects.delete
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect to delete.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/interconnects/{interconnect}',
+          method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.get
+     *
+     * @desc Returns the specified interconnect. Get a list of available interconnects by making a list() request.
+     *
+     * @alias compute.interconnects.get
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect to return.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/interconnects/{interconnect}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.insert
+     *
+     * @desc Creates a Interconnect in the specified project using the data included in the request.
+     *
+     * @alias compute.interconnects.insert
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {compute(alpha).Interconnect} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/interconnects',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.list
+     *
+     * @desc Retrieves the list of interconnect available to the specified project.
+     *
+     * @alias compute.interconnects.list
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/interconnects',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.patch
+     *
+     * @desc Updates the specified interconnect with the data included in the request using patch semantics.
+     *
+     * @alias compute.interconnects.patch
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.interconnect Name of the interconnect to update.
+     * @param {string} params.project Project ID for this request.
+     * @param {string=} params.requestId begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
+     * @param {compute(alpha).Interconnect} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/interconnects/{interconnect}',
+          method: 'PATCH'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'interconnect'],
+        pathParams: ['interconnect', 'project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.interconnects.testIamPermissions
+     *
+     * @desc Returns permissions that a caller has on the specified resource.
+     *
+     * @alias compute.interconnects.testIamPermissions
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.project Project ID for this request.
+     * @param {string} params.resource_ Name of the resource for this request.
+     * @param {compute(alpha).TestPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/interconnects/{resource}/testIamPermissions',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project', 'resource'],
+        pathParams: ['project', 'resource'],
         context: self
       };
 
@@ -7669,7 +8163,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/licenses/{license}',
           method: 'GET'
@@ -7706,10 +8200,49 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/licenses',
           method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * compute.licenses.list
+     *
+     * @desc Retrieves the list of licenses available in the specified project. This method does not get any licenses that belong to other projects, including licenses attached to publicly-available images, like Debian 8. If you want to get a list of publicly-available licenses, use this method to make a request to the respective image project, such as debian-cloud or windows-cloud.
+     *
+     * @alias compute.licenses.list
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/licenses',
+          method: 'GET'
         }, options),
         params: params,
         requiredParams: ['project'],
@@ -7749,7 +8282,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/machineTypes',
           method: 'GET'
@@ -7786,7 +8319,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/machineTypes/{machineType}',
           method: 'GET'
@@ -7826,7 +8359,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/machineTypes',
           method: 'GET'
@@ -7868,7 +8401,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{network}/addPeering',
           method: 'POST'
@@ -7905,7 +8438,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{network}',
           method: 'DELETE'
@@ -7941,7 +8474,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{network}',
           method: 'GET'
@@ -7978,7 +8511,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks',
           method: 'POST'
@@ -8017,7 +8550,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks',
           method: 'GET'
@@ -8055,7 +8588,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{network}/removePeering',
           method: 'POST'
@@ -8092,7 +8625,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{network}/switchToCustomMode',
           method: 'POST'
@@ -8129,7 +8662,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/networks/{resource}/testIamPermissions',
           method: 'POST'
@@ -8169,7 +8702,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/disableXpnHost',
           method: 'POST'
@@ -8206,7 +8739,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/disableXpnResource',
           method: 'POST'
@@ -8242,7 +8775,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/enableXpnHost',
           method: 'POST'
@@ -8279,7 +8812,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/enableXpnResource',
           method: 'POST'
@@ -8314,7 +8847,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}',
           method: 'GET'
@@ -8349,7 +8882,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/getXpnHost',
           method: 'GET'
@@ -8388,7 +8921,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/getXpnResources',
           method: 'GET'
@@ -8428,7 +8961,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/listXpnHosts',
           method: 'POST'
@@ -8465,7 +8998,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/moveDisk',
           method: 'POST'
@@ -8502,7 +9035,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/moveInstance',
           method: 'POST'
@@ -8539,7 +9072,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/setCommonInstanceMetadata',
           method: 'POST'
@@ -8576,7 +9109,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/setDefaultServiceAccount',
           method: 'POST'
@@ -8613,7 +9146,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/setUsageExportBucket',
           method: 'POST'
@@ -8655,7 +9188,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers/{autoscaler}',
           method: 'DELETE'
@@ -8692,7 +9225,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers/{autoscaler}',
           method: 'GET'
@@ -8730,7 +9263,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers',
           method: 'POST'
@@ -8770,7 +9303,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers',
           method: 'GET'
@@ -8809,7 +9342,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers',
           method: 'PATCH'
@@ -8847,7 +9380,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers/{resource}/testIamPermissions',
           method: 'POST'
@@ -8886,7 +9419,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/autoscalers',
           method: 'PUT'
@@ -8928,7 +9461,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'DELETE'
@@ -8965,7 +9498,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'GET'
@@ -9003,7 +9536,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}/getHealth',
           method: 'POST'
@@ -9041,7 +9574,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices',
           method: 'POST'
@@ -9081,7 +9614,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices',
           method: 'GET'
@@ -9120,7 +9653,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'PATCH'
@@ -9158,7 +9691,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{resource}/testIamPermissions',
           method: 'POST'
@@ -9197,7 +9730,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/backendServices/{backendService}',
           method: 'PUT'
@@ -9214,6 +9747,45 @@ function Compute(options) { // eslint-disable-line
   };
 
   self.regionCommitments = {
+
+    /**
+     * compute.regionCommitments.aggregatedList
+     *
+     * @desc Retrieves an aggregated list of commitments.
+     *
+     * @alias compute.regionCommitments.aggregatedList
+     * @memberOf! compute(alpha)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter Sets a filter expression for filtering listed resources, in the form filter={expression}. Your {expression} must be in the format: field_name comparison_string literal_string.  The field_name is the name of the field you want to compare. Only atomic field types are supported (string, number, boolean). The comparison_string must be either eq (equals) or ne (not equals). The literal_string is the string value to filter to. The literal value must be valid for the type of field you are filtering by (string, number, boolean). For string fields, the literal value is interpreted as a regular expression using RE2 syntax. The literal value must match the entire field.  For example, to filter for instances that do not have a name of example-instance, you would use filter=name ne example-instance.  You can filter on nested fields. For example, you could filter on instances that have set the scheduling.automaticRestart field to true. Use filtering on nested fields to take advantage of labels to organize and search for results based on label values.  To filter on multiple expressions, provide each separate expression within parentheses. For example, (scheduling.automaticRestart eq true) (zone eq us-central1-f). Multiple expressions are treated as AND expressions, meaning that resources must match all expressions to pass the filters.
+     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than maxResults, Compute Engine returns a nextPageToken that can be used to get the next page of results in subsequent list requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using orderBy="creationTimestamp desc". This sorts results based on the creationTimestamp field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by name or creationTimestamp desc is supported.
+     * @param {string=} params.pageToken Specifies a page token to use. Set pageToken to the nextPageToken returned by a previous list request to get the next page of results.
+     * @param {string} params.project Project ID for this request.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    aggregatedList: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/commitments',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
 
     /**
      * compute.regionCommitments.get
@@ -9238,7 +9810,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/commitments/{commitment}',
           method: 'GET'
@@ -9276,7 +9848,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/commitments',
           method: 'POST'
@@ -9316,7 +9888,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/commitments',
           method: 'GET'
@@ -9354,7 +9926,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/commitments/{resource}/testIamPermissions',
           method: 'POST'
@@ -9395,7 +9967,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/diskTypes/{diskType}',
           method: 'GET'
@@ -9435,7 +10007,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/diskTypes',
           method: 'GET'
@@ -9479,7 +10051,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks/{disk}/createSnapshot',
           method: 'POST'
@@ -9517,7 +10089,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks/{disk}',
           method: 'DELETE'
@@ -9554,7 +10126,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks/{disk}',
           method: 'GET'
@@ -9593,7 +10165,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks',
           method: 'POST'
@@ -9633,7 +10205,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks',
           method: 'GET'
@@ -9672,7 +10244,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks/{disk}/resize',
           method: 'POST'
@@ -9711,7 +10283,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks/{resource}/setLabels',
           method: 'POST'
@@ -9749,7 +10321,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/disks/{resource}/testIamPermissions',
           method: 'POST'
@@ -9770,7 +10342,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.abandonInstances
      *
-     * @desc Schedules a group action to remove the specified instances from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.
+     * @desc Schedules a group action to remove the specified instances from the managed instance group. Abandoning an instance does not delete the instance, but it does remove the instance from any target pools that are applied by the managed instance group. This method reduces the targetSize of the managed instance group by the number of instances that you abandon. This operation is marked as DONE when the action is scheduled even if the instances have not yet been removed from the group. You must separately verify the status of the abandoning action with the listmanagedinstances method.  You can specify a maximum of 1000 instances with this method per request.
      *
      * @alias compute.regionInstanceGroupManagers.abandonInstances
      * @memberOf! compute(alpha)
@@ -9792,7 +10364,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
           method: 'POST'
@@ -9830,7 +10402,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'DELETE'
@@ -9847,7 +10419,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.deleteInstances
      *
-     * @desc Schedules a group action to delete the specified instances in the managed instance group. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.
+     * @desc Schedules a group action to delete the specified instances in the managed instance group. The instances are also removed from any target pools of which they were a member. This method reduces the targetSize of the managed instance group by the number of instances that you delete. This operation is marked as DONE when the action is scheduled even if the instances are still being deleted. You must separately verify the status of the deleting action with the listmanagedinstances method.  You can specify a maximum of 1000 instances with this method per request.
      *
      * @alias compute.regionInstanceGroupManagers.deleteInstances
      * @memberOf! compute(alpha)
@@ -9869,7 +10441,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
           method: 'POST'
@@ -9906,7 +10478,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'GET'
@@ -9923,7 +10495,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.insert
      *
-     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, it schedules an action to create instances in the group using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.
+     * @desc Creates a managed instance group using the information that you specify in the request. After the group is created, it schedules an action to create instances in the group using the specified instance template. This operation is marked as DONE when the group is created even if the instances in the group have not yet been created. You must separately verify the status of the individual instances with the listmanagedinstances method.  A regional managed instance group can contain up to 2000 instances.
      *
      * @alias compute.regionInstanceGroupManagers.insert
      * @memberOf! compute(alpha)
@@ -9944,7 +10516,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers',
           method: 'POST'
@@ -9984,7 +10556,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers',
           method: 'GET'
@@ -10025,7 +10597,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/listManagedInstances',
           method: 'POST'
@@ -10042,7 +10614,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.patch
      *
-     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group have not yet been patched. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports patch semantics.
+     * @desc Updates a managed instance group using the information that you specify in the request. This operation is marked as DONE when the group is patched even if the instances in the group are still in the process of being patched. You must separately verify the status of the individual instances with the listmanagedinstances method. This method supports patch semantics.
      *
      * @alias compute.regionInstanceGroupManagers.patch
      * @memberOf! compute(alpha)
@@ -10064,7 +10636,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'PATCH'
@@ -10081,7 +10653,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.regionInstanceGroupManagers.recreateInstances
      *
-     * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.
+     * @desc Schedules a group action to recreate the specified instances in the managed instance group. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the action is scheduled even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.  You can specify a maximum of 1000 instances with this method per request.
      *
      * @alias compute.regionInstanceGroupManagers.recreateInstances
      * @memberOf! compute(alpha)
@@ -10103,7 +10675,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
           method: 'POST'
@@ -10142,7 +10714,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resize',
           method: 'POST'
@@ -10181,7 +10753,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setAutoHealingPolicies',
           method: 'POST'
@@ -10220,7 +10792,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
           method: 'POST'
@@ -10259,7 +10831,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
           method: 'POST'
@@ -10297,7 +10869,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{resource}/testIamPermissions',
           method: 'POST'
@@ -10336,7 +10908,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}',
           method: 'PUT'
@@ -10377,7 +10949,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}',
           method: 'GET'
@@ -10417,7 +10989,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroups',
           method: 'GET'
@@ -10459,7 +11031,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/listInstances',
           method: 'POST'
@@ -10498,7 +11070,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroups/{instanceGroup}/setNamedPorts',
           method: 'POST'
@@ -10536,7 +11108,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/instanceGroups/{resource}/testIamPermissions',
           method: 'POST'
@@ -10577,7 +11149,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/operations/{operation}',
           method: 'DELETE'
@@ -10614,7 +11186,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/operations/{operation}',
           method: 'GET'
@@ -10654,7 +11226,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/operations',
           method: 'GET'
@@ -10694,7 +11266,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}',
           method: 'GET'
@@ -10733,7 +11305,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions',
           method: 'GET'
@@ -10776,7 +11348,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/routers',
           method: 'GET'
@@ -10814,7 +11386,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}',
           method: 'DELETE'
@@ -10851,7 +11423,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}',
           method: 'GET'
@@ -10888,7 +11460,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}/getRouterStatus',
           method: 'GET'
@@ -10926,7 +11498,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers',
           method: 'POST'
@@ -10966,7 +11538,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers',
           method: 'GET'
@@ -11005,7 +11577,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}',
           method: 'PATCH'
@@ -11043,7 +11615,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}/preview',
           method: 'POST'
@@ -11081,7 +11653,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{resource}/testIamPermissions',
           method: 'POST'
@@ -11120,7 +11692,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/routers/{router}',
           method: 'PUT'
@@ -11161,7 +11733,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/routes/{route}',
           method: 'DELETE'
@@ -11197,7 +11769,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/routes/{route}',
           method: 'GET'
@@ -11234,7 +11806,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/routes',
           method: 'POST'
@@ -11273,7 +11845,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/routes',
           method: 'GET'
@@ -11310,7 +11882,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/routes/{resource}/testIamPermissions',
           method: 'POST'
@@ -11351,7 +11923,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/securityPolicies/{securityPolicy}',
           method: 'DELETE'
@@ -11387,7 +11959,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/securityPolicies/{securityPolicy}',
           method: 'GET'
@@ -11424,7 +11996,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/securityPolicies',
           method: 'POST'
@@ -11463,7 +12035,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/securityPolicies',
           method: 'GET'
@@ -11501,7 +12073,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/securityPolicies/{securityPolicy}',
           method: 'PATCH'
@@ -11538,7 +12110,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/securityPolicies/{resource}/testIamPermissions',
           method: 'POST'
@@ -11579,7 +12151,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/snapshots/{snapshot}',
           method: 'DELETE'
@@ -11615,7 +12187,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/snapshots/{snapshot}',
           method: 'GET'
@@ -11651,7 +12223,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/snapshots/{resource}/getIamPolicy',
           method: 'GET'
@@ -11690,7 +12262,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/snapshots',
           method: 'GET'
@@ -11727,7 +12299,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/snapshots/{resource}/setIamPolicy',
           method: 'POST'
@@ -11744,7 +12316,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.snapshots.setLabels
      *
-     * @desc Sets the labels on a snapshot. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on a snapshot. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.snapshots.setLabels
      * @memberOf! compute(alpha)
@@ -11764,7 +12336,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/snapshots/{resource}/setLabels',
           method: 'POST'
@@ -11801,7 +12373,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/snapshots/{resource}/testIamPermissions',
           method: 'POST'
@@ -11842,7 +12414,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/sslCertificates/{sslCertificate}',
           method: 'DELETE'
@@ -11878,7 +12450,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/sslCertificates/{sslCertificate}',
           method: 'GET'
@@ -11915,7 +12487,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/sslCertificates',
           method: 'POST'
@@ -11954,7 +12526,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/sslCertificates',
           method: 'GET'
@@ -11991,7 +12563,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/sslCertificates/{resource}/testIamPermissions',
           method: 'POST'
@@ -12034,7 +12606,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/subnetworks',
           method: 'GET'
@@ -12072,7 +12644,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
           method: 'DELETE'
@@ -12111,7 +12683,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{subnetwork}/expandIpCidrRange',
           method: 'POST'
@@ -12148,7 +12720,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{subnetwork}',
           method: 'GET'
@@ -12185,7 +12757,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{resource}/getIamPolicy',
           method: 'GET'
@@ -12223,7 +12795,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks',
           method: 'POST'
@@ -12263,7 +12835,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks',
           method: 'GET'
@@ -12301,7 +12873,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{resource}/setIamPolicy',
           method: 'POST'
@@ -12340,7 +12912,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{subnetwork}/setPrivateIpGoogleAccess',
           method: 'POST'
@@ -12378,7 +12950,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/subnetworks/{resource}/testIamPermissions',
           method: 'POST'
@@ -12419,7 +12991,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
           method: 'DELETE'
@@ -12455,7 +13027,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpProxies/{targetHttpProxy}',
           method: 'GET'
@@ -12492,7 +13064,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpProxies',
           method: 'POST'
@@ -12531,7 +13103,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpProxies',
           method: 'GET'
@@ -12569,7 +13141,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/targetHttpProxies/{targetHttpProxy}/setUrlMap',
           method: 'POST'
@@ -12606,7 +13178,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpProxies/{resource}/testIamPermissions',
           method: 'POST'
@@ -12647,7 +13219,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
           method: 'DELETE'
@@ -12683,7 +13255,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}',
           method: 'GET'
@@ -12720,7 +13292,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpsProxies',
           method: 'POST'
@@ -12759,7 +13331,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpsProxies',
           method: 'GET'
@@ -12797,7 +13369,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setSslCertificates',
           method: 'POST'
@@ -12835,7 +13407,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/targetHttpsProxies/{targetHttpsProxy}/setUrlMap',
           method: 'POST'
@@ -12872,7 +13444,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetHttpsProxies/{resource}/testIamPermissions',
           method: 'POST'
@@ -12915,7 +13487,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/targetInstances',
           method: 'GET'
@@ -12953,7 +13525,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
           method: 'DELETE'
@@ -12990,7 +13562,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/targetInstances/{targetInstance}',
           method: 'GET'
@@ -13028,7 +13600,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/targetInstances',
           method: 'POST'
@@ -13068,7 +13640,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/targetInstances',
           method: 'GET'
@@ -13106,7 +13678,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/targetInstances/{resource}/testIamPermissions',
           method: 'POST'
@@ -13149,7 +13721,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}/addHealthCheck',
           method: 'POST'
@@ -13188,7 +13760,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}/addInstance',
           method: 'POST'
@@ -13227,7 +13799,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/targetPools',
           method: 'GET'
@@ -13265,7 +13837,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}',
           method: 'DELETE'
@@ -13302,7 +13874,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}',
           method: 'GET'
@@ -13340,7 +13912,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}/getHealth',
           method: 'POST'
@@ -13378,7 +13950,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools',
           method: 'POST'
@@ -13418,7 +13990,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools',
           method: 'GET'
@@ -13457,7 +14029,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}/removeHealthCheck',
           method: 'POST'
@@ -13496,7 +14068,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}/removeInstance',
           method: 'POST'
@@ -13536,7 +14108,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{targetPool}/setBackup',
           method: 'POST'
@@ -13574,7 +14146,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetPools/{resource}/testIamPermissions',
           method: 'POST'
@@ -13615,7 +14187,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies/{targetSslProxy}',
           method: 'DELETE'
@@ -13651,7 +14223,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies/{targetSslProxy}',
           method: 'GET'
@@ -13688,7 +14260,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies',
           method: 'POST'
@@ -13727,7 +14299,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies',
           method: 'GET'
@@ -13765,7 +14337,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies/{targetSslProxy}/setBackendService',
           method: 'POST'
@@ -13803,7 +14375,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies/{targetSslProxy}/setProxyHeader',
           method: 'POST'
@@ -13841,7 +14413,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies/{targetSslProxy}/setSslCertificates',
           method: 'POST'
@@ -13878,7 +14450,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetSslProxies/{resource}/testIamPermissions',
           method: 'POST'
@@ -13919,7 +14491,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies/{targetTcpProxy}',
           method: 'DELETE'
@@ -13955,7 +14527,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies/{targetTcpProxy}',
           method: 'GET'
@@ -13992,7 +14564,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies',
           method: 'POST'
@@ -14031,7 +14603,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies',
           method: 'GET'
@@ -14069,7 +14641,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies/{targetTcpProxy}/setBackendService',
           method: 'POST'
@@ -14107,7 +14679,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies/{targetTcpProxy}/setProxyHeader',
           method: 'POST'
@@ -14144,7 +14716,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/targetTcpProxies/{resource}/testIamPermissions',
           method: 'POST'
@@ -14187,7 +14759,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/targetVpnGateways',
           method: 'GET'
@@ -14225,7 +14797,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
           method: 'DELETE'
@@ -14262,7 +14834,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetVpnGateways/{targetVpnGateway}',
           method: 'GET'
@@ -14300,7 +14872,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetVpnGateways',
           method: 'POST'
@@ -14340,7 +14912,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetVpnGateways',
           method: 'GET'
@@ -14378,7 +14950,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/targetVpnGateways/{resource}/testIamPermissions',
           method: 'POST'
@@ -14419,7 +14991,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{urlMap}',
           method: 'DELETE'
@@ -14455,7 +15027,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{urlMap}',
           method: 'GET'
@@ -14492,7 +15064,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps',
           method: 'POST'
@@ -14530,7 +15102,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{urlMap}/invalidateCache',
           method: 'POST'
@@ -14569,7 +15141,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps',
           method: 'GET'
@@ -14607,7 +15179,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{urlMap}',
           method: 'PATCH'
@@ -14644,7 +15216,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{resource}/testIamPermissions',
           method: 'POST'
@@ -14682,7 +15254,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{urlMap}',
           method: 'PUT'
@@ -14719,7 +15291,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/global/urlMaps/{urlMap}/validate',
           method: 'POST'
@@ -14762,7 +15334,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/aggregated/vpnTunnels',
           method: 'GET'
@@ -14800,7 +15372,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
           method: 'DELETE'
@@ -14837,7 +15409,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/vpnTunnels/{vpnTunnel}',
           method: 'GET'
@@ -14875,7 +15447,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/vpnTunnels',
           method: 'POST'
@@ -14915,7 +15487,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/vpnTunnels',
           method: 'GET'
@@ -14932,7 +15504,7 @@ function Compute(options) { // eslint-disable-line
     /**
      * compute.vpnTunnels.setLabels
      *
-     * @desc Sets the labels on a VpnTunnel. To learn more about labels, read the Labeling Resources documentation.
+     * @desc Sets the labels on a VpnTunnel. To learn more about labels, read the Labeling or Tagging Resources documentation.
      *
      * @alias compute.vpnTunnels.setLabels
      * @memberOf! compute(alpha)
@@ -14954,7 +15526,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/vpnTunnels/{resource}/setLabels',
           method: 'POST'
@@ -14992,7 +15564,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/regions/{region}/vpnTunnels/{resource}/testIamPermissions',
           method: 'POST'
@@ -15033,7 +15605,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'DELETE'
@@ -15070,7 +15642,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
@@ -15110,7 +15682,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}/operations',
           method: 'GET'
@@ -15150,7 +15722,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones/{zone}',
           method: 'GET'
@@ -15189,7 +15761,7 @@ function Compute(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/compute/alpha/projects/{project}/zones',
           method: 'GET'
@@ -15259,7 +15831,7 @@ function Compute(options) { // eslint-disable-line
  * @memberOf! compute(alpha)
  * @type object
  * @property {string} kind [Output Only] Type of the resource. Always compute#accessConfig for access configs.
- * @property {string} name Name of this access configuration.
+ * @property {string} name The name of this access configuration. The default and recommended name is External NAT but you can use any arbitrary string you would like. For example, My external IP or Network Access.
  * @property {string} natIP An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
  * @property {string} networkTier This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM , SELECT. If this field is not specified, it is assumed to be PREMIUM.
  * @property {string} publicDnsName [Output Only] The public DNS domain name for the instance.
@@ -15272,7 +15844,7 @@ function Compute(options) { // eslint-disable-line
  * @typedef Address
  * @memberOf! compute(alpha)
  * @type object
-* @property {string} address The static external IP address represented by this resource. Only IPv4 is supported.
+* @property {string} address The static external IP address represented by this resource.
 * @property {string} addressType The type of address to reserve. If unspecified, defaults to EXTERNAL.
 * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
 * @property {string} description An optional description of this resource. Provide this property when you create the resource.
@@ -15605,6 +16177,11 @@ When the load balancing scheme is INTERNAL, this field is not used.
 * @property {boolean} enableCDN If true, enable Cloud CDN for this BackendService.
 
 When the load balancing scheme is INTERNAL, this field is not used.
+* @property {number} failoverRatio The value of the field must be in [0, 1]. If set, &#39;backends[].failover&#39; must be set. They together define the fallback behavior of the primary backend: if the ratio of the healthy VMs in the primary backend is at or below this number, traffic arriving at the load-balanced IP will be directed to the failover backend.
+
+In case where &#39;failoverRatio&#39; is not set or all the VMs in the backup backend are unhealthy, the traffic will be directed back to the primary backend in the &quot;force&quot; mode, where traffic will be spread to the healthy VMs with the best effort, or to all VMs when no VM is healthy.
+
+This field is only used with l4 load balancing.
 * @property {string} fingerprint Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a BackendService. An up-to-date fingerprint must be provided in order to update the BackendService.
 * @property {string[]} healthChecks The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified, and a health check is required.
 
@@ -15743,7 +16320,6 @@ When the protocol is UDP, this field is not used.
  * @property {string} startTimestamp [Output Only] Commitment start time in RFC3339 text format.
  * @property {string} status [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end-date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
  * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
- * @property {string} zone [Output Only] URL of the zone where this commitment may be used.
  */
 /**
  * @typedef CommitmentAggregatedList
@@ -15793,6 +16369,7 @@ When the protocol is UDP, this field is not used.
  * @typedef CustomerEncryptionKey
  * @memberOf! compute(alpha)
  * @type object
+* @property {string} kmsKeyName The name of the encryption key that is stored in Google Cloud KMS.
 * @property {string} rawKey Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.
 * @property {string} rsaEncryptedKey Specifies an RFC 4648 base64 encoded, RSA-wrapped 2048-bit customer-supplied encryption key to either encrypt or decrypt this resource.
 
@@ -16055,12 +16632,19 @@ To see the latest fingerprint, make a get() request to retrieve a ForwardingRule
 
 For internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.
 * @property {string} networkTier This signifies the networking tier used for configuring this load balancer and can only take the following values: PREMIUM , SELECT. If this field is not specified, it is assumed to be PREMIUM.
-* @property {string} portRange Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
+* @property {string} portRange This field is used for external load balancing and VPN.
 
-This field is not used for internal load balancing.
-* @property {string[]} ports This field is not used for external load balancing.
+Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
 
-When the load balancing scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule. If the port list is not provided then all ports are allowed to pass through.
+Some types of forwarding target have constraints on the acceptable ports:  
+- TargetHttpProxy: 80, 8080 
+- TargetHttpsProxy: 443 
+- TargetSslProxy: 443 
+- TargetVpnGateway: 500, 4500
+-
+* @property {string[]} ports This field is only used for internal load balancing.
+
+When the load balancing scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule.
 
 You may specify a maximum of up to 5 ports.
 * @property {string} region [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules.
@@ -16078,7 +16662,7 @@ This field is only used for internal load balancing.
 For internal load balancing, this field identifies the subnetwork that the load balanced IP should belong to for this Forwarding Rule.
 
 If the network specified is in auto subnet mode, this field is optional. However, if the network is in custom subnet mode, a subnetwork must be specified.
-* @property {string} target The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object. For example, TargetHttpProxy requires HTTP traffic, and TargetHttpsProxy requires HTTPS traffic.
+* @property {string} target The URL of the target resource to receive the matched traffic. For regional forwarding rules, this target must live in the same region as the forwarding rule. For global forwarding rules, this target must be a global load balancing resource. The forwarded traffic must be of a type appropriate to the target object.
 
 This field is not used for internal load balancing.
 */
@@ -16459,11 +17043,12 @@ For a full list of restrictions, read the Specifications for custom machine type
 * @property {string} minCpuPlatform Minimum cpu/platform to be used by this instance. We may schedule on the specified or later cpu/platform.
 * @property {string} name The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 * @property {compute(alpha).NetworkInterface[]} networkInterfaces An array of configurations for this interface. This specifies how this interface is configured to interact with other network services, such as connecting to the internet. Only one interface is supported per instance.
-* @property {compute(alpha).Scheduling} scheduling Scheduling options for this instance.
+* @property {compute(alpha).Scheduling} scheduling Sets the scheduling options for this instance.
 * @property {string} selfLink [Output Only] Server-defined URL for this resource.
 * @property {compute(alpha).ServiceAccount[]} serviceAccounts A list of service accounts, with their specified scopes, authorized for this instance. Only one service account per VM instance is supported.
 
 Service accounts generate access tokens that can be accessed through the metadata server and used to authenticate applications on the instance. See Service Accounts for more information.
+* @property {boolean} startRestricted [Output Only] Whether a VM has been restricted for start because Compute Engine has detected suspicious activity.
 * @property {string} status [Output Only] The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, and TERMINATED.
 * @property {string} statusMessage [Output Only] An optional, human-readable explanation of the status.
 * @property {compute(alpha).Tags} tags A list of tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation. The tags can be later modified by the setTags method. Each tag within the list must comply with RFC1035.
@@ -16543,7 +17128,7 @@ Named ports apply to all instances in this instance group.
  * @property {string} region [Output Only] The URL of the region where the managed instance group resides (for regional resources).
  * @property {string} selfLink [Output Only] The URL for this managed instance group. The server defines this URL.
  * @property {string} serviceAccount Service account will be used as credentials for all operations performed by managed instance group on instances. The service accounts needs all permissions required to create and delete instances. When not specified, the service account {projectNumber}@cloudservices.gserviceaccount.com will be used.
- * @property {compute(alpha).SpreadingPolicy} spreadingPolicy Policy valid only for regional managed instance groups. Deprecated in favor of distribution_policy.
+ * @property {compute(alpha).InstanceGroupManagerStatefulPolicy} statefulPolicy Stateful configuration for this Instanced Group Manager
  * @property {string[]} targetPools The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
  * @property {integer} targetSize The target number of running instances for this managed instance group. Deleting or abandoning instances reduces this number. Resizing the group changes this number.
  * @property {compute(alpha).InstanceGroupManagerUpdatePolicy} updatePolicy The update policy for this managed instance group.
@@ -16604,6 +17189,18 @@ If you have disabled creation retries, this field will not be populated; instead
  * @property {integer} restarting [Output Only] The number of instances in the managed instance group that are pending to be restarted.
  */
 /**
+ * @typedef InstanceGroupManagerStatefulPolicy
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).InstanceGroupManagerStatefulPolicyDiskPolicy[]} preservedDisks Disks created on the instances that will be preserved on instance delete, resize down, etc.
+ */
+/**
+ * @typedef InstanceGroupManagerStatefulPolicyDiskPolicy
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} deviceName Device name of the disk to be preserved
+ */
+/**
  * @typedef InstanceGroupManagerUpdatePolicy
  * @memberOf! compute(alpha)
  * @type object
@@ -16626,13 +17223,13 @@ If you have disabled creation retries, this field will not be populated; instead
  * @typedef InstanceGroupManagersAbandonInstancesRequest
  * @memberOf! compute(alpha)
  * @type object
- * @property {string[]} instances The URL for one or more instances to abandon from the managed instance group.
+ * @property {string[]} instances The URLs of one or more instances to abandon. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
 /**
  * @typedef InstanceGroupManagersDeleteInstancesRequest
  * @memberOf! compute(alpha)
  * @type object
- * @property {string[]} instances The list of instances to delete from this managed instance group. Specify one or more instance URLs.
+ * @property {string[]} instances The URLs of one or more instances to delete. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
 /**
  * @typedef InstanceGroupManagersListManagedInstancesResponse
@@ -16645,7 +17242,7 @@ If you have disabled creation retries, this field will not be populated; instead
  * @typedef InstanceGroupManagersRecreateInstancesRequest
  * @memberOf! compute(alpha)
  * @type object
- * @property {string[]} instances The URL for one or more instances to recreate.
+ * @property {string[]} instances The URLs of one or more instances to recreate. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
 /**
  * @typedef InstanceGroupManagersResizeAdvancedRequest
@@ -16772,6 +17369,7 @@ You can see which instances is being creating in which mode by calling the get o
  * @property {object} labels Labels to apply to instances that are created from this template.
  * @property {string} machineType The machine type to use for instances that are created from this template.
  * @property {compute(alpha).Metadata} metadata The metadata key/value pairs to assign to instances that are created from this template. These pairs can consist of custom metadata or predefined keys. See Project and instance metadata for more information.
+ * @property {string} minCpuPlatform Minimum cpu/platform to be used by this instance. The instance may be scheduled on the specified or later cpu/platform.
  * @property {compute(alpha).NetworkInterface[]} networkInterfaces An array of network access configurations for this interface.
  * @property {compute(alpha).Scheduling} scheduling Specifies the scheduling options for the instances that are created from this template.
  * @property {compute(alpha).ServiceAccount[]} serviceAccounts A list of service accounts with specified scopes. Access tokens for these service accounts are available to the instances that are created from this template. Use metadata queries to obtain the access tokens for these instances.
@@ -16869,6 +17467,126 @@ If the disk is not protected with a customer-supplied encryption key it should n
 If the instance you are starting is protected with a customer-supplied encryption key, the correct key must be provided otherwise the instance start will not succeed.
 */
 /**
+ * @typedef Interconnect
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {boolean} adminEnabled Administrative status of the interconnect. When this is set to ?true?, the Interconnect is functional and may carry traffic (assuming there are functional InterconnectAttachments and other requirements are satisfied). When set to ?false?, no packets will be carried over this Interconnect and no BGP routes will be exchanged over it. By default, it is set to ?true?.
+ * @property {string} connectionAuthorization [Output Only] URL to retrieve the Letter Of Authority and Customer Facility Assignment (LOA-CFA) documentation relating to this Interconnect. This documentation authorizes the facility provider to connect to the specified crossconnect ports.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} googleIpAddress [Output Only] IP address configured on the Google side of the Interconnect link. This can be used only for ping tests.
+ * @property {string} googleReferenceId [Output Only] Google reference ID; to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string[]} interconnectAttachments [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
+ * @property {string} interconnectType 
+ * @property {string} kind [Output Only] Type of the resource. Always compute#interconnect for interconnects.
+ * @property {string} linkType 
+ * @property {string} location URL of the InterconnectLocation object that represents where this connection is to be provisioned.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} nocContactEmail Email address to contact the customer NOC for operations and maintenance notifications regarding this Interconnect. If specified, this will be used for notifications in addition to all other forms described, such as Stackdriver logs alerting and Cloud Notifications.
+ * @property {string} operationalStatus [Output Only] The current status of whether or not this Interconnect is functional.
+ * @property {string} peerIpAddress [Output Only] IP address configured on the customer side of the Interconnect link. The customer should configure this IP address during turnup when prompted by Google NOC. This can be used only for ping tests.
+ * @property {integer} provisionedLinkCount [Output Only] Number of links actually provisioned in this interconnect.
+ * @property {integer} requestedLinkCount Target number of physical links in the link bundle, as requested by the customer.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef InterconnectAttachment
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} cloudRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} customerRouterIpAddress [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
+ * @property {string} description An optional description of this resource. Provide this property when you create the resource.
+ * @property {string} googleReferenceId [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} interconnect URL of the underlying Interconnect object that this attachment&#39;s traffic will traverse through.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
+ * @property {string} name Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+ * @property {string} operationalStatus [Output Only] The current status of whether or not this interconnect attachment is functional.
+ * @property {compute(alpha).InterconnectAttachmentPrivateInfo} privateInterconnectInfo [Output Only] Information specific to a Private InterconnectAttachment. Only populated if the interconnect that this is attached is of type IT_PRIVATE.
+ * @property {string} region [Output Only] URL of the region where the regional interconnect attachment resides.
+ * @property {string} router URL of the cloud router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network &amp; region within which the Cloud Router is configured.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef InterconnectAttachmentAggregatedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {object} items [Output Only] A map of scoped InterconnectAttachment lists.
+ * @property {string} kind [Output Only] Type of resource. Always compute#interconnectAttachmentAggregatedList for aggregated lists of interconnect attachments.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef InterconnectAttachmentList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(alpha).InterconnectAttachment[]} items [Output Only] A list of InterconnectAttachment resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#interconnectAttachmentList for lists of interconnect attachments.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef InterconnectAttachmentPrivateInfo
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {integer} tag8021q [Output Only] 802.1q encapsulation tag to be used for traffic between Google and the customer, going to and from this network and region.
+ */
+/**
+ * @typedef InterconnectAttachmentsScopedList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {compute(alpha).InterconnectAttachment[]} interconnectAttachments List of interconnect attachments contained in this scope.
+ * @property {object} warning Informational warning which replaces the list of addresses when the list is empty.
+ */
+/**
+ * @typedef InterconnectList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(alpha).Interconnect[]} items [Output Only] A list of Interconnect resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#interconnectList for lists of interconnects.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef InterconnectLocation
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} address [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
+ * @property {string} creationTimestamp [Output Only] Creation timestamp in RFC3339 text format.
+ * @property {string} description [Output Only] An optional description of the resource.
+ * @property {string} facilityProvider [Output Only] The name of the provider for this facility (e.g., EQUINIX).
+ * @property {string} facilityProviderFacilityId [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {string} kind [Output Only] Type of the resource. Always compute#interconnectLocation for interconnect locations.
+ * @property {string} name [Output Only] Name of the resource.
+ * @property {string} peeringdbFacilityId [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
+ * @property {compute(alpha).InterconnectLocationRegionInfo[]} regionInfos [Output Only] A list of InterconnectLocation.RegionInfo objects, that describe parameters pertaining to the relation between this InterconnectLocation and various Google Cloud regions.
+ * @property {string} selfLink [Output Only] Server-defined URL for the resource.
+ */
+/**
+ * @typedef InterconnectLocationList
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(alpha).InterconnectLocation[]} items [Output Only] A list of InterconnectLocation resources.
+ * @property {string} kind [Output Only] Type of resource. Always compute#interconnectLocationList for lists of interconnect locations.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
+ */
+/**
+ * @typedef InterconnectLocationRegionInfo
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} expectedRttMs Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
+ * @property {string} locationPresence Identifies the network presence of this location.
+ * @property {string} regionKey Scope key for the region of this location.
+ */
+/**
  * @typedef License
  * @memberOf! compute(alpha)
  * @type object
@@ -16889,6 +17607,15 @@ If the instance you are starting is protected with a customer-supplied encryptio
  * @type object
  * @property {integer} minGuestCpuCount Minimum number of guest cpus required to use the Instance. Enforced at Instance creation and Instance start.
  * @property {integer} minMemoryMb Minimum memory required to use the Instance. Enforced at Instance creation and Instance start.
+ */
+/**
+ * @typedef LicensesListResponse
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} id [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+ * @property {compute(alpha).License[]} items [Output Only] A list of License resources.
+ * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+ * @property {string} selfLink [Output Only] Server-defined URL for this resource.
  */
 /**
  * @typedef LogConfig
@@ -17292,13 +18019,13 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @typedef RegionInstanceGroupManagersAbandonInstancesRequest
  * @memberOf! compute(alpha)
  * @type object
- * @property {string[]} instances The names of one or more instances to abandon.
+ * @property {string[]} instances The URLs of one or more instances to abandon. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
 /**
  * @typedef RegionInstanceGroupManagersDeleteInstancesRequest
  * @memberOf! compute(alpha)
  * @type object
- * @property {string[]} instances The names of one or more instances to delete.
+ * @property {string[]} instances The URLs of one or more instances to delete. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
 /**
  * @typedef RegionInstanceGroupManagersListInstancesResponse
@@ -17311,7 +18038,7 @@ If no `etag` is provided in the call to `setIamPolicy`, then the existing policy
  * @typedef RegionInstanceGroupManagersRecreateRequest
  * @memberOf! compute(alpha)
  * @type object
- * @property {string[]} instances The URL for one or more instances to recreate.
+ * @property {string[]} instances The URLs of one or more instances to recreate. This can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
  */
 /**
  * @typedef RegionInstanceGroupManagersSetAutoHealingRequest
@@ -17436,6 +18163,13 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @property {string} selfLink [Output Only] Server-defined URL for the resource.
  */
 /**
+ * @typedef RouterAdvertisedPrefix
+ * @memberOf! compute(alpha)
+ * @type object
+ * @property {string} description User-specified description for the prefix.
+ * @property {string} prefix The prefix to advertise. The value must be a CIDR-formatted string.
+ */
+/**
  * @typedef RouterAggregatedList
  * @memberOf! compute(alpha)
  * @type object
@@ -17449,12 +18183,18 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @typedef RouterBgp
  * @memberOf! compute(alpha)
  * @type object
+ * @property {string} advertiseMode User-specified flag to indicate which mode to use for advertisement.
+ * @property {string[]} advertisedGroups User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+ * @property {compute(alpha).RouterAdvertisedPrefix[]} advertisedPrefixs User-specified list of individual prefixes to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These prefixes will be advertised in addition to any specified groups. Leave this field blank to advertise no custom prefixes.
  * @property {integer} asn Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
  */
 /**
  * @typedef RouterBgpPeer
  * @memberOf! compute(alpha)
  * @type object
+ * @property {string} advertiseMode User-specified flag to indicate which mode to use for advertisement.
+ * @property {string[]} advertisedGroups User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+ * @property {compute(alpha).RouterAdvertisedPrefix[]} advertisedPrefixs User-specified list of individual prefixes to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in Bgp message). These prefixes will be advertised in addition to any specified groups. Leave this field blank to advertise no custom prefixes.
  * @property {integer} advertisedRoutePriority The priority of routes advertised to this BGP peer. In the case where there is more than one matching route of maximum length, the routes with lowest priority value win.
  * @property {string} interfaceName Name of the interface the BGP peer is associated with.
  * @property {string} ipAddress IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
@@ -17467,6 +18207,7 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @memberOf! compute(alpha)
  * @type object
  * @property {string} ipRange IP address and range of the interface. The IP range must be in the RFC3927 link-local IP space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
+ * @property {string} linkedInterconnectAttachment URI of the linked interconnect attachment. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.
  * @property {string} linkedVpnTunnel URI of the linked VPN tunnel. It must be in the same region as the router. Each interface can have at most one linked resource and it could either be a VPN Tunnel or an interconnect attachment.
  * @property {string} name Name of this interface entry. The name must be 1-63 characters long and comply with RFC1035.
  */
@@ -17550,10 +18291,12 @@ https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/
  * @typedef Scheduling
  * @memberOf! compute(alpha)
  * @type object
- * @property {boolean} automaticRestart Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted.
- * @property {string} onHostMaintenance Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Setting Instance Scheduling Options.
- * @property {boolean} preemptible Whether the instance is preemptible.
- */
+* @property {boolean} automaticRestart Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted.
+
+By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
+* @property {string} onHostMaintenance Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Setting Instance Scheduling Options.
+* @property {boolean} preemptible Defines whether the instance is preemptible. This can only be set during instance creation, it cannot be set or changed after the instance has been created.
+*/
 /**
  * @typedef SecurityPoliciesList
  * @memberOf! compute(alpha)
@@ -17664,18 +18407,6 @@ If you do not provide an encryption key when creating the snapshot, then the sna
  * @property {string} kind Type of resource.
  * @property {string} nextPageToken [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
  * @property {string} selfLink [Output Only] Server-defined URL for this resource.
- */
-/**
- * @typedef SpreadingPolicy
- * @memberOf! compute(alpha)
- * @type object
- * @property {compute(alpha).SpreadingPolicyZoneConfiguration[]} zones 
- */
-/**
- * @typedef SpreadingPolicyZoneConfiguration
- * @memberOf! compute(alpha)
- * @type object
- * @property {string} zone URL of the zone where managed instance group is spawning instances (for regional resources). Zone has to belong to the region where managed instance group is located.
  */
 /**
  * @typedef SslCertificate

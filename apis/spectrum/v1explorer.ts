@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Spectrum Database API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * API for spectrum-management functions.
  *
  * @example
- * var google = require('googleapis');
- * var spectrum = google.spectrum('v1explorer');
+ * const google = require('googleapis');
+ * const spectrum = google.spectrum('v1explorer');
  *
  * @namespace spectrum
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Spectrum
  */
 function Spectrum(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.paws = {
@@ -63,7 +61,7 @@ function Spectrum(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/getSpectrum',
           method: 'POST'
@@ -98,7 +96,7 @@ function Spectrum(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/getSpectrumBatch',
           method: 'POST'
@@ -133,7 +131,7 @@ function Spectrum(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/init',
           method: 'POST'
@@ -168,7 +166,7 @@ function Spectrum(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/notifySpectrumUse',
           method: 'POST'
@@ -203,7 +201,7 @@ function Spectrum(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/register',
           method: 'POST'
@@ -238,7 +236,7 @@ function Spectrum(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/spectrum/v1explorer/paws/verifyDevice',
           method: 'POST'

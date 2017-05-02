@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Play Movies Partner API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Gets the delivery status of titles for Google Play Movies Partners.
  *
  * @example
- * var google = require('googleapis');
- * var playmoviespartner = google.playmoviespartner('v1');
+ * const google = require('googleapis');
+ * const playmoviespartner = google.playmoviespartner('v1');
  *
  * @namespace playmoviespartner
  * @type {Function}
@@ -37,175 +35,10 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Playmoviespartner
  */
 function Playmoviespartner(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.accounts = {
-
-    avails: {
-
-      /**
-       * playmoviespartner.accounts.avails.get
-       *
-       * @desc Get an Avail given its avail group id and avail id.
-       *
-       * @alias playmoviespartner.accounts.avails.get
-       * @memberOf! playmoviespartner(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.availId REQUIRED. Avail ID.
-       * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/avails/{availId}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['accountId', 'availId'],
-          pathParams: ['availId', 'accountId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * playmoviespartner.accounts.avails.list
-       *
-       * @desc List Avails owned or managed by the partner.  See _Authentication and Authorization rules_ and _List methods rules_ for more information about this method.
-       *
-       * @alias playmoviespartner.accounts.avails.list
-       * @memberOf! playmoviespartner(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
-       * @param {string=} params.territories Filter Avails that match (case-insensitive) any of the given country codes, using the "ISO 3166-1 alpha-2" format (examples: "US", "us", "Us").
-       * @param {string=} params.title Filter that matches Avails with a `title_internal_alias`, `series_title_internal_alias`, `season_title_internal_alias`, or `episode_title_internal_alias` that contains the given case-insensitive title.
-       * @param {string=} params.videoIds Filter Avails that match any of the given `video_id`s.
-       * @param {string=} params.pageToken See _List methods rules_ for info about this field.
-       * @param {integer=} params.pageSize See _List methods rules_ for info about this field.
-       * @param {string=} params.altIds Filter Avails that match (case-insensitive) any of the given partner-specific custom ids.
-       * @param {string=} params.pphNames See _List methods rules_ for info about this field.
-       * @param {string=} params.altId Filter Avails that match a case-insensitive, partner-specific custom id. NOTE: this field is deprecated and will be removed on V2; `alt_ids` should be used instead.
-       * @param {string=} params.studioNames See _List methods rules_ for info about this field.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/avails',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
-    },
-
-    orders: {
-
-      /**
-       * playmoviespartner.accounts.orders.get
-       *
-       * @desc Get an Order given its id.  See _Authentication and Authorization rules_ and _Get methods rules_ for more information about this method.
-       *
-       * @alias playmoviespartner.accounts.orders.get
-       * @memberOf! playmoviespartner(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
-       * @param {string} params.orderId REQUIRED. Order ID.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/orders/{orderId}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['accountId', 'orderId'],
-          pathParams: ['accountId', 'orderId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * playmoviespartner.accounts.orders.list
-       *
-       * @desc List Orders owned or managed by the partner.  See _Authentication and Authorization rules_ and _List methods rules_ for more information about this method.
-       *
-       * @alias playmoviespartner.accounts.orders.list
-       * @memberOf! playmoviespartner(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.pageToken See _List methods rules_ for info about this field.
-       * @param {string=} params.customId Filter Orders that match a case-insensitive, partner-specific custom id.
-       * @param {string=} params.videoIds Filter Orders that match any of the given `video_id`s.
-       * @param {integer=} params.pageSize See _List methods rules_ for info about this field.
-       * @param {string=} params.pphNames See _List methods rules_ for info about this field.
-       * @param {string=} params.status Filter Orders that match one of the given status.
-       * @param {string=} params.name Filter that matches Orders with a `name`, `show`, `season` or `episode` that contains the given case-insensitive name.
-       * @param {string=} params.studioNames See _List methods rules_ for info about this field.
-       * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/orders',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
-    },
 
     storeInfos: {
 
@@ -218,10 +51,6 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @memberOf! playmoviespartner(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.pphNames See _List methods rules_ for info about this field.
-       * @param {string=} params.countries Filter StoreInfos that match (case-insensitive) any of the given country codes, using the "ISO 3166-1 alpha-2" format (examples: "US", "us", "Us").
-       * @param {string=} params.name Filter that matches StoreInfos with a `name` or `show_name` that contains the given case-insensitive name.
-       * @param {string=} params.studioNames See _List methods rules_ for info about this field.
        * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
        * @param {string=} params.seasonIds Filter StoreInfos that match any of the given `season_id`s.
        * @param {string=} params.videoIds Filter StoreInfos that match any of the given `video_id`s.
@@ -229,6 +58,10 @@ function Playmoviespartner(options) { // eslint-disable-line
        * @param {string=} params.pageToken See _List methods rules_ for info about this field.
        * @param {integer=} params.pageSize See _List methods rules_ for info about this field.
        * @param {string=} params.mids Filter StoreInfos that match any of the given `mid`s.
+       * @param {string=} params.pphNames See _List methods rules_ for info about this field.
+       * @param {string=} params.countries Filter StoreInfos that match (case-insensitive) any of the given country codes, using the "ISO 3166-1 alpha-2" format (examples: "US", "us", "Us").
+       * @param {string=} params.name Filter that matches StoreInfos with a `name` or `show_name` that contains the given case-insensitive name.
+       * @param {string=} params.studioNames See _List methods rules_ for info about this field.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -240,7 +73,7 @@ function Playmoviespartner(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/storeInfos',
             method: 'GET'
@@ -279,7 +112,7 @@ function Playmoviespartner(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/storeInfos/{videoId}/country/{country}',
               method: 'GET'
@@ -293,6 +126,171 @@ function Playmoviespartner(options) { // eslint-disable-line
           return createAPIRequest(parameters, callback);
         }
       }
+    },
+
+    avails: {
+
+      /**
+       * playmoviespartner.accounts.avails.get
+       *
+       * @desc Get an Avail given its avail group id and avail id.
+       *
+       * @alias playmoviespartner.accounts.avails.get
+       * @memberOf! playmoviespartner(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.availId REQUIRED. Avail ID.
+       * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/avails/{availId}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['accountId', 'availId'],
+          pathParams: ['availId', 'accountId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * playmoviespartner.accounts.avails.list
+       *
+       * @desc List Avails owned or managed by the partner.  See _Authentication and Authorization rules_ and _List methods rules_ for more information about this method.
+       *
+       * @alias playmoviespartner.accounts.avails.list
+       * @memberOf! playmoviespartner(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize See _List methods rules_ for info about this field.
+       * @param {string=} params.altIds Filter Avails that match (case-insensitive) any of the given partner-specific custom ids.
+       * @param {string=} params.pphNames See _List methods rules_ for info about this field.
+       * @param {string=} params.altId Filter Avails that match a case-insensitive, partner-specific custom id. NOTE: this field is deprecated and will be removed on V2; `alt_ids` should be used instead.
+       * @param {string=} params.studioNames See _List methods rules_ for info about this field.
+       * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
+       * @param {string=} params.territories Filter Avails that match (case-insensitive) any of the given country codes, using the "ISO 3166-1 alpha-2" format (examples: "US", "us", "Us").
+       * @param {string=} params.title Filter that matches Avails with a `title_internal_alias`, `series_title_internal_alias`, `season_title_internal_alias`, or `episode_title_internal_alias` that contains the given case-insensitive title.
+       * @param {string=} params.videoIds Filter Avails that match any of the given `video_id`s.
+       * @param {string=} params.pageToken See _List methods rules_ for info about this field.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/avails',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['accountId'],
+          pathParams: ['accountId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    orders: {
+
+      /**
+       * playmoviespartner.accounts.orders.get
+       *
+       * @desc Get an Order given its id.  See _Authentication and Authorization rules_ and _Get methods rules_ for more information about this method.
+       *
+       * @alias playmoviespartner.accounts.orders.get
+       * @memberOf! playmoviespartner(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
+       * @param {string} params.orderId REQUIRED. Order ID.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/orders/{orderId}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['accountId', 'orderId'],
+          pathParams: ['accountId', 'orderId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * playmoviespartner.accounts.orders.list
+       *
+       * @desc List Orders owned or managed by the partner.  See _Authentication and Authorization rules_ and _List methods rules_ for more information about this method.
+       *
+       * @alias playmoviespartner.accounts.orders.list
+       * @memberOf! playmoviespartner(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.pageToken See _List methods rules_ for info about this field.
+       * @param {string=} params.videoIds Filter Orders that match any of the given `video_id`s.
+       * @param {string=} params.customId Filter Orders that match a case-insensitive, partner-specific custom id.
+       * @param {integer=} params.pageSize See _List methods rules_ for info about this field.
+       * @param {string=} params.pphNames See _List methods rules_ for info about this field.
+       * @param {string=} params.status Filter Orders that match one of the given status.
+       * @param {string=} params.name Filter that matches Orders with a `name`, `show`, `season` or `episode` that contains the given case-insensitive name.
+       * @param {string=} params.studioNames See _List methods rules_ for info about this field.
+       * @param {string} params.accountId REQUIRED. See _General rules_ for more information about this field.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://playmoviespartner.googleapis.com/v1/accounts/{accountId}/orders',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['accountId'],
+          pathParams: ['accountId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
     }
   };
 }
@@ -301,6 +299,16 @@ function Playmoviespartner(options) { // eslint-disable-line
  * @typedef Order
  * @memberOf! playmoviespartner(v1)
  * @type object
+* @property {string[]} countries Countries where the Order is available,
+using the &quot;ISO 3166-1 alpha-2&quot; format (example: &quot;US&quot;).
+* @property {string} earliestAvailStartTime Timestamp of the earliest start date of the Avails
+linked to this Order.
+* @property {string} status High-level status of the order.
+* @property {string} statusDetail Detailed status of the order
+* @property {string} name Default Edit name,
+usually in the language of the country of origin.
+Example: &quot;Googlers, The&quot;.
+* @property {string} studioName Name of the studio that owns the Edit ordered.
 * @property {string} receivedTime Timestamp when the Order was fulfilled.
 * @property {string} seasonName Default Season name,
 usually in the language of the country of origin.
@@ -338,136 +346,23 @@ Example: &#39;gtry456_xc&#39;.
 usually in the language of the country of origin.
 Only available for TV Edits
 Example: &quot;Googlers, The - Pilot&quot;.
-* @property {string[]} countries Countries where the Order is available,
-using the &quot;ISO 3166-1 alpha-2&quot; format (example: &quot;US&quot;).
-* @property {string} status High-level status of the order.
-* @property {string} statusDetail Detailed status of the order
-* @property {string} earliestAvailStartTime Timestamp of the earliest start date of the Avails
-linked to this Order.
-* @property {string} name Default Edit name,
-usually in the language of the country of origin.
-Example: &quot;Googlers, The&quot;.
-* @property {string} studioName Name of the studio that owns the Edit ordered.
 */
 /**
  * @typedef ListStoreInfosResponse
  * @memberOf! playmoviespartner(v1)
  * @type object
+ * @property {string} nextPageToken See &#39;List methods rules&#39; for info about this field.
  * @property {playmoviespartner(v1).StoreInfo[]} storeInfos List of StoreInfos that match the request criteria.
  * @property {integer} totalSize See _List methods rules_ for more information about this field.
- * @property {string} nextPageToken See &#39;List methods rules&#39; for info about this field.
  */
 /**
  * @typedef ListAvailsResponse
  * @memberOf! playmoviespartner(v1)
  * @type object
+ * @property {playmoviespartner(v1).Avail[]} avails List of Avails that match the request criteria.
  * @property {string} nextPageToken See _List methods rules_ for info about this field.
  * @property {integer} totalSize See _List methods rules_ for more information about this field.
- * @property {playmoviespartner(v1).Avail[]} avails List of Avails that match the request criteria.
  */
-/**
- * @typedef Avail
- * @memberOf! playmoviespartner(v1)
- * @type object
-* @property {string} seasonNumber The number assigned to the season within a series.
-Only available on TV Avails.
-Example: &quot;1&quot;.
-* @property {string} licenseType Type of transaction.
-* @property {string} releaseDate Release date of the Title in earliest released territory.
-Typically it is just the year, but it is free-form as per EMA spec.
-Examples: &quot;1979&quot;, &quot;Oct 2014&quot;
-* @property {string} end End of term in YYYY-MM-DD format in the timezone of the country
-of the Avail.
-&quot;Open&quot; if no end date is available.
-Example: &quot;2019-02-17&quot;
-* @property {string} videoId Google-generated ID identifying the video linked to this Avail, once
-delivered.
-Not part of EMA Specs.
-Example: &#39;gtry456_xc&#39;
-* @property {string} start Start of term in YYYY-MM-DD format in the timezone of the
-country of the Avail.
-Example: &quot;2013-05-14&quot;.
-* @property {string} ratingSystem Rating system applied to the version of title within territory
-of Avail.
-Rating systems should be formatted as per
-[EMA ratings spec](http://www.movielabs.com/md/ratings/)
-Example: &quot;MPAA&quot;
-* @property {string[]} pphNames Name of the post-production houses that manage the Avail.
-Not part of EMA Specs.
-* @property {string} seriesAltId Other identifier referring to the series, as defined by partner.
-Only available on TV avails.
-Example: &quot;rs_googlers&quot;.
-* @property {string} altId Other identifier referring to the Edit, as defined by partner.
-Example: &quot;GOOGLER_2006&quot;
-* @property {string} episodeNumber The number assigned to the episode within a season.
-Only available on TV Avails.
-Example: &quot;3&quot;.
-* @property {string} seriesTitleInternalAlias Title used by involved parties to refer to this series.
-Only available on TV Avails.
-Example: &quot;Googlers, The&quot;.
-* @property {string} formatProfile Indicates the format profile covered by the transaction.
-* @property {string} contentId Title Identifier. This should be the Title Level EIDR.
-Example: &quot;10.5240/1489-49A2-3956-4B2D-FE16-5&quot;.
-* @property {string} ratingValue Value representing the rating.
-Ratings should be formatted as per http://www.movielabs.com/md/ratings/
-Example: &quot;PG&quot;
-* @property {string} titleInternalAlias Title used by involved parties to refer to this content.
-Example: &quot;Googlers, The&quot;.
-Only available on Movie Avails.
-* @property {string} storeLanguage Spoken language of the intended audience.
-Language shall be encoded in accordance with RFC 5646.
-Example: &quot;fr&quot;.
-* @property {string} captionExemption Communicating an exempt category as defined by FCC regulations.
-It is not required for non-US Avails.
-Example: &quot;1&quot;
-* @property {string} displayName The name of the studio that owns the Edit referred in the Avail.
-This is the equivalent of `studio_name` in other resources, but it follows
-the EMA nomenclature.
-Example: &quot;Google Films&quot;.
-* @property {string} productId Edit Identifier. This should be the Edit Level EIDR.
-Example: &quot;10.2340/1489-49A2-3956-4B2D-FE16-6&quot;
-* @property {string} seasonTitleInternalAlias Title used by involved parties to refer to this season.
-Only available on TV Avails.
-Example: &quot;Googlers, The&quot;.
-* @property {string} episodeAltId Other identifier referring to the episode, as defined by partner.
-Only available on TV avails.
-Example: &quot;rs_googlers_s1_3&quot;.
-* @property {string} priceValue Value to be applied to the pricing type.
-Example: &quot;4&quot; or &quot;2.99&quot;
-* @property {string} territory ISO 3166-1 alpha-2 country code for the country or territory
-of this Avail.
-For Avails, we use Territory in lieu of Country to comply with
-EMA specifications.
-But please note that Territory and Country identify the same thing.
-Example: &quot;US&quot;.
-* @property {string} workType Work type as enumerated in EMA.
-* @property {string} availId ID internally generated by Google to uniquely identify an Avail.
-Not part of EMA Specs.
-* @property {string} ratingReason Value representing the rating reason.
-Rating reasons should be formatted as per
-[EMA ratings spec](http://www.movielabs.com/md/ratings/)
-and comma-separated for inclusion of multiple reasons.
-Example: &quot;L, S, V&quot;
-* @property {string} episodeTitleInternalAlias OPTIONAL.TV Only. Title used by involved parties to refer to this episode.
-Only available on TV Avails.
-Example: &quot;Coding at Google&quot;.
-* @property {string} suppressionLiftDate First date an Edit could be publically announced as becoming
-available at a specific future date in territory of Avail.
-*Not* the Avail start date or pre-order start date.
-Format is YYYY-MM-DD.
-Only available for pre-orders.
-Example: &quot;2012-12-10&quot;
-* @property {string} seasonAltId Other identifier referring to the season, as defined by partner.
-Only available on TV avails.
-Example: &quot;rs_googlers_s1&quot;.
-* @property {string} encodeId Manifestation Identifier. This should be the Manifestation
-Level EIDR.
-Example: &quot;10.2340/1489-49A2-3956-4B2D-FE16-7&quot;
-* @property {string} priceType Type of pricing that should be applied to this Avail
-based on how the partner classify them.
-Example: &quot;Tier&quot;, &quot;WSP&quot;, &quot;SRP&quot;, or &quot;Category&quot;.
-* @property {boolean} captionIncluded Communicating if caption file will be delivered.
-*/
 /**
  * @typedef ListOrdersResponse
  * @memberOf! playmoviespartner(v1)
@@ -480,13 +375,6 @@ Example: &quot;Tier&quot;, &quot;WSP&quot;, &quot;SRP&quot;, or &quot;Category&q
  * @typedef StoreInfo
  * @memberOf! playmoviespartner(v1)
  * @type object
-* @property {boolean} hasSdOffer Whether the Edit has a SD offer.
-* @property {string} liveTime Timestamp when the Edit went live on the Store.
-* @property {string} videoId Google-generated ID identifying the video linked to the Edit.
-Example: &#39;gtry456_xc&#39;
-* @property {boolean} hasInfoCards Whether the Edit has info cards.
-* @property {boolean} hasVodOffer Whether the Edit has a VOD offer.
-* @property {string[]} pphNames Name of the post-production houses that manage the Edit.
 * @property {string} episodeNumber The number assigned to the episode within a season.
 Only available on TV Edits.
 Example: &quot;1&quot;.
@@ -532,5 +420,115 @@ Example: &quot;1&quot;.
 * @property {string} editLevelEidr Edit-level EIDR ID.
 Example: &quot;10.5240/1489-49A2-3956-4B2D-FE16-6&quot;.
 * @property {boolean} hasEstOffer Whether the Edit has a EST offer.
+* @property {boolean} hasSdOffer Whether the Edit has a SD offer.
+* @property {string} liveTime Timestamp when the Edit went live on the Store.
+* @property {string} videoId Google-generated ID identifying the video linked to the Edit.
+Example: &#39;gtry456_xc&#39;
+* @property {boolean} hasInfoCards Whether the Edit has info cards.
+* @property {boolean} hasVodOffer Whether the Edit has a VOD offer.
+* @property {string[]} pphNames Name of the post-production houses that manage the Edit.
+*/
+/**
+ * @typedef Avail
+ * @memberOf! playmoviespartner(v1)
+ * @type object
+* @property {string[]} pphNames Name of the post-production houses that manage the Avail.
+Not part of EMA Specs.
+* @property {string} ratingSystem Rating system applied to the version of title within territory
+of Avail.
+Rating systems should be formatted as per
+[EMA ratings spec](http://www.movielabs.com/md/ratings/)
+Example: &quot;MPAA&quot;
+* @property {string} seriesAltId Other identifier referring to the series, as defined by partner.
+Only available on TV avails.
+Example: &quot;rs_googlers&quot;.
+* @property {string} altId Other identifier referring to the Edit, as defined by partner.
+Example: &quot;GOOGLER_2006&quot;
+* @property {string} episodeNumber The number assigned to the episode within a season.
+Only available on TV Avails.
+Example: &quot;3&quot;.
+* @property {string} seriesTitleInternalAlias Title used by involved parties to refer to this series.
+Only available on TV Avails.
+Example: &quot;Googlers, The&quot;.
+* @property {string} formatProfile Indicates the format profile covered by the transaction.
+* @property {string} contentId Title Identifier. This should be the Title Level EIDR.
+Example: &quot;10.5240/1489-49A2-3956-4B2D-FE16-5&quot;.
+* @property {string} titleInternalAlias Title used by involved parties to refer to this content.
+Example: &quot;Googlers, The&quot;.
+Only available on Movie Avails.
+* @property {string} ratingValue Value representing the rating.
+Ratings should be formatted as per http://www.movielabs.com/md/ratings/
+Example: &quot;PG&quot;
+* @property {string} storeLanguage Spoken language of the intended audience.
+Language shall be encoded in accordance with RFC 5646.
+Example: &quot;fr&quot;.
+* @property {string} productId Edit Identifier. This should be the Edit Level EIDR.
+Example: &quot;10.2340/1489-49A2-3956-4B2D-FE16-6&quot;
+* @property {string} displayName The name of the studio that owns the Edit referred in the Avail.
+This is the equivalent of `studio_name` in other resources, but it follows
+the EMA nomenclature.
+Example: &quot;Google Films&quot;.
+* @property {string} captionExemption Communicating an exempt category as defined by FCC regulations.
+It is not required for non-US Avails.
+Example: &quot;1&quot;
+* @property {string} seasonTitleInternalAlias Title used by involved parties to refer to this season.
+Only available on TV Avails.
+Example: &quot;Googlers, The&quot;.
+* @property {string} episodeAltId Other identifier referring to the episode, as defined by partner.
+Only available on TV avails.
+Example: &quot;rs_googlers_s1_3&quot;.
+* @property {string} priceValue Value to be applied to the pricing type.
+Example: &quot;4&quot; or &quot;2.99&quot;
+* @property {string} territory ISO 3166-1 alpha-2 country code for the country or territory
+of this Avail.
+For Avails, we use Territory in lieu of Country to comply with
+EMA specifications.
+But please note that Territory and Country identify the same thing.
+Example: &quot;US&quot;.
+* @property {string} ratingReason Value representing the rating reason.
+Rating reasons should be formatted as per
+[EMA ratings spec](http://www.movielabs.com/md/ratings/)
+and comma-separated for inclusion of multiple reasons.
+Example: &quot;L, S, V&quot;
+* @property {string} availId ID internally generated by Google to uniquely identify an Avail.
+Not part of EMA Specs.
+* @property {string} workType Work type as enumerated in EMA.
+* @property {string} episodeTitleInternalAlias OPTIONAL.TV Only. Title used by involved parties to refer to this episode.
+Only available on TV Avails.
+Example: &quot;Coding at Google&quot;.
+* @property {string} suppressionLiftDate First date an Edit could be publically announced as becoming
+available at a specific future date in territory of Avail.
+*Not* the Avail start date or pre-order start date.
+Format is YYYY-MM-DD.
+Only available for pre-orders.
+Example: &quot;2012-12-10&quot;
+* @property {string} seasonAltId Other identifier referring to the season, as defined by partner.
+Only available on TV avails.
+Example: &quot;rs_googlers_s1&quot;.
+* @property {string} encodeId Manifestation Identifier. This should be the Manifestation
+Level EIDR.
+Example: &quot;10.2340/1489-49A2-3956-4B2D-FE16-7&quot;
+* @property {string} priceType Type of pricing that should be applied to this Avail
+based on how the partner classify them.
+Example: &quot;Tier&quot;, &quot;WSP&quot;, &quot;SRP&quot;, or &quot;Category&quot;.
+* @property {boolean} captionIncluded Communicating if caption file will be delivered.
+* @property {string} seasonNumber The number assigned to the season within a series.
+Only available on TV Avails.
+Example: &quot;1&quot;.
+* @property {string} licenseType Type of transaction.
+* @property {string} releaseDate Release date of the Title in earliest released territory.
+Typically it is just the year, but it is free-form as per EMA spec.
+Examples: &quot;1979&quot;, &quot;Oct 2014&quot;
+* @property {string} end End of term in YYYY-MM-DD format in the timezone of the country
+of the Avail.
+&quot;Open&quot; if no end date is available.
+Example: &quot;2019-02-17&quot;
+* @property {string} videoId Google-generated ID identifying the video linked to this Avail, once
+delivered.
+Not part of EMA Specs.
+Example: &#39;gtry456_xc&#39;
+* @property {string} start Start of term in YYYY-MM-DD format in the timezone of the
+country of the Avail.
+Example: &quot;2013-05-14&quot;.
 */
 export = Playmoviespartner;

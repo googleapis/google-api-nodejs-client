@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Cloud Deployment Manager API V2Beta Methods
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * The Deployment Manager API allows users to declaratively configure, deploy and run complex solutions on the Google Cloud Platform.
  *
  * @example
- * var google = require('googleapis');
- * var deploymentmanager = google.deploymentmanager('v2beta');
+ * const google = require('googleapis');
+ * const deploymentmanager = google.deploymentmanager('v2beta');
  *
  * @namespace deploymentmanager
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Deploymentmanager
  */
 function Deploymentmanager(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.compositeTypes = {
@@ -64,7 +62,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/compositeTypes/{compositeType}',
           method: 'DELETE'
@@ -100,7 +98,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/compositeTypes/{compositeType}',
           method: 'GET'
@@ -136,7 +134,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/compositeTypes',
           method: 'POST'
@@ -175,7 +173,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/compositeTypes',
           method: 'GET'
@@ -212,7 +210,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/compositeTypes/{compositeType}',
           method: 'PATCH'
@@ -249,7 +247,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/compositeTypes/{compositeType}',
           method: 'PUT'
@@ -290,7 +288,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/cancelPreview',
           method: 'POST'
@@ -327,7 +325,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}',
           method: 'DELETE'
@@ -363,7 +361,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}',
           method: 'GET'
@@ -399,7 +397,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{resource}/getIamPolicy',
           method: 'GET'
@@ -436,7 +434,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments',
           method: 'POST'
@@ -475,7 +473,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments',
           method: 'GET'
@@ -515,7 +513,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}',
           method: 'PATCH'
@@ -552,7 +550,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{resource}/setIamPolicy',
           method: 'POST'
@@ -589,7 +587,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/stop',
           method: 'POST'
@@ -626,7 +624,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{resource}/testIamPermissions',
           method: 'POST'
@@ -666,7 +664,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}',
           method: 'PUT'
@@ -707,7 +705,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/manifests/{manifest}',
           method: 'GET'
@@ -747,7 +745,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/manifests',
           method: 'GET'
@@ -787,7 +785,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/operations/{operation}',
           method: 'GET'
@@ -826,7 +824,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/operations',
           method: 'GET'
@@ -867,7 +865,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/resources/{resource}',
           method: 'GET'
@@ -907,7 +905,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/deployments/{deployment}/resources',
           method: 'GET'
@@ -947,7 +945,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}',
           method: 'DELETE'
@@ -983,7 +981,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}',
           method: 'GET'
@@ -1020,7 +1018,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}/types/{type}',
           method: 'GET'
@@ -1056,7 +1054,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/typeProviders',
           method: 'POST'
@@ -1095,7 +1093,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/typeProviders',
           method: 'GET'
@@ -1135,7 +1133,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}/types',
           method: 'GET'
@@ -1172,7 +1170,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}',
           method: 'PATCH'
@@ -1209,7 +1207,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/typeProviders/{typeProvider}',
           method: 'PUT'
@@ -1252,7 +1250,7 @@ function Deploymentmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/deploymentmanager/v2beta/projects/{project}/global/types',
           method: 'GET'

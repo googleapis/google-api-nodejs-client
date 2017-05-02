@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Slides API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * An API for creating and editing Google Slides presentations.
  *
  * @example
- * var google = require('googleapis');
- * var slides = google.slides('v1');
+ * const google = require('googleapis');
+ * const slides = google.slides('v1');
  *
  * @namespace slides
  * @type {Function}
@@ -37,10 +35,45 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Slides
  */
 function Slides(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.presentations = {
+
+    /**
+     * slides.presentations.get
+     *
+     * @desc Gets the latest version of the specified presentation.
+     *
+     * @alias slides.presentations.get
+     * @memberOf! slides(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.presentationId The ID of the presentation to retrieve.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://slides.googleapis.com/v1/presentations/{presentationId}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['presentationId'],
+        pathParams: ['presentationId'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
 
     /**
      * slides.presentations.create
@@ -63,7 +96,7 @@ function Slides(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://slides.googleapis.com/v1/presentations',
           method: 'POST'
@@ -99,45 +132,10 @@ function Slides(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://slides.googleapis.com/v1/presentations/{presentationId}:batchUpdate',
           method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['presentationId'],
-        pathParams: ['presentationId'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * slides.presentations.get
-     *
-     * @desc Gets the latest version of the specified presentation.
-     *
-     * @alias slides.presentations.get
-     * @memberOf! slides(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.presentationId The ID of the presentation to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://slides.googleapis.com/v1/presentations/{presentationId}',
-          method: 'GET'
         }, options),
         params: params,
         requiredParams: ['presentationId'],
@@ -174,7 +172,7 @@ function Slides(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://slides.googleapis.com/v1/presentations/{presentationId}/pages/{pageObjectId}/thumbnail',
             method: 'GET'
@@ -197,8 +195,8 @@ function Slides(options) { // eslint-disable-line
        * @memberOf! slides(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.presentationId The ID of the presentation to retrieve.
        * @param {string} params.pageObjectId The object ID of the page to retrieve.
+       * @param {string} params.presentationId The ID of the presentation to retrieve.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -210,14 +208,14 @@ function Slides(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://slides.googleapis.com/v1/presentations/{presentationId}/pages/{pageObjectId}',
             method: 'GET'
           }, options),
           params: params,
           requiredParams: ['presentationId', 'pageObjectId'],
-          pathParams: ['presentationId', 'pageObjectId'],
+          pathParams: ['pageObjectId', 'presentationId'],
           context: self
         };
 
@@ -227,129 +225,6 @@ function Slides(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef TableColumnProperties
- * @memberOf! slides(v1)
- * @type object
- * @property {slides(v1).Dimension} columnWidth Width of a column.
- */
-/**
- * @typedef ShapeProperties
- * @memberOf! slides(v1)
- * @type object
-* @property {slides(v1).Outline} outline The outline of the shape. If unset, the outline is inherited from a
-parent placeholder if it exists. If the shape has no parent, then the
-default outline depends on the shape type, matching the defaults for
-new shapes created in the Slides editor.
-* @property {slides(v1).ShapeBackgroundFill} shapeBackgroundFill The background fill of the shape. If unset, the background fill is
-inherited from a parent placeholder if it exists. If the shape has no
-parent, then the default background fill depends on the shape type,
-matching the defaults for new shapes created in the Slides editor.
-* @property {slides(v1).Shadow} shadow The shadow properties of the shape. If unset, the shadow is inherited from
-a parent placeholder if it exists. If the shape has no parent, then the
-default shadow matches the defaults for new shapes created in the Slides
-editor. This property is read-only.
-* @property {slides(v1).Link} link The hyperlink destination of the shape. If unset, there is no link. Links
-are not inherited from parent placeholders.
-*/
-/**
- * @typedef NotesProperties
- * @memberOf! slides(v1)
- * @type object
-* @property {string} speakerNotesObjectId The object ID of the shape on this notes page that contains the speaker
-notes for the corresponding slide.
-The actual shape may not always exist on the notes page. Inserting text
-using this object ID will automatically create the shape. In this case, the
-actual shape may have different object ID. The `GetPresentation` or
-`GetPage` action will always return the latest object ID.
-*/
-/**
- * @typedef TableRow
- * @memberOf! slides(v1)
- * @type object
-* @property {slides(v1).Dimension} rowHeight Height of a row.
-* @property {slides(v1).TableCell[]} tableCells Properties and contents of each cell.
-
-Cells that span multiple columns are represented only once with a
-column_span greater
-than 1. As a result, the length of this collection does not always match
-the number of columns of the entire table.
-*/
-/**
- * @typedef UpdateTableCellPropertiesRequest
- * @memberOf! slides(v1)
- * @type object
-* @property {string} fields The fields that should be updated.
-
-At least one field must be specified. The root `tableCellProperties` is
-implied and should not be specified. A single `&quot;*&quot;` can be used as
-short-hand for listing every field.
-
-For example to update the table cell background solid fill color, set
-`fields` to `&quot;tableCellBackgroundFill.solidFill.color&quot;`.
-
-To reset a property to its default value, include its field name in the
-field mask but leave the field itself unset.
-* @property {string} objectId The object ID of the table.
-* @property {slides(v1).TableRange} tableRange The table range representing the subset of the table to which the updates
-are applied. If a table range is not specified, the updates will apply to
-the entire table.
-* @property {slides(v1).TableCellProperties} tableCellProperties The table cell properties to update.
-*/
-/**
- * @typedef CreateSlideRequest
- * @memberOf! slides(v1)
- * @type object
-* @property {slides(v1).LayoutPlaceholderIdMapping[]} placeholderIdMappings An optional list of object ID mappings from the placeholder(s) on the layout to the placeholder(s)
-that will be created on the new slide from that specified layout. Can only
-be used when `slide_layout_reference` is specified.
-* @property {slides(v1).LayoutReference} slideLayoutReference Layout reference of the slide to be inserted, based on the *current
-master*, which is one of the following:
-
-- The master of the previous slide index.
-- The master of the first slide, if the insertion_index is zero.
-- The first master in the presentation, if there are no slides.
-
-If the LayoutReference is not found in the current master, a 400 bad
-request error is returned.
-
-If you don&#39;t specify a layout reference, then the new slide will use the
-predefined layout `BLANK`.
-* @property {string} objectId A user-supplied object ID.
-
-If you specify an ID, it must be unique among all pages and page elements
-in the presentation. The ID must start with an alphanumeric character or an
-underscore (matches regex `[a-zA-Z0-9_]`); remaining characters
-may include those as well as a hyphen or colon (matches regex
-`[a-zA-Z0-9_-:]`).
-The length of the ID must not be less than 5 or greater than 50.
-
-If you don&#39;t specify an ID, a unique one is generated.
-* @property {integer} insertionIndex The optional zero-based index indicating where to insert the slides.
-
-If you don&#39;t specify an index, the new slide is created at the end.
-*/
-/**
- * @typedef BatchUpdatePresentationRequest
- * @memberOf! slides(v1)
- * @type object
- * @property {slides(v1).Request[]} requests A list of updates to apply to the presentation.
- * @property {slides(v1).WriteControl} writeControl Provides control over how write requests are executed.
- */
-/**
- * @typedef TextContent
- * @memberOf! slides(v1)
- * @type object
-* @property {slides(v1).TextElement[]} textElements The text contents broken down into its component parts, including styling
-information. This property is read-only.
-* @property {object} lists The bulleted lists contained in this text, keyed by list ID.
-*/
-/**
- * @typedef CreateSheetsChartResponse
- * @memberOf! slides(v1)
- * @type object
- * @property {string} objectId The object ID of the created chart.
- */
 /**
  * @typedef WriteControl
  * @memberOf! slides(v1)
@@ -373,9 +248,9 @@ from.
  * @typedef ParagraphMarker
  * @memberOf! slides(v1)
  * @type object
+* @property {slides(v1).ParagraphStyle} style The paragraph&#39;s style
 * @property {slides(v1).Bullet} bullet The bullet for this paragraph. If not present, the paragraph does not
 belong to a list.
-* @property {slides(v1).ParagraphStyle} style The paragraph&#39;s style
 */
 /**
  * @typedef InsertTableColumnsRequest
@@ -433,8 +308,6 @@ to a slide.
  * @typedef UpdateShapePropertiesRequest
  * @memberOf! slides(v1)
  * @type object
-* @property {string} objectId The object ID of the shape the updates are applied to.
-* @property {slides(v1).ShapeProperties} shapeProperties The shape properties to update.
 * @property {string} fields The fields that should be updated.
 
 At least one field must be specified. The root `shapeProperties` is
@@ -446,6 +319,8 @@ to `&quot;shapeBackgroundFill.solidFill.color&quot;`.
 
 To reset a property to its default value, include its field name in the
 field mask but leave the field itself unset.
+* @property {string} objectId The object ID of the shape the updates are applied to.
+* @property {slides(v1).ShapeProperties} shapeProperties The shape properties to update.
 */
 /**
  * @typedef WordArt
@@ -457,43 +332,43 @@ field mask but leave the field itself unset.
  * @typedef Recolor
  * @memberOf! slides(v1)
  * @type object
-* @property {string} name The name of the recolor effect.
-
-The name is determined from the `recolor_stops` by matching the gradient
-against the colors in the page&#39;s current color scheme. This property is
-read-only.
 * @property {slides(v1).ColorStop[]} recolorStops The recolor effect is represented by a gradient, which is a list of color
 stops.
 
 The colors in the gradient will replace the corresponding colors at
 the same position in the color palette and apply to the image. This
 property is read-only.
+* @property {string} name The name of the recolor effect.
+
+The name is determined from the `recolor_stops` by matching the gradient
+against the colors in the page&#39;s current color scheme. This property is
+read-only.
 */
 /**
  * @typedef Link
  * @memberOf! slides(v1)
  * @type object
+* @property {string} pageObjectId If set, indicates this is a link to the specific page in this
+presentation with this ID. A page with this ID may not exist.
 * @property {string} url If set, indicates this is a link to the external web page at this URL.
 * @property {string} relativeLink If set, indicates this is a link to a slide in this presentation,
 addressed by its position.
 * @property {integer} slideIndex If set, indicates this is a link to the slide at this zero-based index
 in the presentation. There may not be a slide at this index.
-* @property {string} pageObjectId If set, indicates this is a link to the specific page in this
-presentation with this ID. A page with this ID may not exist.
 */
-/**
- * @typedef RgbColor
- * @memberOf! slides(v1)
- * @type object
- * @property {number} red The red component of the color, from 0.0 to 1.0.
- * @property {number} green The green component of the color, from 0.0 to 1.0.
- * @property {number} blue The blue component of the color, from 0.0 to 1.0.
- */
 /**
  * @typedef CreateShapeResponse
  * @memberOf! slides(v1)
  * @type object
  * @property {string} objectId The object ID of the created shape.
+ */
+/**
+ * @typedef RgbColor
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {number} green The green component of the color, from 0.0 to 1.0.
+ * @property {number} blue The blue component of the color, from 0.0 to 1.0.
+ * @property {number} red The red component of the color, from 0.0 to 1.0.
  */
 /**
  * @typedef CreateLineRequest
@@ -522,6 +397,7 @@ If you don&#39;t specify an ID, a unique one is generated.
  * @typedef CreateShapeRequest
  * @memberOf! slides(v1)
  * @type object
+* @property {slides(v1).PageElementProperties} elementProperties The element properties for the shape.
 * @property {string} objectId A user-supplied object ID.
 
 If you specify an ID, it must be unique among all pages and page elements
@@ -532,35 +408,28 @@ may include those as well as a hyphen or colon (matches regex
 The length of the ID must not be less than 5 or greater than 50.
 If empty, a unique identifier will be generated.
 * @property {string} shapeType The shape type.
-* @property {slides(v1).PageElementProperties} elementProperties The element properties for the shape.
 */
 /**
  * @typedef Video
  * @memberOf! slides(v1)
  * @type object
+* @property {slides(v1).VideoProperties} videoProperties The properties of the video.
 * @property {string} source The video source.
 * @property {string} url An URL to a video. The URL is valid as long as the source video
 exists and sharing settings do not change.
 * @property {string} id The video source&#39;s unique identifier for this video.
-* @property {slides(v1).VideoProperties} videoProperties The properties of the video.
 */
 /**
  * @typedef PageProperties
  * @memberOf! slides(v1)
  * @type object
-* @property {slides(v1).PageBackgroundFill} pageBackgroundFill The background fill of the page. If unset, the background fill is inherited
-from a parent page if it exists. If the page has no parent, then the
-background fill defaults to the corresponding fill in the Slides editor.
 * @property {slides(v1).ColorScheme} colorScheme The color scheme of the page. If unset, the color scheme is inherited from
 a parent page. If the page has no parent, the color scheme uses a default
 Slides color scheme. This field is read-only.
+* @property {slides(v1).PageBackgroundFill} pageBackgroundFill The background fill of the page. If unset, the background fill is inherited
+from a parent page if it exists. If the page has no parent, then the
+background fill defaults to the corresponding fill in the Slides editor.
 */
-/**
- * @typedef NestingLevel
- * @memberOf! slides(v1)
- * @type object
- * @property {slides(v1).TextStyle} bulletStyle The style of a bullet at this level of nesting.
- */
 /**
  * @typedef TableCell
  * @memberOf! slides(v1)
@@ -572,9 +441,16 @@ Slides color scheme. This field is read-only.
  * @property {slides(v1).TableCellProperties} tableCellProperties The properties of the table cell.
  */
 /**
+ * @typedef NestingLevel
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {slides(v1).TextStyle} bulletStyle The style of a bullet at this level of nesting.
+ */
+/**
  * @typedef UpdateLinePropertiesRequest
  * @memberOf! slides(v1)
  * @type object
+* @property {string} objectId The object ID of the line the update is applied to.
 * @property {slides(v1).LineProperties} lineProperties The line properties to update.
 * @property {string} fields The fields that should be updated.
 
@@ -587,7 +463,18 @@ For example to update the line solid fill color, set `fields` to
 
 To reset a property to its default value, include its field name in the
 field mask but leave the field itself unset.
-* @property {string} objectId The object ID of the line the update is applied to.
+*/
+/**
+ * @typedef TableCellBackgroundFill
+ * @memberOf! slides(v1)
+ * @type object
+* @property {string} propertyState The background fill property state.
+
+Updating the the fill on a table cell will implicitly update this field
+to `RENDERED`, unless another value is specified in the same request. To
+have no fill on a table cell, set this field to `NOT_RENDERED`. In this
+case, any other fill fields set in the same request will be ignored.
+* @property {slides(v1).SolidFill} solidFill Solid color fill.
 */
 /**
  * @typedef UpdateSlidesPositionRequest
@@ -599,18 +486,6 @@ duplicates.
 * @property {integer} insertionIndex The index where the slides should be inserted, based on the slide
 arrangement before the move takes place. Must be between zero and the
 number of slides in the presentation, inclusive.
-*/
-/**
- * @typedef TableCellBackgroundFill
- * @memberOf! slides(v1)
- * @type object
-* @property {slides(v1).SolidFill} solidFill Solid color fill.
-* @property {string} propertyState The background fill property state.
-
-Updating the the fill on a table cell will implicitly update this field
-to `RENDERED`, unless another value is specified in the same request. To
-have no fill on a table cell, set this field to `NOT_RENDERED`. In this
-case, any other fill fields set in the same request will be ignored.
 */
 /**
  * @typedef UpdatePagePropertiesRequest
@@ -640,12 +515,12 @@ field mask but leave the field itself unset.
  * @typedef Placeholder
  * @memberOf! slides(v1)
  * @type object
-* @property {string} parentObjectId The object ID of this shape&#39;s parent placeholder.
-If unset, the parent placeholder shape does not exist, so the shape does
-not inherit properties from any other shape.
 * @property {integer} index The index of the placeholder. If the same placeholder types are present in
 the same page, they would have different index values.
 * @property {string} type The type of the placeholder.
+* @property {string} parentObjectId The object ID of this shape&#39;s parent placeholder.
+If unset, the parent placeholder shape does not exist, so the shape does
+not inherit properties from any other shape.
 */
 /**
  * @typedef DuplicateObjectRequest
@@ -682,15 +557,6 @@ receive a new random ID.
  * @typedef Page
  * @memberOf! slides(v1)
  * @type object
-* @property {slides(v1).LayoutProperties} layoutProperties Layout specific properties. Only set if page_type = LAYOUT.
-* @property {slides(v1).NotesProperties} notesProperties Notes specific properties. Only set if page_type = NOTES.
-* @property {string} pageType The type of the page.
-* @property {slides(v1).PageElement[]} pageElements The page elements rendered on the page.
-* @property {slides(v1).SlideProperties} slideProperties Slide specific properties. Only set if page_type = SLIDE.
-* @property {slides(v1).PageProperties} pageProperties The properties of the page.
-* @property {string} objectId The object ID for this page. Object IDs used by
-Page and
-PageElement share the same namespace.
 * @property {string} revisionId The revision ID of the presentation containing this page. Can be used in
 update requests to assert that the presentation revision hasn&#39;t changed
 since the last read operation. Only populated if the user has edit access
@@ -703,6 +569,15 @@ revision ID is unchanged between calls, then the presentation has not
 changed. Conversely, a changed ID (for the same presentation and user)
 usually means the presentation has been updated; however, a changed ID can
 also be due to internal factors such as ID format changes.
+* @property {slides(v1).LayoutProperties} layoutProperties Layout specific properties. Only set if page_type = LAYOUT.
+* @property {string} pageType The type of the page.
+* @property {slides(v1).PageElement[]} pageElements The page elements rendered on the page.
+* @property {slides(v1).NotesProperties} notesProperties Notes specific properties. Only set if page_type = NOTES.
+* @property {slides(v1).SlideProperties} slideProperties Slide specific properties. Only set if page_type = SLIDE.
+* @property {slides(v1).PageProperties} pageProperties The properties of the page.
+* @property {string} objectId The object ID for this page. Object IDs used by
+Page and
+PageElement share the same namespace.
 */
 /**
  * @typedef ShapeBackgroundFill
@@ -720,6 +595,12 @@ any other fill fields set in the same request will be ignored.
  * @typedef CropProperties
  * @memberOf! slides(v1)
  * @type object
+* @property {number} leftOffset The offset specifies the left edge of the crop rectangle that is located to
+the right of the original bounding rectangle left edge, relative to the
+object&#39;s original width.
+* @property {number} rightOffset The offset specifies the right edge of the crop rectangle that is located
+to the left of the original bounding rectangle right edge, relative to the
+object&#39;s original width.
 * @property {number} bottomOffset The offset specifies the bottom edge of the crop rectangle that is located
 above the original bounding rectangle bottom edge, relative to the object&#39;s
 original height.
@@ -728,52 +609,42 @@ Rotation angle is applied after the offset.
 * @property {number} topOffset The offset specifies the top edge of the crop rectangle that is located
 below the original bounding rectangle top edge, relative to the object&#39;s
 original height.
-* @property {number} leftOffset The offset specifies the left edge of the crop rectangle that is located to
-the right of the original bounding rectangle left edge, relative to the
-object&#39;s original width.
-* @property {number} rightOffset The offset specifies the right edge of the crop rectangle that is located
-to the left of the original bounding rectangle right edge, relative to the
-object&#39;s original width.
 */
 /**
  * @typedef ReplaceAllShapesWithSheetsChartRequest
  * @memberOf! slides(v1)
  * @type object
-* @property {string} spreadsheetId The ID of the Google Sheets spreadsheet that contains the chart.
-* @property {string} linkingMode The mode with which the chart is linked to the source spreadsheet. When
-not specified, the chart will be an image that is not linked.
 * @property {slides(v1).SubstringMatchCriteria} containsText The criteria that the shapes must match in order to be replaced. The
 request will replace all of the shapes that contain the given text.
 * @property {integer} chartId The ID of the specific chart in the Google Sheets spreadsheet.
-*/
-/**
- * @typedef Range
- * @memberOf! slides(v1)
- * @type object
-* @property {integer} startIndex The optional zero-based index of the beginning of the collection.
-Required for `SPECIFIC_RANGE` and `FROM_START_INDEX` ranges.
-* @property {integer} endIndex The optional zero-based index of the end of the collection.
-Required for `SPECIFIC_RANGE` delete mode.
-* @property {string} type The type of range.
+* @property {string} spreadsheetId The ID of the Google Sheets spreadsheet that contains the chart.
+* @property {string} linkingMode The mode with which the chart is linked to the source spreadsheet. When
+not specified, the chart will be an image that is not linked.
 */
 /**
  * @typedef ColorStop
  * @memberOf! slides(v1)
  * @type object
-* @property {slides(v1).OpaqueColor} color The color of the gradient stop.
 * @property {number} alpha The alpha value of this color in the gradient band. Defaults to 1.0,
 fully opaque.
 * @property {number} position The relative position of the color stop in the gradient band measured
 in percentage. The value should be in the interval [0.0, 1.0].
+* @property {slides(v1).OpaqueColor} color The color of the gradient stop.
+*/
+/**
+ * @typedef Range
+ * @memberOf! slides(v1)
+ * @type object
+* @property {string} type The type of range.
+* @property {integer} startIndex The optional zero-based index of the beginning of the collection.
+Required for `SPECIFIC_RANGE` and `FROM_START_INDEX` ranges.
+* @property {integer} endIndex The optional zero-based index of the end of the collection.
+Required for `SPECIFIC_RANGE` delete mode.
 */
 /**
  * @typedef CreateVideoRequest
  * @memberOf! slides(v1)
  * @type object
-* @property {string} id The video source&#39;s unique identifier for this video.
-
-e.g. For YouTube video https://www.youtube.com/watch?v=7U3axjORYZ0,
-the ID is 7U3axjORYZ0.
 * @property {string} objectId A user-supplied object ID.
 
 If you specify an ID, it must be unique among all pages and page elements
@@ -786,6 +657,10 @@ The length of the ID must not be less than 5 or greater than 50.
 If you don&#39;t specify an ID, a unique one is generated.
 * @property {string} source The video source.
 * @property {slides(v1).PageElementProperties} elementProperties The element properties for the video.
+* @property {string} id The video source&#39;s unique identifier for this video.
+
+e.g. For YouTube video https://www.youtube.com/watch?v=7U3axjORYZ0,
+the ID is 7U3axjORYZ0.
 */
 /**
  * @typedef DuplicateObjectResponse
@@ -821,9 +696,9 @@ have no shadow on a page element, set this field to `NOT_RENDERED`. In this
 case, any other shadow fields set in the same request will be ignored.
 * @property {slides(v1).Dimension} blurRadius The radius of the shadow blur. The larger the radius, the more diffuse the
 shadow becomes.
-* @property {string} type The type of the shadow.
 * @property {slides(v1).AffineTransform} transform Transform that encodes the translate, scale, and skew of the shadow,
 relative to the alignment position.
+* @property {string} type The type of the shadow.
 * @property {string} alignment The alignment point of the shadow, that sets the origin for translate,
 scale and skew of the shadow.
 * @property {number} alpha The alpha of the shadow&#39;s color, from 0.0 to 1.0.
@@ -843,10 +718,10 @@ the whole table is deleted.
  * @typedef Bullet
  * @memberOf! slides(v1)
  * @type object
- * @property {slides(v1).TextStyle} bulletStyle The paragraph specific text style applied to this bullet.
- * @property {string} listId The ID of the list this paragraph belongs to.
  * @property {string} glyph The rendered bullet glyph for this paragraph.
  * @property {integer} nestingLevel The nesting level of this paragraph in the list.
+ * @property {slides(v1).TextStyle} bulletStyle The paragraph specific text style applied to this bullet.
+ * @property {string} listId The ID of the list this paragraph belongs to.
  */
 /**
  * @typedef OutlineFill
@@ -855,17 +730,17 @@ the whole table is deleted.
  * @property {slides(v1).SolidFill} solidFill Solid color fill.
  */
 /**
- * @typedef CreateLineResponse
- * @memberOf! slides(v1)
- * @type object
- * @property {string} objectId The object ID of the created line.
- */
-/**
  * @typedef TableCellLocation
  * @memberOf! slides(v1)
  * @type object
  * @property {integer} rowIndex The 0-based row index.
  * @property {integer} columnIndex The 0-based column index.
+ */
+/**
+ * @typedef CreateLineResponse
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {string} objectId The object ID of the created line.
  */
 /**
  * @typedef ReplaceAllTextResponse
@@ -926,9 +801,23 @@ effectively accesses the image as the original requester. Access to the
 image may be lost if the presentation&#39;s sharing settings change.
 */
 /**
+ * @typedef AffineTransform
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {number} translateY The Y coordinate translation element.
+ * @property {number} translateX The X coordinate translation element.
+ * @property {number} shearY The Y coordinate shearing element.
+ * @property {string} unit The units for translate elements.
+ * @property {number} scaleX The X coordinate scaling element.
+ * @property {number} shearX The X coordinate shearing element.
+ * @property {number} scaleY The Y coordinate scaling element.
+ */
+/**
  * @typedef InsertTextRequest
  * @memberOf! slides(v1)
  * @type object
+* @property {slides(v1).TableCellLocation} cellLocation The optional table cell location if the text is to be inserted into a table
+cell. If present, the object_id must refer to a table.
 * @property {string} objectId The object ID of the shape or table where the text will be inserted.
 * @property {string} text The text to be inserted.
 
@@ -952,21 +841,7 @@ The index is zero-based and is computed from the start of the string.
 The index may be adjusted to prevent insertions inside Unicode grapheme
 clusters. In these cases, the text will be inserted immediately after the
 grapheme cluster.
-* @property {slides(v1).TableCellLocation} cellLocation The optional table cell location if the text is to be inserted into a table
-cell. If present, the object_id must refer to a table.
 */
-/**
- * @typedef AffineTransform
- * @memberOf! slides(v1)
- * @type object
- * @property {string} unit The units for translate elements.
- * @property {number} scaleX The X coordinate scaling element.
- * @property {number} shearX The X coordinate shearing element.
- * @property {number} scaleY The Y coordinate scaling element.
- * @property {number} translateY The Y coordinate translation element.
- * @property {number} translateX The X coordinate translation element.
- * @property {number} shearY The Y coordinate shearing element.
- */
 /**
  * @typedef AutoText
  * @memberOf! slides(v1)
@@ -980,14 +855,6 @@ cell. If present, the object_id must refer to a table.
  * @memberOf! slides(v1)
  * @type object
  * @property {string} objectId The object ID of the created video.
- */
-/**
- * @typedef UpdatePageElementTransformRequest
- * @memberOf! slides(v1)
- * @type object
- * @property {string} objectId The object ID of the page element to update.
- * @property {slides(v1).AffineTransform} transform The input transform matrix used to update the page element.
- * @property {string} applyMode The apply mode of the transform update.
  */
 /**
  * @typedef DeleteTextRequest
@@ -1012,6 +879,14 @@ include both code units.
 cell. If present, the object_id must refer to a table.
 */
 /**
+ * @typedef UpdatePageElementTransformRequest
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {string} objectId The object ID of the page element to update.
+ * @property {slides(v1).AffineTransform} transform The input transform matrix used to update the page element.
+ * @property {string} applyMode The apply mode of the transform update.
+ */
+/**
  * @typedef DeleteObjectRequest
  * @memberOf! slides(v1)
  * @type object
@@ -1034,14 +909,6 @@ also deleted.
  * @typedef TextElement
  * @memberOf! slides(v1)
  * @type object
-* @property {slides(v1).TextRun} textRun A TextElement representing a run of text where all of the characters
-in the run have the same TextStyle.
-
-The `start_index` and `end_index` of TextRuns will always be fully
-contained in the index range of a single `paragraph_marker` TextElement.
-In other words, a TextRun will never span multiple paragraphs.
-* @property {slides(v1).AutoText} autoText A TextElement representing a spot in the text that is dynamically
-replaced with content that can change over time.
 * @property {slides(v1).ParagraphMarker} paragraphMarker A marker representing the beginning of a new paragraph.
 
 The `start_index` and `end_index` of this TextElement represent the
@@ -1052,6 +919,14 @@ overlap.
 * @property {integer} startIndex The zero-based start index of this text element, in Unicode code units.
 * @property {integer} endIndex The zero-based end index of this text element, exclusive, in Unicode code
 units.
+* @property {slides(v1).TextRun} textRun A TextElement representing a run of text where all of the characters
+in the run have the same TextStyle.
+
+The `start_index` and `end_index` of TextRuns will always be fully
+contained in the index range of a single `paragraph_marker` TextElement.
+In other words, a TextRun will never span multiple paragraphs.
+* @property {slides(v1).AutoText} autoText A TextElement representing a spot in the text that is dynamically
+replaced with content that can change over time.
 */
 /**
  * @typedef LineFill
@@ -1070,10 +945,6 @@ videos created in the Slides editor.
  * @typedef InsertTableRowsRequest
  * @memberOf! slides(v1)
  * @type object
-* @property {boolean} insertBelow Whether to insert new rows below the reference cell location.
-
-- `True`: insert below the cell.
-- `False`: insert above the cell.
 * @property {integer} number The number of rows to be inserted. Maximum 20 per request.
 * @property {slides(v1).TableCellLocation} cellLocation The reference table cell location from which rows will be inserted.
 
@@ -1081,6 +952,10 @@ A new row will be inserted above (or below) the row where the reference
 cell is. If the reference cell is a merged cell, a new row will be
 inserted above (or below) the merged cell.
 * @property {string} tableObjectId The table to insert rows into.
+* @property {boolean} insertBelow Whether to insert new rows below the reference cell location.
+
+- `True`: insert below the cell.
+- `False`: insert above the cell.
 */
 /**
  * @typedef LayoutProperties
@@ -1091,21 +966,24 @@ inserted above (or below) the merged cell.
  * @property {string} displayName The human readable name of the layout in the presentation&#39;s locale.
  */
 /**
- * @typedef LineProperties
- * @memberOf! slides(v1)
- * @type object
-* @property {slides(v1).LineFill} lineFill The fill of the line. The default line fill matches the defaults for new
-lines created in the Slides editor.
-* @property {slides(v1).Link} link The hyperlink destination of the line. If unset, there is no link.
-* @property {string} dashStyle The dash style of the line.
-* @property {string} endArrow The style of the arrow at the end of the line.
-* @property {string} startArrow The style of the arrow at the beginning of the line.
-* @property {slides(v1).Dimension} weight The thickness of the line.
-*/
-/**
  * @typedef Presentation
  * @memberOf! slides(v1)
  * @type object
+* @property {slides(v1).Page} notesMaster The notes master in the presentation. It serves three purposes:
+
+- Placeholder shapes on a notes master contain the default text styles and
+  shape properties of all placeholder shapes on notes pages. Specifically,
+  a `SLIDE_IMAGE` placeholder shape contains the slide thumbnail, and a
+  `BODY` placeholder shape contains the speaker notes.
+- The notes master page properties define the common page properties
+  inherited by all notes pages.
+- Any other shapes on the notes master will appear on all notes pages.
+
+The notes master is read-only.
+* @property {slides(v1).Page[]} layouts The layouts in the presentation. A layout is a template that determines
+how content is arranged and styled on the slides that inherit from that
+layout.
+* @property {string} title The title of the presentation.
 * @property {slides(v1).Page[]} masters The slide masters in the presentation. A slide master contains all common
 page elements and the common properties for a set of layouts. They serve
 three purposes:
@@ -1133,21 +1011,18 @@ revision ID is unchanged between calls, then the presentation has not
 changed. Conversely, a changed ID (for the same presentation and user)
 usually means the presentation has been updated; however, a changed ID can
 also be due to internal factors such as ID format changes.
-* @property {slides(v1).Page} notesMaster The notes master in the presentation. It serves three purposes:
-
-- Placeholder shapes on a notes master contain the default text styles and
-  shape properties of all placeholder shapes on notes pages. Specifically,
-  a `SLIDE_IMAGE` placeholder shape contains the slide thumbnail, and a
-  `BODY` placeholder shape contains the speaker notes.
-- The notes master page properties define the common page properties
-  inherited by all notes pages.
-- Any other shapes on the notes master will appear on all notes pages.
-
-The notes master is read-only.
-* @property {slides(v1).Page[]} layouts The layouts in the presentation. A layout is a template that determines
-how content is arranged and styled on the slides that inherit from that
-layout.
-* @property {string} title The title of the presentation.
+*/
+/**
+ * @typedef LineProperties
+ * @memberOf! slides(v1)
+ * @type object
+* @property {slides(v1).LineFill} lineFill The fill of the line. The default line fill matches the defaults for new
+lines created in the Slides editor.
+* @property {string} dashStyle The dash style of the line.
+* @property {slides(v1).Link} link The hyperlink destination of the line. If unset, there is no link.
+* @property {string} startArrow The style of the arrow at the beginning of the line.
+* @property {string} endArrow The style of the arrow at the end of the line.
+* @property {slides(v1).Dimension} weight The thickness of the line.
 */
 /**
  * @typedef OpaqueColor
@@ -1160,6 +1035,11 @@ layout.
  * @typedef ImageProperties
  * @memberOf! slides(v1)
  * @type object
+* @property {number} brightness The brightness effect of the image. The value should be in the interval
+[-1.0, 1.0], where 0 means no effect. This property is read-only.
+* @property {number} transparency The transparency effect of the image. The value should be in the interval
+[0.0, 1.0], where 0 means no effect and 1 means completely transparent.
+This property is read-only.
 * @property {slides(v1).Shadow} shadow The shadow of the image. If not set, the image has no shadow. This property
 is read-only.
 * @property {number} contrast The contrast effect of the image. The value should be in the interval
@@ -1170,11 +1050,6 @@ This property is read-only.
 * @property {slides(v1).CropProperties} cropProperties The crop properties of the image. If not set, the image is not cropped.
 This property is read-only.
 * @property {slides(v1).Outline} outline The outline of the image. If not set, the the image has no outline.
-* @property {number} brightness The brightness effect of the image. The value should be in the interval
-[-1.0, 1.0], where 0 means no effect. This property is read-only.
-* @property {number} transparency The transparency effect of the image. The value should be in the interval
-[0.0, 1.0], where 0 means no effect and 1 means completely transparent.
-This property is read-only.
 */
 /**
  * @typedef ReplaceAllShapesWithImageResponse
@@ -1193,18 +1068,14 @@ This property is read-only.
  * @typedef BatchUpdatePresentationResponse
  * @memberOf! slides(v1)
  * @type object
+* @property {string} presentationId The presentation the updates were applied to.
 * @property {slides(v1).Response[]} replies The reply of the updates.  This maps 1:1 with the updates, although
 replies to some requests may be empty.
-* @property {string} presentationId The presentation the updates were applied to.
 */
 /**
  * @typedef CreateSheetsChartRequest
  * @memberOf! slides(v1)
  * @type object
-* @property {string} spreadsheetId The ID of the Google Sheets spreadsheet that contains the chart.
-* @property {string} linkingMode The mode with which the chart is linked to the source spreadsheet. When
-not specified, the chart will be an image that is not linked.
-* @property {integer} chartId The ID of the specific chart in the Google Sheets spreadsheet.
 * @property {string} objectId A user-supplied object ID.
 
 If specified, the ID must be unique among all pages and page elements in
@@ -1218,6 +1089,10 @@ When the aspect ratio of the provided size does not match the chart aspect
 ratio, the chart is scaled and centered with respect to the size in order
 to maintain aspect ratio. The provided transform is applied after this
 operation.
+* @property {string} spreadsheetId The ID of the Google Sheets spreadsheet that contains the chart.
+* @property {string} linkingMode The mode with which the chart is linked to the source spreadsheet. When
+not specified, the chart will be an image that is not linked.
+* @property {integer} chartId The ID of the specific chart in the Google Sheets spreadsheet.
 */
 /**
  * @typedef CreateImageResponse
@@ -1280,8 +1155,8 @@ image.
  * @typedef TextRun
  * @memberOf! slides(v1)
  * @type object
- * @property {slides(v1).TextStyle} style The styling applied to this run.
  * @property {string} content The text of this run.
+ * @property {slides(v1).TextStyle} style The styling applied to this run.
  */
 /**
  * @typedef TableRange
@@ -1325,6 +1200,7 @@ transform is provided, the table will be centered on the page.
  * @typedef Table
  * @memberOf! slides(v1)
  * @type object
+* @property {integer} rows Number of rows in the table.
 * @property {slides(v1).TableColumnProperties[]} tableColumns Properties of each column.
 * @property {integer} columns Number of columns in the table.
 * @property {slides(v1).TableRow[]} tableRows Properties and contents of each row.
@@ -1332,13 +1208,11 @@ transform is provided, the table will be centered on the page.
 Cells that span multiple rows are contained in only one of these rows and
 have a row_span greater
 than 1.
-* @property {integer} rows Number of rows in the table.
 */
 /**
  * @typedef PageBackgroundFill
  * @memberOf! slides(v1)
  * @type object
-* @property {slides(v1).SolidFill} solidFill Solid color fill.
 * @property {string} propertyState The background fill property state.
 
 Updating the the fill on a page will implicitly update this field to
@@ -1346,19 +1220,20 @@ Updating the the fill on a page will implicitly update this field to
 have no fill on a page, set this field to `NOT_RENDERED`. In this case,
 any other fill fields set in the same request will be ignored.
 * @property {slides(v1).StretchedPictureFill} stretchedPictureFill Stretched picture fill.
+* @property {slides(v1).SolidFill} solidFill Solid color fill.
 */
 /**
  * @typedef SheetsChart
  * @memberOf! slides(v1)
  * @type object
-* @property {string} spreadsheetId The ID of the Google Sheets spreadsheet that contains the source chart.
-* @property {integer} chartId The ID of the specific chart in the Google Sheets spreadsheet that is
-embedded.
-* @property {slides(v1).SheetsChartProperties} sheetsChartProperties The properties of the Sheets chart.
 * @property {string} contentUrl The URL of an image of the embedded chart, with a default lifetime of 30
 minutes. This URL is tagged with the account of the requester. Anyone with
 the URL effectively accesses the image as the original requester. Access to
 the image may be lost if the presentation&#39;s sharing settings change.
+* @property {string} spreadsheetId The ID of the Google Sheets spreadsheet that contains the source chart.
+* @property {integer} chartId The ID of the specific chart in the Google Sheets spreadsheet that is
+embedded.
+* @property {slides(v1).SheetsChartProperties} sheetsChartProperties The properties of the Sheets chart.
 */
 /**
  * @typedef SolidFill
@@ -1424,17 +1299,27 @@ format.
  * @typedef DeleteTableColumnRequest
  * @memberOf! slides(v1)
  * @type object
+* @property {string} tableObjectId The table to delete columns from.
 * @property {slides(v1).TableCellLocation} cellLocation The reference table cell location from which a column will be deleted.
 
 The column this cell spans will be deleted. If this is a merged cell,
 multiple columns will be deleted. If no columns remain in the table after
 this deletion, the whole table is deleted.
-* @property {string} tableObjectId The table to delete columns from.
 */
 /**
  * @typedef UpdateTextStyleRequest
  * @memberOf! slides(v1)
  * @type object
+* @property {string} fields The fields that should be updated.
+
+At least one field must be specified. The root `style` is implied and
+should not be specified. A single `&quot;*&quot;` can be used as short-hand for
+listing every field.
+
+For example, to update the text style to bold, set `fields` to `&quot;bold&quot;`.
+
+To reset a property to its default value, include its field name in the
+field mask but leave the field itself unset.
 * @property {string} objectId The object ID of the shape or table with the text to be styled.
 * @property {slides(v1).Range} textRange The range of text to style.
 
@@ -1453,25 +1338,15 @@ will be set to inherit.
 Certain text style changes may cause other changes meant to mirror the
 behavior of the Slides editor. See the documentation of
 TextStyle for more information.
-* @property {string} fields The fields that should be updated.
-
-At least one field must be specified. The root `style` is implied and
-should not be specified. A single `&quot;*&quot;` can be used as short-hand for
-listing every field.
-
-For example, to update the text style to bold, set `fields` to `&quot;bold&quot;`.
-
-To reset a property to its default value, include its field name in the
-field mask but leave the field itself unset.
 */
 /**
  * @typedef List
  * @memberOf! slides(v1)
  * @type object
-* @property {string} listId The ID of the list.
 * @property {object} nestingLevel A map of nesting levels to the properties of bullets at the associated
 level. A list has at most nine levels of nesting, so the possible values
 for the keys of this map are 0 through 8, inclusive.
+* @property {string} listId The ID of the list.
 */
 /**
  * @typedef WeightedFontFamily
@@ -1494,24 +1369,24 @@ default value is `400` (&quot;normal&quot;).
  * @typedef PageElement
  * @memberOf! slides(v1)
  * @type object
+* @property {slides(v1).Size} size The size of the page element.
+* @property {string} title The title of the page element. Combined with description to display alt
+text.
+* @property {slides(v1).SheetsChart} sheetsChart A linked chart embedded from Google Sheets. Unlinked charts are
+represented as images.
+* @property {slides(v1).Video} video A video page element.
+* @property {slides(v1).WordArt} wordArt A word art page element.
 * @property {slides(v1).Table} table A table page element.
+* @property {slides(v1).AffineTransform} transform The transform of the page element.
 * @property {string} objectId The object ID for this page element. Object IDs used by
 google.apps.slides.v1.Page and
 google.apps.slides.v1.PageElement share the same namespace.
-* @property {slides(v1).AffineTransform} transform The transform of the page element.
 * @property {slides(v1).Shape} shape A generic shape.
 * @property {slides(v1).Line} line A line page element.
 * @property {string} description The description of the page element. Combined with title to display alt
 text.
 * @property {slides(v1).Group} elementGroup A collection of page elements joined as a single unit.
 * @property {slides(v1).Image} image An image page element.
-* @property {slides(v1).Size} size The size of the page element.
-* @property {slides(v1).SheetsChart} sheetsChart A linked chart embedded from Google Sheets. Unlinked charts are
-represented as images.
-* @property {string} title The title of the page element. Combined with description to display alt
-text.
-* @property {slides(v1).Video} video A video page element.
-* @property {slides(v1).WordArt} wordArt A word art page element.
 */
 /**
  * @typedef CreateImageRequest
@@ -1544,17 +1419,21 @@ format.
  * @typedef CreateParagraphBulletsRequest
  * @memberOf! slides(v1)
  * @type object
+* @property {string} objectId The object ID of the shape or table containing the text to add bullets to.
+* @property {slides(v1).Range} textRange The range of text to apply the bullet presets to, based on TextElement indexes.
 * @property {string} bulletPreset The kinds of bullet glyphs to be used. Defaults to the
 `BULLET_DISC_CIRCLE_SQUARE` preset.
 * @property {slides(v1).TableCellLocation} cellLocation The optional table cell location if the text to be modified is in a table
 cell. If present, the object_id must refer to a table.
-* @property {string} objectId The object ID of the shape or table containing the text to add bullets to.
-* @property {slides(v1).Range} textRange The range of text to apply the bullet presets to, based on TextElement indexes.
 */
 /**
  * @typedef TextStyle
  * @memberOf! slides(v1)
  * @type object
+* @property {boolean} smallCaps Whether or not the text is in small capital letters.
+* @property {slides(v1).OptionalColor} backgroundColor The background color of the text. If set, the color is either opaque or
+transparent, depending on if the `opaque_color` field in it is set.
+* @property {boolean} underline Whether or not the text is underlined.
 * @property {slides(v1).Link} link The hyperlink destination of the text. If unset, there is no link. Links
 are not inherited from parent text.
 
@@ -1575,7 +1454,6 @@ text style of the range:
   style of the preceding text (or the default text styles if the preceding
   text is another link) unless different styles are being set in the same
   request.
-* @property {boolean} underline Whether or not the text is underlined.
 * @property {boolean} bold Whether or not the text is rendered as bold.
 * @property {slides(v1).OptionalColor} foregroundColor The color of the text itself. If set, the color is either opaque or
 transparent, depending on if the `opaque_color` field in it is set.
@@ -1597,29 +1475,47 @@ points.
 Text with `SUPERSCRIPT` or `SUBSCRIPT` baseline offsets is automatically
 rendered in a smaller font size, computed based on the `font_size` field.
 The `font_size` itself is not affected by changes in this field.
-* @property {slides(v1).WeightedFontFamily} weightedFontFamily The font family and rendered weight of the text. This property is
-read-only.
+* @property {slides(v1).WeightedFontFamily} weightedFontFamily The font family and rendered weight of the text.
 
 This field is an extension of `font_family` meant to support explicit font
 weights without breaking backwards compatibility. As such, when reading the
 style of a range of text, the value of `weighted_font_family.font_family`
-will always be equal to that of `font_family`.
-* @property {boolean} smallCaps Whether or not the text is in small capital letters.
-* @property {slides(v1).OptionalColor} backgroundColor The background color of the text. If set, the color is either opaque or
-transparent, depending on if the `opaque_color` field in it is set.
+will always be equal to that of `font_family`. However, when writing, if
+both fields are included in the field mask (either explicitly or through
+the wildcard `&quot;*&quot;`), their values are reconciled as follows:
+
+* If `font_family` is set and `weighted_font_family` is not, the value of
+  `font_family` will be applied with weight `400` (&quot;normal&quot;).
+* If both fields are set, the value of `font_family` must equal that of
+  `weighted_font_family.font_family`. If so, the font family and weight of
+  `weighted_font_family` will be applied. Otherwise, a 400 bad request
+  error is returned.
+* If `weighted_font_family` is set and `font_family` is not, the font
+  family and weight of `weighted_font_family` will be applied.
+* If neither field is set, the font family and weight of the text will be
+  set to inherit from its parent. Note that these properties cannot inherit
+  separately from each other.
+
+If an update request specifies values for both `weighted_font_family` and
+`bold`, the `weighted_font_family` will be applied first, then `bold`.
+
+If `weighted_font_family.weight` is not set, it will default to `400`.
+
+If `weighted_font_family` is set, then `weighted_font_family.font_family`
+must also be set with a non-empty value. Otherwise, a 400 bad request error
+is returned.
 */
 /**
  * @typedef Size
  * @memberOf! slides(v1)
  * @type object
- * @property {slides(v1).Dimension} height The height of the object.
  * @property {slides(v1).Dimension} width The width of the object.
+ * @property {slides(v1).Dimension} height The height of the object.
  */
 /**
  * @typedef UpdateVideoPropertiesRequest
  * @memberOf! slides(v1)
  * @type object
-* @property {slides(v1).VideoProperties} videoProperties The video properties to update.
 * @property {string} fields The fields that should be updated.
 
 At least one field must be specified. The root `videoProperties` is
@@ -1632,18 +1528,23 @@ For example to update the video outline color, set `fields` to
 To reset a property to its default value, include its field name in the
 field mask but leave the field itself unset.
 * @property {string} objectId The object ID of the video the updates are applied to.
+* @property {slides(v1).VideoProperties} videoProperties The video properties to update.
 */
 /**
  * @typedef Request
  * @memberOf! slides(v1)
  * @type object
+ * @property {slides(v1).CreateParagraphBulletsRequest} createParagraphBullets Creates bullets for paragraphs.
+ * @property {slides(v1).CreateVideoRequest} createVideo Creates a video.
+ * @property {slides(v1).CreateSheetsChartRequest} createSheetsChart Creates an embedded Google Sheets chart.
+ * @property {slides(v1).ReplaceAllShapesWithSheetsChartRequest} replaceAllShapesWithSheetsChart Replaces all shapes matching some criteria with a Google Sheets chart.
  * @property {slides(v1).UpdatePageElementTransformRequest} updatePageElementTransform Updates the transform of a page element.
  * @property {slides(v1).UpdateTextStyleRequest} updateTextStyle Updates the styling of text within a Shape or Table.
  * @property {slides(v1).ReplaceAllShapesWithImageRequest} replaceAllShapesWithImage Replaces all shapes matching some criteria with an image.
  * @property {slides(v1).ReplaceAllTextRequest} replaceAllText Replaces all instances of specified text.
  * @property {slides(v1).UpdateImagePropertiesRequest} updateImageProperties Updates the properties of an Image.
- * @property {slides(v1).CreateSlideRequest} createSlide Creates a new slide.
  * @property {slides(v1).InsertTableRowsRequest} insertTableRows Inserts rows into a table.
+ * @property {slides(v1).CreateSlideRequest} createSlide Creates a new slide.
  * @property {slides(v1).UpdateLinePropertiesRequest} updateLineProperties Updates the properties of a Line.
  * @property {slides(v1).UpdateSlidesPositionRequest} updateSlidesPosition Updates the position of a set of slides in the presentation.
  * @property {slides(v1).DeleteTableRowRequest} deleteTableRow Deletes a row from a table.
@@ -1651,8 +1552,8 @@ field mask but leave the field itself unset.
  * @property {slides(v1).InsertTextRequest} insertText Inserts text into a shape or table cell.
  * @property {slides(v1).DeleteTextRequest} deleteText Deletes text from a shape or a table cell.
  * @property {slides(v1).UpdatePagePropertiesRequest} updatePageProperties Updates the properties of a Page.
- * @property {slides(v1).DeleteParagraphBulletsRequest} deleteParagraphBullets Deletes bullets from paragraphs.
  * @property {slides(v1).CreateShapeRequest} createShape Creates a new shape.
+ * @property {slides(v1).DeleteParagraphBulletsRequest} deleteParagraphBullets Deletes bullets from paragraphs.
  * @property {slides(v1).InsertTableColumnsRequest} insertTableColumns Inserts columns into a table.
  * @property {slides(v1).RefreshSheetsChartRequest} refreshSheetsChart Refreshes a Google Sheets chart.
  * @property {slides(v1).CreateTableRequest} createTable Creates a new table.
@@ -1661,20 +1562,14 @@ field mask but leave the field itself unset.
  * @property {slides(v1).UpdateParagraphStyleRequest} updateParagraphStyle Updates the styling of paragraphs within a Shape or Table.
  * @property {slides(v1).DuplicateObjectRequest} duplicateObject Duplicates a slide or page element.
  * @property {slides(v1).DeleteTableColumnRequest} deleteTableColumn Deletes a column from a table.
- * @property {slides(v1).UpdateVideoPropertiesRequest} updateVideoProperties Updates the properties of a Video.
  * @property {slides(v1).CreateLineRequest} createLine Creates a line.
+ * @property {slides(v1).UpdateVideoPropertiesRequest} updateVideoProperties Updates the properties of a Video.
  * @property {slides(v1).CreateImageRequest} createImage Creates an image.
- * @property {slides(v1).CreateParagraphBulletsRequest} createParagraphBullets Creates bullets for paragraphs.
- * @property {slides(v1).CreateVideoRequest} createVideo Creates a video.
- * @property {slides(v1).CreateSheetsChartRequest} createSheetsChart Creates an embedded Google Sheets chart.
- * @property {slides(v1).ReplaceAllShapesWithSheetsChartRequest} replaceAllShapesWithSheetsChart Replaces all shapes matching some criteria with a Google Sheets chart.
  */
 /**
  * @typedef UpdateImagePropertiesRequest
  * @memberOf! slides(v1)
  * @type object
-* @property {slides(v1).ImageProperties} imageProperties The image properties to update.
-* @property {string} objectId The object ID of the image the updates are applied to.
 * @property {string} fields The fields that should be updated.
 
 At least one field must be specified. The root `imageProperties` is
@@ -1686,6 +1581,8 @@ For example to update the image outline color, set `fields` to
 
 To reset a property to its default value, include its field name in the
 field mask but leave the field itself unset.
+* @property {slides(v1).ImageProperties} imageProperties The image properties to update.
+* @property {string} objectId The object ID of the image the updates are applied to.
 */
 /**
  * @typedef ParagraphStyle
@@ -1734,7 +1631,6 @@ for newly created table cells in the Slides editor.
  * @typedef Outline
  * @memberOf! slides(v1)
  * @type object
-* @property {string} dashStyle The dash style of the outline.
 * @property {string} propertyState The outline property state.
 
 Updating the the outline on a page element will implicitly update this
@@ -1744,5 +1640,129 @@ this case, any other outline fields set in the same request will be
 ignored.
 * @property {slides(v1).OutlineFill} outlineFill The fill of the outline.
 * @property {slides(v1).Dimension} weight The thickness of the outline.
+* @property {string} dashStyle The dash style of the outline.
 */
+/**
+ * @typedef NotesProperties
+ * @memberOf! slides(v1)
+ * @type object
+* @property {string} speakerNotesObjectId The object ID of the shape on this notes page that contains the speaker
+notes for the corresponding slide.
+The actual shape may not always exist on the notes page. Inserting text
+using this object ID will automatically create the shape. In this case, the
+actual shape may have different object ID. The `GetPresentation` or
+`GetPage` action will always return the latest object ID.
+*/
+/**
+ * @typedef ShapeProperties
+ * @memberOf! slides(v1)
+ * @type object
+* @property {slides(v1).Outline} outline The outline of the shape. If unset, the outline is inherited from a
+parent placeholder if it exists. If the shape has no parent, then the
+default outline depends on the shape type, matching the defaults for
+new shapes created in the Slides editor.
+* @property {slides(v1).ShapeBackgroundFill} shapeBackgroundFill The background fill of the shape. If unset, the background fill is
+inherited from a parent placeholder if it exists. If the shape has no
+parent, then the default background fill depends on the shape type,
+matching the defaults for new shapes created in the Slides editor.
+* @property {slides(v1).Shadow} shadow The shadow properties of the shape. If unset, the shadow is inherited from
+a parent placeholder if it exists. If the shape has no parent, then the
+default shadow matches the defaults for new shapes created in the Slides
+editor. This property is read-only.
+* @property {slides(v1).Link} link The hyperlink destination of the shape. If unset, there is no link. Links
+are not inherited from parent placeholders.
+*/
+/**
+ * @typedef TableColumnProperties
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {slides(v1).Dimension} columnWidth Width of a column.
+ */
+/**
+ * @typedef TableRow
+ * @memberOf! slides(v1)
+ * @type object
+* @property {slides(v1).Dimension} rowHeight Height of a row.
+* @property {slides(v1).TableCell[]} tableCells Properties and contents of each cell.
+
+Cells that span multiple columns are represented only once with a
+column_span greater
+than 1. As a result, the length of this collection does not always match
+the number of columns of the entire table.
+*/
+/**
+ * @typedef UpdateTableCellPropertiesRequest
+ * @memberOf! slides(v1)
+ * @type object
+* @property {string} fields The fields that should be updated.
+
+At least one field must be specified. The root `tableCellProperties` is
+implied and should not be specified. A single `&quot;*&quot;` can be used as
+short-hand for listing every field.
+
+For example to update the table cell background solid fill color, set
+`fields` to `&quot;tableCellBackgroundFill.solidFill.color&quot;`.
+
+To reset a property to its default value, include its field name in the
+field mask but leave the field itself unset.
+* @property {string} objectId The object ID of the table.
+* @property {slides(v1).TableRange} tableRange The table range representing the subset of the table to which the updates
+are applied. If a table range is not specified, the updates will apply to
+the entire table.
+* @property {slides(v1).TableCellProperties} tableCellProperties The table cell properties to update.
+*/
+/**
+ * @typedef CreateSlideRequest
+ * @memberOf! slides(v1)
+ * @type object
+* @property {integer} insertionIndex The optional zero-based index indicating where to insert the slides.
+
+If you don&#39;t specify an index, the new slide is created at the end.
+* @property {slides(v1).LayoutPlaceholderIdMapping[]} placeholderIdMappings An optional list of object ID mappings from the placeholder(s) on the layout to the placeholder(s)
+that will be created on the new slide from that specified layout. Can only
+be used when `slide_layout_reference` is specified.
+* @property {slides(v1).LayoutReference} slideLayoutReference Layout reference of the slide to be inserted, based on the *current
+master*, which is one of the following:
+
+- The master of the previous slide index.
+- The master of the first slide, if the insertion_index is zero.
+- The first master in the presentation, if there are no slides.
+
+If the LayoutReference is not found in the current master, a 400 bad
+request error is returned.
+
+If you don&#39;t specify a layout reference, then the new slide will use the
+predefined layout `BLANK`.
+* @property {string} objectId A user-supplied object ID.
+
+If you specify an ID, it must be unique among all pages and page elements
+in the presentation. The ID must start with an alphanumeric character or an
+underscore (matches regex `[a-zA-Z0-9_]`); remaining characters
+may include those as well as a hyphen or colon (matches regex
+`[a-zA-Z0-9_-:]`).
+The length of the ID must not be less than 5 or greater than 50.
+
+If you don&#39;t specify an ID, a unique one is generated.
+*/
+/**
+ * @typedef BatchUpdatePresentationRequest
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {slides(v1).Request[]} requests A list of updates to apply to the presentation.
+ * @property {slides(v1).WriteControl} writeControl Provides control over how write requests are executed.
+ */
+/**
+ * @typedef TextContent
+ * @memberOf! slides(v1)
+ * @type object
+* @property {slides(v1).TextElement[]} textElements The text contents broken down into its component parts, including styling
+information. This property is read-only.
+* @property {object} lists The bulleted lists contained in this text, keyed by list ID.
+*/
+/**
+ * @typedef CreateSheetsChartResponse
+ * @memberOf! slides(v1)
+ * @type object
+ * @property {string} objectId The object ID of the created chart.
+ */
 export = Slides;

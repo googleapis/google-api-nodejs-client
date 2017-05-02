@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Prediction API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Lets you access a cloud hosted machine learning service that makes it easy to build smart apps
  *
  * @example
- * var google = require('googleapis');
- * var prediction = google.prediction('v1.2');
+ * const google = require('googleapis');
+ * const prediction = google.prediction('v1.2');
  *
  * @namespace prediction
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Prediction
  */
 function Prediction(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   /**
@@ -62,7 +60,7 @@ function Prediction(options) { // eslint-disable-line
     }
     options || (options = {});
 
-    var parameters = {
+    const parameters = {
       options: utils.extend({
         url: 'https://www.googleapis.com/prediction/v1.2/training/{data}/predict',
         method: 'POST'
@@ -100,7 +98,7 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.2/hostedmodels/{hostedModelName}/predict',
           method: 'POST'
@@ -139,7 +137,7 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.2/training/{data}',
           method: 'DELETE'
@@ -174,7 +172,7 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.2/training/{data}',
           method: 'GET'
@@ -210,7 +208,7 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.2/training',
           method: 'POST'
@@ -246,7 +244,7 @@ function Prediction(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/prediction/v1.2/training/{data}',
           method: 'PUT'

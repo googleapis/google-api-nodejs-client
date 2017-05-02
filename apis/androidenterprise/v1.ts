@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Play EMM API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Manages the deployment of apps to Android for Work users.
  *
  * @example
- * var google = require('googleapis');
- * var androidenterprise = google.androidenterprise('v1');
+ * const google = require('googleapis');
+ * const androidenterprise = google.androidenterprise('v1');
  *
  * @namespace androidenterprise
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Androidenterprise
  */
 function Androidenterprise(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.devices = {
@@ -65,7 +63,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}',
           method: 'GET'
@@ -102,7 +100,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state',
           method: 'GET'
@@ -138,7 +136,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices',
           method: 'GET'
@@ -176,7 +174,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/state',
           method: 'PUT'
@@ -215,7 +213,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/acknowledgeNotificationSet',
           method: 'POST'
@@ -251,7 +249,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/completeSignup',
           method: 'POST'
@@ -287,7 +285,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/createWebToken',
           method: 'POST'
@@ -322,7 +320,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}',
           method: 'DELETE'
@@ -358,7 +356,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/enroll',
           method: 'POST'
@@ -393,7 +391,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/signupUrl',
           method: 'POST'
@@ -428,7 +426,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}',
           method: 'GET'
@@ -464,7 +462,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccount',
           method: 'GET'
@@ -499,7 +497,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout',
           method: 'GET'
@@ -535,7 +533,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises',
           method: 'POST'
@@ -570,7 +568,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises',
           method: 'GET'
@@ -605,7 +603,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/pullNotificationSet',
           method: 'POST'
@@ -640,7 +638,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/sendTestPushNotification',
           method: 'POST'
@@ -676,7 +674,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/account',
           method: 'PUT'
@@ -712,7 +710,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout',
           method: 'PUT'
@@ -747,7 +745,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/unenroll',
           method: 'POST'
@@ -788,7 +786,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
           method: 'DELETE'
@@ -825,7 +823,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
           method: 'GET'
@@ -861,7 +859,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements',
           method: 'GET'
@@ -900,7 +898,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
           method: 'PATCH'
@@ -939,7 +937,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/entitlements/{entitlementId}',
           method: 'PUT'
@@ -979,7 +977,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}',
           method: 'GET'
@@ -1014,7 +1012,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses',
           method: 'GET'
@@ -1054,7 +1052,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/groupLicenses/{groupLicenseId}/users',
           method: 'GET'
@@ -1096,7 +1094,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
           method: 'DELETE'
@@ -1134,7 +1132,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
           method: 'GET'
@@ -1171,7 +1169,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs',
           method: 'GET'
@@ -1210,7 +1208,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
           method: 'PATCH'
@@ -1249,7 +1247,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/installs/{installId}',
           method: 'PUT'
@@ -1291,7 +1289,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
           method: 'DELETE'
@@ -1329,7 +1327,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
           method: 'GET'
@@ -1366,7 +1364,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice',
           method: 'GET'
@@ -1405,7 +1403,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
           method: 'PATCH'
@@ -1444,7 +1442,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/devices/{deviceId}/managedConfigurationsForDevice/{managedConfigurationForDeviceId}',
           method: 'PUT'
@@ -1485,7 +1483,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
           method: 'DELETE'
@@ -1522,7 +1520,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
           method: 'GET'
@@ -1558,7 +1556,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser',
           method: 'GET'
@@ -1596,7 +1594,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
           method: 'PATCH'
@@ -1634,7 +1632,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/managedConfigurationsForUser/{managedConfigurationForUserId}',
           method: 'PUT'
@@ -1674,7 +1672,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/permissions/{permissionId}',
           method: 'GET'
@@ -1715,7 +1713,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/approve',
           method: 'POST'
@@ -1752,7 +1750,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/generateApprovalUrl',
           method: 'POST'
@@ -1789,7 +1787,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}',
           method: 'GET'
@@ -1826,7 +1824,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/appRestrictionsSchema',
           method: 'GET'
@@ -1862,7 +1860,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/permissions',
           method: 'GET'
@@ -1902,7 +1900,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products',
           method: 'GET'
@@ -1938,7 +1936,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/products/{productId}/unapprove',
           method: 'POST'
@@ -1978,7 +1976,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys/{keyId}',
           method: 'DELETE'
@@ -2014,7 +2012,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys',
           method: 'POST'
@@ -2049,7 +2047,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys',
           method: 'GET'
@@ -2090,7 +2088,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
           method: 'DELETE'
@@ -2127,7 +2125,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
           method: 'GET'
@@ -2164,7 +2162,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters',
           method: 'POST'
@@ -2200,7 +2198,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters',
           method: 'GET'
@@ -2238,7 +2236,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
           method: 'PATCH'
@@ -2276,7 +2274,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}/clusters/{clusterId}',
           method: 'PUT'
@@ -2316,7 +2314,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
           method: 'DELETE'
@@ -2352,7 +2350,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
           method: 'GET'
@@ -2388,7 +2386,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages',
           method: 'POST'
@@ -2423,7 +2421,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages',
           method: 'GET'
@@ -2460,7 +2458,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
           method: 'PATCH'
@@ -2497,7 +2495,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/storeLayout/pages/{pageId}',
           method: 'PUT'
@@ -2537,7 +2535,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
           method: 'DELETE'
@@ -2573,7 +2571,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/authenticationToken',
           method: 'POST'
@@ -2609,7 +2607,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token',
           method: 'POST'
@@ -2645,7 +2643,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
           method: 'GET'
@@ -2681,7 +2679,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet',
           method: 'GET'
@@ -2717,7 +2715,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users',
           method: 'POST'
@@ -2753,7 +2751,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users',
           method: 'GET'
@@ -2790,7 +2788,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
           method: 'PATCH'
@@ -2826,7 +2824,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/token',
           method: 'DELETE'
@@ -2863,7 +2861,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}/availableProductSet',
           method: 'PUT'
@@ -2900,7 +2898,7 @@ function Androidenterprise(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/androidenterprise/v1/enterprises/{enterpriseId}/users/{userId}',
           method: 'PUT'
@@ -3010,9 +3008,9 @@ function Androidenterprise(options) { // eslint-disable-line
 * @property {string} managementType Identifies the extent to which the device is controlled by a managed Google Play EMM in various deployment configurations.
 
 Possible values include: 
-- &quot;managedDevice&quot;, a device that has the EMM&#39;s device policy controller (DPC) as the device owner, 
-- &quot;managedProfile&quot;, a device that has a profile managed by the DPC (DPC is profile owner) in addition to a separate, personal profile that is unavailable to the DPC, 
-- &quot;containerApp&quot;, a device running the container App. The container App is managed by the DPC, 
+- &quot;managedDevice&quot;, a device that has the EMM&#39;s device policy controller (DPC) as the device owner. 
+- &quot;managedProfile&quot;, a device that has a profile managed by the DPC (DPC is profile owner) in addition to a separate, personal profile that is unavailable to the DPC. 
+- &quot;containerApp&quot;, no longer used (deprecated). 
 - &quot;unmanagedProfile&quot;, a device that has been allowed (by the domain&#39;s admin, using the Admin Console to enable the privilege) to use managed Google Play, but the profile is itself not owned by a DPC.
 */
 /**
@@ -3244,7 +3242,7 @@ Possible values include:
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#product&quot;.
  * @property {string} productId A string of the form app:&lt;package name&gt;. For example, app:com.google.android.gm represents the Gmail app.
  * @property {string} productPricing Whether this product is free, free with in-app purchases, or paid. If the pricing is unknown, this means the product is not generally available anymore (even though it might still be available to people who own it).
- * @property {boolean} requiresContainerApp Whether this app can only be installed on devices using the Android container app.
+ * @property {boolean} requiresContainerApp Deprecated.
  * @property {string} smallIconUrl A link to a smaller image that can be used as an icon for the product. This image is suitable for use at up to 128px x 128px.
  * @property {string} title The name of the product.
  * @property {string} workDetailsUrl A link to the managed Google Play details page for the product, for use by an Enterprise admin.
@@ -3284,7 +3282,7 @@ Possible values include:
  * @type object
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#productSet&quot;.
  * @property {string[]} productId The list of product IDs making up the set of products.
- * @property {string} productSetBehavior The interpretation of this product set. &quot;unknown&quot; should never be sent and is ignored if received. &quot;whitelist&quot; means that this product set constitutes a whitelist. &quot;includeAll&quot; means that all products are accessible, including products that are approved, products with revoked approval, and products that have never been approved. If the value is &quot;includeAll&quot;, the value of the productId field is therefore ignored. If a value is not supplied, it is interpreted to be &quot;whitelist&quot; for backwards compatibility.
+ * @property {string} productSetBehavior The interpretation of this product set. &quot;unknown&quot; should never be sent and is ignored if received. &quot;whitelist&quot; means that the user is entitled to access the product set. &quot;includeAll&quot; means that all products are accessible, including products that are approved, products with revoked approval, and products that have never been approved. &quot;allApproved&quot; means that the user is entitled to access all products that are approved for the enterprise. If the value is &quot;allApproved&quot; or &quot;includeAll&quot;, the productId field is ignored. If no value is provided, it is interpreted as &quot;whitelist&quot; for backwards compatibility.
  */
 /**
  * @typedef ProductsApproveRequest

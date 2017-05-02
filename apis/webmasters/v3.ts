@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Search Console API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * View Google Search Console data for your verified sites.
  *
  * @example
- * var google = require('googleapis');
- * var webmasters = google.webmasters('v3');
+ * const google = require('googleapis');
+ * const webmasters = google.webmasters('v3');
  *
  * @namespace webmasters
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Webmasters
  */
 function Webmasters(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.searchanalytics = {
@@ -64,7 +62,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/searchAnalytics/query',
           method: 'POST'
@@ -104,7 +102,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
           method: 'DELETE'
@@ -140,7 +138,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
           method: 'GET'
@@ -176,7 +174,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps',
           method: 'GET'
@@ -212,7 +210,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}',
           method: 'PUT'
@@ -251,7 +249,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
           method: 'PUT'
@@ -286,7 +284,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
           method: 'DELETE'
@@ -321,7 +319,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}',
           method: 'GET'
@@ -355,7 +353,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites',
           method: 'GET'
@@ -397,7 +395,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsCounts/query',
           method: 'GET'
@@ -439,7 +437,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}',
           method: 'GET'
@@ -476,7 +474,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples',
           method: 'GET'
@@ -514,7 +512,7 @@ function Webmasters(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webmasters/v3/sites/{siteUrl}/urlCrawlErrorsSamples/{url}',
           method: 'DELETE'

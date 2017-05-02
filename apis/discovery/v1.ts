@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * APIs Discovery Service
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Provides information about other Google APIs, such as what APIs are available, the resource, and method details for each API.
  *
  * @example
- * var google = require('googleapis');
- * var discovery = google.discovery('v1');
+ * const google = require('googleapis');
+ * const discovery = google.discovery('v1');
  *
  * @namespace discovery
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Discovery
  */
 function Discovery(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.apis = {
@@ -64,7 +62,7 @@ function Discovery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/discovery/v1/apis/{api}/{version}/rest',
           method: 'GET'
@@ -100,7 +98,7 @@ function Discovery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/discovery/v1/apis',
           method: 'GET'

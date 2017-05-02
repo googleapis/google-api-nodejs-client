@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google App State API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * The Google App State API.
  *
  * @example
- * var google = require('googleapis');
- * var appstate = google.appstate('v1');
+ * const google = require('googleapis');
+ * const appstate = google.appstate('v1');
  *
  * @namespace appstate
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Appstate
  */
 function Appstate(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.states = {
@@ -64,7 +62,7 @@ function Appstate(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}/clear',
           method: 'POST'
@@ -99,7 +97,7 @@ function Appstate(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
           method: 'DELETE'
@@ -134,7 +132,7 @@ function Appstate(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
           method: 'GET'
@@ -169,7 +167,7 @@ function Appstate(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/appstate/v1/states',
           method: 'GET'
@@ -206,7 +204,7 @@ function Appstate(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
           method: 'PUT'

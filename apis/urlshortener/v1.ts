@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * URL Shortener API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Lets you create, inspect, and manage goo.gl short URLs
  *
  * @example
- * var google = require('googleapis');
- * var urlshortener = google.urlshortener('v1');
+ * const google = require('googleapis');
+ * const urlshortener = google.urlshortener('v1');
  *
  * @namespace urlshortener
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Urlshortener
  */
 function Urlshortener(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.url = {
@@ -64,7 +62,7 @@ function Urlshortener(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/urlshortener/v1/url',
           method: 'GET'
@@ -99,7 +97,7 @@ function Urlshortener(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/urlshortener/v1/url',
           method: 'POST'
@@ -135,7 +133,7 @@ function Urlshortener(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/urlshortener/v1/url/history',
           method: 'GET'

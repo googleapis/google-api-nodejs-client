@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * QPX Express API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Finds the least expensive flights between an origin and a destination.
  *
  * @example
- * var google = require('googleapis');
- * var qpxExpress = google.qpxExpress('v1');
+ * const google = require('googleapis');
+ * const qpxExpress = google.qpxExpress('v1');
  *
  * @namespace qpxExpress
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Qpxexpress
  */
 function Qpxexpress(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.trips = {
@@ -63,7 +61,7 @@ function Qpxexpress(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/qpxExpress/v1/trips/search',
           method: 'POST'

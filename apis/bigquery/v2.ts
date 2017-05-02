@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * BigQuery API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * A data platform for customers to create, manage, share and query data.
  *
  * @example
- * var google = require('googleapis');
- * var bigquery = google.bigquery('v2');
+ * const google = require('googleapis');
+ * const bigquery = google.bigquery('v2');
  *
  * @namespace bigquery
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Bigquery
  */
 function Bigquery(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.datasets = {
@@ -116,7 +114,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
           method: 'DELETE'
@@ -206,7 +204,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
           method: 'GET'
@@ -297,7 +295,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets',
           method: 'POST'
@@ -400,7 +398,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets',
           method: 'GET'
@@ -496,7 +494,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
           method: 'PATCH'
@@ -592,7 +590,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}',
           method: 'PUT'
@@ -686,7 +684,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel',
           method: 'POST'
@@ -776,7 +774,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs/{jobId}',
           method: 'GET'
@@ -883,7 +881,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/queries/{jobId}',
           method: 'GET'
@@ -984,7 +982,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs',
           method: 'POST'
@@ -1089,7 +1087,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/jobs',
           method: 'GET'
@@ -1180,7 +1178,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/queries',
           method: 'POST'
@@ -1281,7 +1279,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects',
           method: 'GET'
@@ -1384,7 +1382,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll',
           method: 'POST'
@@ -1495,7 +1493,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data',
           method: 'GET'
@@ -1590,7 +1588,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
           method: 'DELETE'
@@ -1685,7 +1683,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
           method: 'GET'
@@ -1780,7 +1778,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables',
           method: 'POST'
@@ -1885,7 +1883,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables',
           method: 'GET'
@@ -1985,7 +1983,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
           method: 'PATCH'
@@ -2085,7 +2083,7 @@ function Bigquery(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}',
           method: 'PUT'

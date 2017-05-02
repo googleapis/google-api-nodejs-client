@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Admin Reports API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Fetches reports for the administrators of G Suite customers about the usage, collaboration, security, and risk for their users.
  *
  * @example
- * var google = require('googleapis');
- * var admin = google.admin('reports_v1');
+ * const google = require('googleapis');
+ * const admin = google.admin('reports_v1');
  *
  * @namespace admin
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Admin
  */
 function Admin(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.activities = {
@@ -72,7 +70,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}',
           method: 'GET'
@@ -117,7 +115,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch',
           method: 'POST'
@@ -156,7 +154,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/reports/v1/admin/reports_v1/channels/stop',
           method: 'POST'
@@ -198,7 +196,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/reports/v1/usage/dates/{date}',
           method: 'GET'
@@ -243,7 +241,7 @@ function Admin(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/admin/reports/v1/usage/users/{userKey}/dates/{date}',
           method: 'GET'

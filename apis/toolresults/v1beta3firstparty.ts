@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Cloud Tool Results firstparty API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Reads and publishes results from Firebase Test Lab.
  *
  * @example
- * var google = require('googleapis');
- * var toolresults = google.toolresults('v1beta3firstparty');
+ * const google = require('googleapis');
+ * const toolresults = google.toolresults('v1beta3firstparty');
  *
  * @namespace toolresults
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Toolresults
  */
 function Toolresults(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.projects = {
@@ -63,7 +61,7 @@ function Toolresults(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/settings',
           method: 'GET'
@@ -98,7 +96,7 @@ function Toolresults(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}:initializeSettings',
           method: 'POST'
@@ -137,7 +135,7 @@ function Toolresults(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories',
             method: 'POST'
@@ -173,7 +171,7 @@ function Toolresults(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}',
             method: 'GET'
@@ -211,7 +209,7 @@ function Toolresults(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories',
             method: 'GET'
@@ -251,7 +249,7 @@ function Toolresults(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions',
               method: 'POST'
@@ -288,7 +286,7 @@ function Toolresults(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}',
               method: 'GET'
@@ -326,7 +324,7 @@ function Toolresults(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions',
               method: 'GET'
@@ -365,7 +363,7 @@ function Toolresults(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}',
               method: 'PATCH'
@@ -406,7 +404,7 @@ function Toolresults(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps',
                 method: 'POST'
@@ -444,7 +442,7 @@ function Toolresults(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}',
                 method: 'GET'
@@ -482,7 +480,7 @@ function Toolresults(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary',
                 method: 'GET'
@@ -521,7 +519,7 @@ function Toolresults(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps',
                 method: 'GET'
@@ -561,7 +559,7 @@ function Toolresults(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}',
                 method: 'PATCH'
@@ -600,7 +598,7 @@ function Toolresults(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles',
                 method: 'POST'
@@ -641,7 +639,7 @@ function Toolresults(options) { // eslint-disable-line
               }
               options || (options = {});
 
-              var parameters = {
+              const parameters = {
                 options: utils.extend({
                   url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary',
                   method: 'POST'
@@ -683,7 +681,7 @@ function Toolresults(options) { // eslint-disable-line
               }
               options || (options = {});
 
-              var parameters = {
+              const parameters = {
                 options: utils.extend({
                   url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries',
                   method: 'POST'
@@ -722,7 +720,7 @@ function Toolresults(options) { // eslint-disable-line
               }
               options || (options = {});
 
-              var parameters = {
+              const parameters = {
                 options: utils.extend({
                   url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}',
                   method: 'GET'
@@ -761,7 +759,7 @@ function Toolresults(options) { // eslint-disable-line
               }
               options || (options = {});
 
-              var parameters = {
+              const parameters = {
                 options: utils.extend({
                   url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries',
                   method: 'GET'
@@ -803,7 +801,7 @@ function Toolresults(options) { // eslint-disable-line
                 }
                 options || (options = {});
 
-                var parameters = {
+                const parameters = {
                   options: utils.extend({
                     url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate',
                     method: 'POST'
@@ -844,7 +842,7 @@ function Toolresults(options) { // eslint-disable-line
                 }
                 options || (options = {});
 
-                var parameters = {
+                const parameters = {
                   options: utils.extend({
                     url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples',
                     method: 'GET'
@@ -888,7 +886,7 @@ function Toolresults(options) { // eslint-disable-line
               }
               options || (options = {});
 
-              var parameters = {
+              const parameters = {
                 options: utils.extend({
                   url: 'https://www.googleapis.com/toolresults/v1beta3firstparty/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails',
                   method: 'GET'

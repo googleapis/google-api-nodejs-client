@@ -43,14 +43,13 @@ function buildurl (input) {
  * @param  {Error}   err      Error object to return in callback
  * @param  {Function=} callback Optional callback function
  */
-function handleError (err, callback) {
+function handleError (err: Error, callback: Function) {
   if (callback && typeof callback === 'function') {
     callback(err, null);
   }
 }
 
-export = {
-  DefaultTransporter: require('../lib/googleauth.js').transporters,
+export default {
   buildurl: buildurl,
   handleError: handleError
 }

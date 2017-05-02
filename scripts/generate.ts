@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-const Generator = require('../lib/generator');
-const rimraf = require('rimraf');
-const path = require('path');
+import Generator from './generator';
+import * as rimraf from 'rimraf';
+import * as path from 'path';
+import * as minimist from 'minimist';
+import { install } from 'source-map-support';
+
+// enable source map support
+install();
+
 const debug = true;
 
-const argv = require('minimist')(process.argv.slice(2));
+const argv = minimist(process.argv.slice(2));
 
 // constructors
 const gen = new Generator({ debug: debug, includePrivate: false });
@@ -27,8 +33,8 @@ const gen = new Generator({ debug: debug, includePrivate: false });
 const args = argv._;
 
 if (args.length) {
-  args.forEach(function (url) {
-    gen.generateAPI(url, function (err) {
+  args.forEach((url) => {
+    gen.generateAPI(url, (err) => {
       if (err) {
         throw err;
       }
@@ -37,12 +43,12 @@ if (args.length) {
   });
 } else {
   console.log('Removing old APIs...');
-  rimraf(path.join(__dirname, '..', 'apis'), function (err) {
+  rimraf(path.join(__dirname, '..', 'apis'), (err) => {
     if (err) {
       throw err;
     }
     console.log('Generating APIs...');
-    gen.generateAllAPIs(function (err) {
+    gen.generateAllAPIs((err) => {
       if (err) {
         throw err;
       }
