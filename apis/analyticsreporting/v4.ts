@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Analytics Reporting API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Accesses Analytics report data.
  *
  * @example
- * var google = require('googleapis');
- * var analyticsreporting = google.analyticsreporting('v4');
+ * const google = require('googleapis');
+ * const analyticsreporting = google.analyticsreporting('v4');
  *
  * @namespace analyticsreporting
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Analyticsreporting
  */
 function Analyticsreporting(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.reports = {
@@ -63,7 +61,7 @@ function Analyticsreporting(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://analyticsreporting.googleapis.com/v4/reports:batchGet',
           method: 'POST'
@@ -81,6 +79,152 @@ function Analyticsreporting(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef SegmentDefinition
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {analyticsreporting(v4).SegmentFilter[]} segmentFilters A segment is defined by a set of segment filters which are combined
+together with a logical `AND` operation.
+*/
+/**
+ * @typedef MetricHeaderEntry
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {string} name The name of the header.
+ * @property {string} type The type of the metric, for example `INTEGER`.
+ */
+/**
+ * @typedef ReportData
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {string[]} samplingSpaceSizes If the results are
+[sampled](https://support.google.com/analytics/answer/2637192),
+this returns the total number of
+samples present, one entry per date range. If the results are not sampled
+this field will not be defined. See
+[developer guide](/analytics/devguides/reporting/core/v4/basics#sampling)
+for details.
+* @property {analyticsreporting(v4).DateRangeValues[]} minimums Minimum and maximum values seen over all matching rows. These are both
+empty when `hideValueRanges` in the request is false, or when
+rowCount is zero.
+* @property {analyticsreporting(v4).DateRangeValues[]} totals For each requested date range, for the set of all rows that match
+the query, every requested value format gets a total. The total
+for a value format is computed by first totaling the metrics
+mentioned in the value format and then evaluating the value
+format as a scalar expression.  E.g., The &quot;totals&quot; for
+`3 / (ga:sessions + 2)` we compute
+`3 / ((sum of all relevant ga:sessions) + 2)`.
+Totals are computed before pagination.
+* @property {string[]} samplesReadCounts If the results are
+[sampled](https://support.google.com/analytics/answer/2637192),
+this returns the total number of samples read, one entry per date range.
+If the results are not sampled this field will not be defined. See
+[developer guide](/analytics/devguides/reporting/core/v4/basics#sampling)
+for details.
+* @property {integer} rowCount Total number of matching rows for this query.
+* @property {analyticsreporting(v4).ReportRow[]} rows There&#39;s one ReportRow for every unique combination of dimensions.
+* @property {boolean} isDataGolden Indicates if response to this request is golden or not. Data is
+golden when the exact same request will not produce any new results if
+asked at a later point in time.
+* @property {string} dataLastRefreshed The last time the data in the report was refreshed. All the hits received
+before this timestamp are included in the calculation of the report.
+* @property {analyticsreporting(v4).DateRangeValues[]} maximums Minimum and maximum values seen over all matching rows. These are both
+empty when `hideValueRanges` in the request is false, or when
+rowCount is zero.
+*/
+/**
+ * @typedef DimensionFilter
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {boolean} caseSensitive Should the match be case sensitive? Default is false.
+* @property {string} dimensionName The dimension to filter on. A DimensionFilter must contain a dimension.
+* @property {string} operator How to match the dimension to the expression. The default is REGEXP.
+* @property {boolean} not Logical `NOT` operator. If this boolean is set to true, then the matching
+dimension values will be excluded in the report. The default is false.
+* @property {string[]} expressions Strings or regular expression to match against. Only the first value of
+the list is used for comparison unless the operator is `IN_LIST`.
+If `IN_LIST` operator, then the entire list is used to filter the
+dimensions as explained in the description of the `IN_LIST` operator.
+*/
+/**
+ * @typedef SegmentDimensionFilter
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {string} dimensionName Name of the dimension for which the filter is being applied.
+ * @property {string} operator The operator to use to match the dimension with the expressions.
+ * @property {string[]} expressions The list of expressions, only the first element is used for all operators
+ * @property {boolean} caseSensitive Should the match be case sensitive, ignored for `IN_LIST` operator.
+ * @property {string} minComparisonValue Minimum comparison values for `BETWEEN` match type.
+ * @property {string} maxComparisonValue Maximum comparison values for `BETWEEN` match type.
+ */
+/**
+ * @typedef OrderBy
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {string} sortOrder The sorting order for the field.
+* @property {string} fieldName The field which to sort by. The default sort order is ascending. Example:
+`ga:browser`.
+Note, that you can only specify one field for sort here. For example,
+`ga:browser, ga:city` is not valid.
+* @property {string} orderType The order type. The default orderType is `VALUE`.
+*/
+/**
+ * @typedef Segment
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {analyticsreporting(v4).DynamicSegment} dynamicSegment A dynamic segment definition in the request.
+ * @property {string} segmentId The segment ID of a built-in or custom segment, for example `gaid::-3`.
+ */
+/**
+ * @typedef SegmentSequenceStep
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {analyticsreporting(v4).OrFiltersForSegment[]} orFiltersForSegment A sequence is specified with a list of Or grouped filters which are
+combined with `AND` operator.
+* @property {string} matchType Specifies if the step immediately precedes or can be any time before the
+next step.
+*/
+/**
+ * @typedef Metric
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {string} alias An alias for the metric expression is an alternate name for the
+expression. The alias can be used for filtering and sorting. This field
+is optional and is useful if the expression is not a single metric but
+a complex expression which cannot be used in filtering and sorting.
+The alias is also used in the response column header.
+* @property {string} expression A metric expression in the request. An expression is constructed from one
+or more metrics and numbers. Accepted operators include: Plus (+), Minus
+(-), Negation (Unary -), Divided by (/), Multiplied by (*), Parenthesis,
+Positive cardinal numbers (0-9), can include decimals and is limited to
+1024 characters. Example `ga:totalRefunds/ga:users`, in most cases the
+metric expression is just a single metric name like `ga:users`.
+Adding mixed `MetricType` (E.g., `CURRENCY` + `PERCENTAGE`) metrics
+will result in unexpected results.
+* @property {string} formattingType Specifies how the metric expression should be formatted, for example
+`INTEGER`.
+*/
+/**
+ * @typedef PivotValueRegion
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {string[]} values The values of the metrics in each of the pivot regions.
+ */
+/**
+ * @typedef Report
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {analyticsreporting(v4).ReportData} data Response data.
+ * @property {string} nextPageToken Page token to retrieve the next page of results in the list.
+ * @property {analyticsreporting(v4).ColumnHeader} columnHeader The column headers.
+ */
+/**
+ * @typedef PivotHeader
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {analyticsreporting(v4).PivotHeaderEntry[]} pivotHeaderEntries A single pivot section header.
+ * @property {integer} totalPivotGroupsCount The total number of groups for this pivot.
+ */
+/**
  * @typedef DateRange
  * @memberOf! analyticsreporting(v4)
  * @type object
@@ -91,21 +235,38 @@ function Analyticsreporting(options) { // eslint-disable-line
  * @typedef MetricFilter
  * @memberOf! analyticsreporting(v4)
  * @type object
+* @property {string} metricName The metric that will be filtered on. A metricFilter must contain a metric
+name. A metric name can be an alias earlier defined as a metric or it can
+also be a metric expression.
+* @property {string} comparisonValue The value to compare against.
 * @property {string} operator Is the metric `EQUAL`, `LESS_THAN` or `GREATER_THAN` the
 comparisonValue, the default is `EQUAL`. If the operator is
 `IS_MISSING`, checks if the metric is missing and would ignore the
 comparisonValue.
 * @property {boolean} not Logical `NOT` operator. If this boolean is set to true, then the matching
 metric values will be excluded in the report. The default is false.
-* @property {string} metricName The metric that will be filtered on. A metricFilter must contain a metric
-name. A metric name can be an alias earlier defined as a metric or it can
-also be a metric expression.
-* @property {string} comparisonValue The value to compare against.
 */
 /**
  * @typedef ReportRequest
  * @memberOf! analyticsreporting(v4)
  * @type object
+* @property {analyticsreporting(v4).Dimension[]} dimensions The dimensions requested.
+Requests can have a total of 7 dimensions.
+* @property {string} pageToken A continuation token to get the next page of the results. Adding this to
+the request will return the rows after the pageToken. The pageToken should
+be the value returned in the nextPageToken parameter in the response to
+the GetReports request.
+* @property {analyticsreporting(v4).DateRange[]} dateRanges Date ranges in the request. The request can have a maximum of 2 date
+ranges. The response will contain a set of metric values for each
+combination of the dimensions for each date range in the request. So, if
+there are two date ranges, there will be two set of metric values, one for
+the original date range and one for the second date range.
+The `reportRequest.dateRanges` field should not be specified for cohorts
+or Lifetime value requests.
+If a date range is not provided, the default date range is (startDate:
+current date - 7 days, endDate: current date - 1 day). Every
+[ReportRequest](#ReportRequest) within a `batchGet` method must
+contain the same `dateRanges` definition.
 * @property {analyticsreporting(v4).Pivot[]} pivots The pivot definitions. Requests can have a maximum of 2 pivots.
 * @property {boolean} includeEmptyRows If set to false, the response does not include rows if all the retrieved
 metrics are equal to zero. The default is false which will exclude these
@@ -122,10 +283,10 @@ than requested, if there aren&#39;t as many dimension segments as you expect.
 For instance, there are fewer than 300 possible values for `ga:country`,
 so when segmenting only by country, you can&#39;t get more than 300 rows,
 even if you set `pageSize` to a higher value.
-* @property {boolean} hideTotals If set to true, hides the total of all metrics for all the matching rows,
-for every date range. The default false and will return the totals.
 * @property {boolean} hideValueRanges If set to true, hides the minimum and maximum across all matching rows.
 The default is false and the value ranges are returned.
+* @property {boolean} hideTotals If set to true, hides the total of all metrics for all the matching rows,
+for every date range. The default false and will return the totals.
 * @property {analyticsreporting(v4).CohortGroup} cohortGroup Cohort group associated with this request. If there is a cohort group
 in the request the `ga:cohort` dimension must be present.
 Every [ReportRequest](#ReportRequest) within a `batchGet` method must
@@ -163,23 +324,6 @@ level is used. Every [ReportRequest](#ReportRequest) within a
 `batchGet` method must contain the same `samplingLevel` definition. See
 [developer guide](/analytics/devguides/reporting/core/v4/basics#sampling)
  for details.
-* @property {analyticsreporting(v4).Dimension[]} dimensions The dimensions requested.
-Requests can have a total of 7 dimensions.
-* @property {analyticsreporting(v4).DateRange[]} dateRanges Date ranges in the request. The request can have a maximum of 2 date
-ranges. The response will contain a set of metric values for each
-combination of the dimensions for each date range in the request. So, if
-there are two date ranges, there will be two set of metric values, one for
-the original date range and one for the second date range.
-The `reportRequest.dateRanges` field should not be specified for cohorts
-or Lifetime value requests.
-If a date range is not provided, the default date range is (startDate:
-current date - 7 days, endDate: current date - 1 day). Every
-[ReportRequest](#ReportRequest) within a `batchGet` method must
-contain the same `dateRanges` definition.
-* @property {string} pageToken A continuation token to get the next page of the results. Adding this to
-the request will return the rows after the pageToken. The pageToken should
-be the value returned in the nextPageToken parameter in the response to
-the GetReports request.
 */
 /**
  * @typedef Dimension
@@ -219,13 +363,6 @@ for a histogram-mutated dimension.
 * @property {string} name Name of the dimension to fetch, for example `ga:browser`.
 */
 /**
- * @typedef SimpleSegment
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {analyticsreporting(v4).OrFiltersForSegment[]} orFiltersForSegment A list of segment filters groups which are combined with logical `AND`
-operator.
-*/
-/**
  * @typedef DynamicSegment
  * @memberOf! analyticsreporting(v4)
  * @type object
@@ -233,6 +370,13 @@ operator.
  * @property {string} name The name of the dynamic segment.
  * @property {analyticsreporting(v4).SegmentDefinition} userSegment User Segment to select users to include in the segment.
  */
+/**
+ * @typedef SimpleSegment
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {analyticsreporting(v4).OrFiltersForSegment[]} orFiltersForSegment A list of segment filters groups which are combined with logical `AND`
+operator.
+*/
 /**
  * @typedef ColumnHeader
  * @memberOf! analyticsreporting(v4)
@@ -244,19 +388,17 @@ operator.
  * @typedef SegmentFilterClause
  * @memberOf! analyticsreporting(v4)
  * @type object
+ * @property {analyticsreporting(v4).SegmentMetricFilter} metricFilter Metric Filter for the segment definition.
  * @property {boolean} not Matches the complement (`!`) of the filter.
  * @property {analyticsreporting(v4).SegmentDimensionFilter} dimensionFilter Dimension Filter for the segment definition.
- * @property {analyticsreporting(v4).SegmentMetricFilter} metricFilter Metric Filter for the segment definition.
  */
 /**
- * @typedef MetricFilterClause
+ * @typedef ReportRow
  * @memberOf! analyticsreporting(v4)
  * @type object
-* @property {string} operator The operator for combining multiple metric filters. If unspecified, it is
-treated as an `OR`.
-* @property {analyticsreporting(v4).MetricFilter[]} filters The repeated set of filters. They are logically combined based on the
-operator specified.
-*/
+ * @property {analyticsreporting(v4).DateRangeValues[]} metrics List of metrics for each requested DateRange.
+ * @property {string[]} dimensions List of requested dimensions.
+ */
 /**
  * @typedef Cohort
  * @memberOf! analyticsreporting(v4)
@@ -279,12 +421,14 @@ You do not need to supply a date range for the
 as `FIRST_VISIT_DATE` type cohort.
 */
 /**
- * @typedef ReportRow
+ * @typedef MetricFilterClause
  * @memberOf! analyticsreporting(v4)
  * @type object
- * @property {string[]} dimensions List of requested dimensions.
- * @property {analyticsreporting(v4).DateRangeValues[]} metrics List of metrics for each requested DateRange.
- */
+* @property {string} operator The operator for combining multiple metric filters. If unspecified, it is
+treated as an `OR`.
+* @property {analyticsreporting(v4).MetricFilter[]} filters The repeated set of filters. They are logically combined based on the
+operator specified.
+*/
 /**
  * @typedef OrFiltersForSegment
  * @memberOf! analyticsreporting(v4)
@@ -295,8 +439,8 @@ as `FIRST_VISIT_DATE` type cohort.
  * @typedef MetricHeader
  * @memberOf! analyticsreporting(v4)
  * @type object
- * @property {analyticsreporting(v4).PivotHeader[]} pivotHeaders Headers for the pivots in the response.
  * @property {analyticsreporting(v4).MetricHeaderEntry[]} metricHeaderEntries Headers for the metrics in the response.
+ * @property {analyticsreporting(v4).PivotHeader[]} pivotHeaders Headers for the pivots in the response.
  */
 /**
  * @typedef DimensionFilterClause
@@ -317,9 +461,9 @@ operator specified.
  * @typedef SequenceSegment
  * @memberOf! analyticsreporting(v4)
  * @type object
-* @property {analyticsreporting(v4).SegmentSequenceStep[]} segmentSequenceSteps The list of steps in the sequence.
 * @property {boolean} firstStepShouldMatchFirstHit If set, first step condition must match the first hit of the visitor (in
 the date range).
+* @property {analyticsreporting(v4).SegmentSequenceStep[]} segmentSequenceSteps The list of steps in the sequence.
 */
 /**
  * @typedef SegmentMetricFilter
@@ -341,14 +485,13 @@ treated as minimum comparison value.
  * @typedef DateRangeValues
  * @memberOf! analyticsreporting(v4)
  * @type object
- * @property {string[]} values Each value corresponds to each Metric in the request.
  * @property {analyticsreporting(v4).PivotValueRegion[]} pivotValueRegions The values of each pivot region.
+ * @property {string[]} values Each value corresponds to each Metric in the request.
  */
 /**
  * @typedef CohortGroup
  * @memberOf! analyticsreporting(v4)
  * @type object
-* @property {analyticsreporting(v4).Cohort[]} cohorts The definition for the cohort.
 * @property {boolean} lifetimeValue Enable Life Time Value (LTV).  LTV measures lifetime value for users
 acquired through different channels.
 Please see:
@@ -378,6 +521,7 @@ When the lifetimeValue is true:
   week and month boundaries.
 - The `viewId` must be an
   [app view ID](https://support.google.com/analytics/answer/2649553#WebVersusAppViews)
+* @property {analyticsreporting(v4).Cohort[]} cohorts The definition for the cohort.
 */
 /**
  * @typedef GetReportsRequest
@@ -431,9 +575,6 @@ The default value is 10, also the maximum value is 1,000.
  * @typedef SegmentFilter
  * @memberOf! analyticsreporting(v4)
  * @type object
-* @property {analyticsreporting(v4).SequenceSegment} sequenceSegment Sequence conditions consist of one or more steps, where each step is
-defined by one or more dimension/metric conditions. Multiple steps can
-be combined with special sequence operators.
 * @property {boolean} not If true, match the complement of simple or sequence segment.
 For example, to match all visits not from &quot;New York&quot;, we can define the
 segment as follows:
@@ -455,151 +596,8 @@ segment as follows:
       },
 * @property {analyticsreporting(v4).SimpleSegment} simpleSegment A Simple segment conditions consist of one or more dimension/metric
 conditions that can be combined
+* @property {analyticsreporting(v4).SequenceSegment} sequenceSegment Sequence conditions consist of one or more steps, where each step is
+defined by one or more dimension/metric conditions. Multiple steps can
+be combined with special sequence operators.
 */
-/**
- * @typedef SegmentDefinition
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {analyticsreporting(v4).SegmentFilter[]} segmentFilters A segment is defined by a set of segment filters which are combined
-together with a logical `AND` operation.
-*/
-/**
- * @typedef MetricHeaderEntry
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {string} name The name of the header.
- * @property {string} type The type of the metric, for example `INTEGER`.
- */
-/**
- * @typedef ReportData
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {integer} rowCount Total number of matching rows for this query.
-* @property {analyticsreporting(v4).ReportRow[]} rows There&#39;s one ReportRow for every unique combination of dimensions.
-* @property {boolean} isDataGolden Indicates if response to this request is golden or not. Data is
-golden when the exact same request will not produce any new results if
-asked at a later point in time.
-* @property {string} dataLastRefreshed The last time the data in the report was refreshed. All the hits received
-before this timestamp are included in the calculation of the report.
-* @property {analyticsreporting(v4).DateRangeValues[]} maximums Minimum and maximum values seen over all matching rows. These are both
-empty when `hideValueRanges` in the request is false, or when
-rowCount is zero.
-* @property {string[]} samplingSpaceSizes If the results are
-[sampled](https://support.google.com/analytics/answer/2637192),
-this returns the total number of
-samples present, one entry per date range. If the results are not sampled
-this field will not be defined. See
-[developer guide](/analytics/devguides/reporting/core/v4/basics#sampling)
-for details.
-* @property {analyticsreporting(v4).DateRangeValues[]} minimums Minimum and maximum values seen over all matching rows. These are both
-empty when `hideValueRanges` in the request is false, or when
-rowCount is zero.
-* @property {analyticsreporting(v4).DateRangeValues[]} totals For each requested date range, for the set of all rows that match
-the query, every requested value format gets a total. The total
-for a value format is computed by first totaling the metrics
-mentioned in the value format and then evaluating the value
-format as a scalar expression.  E.g., The &quot;totals&quot; for
-`3 / (ga:sessions + 2)` we compute
-`3 / ((sum of all relevant ga:sessions) + 2)`.
-Totals are computed before pagination.
-* @property {string[]} samplesReadCounts If the results are
-[sampled](https://support.google.com/analytics/answer/2637192),
-this returns the total number of samples read, one entry per date range.
-If the results are not sampled this field will not be defined. See
-[developer guide](/analytics/devguides/reporting/core/v4/basics#sampling)
-for details.
-*/
-/**
- * @typedef DimensionFilter
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {string} dimensionName The dimension to filter on. A DimensionFilter must contain a dimension.
-* @property {string} operator How to match the dimension to the expression. The default is REGEXP.
-* @property {boolean} not Logical `NOT` operator. If this boolean is set to true, then the matching
-dimension values will be excluded in the report. The default is false.
-* @property {string[]} expressions Strings or regular expression to match against. Only the first value of
-the list is used for comparison unless the operator is `IN_LIST`.
-If `IN_LIST` operator, then the entire list is used to filter the
-dimensions as explained in the description of the `IN_LIST` operator.
-* @property {boolean} caseSensitive Should the match be case sensitive? Default is false.
-*/
-/**
- * @typedef SegmentDimensionFilter
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {string} dimensionName Name of the dimension for which the filter is being applied.
- * @property {string} operator The operator to use to match the dimension with the expressions.
- * @property {string[]} expressions The list of expressions, only the first element is used for all operators
- * @property {boolean} caseSensitive Should the match be case sensitive, ignored for `IN_LIST` operator.
- * @property {string} minComparisonValue Minimum comparison values for `BETWEEN` match type.
- * @property {string} maxComparisonValue Maximum comparison values for `BETWEEN` match type.
- */
-/**
- * @typedef OrderBy
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {string} fieldName The field which to sort by. The default sort order is ascending. Example:
-`ga:browser`.
-Note, that you can only specify one field for sort here. For example,
-`ga:browser, ga:city` is not valid.
-* @property {string} orderType The order type. The default orderType is `VALUE`.
-* @property {string} sortOrder The sorting order for the field.
-*/
-/**
- * @typedef Segment
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {analyticsreporting(v4).DynamicSegment} dynamicSegment A dynamic segment definition in the request.
- * @property {string} segmentId The segment ID of a built-in or custom segment, for example `gaid::-3`.
- */
-/**
- * @typedef SegmentSequenceStep
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {analyticsreporting(v4).OrFiltersForSegment[]} orFiltersForSegment A sequence is specified with a list of Or grouped filters which are
-combined with `AND` operator.
-* @property {string} matchType Specifies if the step immediately precedes or can be any time before the
-next step.
-*/
-/**
- * @typedef Metric
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {string} alias An alias for the metric expression is an alternate name for the
-expression. The alias can be used for filtering and sorting. This field
-is optional and is useful if the expression is not a single metric but
-a complex expression which cannot be used in filtering and sorting.
-The alias is also used in the response column header.
-* @property {string} expression A metric expression in the request. An expression is constructed from one
-or more metrics and numbers. Accepted operators include: Plus (+), Minus
-(-), Negation (Unary -), Divided by (/), Multiplied by (*), Parenthesis,
-Positive cardinal numbers (0-9), can include decimals and is limited to
-1024 characters. Example `ga:totalRefunds/ga:users`, in most cases the
-metric expression is just a single metric name like `ga:users`.
-Adding mixed `MetricType` (E.g., `CURRENCY` + `PERCENTAGE`) metrics
-will result in unexpected results.
-* @property {string} formattingType Specifies how the metric expression should be formatted, for example
-`INTEGER`.
-*/
-/**
- * @typedef PivotValueRegion
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {string[]} values The values of the metrics in each of the pivot regions.
- */
-/**
- * @typedef Report
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {analyticsreporting(v4).ColumnHeader} columnHeader The column headers.
- * @property {analyticsreporting(v4).ReportData} data Response data.
- * @property {string} nextPageToken Page token to retrieve the next page of results in the list.
- */
-/**
- * @typedef PivotHeader
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {analyticsreporting(v4).PivotHeaderEntry[]} pivotHeaderEntries A single pivot section header.
- * @property {integer} totalPivotGroupsCount The total number of groups for this pivot.
- */
 export = Analyticsreporting;

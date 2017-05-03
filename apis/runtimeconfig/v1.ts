@@ -16,20 +16,17 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
- * Google Cloud RuntimeConfig API
+ * Google Cloud Runtime Configuration API
  *
- * Provides capabilities for dynamic configuration and coordination for applications running on Google Cloud Platform.
-
+ * The Runtime Configurator allows you to dynamically configure and expose variables through Google Cloud Platform. In addition, you can also set Watchers and Waiters that will watch for changes to your data and return based on certain conditions.
  *
  * @example
- * var google = require('googleapis');
- * var runtimeconfig = google.runtimeconfig('v1');
+ * const google = require('googleapis');
+ * const runtimeconfig = google.runtimeconfig('v1');
  *
  * @namespace runtimeconfig
  * @type {Function}
@@ -38,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Runtimeconfig
  */
 function Runtimeconfig(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.operations = {
@@ -65,7 +62,7 @@ function Runtimeconfig(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://runtimeconfig.googleapis.com/v1/{name}:cancel',
           method: 'POST'
@@ -100,7 +97,7 @@ function Runtimeconfig(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://runtimeconfig.googleapis.com/v1/{name}',
           method: 'DELETE'
@@ -138,7 +135,7 @@ function Runtimeconfig(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://runtimeconfig.googleapis.com/v1/{name}',
           method: 'GET'
@@ -155,11 +152,6 @@ function Runtimeconfig(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef Empty
- * @memberOf! runtimeconfig(v1)
- * @type object
- */
 /**
  * @typedef CancelOperationRequest
  * @memberOf! runtimeconfig(v1)
@@ -207,4 +199,9 @@ contains progress information and common metadata such as create time.
 Some services might not provide such metadata.  Any method that returns a
 long-running operation should document the metadata type, if any.
 */
+/**
+ * @typedef Empty
+ * @memberOf! runtimeconfig(v1)
+ * @type object
+ */
 export = Runtimeconfig;

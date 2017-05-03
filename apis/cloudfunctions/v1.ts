@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Cloud Functions API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * API for managing lightweight user-provided functions executed in response to events.
  *
  * @example
- * var google = require('googleapis');
- * var cloudfunctions = google.cloudfunctions('v1');
+ * const google = require('googleapis');
+ * const cloudfunctions = google.cloudfunctions('v1');
  *
  * @namespace cloudfunctions
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Cloudfunctions
  */
 function Cloudfunctions(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
 }

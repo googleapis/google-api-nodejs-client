@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Accelerated Mobile Pages (AMP) URL API
@@ -28,8 +26,8 @@ var utils = require('../../lib/utils');
 
  *
  * @example
- * var google = require('googleapis');
- * var acceleratedmobilepageurl = google.acceleratedmobilepageurl('v1');
+ * const google = require('googleapis');
+ * const acceleratedmobilepageurl = google.acceleratedmobilepageurl('v1');
  *
  * @namespace acceleratedmobilepageurl
  * @type {Function}
@@ -38,7 +36,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Acceleratedmobilepageurl
  */
 function Acceleratedmobilepageurl(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.ampUrls = {
@@ -64,7 +62,7 @@ function Acceleratedmobilepageurl(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://acceleratedmobilepageurl.googleapis.com/v1/ampUrls:batchGet',
           method: 'POST'
@@ -81,15 +79,6 @@ function Acceleratedmobilepageurl(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef BatchGetAmpUrlsRequest
- * @memberOf! acceleratedmobilepageurl(v1)
- * @type object
-* @property {string[]} urls List of URLs to look up for the paired AMP URLs.
-The URLs are case-sensitive. Up to 50 URLs per lookup
-(see [Usage Limits](/amp/cache/reference/limits)).
-* @property {string} lookupStrategy The lookup_strategy being requested.
-*/
 /**
  * @typedef BatchGetAmpUrlsResponse
  * @memberOf! acceleratedmobilepageurl(v1)
@@ -117,4 +106,13 @@ the cached document in the Google AMP Cache.
  * @property {string} errorCode The error code of an API call.
  * @property {string} originalUrl The original non-AMP URL.
  */
+/**
+ * @typedef BatchGetAmpUrlsRequest
+ * @memberOf! acceleratedmobilepageurl(v1)
+ * @type object
+* @property {string} lookupStrategy The lookup_strategy being requested.
+* @property {string[]} urls List of URLs to look up for the paired AMP URLs.
+The URLs are case-sensitive. Up to 50 URLs per lookup
+(see [Usage Limits](/amp/cache/reference/limits)).
+*/
 export = Acceleratedmobilepageurl;

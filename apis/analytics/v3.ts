@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Analytics API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Views and manages your Google Analytics data.
  *
  * @example
- * var google = require('googleapis');
- * var analytics = google.analytics('v3');
+ * const google = require('googleapis');
+ * const analytics = google.analytics('v3');
  *
  * @namespace analytics
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Analytics
  */
 function Analytics(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.data = {
@@ -77,7 +75,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/data/ga',
             method: 'GET'
@@ -124,7 +122,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/data/mcf',
             method: 'GET'
@@ -167,7 +165,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/data/realtime',
             method: 'GET'
@@ -209,7 +207,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accountSummaries',
             method: 'GET'
@@ -248,7 +246,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}',
             method: 'DELETE'
@@ -284,7 +282,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks',
             method: 'POST'
@@ -321,7 +319,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks',
             method: 'GET'
@@ -358,7 +356,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}',
             method: 'PUT'
@@ -397,7 +395,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts',
             method: 'GET'
@@ -438,7 +436,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources',
             method: 'GET'
@@ -478,7 +476,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
             method: 'GET'
@@ -515,7 +513,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions',
             method: 'POST'
@@ -553,7 +551,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions',
             method: 'GET'
@@ -592,7 +590,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
             method: 'PATCH'
@@ -631,7 +629,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}',
             method: 'PUT'
@@ -671,7 +669,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
             method: 'GET'
@@ -708,7 +706,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics',
             method: 'POST'
@@ -746,7 +744,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics',
             method: 'GET'
@@ -785,7 +783,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
             method: 'PATCH'
@@ -824,7 +822,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}',
             method: 'PUT'
@@ -865,7 +863,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
             method: 'DELETE'
@@ -903,7 +901,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
             method: 'GET'
@@ -941,7 +939,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments',
             method: 'POST'
@@ -980,7 +978,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments',
             method: 'GET'
@@ -1019,7 +1017,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
             method: 'PATCH'
@@ -1058,7 +1056,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}',
             method: 'PUT'
@@ -1097,7 +1095,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
             method: 'DELETE'
@@ -1133,7 +1131,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
             method: 'GET'
@@ -1169,7 +1167,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters',
             method: 'POST'
@@ -1206,7 +1204,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters',
             method: 'GET'
@@ -1243,7 +1241,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
             method: 'PATCH'
@@ -1280,7 +1278,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/filters/{filterId}',
             method: 'PUT'
@@ -1321,7 +1319,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}',
             method: 'GET'
@@ -1359,7 +1357,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
             method: 'POST'
@@ -1398,7 +1396,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals',
             method: 'GET'
@@ -1437,7 +1435,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}',
             method: 'PATCH'
@@ -1476,7 +1474,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}',
             method: 'PUT'
@@ -1517,7 +1515,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
             method: 'DELETE'
@@ -1555,7 +1553,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
             method: 'GET'
@@ -1593,7 +1591,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks',
             method: 'POST'
@@ -1632,7 +1630,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks',
             method: 'GET'
@@ -1671,7 +1669,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
             method: 'PATCH'
@@ -1710,7 +1708,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}',
             method: 'PUT'
@@ -1751,7 +1749,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}',
             method: 'DELETE'
@@ -1789,7 +1787,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks',
             method: 'POST'
@@ -1828,7 +1826,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks',
             method: 'GET'
@@ -1867,7 +1865,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}',
             method: 'PUT'
@@ -1907,7 +1905,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
             method: 'DELETE'
@@ -1944,7 +1942,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
             method: 'GET'
@@ -1981,7 +1979,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
             method: 'POST'
@@ -2019,7 +2017,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles',
             method: 'GET'
@@ -2057,7 +2055,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
             method: 'PATCH'
@@ -2095,7 +2093,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}',
             method: 'PUT'
@@ -2135,7 +2133,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
             method: 'DELETE'
@@ -2172,7 +2170,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
             method: 'GET'
@@ -2209,7 +2207,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences',
             method: 'POST'
@@ -2248,7 +2246,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences',
             method: 'GET'
@@ -2286,7 +2284,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
             method: 'PATCH'
@@ -2324,7 +2322,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}',
             method: 'PUT'
@@ -2363,7 +2361,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/segments',
             method: 'GET'
@@ -2404,7 +2402,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}',
             method: 'DELETE'
@@ -2442,7 +2440,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}',
             method: 'GET'
@@ -2480,7 +2478,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports',
             method: 'POST'
@@ -2519,7 +2517,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports',
             method: 'GET'
@@ -2560,7 +2558,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData',
             method: 'POST'
@@ -2598,7 +2596,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}',
             method: 'GET'
@@ -2637,7 +2635,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads',
             method: 'GET'
@@ -2677,7 +2675,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads',
             method: 'POST'
@@ -2718,7 +2716,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
             method: 'DELETE'
@@ -2755,7 +2753,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
             method: 'GET'
@@ -2792,7 +2790,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks',
             method: 'POST'
@@ -2830,7 +2828,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks',
             method: 'GET'
@@ -2868,7 +2866,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
             method: 'PATCH'
@@ -2906,7 +2904,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}',
             method: 'PUT'
@@ -2945,7 +2943,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}',
             method: 'GET'
@@ -2981,7 +2979,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties',
             method: 'POST'
@@ -3018,7 +3016,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties',
             method: 'GET'
@@ -3055,7 +3053,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}',
             method: 'PATCH'
@@ -3092,7 +3090,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}',
             method: 'PUT'
@@ -3132,7 +3130,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}',
             method: 'DELETE'
@@ -3169,7 +3167,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks',
             method: 'POST'
@@ -3207,7 +3205,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks',
             method: 'GET'
@@ -3245,7 +3243,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}',
             method: 'PUT'
@@ -3286,7 +3284,7 @@ function Analytics(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/analytics/v3/metadata/{reportType}/columns',
             method: 'GET'
@@ -3325,7 +3323,7 @@ function Analytics(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/analytics/v3/provisioning/createAccountTicket',
           method: 'POST'

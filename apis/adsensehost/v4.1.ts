@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * AdSense Host API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Generates performance reports, generates ad codes, and provides publisher management capabilities for AdSense Hosts.
  *
  * @example
- * var google = require('googleapis');
- * var adsensehost = google.adsensehost('v4.1');
+ * const google = require('googleapis');
+ * const adsensehost = google.adsensehost('v4.1');
  *
  * @namespace adsensehost
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Adsensehost
  */
 function Adsensehost(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.accounts = {
@@ -63,7 +61,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}',
           method: 'GET'
@@ -98,7 +96,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/accounts',
           method: 'GET'
@@ -136,7 +134,7 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}',
             method: 'GET'
@@ -173,7 +171,7 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients',
             method: 'GET'
@@ -213,7 +211,7 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}',
             method: 'DELETE'
@@ -250,7 +248,7 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}',
             method: 'GET'
@@ -288,7 +286,7 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode',
             method: 'GET'
@@ -325,7 +323,7 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'POST'
@@ -364,7 +362,7 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'GET'
@@ -402,7 +400,7 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'PATCH'
@@ -439,7 +437,7 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits',
             method: 'PUT'
@@ -486,7 +484,7 @@ function Adsensehost(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/adsensehost/v4.1/accounts/{accountId}/reports',
             method: 'GET'
@@ -525,7 +523,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}',
           method: 'GET'
@@ -561,7 +559,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients',
           method: 'GET'
@@ -603,7 +601,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/associationsessions/start',
           method: 'GET'
@@ -638,7 +636,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/associationsessions/verify',
           method: 'GET'
@@ -678,7 +676,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}',
           method: 'DELETE'
@@ -714,7 +712,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}',
           method: 'GET'
@@ -750,7 +748,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
           method: 'POST'
@@ -787,7 +785,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
           method: 'GET'
@@ -824,7 +822,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
           method: 'PATCH'
@@ -860,7 +858,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/customchannels',
           method: 'PUT'
@@ -907,7 +905,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/reports',
           method: 'GET'
@@ -947,7 +945,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/urlchannels/{urlChannelId}',
           method: 'DELETE'
@@ -983,7 +981,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/urlchannels',
           method: 'POST'
@@ -1020,7 +1018,7 @@ function Adsensehost(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/adsensehost/v4.1/adclients/{adClientId}/urlchannels',
           method: 'GET'

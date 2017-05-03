@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Drive API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.
  *
  * @example
- * var google = require('googleapis');
- * var drive = google.drive('v2');
+ * const google = require('googleapis');
+ * const drive = google.drive('v2');
  *
  * @namespace drive
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Drive
  */
 function Drive(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.about = {
@@ -65,7 +63,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/about',
           method: 'GET'
@@ -104,7 +102,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/apps/{appId}',
           method: 'GET'
@@ -141,7 +139,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/apps',
           method: 'GET'
@@ -182,7 +180,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/changes/{changeId}',
           method: 'GET'
@@ -218,7 +216,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/changes/startPageToken',
           method: 'GET'
@@ -262,7 +260,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/changes',
           method: 'GET'
@@ -307,7 +305,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/changes/watch',
           method: 'POST'
@@ -346,7 +344,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/channels/stop',
           method: 'POST'
@@ -386,7 +384,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children/{childId}',
           method: 'DELETE'
@@ -422,7 +420,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children/{childId}',
           method: 'GET'
@@ -459,7 +457,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children',
           method: 'POST'
@@ -498,7 +496,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{folderId}/children',
           method: 'GET'
@@ -538,7 +536,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
           method: 'DELETE'
@@ -575,7 +573,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
           method: 'GET'
@@ -611,7 +609,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments',
           method: 'POST'
@@ -650,7 +648,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments',
           method: 'GET'
@@ -687,7 +685,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
           method: 'PATCH'
@@ -724,7 +722,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}',
           method: 'PUT'
@@ -772,7 +770,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/copy',
           method: 'POST'
@@ -808,7 +806,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
           method: 'DELETE'
@@ -842,7 +840,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/trash',
           method: 'DELETE'
@@ -878,7 +876,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/export',
           method: 'GET'
@@ -914,7 +912,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/generateIds',
           method: 'GET'
@@ -954,7 +952,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
           method: 'GET'
@@ -1001,7 +999,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files',
           method: 'POST'
@@ -1028,7 +1026,7 @@ function Drive(options) { // eslint-disable-line
      * @param {string=} params.corpora Comma-separated list of bodies of items (files/documents) to which the query applies. Supported bodies are 'default', 'domain', 'teamDrive' and 'allTeamDrives'. 'allTeamDrives' must be combined with 'default'; all other values must be used in isolation. Prefer 'default' or 'teamDrive' to 'allTeamDrives' for efficiency.
      * @param {string=} params.corpus The body of items (files/documents) to which the query applies. Deprecated: use 'corpora' instead.
      * @param {boolean=} params.includeTeamDriveItems Whether Team Drive items should be included in results.
-     * @param {integer=} params.maxResults Maximum number of files to return.
+     * @param {integer=} params.maxResults The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
      * @param {string=} params.orderBy A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      * @param {string=} params.pageToken Page token for files.
      * @param {string=} params.projection This parameter is deprecated and has no function.
@@ -1047,7 +1045,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files',
           method: 'GET'
@@ -1097,7 +1095,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
           method: 'PATCH'
@@ -1133,7 +1131,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/touch',
           method: 'POST'
@@ -1169,7 +1167,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/trash',
           method: 'POST'
@@ -1205,7 +1203,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/untrash',
           method: 'POST'
@@ -1258,7 +1256,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}',
           method: 'PUT'
@@ -1300,7 +1298,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/watch',
           method: 'POST'
@@ -1340,7 +1338,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents/{parentId}',
           method: 'DELETE'
@@ -1376,7 +1374,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents/{parentId}',
           method: 'GET'
@@ -1413,7 +1411,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents',
           method: 'POST'
@@ -1448,7 +1446,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/parents',
           method: 'GET'
@@ -1489,7 +1487,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
           method: 'DELETE'
@@ -1526,7 +1524,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
           method: 'GET'
@@ -1561,7 +1559,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/permissionIds/{email}',
           method: 'GET'
@@ -1600,7 +1598,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions',
           method: 'POST'
@@ -1638,7 +1636,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions',
           method: 'GET'
@@ -1678,7 +1676,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
           method: 'PATCH'
@@ -1718,7 +1716,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/permissions/{permissionId}',
           method: 'PUT'
@@ -1759,7 +1757,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
           method: 'DELETE'
@@ -1796,7 +1794,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
           method: 'GET'
@@ -1832,7 +1830,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties',
           method: 'POST'
@@ -1867,7 +1865,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties',
           method: 'GET'
@@ -1905,7 +1903,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
           method: 'PATCH'
@@ -1943,7 +1941,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/properties/{propertyKey}',
           method: 'PUT'
@@ -1983,7 +1981,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/realtime',
           method: 'GET'
@@ -2022,7 +2020,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/realtime',
           method: 'PUT'
@@ -2064,7 +2062,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
           method: 'DELETE'
@@ -2102,7 +2100,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
           method: 'GET'
@@ -2139,7 +2137,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies',
           method: 'POST'
@@ -2178,7 +2176,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies',
           method: 'GET'
@@ -2216,7 +2214,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
           method: 'PATCH'
@@ -2254,7 +2252,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}',
           method: 'PUT'
@@ -2294,7 +2292,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
           method: 'DELETE'
@@ -2330,7 +2328,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
           method: 'GET'
@@ -2367,7 +2365,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions',
           method: 'GET'
@@ -2404,7 +2402,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
           method: 'PATCH'
@@ -2441,7 +2439,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/files/{fileId}/revisions/{revisionId}',
           method: 'PUT'
@@ -2480,7 +2478,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/teamdrives/{teamDriveId}',
           method: 'DELETE'
@@ -2515,7 +2513,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/teamdrives/{teamDriveId}',
           method: 'GET'
@@ -2551,7 +2549,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/teamdrives',
           method: 'POST'
@@ -2587,7 +2585,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/teamdrives',
           method: 'GET'
@@ -2623,7 +2621,7 @@ function Drive(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/drive/v2/teamdrives/{teamDriveId}',
           method: 'PUT'

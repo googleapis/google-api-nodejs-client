@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Cloud Vision API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Integrates Google Vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
  *
  * @example
- * var google = require('googleapis');
- * var vision = google.vision('v1');
+ * const google = require('googleapis');
+ * const vision = google.vision('v1');
  *
  * @namespace vision
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Vision
  */
 function Vision(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.images = {
@@ -115,7 +113,7 @@ function Vision(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://vision.googleapis.com/v1/images:annotate',
           method: 'POST'
@@ -132,54 +130,6 @@ function Vision(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef AnnotateImageRequest
- * @memberOf! vision(v1)
- * @type object
- * @property {vision(v1).Image} image The image to be processed.
- * @property {vision(v1).Feature[]} features Requested features.
- * @property {vision(v1).ImageContext} imageContext Additional context that may accompany the image.
- */
-/**
- * @typedef Status
- * @memberOf! vision(v1)
- * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-*/
-/**
- * @typedef LatLongRect
- * @memberOf! vision(v1)
- * @type object
- * @property {vision(v1).LatLng} maxLatLng Max lat/long pair.
- * @property {vision(v1).LatLng} minLatLng Min lat/long pair.
- */
-/**
- * @typedef Symbol
- * @memberOf! vision(v1)
- * @type object
-* @property {vision(v1).TextProperty} property Additional information detected for the symbol.
-* @property {vision(v1).BoundingPoly} boundingBox The bounding box for the symbol.
-The vertices are in the order of top-left, top-right, bottom-right,
-bottom-left. When a rotation of the bounding box is detected the rotation
-is represented as around the top-left corner as defined when the text is
-read in the &#39;natural&#39; orientation.
-For example:
-  * when the text is horizontal it might look like:
-     0----1
-     |    |
-     3----2
-  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:
-     2----3
-     |    |
-     1----0
-  and the vertice order will still be (0, 1, 2, 3).
-* @property {string} text The actual UTF-8 representation of the symbol.
-*/
 /**
  * @typedef CropHintsAnnotation
  * @memberOf! vision(v1)
@@ -213,6 +163,12 @@ If omitted, this color object is to be rendered as a solid color
 (as if the alpha value had been explicitly given with a value of 1.0).
 */
 /**
+ * @typedef ImageProperties
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {vision(v1).DominantColorsAnnotation} dominantColors If present, dominant colors completed successfully.
+ */
+/**
  * @typedef Feature
  * @memberOf! vision(v1)
  * @type object
@@ -220,21 +176,15 @@ If omitted, this color object is to be rendered as a solid color
  * @property {integer} maxResults Maximum number of results of this type.
  */
 /**
- * @typedef ImageProperties
- * @memberOf! vision(v1)
- * @type object
- * @property {vision(v1).DominantColorsAnnotation} dominantColors If present, dominant colors completed successfully.
- */
-/**
  * @typedef SafeSearchAnnotation
  * @memberOf! vision(v1)
  * @type object
+* @property {string} violence Violence likelihood.
 * @property {string} adult Represents the adult content likelihood for the image.
 * @property {string} spoof Spoof likelihood. The likelihood that an modification
 was made to the image&#39;s canonical version to make it appear
 funny or offensive.
 * @property {string} medical Likelihood that this is a medical image.
-* @property {string} violence Violence likelihood.
 */
 /**
  * @typedef DominantColorsAnnotation
@@ -250,28 +200,21 @@ funny or offensive.
  * @property {string} text UTF-8 text detected on the pages.
  */
 /**
- * @typedef DetectedLanguage
- * @memberOf! vision(v1)
- * @type object
-* @property {string} languageCode The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more
-information, see
-http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-* @property {number} confidence Confidence of detected language. Range [0, 1].
-*/
-/**
  * @typedef Vertex
  * @memberOf! vision(v1)
  * @type object
- * @property {integer} x X coordinate.
  * @property {integer} y Y coordinate.
+ * @property {integer} x X coordinate.
  */
 /**
- * @typedef TextProperty
+ * @typedef DetectedLanguage
  * @memberOf! vision(v1)
  * @type object
- * @property {vision(v1).DetectedBreak} detectedBreak Detected start or end of a text segment.
- * @property {vision(v1).DetectedLanguage[]} detectedLanguages A list of detected languages together with confidence.
- */
+* @property {number} confidence Confidence of detected language. Range [0, 1].
+* @property {string} languageCode The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more
+information, see
+http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+*/
 /**
  * @typedef BoundingPoly
  * @memberOf! vision(v1)
@@ -279,18 +222,26 @@ http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
  * @property {vision(v1).Vertex[]} vertices The bounding polygon vertices.
  */
 /**
+ * @typedef TextProperty
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {vision(v1).DetectedLanguage[]} detectedLanguages A list of detected languages together with confidence.
+ * @property {vision(v1).DetectedBreak} detectedBreak Detected start or end of a text segment.
+ */
+/**
  * @typedef WebEntity
  * @memberOf! vision(v1)
  * @type object
+* @property {string} entityId Opaque entity ID.
 * @property {string} description Canonical description of the entity, in English.
 * @property {number} score Overall relevancy score for the entity.
 Not normalized and not comparable across different image queries.
-* @property {string} entityId Opaque entity ID.
 */
 /**
  * @typedef AnnotateImageResponse
  * @memberOf! vision(v1)
  * @type object
+* @property {vision(v1).EntityAnnotation[]} landmarkAnnotations If present, landmark detection has completed successfully.
 * @property {vision(v1).EntityAnnotation[]} textAnnotations If present, text (OCR) detection has completed successfully.
 * @property {vision(v1).ImageProperties} imagePropertiesAnnotation If present, image properties were extracted successfully.
 * @property {vision(v1).FaceAnnotation[]} faceAnnotations If present, face detection has completed successfully.
@@ -306,7 +257,6 @@ correct, even when `error` is set.
 completed successfully.
 This annotation provides the structural hierarchy for the OCR detected
 text.
-* @property {vision(v1).EntityAnnotation[]} landmarkAnnotations If present, landmark detection has completed successfully.
 */
 /**
  * @typedef CropHintsParams
@@ -351,8 +301,7 @@ Those images are similar enough to share some key-point features. For
 example an original image will likely have partial matching for its crops.
 * @property {vision(v1).WebImage[]} visuallySimilarImages The visually similar image results.
 * @property {vision(v1).WebImage[]} fullMatchingImages Fully matching images from the Internet.
-They&#39;re definite neardups and most often a copy of the query image with
-merely a size change.
+Can include resized copies of the query image.
 * @property {vision(v1).WebEntity[]} webEntities Deduced entities from similar images on the Internet.
 * @property {vision(v1).WebPage[]} pagesWithMatchingImages Web pages containing the matching images from the Internet.
 */
@@ -426,18 +375,6 @@ Not normalized and not comparable across different image queries.
  * @typedef EntityAnnotation
  * @memberOf! vision(v1)
  * @type object
-* @property {vision(v1).BoundingPoly} boundingPoly Image region to which this entity belongs. Currently not produced
-for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
-are produced for the entire text detected in an image region, followed by
-`boundingPoly`s for each word within the detected text.
-* @property {string} locale The language code for the locale in which the entity textual
-`description` is expressed.
-* @property {string} description Entity textual description, expressed in its `locale` language.
-* @property {number} topicality The relevancy of the ICA (Image Content Annotation) label to the
-image. For example, the relevancy of &quot;tower&quot; is likely higher to an image
-containing the detected &quot;Eiffel Tower&quot; than to an image containing a
-detected distant towering building, even though the confidence that
-there is a tower in each image may be the same. Range [0, 1].
 * @property {vision(v1).Property[]} properties Some entities may have optional user-supplied `Property` (name/value)
 fields, such a score or string that qualifies the entity.
 * @property {number} score Overall score of the result. Range [0, 1].
@@ -452,6 +389,18 @@ Location information is usually present for landmarks.
 For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected,
 this field represents the confidence that there is a tower in the query
 image. Range [0, 1].
+* @property {string} locale The language code for the locale in which the entity textual
+`description` is expressed.
+* @property {vision(v1).BoundingPoly} boundingPoly Image region to which this entity belongs. Currently not produced
+for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
+are produced for the entire text detected in an image region, followed by
+`boundingPoly`s for each word within the detected text.
+* @property {string} description Entity textual description, expressed in its `locale` language.
+* @property {number} topicality The relevancy of the ICA (Image Content Annotation) label to the
+image. For example, the relevancy of &quot;tower&quot; is likely higher to an image
+containing the detected &quot;Eiffel Tower&quot; than to an image containing a
+detected distant towering building, even though the confidence that
+there is a tower in each image may be the same. Range [0, 1].
 */
 /**
  * @typedef CropHint
@@ -559,16 +508,16 @@ is used to eliminate the face from any image analysis that detects the
 &quot;amount of skin&quot; visible in an image. It is not based on the
 landmarker results, only on the initial face detection, hence
 the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
-* @property {string} angerLikelihood Anger likelihood.
-* @property {vision(v1).Landmark[]} landmarks Detected face landmarks.
 * @property {string} surpriseLikelihood Surprise likelihood.
+* @property {vision(v1).Landmark[]} landmarks Detected face landmarks.
+* @property {string} angerLikelihood Anger likelihood.
 * @property {number} landmarkingConfidence Face landmarking confidence. Range [0, 1].
 * @property {string} joyLikelihood Joy likelihood.
-* @property {string} underExposedLikelihood Under-exposed likelihood.
+* @property {number} detectionConfidence Detection confidence. Range [0, 1].
 * @property {number} panAngle Yaw angle, which indicates the leftward/rightward angle that the face is
 pointing relative to the vertical plane perpendicular to the image. Range
 [-180,180].
-* @property {number} detectionConfidence Detection confidence. Range [0, 1].
+* @property {string} underExposedLikelihood Under-exposed likelihood.
 */
 /**
  * @typedef BatchAnnotateImagesRequest
@@ -587,8 +536,6 @@ pointing relative to the vertical plane perpendicular to the image. Range
  * @typedef ImageContext
  * @memberOf! vision(v1)
  * @type object
-* @property {vision(v1).LatLongRect} latLongRect lat/long rectangle that specifies the location of the image.
-* @property {vision(v1).CropHintsParams} cropHintsParams Parameters for crop hints annotation request.
 * @property {string[]} languageHints List of languages to use for TEXT_DETECTION. In most cases, an empty value
 yields the best results since it enables automatic language detection. For
 languages based on the Latin alphabet, setting `language_hints` is not
@@ -597,6 +544,8 @@ setting a hint will help get better results (although it will be a
 significant hindrance if the hint is wrong). Text detection returns an
 error if one or more of the specified languages is not one of the
 [supported languages](/vision/docs/languages).
+* @property {vision(v1).LatLongRect} latLongRect lat/long rectangle that specifies the location of the image.
+* @property {vision(v1).CropHintsParams} cropHintsParams Parameters for crop hints annotation request.
 */
 /**
  * @typedef Page
@@ -606,5 +555,53 @@ error if one or more of the specified languages is not one of the
  * @property {vision(v1).Block[]} blocks List of blocks of text, images etc on this page.
  * @property {vision(v1).TextProperty} property Additional information detected on the page.
  * @property {integer} height Page height in pixels.
+ */
+/**
+ * @typedef AnnotateImageRequest
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {vision(v1).Image} image The image to be processed.
+ * @property {vision(v1).Feature[]} features Requested features.
+ * @property {vision(v1).ImageContext} imageContext Additional context that may accompany the image.
+ */
+/**
+ * @typedef Status
+ * @memberOf! vision(v1)
+ * @type object
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+*/
+/**
+ * @typedef Symbol
+ * @memberOf! vision(v1)
+ * @type object
+* @property {vision(v1).TextProperty} property Additional information detected for the symbol.
+* @property {vision(v1).BoundingPoly} boundingBox The bounding box for the symbol.
+The vertices are in the order of top-left, top-right, bottom-right,
+bottom-left. When a rotation of the bounding box is detected the rotation
+is represented as around the top-left corner as defined when the text is
+read in the &#39;natural&#39; orientation.
+For example:
+  * when the text is horizontal it might look like:
+     0----1
+     |    |
+     3----2
+  * when it&#39;s rotated 180 degrees around the top-left corner it becomes:
+     2----3
+     |    |
+     1----0
+  and the vertice order will still be (0, 1, 2, 3).
+* @property {string} text The actual UTF-8 representation of the symbol.
+*/
+/**
+ * @typedef LatLongRect
+ * @memberOf! vision(v1)
+ * @type object
+ * @property {vision(v1).LatLng} maxLatLng Max lat/long pair.
+ * @property {vision(v1).LatLng} minLatLng Min lat/long pair.
  */
 export = Vision;

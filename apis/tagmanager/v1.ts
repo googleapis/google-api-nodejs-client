@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Tag Manager API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Accesses Tag Manager accounts and containers.
  *
  * @example
- * var google = require('googleapis');
- * var tagmanager = google.tagmanager('v1');
+ * const google = require('googleapis');
+ * const tagmanager = google.tagmanager('v1');
  *
  * @namespace tagmanager
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Tagmanager
  */
 function Tagmanager(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.accounts = {
@@ -63,7 +61,7 @@ function Tagmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}',
           method: 'GET'
@@ -97,7 +95,7 @@ function Tagmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tagmanager/v1/accounts',
           method: 'GET'
@@ -134,7 +132,7 @@ function Tagmanager(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}',
           method: 'PUT'
@@ -172,7 +170,7 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers',
             method: 'POST'
@@ -208,7 +206,7 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}',
             method: 'DELETE'
@@ -244,7 +242,7 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}',
             method: 'GET'
@@ -279,7 +277,7 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers',
             method: 'GET'
@@ -317,7 +315,7 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}',
             method: 'PUT'
@@ -356,7 +354,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments',
               method: 'POST'
@@ -393,7 +391,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
               method: 'DELETE'
@@ -430,7 +428,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
               method: 'GET'
@@ -466,7 +464,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments',
               method: 'GET'
@@ -505,7 +503,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
               method: 'PATCH'
@@ -544,7 +542,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}',
               method: 'PUT'
@@ -584,7 +582,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders',
               method: 'POST'
@@ -621,7 +619,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
               method: 'DELETE'
@@ -658,7 +656,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
               method: 'GET'
@@ -694,7 +692,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders',
               method: 'GET'
@@ -733,7 +731,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}',
               method: 'PUT'
@@ -772,7 +770,7 @@ function Tagmanager(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}/entities',
                 method: 'GET'
@@ -817,7 +815,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/move_folders/{folderId}',
               method: 'PUT'
@@ -858,7 +856,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/reauthorize_environments/{environmentId}',
               method: 'PUT'
@@ -898,7 +896,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags',
               method: 'POST'
@@ -935,7 +933,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}',
               method: 'DELETE'
@@ -972,7 +970,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}',
               method: 'GET'
@@ -1008,7 +1006,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags',
               method: 'GET'
@@ -1047,7 +1045,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}',
               method: 'PUT'
@@ -1087,7 +1085,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers',
               method: 'POST'
@@ -1124,7 +1122,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}',
               method: 'DELETE'
@@ -1161,7 +1159,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}',
               method: 'GET'
@@ -1197,7 +1195,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers',
               method: 'GET'
@@ -1236,7 +1234,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}',
               method: 'PUT'
@@ -1276,7 +1274,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables',
               method: 'POST'
@@ -1313,7 +1311,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}',
               method: 'DELETE'
@@ -1350,7 +1348,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}',
               method: 'GET'
@@ -1386,7 +1384,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables',
               method: 'GET'
@@ -1425,7 +1423,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}',
               method: 'PUT'
@@ -1465,7 +1463,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions',
               method: 'POST'
@@ -1502,7 +1500,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}',
               method: 'DELETE'
@@ -1539,7 +1537,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}',
               method: 'GET'
@@ -1577,7 +1575,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions',
               method: 'GET'
@@ -1615,7 +1613,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/publish',
               method: 'POST'
@@ -1652,7 +1650,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/restore',
               method: 'POST'
@@ -1689,7 +1687,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/undelete',
               method: 'POST'
@@ -1728,7 +1726,7 @@ function Tagmanager(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}',
               method: 'PUT'
@@ -1768,7 +1766,7 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions',
             method: 'POST'
@@ -1804,7 +1802,7 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}',
             method: 'DELETE'
@@ -1840,7 +1838,7 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}',
             method: 'GET'
@@ -1875,7 +1873,7 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions',
             method: 'GET'
@@ -1912,7 +1910,7 @@ function Tagmanager(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://www.googleapis.com/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}',
             method: 'PUT'

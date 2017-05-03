@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Stackdriver Trace API
@@ -28,8 +26,8 @@ var utils = require('../../lib/utils');
 
  *
  * @example
- * var google = require('googleapis');
- * var cloudtrace = google.cloudtrace('v1');
+ * const google = require('googleapis');
+ * const cloudtrace = google.cloudtrace('v1');
  *
  * @namespace cloudtrace
  * @type {Function}
@@ -38,7 +36,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Cloudtrace
  */
 function Cloudtrace(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.projects = {
@@ -118,7 +116,7 @@ function Cloudtrace(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://cloudtrace.googleapis.com/v1/projects/{projectId}/traces',
           method: 'PATCH'
@@ -207,14 +205,14 @@ function Cloudtrace(options) { // eslint-disable-line
        * @memberOf! cloudtrace(v1)
        *
        * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size. Optional.
        * @param {string=} params.view Type of data returned for traces in the list. Optional. Default is `MINIMAL`.
        * @param {string=} params.orderBy Field used to sort the returned traces. Optional. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
        * @param {string} params.projectId ID of the Cloud project where the trace data is stored.
-       * @param {string=} params.filter An optional filter for the request.
-       * @param {string=} params.endTime Start of the time interval (inclusive) during which the trace data was collected from the application.
-       * @param {string=} params.startTime End of the time interval (inclusive) during which the trace data was collected from the application.
+       * @param {string=} params.filter An optional filter against labels for the request.  By default, searches use prefix matching. To specify exact match, prepend a plus symbol (`+`) to the search term. Multiple terms are ANDed. Syntax:  *   `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root     span starts with `NAME_PREFIX`. *   `+root:NAME` or `+NAME`: Return traces where any root span's name is     exactly `NAME`. *   `span:NAME_PREFIX`: Return traces where any span starts with     `NAME_PREFIX`. *   `+span:NAME`: Return traces where any span's name is exactly     `NAME`. *   `latency:DURATION`: Return traces whose overall latency is     greater or equal to than `DURATION`. Accepted units are nanoseconds     (`ns`), milliseconds (`ms`), and seconds (`s`). Default is `ms`. For     example, `latency:24ms` returns traces whose overall latency     is greater than or equal to 24 milliseconds. *   `label:LABEL_KEY`: Return all traces containing the specified     label key (exact match, case-sensitive) regardless of the key:value     pair's value (including empty values). *   `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified     label key (exact match, case-sensitive) whose value starts with     `VALUE_PREFIX`. Both a key and a value must be specified. *   `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair     exactly matching the specified text. Both a key and a value must be     specified. *   `method:VALUE`: Equivalent to `/http/method:VALUE`. *   `url:VALUE`: Equivalent to `/http/url:VALUE`.
+       * @param {string=} params.endTime End of the time interval (inclusive) during which the trace data was collected from the application.
+       * @param {string=} params.startTime Start of the time interval (inclusive) during which the trace data was collected from the application.
        * @param {string=} params.pageToken Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request. Optional.
-       * @param {integer=} params.pageSize Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value.  The implementation may return fewer traces than the requested page size. Optional.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -226,7 +224,7 @@ function Cloudtrace(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://cloudtrace.googleapis.com/v1/projects/{projectId}/traces',
             method: 'GET'
@@ -316,7 +314,7 @@ function Cloudtrace(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://cloudtrace.googleapis.com/v1/projects/{projectId}/traces/{traceId}',
             method: 'GET'
@@ -334,6 +332,21 @@ function Cloudtrace(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef Trace
+ * @memberOf! cloudtrace(v1)
+ * @type object
+* @property {string} traceId Globally unique identifier for the trace. This identifier is a 128-bit
+numeric value formatted as a 32-byte hex string.
+* @property {string} projectId Project ID of the Cloud project where the trace data is stored.
+* @property {cloudtrace(v1).TraceSpan[]} spans Collection of spans in the trace.
+*/
+/**
+ * @typedef Traces
+ * @memberOf! cloudtrace(v1)
+ * @type object
+ * @property {cloudtrace(v1).Trace[]} traces List of traces.
+ */
+/**
  * @typedef TraceSpan
  * @memberOf! cloudtrace(v1)
  * @type object
@@ -346,7 +359,38 @@ unique within a trace.
 two spans with the same name may be distinguished using `RPC_CLIENT`
 and `RPC_SERVER` to identify queueing latency associated with the span.
 * @property {object} labels Collection of labels associated with the span. Label keys must be less than
-128 bytes. Label values must be less than 16 kilobytes.
+128 bytes. Label values must be less than 16 kilobytes (10MB for
+`/stacktrace` values).
+
+Some predefined label keys exist, or you may create your own. When creating
+your own, we recommend the following formats:
+
+* `/category/product/key` for agents of well-known products (e.g.
+  `/db/mongodb/read_size`).
+* `short_host/path/key` for domain-specific keys (e.g.
+  `foo.com/myproduct/bar`)
+
+Predefined labels include:
+
+*   `/agent`
+*   `/component`
+*   `/error/message`
+*   `/error/name`
+*   `/http/client_city`
+*   `/http/client_country`
+*   `/http/client_protocol`
+*   `/http/client_region`
+*   `/http/host`
+*   `/http/method`
+*   `/http/redirected_url`
+*   `/http/request/size`
+*   `/http/response/size`
+*   `/http/status_code`
+*   `/http/url`
+*   `/http/user_agent`
+*   `/pid`
+*   `/stacktrace`
+*   `/tid`
 * @property {string} name Name of the span. Must be less than 128 bytes. The span name is sanitized
 and displayed in the Stackdriver Trace tool in the
 {% dynamic print site_values.console_name %}.
@@ -368,20 +412,5 @@ retrieving additional traces.
  * @typedef Empty
  * @memberOf! cloudtrace(v1)
  * @type object
- */
-/**
- * @typedef Trace
- * @memberOf! cloudtrace(v1)
- * @type object
-* @property {string} projectId Project ID of the Cloud project where the trace data is stored.
-* @property {cloudtrace(v1).TraceSpan[]} spans Collection of spans in the trace.
-* @property {string} traceId Globally unique identifier for the trace. This identifier is a 128-bit
-numeric value formatted as a 32-byte hex string.
-*/
-/**
- * @typedef Traces
- * @memberOf! cloudtrace(v1)
- * @type object
- * @property {cloudtrace(v1).Trace[]} traces List of traces.
  */
 export = Cloudtrace;

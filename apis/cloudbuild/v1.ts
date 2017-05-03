@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Cloud Container Builder API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Builds container images in the cloud.
  *
  * @example
- * var google = require('googleapis');
- * var cloudbuild = google.cloudbuild('v1');
+ * const google = require('googleapis');
+ * const cloudbuild = google.cloudbuild('v1');
  *
  * @namespace cloudbuild
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Cloudbuild
  */
 function Cloudbuild(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.operations = {
@@ -64,7 +62,7 @@ function Cloudbuild(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://cloudbuild.googleapis.com/v1/{name}:cancel',
           method: 'POST'
@@ -102,7 +100,7 @@ function Cloudbuild(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://cloudbuild.googleapis.com/v1/{name}',
           method: 'GET'
@@ -137,7 +135,7 @@ function Cloudbuild(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://cloudbuild.googleapis.com/v1/{name}',
           method: 'GET'
@@ -154,6 +152,156 @@ function Cloudbuild(options) { // eslint-disable-line
   };
 
   self.projects = {
+
+    builds: {
+
+      /**
+       * cloudbuild.projects.builds.get
+       *
+       * @desc Returns information about a previously requested build.  The Build that is returned includes its status (e.g., success or failure, or in-progress), and timing information.
+       *
+       * @alias cloudbuild.projects.builds.get
+       * @memberOf! cloudbuild(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.id ID of the build.
+       * @param {string} params.projectId ID of the project.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds/{id}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['projectId', 'id'],
+          pathParams: ['id', 'projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * cloudbuild.projects.builds.list
+       *
+       * @desc Lists previously requested builds.  Previously requested builds may still be in-progress, or may have finished successfully or unsuccessfully.
+       *
+       * @alias cloudbuild.projects.builds.list
+       * @memberOf! cloudbuild(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.filter The raw filter text to constrain the results.
+       * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
+       * @param {integer=} params.pageSize Number of results to return in the list.
+       * @param {string} params.projectId ID of the project.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * cloudbuild.projects.builds.create
+       *
+       * @desc Starts a build with the specified configuration.  The long-running Operation returned by this method will include the ID of the build, which can be passed to GetBuild to determine its status (e.g., success or failure).
+       *
+       * @alias cloudbuild.projects.builds.create
+       * @memberOf! cloudbuild(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the project.
+       * @param {cloudbuild(v1).Build} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['projectId'],
+          pathParams: ['projectId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * cloudbuild.projects.builds.cancel
+       *
+       * @desc Cancels a requested build in progress.
+       *
+       * @alias cloudbuild.projects.builds.cancel
+       * @memberOf! cloudbuild(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.projectId ID of the project.
+       * @param {string} params.id ID of the build.
+       * @param {cloudbuild(v1).CancelBuildRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      cancel: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds/{id}:cancel',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['projectId', 'id'],
+          pathParams: ['projectId', 'id'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
 
     triggers: {
 
@@ -179,7 +327,7 @@ function Cloudbuild(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers',
             method: 'POST'
@@ -202,8 +350,8 @@ function Cloudbuild(options) { // eslint-disable-line
        * @memberOf! cloudbuild(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.triggerId ID of the BuildTrigger to delete.
        * @param {string} params.projectId ID of the project that owns the trigger.
+       * @param {string} params.triggerId ID of the BuildTrigger to delete.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -215,14 +363,14 @@ function Cloudbuild(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers/{triggerId}',
             method: 'DELETE'
           }, options),
           params: params,
           requiredParams: ['projectId', 'triggerId'],
-          pathParams: ['triggerId', 'projectId'],
+          pathParams: ['projectId', 'triggerId'],
           context: self
         };
 
@@ -251,7 +399,7 @@ function Cloudbuild(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers/{triggerId}',
             method: 'GET'
@@ -286,7 +434,7 @@ function Cloudbuild(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers',
             method: 'GET'
@@ -323,7 +471,7 @@ function Cloudbuild(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/triggers/{triggerId}',
             method: 'PATCH'
@@ -336,160 +484,38 @@ function Cloudbuild(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       }
-    },
-
-    builds: {
-
-      /**
-       * cloudbuild.projects.builds.cancel
-       *
-       * @desc Cancels a requested build in progress.
-       *
-       * @alias cloudbuild.projects.builds.cancel
-       * @memberOf! cloudbuild(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectId ID of the project.
-       * @param {string} params.id ID of the build.
-       * @param {cloudbuild(v1).CancelBuildRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      cancel: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds/{id}:cancel',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['projectId', 'id'],
-          pathParams: ['projectId', 'id'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * cloudbuild.projects.builds.get
-       *
-       * @desc Returns information about a previously requested build.  The Build that is returned includes its status (e.g., success or failure, or in-progress), and timing information.
-       *
-       * @alias cloudbuild.projects.builds.get
-       * @memberOf! cloudbuild(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectId ID of the project.
-       * @param {string} params.id ID of the build.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds/{id}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['projectId', 'id'],
-          pathParams: ['projectId', 'id'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * cloudbuild.projects.builds.list
-       *
-       * @desc Lists previously requested builds.  Previously requested builds may still be in-progress, or may have finished successfully or unsuccessfully.
-       *
-       * @alias cloudbuild.projects.builds.list
-       * @memberOf! cloudbuild(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter The raw filter text to constrain the results.
-       * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
-       * @param {integer=} params.pageSize Number of results to return in the list.
-       * @param {string} params.projectId ID of the project.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * cloudbuild.projects.builds.create
-       *
-       * @desc Starts a build with the specified configuration.  The long-running Operation returned by this method will include the ID of the build, which can be passed to GetBuild to determine its status (e.g., success or failure).
-       *
-       * @alias cloudbuild.projects.builds.create
-       * @memberOf! cloudbuild(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectId ID of the project.
-       * @param {cloudbuild(v1).Build} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://cloudbuild.googleapis.com/v1/projects/{projectId}/builds',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
     }
   };
 }
 
+/**
+ * @typedef BuildOptions
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {string} requestedVerifyOption Requested verifiability options.
+ * @property {string[]} sourceProvenanceHash Requested hash for SourceProvenance.
+ */
+/**
+ * @typedef StorageSource
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {string} bucket Google Cloud Storage bucket containing source (see
+[Bucket Name
+Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+* @property {string} object Google Cloud Storage object containing source.
+
+This object must be a gzipped archive file (.tar.gz) containing source to
+build.
+* @property {string} generation Google Cloud Storage generation for the object. If the generation is
+omitted, the latest generation will be used.
+*/
+/**
+ * @typedef Results
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {string[]} buildStepImages List of build step digests, in order corresponding to build step indices.
+ * @property {cloudbuild(v1).BuiltImage[]} images Images that were built as a part of the build.
+ */
 /**
  * @typedef BuildOperationMetadata
  * @memberOf! cloudbuild(v1)
@@ -524,6 +550,14 @@ generations resolved.
  * @typedef Operation
  * @memberOf! cloudbuild(v1)
  * @type object
+* @property {string} name The server-assigned name, which is only unique within the same service that
+originally returns it. If you use the default HTTP mapping, the
+`name` should have the format of `operations/some/unique/name`.
+* @property {cloudbuild(v1).Status} error The error result of the operation in case of failure or cancellation.
+* @property {object} metadata Service-specific metadata associated with the operation.  It typically
+contains progress information and common metadata such as create time.
+Some services might not provide such metadata.  Any method that returns a
+long-running operation should document the metadata type, if any.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
@@ -535,14 +569,6 @@ methods, the response should have the type `XxxResponse`, where `Xxx`
 is the original method name.  For example, if the original method name
 is `TakeSnapshot()`, the inferred response type is
 `TakeSnapshotResponse`.
-* @property {string} name The server-assigned name, which is only unique within the same service that
-originally returns it. If you use the default HTTP mapping, the
-`name` should have the format of `operations/some/unique/name`.
-* @property {cloudbuild(v1).Status} error The error result of the operation in case of failure or cancellation.
-* @property {object} metadata Service-specific metadata associated with the operation.  It typically
-contains progress information and common metadata such as create time.
-Some services might not provide such metadata.  Any method that returns a
-long-running operation should document the metadata type, if any.
 */
 /**
  * @typedef ListBuildTriggersResponse
@@ -554,9 +580,27 @@ long-running operation should document the metadata type, if any.
  * @typedef BuiltImage
  * @memberOf! cloudbuild(v1)
  * @type object
+* @property {string} digest Docker Registry 2.0 digest.
 * @property {string} name Name used to push the container image to Google Container Registry, as
 presented to `docker push`.
-* @property {string} digest Docker Registry 2.0 digest.
+*/
+/**
+ * @typedef Hash
+ * @memberOf! cloudbuild(v1)
+ * @type object
+ * @property {string} type The type of hash that was performed.
+ * @property {string} value The hash value.
+ */
+/**
+ * @typedef RepoSource
+ * @memberOf! cloudbuild(v1)
+ * @type object
+* @property {string} tagName Name of the tag to build.
+* @property {string} commitSha Explicit commit SHA to build.
+* @property {string} projectId ID of the project that owns the repo. If omitted, the project ID requesting
+the build is assumed.
+* @property {string} repoName Name of the repo. If omitted, the name &quot;default&quot; is assumed.
+* @property {string} branchName Name of the branch to build.
 */
 /**
  * @typedef BuildStep
@@ -584,15 +628,15 @@ If unset, the image&#39;s default will be used.
 reference this build step as a dependency.
 * @property {string} dir Working directory (relative to project source root) to use when running
 this operation&#39;s container.
-* @property {string[]} env A list of environment variable definitions to be used when running a step.
-
-The elements are of the form &quot;KEY=VALUE&quot; for the environment variable &quot;KEY&quot;
-being given the value &quot;VALUE&quot;.
 * @property {string[]} waitFor The ID(s) of the step(s) that this build step depends on.
 This build step will not start until all the build steps in wait_for
 have completed successfully. If wait_for is empty, this build step will
 start when all previous build steps in the Build.Steps list have completed
 successfully.
+* @property {string[]} env A list of environment variable definitions to be used when running a step.
+
+The elements are of the form &quot;KEY=VALUE&quot; for the environment variable &quot;KEY&quot;
+being given the value &quot;VALUE&quot;.
 * @property {string[]} args A list of arguments that will be presented to the step when it is started.
 
 If the image used to run the step&#39;s container has an entrypoint, these args
@@ -600,24 +644,6 @@ will be used as arguments to that entrypoint. If the image does not define
 an entrypoint, the first element in args will be used as the entrypoint,
 and the remainder will be used as arguments.
 */
-/**
- * @typedef RepoSource
- * @memberOf! cloudbuild(v1)
- * @type object
-* @property {string} tagName Name of the tag to build.
-* @property {string} commitSha Explicit commit SHA to build.
-* @property {string} projectId ID of the project that owns the repo. If omitted, the project ID requesting
-the build is assumed.
-* @property {string} repoName Name of the repo. If omitted, the name &quot;default&quot; is assumed.
-* @property {string} branchName Name of the branch to build.
-*/
-/**
- * @typedef Hash
- * @memberOf! cloudbuild(v1)
- * @type object
- * @property {string} type The type of hash that was performed.
- * @property {string} value The hash value.
- */
 /**
  * @typedef FileHashes
  * @memberOf! cloudbuild(v1)
@@ -628,12 +654,12 @@ the build is assumed.
  * @typedef Status
  * @memberOf! cloudbuild(v1)
  * @type object
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
 * @property {object[]} details A list of messages that carry the error details.  There will be a
 common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 */
 /**
  * @typedef Empty
@@ -644,6 +670,10 @@ common set of message types for APIs to use.
  * @typedef BuildTrigger
  * @memberOf! cloudbuild(v1)
  * @type object
+* @property {string} id Unique identifier of the trigger.
+
+@OutputOnly
+* @property {cloudbuild(v1).Build} build Contents of the build template.
 * @property {object} substitutions Substitutions data for Build resource.
 * @property {string} description Human-readable description of this trigger.
 * @property {string} createTime Time when the trigger was created.
@@ -657,21 +687,28 @@ expressions. Any branch or tag change that matches that regular expression
 will trigger a build.
 * @property {string} filename Path, from the source root, to a file whose contents is used for the
 template.
-* @property {string} id Unique identifier of the trigger.
-
-@OutputOnly
-* @property {cloudbuild(v1).Build} build Contents of the build template.
 */
 /**
  * @typedef Build
  * @memberOf! cloudbuild(v1)
  * @type object
-* @property {string} logUrl URL to logs for this build in Google Cloud Logging.
-@OutputOnly
+* @property {string[]} images A list of images to be pushed upon the successful completion of all build
+steps.
+
+The images will be pushed using the builder service account&#39;s credentials.
+
+The digests of the pushed images will be stored in the Build resource&#39;s
+results field.
+
+If any of the images fail to be pushed, the build is marked FAILURE.
+* @property {string} projectId ID of the project.
+@OutputOnly.
 * @property {string} finishTime Time at which execution of the build was finished.
 
 The difference between finish_time and start_time is the duration of the
 build&#39;s execution.
+@OutputOnly
+* @property {string} logUrl URL to logs for this build in Google Cloud Logging.
 @OutputOnly
 * @property {cloudbuild(v1).BuildOptions} options Special options for this build.
 * @property {cloudbuild(v1).Source} source Describes where to find the source files to build.
@@ -684,18 +721,19 @@ granularity. If this amount of time elapses, work on the build will cease
 and the build status will be TIMEOUT.
 
 Default time is ten minutes.
-* @property {cloudbuild(v1).Results} results Results of the build.
-@OutputOnly
 * @property {string} logsBucket Google Cloud Storage bucket where logs should be written (see
 [Bucket Name
 Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
 Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.
+* @property {cloudbuild(v1).Results} results Results of the build.
+@OutputOnly
 * @property {cloudbuild(v1).BuildStep[]} steps Describes the operations to be performed on the workspace.
 * @property {string} buildTriggerId The ID of the BuildTrigger that triggered this build, if it was
 triggered automatically.
 @OutputOnly
 * @property {string} id Unique identifier of the build.
 @OutputOnly
+* @property {string[]} tags Tags for annotation of a Build. These are not docker tags.
 * @property {string} startTime Time at which execution of the build was started.
 @OutputOnly
 * @property {object} substitutions Substitutions data for Build resource.
@@ -703,17 +741,6 @@ triggered automatically.
 @OutputOnly
 * @property {cloudbuild(v1).SourceProvenance} sourceProvenance A permanent fixed identifier for source.
 @OutputOnly
-* @property {string[]} images A list of images to be pushed upon the successful completion of all build
-steps.
-
-The images will be pushed using the builder service account&#39;s credentials.
-
-The digests of the pushed images will be stored in the Build resource&#39;s
-results field.
-
-If any of the images fail to be pushed, the build is marked FAILURE.
-* @property {string} projectId ID of the project.
-@OutputOnly.
 */
 /**
  * @typedef CancelBuildRequest
@@ -731,8 +758,8 @@ If any of the images fail to be pushed, the build is marked FAILURE.
  * @typedef ListOperationsResponse
  * @memberOf! cloudbuild(v1)
  * @type object
- * @property {string} nextPageToken The standard List next-page token.
  * @property {cloudbuild(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ * @property {string} nextPageToken The standard List next-page token.
  */
 /**
  * @typedef Source
@@ -742,32 +769,4 @@ If any of the images fail to be pushed, the build is marked FAILURE.
 Storage.
 * @property {cloudbuild(v1).RepoSource} repoSource If provided, get source from this location in a Cloud Repo.
 */
-/**
- * @typedef BuildOptions
- * @memberOf! cloudbuild(v1)
- * @type object
- * @property {string[]} sourceProvenanceHash Requested hash for SourceProvenance.
- * @property {string} requestedVerifyOption Requested verifiability options.
- */
-/**
- * @typedef StorageSource
- * @memberOf! cloudbuild(v1)
- * @type object
-* @property {string} generation Google Cloud Storage generation for the object. If the generation is
-omitted, the latest generation will be used.
-* @property {string} bucket Google Cloud Storage bucket containing source (see
-[Bucket Name
-Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
-* @property {string} object Google Cloud Storage object containing source.
-
-This object must be a gzipped archive file (.tar.gz) containing source to
-build.
-*/
-/**
- * @typedef Results
- * @memberOf! cloudbuild(v1)
- * @type object
- * @property {cloudbuild(v1).BuiltImage[]} images Images that were built as a part of the build.
- * @property {string[]} buildStepImages List of build step digests, in order corresponding to build step indices.
- */
 export = Cloudbuild;

@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Cloud Spanner API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Cloud Spanner is a managed, mission-critical, globally consistent and scalable relational database service.
  *
  * @example
- * var google = require('googleapis');
- * var spanner = google.spanner('v1');
+ * const google = require('googleapis');
+ * const spanner = google.spanner('v1');
  *
  * @namespace spanner
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Spanner
  */
 function Spanner(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.projects = {
@@ -53,9 +51,9 @@ function Spanner(options) { // eslint-disable-line
        * @memberOf! spanner(v1)
        *
        * @param {object} params Parameters for request
+       * @param {string} params.parent Required. The name of the project for which a list of supported instance configurations is requested. Values are of the form `projects/<project>`.
        * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListInstanceConfigsResponse.
        * @param {integer=} params.pageSize Number of instance configurations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
-       * @param {string} params.parent Required. The name of the project for which a list of supported instance configurations is requested. Values are of the form `projects/<project>`.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -67,7 +65,7 @@ function Spanner(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://spanner.googleapis.com/v1/{parent}/instanceConfigs',
             method: 'GET'
@@ -102,7 +100,7 @@ function Spanner(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://spanner.googleapis.com/v1/{name}',
             method: 'GET'
@@ -118,185 +116,6 @@ function Spanner(options) { // eslint-disable-line
     },
 
     instances: {
-
-      /**
-       * spanner.projects.instances.create
-       *
-       * @desc Creates an instance and begins preparing it to begin serving. The returned long-running operation can be used to track the progress of preparing the new instance. The instance name is assigned by the caller. If the named instance already exists, `CreateInstance` returns `ALREADY_EXISTS`.  Immediately upon completion of this request:    * The instance is readable via the API, with all requested attributes     but no allocated resources. Its state is `CREATING`.  Until completion of the returned operation:    * Cancelling the operation renders the instance immediately unreadable     via the API.   * The instance can be deleted.   * All other attempts to modify the instance are rejected.  Upon completion of the returned operation:    * Billing for all successfully-allocated resources begins (some types     may have lower than the requested levels).   * Databases can be created in the instance.   * The instance's allocated resource levels are readable via the API.   * The instance's state becomes `READY`.  The returned long-running operation will have a name of the format `<instance_name>/operations/<operation_id>` and can be used to track creation of the instance.  The metadata field type is CreateInstanceMetadata. The response field type is Instance, if successful.
-       *
-       * @alias spanner.projects.instances.create
-       * @memberOf! spanner(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent Required. The name of the project in which to create the instance. Values are of the form `projects/<project>`.
-       * @param {spanner(v1).CreateInstanceRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://spanner.googleapis.com/v1/{parent}/instances',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * spanner.projects.instances.setIamPolicy
-       *
-       * @desc Sets the access control policy on an instance resource. Replaces any existing policy.  Authorization requires `spanner.instances.setIamPolicy` on resource.
-       *
-       * @alias spanner.projects.instances.setIamPolicy
-       * @memberOf! spanner(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for databases resources.
-       * @param {spanner(v1).SetIamPolicyRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      setIamPolicy: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://spanner.googleapis.com/v1/{resource}:setIamPolicy',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * spanner.projects.instances.getIamPolicy
-       *
-       * @desc Gets the access control policy for an instance resource. Returns an empty policy if an instance exists but does not have a policy set.  Authorization requires `spanner.instances.getIamPolicy` on resource.
-       *
-       * @alias spanner.projects.instances.getIamPolicy
-       * @memberOf! spanner(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
-       * @param {spanner(v1).GetIamPolicyRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      getIamPolicy: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://spanner.googleapis.com/v1/{resource}:getIamPolicy',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * spanner.projects.instances.patch
-       *
-       * @desc Updates an instance, and begins allocating or releasing resources as requested. The returned long-running operation can be used to track the progress of updating the instance. If the named instance does not exist, returns `NOT_FOUND`.  Immediately upon completion of this request:    * For resource types for which a decrease in the instance's allocation     has been requested, billing is based on the newly-requested level.  Until completion of the returned operation:    * Cancelling the operation sets its metadata's     cancel_time, and begins     restoring resources to their pre-request values. The operation     is guaranteed to succeed at undoing all resource changes,     after which point it terminates with a `CANCELLED` status.   * All other attempts to modify the instance are rejected.   * Reading the instance via the API continues to give the pre-request     resource levels.  Upon completion of the returned operation:    * Billing begins for all successfully-allocated resources (some types     may have lower than the requested levels).   * All newly-reserved resources are available for serving the instance's     tables.   * The instance's new resource levels are readable via the API.  The returned long-running operation will have a name of the format `<instance_name>/operations/<operation_id>` and can be used to track the instance modification.  The metadata field type is UpdateInstanceMetadata. The response field type is Instance, if successful.  Authorization requires `spanner.instances.update` permission on resource name.
-       *
-       * @alias spanner.projects.instances.patch
-       * @memberOf! spanner(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name Required. A unique identifier for the instance, which cannot be changed after the instance is created. Values are of the form `projects/<project>/instances/a-z*[a-z0-9]`. The final segment of the name must be between 6 and 30 characters in length.
-       * @param {spanner(v1).UpdateInstanceRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      patch: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://spanner.googleapis.com/v1/{name}',
-            method: 'PATCH'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * spanner.projects.instances.get
-       *
-       * @desc Gets information about a particular instance.
-       *
-       * @alias spanner.projects.instances.get
-       * @memberOf! spanner(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name Required. The name of the requested instance. Values are of the form `projects/<project>/instances/<instance>`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://spanner.googleapis.com/v1/{name}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
 
       /**
        * spanner.projects.instances.testIamPermissions
@@ -320,7 +139,7 @@ function Spanner(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://spanner.googleapis.com/v1/{resource}:testIamPermissions',
             method: 'POST'
@@ -355,7 +174,7 @@ function Spanner(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://spanner.googleapis.com/v1/{name}',
             method: 'DELETE'
@@ -393,7 +212,7 @@ function Spanner(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://spanner.googleapis.com/v1/{parent}/instances',
             method: 'GET'
@@ -407,7 +226,330 @@ function Spanner(options) { // eslint-disable-line
         return createAPIRequest(parameters, callback);
       },
 
+      /**
+       * spanner.projects.instances.setIamPolicy
+       *
+       * @desc Sets the access control policy on an instance resource. Replaces any existing policy.  Authorization requires `spanner.instances.setIamPolicy` on resource.
+       *
+       * @alias spanner.projects.instances.setIamPolicy
+       * @memberOf! spanner(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for databases resources.
+       * @param {spanner(v1).SetIamPolicyRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      setIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://spanner.googleapis.com/v1/{resource}:setIamPolicy',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['resource'],
+          pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * spanner.projects.instances.create
+       *
+       * @desc Creates an instance and begins preparing it to begin serving. The returned long-running operation can be used to track the progress of preparing the new instance. The instance name is assigned by the caller. If the named instance already exists, `CreateInstance` returns `ALREADY_EXISTS`.  Immediately upon completion of this request:    * The instance is readable via the API, with all requested attributes     but no allocated resources. Its state is `CREATING`.  Until completion of the returned operation:    * Cancelling the operation renders the instance immediately unreadable     via the API.   * The instance can be deleted.   * All other attempts to modify the instance are rejected.  Upon completion of the returned operation:    * Billing for all successfully-allocated resources begins (some types     may have lower than the requested levels).   * Databases can be created in the instance.   * The instance's allocated resource levels are readable via the API.   * The instance's state becomes `READY`.  The returned long-running operation will have a name of the format `<instance_name>/operations/<operation_id>` and can be used to track creation of the instance.  The metadata field type is CreateInstanceMetadata. The response field type is Instance, if successful.
+       *
+       * @alias spanner.projects.instances.create
+       * @memberOf! spanner(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.parent Required. The name of the project in which to create the instance. Values are of the form `projects/<project>`.
+       * @param {spanner(v1).CreateInstanceRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://spanner.googleapis.com/v1/{parent}/instances',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * spanner.projects.instances.getIamPolicy
+       *
+       * @desc Gets the access control policy for an instance resource. Returns an empty policy if an instance exists but does not have a policy set.  Authorization requires `spanner.instances.getIamPolicy` on resource.
+       *
+       * @alias spanner.projects.instances.getIamPolicy
+       * @memberOf! spanner(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for database resources.
+       * @param {spanner(v1).GetIamPolicyRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      getIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://spanner.googleapis.com/v1/{resource}:getIamPolicy',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['resource'],
+          pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * spanner.projects.instances.get
+       *
+       * @desc Gets information about a particular instance.
+       *
+       * @alias spanner.projects.instances.get
+       * @memberOf! spanner(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name Required. The name of the requested instance. Values are of the form `projects/<project>/instances/<instance>`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://spanner.googleapis.com/v1/{name}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * spanner.projects.instances.patch
+       *
+       * @desc Updates an instance, and begins allocating or releasing resources as requested. The returned long-running operation can be used to track the progress of updating the instance. If the named instance does not exist, returns `NOT_FOUND`.  Immediately upon completion of this request:    * For resource types for which a decrease in the instance's allocation     has been requested, billing is based on the newly-requested level.  Until completion of the returned operation:    * Cancelling the operation sets its metadata's     cancel_time, and begins     restoring resources to their pre-request values. The operation     is guaranteed to succeed at undoing all resource changes,     after which point it terminates with a `CANCELLED` status.   * All other attempts to modify the instance are rejected.   * Reading the instance via the API continues to give the pre-request     resource levels.  Upon completion of the returned operation:    * Billing begins for all successfully-allocated resources (some types     may have lower than the requested levels).   * All newly-reserved resources are available for serving the instance's     tables.   * The instance's new resource levels are readable via the API.  The returned long-running operation will have a name of the format `<instance_name>/operations/<operation_id>` and can be used to track the instance modification.  The metadata field type is UpdateInstanceMetadata. The response field type is Instance, if successful.  Authorization requires `spanner.instances.update` permission on resource name.
+       *
+       * @alias spanner.projects.instances.patch
+       * @memberOf! spanner(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name Required. A unique identifier for the instance, which cannot be changed after the instance is created. Values are of the form `projects/<project>/instances/a-z*[a-z0-9]`. The final segment of the name must be between 6 and 30 characters in length.
+       * @param {spanner(v1).UpdateInstanceRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      patch: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://spanner.googleapis.com/v1/{name}',
+            method: 'PATCH'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
       databases: {
+
+        /**
+         * spanner.projects.instances.databases.getDdl
+         *
+         * @desc Returns the schema of a Cloud Spanner database as a list of formatted DDL statements. This method does not show pending schema updates, those may be queried using the Operations API.
+         *
+         * @alias spanner.projects.instances.databases.getDdl
+         * @memberOf! spanner(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.database Required. The database whose schema we wish to get.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        getDdl: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: utils.extend({
+              url: 'https://spanner.googleapis.com/v1/{database}/ddl',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['database'],
+            pathParams: ['database'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * spanner.projects.instances.databases.list
+         *
+         * @desc Lists Cloud Spanner databases.
+         *
+         * @alias spanner.projects.instances.databases.list
+         * @memberOf! spanner(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListDatabasesResponse.
+         * @param {integer=} params.pageSize Number of databases to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
+         * @param {string} params.parent Required. The instance whose databases should be listed. Values are of the form `projects/<project>/instances/<instance>`.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: utils.extend({
+              url: 'https://spanner.googleapis.com/v1/{parent}/databases',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['parent'],
+            pathParams: ['parent'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * spanner.projects.instances.databases.create
+         *
+         * @desc Creates a new Cloud Spanner database and starts to prepare it for serving. The returned long-running operation will have a name of the format `<database_name>/operations/<operation_id>` and can be used to track preparation of the database. The metadata field type is CreateDatabaseMetadata. The response field type is Database, if successful.
+         *
+         * @alias spanner.projects.instances.databases.create
+         * @memberOf! spanner(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.parent Required. The name of the instance that will serve the new database. Values are of the form `projects/<project>/instances/<instance>`.
+         * @param {spanner(v1).CreateDatabaseRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: utils.extend({
+              url: 'https://spanner.googleapis.com/v1/{parent}/databases',
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['parent'],
+            pathParams: ['parent'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * spanner.projects.instances.databases.setIamPolicy
+         *
+         * @desc Sets the access control policy on a database resource. Replaces any existing policy.  Authorization requires `spanner.databases.setIamPolicy` permission on resource.
+         *
+         * @alias spanner.projects.instances.databases.setIamPolicy
+         * @memberOf! spanner(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for databases resources.
+         * @param {spanner(v1).SetIamPolicyRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        setIamPolicy: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: utils.extend({
+              url: 'https://spanner.googleapis.com/v1/{resource}:setIamPolicy',
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['resource'],
+            pathParams: ['resource'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
 
         /**
          * spanner.projects.instances.databases.getIamPolicy
@@ -431,7 +573,7 @@ function Spanner(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://spanner.googleapis.com/v1/{resource}:getIamPolicy',
               method: 'POST'
@@ -466,7 +608,7 @@ function Spanner(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://spanner.googleapis.com/v1/{name}',
               method: 'GET'
@@ -501,7 +643,7 @@ function Spanner(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://spanner.googleapis.com/v1/{database}',
               method: 'DELETE'
@@ -537,7 +679,7 @@ function Spanner(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://spanner.googleapis.com/v1/{database}/ddl',
               method: 'PATCH'
@@ -573,7 +715,7 @@ function Spanner(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://spanner.googleapis.com/v1/{resource}:testIamPermissions',
               method: 'POST'
@@ -581,150 +723,6 @@ function Spanner(options) { // eslint-disable-line
             params: params,
             requiredParams: ['resource'],
             pathParams: ['resource'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * spanner.projects.instances.databases.getDdl
-         *
-         * @desc Returns the schema of a Cloud Spanner database as a list of formatted DDL statements. This method does not show pending schema updates, those may be queried using the Operations API.
-         *
-         * @alias spanner.projects.instances.databases.getDdl
-         * @memberOf! spanner(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.database Required. The database whose schema we wish to get.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        getDdl: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://spanner.googleapis.com/v1/{database}/ddl',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['database'],
-            pathParams: ['database'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * spanner.projects.instances.databases.list
-         *
-         * @desc Lists Cloud Spanner databases.
-         *
-         * @alias spanner.projects.instances.databases.list
-         * @memberOf! spanner(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.parent Required. The instance whose databases should be listed. Values are of the form `projects/<project>/instances/<instance>`.
-         * @param {string=} params.pageToken If non-empty, `page_token` should contain a next_page_token from a previous ListDatabasesResponse.
-         * @param {integer=} params.pageSize Number of databases to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        list: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://spanner.googleapis.com/v1/{parent}/databases',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['parent'],
-            pathParams: ['parent'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * spanner.projects.instances.databases.setIamPolicy
-         *
-         * @desc Sets the access control policy on a database resource. Replaces any existing policy.  Authorization requires `spanner.databases.setIamPolicy` permission on resource.
-         *
-         * @alias spanner.projects.instances.databases.setIamPolicy
-         * @memberOf! spanner(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.resource_ REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects/<project ID>/instances/<instance ID>` for instance resources and `projects/<project ID>/instances/<instance ID>/databases/<database ID>` for databases resources.
-         * @param {spanner(v1).SetIamPolicyRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        setIamPolicy: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://spanner.googleapis.com/v1/{resource}:setIamPolicy',
-              method: 'POST'
-            }, options),
-            params: params,
-            requiredParams: ['resource'],
-            pathParams: ['resource'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * spanner.projects.instances.databases.create
-         *
-         * @desc Creates a new Cloud Spanner database and starts to prepare it for serving. The returned long-running operation will have a name of the format `<database_name>/operations/<operation_id>` and can be used to track preparation of the database. The metadata field type is CreateDatabaseMetadata. The response field type is Database, if successful.
-         *
-         * @alias spanner.projects.instances.databases.create
-         * @memberOf! spanner(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.parent Required. The name of the instance that will serve the new database. Values are of the form `projects/<project>/instances/<instance>`.
-         * @param {spanner(v1).CreateDatabaseRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        create: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          var parameters = {
-            options: utils.extend({
-              url: 'https://spanner.googleapis.com/v1/{parent}/databases',
-              method: 'POST'
-            }, options),
-            params: params,
-            requiredParams: ['parent'],
-            pathParams: ['parent'],
             context: self
           };
 
@@ -754,7 +752,7 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{name}:cancel',
                 method: 'POST'
@@ -789,7 +787,7 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{name}',
                 method: 'DELETE'
@@ -812,10 +810,10 @@ function Spanner(options) { // eslint-disable-line
            * @memberOf! spanner(v1)
            *
            * @param {object} params Parameters for request
-           * @param {string=} params.filter The standard list filter.
            * @param {string} params.name The name of the operation collection.
            * @param {string=} params.pageToken The standard list page token.
            * @param {integer=} params.pageSize The standard list page size.
+           * @param {string=} params.filter The standard list filter.
            * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
            * @param {callback} callback The callback that handles the response.
            * @return {object} Request object
@@ -827,7 +825,7 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{name}',
                 method: 'GET'
@@ -862,7 +860,7 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{name}',
                 method: 'GET'
@@ -878,42 +876,6 @@ function Spanner(options) { // eslint-disable-line
         },
 
         sessions: {
-
-          /**
-           * spanner.projects.instances.databases.sessions.executeStreamingSql
-           *
-           * @desc Like ExecuteSql, except returns the result set as a stream. Unlike ExecuteSql, there is no limit on the size of the returned result set. However, no individual row in the result set can exceed 100 MiB, and no column value can exceed 10 MiB.
-           *
-           * @alias spanner.projects.instances.databases.sessions.executeStreamingSql
-           * @memberOf! spanner(v1)
-           *
-           * @param {object} params Parameters for request
-           * @param {string} params.session Required. The session in which the SQL query should be performed.
-           * @param {spanner(v1).ExecuteSqlRequest} params.resource Request body data
-           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-           * @param {callback} callback The callback that handles the response.
-           * @return {object} Request object
-           */
-          executeStreamingSql: function (params, options, callback) {
-            if (typeof options === 'function') {
-              callback = options;
-              options = {};
-            }
-            options || (options = {});
-
-            var parameters = {
-              options: utils.extend({
-                url: 'https://spanner.googleapis.com/v1/{session}:executeStreamingSql',
-                method: 'POST'
-              }, options),
-              params: params,
-              requiredParams: ['session'],
-              pathParams: ['session'],
-              context: self
-            };
-
-            return createAPIRequest(parameters, callback);
-          },
 
           /**
            * spanner.projects.instances.databases.sessions.delete
@@ -936,7 +898,7 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{name}',
                 method: 'DELETE'
@@ -972,7 +934,7 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{session}:beginTransaction',
                 method: 'POST'
@@ -1008,9 +970,45 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{session}:commit',
+                method: 'POST'
+              }, options),
+              params: params,
+              requiredParams: ['session'],
+              pathParams: ['session'],
+              context: self
+            };
+
+            return createAPIRequest(parameters, callback);
+          },
+
+          /**
+           * spanner.projects.instances.databases.sessions.executeStreamingSql
+           *
+           * @desc Like ExecuteSql, except returns the result set as a stream. Unlike ExecuteSql, there is no limit on the size of the returned result set. However, no individual row in the result set can exceed 100 MiB, and no column value can exceed 10 MiB.
+           *
+           * @alias spanner.projects.instances.databases.sessions.executeStreamingSql
+           * @memberOf! spanner(v1)
+           *
+           * @param {object} params Parameters for request
+           * @param {string} params.session Required. The session in which the SQL query should be performed.
+           * @param {spanner(v1).ExecuteSqlRequest} params.resource Request body data
+           * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+           * @param {callback} callback The callback that handles the response.
+           * @return {object} Request object
+           */
+          executeStreamingSql: function (params, options, callback) {
+            if (typeof options === 'function') {
+              callback = options;
+              options = {};
+            }
+            options || (options = {});
+
+            const parameters = {
+              options: utils.extend({
+                url: 'https://spanner.googleapis.com/v1/{session}:executeStreamingSql',
                 method: 'POST'
               }, options),
               params: params,
@@ -1044,7 +1042,7 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{session}:executeSql',
                 method: 'POST'
@@ -1080,7 +1078,7 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{session}:rollback',
                 method: 'POST'
@@ -1116,7 +1114,7 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{session}:streamingRead',
                 method: 'POST'
@@ -1151,7 +1149,7 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{database}/sessions',
                 method: 'POST'
@@ -1187,7 +1185,7 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{session}:read',
                 method: 'POST'
@@ -1222,7 +1220,7 @@ function Spanner(options) { // eslint-disable-line
             }
             options || (options = {});
 
-            var parameters = {
+            const parameters = {
               options: utils.extend({
                 url: 'https://spanner.googleapis.com/v1/{name}',
                 method: 'GET'
@@ -1261,7 +1259,7 @@ function Spanner(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://spanner.googleapis.com/v1/{name}:cancel',
               method: 'POST'
@@ -1296,7 +1294,7 @@ function Spanner(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://spanner.googleapis.com/v1/{name}',
               method: 'DELETE'
@@ -1334,7 +1332,7 @@ function Spanner(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://spanner.googleapis.com/v1/{name}',
               method: 'GET'
@@ -1369,7 +1367,7 @@ function Spanner(options) { // eslint-disable-line
           }
           options || (options = {});
 
-          var parameters = {
+          const parameters = {
             options: utils.extend({
               url: 'https://spanner.googleapis.com/v1/{name}',
               method: 'GET'
@@ -1387,6 +1385,338 @@ function Spanner(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef RollbackRequest
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {string} transactionId Required. The transaction to roll back.
+ */
+/**
+ * @typedef Transaction
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} id `id` may be used to identify the transaction in subsequent
+Read,
+ExecuteSql,
+Commit, or
+Rollback calls.
+
+Single-use read-only transactions do not have IDs, because
+single-use transactions do not support multiple requests.
+* @property {string} readTimestamp For snapshot read-only transactions, the read timestamp chosen
+for the transaction. Not returned by default: see
+TransactionOptions.ReadOnly.return_read_timestamp.
+*/
+/**
+ * @typedef UpdateDatabaseDdlMetadata
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string[]} statements For an update this list contains all the statements. For an
+individual statement, this list contains only that statement.
+* @property {string[]} commitTimestamps Reports the commit timestamps of all statements that have
+succeeded so far, where `commit_timestamps[i]` is the commit
+timestamp for the statement `statements[i]`.
+* @property {string} database The database being modified.
+*/
+/**
+ * @typedef CounterOptions
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {string} metric The metric to update.
+ * @property {string} field The field value to attribute.
+ */
+/**
+ * @typedef QueryPlan
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {spanner(v1).PlanNode[]} planNodes The nodes in the query plan. Plan nodes are returned in pre-order starting
+with the plan root. Each PlanNode&#39;s `id` corresponds to its index in
+`plan_nodes`.
+*/
+/**
+ * @typedef StructType
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {spanner(v1).Field[]} fields The list of fields that make up this struct. Order is
+significant, because values of this struct type are represented as
+lists, where the order of field values matches the order of
+fields in the StructType. In turn, the order of fields
+matches the order of columns in a read request, or the order of
+fields in the `SELECT` clause of a query.
+*/
+/**
+ * @typedef Field
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} name The name of the field. For reads, this is the column name. For
+SQL queries, it is the column alias (e.g., `&quot;Word&quot;` in the
+query `&quot;SELECT &#39;hello&#39; AS Word&quot;`), or the column name (e.g.,
+`&quot;ColName&quot;` in the query `&quot;SELECT ColName FROM Table&quot;`). Some
+columns might have an empty name (e.g., !&quot;SELECT
+UPPER(ColName)&quot;`). Note that a query result can contain
+multiple fields with the same name.
+* @property {spanner(v1).Type} type The type of the field.
+*/
+/**
+ * @typedef ResultSetStats
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {spanner(v1).QueryPlan} queryPlan QueryPlan for the query associated with this result.
+* @property {object} queryStats Aggregated statistics from the execution of the query. Only present when
+the query is profiled. For example, a query could return the statistics as
+follows:
+
+    {
+      &quot;rows_returned&quot;: &quot;3&quot;,
+      &quot;elapsed_time&quot;: &quot;1.22 secs&quot;,
+      &quot;cpu_time&quot;: &quot;1.19 secs&quot;
+    }
+*/
+/**
+ * @typedef TestIamPermissionsRequest
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string[]} permissions REQUIRED: The set of permissions to check for &#39;resource&#39;.
+Permissions with wildcards (such as &#39;*&#39;, &#39;spanner.*&#39;, &#39;spanner.instances.*&#39;) are not allowed.
+*/
+/**
+ * @typedef CommitResponse
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {string} commitTimestamp The Cloud Spanner timestamp at which the transaction committed.
+ */
+/**
+ * @typedef Type
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {spanner(v1).StructType} structType If code == STRUCT, then `struct_type`
+provides type information for the struct&#39;s fields.
+* @property {spanner(v1).Type} arrayElementType If code == ARRAY, then `array_element_type`
+is the type of the array elements.
+* @property {string} code Required. The TypeCode for this type.
+*/
+/**
+ * @typedef PlanNode
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {object} metadata Attributes relevant to the node contained in a group of key-value pairs.
+For example, a Parameter Reference node could have the following
+information in its metadata:
+
+    {
+      &quot;parameter_reference&quot;: &quot;param1&quot;,
+      &quot;parameter_type&quot;: &quot;array&quot;
+    }
+* @property {object} executionStats The execution statistics associated with the node, contained in a group of
+key-value pairs. Only present if the plan was returned as a result of a
+profile query. For example, number of executions, number of rows/time per
+execution etc.
+* @property {spanner(v1).ShortRepresentation} shortRepresentation Condensed representation for SCALAR nodes.
+* @property {integer} index The `PlanNode`&#39;s index in node list.
+* @property {string} kind Used to determine the type of node. May be needed for visualizing
+different kinds of nodes differently. For example, If the node is a
+SCALAR node, it will have a condensed representation
+which can be used to directly embed a description of the node in its
+parent.
+* @property {string} displayName The display name for the node.
+* @property {spanner(v1).ChildLink[]} childLinks List of child node `index`es and their relationship to this parent.
+*/
+/**
+ * @typedef AuditConfig
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} service Specifies a service that will be enabled for audit logging.
+For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
+`allServices` is a special value that covers all services.
+* @property {spanner(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
+Next ID: 4
+* @property {string[]} exemptedMembers 
+*/
+/**
+ * @typedef CreateInstanceMetadata
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {spanner(v1).Instance} instance The instance being created.
+* @property {string} startTime The time at which the
+CreateInstance request was
+received.
+* @property {string} cancelTime The time at which this operation was cancelled. If set, this operation is
+in the process of undoing itself (which is guaranteed to succeed) and
+cannot be cancelled again.
+* @property {string} endTime The time at which this operation failed or was completed successfully.
+*/
+/**
+ * @typedef ChildLink
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} type The type of the link. For example, in Hash Joins this could be used to
+distinguish between the build child and the probe child, or in the case
+of the child being an output variable, to represent the tag associated
+with the output variable.
+* @property {integer} childIndex The node to which the link points.
+* @property {string} variable Only present if the child node is SCALAR and corresponds
+to an output variable of the parent node. The field carries the name of
+the output variable.
+For example, a `TableScan` operator that reads rows from a table will
+have child links to the `SCALAR` nodes representing the output variables
+created for each column that is read by the operator. The corresponding
+`variable` fields will be set to the variable names assigned to the
+columns.
+*/
+/**
+ * @typedef CloudAuditOptions
+ * @memberOf! spanner(v1)
+ * @type object
+ */
+/**
+ * @typedef Delete
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {string} table Required. The table whose rows will be deleted.
+ * @property {spanner(v1).KeySet} keySet Required. The primary keys of the rows within table to delete.
+ */
+/**
+ * @typedef CommitRequest
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {spanner(v1).TransactionOptions} singleUseTransaction Execute mutations in a temporary transaction. Note that unlike
+commit of a previously-started transaction, commit with a
+temporary transaction is non-idempotent. That is, if the
+`CommitRequest` is sent to Cloud Spanner more than once (for
+instance, due to retries in the application, or in the
+transport library), it is possible that the mutations are
+executed more than once. If this is undesirable, use
+BeginTransaction and
+Commit instead.
+* @property {spanner(v1).Mutation[]} mutations The mutations to be executed when this transaction commits. All
+mutations are applied atomically, in the order they appear in
+this list.
+* @property {string} transactionId Commit a previously-started transaction.
+*/
+/**
+ * @typedef BeginTransactionRequest
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {spanner(v1).TransactionOptions} options Required. Options for the new transaction.
+ */
+/**
+ * @typedef ListInstanceConfigsResponse
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} nextPageToken `next_page_token` can be sent in a subsequent
+ListInstanceConfigs call to
+fetch more of the matching instance configurations.
+* @property {spanner(v1).InstanceConfig[]} instanceConfigs The list of requested instance configurations.
+*/
+/**
+ * @typedef TestIamPermissionsResponse
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is
+allowed.
+*/
+/**
+ * @typedef GetIamPolicyRequest
+ * @memberOf! spanner(v1)
+ * @type object
+ */
+/**
+ * @typedef Rule
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
+(e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
+and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
+* @property {string} action Required
+* @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
+if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+The format for in and not_in entries is the same as for members in a
+Binding (see google/iam/v1/policy.proto).
+* @property {string} description Human-readable description of the rule.
+* @property {spanner(v1).Condition[]} conditions Additional restrictions that must be met
+* @property {spanner(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
+that match the LOG action.
+* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
+the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+*/
+/**
+ * @typedef CreateDatabaseMetadata
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {string} database The database being created.
+ */
+/**
+ * @typedef LogConfig
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {spanner(v1).CounterOptions} counter Counter options.
+ * @property {spanner(v1).DataAccessOptions} dataAccess Data access options.
+ * @property {spanner(v1).CloudAuditOptions} cloudAudit Cloud audit options.
+ */
+/**
+ * @typedef Session
+ * @memberOf! spanner(v1)
+ * @type object
+ * @property {string} name Required. The name of the session.
+ */
+/**
+ * @typedef ListInstancesResponse
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {spanner(v1).Instance[]} instances The list of requested instances.
+* @property {string} nextPageToken `next_page_token` can be sent in a subsequent
+ListInstances call to fetch more
+of the matching instances.
+*/
+/**
+ * @typedef KeyRange
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {any[]} endClosed If the end is closed, then the range includes all rows whose
+first `len(end_closed)` key columns exactly match `end_closed`.
+* @property {any[]} startClosed If the start is closed, then the range includes all rows whose
+first `len(start_closed)` key columns exactly match `start_closed`.
+* @property {any[]} startOpen If the start is open, then the range excludes rows whose first
+`len(start_open)` key columns exactly match `start_open`.
+* @property {any[]} endOpen If the end is open, then the range excludes rows whose first
+`len(end_open)` key columns exactly match `end_open`.
+*/
+/**
+ * @typedef ShortRepresentation
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} description A string representation of the expression subtree rooted at this node.
+* @property {object} subqueries A mapping of (subquery variable name) -&gt; (subquery node id) for cases
+where the `description` string of this node references a `SCALAR`
+subquery contained in the expression subtree rooted at this node. The
+referenced `SCALAR` subquery may not necessarily be a direct child of
+this node.
+*/
+/**
+ * @typedef InstanceConfig
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} name A unique identifier for the instance configuration.  Values
+are of the form
+`projects/&lt;project&gt;/instanceConfigs/a-z*`
+* @property {string} displayName The name of this instance configuration as it appears in UIs.
+*/
+/**
+ * @typedef UpdateInstanceRequest
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {spanner(v1).Instance} instance Required. The instance to update, which must always include the instance
+name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
+* @property {string} fieldMask Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
+The field mask must always be specified; this prevents any future fields in
+[][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
+about them.
+*/
+/**
+ * @typedef Empty
+ * @memberOf! spanner(v1)
+ * @type object
+ */
 /**
  * @typedef TransactionOptions
  * @memberOf! spanner(v1)
@@ -1418,23 +1748,23 @@ new database.  The database ID must conform to the regular expression
  * @typedef CreateInstanceRequest
  * @memberOf! spanner(v1)
  * @type object
+* @property {spanner(v1).Instance} instance Required. The instance to create.  The name may be omitted, but if
+specified must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
 * @property {string} instanceId Required. The ID of the instance to create.  Valid identifiers are of the
 form `a-z*[a-z0-9]` and must be between 6 and 30 characters in
 length.
-* @property {spanner(v1).Instance} instance Required. The instance to create.  The name may be omitted, but if
-specified must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
 */
 /**
  * @typedef Condition
  * @memberOf! spanner(v1)
  * @type object
-* @property {string} op An operator to apply the subject with.
-* @property {string} svc Trusted attributes discharged by the service.
-* @property {string} sys Trusted attributes supplied by any service that owns resources and uses
-the IAM system for access control.
-* @property {string} value DEPRECATED. Use &#39;values&#39; instead.
 * @property {string[]} values The objects of the condition. This is mutually exclusive with &#39;value&#39;.
 * @property {string} iam Trusted attributes supplied by the IAM system.
+* @property {string} op An operator to apply the subject with.
+* @property {string} svc Trusted attributes discharged by the service.
+* @property {string} value DEPRECATED. Use &#39;values&#39; instead.
+* @property {string} sys Trusted attributes supplied by any service that owns resources and uses
+the IAM system for access control.
 */
 /**
  * @typedef AuditLogConfig
@@ -1449,6 +1779,8 @@ Follows the same format of Binding.members.
  * @typedef ReadOnly
  * @memberOf! spanner(v1)
  * @type object
+* @property {boolean} strong Read at a timestamp where all previously committed transactions
+are visible.
 * @property {string} minReadTimestamp Executes all reads at a timestamp &gt;= `min_read_timestamp`.
 
 This is useful for requesting fresher data than some previous
@@ -1491,8 +1823,6 @@ timestamps.
 
 Useful for reading at nearby replicas without the distributed
 timestamp negotiation overhead of `max_staleness`.
-* @property {boolean} strong Read at a timestamp where all previously committed transactions
-are visible.
 */
 /**
  * @typedef ExecuteSqlRequest
@@ -1597,6 +1927,7 @@ that yielded this token.
  * @typedef Write
  * @memberOf! spanner(v1)
  * @type object
+* @property {string} table Required. The table whose rows will be written.
 * @property {string[]} columns The names of the columns in table to be written.
 
 The list of columns must contain enough columns to allow
@@ -1610,7 +1941,6 @@ above. Sending multiple lists is equivalent to sending multiple
 `Mutation`s, each containing one `values` entry and repeating
 table and columns. Individual values in each list are
 encoded as described here.
-* @property {string} table Required. The table whose rows will be written.
 */
 /**
  * @typedef DataAccessOptions
@@ -1647,17 +1977,6 @@ If true, the operation is completed, and either `error` or `response` is
 available.
 */
 /**
- * @typedef Status
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-*/
-/**
  * @typedef ResultSet
  * @memberOf! spanner(v1)
  * @type object
@@ -1671,6 +1990,17 @@ here.
 * @property {spanner(v1).ResultSetStats} stats Query plan and execution statistics for the query that produced this
 result set. These can be requested by setting
 ExecuteSqlRequest.query_mode.
+*/
+/**
+ * @typedef Status
+ * @memberOf! spanner(v1)
+ * @type object
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 */
 /**
  * @typedef Binding
@@ -1858,13 +2188,13 @@ Users&quot;` could return a `row_type` value like:
  * @typedef TransactionSelector
  * @memberOf! spanner(v1)
  * @type object
+* @property {string} id Execute the read or SQL query in a previously-started transaction.
 * @property {spanner(v1).TransactionOptions} singleUse Execute the read or SQL query in a temporary transaction.
 This is the most efficient way to execute a transaction that
 consists of a single SQL query.
 * @property {spanner(v1).TransactionOptions} begin Begin a new transaction and execute this read or SQL query in
 it. The transaction ID of the new transaction is returned in
 ResultSetMetadata.transaction, which is a Transaction.
-* @property {string} id Execute the read or SQL query in a previously-started transaction.
 */
 /**
  * @typedef Mutation
@@ -1920,22 +2250,20 @@ identify the database.
  * @typedef SetIamPolicyRequest
  * @memberOf! spanner(v1)
  * @type object
-* @property {spanner(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
-the policy is limited to a few 10s of KB. An empty policy is a
-valid policy but certain Cloud Platform services (such as Projects)
-might reject them.
 * @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
 the fields in the mask will be modified. If no mask is provided, the
 following default mask is used:
 paths: &quot;bindings, etag&quot;
 This field is only used by Cloud IAM.
+* @property {spanner(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
+the policy is limited to a few 10s of KB. An empty policy is a
+valid policy but certain Cloud Platform services (such as Projects)
+might reject them.
 */
 /**
  * @typedef Instance
  * @memberOf! spanner(v1)
  * @type object
-* @property {string} displayName Required. The descriptive name for this instance as it appears in UIs.
-Must be unique per project and between 4 and 30 characters in length.
 * @property {integer} nodeCount Required. The number of nodes allocated to this instance.
 * @property {object} labels Cloud Labels are a flexible and lightweight mechanism for organizing cloud
 resources into groups that reflect a customer&#39;s organizational needs and
@@ -1971,6 +2299,8 @@ either omitted or set to `READY`.
 after the instance is created. Values are of the form
 `projects/&lt;project&gt;/instances/a-z*[a-z0-9]`. The final
 segment of the name must be between 6 and 30 characters in length.
+* @property {string} displayName Required. The descriptive name for this instance as it appears in UIs.
+Must be unique per project and between 4 and 30 characters in length.
 */
 /**
  * @typedef ListDatabasesResponse
@@ -1981,336 +2311,4 @@ ListDatabases call to fetch more
 of the matching databases.
 * @property {spanner(v1).Database[]} databases Databases that matched the request.
 */
-/**
- * @typedef RollbackRequest
- * @memberOf! spanner(v1)
- * @type object
- * @property {string} transactionId Required. The transaction to roll back.
- */
-/**
- * @typedef Transaction
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} id `id` may be used to identify the transaction in subsequent
-Read,
-ExecuteSql,
-Commit, or
-Rollback calls.
-
-Single-use read-only transactions do not have IDs, because
-single-use transactions do not support multiple requests.
-* @property {string} readTimestamp For snapshot read-only transactions, the read timestamp chosen
-for the transaction. Not returned by default: see
-TransactionOptions.ReadOnly.return_read_timestamp.
-*/
-/**
- * @typedef UpdateDatabaseDdlMetadata
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} database The database being modified.
-* @property {string[]} statements For an update this list contains all the statements. For an
-individual statement, this list contains only that statement.
-* @property {string[]} commitTimestamps Reports the commit timestamps of all statements that have
-succeeded so far, where `commit_timestamps[i]` is the commit
-timestamp for the statement `statements[i]`.
-*/
-/**
- * @typedef CounterOptions
- * @memberOf! spanner(v1)
- * @type object
- * @property {string} metric The metric to update.
- * @property {string} field The field value to attribute.
- */
-/**
- * @typedef QueryPlan
- * @memberOf! spanner(v1)
- * @type object
-* @property {spanner(v1).PlanNode[]} planNodes The nodes in the query plan. Plan nodes are returned in pre-order starting
-with the plan root. Each PlanNode&#39;s `id` corresponds to its index in
-`plan_nodes`.
-*/
-/**
- * @typedef StructType
- * @memberOf! spanner(v1)
- * @type object
-* @property {spanner(v1).Field[]} fields The list of fields that make up this struct. Order is
-significant, because values of this struct type are represented as
-lists, where the order of field values matches the order of
-fields in the StructType. In turn, the order of fields
-matches the order of columns in a read request, or the order of
-fields in the `SELECT` clause of a query.
-*/
-/**
- * @typedef Field
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} name The name of the field. For reads, this is the column name. For
-SQL queries, it is the column alias (e.g., `&quot;Word&quot;` in the
-query `&quot;SELECT &#39;hello&#39; AS Word&quot;`), or the column name (e.g.,
-`&quot;ColName&quot;` in the query `&quot;SELECT ColName FROM Table&quot;`). Some
-columns might have an empty name (e.g., !&quot;SELECT
-UPPER(ColName)&quot;`). Note that a query result can contain
-multiple fields with the same name.
-* @property {spanner(v1).Type} type The type of the field.
-*/
-/**
- * @typedef ResultSetStats
- * @memberOf! spanner(v1)
- * @type object
-* @property {spanner(v1).QueryPlan} queryPlan QueryPlan for the query associated with this result.
-* @property {object} queryStats Aggregated statistics from the execution of the query. Only present when
-the query is profiled. For example, a query could return the statistics as
-follows:
-
-    {
-      &quot;rows_returned&quot;: &quot;3&quot;,
-      &quot;elapsed_time&quot;: &quot;1.22 secs&quot;,
-      &quot;cpu_time&quot;: &quot;1.19 secs&quot;
-    }
-*/
-/**
- * @typedef TestIamPermissionsRequest
- * @memberOf! spanner(v1)
- * @type object
-* @property {string[]} permissions REQUIRED: The set of permissions to check for &#39;resource&#39;.
-Permissions with wildcards (such as &#39;*&#39;, &#39;spanner.*&#39;, &#39;spanner.instances.*&#39;) are not allowed.
-*/
-/**
- * @typedef CommitResponse
- * @memberOf! spanner(v1)
- * @type object
- * @property {string} commitTimestamp The Cloud Spanner timestamp at which the transaction committed.
- */
-/**
- * @typedef Type
- * @memberOf! spanner(v1)
- * @type object
-* @property {spanner(v1).StructType} structType If code == STRUCT, then `struct_type`
-provides type information for the struct&#39;s fields.
-* @property {spanner(v1).Type} arrayElementType If code == ARRAY, then `array_element_type`
-is the type of the array elements.
-* @property {string} code Required. The TypeCode for this type.
-*/
-/**
- * @typedef PlanNode
- * @memberOf! spanner(v1)
- * @type object
-* @property {object} metadata Attributes relevant to the node contained in a group of key-value pairs.
-For example, a Parameter Reference node could have the following
-information in its metadata:
-
-    {
-      &quot;parameter_reference&quot;: &quot;param1&quot;,
-      &quot;parameter_type&quot;: &quot;array&quot;
-    }
-* @property {object} executionStats The execution statistics associated with the node, contained in a group of
-key-value pairs. Only present if the plan was returned as a result of a
-profile query. For example, number of executions, number of rows/time per
-execution etc.
-* @property {spanner(v1).ShortRepresentation} shortRepresentation Condensed representation for SCALAR nodes.
-* @property {integer} index The `PlanNode`&#39;s index in node list.
-* @property {string} displayName The display name for the node.
-* @property {string} kind Used to determine the type of node. May be needed for visualizing
-different kinds of nodes differently. For example, If the node is a
-SCALAR node, it will have a condensed representation
-which can be used to directly embed a description of the node in its
-parent.
-* @property {spanner(v1).ChildLink[]} childLinks List of child node `index`es and their relationship to this parent.
-*/
-/**
- * @typedef CreateInstanceMetadata
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} cancelTime The time at which this operation was cancelled. If set, this operation is
-in the process of undoing itself (which is guaranteed to succeed) and
-cannot be cancelled again.
-* @property {string} endTime The time at which this operation failed or was completed successfully.
-* @property {spanner(v1).Instance} instance The instance being created.
-* @property {string} startTime The time at which the
-CreateInstance request was
-received.
-*/
-/**
- * @typedef AuditConfig
- * @memberOf! spanner(v1)
- * @type object
-* @property {string[]} exemptedMembers 
-* @property {string} service Specifies a service that will be enabled for audit logging.
-For example, `resourcemanager`, `storage`, `compute`.
-`allServices` is a special value that covers all services.
-* @property {spanner(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
-Next ID: 4
-*/
-/**
- * @typedef ChildLink
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} type The type of the link. For example, in Hash Joins this could be used to
-distinguish between the build child and the probe child, or in the case
-of the child being an output variable, to represent the tag associated
-with the output variable.
-* @property {integer} childIndex The node to which the link points.
-* @property {string} variable Only present if the child node is SCALAR and corresponds
-to an output variable of the parent node. The field carries the name of
-the output variable.
-For example, a `TableScan` operator that reads rows from a table will
-have child links to the `SCALAR` nodes representing the output variables
-created for each column that is read by the operator. The corresponding
-`variable` fields will be set to the variable names assigned to the
-columns.
-*/
-/**
- * @typedef CloudAuditOptions
- * @memberOf! spanner(v1)
- * @type object
- */
-/**
- * @typedef Delete
- * @memberOf! spanner(v1)
- * @type object
- * @property {spanner(v1).KeySet} keySet Required. The primary keys of the rows within table to delete.
- * @property {string} table Required. The table whose rows will be deleted.
- */
-/**
- * @typedef CommitRequest
- * @memberOf! spanner(v1)
- * @type object
-* @property {spanner(v1).TransactionOptions} singleUseTransaction Execute mutations in a temporary transaction. Note that unlike
-commit of a previously-started transaction, commit with a
-temporary transaction is non-idempotent. That is, if the
-`CommitRequest` is sent to Cloud Spanner more than once (for
-instance, due to retries in the application, or in the
-transport library), it is possible that the mutations are
-executed more than once. If this is undesirable, use
-BeginTransaction and
-Commit instead.
-* @property {spanner(v1).Mutation[]} mutations The mutations to be executed when this transaction commits. All
-mutations are applied atomically, in the order they appear in
-this list.
-* @property {string} transactionId Commit a previously-started transaction.
-*/
-/**
- * @typedef BeginTransactionRequest
- * @memberOf! spanner(v1)
- * @type object
- * @property {spanner(v1).TransactionOptions} options Required. Options for the new transaction.
- */
-/**
- * @typedef ListInstanceConfigsResponse
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} nextPageToken `next_page_token` can be sent in a subsequent
-ListInstanceConfigs call to
-fetch more of the matching instance configurations.
-* @property {spanner(v1).InstanceConfig[]} instanceConfigs The list of requested instance configurations.
-*/
-/**
- * @typedef GetIamPolicyRequest
- * @memberOf! spanner(v1)
- * @type object
- */
-/**
- * @typedef TestIamPermissionsResponse
- * @memberOf! spanner(v1)
- * @type object
-* @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is
-allowed.
-*/
-/**
- * @typedef Rule
- * @memberOf! spanner(v1)
- * @type object
-* @property {spanner(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
-that match the LOG action.
-* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
-the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
-* @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
-(e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
-and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
-* @property {string} action Required
-* @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
-if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
-The format for in and not_in entries is the same as for members in a
-Binding (see google/iam/v1/policy.proto).
-* @property {string} description Human-readable description of the rule.
-* @property {spanner(v1).Condition[]} conditions Additional restrictions that must be met
-*/
-/**
- * @typedef CreateDatabaseMetadata
- * @memberOf! spanner(v1)
- * @type object
- * @property {string} database The database being created.
- */
-/**
- * @typedef LogConfig
- * @memberOf! spanner(v1)
- * @type object
- * @property {spanner(v1).CloudAuditOptions} cloudAudit Cloud audit options.
- * @property {spanner(v1).CounterOptions} counter Counter options.
- * @property {spanner(v1).DataAccessOptions} dataAccess Data access options.
- */
-/**
- * @typedef Session
- * @memberOf! spanner(v1)
- * @type object
- * @property {string} name Required. The name of the session.
- */
-/**
- * @typedef KeyRange
- * @memberOf! spanner(v1)
- * @type object
-* @property {any[]} startClosed If the start is closed, then the range includes all rows whose
-first `len(start_closed)` key columns exactly match `start_closed`.
-* @property {any[]} startOpen If the start is open, then the range excludes rows whose first
-`len(start_open)` key columns exactly match `start_open`.
-* @property {any[]} endOpen If the end is open, then the range excludes rows whose first
-`len(end_open)` key columns exactly match `end_open`.
-* @property {any[]} endClosed If the end is closed, then the range includes all rows whose
-first `len(end_closed)` key columns exactly match `end_closed`.
-*/
-/**
- * @typedef ListInstancesResponse
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} nextPageToken `next_page_token` can be sent in a subsequent
-ListInstances call to fetch more
-of the matching instances.
-* @property {spanner(v1).Instance[]} instances The list of requested instances.
-*/
-/**
- * @typedef ShortRepresentation
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} description A string representation of the expression subtree rooted at this node.
-* @property {object} subqueries A mapping of (subquery variable name) -&gt; (subquery node id) for cases
-where the `description` string of this node references a `SCALAR`
-subquery contained in the expression subtree rooted at this node. The
-referenced `SCALAR` subquery may not necessarily be a direct child of
-this node.
-*/
-/**
- * @typedef InstanceConfig
- * @memberOf! spanner(v1)
- * @type object
-* @property {string} name A unique identifier for the instance configuration.  Values
-are of the form
-`projects/&lt;project&gt;/instanceConfigs/a-z*`
-* @property {string} displayName The name of this instance configuration as it appears in UIs.
-*/
-/**
- * @typedef UpdateInstanceRequest
- * @memberOf! spanner(v1)
- * @type object
-* @property {spanner(v1).Instance} instance Required. The instance to update, which must always include the instance
-name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
-* @property {string} fieldMask Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
-The field mask must always be specified; this prevents any future fields in
-[][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
-about them.
-*/
-/**
- * @typedef Empty
- * @memberOf! spanner(v1)
- * @type object
- */
 export = Spanner;

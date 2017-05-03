@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Service User API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Enables services that service consumers want to use on Google Cloud Platform, lists the available or enabled services, or disables services that service consumers no longer use.
  *
  * @example
- * var google = require('googleapis');
- * var serviceuser = google.serviceuser('v1');
+ * const google = require('googleapis');
+ * const serviceuser = google.serviceuser('v1');
  *
  * @namespace serviceuser
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Serviceuser
  */
 function Serviceuser(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.projects = {
@@ -66,7 +64,7 @@ function Serviceuser(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://serviceuser.googleapis.com/v1/{name}:disable',
             method: 'POST'
@@ -102,7 +100,7 @@ function Serviceuser(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://serviceuser.googleapis.com/v1/{name}:enable',
             method: 'POST'
@@ -139,7 +137,7 @@ function Serviceuser(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://serviceuser.googleapis.com/v1/{parent}/services',
             method: 'GET'
@@ -179,7 +177,7 @@ function Serviceuser(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://serviceuser.googleapis.com/v1/services:search',
           method: 'GET'
@@ -196,295 +194,6 @@ function Serviceuser(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef Option
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {object} value The option&#39;s value packed in an Any message. If the value is a primitive,
-the corresponding wrapper type defined in google/protobuf/wrappers.proto
-should be used. If the value is an enum, it should be stored as an int32
-value using the google.protobuf.Int32Value type.
-* @property {string} name The option&#39;s name. For protobuf built-in options (options defined in
-descriptor.proto), this is the short name. For example, `&quot;map_entry&quot;`.
-For custom options, it should be the fully-qualified name. For example,
-`&quot;google.api.http&quot;`.
-*/
-/**
- * @typedef Logging
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {serviceuser(v1).LoggingDestination[]} consumerDestinations Logging configurations for sending logs to the consumer project.
-There can be multiple consumer destinations, each one must have a
-different monitored resource type. A log can be used in at most
-one consumer destination.
-* @property {serviceuser(v1).LoggingDestination[]} producerDestinations Logging configurations for sending logs to the producer project.
-There can be multiple producer destinations, each one must have a
-different monitored resource type. A log can be used in at most
-one producer destination.
-*/
-/**
- * @typedef QuotaLimit
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {string} defaultLimit Default number of tokens that can be consumed during the specified
-duration. This is the number of tokens assigned when a client
-application developer activates the service for his/her project.
-
-Specifying a value of 0 will block all requests. This can be used if you
-are provisioning quota to selected consumers and blocking others.
-Similarly, a value of -1 will indicate an unlimited quota. No other
-negative values are allowed.
-
-Used by group-based quotas only.
-* @property {string} displayName User-visible display name for this limit.
-Optional. If not set, the UI will provide a default display name based on
-the quota configuration. This field can be used to override the default
-display name generated from the configuration.
-* @property {string} description Optional. User-visible, extended description for this quota limit.
-Should be used only when more context is needed to understand this limit
-than provided by the limit&#39;s display name (see: `display_name`).
-* @property {string} metric The name of the metric this quota limit applies to. The quota limits with
-the same metric will be checked together during runtime. The metric must be
-defined within the service config.
-
-Used by metric-based quotas only.
-* @property {object} values Tiered limit values. Also allows for regional or zone overrides for these
-values if &quot;/{region}&quot; or &quot;/{zone}&quot; is specified in the unit field.
-
-Currently supported tiers from low to high:
-VERY_LOW, LOW, STANDARD, HIGH, VERY_HIGH
-
-To apply different limit values for users according to their tiers, specify
-the values for the tiers you want to differentiate. For example:
-{LOW:100, STANDARD:500, HIGH:1000, VERY_HIGH:5000}
-
-The limit value for each tier is optional except for the tier STANDARD.
-The limit value for an unspecified tier falls to the value of its next
-tier towards tier STANDARD. For the above example, the limit value for tier
-STANDARD is 500.
-
-To apply the same limit value for all users, just specify limit value for
-tier STANDARD. For example: {STANDARD:500}.
-
-To apply a regional overide for a tier, add a map entry with key
-&quot;&lt;TIER&gt;/&lt;region&gt;&quot;, where &lt;region&gt; is a region name. Similarly, for a zone
-override, add a map entry with key &quot;&lt;TIER&gt;/{zone}&quot;.
-Further, a wildcard can be used at the end of a zone name in order to
-specify zone level overrides. For example:
-LOW: 10, STANDARD: 50, HIGH: 100,
-LOW/us-central1: 20, STANDARD/us-central1: 60, HIGH/us-central1: 200,
-LOW/us-central1-*: 10, STANDARD/us-central1-*: 20, HIGH/us-central1-*: 80
-
-The regional overrides tier set for each region must be the same as
-the tier set for default limit values. Same rule applies for zone overrides
-tier as well.
-
-Used by metric-based quotas only.
-* @property {string} unit Specify the unit of the quota limit. It uses the same syntax as
-Metric.unit. The supported unit kinds are determined by the quota
-backend system.
-
-The [Google Service Control](https://cloud.google.com/service-control)
-supports the following unit components:
-* One of the time intevals:
-  * &quot;/min&quot;  for quota every minute.
-  * &quot;/d&quot;  for quota every 24 hours, starting 00:00 US Pacific Time.
-  * Otherwise the quota won&#39;t be reset by time, such as storage limit.
-* One and only one of the granted containers:
-  * &quot;/{organization}&quot; quota for an organization.
-  * &quot;/{project}&quot; quota for a project.
-  * &quot;/{folder}&quot; quota for a folder.
-  * &quot;/{resource}&quot; quota for a universal resource.
-* Zero or more quota segmentation dimension. Not all combos are valid.
-  * &quot;/{user}&quot; quota for every user GAIA ID or client ip address.
-    User GAIA ID has precedence over client ip address.
-  * &quot;/{region}&quot; quota for every region. Not to be used with time intervals.
-  * Otherwise the resources granted on the target is not segmented.
-  * &quot;/{zone}&quot; quota for every zone. Not to be used with time intervals.
-  * Otherwise the resources granted on the target is not segmented.
-  * &quot;/{resource}&quot; quota for a resource associated with a project or org.
-
-Here are some examples:
-* &quot;1/min/{project}&quot; for quota per minute per project.
-* &quot;1/min/{user}&quot; for quota per minute per user.
-* &quot;1/min/{organization}&quot; for quota per minute per organization.
-
-Note: the order of unit components is insignificant.
-The &quot;1&quot; at the beginning is required to follow the metric unit syntax.
-
-Used by metric-based quotas only.
-* @property {string} maxLimit Maximum number of tokens that can be consumed during the specified
-duration. Client application developers can override the default limit up
-to this maximum. If specified, this value cannot be set to a value less
-than the default limit. If not specified, it is set to the default limit.
-
-To allow clients to apply overrides with no upper bound, set this to -1,
-indicating unlimited maximum quota.
-
-Used by group-based quotas only.
-* @property {string} name Name of the quota limit. The name is used to refer to the limit when
-overriding the default limit on per-consumer basis.
-
-For group-based quota limits, the name must be unique within the quota
-group. If a name is not provided, it will be generated from the limit_by
-and duration fields.
-
-For metric-based quota limits, the name must be provided, and it must be
-unique within the service. The name can only include alphanumeric
-characters as well as &#39;-&#39;.
-
-The maximum length of the limit name is 64 characters.
-
-The name of a limit is used as a unique identifier for this limit.
-Therefore, once a limit has been put into use, its name should be
-immutable. You can use the display_name field to provide a user-friendly
-name for the limit. The display name can be evolved over time without
-affecting the identity of the limit.
-* @property {string} duration Duration of this limit in textual notation. Example: &quot;100s&quot;, &quot;24h&quot;, &quot;1d&quot;.
-For duration longer than a day, only multiple of days is supported. We
-support only &quot;100s&quot; and &quot;1d&quot; for now. Additional support will be added in
-the future. &quot;0&quot; indicates indefinite duration.
-
-Used by group-based quotas only.
-* @property {string} freeTier Free tier value displayed in the Developers Console for this limit.
-The free tier is the number of tokens that will be subtracted from the
-billed amount when billing is enabled.
-This field can only be set on a limit with duration &quot;1d&quot;, in a billable
-group; it is invalid on any other limit. If this field is not set, it
-defaults to 0, indicating that there is no free tier for this service.
-
-Used by group-based quotas only.
-*/
-/**
- * @typedef Method
- * @memberOf! serviceuser(v1)
- * @type object
- * @property {boolean} responseStreaming If true, the response is streamed.
- * @property {string} name The simple name of this method.
- * @property {string} requestTypeUrl A URL of the input message type.
- * @property {boolean} requestStreaming If true, the request is streamed.
- * @property {string} syntax The source syntax of this method.
- * @property {string} responseTypeUrl The URL of the output message type.
- * @property {serviceuser(v1).Option[]} options Any metadata attached to the method.
- */
-/**
- * @typedef Mixin
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {string} root If non-empty specifies a path under which inherited HTTP paths
-are rooted.
-* @property {string} name The fully qualified name of the API which is included.
-*/
-/**
- * @typedef CustomError
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {serviceuser(v1).CustomErrorRule[]} rules The list of custom error rules that apply to individual API messages.
-
-**NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
-* @property {string[]} types The list of custom error detail types, e.g. &#39;google.foo.v1.CustomError&#39;.
-*/
-/**
- * @typedef Http
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {boolean} fullyDecodeReservedExpansion When set to true, URL path parmeters will be fully URI-decoded except in
-cases of single segment matches in reserved expansion, where &quot;%2F&quot; will be
-left encoded.
-
-The default behavior is to not decode RFC 6570 reserved characters in multi
-segment matches.
-* @property {serviceuser(v1).HttpRule[]} rules A list of HTTP configuration rules that apply to individual API methods.
-
-**NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
-*/
-/**
- * @typedef SourceInfo
- * @memberOf! serviceuser(v1)
- * @type object
- * @property {object[]} sourceFiles All files used during config generation.
- */
-/**
- * @typedef Control
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {string} environment The service control environment to use. If empty, no control plane
-feature (like quota and billing) will be enabled.
-*/
-/**
- * @typedef SystemParameter
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {string} name Define the name of the parameter, such as &quot;api_key&quot; . It is case sensitive.
-* @property {string} urlQueryParameter Define the URL query parameter name to use for the parameter. It is case
-sensitive.
-* @property {string} httpHeader Define the HTTP header name to use for the parameter. It is case
-insensitive.
-*/
-/**
- * @typedef Monitoring
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {serviceuser(v1).MonitoringDestination[]} consumerDestinations Monitoring configurations for sending metrics to the consumer project.
-There can be multiple consumer destinations, each one must have a
-different monitored resource type. A metric can be used in at most
-one consumer destination.
-* @property {serviceuser(v1).MonitoringDestination[]} producerDestinations Monitoring configurations for sending metrics to the producer project.
-There can be multiple producer destinations, each one must have a
-different monitored resource type. A metric can be used in at most
-one producer destination.
-*/
-/**
- * @typedef Field
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {string} typeUrl The field type URL, without the scheme, for message or enumeration
-types. Example: `&quot;type.googleapis.com/google.protobuf.Timestamp&quot;`.
-* @property {integer} number The field number.
-* @property {string} kind The field type.
-* @property {string} jsonName The field JSON name.
-* @property {serviceuser(v1).Option[]} options The protocol buffer options.
-* @property {integer} oneofIndex The index of the field type in `Type.oneofs`, for message or enumeration
-types. The first type has index 1; zero means the type is not in the list.
-* @property {boolean} packed Whether to use alternative packed wire representation.
-* @property {string} cardinality The field cardinality.
-* @property {string} defaultValue The string value of the default value of this field. Proto2 syntax only.
-* @property {string} name The field name.
-*/
-/**
- * @typedef Enum
- * @memberOf! serviceuser(v1)
- * @type object
- * @property {string} name Enum type name.
- * @property {serviceuser(v1).EnumValue[]} enumvalue Enum value definitions.
- * @property {serviceuser(v1).Option[]} options Protocol buffer options.
- * @property {serviceuser(v1).SourceContext} sourceContext The source context.
- * @property {string} syntax The source syntax.
- */
-/**
- * @typedef EnableServiceRequest
- * @memberOf! serviceuser(v1)
- * @type object
- */
-/**
- * @typedef LabelDescriptor
- * @memberOf! serviceuser(v1)
- * @type object
- * @property {string} key The label key.
- * @property {string} description A human-readable description for the label.
- * @property {string} valueType The type of data that can be assigned to the label.
- */
-/**
- * @typedef Type
- * @memberOf! serviceuser(v1)
- * @type object
- * @property {string} syntax The source syntax.
- * @property {serviceuser(v1).SourceContext} sourceContext The source context.
- * @property {serviceuser(v1).Option[]} options The protocol buffer options.
- * @property {serviceuser(v1).Field[]} fields The list of fields.
- * @property {string} name The fully qualified message name.
- * @property {string[]} oneofs The list of types appearing in `oneof` definitions in this type.
- */
 /**
  * @typedef Experimental
  * @memberOf! serviceuser(v1)
@@ -510,6 +219,7 @@ firebaserules.googleapis.com.
  * @typedef DocumentationRule
  * @memberOf! serviceuser(v1)
  * @type object
+* @property {string} description Description of the selected API(s).
 * @property {string} deprecationDescription Deprecation description of the selected element(s). It can be provided if an
 element is marked as `deprecated`.
 * @property {string} selector The selector is a comma-separated list of patterns. Each pattern is a
@@ -518,7 +228,6 @@ Wildcards are only allowed at the end and for a whole component of the
 qualified name, i.e. &quot;foo.*&quot; is ok, but not &quot;foo.b*&quot; or &quot;foo.*.bar&quot;. To
 specify a default for all applicable elements, the whole pattern &quot;*&quot;
 is used.
-* @property {string} description Description of the selected API(s).
 */
 /**
  * @typedef ContextRule
@@ -534,6 +243,8 @@ Refer to selector for syntax details.
  * @typedef MetricDescriptor
  * @memberOf! serviceuser(v1)
  * @type object
+* @property {string} valueType Whether the measurement is an integer, a floating-point number, etc.
+Some combinations of `metric_kind` and `value_type` might not be supported.
 * @property {string} metricKind Whether the metric records instantaneous values, changes to a value, etc.
 Some combinations of `metric_kind` and `value_type` might not be supported.
 * @property {string} description A detailed description of the metric, which can be used in documentation.
@@ -624,8 +335,6 @@ grouping. For example:
 
     &quot;custom.googleapis.com/invoice/paid/amount&quot;
     &quot;appengine.googleapis.com/http/server/response_latencies&quot;
-* @property {string} valueType Whether the measurement is an integer, a floating-point number, etc.
-Some combinations of `metric_kind` and `value_type` might not be supported.
 */
 /**
  * @typedef SourceContext
@@ -638,24 +347,24 @@ protobuf element.  For example: `&quot;google/protobuf/source_context.proto&quot
  * @typedef Endpoint
  * @memberOf! serviceuser(v1)
  * @type object
+* @property {string[]} features The list of features enabled on this endpoint.
+* @property {string[]} apis The list of APIs served by this endpoint.
+* @property {string[]} aliases DEPRECATED: This field is no longer supported. Instead of using aliases,
+please specify multiple google.api.Endpoint for each of the intented
+alias.
+
+Additional names that this endpoint will be hosted on.
 * @property {boolean} allowCors Allowing
 [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka
 cross-domain traffic, would allow the backends served from this endpoint to
 receive and respond to HTTP OPTIONS requests. The response will be used by
 the browser to determine whether the subsequent cross-origin request is
 allowed to proceed.
-* @property {string[]} aliases DEPRECATED: This field is no longer supported. Instead of using aliases,
-please specify multiple google.api.Endpoint for each of the intented
-alias.
-
-Additional names that this endpoint will be hosted on.
+* @property {string} name The canonical name of this endpoint.
 * @property {string} target The specification of an Internet routable address of API frontend that will
 handle requests to this [API Endpoint](https://cloud.google.com/apis/design/glossary).
 It should be either a valid IPv4 address or a fully-qualified domain name.
 For example, &quot;8.8.8.8&quot; or &quot;myservice.appspot.com&quot;.
-* @property {string} name The canonical name of this endpoint.
-* @property {string[]} features The list of features enabled on this endpoint.
-* @property {string[]} apis The list of APIs served by this endpoint.
 */
 /**
  * @typedef ListEnabledServicesResponse
@@ -681,9 +390,6 @@ Example:
  * @typedef Usage
  * @memberOf! serviceuser(v1)
  * @type object
-* @property {serviceuser(v1).UsageRule[]} rules A list of usage rules that apply to individual API methods.
-
-**NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
 * @property {string[]} requirements Requirements that must be satisfied before a consumer project can use the
 service. Each requirement is of the form &lt;service.name&gt;/&lt;requirement-id&gt;;
 for example &#39;serviceusage.googleapis.com/billing-enabled&#39;.
@@ -695,6 +401,9 @@ Google Service Management currently only supports
 channel. To use Google Cloud Pub/Sub as the channel, this must be the name
 of a Cloud Pub/Sub topic that uses the Cloud Pub/Sub topic name format
 documented in https://cloud.google.com/pubsub/docs/overview.
+* @property {serviceuser(v1).UsageRule[]} rules A list of usage rules that apply to individual API methods.
+
+**NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
 */
 /**
  * @typedef Context
@@ -708,10 +417,6 @@ documented in https://cloud.google.com/pubsub/docs/overview.
  * @typedef LogDescriptor
  * @memberOf! serviceuser(v1)
  * @type object
-* @property {string} description A human-readable description of this log. This information appears in
-the documentation and can contain details.
-* @property {string} displayName The human-readable name for this log. This information appears on
-the user interface and should be concise.
 * @property {serviceuser(v1).LabelDescriptor[]} labels The set of labels that are available to describe a specific log entry.
 Runtime requests that contain labels not specified here are
 considered invalid.
@@ -719,11 +424,18 @@ considered invalid.
 include the following characters: upper- and lower-case alphanumeric
 characters [A-Za-z0-9], and punctuation characters including
 slash, underscore, hyphen, period [/_-.].
+* @property {string} description A human-readable description of this log. This information appears in
+the documentation and can contain details.
+* @property {string} displayName The human-readable name for this log. This information appears on
+the user interface and should be concise.
 */
 /**
  * @typedef MonitoredResourceDescriptor
  * @memberOf! serviceuser(v1)
  * @type object
+* @property {serviceuser(v1).LabelDescriptor[]} labels Required. A set of labels used to describe instances of this monitored
+resource type. For example, an individual Google Cloud SQL database is
+identified by values for the labels `&quot;database_id&quot;` and `&quot;zone&quot;`.
 * @property {string} name Optional. The resource name of the monitored resource descriptor:
 `&quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot;` where
 {type} is the value of the `type` field in this object and
@@ -739,9 +451,6 @@ be used in documentation.
 * @property {string} type Required. The monitored resource type. For example, the type
 `&quot;cloudsql_database&quot;` represents databases in Google Cloud SQL.
 The maximum length of this value is 256 characters.
-* @property {serviceuser(v1).LabelDescriptor[]} labels Required. A set of labels used to describe instances of this monitored
-resource type. For example, an individual Google Cloud SQL database is
-identified by values for the labels `&quot;database_id&quot;` and `&quot;zone&quot;`.
 */
 /**
  * @typedef CustomErrorRule
@@ -761,6 +470,14 @@ Refer to selector for syntax details.
 * @property {string} downloadService DO NOT USE THIS FIELD UNTIL THIS WARNING IS REMOVED.
 
 Specify name of the download service if one is used for download.
+*/
+/**
+ * @typedef CustomAuthRequirements
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {string} provider A configuration string containing connection information for the
+authentication provider, typically formatted as a SmartService string
+(go/smartservice).
 */
 /**
  * @typedef DisableServiceRequest
@@ -788,16 +505,21 @@ Specify name of the upload service if one is used for upload.
  * @typedef UsageRule
  * @memberOf! serviceuser(v1)
  * @type object
-* @property {boolean} allowUnregisteredCalls True, if the method allows unregistered calls; false otherwise.
 * @property {string} selector Selects the methods to which this rule applies. Use &#39;*&#39; to indicate all
 methods in all APIs.
 
 Refer to selector for syntax details.
+* @property {boolean} allowUnregisteredCalls True, if the method allows unregistered calls; false otherwise.
 */
 /**
  * @typedef AuthRequirement
  * @memberOf! serviceuser(v1)
  * @type object
+* @property {string} providerId id from authentication provider.
+
+Example:
+
+    provider_id: bookstore_auth
 * @property {string} audiences NOTE: This will be deprecated soon, once AuthProvider.audiences is
 implemented and accepted in all the runtime components.
 
@@ -814,16 +536,12 @@ Example:
 
     audiences: bookstore_android.apps.googleusercontent.com,
                bookstore_web.apps.googleusercontent.com
-* @property {string} providerId id from authentication provider.
-
-Example:
-
-    provider_id: bookstore_auth
 */
 /**
  * @typedef Documentation
  * @memberOf! serviceuser(v1)
  * @type object
+* @property {serviceuser(v1).Page[]} pages The top level pages for the documentation set.
 * @property {string} summary A short summary of what the service does. Can only be provided by
 plain text.
 * @property {string} documentationRootUrl The URL to the root of documentation.
@@ -843,7 +561,24 @@ This is a shortcut for the following declaration (using pages style):
     content: &amp;#40;== include overview.md ==&amp;#41;
 &lt;/code&gt;&lt;/pre&gt;
 Note: you cannot specify both `overview` field and `pages` field.
-* @property {serviceuser(v1).Page[]} pages The top level pages for the documentation set.
+*/
+/**
+ * @typedef AuthenticationRule
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {string} selector Selects the methods to which this rule applies.
+
+Refer to selector for syntax details.
+* @property {boolean} allowWithoutCredential Whether to allow requests without a credential. The credential can be
+an OAuth token, Google cookies (first-party auth) or EndUserCreds.
+
+For requests without credentials, if the service control environment is
+specified, each incoming request **must** be associated with a service
+consumer. This can be done by passing an API key that belongs to a consumer
+project.
+* @property {serviceuser(v1).OAuthRequirements} oauth The requirements for OAuth credentials.
+* @property {serviceuser(v1).CustomAuthRequirements} customAuth Configuration for custom authentication.
+* @property {serviceuser(v1).AuthRequirement[]} requirements Requirements for additional authentication providers.
 */
 /**
  * @typedef BackendRule
@@ -855,23 +590,8 @@ Note: you cannot specify both `overview` field and `pages` field.
 Refer to selector for syntax details.
 * @property {number} deadline The number of seconds to wait for a response from a request.  The
 default depends on the deployment context.
-*/
-/**
- * @typedef AuthenticationRule
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {serviceuser(v1).OAuthRequirements} oauth The requirements for OAuth credentials.
-* @property {serviceuser(v1).AuthRequirement[]} requirements Requirements for additional authentication providers.
-* @property {string} selector Selects the methods to which this rule applies.
-
-Refer to selector for syntax details.
-* @property {boolean} allowWithoutCredential Whether to allow requests without a credential. The credential can be
-an OAuth token, Google cookies (first-party auth) or EndUserCreds.
-
-For requests without credentials, if the service control environment is
-specified, each incoming request **must** be associated with a service
-consumer. This can be done by passing an API key that belongs to a consumer
-project.
+* @property {number} minDeadline Minimum deadline in seconds needed for this method. Calls having deadline
+value lower than this will be rejected.
 */
 /**
  * @typedef Api
@@ -934,9 +654,6 @@ The value must not be negative.
  * @typedef Operation
  * @memberOf! serviceuser(v1)
  * @type object
-* @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
-available.
 * @property {object} response The normal response of the operation in case of success.  If the original
 method returns no data on success, such as `Delete`, the response is
 `google.protobuf.Empty`.  If the original method is standard
@@ -953,6 +670,9 @@ originally returns it. If you use the default HTTP mapping, the
 contains progress information and common metadata such as create time.
 Some services might not provide such metadata.  Any method that returns a
 long-running operation should document the metadata type, if any.
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
 */
 /**
  * @typedef Page
@@ -981,26 +701,17 @@ to include content from a Markdown file.
  * @typedef Status
  * @memberOf! serviceuser(v1)
  * @type object
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
 * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
 */
 /**
  * @typedef AuthProvider
  * @memberOf! serviceuser(v1)
  * @type object
-* @property {string} jwksUri URL of the provider&#39;s public key set to validate signature of the JWT. See
-[OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).
-Optional if the key set document:
- - can be retrieved from
-   [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html
-   of the issuer.
- - can be inferred from the email domain of the issuer (e.g. a Google service account).
-
-Example: https://www.googleapis.com/oauth2/v1/certs
 * @property {string} audiences The list of JWT
 [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3).
 that are allowed to access. A JWT containing any of these audiences will
@@ -1024,46 +735,20 @@ Usually a URL or an email address.
 
 Example: https://securetoken.google.com
 Example: 1234567-compute@developer.gserviceaccount.com
+* @property {string} jwksUri URL of the provider&#39;s public key set to validate signature of the JWT. See
+[OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata).
+Optional if the key set document:
+ - can be retrieved from
+   [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html
+   of the issuer.
+ - can be inferred from the email domain of the issuer (e.g. a Google service account).
+
+Example: https://www.googleapis.com/oauth2/v1/certs
 */
-/**
- * @typedef EnumValue
- * @memberOf! serviceuser(v1)
- * @type object
- * @property {string} name Enum value name.
- * @property {serviceuser(v1).Option[]} options Protocol buffer options.
- * @property {integer} number Enum value number.
- */
 /**
  * @typedef Service
  * @memberOf! serviceuser(v1)
  * @type object
-* @property {serviceuser(v1).CustomError} customError Custom error configuration.
-* @property {string} title The product title associated with this service.
-* @property {serviceuser(v1).Endpoint[]} endpoints Configuration for network endpoints.  If this is empty, then an endpoint
-with the same name as the service is automatically generated to service all
-defined APIs.
-* @property {serviceuser(v1).LogDescriptor[]} logs Defines the logs used by this service.
-* @property {serviceuser(v1).Api[]} apis A list of API interfaces exported by this service. Only the `name` field
-of the google.protobuf.Api needs to be provided by the configuration
-author, as the remaining fields will be derived from the IDL during the
-normalization process. It is an error to specify an API interface here
-which cannot be resolved against the associated IDL files.
-* @property {serviceuser(v1).Type[]} types A list of all proto message types included in this API service.
-Types referenced directly or indirectly by the `apis` are
-automatically included.  Messages which are not referenced but
-shall be included, such as types used by the `google.protobuf.Any` type,
-should be listed here by name. Example:
-
-    types:
-    - name: google.protobuf.Int32
-* @property {serviceuser(v1).SourceInfo} sourceInfo Output only. The source information for this configuration if available.
-* @property {serviceuser(v1).Http} http HTTP configuration.
-* @property {serviceuser(v1).Backend} backend API backend configuration.
-* @property {serviceuser(v1).SystemParameters} systemParameters System parameter configuration.
-* @property {serviceuser(v1).Documentation} documentation Additional API documentation.
-* @property {serviceuser(v1).Logging} logging Logging configuration.
-* @property {serviceuser(v1).MonitoredResourceDescriptor[]} monitoredResources Defines the monitored resources used by this service. This is required
-by the Service.monitoring and Service.logging configurations.
 * @property {serviceuser(v1).Enum[]} enums A list of all enum types included in this API service.  Enums
 referenced directly or indirectly by the `apis` are automatically
 included.  Enums which are not referenced but shall be included
@@ -1097,23 +782,68 @@ to define system APIs in ESF.
 * @property {serviceuser(v1).Quota} quota Quota configuration.
 * @property {string} name The DNS address at which this service is available,
 e.g. `calendar.googleapis.com`.
+* @property {serviceuser(v1).CustomError} customError Custom error configuration.
+* @property {string} title The product title associated with this service.
+* @property {serviceuser(v1).Endpoint[]} endpoints Configuration for network endpoints.  If this is empty, then an endpoint
+with the same name as the service is automatically generated to service all
+defined APIs.
+* @property {serviceuser(v1).LogDescriptor[]} logs Defines the logs used by this service.
+* @property {serviceuser(v1).Api[]} apis A list of API interfaces exported by this service. Only the `name` field
+of the google.protobuf.Api needs to be provided by the configuration
+author, as the remaining fields will be derived from the IDL during the
+normalization process. It is an error to specify an API interface here
+which cannot be resolved against the associated IDL files.
+* @property {serviceuser(v1).Type[]} types A list of all proto message types included in this API service.
+Types referenced directly or indirectly by the `apis` are
+automatically included.  Messages which are not referenced but
+shall be included, such as types used by the `google.protobuf.Any` type,
+should be listed here by name. Example:
+
+    types:
+    - name: google.protobuf.Int32
+* @property {serviceuser(v1).SourceInfo} sourceInfo Output only. The source information for this configuration if available.
+* @property {serviceuser(v1).Http} http HTTP configuration.
+* @property {serviceuser(v1).SystemParameters} systemParameters System parameter configuration.
+* @property {serviceuser(v1).Backend} backend API backend configuration.
+* @property {serviceuser(v1).Documentation} documentation Additional API documentation.
+* @property {serviceuser(v1).MonitoredResourceDescriptor[]} monitoredResources Defines the monitored resources used by this service. This is required
+by the Service.monitoring and Service.logging configurations.
+* @property {serviceuser(v1).Logging} logging Logging configuration.
 */
 /**
- * @typedef CustomHttpPattern
+ * @typedef EnumValue
  * @memberOf! serviceuser(v1)
  * @type object
- * @property {string} path The path matched by this custom verb.
- * @property {string} kind The name of this custom HTTP verb.
+ * @property {string} name Enum value name.
+ * @property {serviceuser(v1).Option[]} options Protocol buffer options.
+ * @property {integer} number Enum value number.
  */
 /**
  * @typedef OperationMetadata
  * @memberOf! serviceuser(v1)
  * @type object
+* @property {string} startTime The start time of the operation.
 * @property {string[]} resourceNames The full name of the resources that this operation is directly
 associated with.
 * @property {serviceuser(v1).Step[]} steps Detailed status information for each step. The order is undetermined.
 * @property {integer} progressPercentage Percentage of completion of this operation, ranging from 0 to 100.
-* @property {string} startTime The start time of the operation.
+*/
+/**
+ * @typedef CustomHttpPattern
+ * @memberOf! serviceuser(v1)
+ * @type object
+ * @property {string} kind The name of this custom HTTP verb.
+ * @property {string} path The path matched by this custom verb.
+ */
+/**
+ * @typedef PublishedService
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {serviceuser(v1).Service} service The service&#39;s published configuration.
+* @property {string} name The resource name of the service.
+
+A valid name would be:
+- services/serviceuser.googleapis.com
 */
 /**
  * @typedef SystemParameterRule
@@ -1128,49 +858,6 @@ For a given method call, only one of them should be used. If multiple
 names are used the behavior is implementation-dependent.
 If none of the specified names are present the behavior is
 parameter-dependent.
-*/
-/**
- * @typedef PublishedService
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {serviceuser(v1).Service} service The service&#39;s published configuration.
-* @property {string} name The resource name of the service.
-
-A valid name would be:
-- services/serviceuser.googleapis.com
-*/
-/**
- * @typedef HttpRule
- * @memberOf! serviceuser(v1)
- * @type object
-* @property {serviceuser(v1).CustomHttpPattern} custom Custom pattern is used for defining custom verbs.
-* @property {string} patch Used for updating a resource.
-* @property {string} get Used for listing and getting information about resources.
-* @property {string} put Used for updating a resource.
-* @property {string} delete Used for deleting a resource.
-* @property {string} body The name of the request field whose value is mapped to the HTTP body, or
-`*` for mapping all fields not captured by the path pattern to the HTTP
-body. NOTE: the referred field must not be a repeated field and must be
-present at the top-level of request message type.
-* @property {serviceuser(v1).MediaDownload} mediaDownload Use this only for Scotty Requests. Do not use this for bytestream methods.
-For media support, add instead [][google.bytestream.RestByteStream] as an
-API to your configuration.
-* @property {string} post Used for creating a resource.
-* @property {serviceuser(v1).HttpRule[]} additionalBindings Additional HTTP bindings for the selector. Nested bindings must
-not contain an `additional_bindings` field themselves (that is,
-the nesting may only be one level deep).
-* @property {string} responseBody The name of the response field whose value is mapped to the HTTP body of
-response. Other response fields are ignored. This field is optional. When
-not set, the response message will be used as HTTP body of response.
-NOTE: the referred field must be not a repeated field and must be present
-at the top-level of response message type.
-* @property {serviceuser(v1).MediaUpload} mediaUpload Use this only for Scotty Requests. Do not use this for media support using
-Bytestream, add instead
-[][google.bytestream.RestByteStream] as an API to your
-configuration for Bytestream methods.
-* @property {string} selector Selects methods to which this rule applies.
-
-Refer to selector for syntax details.
 */
 /**
  * @typedef VisibilityRule
@@ -1194,6 +881,39 @@ rely on this method and only had access to it through GOOGLE_INTERNAL.
 * @property {string} selector Selects methods, messages, fields, enums, etc. to which this rule applies.
 
 Refer to selector for syntax details.
+*/
+/**
+ * @typedef HttpRule
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {string} selector Selects methods to which this rule applies.
+
+Refer to selector for syntax details.
+* @property {serviceuser(v1).CustomHttpPattern} custom Custom pattern is used for defining custom verbs.
+* @property {string} patch Used for updating a resource.
+* @property {string} get Used for listing and getting information about resources.
+* @property {string} put Used for updating a resource.
+* @property {string} delete Used for deleting a resource.
+* @property {string} body The name of the request field whose value is mapped to the HTTP body, or
+`*` for mapping all fields not captured by the path pattern to the HTTP
+body. NOTE: the referred field must not be a repeated field and must be
+present at the top-level of request message type.
+* @property {string} post Used for creating a resource.
+* @property {serviceuser(v1).MediaDownload} mediaDownload Use this only for Scotty Requests. Do not use this for bytestream methods.
+For media support, add instead [][google.bytestream.RestByteStream] as an
+API to your configuration.
+* @property {serviceuser(v1).HttpRule[]} additionalBindings Additional HTTP bindings for the selector. Nested bindings must
+not contain an `additional_bindings` field themselves (that is,
+the nesting may only be one level deep).
+* @property {string} responseBody The name of the response field whose value is mapped to the HTTP body of
+response. Other response fields are ignored. This field is optional. When
+not set, the response message will be used as HTTP body of response.
+NOTE: the referred field must be not a repeated field and must be present
+at the top-level of response message type.
+* @property {serviceuser(v1).MediaUpload} mediaUpload Use this only for Scotty Requests. Do not use this for media support using
+Bytestream, add instead
+[][google.bytestream.RestByteStream] as an API to your
+configuration for Bytestream methods.
 */
 /**
  * @typedef MonitoringDestination
@@ -1262,8 +982,8 @@ Used by metric-based quotas only.
  * @typedef Step
  * @memberOf! serviceuser(v1)
  * @type object
- * @property {string} status The status code.
  * @property {string} description The short description of the step.
+ * @property {string} status The status code.
  */
 /**
  * @typedef LoggingDestination
@@ -1276,4 +996,291 @@ be defined in the Service.logs section. If the log name is
 not a domain scoped name, it will be automatically prefixed with
 the service name followed by &quot;/&quot;.
 */
+/**
+ * @typedef Option
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {string} name The option&#39;s name. For protobuf built-in options (options defined in
+descriptor.proto), this is the short name. For example, `&quot;map_entry&quot;`.
+For custom options, it should be the fully-qualified name. For example,
+`&quot;google.api.http&quot;`.
+* @property {object} value The option&#39;s value packed in an Any message. If the value is a primitive,
+the corresponding wrapper type defined in google/protobuf/wrappers.proto
+should be used. If the value is an enum, it should be stored as an int32
+value using the google.protobuf.Int32Value type.
+*/
+/**
+ * @typedef Logging
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {serviceuser(v1).LoggingDestination[]} producerDestinations Logging configurations for sending logs to the producer project.
+There can be multiple producer destinations, each one must have a
+different monitored resource type. A log can be used in at most
+one producer destination.
+* @property {serviceuser(v1).LoggingDestination[]} consumerDestinations Logging configurations for sending logs to the consumer project.
+There can be multiple consumer destinations, each one must have a
+different monitored resource type. A log can be used in at most
+one consumer destination.
+*/
+/**
+ * @typedef Method
+ * @memberOf! serviceuser(v1)
+ * @type object
+ * @property {boolean} responseStreaming If true, the response is streamed.
+ * @property {string} name The simple name of this method.
+ * @property {string} requestTypeUrl A URL of the input message type.
+ * @property {boolean} requestStreaming If true, the request is streamed.
+ * @property {string} syntax The source syntax of this method.
+ * @property {string} responseTypeUrl The URL of the output message type.
+ * @property {serviceuser(v1).Option[]} options Any metadata attached to the method.
+ */
+/**
+ * @typedef QuotaLimit
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {string} defaultLimit Default number of tokens that can be consumed during the specified
+duration. This is the number of tokens assigned when a client
+application developer activates the service for his/her project.
+
+Specifying a value of 0 will block all requests. This can be used if you
+are provisioning quota to selected consumers and blocking others.
+Similarly, a value of -1 will indicate an unlimited quota. No other
+negative values are allowed.
+
+Used by group-based quotas only.
+* @property {string} description Optional. User-visible, extended description for this quota limit.
+Should be used only when more context is needed to understand this limit
+than provided by the limit&#39;s display name (see: `display_name`).
+* @property {string} metric The name of the metric this quota limit applies to. The quota limits with
+the same metric will be checked together during runtime. The metric must be
+defined within the service config.
+
+Used by metric-based quotas only.
+* @property {string} displayName User-visible display name for this limit.
+Optional. If not set, the UI will provide a default display name based on
+the quota configuration. This field can be used to override the default
+display name generated from the configuration.
+* @property {object} values Tiered limit values. Also allows for regional or zone overrides for these
+values if &quot;/{region}&quot; or &quot;/{zone}&quot; is specified in the unit field.
+
+Currently supported tiers from low to high:
+VERY_LOW, LOW, STANDARD, HIGH, VERY_HIGH
+
+To apply different limit values for users according to their tiers, specify
+the values for the tiers you want to differentiate. For example:
+{LOW:100, STANDARD:500, HIGH:1000, VERY_HIGH:5000}
+
+The limit value for each tier is optional except for the tier STANDARD.
+The limit value for an unspecified tier falls to the value of its next
+tier towards tier STANDARD. For the above example, the limit value for tier
+STANDARD is 500.
+
+To apply the same limit value for all users, just specify limit value for
+tier STANDARD. For example: {STANDARD:500}.
+
+To apply a regional overide for a tier, add a map entry with key
+&quot;&lt;TIER&gt;/&lt;region&gt;&quot;, where &lt;region&gt; is a region name. Similarly, for a zone
+override, add a map entry with key &quot;&lt;TIER&gt;/{zone}&quot;.
+Further, a wildcard can be used at the end of a zone name in order to
+specify zone level overrides. For example:
+LOW: 10, STANDARD: 50, HIGH: 100,
+LOW/us-central1: 20, STANDARD/us-central1: 60, HIGH/us-central1: 200,
+LOW/us-central1-*: 10, STANDARD/us-central1-*: 20, HIGH/us-central1-*: 80
+
+The regional overrides tier set for each region must be the same as
+the tier set for default limit values. Same rule applies for zone overrides
+tier as well.
+
+Used by metric-based quotas only.
+* @property {string} unit Specify the unit of the quota limit. It uses the same syntax as
+Metric.unit. The supported unit kinds are determined by the quota
+backend system.
+
+The [Google Service Control](https://cloud.google.com/service-control)
+supports the following unit components:
+* One of the time intevals:
+  * &quot;/min&quot;  for quota every minute.
+  * &quot;/d&quot;  for quota every 24 hours, starting 00:00 US Pacific Time.
+  * Otherwise the quota won&#39;t be reset by time, such as storage limit.
+* One and only one of the granted containers:
+  * &quot;/{organization}&quot; quota for an organization.
+  * &quot;/{project}&quot; quota for a project.
+  * &quot;/{folder}&quot; quota for a folder.
+  * &quot;/{resource}&quot; quota for a universal resource.
+* Zero or more quota segmentation dimension. Not all combos are valid.
+  * &quot;/{region}&quot; quota for every region. Not to be used with time intervals.
+  * Otherwise the resources granted on the target is not segmented.
+  * &quot;/{zone}&quot; quota for every zone. Not to be used with time intervals.
+  * Otherwise the resources granted on the target is not segmented.
+  * &quot;/{resource}&quot; quota for a resource associated with a project or org.
+
+Here are some examples:
+* &quot;1/min/{project}&quot; for quota per minute per project.
+* &quot;1/min/{user}&quot; for quota per minute per user.
+* &quot;1/min/{organization}&quot; for quota per minute per organization.
+
+Note: the order of unit components is insignificant.
+The &quot;1&quot; at the beginning is required to follow the metric unit syntax.
+
+Used by metric-based quotas only.
+* @property {string} maxLimit Maximum number of tokens that can be consumed during the specified
+duration. Client application developers can override the default limit up
+to this maximum. If specified, this value cannot be set to a value less
+than the default limit. If not specified, it is set to the default limit.
+
+To allow clients to apply overrides with no upper bound, set this to -1,
+indicating unlimited maximum quota.
+
+Used by group-based quotas only.
+* @property {string} name Name of the quota limit. The name is used to refer to the limit when
+overriding the default limit on per-consumer basis.
+
+For group-based quota limits, the name must be unique within the quota
+group. If a name is not provided, it will be generated from the limit_by
+and duration fields.
+
+For metric-based quota limits, the name must be provided, and it must be
+unique within the service. The name can only include alphanumeric
+characters as well as &#39;-&#39;.
+
+The maximum length of the limit name is 64 characters.
+
+The name of a limit is used as a unique identifier for this limit.
+Therefore, once a limit has been put into use, its name should be
+immutable. You can use the display_name field to provide a user-friendly
+name for the limit. The display name can be evolved over time without
+affecting the identity of the limit.
+* @property {string} duration Duration of this limit in textual notation. Example: &quot;100s&quot;, &quot;24h&quot;, &quot;1d&quot;.
+For duration longer than a day, only multiple of days is supported. We
+support only &quot;100s&quot; and &quot;1d&quot; for now. Additional support will be added in
+the future. &quot;0&quot; indicates indefinite duration.
+
+Used by group-based quotas only.
+* @property {string} freeTier Free tier value displayed in the Developers Console for this limit.
+The free tier is the number of tokens that will be subtracted from the
+billed amount when billing is enabled.
+This field can only be set on a limit with duration &quot;1d&quot;, in a billable
+group; it is invalid on any other limit. If this field is not set, it
+defaults to 0, indicating that there is no free tier for this service.
+
+Used by group-based quotas only.
+*/
+/**
+ * @typedef Mixin
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {string} name The fully qualified name of the API which is included.
+* @property {string} root If non-empty specifies a path under which inherited HTTP paths
+are rooted.
+*/
+/**
+ * @typedef CustomError
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {serviceuser(v1).CustomErrorRule[]} rules The list of custom error rules that apply to individual API messages.
+
+**NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+* @property {string[]} types The list of custom error detail types, e.g. &#39;google.foo.v1.CustomError&#39;.
+*/
+/**
+ * @typedef Http
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {boolean} fullyDecodeReservedExpansion When set to true, URL path parmeters will be fully URI-decoded except in
+cases of single segment matches in reserved expansion, where &quot;%2F&quot; will be
+left encoded.
+
+The default behavior is to not decode RFC 6570 reserved characters in multi
+segment matches.
+* @property {serviceuser(v1).HttpRule[]} rules A list of HTTP configuration rules that apply to individual API methods.
+
+**NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
+*/
+/**
+ * @typedef SourceInfo
+ * @memberOf! serviceuser(v1)
+ * @type object
+ * @property {object[]} sourceFiles All files used during config generation.
+ */
+/**
+ * @typedef Control
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {string} environment The service control environment to use. If empty, no control plane
+feature (like quota and billing) will be enabled.
+*/
+/**
+ * @typedef SystemParameter
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {string} name Define the name of the parameter, such as &quot;api_key&quot; . It is case sensitive.
+* @property {string} urlQueryParameter Define the URL query parameter name to use for the parameter. It is case
+sensitive.
+* @property {string} httpHeader Define the HTTP header name to use for the parameter. It is case
+insensitive.
+*/
+/**
+ * @typedef Monitoring
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {serviceuser(v1).MonitoringDestination[]} consumerDestinations Monitoring configurations for sending metrics to the consumer project.
+There can be multiple consumer destinations, each one must have a
+different monitored resource type. A metric can be used in at most
+one consumer destination.
+* @property {serviceuser(v1).MonitoringDestination[]} producerDestinations Monitoring configurations for sending metrics to the producer project.
+There can be multiple producer destinations, each one must have a
+different monitored resource type. A metric can be used in at most
+one producer destination.
+*/
+/**
+ * @typedef Field
+ * @memberOf! serviceuser(v1)
+ * @type object
+* @property {string} typeUrl The field type URL, without the scheme, for message or enumeration
+types. Example: `&quot;type.googleapis.com/google.protobuf.Timestamp&quot;`.
+* @property {integer} number The field number.
+* @property {string} kind The field type.
+* @property {string} jsonName The field JSON name.
+* @property {serviceuser(v1).Option[]} options The protocol buffer options.
+* @property {integer} oneofIndex The index of the field type in `Type.oneofs`, for message or enumeration
+types. The first type has index 1; zero means the type is not in the list.
+* @property {string} cardinality The field cardinality.
+* @property {boolean} packed Whether to use alternative packed wire representation.
+* @property {string} defaultValue The string value of the default value of this field. Proto2 syntax only.
+* @property {string} name The field name.
+*/
+/**
+ * @typedef Enum
+ * @memberOf! serviceuser(v1)
+ * @type object
+ * @property {serviceuser(v1).Option[]} options Protocol buffer options.
+ * @property {serviceuser(v1).SourceContext} sourceContext The source context.
+ * @property {string} syntax The source syntax.
+ * @property {string} name Enum type name.
+ * @property {serviceuser(v1).EnumValue[]} enumvalue Enum value definitions.
+ */
+/**
+ * @typedef EnableServiceRequest
+ * @memberOf! serviceuser(v1)
+ * @type object
+ */
+/**
+ * @typedef LabelDescriptor
+ * @memberOf! serviceuser(v1)
+ * @type object
+ * @property {string} key The label key.
+ * @property {string} description A human-readable description for the label.
+ * @property {string} valueType The type of data that can be assigned to the label.
+ */
+/**
+ * @typedef Type
+ * @memberOf! serviceuser(v1)
+ * @type object
+ * @property {serviceuser(v1).Option[]} options The protocol buffer options.
+ * @property {serviceuser(v1).Field[]} fields The list of fields.
+ * @property {string} name The fully qualified message name.
+ * @property {string[]} oneofs The list of types appearing in `oneof` definitions in this type.
+ * @property {serviceuser(v1).SourceContext} sourceContext The source context.
+ * @property {string} syntax The source syntax.
+ */
 export = Serviceuser;

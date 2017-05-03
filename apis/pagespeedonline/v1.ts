@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * PageSpeed Insights API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Analyzes the performance of a web page and provides tailored suggestions to make that page faster.
  *
  * @example
- * var google = require('googleapis');
- * var pagespeedonline = google.pagespeedonline('v1');
+ * const google = require('googleapis');
+ * const pagespeedonline = google.pagespeedonline('v1');
  *
  * @namespace pagespeedonline
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Pagespeedonline
  */
 function Pagespeedonline(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.pagespeedapi = {
@@ -68,7 +66,7 @@ function Pagespeedonline(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/pagespeedonline/v1/runPagespeed',
           method: 'GET'

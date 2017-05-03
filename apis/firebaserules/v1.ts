@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Firebase Rules API
@@ -28,8 +26,8 @@ var utils = require('../../lib/utils');
 
  *
  * @example
- * var google = require('googleapis');
- * var firebaserules = google.firebaserules('v1');
+ * const google = require('googleapis');
+ * const firebaserules = google.firebaserules('v1');
  *
  * @namespace firebaserules
  * @type {Function}
@@ -38,7 +36,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Firebaserules
  */
 function Firebaserules(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.projects = {
@@ -65,7 +63,7 @@ function Firebaserules(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://firebaserules.googleapis.com/v1/{name}:test',
           method: 'POST'
@@ -79,127 +77,19 @@ function Firebaserules(options) { // eslint-disable-line
       return createAPIRequest(parameters, callback);
     },
 
-    rulesets: {
+    releases: {
 
       /**
-       * firebaserules.projects.rulesets.delete
+       * firebaserules.projects.releases.create
        *
-       * @desc Delete a `Ruleset` by resource name.  If the `Ruleset` is referenced by a `Release` the operation will fail.
+       * @desc Create a `Release`.  Release names should reflect the developer's deployment practices. For example, the release name may include the environment name, application name, application version, or any other name meaningful to the developer. Once a `Release` refers to a `Ruleset`, the rules can be enforced by Firebase Rules-enabled services.  More than one `Release` may be 'live' concurrently. Consider the following three `Release` names for `projects/foo` and the `Ruleset` to which they refer.  Release Name                    | Ruleset Name --------------------------------|------------- projects/foo/releases/prod      | projects/foo/rulesets/uuid123 projects/foo/releases/prod/beta | projects/foo/rulesets/uuid123 projects/foo/releases/prod/v23  | projects/foo/rulesets/uuid456  The table reflects the `Ruleset` rollout in progress. The `prod` and `prod/beta` releases refer to the same `Ruleset`. However, `prod/v23` refers to a new `Ruleset`. The `Ruleset` reference for a `Release` may be updated using the UpdateRelease method.
        *
-       * @alias firebaserules.projects.rulesets.delete
+       * @alias firebaserules.projects.releases.create
        * @memberOf! firebaserules(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name Resource name for the ruleset to delete.  Format: `projects/{project_id}/rulesets/{ruleset_id}`
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://firebaserules.googleapis.com/v1/{name}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * firebaserules.projects.rulesets.get
-       *
-       * @desc Get a `Ruleset` by name including the full `Source` contents.
-       *
-       * @alias firebaserules.projects.rulesets.get
-       * @memberOf! firebaserules(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name Resource name for the ruleset to get.  Format: `projects/{project_id}/rulesets/{ruleset_id}`
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://firebaserules.googleapis.com/v1/{name}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * firebaserules.projects.rulesets.list
-       *
-       * @desc List `Ruleset` metadata only and optionally filter the results by `Ruleset` name.  The full `Source` contents of a `Ruleset` may be retrieved with GetRuleset.
-       *
-       * @alias firebaserules.projects.rulesets.list
-       * @memberOf! firebaserules(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter `Ruleset` filter. The list method supports filters with restrictions on `Ruleset.name`.  Filters on `Ruleset.create_time` should use the `date` function which parses strings that conform to the RFC 3339 date/time specifications.  Example: `create_time > date("2017-01-01") AND name=UUID-*`
-       * @param {string} params.name Resource name for the project.  Format: `projects/{project_id}`
-       * @param {string=} params.pageToken Next page token for loading the next batch of `Ruleset` instances.
-       * @param {integer=} params.pageSize Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://firebaserules.googleapis.com/v1/{name}/rulesets',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * firebaserules.projects.rulesets.create
-       *
-       * @desc Create a `Ruleset` from `Source`.  The `Ruleset` is given a unique generated name which is returned to the caller. `Source` containing syntactic or semantics errors will result in an error response indicating the first error encountered. For a detailed view of `Source` issues, use TestRuleset.
-       *
-       * @alias firebaserules.projects.rulesets.create
-       * @memberOf! firebaserules(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name Resource name for Project which owns this `Ruleset`.  Format: `projects/{project_id}`
-       * @param {firebaserules(v1).Ruleset} params.resource Request body data
+       * @param {string} params.name Resource name for the project which owns this `Release`.  Format: `projects/{project_id}`
+       * @param {firebaserules(v1).Release} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -211,9 +101,9 @@ function Firebaserules(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
-            url: 'https://firebaserules.googleapis.com/v1/{name}/rulesets',
+            url: 'https://firebaserules.googleapis.com/v1/{name}/releases',
             method: 'POST'
           }, options),
           params: params,
@@ -223,10 +113,7 @@ function Firebaserules(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
-      }
-    },
-
-    releases: {
+      },
 
       /**
        * firebaserules.projects.releases.delete
@@ -249,7 +136,7 @@ function Firebaserules(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}',
             method: 'DELETE'
@@ -284,7 +171,7 @@ function Firebaserules(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}',
             method: 'GET'
@@ -307,10 +194,10 @@ function Firebaserules(options) { // eslint-disable-line
        * @memberOf! firebaserules(v1)
        *
        * @param {object} params Parameters for request
-       * @param {integer=} params.pageSize Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load fewer than `page_size` results due to the size of the output. To traverse all of the releases, the caller should iterate until the `page_token` on the response is empty.
-       * @param {string=} params.filter `Release` filter. The list method supports filters with restrictions on the `Release.name`, `Release.ruleset_name`, and `Release.test_suite_name`.  Example 1: A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v2 | projects/foo/rulesets/uuid8888  Example 2: A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/1234  In the examples, the filter parameters refer to the search filters are relative to the project. Fully qualified prefixed may also be used. e.g. `test_suite_name=projects/foo/testsuites/uuid1`
        * @param {string} params.name Resource name for the project.  Format: `projects/{project_id}`
        * @param {string=} params.pageToken Next page token for the next batch of `Release` instances.
+       * @param {integer=} params.pageSize Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load fewer than `page_size` results due to the size of the output. To traverse all of the releases, the caller should iterate until the `page_token` on the response is empty.
+       * @param {string=} params.filter `Release` filter. The list method supports filters with restrictions on the `Release.name`, `Release.ruleset_name`, and `Release.test_suite_name`.  Example 1: A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v2 | projects/foo/rulesets/uuid8888  Example 2: A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234':  Name                          | Ruleset Name ------------------------------|------------- projects/foo/releases/prod    | projects/foo/rulesets/1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/1234  In the examples, the filter parameters refer to the search filters are relative to the project. Fully qualified prefixed may also be used. e.g. `test_suite_name=projects/foo/testsuites/uuid1`
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -322,7 +209,7 @@ function Firebaserules(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}/releases',
             method: 'GET'
@@ -358,7 +245,7 @@ function Firebaserules(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://firebaserules.googleapis.com/v1/{name}',
             method: 'PUT'
@@ -370,19 +257,22 @@ function Firebaserules(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
-      },
+      }
+    },
+
+    rulesets: {
 
       /**
-       * firebaserules.projects.releases.create
+       * firebaserules.projects.rulesets.create
        *
-       * @desc Create a `Release`.  Release names should reflect the developer's deployment practices. For example, the release name may include the environment name, application name, application version, or any other name meaningful to the developer. Once a `Release` refers to a `Ruleset`, the rules can be enforced by Firebase Rules-enabled services.  More than one `Release` may be 'live' concurrently. Consider the following three `Release` names for `projects/foo` and the `Ruleset` to which they refer.  Release Name                    | Ruleset Name --------------------------------|------------- projects/foo/releases/prod      | projects/foo/rulesets/uuid123 projects/foo/releases/prod/beta | projects/foo/rulesets/uuid123 projects/foo/releases/prod/v23  | projects/foo/rulesets/uuid456  The table reflects the `Ruleset` rollout in progress. The `prod` and `prod/beta` releases refer to the same `Ruleset`. However, `prod/v23` refers to a new `Ruleset`. The `Ruleset` reference for a `Release` may be updated using the UpdateRelease method.
+       * @desc Create a `Ruleset` from `Source`.  The `Ruleset` is given a unique generated name which is returned to the caller. `Source` containing syntactic or semantics errors will result in an error response indicating the first error encountered. For a detailed view of `Source` issues, use TestRuleset.
        *
-       * @alias firebaserules.projects.releases.create
+       * @alias firebaserules.projects.rulesets.create
        * @memberOf! firebaserules(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.name Resource name for the project which owns this `Release`.  Format: `projects/{project_id}`
-       * @param {firebaserules(v1).Release} params.resource Request body data
+       * @param {string} params.name Resource name for Project which owns this `Ruleset`.  Format: `projects/{project_id}`
+       * @param {firebaserules(v1).Ruleset} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -394,10 +284,118 @@ function Firebaserules(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
-            url: 'https://firebaserules.googleapis.com/v1/{name}/releases',
+            url: 'https://firebaserules.googleapis.com/v1/{name}/rulesets',
             method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * firebaserules.projects.rulesets.delete
+       *
+       * @desc Delete a `Ruleset` by resource name.  If the `Ruleset` is referenced by a `Release` the operation will fail.
+       *
+       * @alias firebaserules.projects.rulesets.delete
+       * @memberOf! firebaserules(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name Resource name for the ruleset to delete.  Format: `projects/{project_id}/rulesets/{ruleset_id}`
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://firebaserules.googleapis.com/v1/{name}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * firebaserules.projects.rulesets.get
+       *
+       * @desc Get a `Ruleset` by name including the full `Source` contents.
+       *
+       * @alias firebaserules.projects.rulesets.get
+       * @memberOf! firebaserules(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name Resource name for the ruleset to get.  Format: `projects/{project_id}/rulesets/{ruleset_id}`
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://firebaserules.googleapis.com/v1/{name}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * firebaserules.projects.rulesets.list
+       *
+       * @desc List `Ruleset` metadata only and optionally filter the results by `Ruleset` name.  The full `Source` contents of a `Ruleset` may be retrieved with GetRuleset.
+       *
+       * @alias firebaserules.projects.rulesets.list
+       * @memberOf! firebaserules(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name Resource name for the project.  Format: `projects/{project_id}`
+       * @param {string=} params.pageToken Next page token for loading the next batch of `Ruleset` instances.
+       * @param {integer=} params.pageSize Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.
+       * @param {string=} params.filter `Ruleset` filter. The list method supports filters with restrictions on `Ruleset.name`.  Filters on `Ruleset.create_time` should use the `date` function which parses strings that conform to the RFC 3339 date/time specifications.  Example: `create_time > date("2017-01-01") AND name=UUID-*`
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://firebaserules.googleapis.com/v1/{name}/rulesets',
+            method: 'GET'
           }, options),
           params: params,
           requiredParams: ['name'],
@@ -412,82 +410,9 @@ function Firebaserules(options) { // eslint-disable-line
 }
 
 /**
- * @typedef Empty
- * @memberOf! firebaserules(v1)
- * @type object
- */
-/**
- * @typedef Source
- * @memberOf! firebaserules(v1)
- * @type object
- * @property {firebaserules(v1).File[]} files `File` set constituting the `Source` bundle.
- */
-/**
- * @typedef SourcePosition
- * @memberOf! firebaserules(v1)
- * @type object
- * @property {integer} column First column on the source line associated with the source fragment.
- * @property {string} fileName Name of the `File`.
- * @property {integer} line Line number of the source fragment. 1-based.
- */
-/**
- * @typedef Issue
- * @memberOf! firebaserules(v1)
- * @type object
- * @property {string} description Short error description.
- * @property {firebaserules(v1).SourcePosition} sourcePosition Position of the issue in the `Source`.
- * @property {string} severity The severity of the issue.
- */
-/**
- * @typedef TestRulesetRequest
- * @memberOf! firebaserules(v1)
- * @type object
-* @property {firebaserules(v1).Source} source Optional `Source` to be checked for correctness.
-
-This field must not be set when the resource name refers to a `Ruleset`.
-*/
-/**
- * @typedef Ruleset
- * @memberOf! firebaserules(v1)
- * @type object
-* @property {firebaserules(v1).Source} source `Source` for the `Ruleset`.
-* @property {string} createTime Time the `Ruleset` was created.
-Output only.
-* @property {string} name Name of the `Ruleset`. The ruleset_id is auto generated by the service.
-Format: `projects/{project_id}/rulesets/{ruleset_id}`
-Output only.
-*/
-/**
- * @typedef FunctionCall
- * @memberOf! firebaserules(v1)
- * @type object
- * @property {any[]} args The arguments that were provided to the function.
- * @property {string} function Name of the function invoked.
- */
-/**
- * @typedef File
- * @memberOf! firebaserules(v1)
- * @type object
- * @property {string} content Textual Content.
- * @property {string} fingerprint Fingerprint (e.g. github sha) associated with the `File`.
- * @property {string} name File name.
- */
-/**
- * @typedef ListReleasesResponse
- * @memberOf! firebaserules(v1)
- * @type object
-* @property {firebaserules(v1).Release[]} releases List of `Release` instances.
-* @property {string} nextPageToken The pagination token to retrieve the next page of results. If the value is
-empty, no further results remain.
-*/
-/**
  * @typedef Release
  * @memberOf! firebaserules(v1)
  * @type object
-* @property {string} createTime Time the release was created.
-Output only.
-* @property {string} updateTime Time the release was updated.
-Output only.
 * @property {string} name Resource name for the `Release`.
 
 `Release` names may be structured `app1/prod/v2` or flat `app1_prod_v2`
@@ -514,6 +439,10 @@ relationship between `Release` instances.
 Format: `projects/{project_id}/releases/{release_id}`
 * @property {string} rulesetName Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must
 exist the `Release` to be created.
+* @property {string} createTime Time the release was created.
+Output only.
+* @property {string} updateTime Time the release was updated.
+Output only.
 */
 /**
  * @typedef TestRulesetResponse
@@ -524,6 +453,14 @@ The results will appear in the same order as the test cases appear in the
 `TestSuite`.
 * @property {firebaserules(v1).Issue[]} issues Syntactic and semantic `Source` issues of varying severity. Issues of
 `ERROR` severity will prevent tests from executing.
+*/
+/**
+ * @typedef ListRulesetsResponse
+ * @memberOf! firebaserules(v1)
+ * @type object
+* @property {string} nextPageToken The pagination token to retrieve the next page of results. If the value is
+empty, no further results remain.
+* @property {firebaserules(v1).Ruleset[]} rulesets List of `Ruleset` instances.
 */
 /**
  * @typedef TestResult
@@ -552,11 +489,72 @@ When there is a `DENY` with an error, the `SourcePosition` is returned.
 E.g. `error_position { line: 19 column: 37 }`
 */
 /**
- * @typedef ListRulesetsResponse
+ * @typedef Empty
  * @memberOf! firebaserules(v1)
  * @type object
+ */
+/**
+ * @typedef Source
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {firebaserules(v1).File[]} files `File` set constituting the `Source` bundle.
+ */
+/**
+ * @typedef SourcePosition
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {integer} line Line number of the source fragment. 1-based.
+ * @property {integer} column First column on the source line associated with the source fragment.
+ * @property {string} fileName Name of the `File`.
+ */
+/**
+ * @typedef Ruleset
+ * @memberOf! firebaserules(v1)
+ * @type object
+* @property {string} name Name of the `Ruleset`. The ruleset_id is auto generated by the service.
+Format: `projects/{project_id}/rulesets/{ruleset_id}`
+Output only.
+* @property {firebaserules(v1).Source} source `Source` for the `Ruleset`.
+* @property {string} createTime Time the `Ruleset` was created.
+Output only.
+*/
+/**
+ * @typedef TestRulesetRequest
+ * @memberOf! firebaserules(v1)
+ * @type object
+* @property {firebaserules(v1).Source} source Optional `Source` to be checked for correctness.
+
+This field must not be set when the resource name refers to a `Ruleset`.
+*/
+/**
+ * @typedef Issue
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {firebaserules(v1).SourcePosition} sourcePosition Position of the issue in the `Source`.
+ * @property {string} severity The severity of the issue.
+ * @property {string} description Short error description.
+ */
+/**
+ * @typedef ListReleasesResponse
+ * @memberOf! firebaserules(v1)
+ * @type object
+* @property {firebaserules(v1).Release[]} releases List of `Release` instances.
 * @property {string} nextPageToken The pagination token to retrieve the next page of results. If the value is
 empty, no further results remain.
-* @property {firebaserules(v1).Ruleset[]} rulesets List of `Ruleset` instances.
 */
+/**
+ * @typedef File
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {string} name File name.
+ * @property {string} content Textual Content.
+ * @property {string} fingerprint Fingerprint (e.g. github sha) associated with the `File`.
+ */
+/**
+ * @typedef FunctionCall
+ * @memberOf! firebaserules(v1)
+ * @type object
+ * @property {any[]} args The arguments that were provided to the function.
+ * @property {string} function Name of the function invoked.
+ */
 export = Firebaserules;

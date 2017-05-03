@@ -65,6 +65,8 @@
     "string-template": "~1.0.0"
   },
   "devDependencies": {
+    "@types/minimist": "^1.2.0",
+    "@types/mkdirp": "^0.3.29",
     "@types/mocha": "^2.2.41",
     "@types/node": "^7.0.13",
     "ink-docstrap": "1.3.0",
@@ -87,7 +89,7 @@
     "lint": "semistandard \"samples/**/*.js\"",
     "generate-apis": "npm run build-tools && node scripts/generate.js",
     "doc": "jsdoc -c jsdoc-conf.json",
-    "mocha": "mocha test/ --recursive -t 10000 -S -R spec --require source-map-support/register --require intelli-espower-loader" ,
+    "mocha": "mocha test/ --recursive -t 10000 -S -R spec --require source-map-support/register --require intelli-espower-loader",
     "cover": "nyc --cache mocha test/ --recursive -t 10000 -S -R spec --require intelli-espower-loader && nyc report --reporter=html",
     "build": "tsc",
     "test": "npm run lint && npm run cover",

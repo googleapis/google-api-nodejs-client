@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google People API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Provides access to information about profiles and contacts.
  *
  * @example
- * var google = require('googleapis');
- * var people = google.people('v1');
+ * const google = require('googleapis');
+ * const people = google.people('v1');
  *
  * @namespace people
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for People
  */
 function People(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.people = {
@@ -64,7 +62,7 @@ function People(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://people.googleapis.com/v1/people:batchGet',
           method: 'GET'
@@ -81,7 +79,7 @@ function People(options) { // eslint-disable-line
     /**
      * people.people.get
      *
-     * @desc Provides information about a person resource for a resource name. Use `people/me` to indicate the authenticated user.
+     * @desc Provides information about a person for a resource name. Use `people/me` to indicate the authenticated user.
      *
      * @alias people.people.get
      * @memberOf! people(v1)
@@ -100,7 +98,7 @@ function People(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://people.googleapis.com/v1/{resourceName}',
           method: 'GET'
@@ -125,13 +123,13 @@ function People(options) { // eslint-disable-line
        * @memberOf! people(v1)
        *
        * @param {object} params Parameters for request
+       * @param {string=} params.sortOrder The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
        * @param {boolean=} params.requestSyncToken Whether the response should include a sync token, which can be used to get all changes since the last request.
        * @param {string} params.resourceName The resource name to return connections for. Only `people/me` is valid.
        * @param {string=} params.pageToken The token of the page to be returned.
        * @param {string=} params.requestMask.includeField Comma-separated list of fields to be included in the response. Omitting this field will include all fields except for connections.list requests, which have a default mask that includes common fields like metadata, name, photo, and profile url. Each path should start with `person.`: for example, `person.names` or `person.photos`.
        * @param {integer=} params.pageSize The number of connections to include in the response. Valid values are between 1 and 500, inclusive. Defaults to 100.
        * @param {string=} params.syncToken A sync token, returned by a previous call to `people.connections.list`. Only resources changed since the sync token was created will be returned.
-       * @param {string=} params.sortOrder The order in which the connections should be sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -143,7 +141,7 @@ function People(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://people.googleapis.com/v1/{resourceName}/connections',
             method: 'GET'
@@ -161,6 +159,272 @@ function People(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef Locale
+ * @memberOf! people(v1)
+ * @type object
+* @property {people(v1).FieldMetadata} metadata Metadata about the locale.
+* @property {string} value The well-formed [IETF BCP 47](https://tools.ietf.org/html/bcp47)
+language tag representing the locale.
+*/
+/**
+ * @typedef Organization
+ * @memberOf! people(v1)
+ * @type object
+* @property {boolean} current True if the organization is the person&#39;s current organization;
+false if the organization is a past organization.
+* @property {string} formattedType The read-only type of the organization translated and formatted in the
+viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+* @property {people(v1).Date} startDate The start date when the person joined the organization.
+* @property {string} domain The domain name associated with the organization; for example, `google.com`.
+* @property {string} department The person&#39;s department at the organization.
+* @property {string} type The type of the organization. The type can be custom or predefined.
+Possible values include, but are not limited to, the following:
+
+* `work`
+* `school`
+* @property {string} phoneticName The phonetic name of the organization.
+* @property {string} jobDescription The person&#39;s job description at the organization.
+* @property {people(v1).Date} endDate The end date when the person left the organization.
+* @property {string} symbol The symbol associated with the organization; for example, a stock ticker
+symbol, abbreviation, or acronym.
+* @property {string} name The name of the organization.
+* @property {people(v1).FieldMetadata} metadata Metadata about the organization.
+* @property {string} title The person&#39;s job title at the organization.
+* @property {string} location The location of the organization office the person works at.
+*/
+/**
+ * @typedef Biography
+ * @memberOf! people(v1)
+ * @type object
+ * @property {string} contentType The content type of the biography.
+ * @property {people(v1).FieldMetadata} metadata Metadata about the biography.
+ * @property {string} value The short biography.
+ */
+/**
+ * @typedef AgeRangeType
+ * @memberOf! people(v1)
+ * @type object
+ * @property {string} ageRange The age range.
+ * @property {people(v1).FieldMetadata} metadata Metadata about the age range.
+ */
+/**
+ * @typedef FieldMetadata
+ * @memberOf! people(v1)
+ * @type object
+* @property {boolean} verified True if the field is verified; false if the field is unverified. A
+verified field is typically a name, email address, phone number, or
+website that has been confirmed to be owned by the person.
+* @property {boolean} primary True if the field is the primary field; false if the field is a secondary
+field.
+* @property {people(v1).Source} source The source of the field.
+*/
+/**
+ * @typedef PersonResponse
+ * @memberOf! people(v1)
+ * @type object
+* @property {people(v1).Person} person The person.
+* @property {people(v1).Status} status The status of the response.
+* @property {integer} httpStatusCode DEPRECATED(Please use status instead).
+[HTTP 1.1 status
+code](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* @property {string} requestedResourceName The original requested resource name. May be different than the resource
+name on the returned person.
+
+The resource name can change when adding or removing fields that link a
+contact and profile such as a verified email, verified phone number, or a
+profile URL.
+*/
+/**
+ * @typedef RelationshipInterest
+ * @memberOf! people(v1)
+ * @type object
+* @property {string} value The kind of relationship the person is looking for. The value can be custom
+or predefined. Possible values include, but are not limited to, the
+following values:
+
+* `friend`
+* `date`
+* `relationship`
+* `networking`
+* @property {string} formattedValue The value of the relationship interest translated and formatted in the
+viewer&#39;s account locale or the locale specified in the Accept-Language
+HTTP header.
+* @property {people(v1).FieldMetadata} metadata Metadata about the relationship interest.
+*/
+/**
+ * @typedef Source
+ * @memberOf! people(v1)
+ * @type object
+* @property {string} etag The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the
+source. Used for web cache validation. Only populated in
+person.metadata.sources.
+* @property {string} id The unique identifier within the source type generated by the server.
+* @property {people(v1).ProfileMetadata} profileMetadata Metadata about a source of type PROFILE.
+* @property {string} type The source type.
+*/
+/**
+ * @typedef Relation
+ * @memberOf! people(v1)
+ * @type object
+* @property {people(v1).FieldMetadata} metadata Metadata about the relation.
+* @property {string} type The person&#39;s relation to the other person. The type can be custom or predefined.
+Possible values include, but are not limited to, the following values:
+
+* `spouse`
+* `child`
+* `mother`
+* `father`
+* `parent`
+* `brother`
+* `sister`
+* `friend`
+* `relative`
+* `domesticPartner`
+* `manager`
+* `assistant`
+* `referredBy`
+* `partner`
+* @property {string} person The name of the other person this relation refers to.
+* @property {string} formattedType The type of the relation translated and formatted in the viewer&#39;s account
+locale or the locale specified in the Accept-Language HTTP header.
+*/
+/**
+ * @typedef Occupation
+ * @memberOf! people(v1)
+ * @type object
+ * @property {people(v1).FieldMetadata} metadata Metadata about the occupation.
+ * @property {string} value The occupation; for example, `carpenter`.
+ */
+/**
+ * @typedef Person
+ * @memberOf! people(v1)
+ * @type object
+* @property {people(v1).Organization[]} organizations The person&#39;s past or current organizations.
+* @property {string} etag The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the
+resource. Used for web cache validation.
+* @property {people(v1).BraggingRights[]} braggingRights The person&#39;s bragging rights.
+* @property {people(v1).PersonMetadata} metadata Metadata about the person.
+* @property {people(v1).Residence[]} residences The person&#39;s residences.
+* @property {people(v1).Gender[]} genders The person&#39;s genders.
+* @property {people(v1).Interest[]} interests The person&#39;s interests.
+* @property {string} resourceName The resource name for the person, assigned by the server. An ASCII string
+with a max length of 27 characters, in the form of `people/&lt;person_id&gt;`.
+* @property {people(v1).Biography[]} biographies The person&#39;s biographies.
+* @property {people(v1).Skill[]} skills The person&#39;s skills.
+* @property {people(v1).RelationshipStatus[]} relationshipStatuses The person&#39;s relationship statuses.
+* @property {people(v1).Photo[]} photos The person&#39;s photos.
+* @property {string} ageRange DEPRECATED(Please read person.age_ranges instead). The person&#39;s age range.
+* @property {people(v1).Tagline[]} taglines The person&#39;s taglines.
+* @property {people(v1).AgeRangeType[]} ageRanges The person&#39;s age ranges.
+* @property {people(v1).Address[]} addresses The person&#39;s street addresses.
+* @property {people(v1).Event[]} events The person&#39;s events.
+* @property {people(v1).Membership[]} memberships The person&#39;s group memberships.
+* @property {people(v1).PhoneNumber[]} phoneNumbers The person&#39;s phone numbers.
+* @property {people(v1).CoverPhoto[]} coverPhotos The person&#39;s cover photos.
+* @property {people(v1).ImClient[]} imClients The person&#39;s instant messaging clients.
+* @property {people(v1).Birthday[]} birthdays The person&#39;s birthdays.
+* @property {people(v1).Locale[]} locales The person&#39;s locale preferences.
+* @property {people(v1).RelationshipInterest[]} relationshipInterests The kind of relationship the person is looking for.
+* @property {people(v1).Url[]} urls The person&#39;s associated URLs.
+* @property {people(v1).Nickname[]} nicknames The person&#39;s nicknames.
+* @property {people(v1).Relation[]} relations The person&#39;s relations.
+* @property {people(v1).Name[]} names The person&#39;s names.
+* @property {people(v1).Occupation[]} occupations The person&#39;s occupations.
+* @property {people(v1).EmailAddress[]} emailAddresses The person&#39;s email addresses.
+*/
+/**
+ * @typedef GetPeopleResponse
+ * @memberOf! people(v1)
+ * @type object
+ * @property {people(v1).PersonResponse[]} responses The response for each requested resource name.
+ */
+/**
+ * @typedef PhoneNumber
+ * @memberOf! people(v1)
+ * @type object
+* @property {string} value The phone number.
+* @property {string} formattedType The read-only type of the phone number translated and formatted in the
+viewer&#39;s account locale or the the `Accept-Language` HTTP header locale.
+* @property {string} canonicalForm The read-only canonicalized [ITU-T E.164](https://law.resource.org/pub/us/cfr/ibr/004/itu-t.E.164.1.2008.pdf)
+form of the phone number.
+* @property {people(v1).FieldMetadata} metadata Metadata about the phone number.
+* @property {string} type The type of the phone number. The type can be custom or predefined.
+Possible values include, but are not limited to, the following:
+
+* `home`
+* `work`
+* `mobile`
+* `homeFax`
+* `workFax`
+* `otherFax`
+* `pager`
+* `workMobile`
+* `workPager`
+* `main`
+* `googleVoice`
+* `other`
+*/
+/**
+ * @typedef Photo
+ * @memberOf! people(v1)
+ * @type object
+ * @property {string} url The URL of the photo.
+ * @property {people(v1).FieldMetadata} metadata Metadata about the photo.
+ */
+/**
+ * @typedef ListConnectionsResponse
+ * @memberOf! people(v1)
+ * @type object
+* @property {string} nextPageToken The token that can be used to retrieve the next page of results.
+* @property {people(v1).Person[]} connections The list of people that the requestor is connected to.
+* @property {string} nextSyncToken The token that can be used to retrieve changes since the last request.
+* @property {integer} totalItems The total number of items in the list without pagination.
+* @property {integer} totalPeople DEPRECATED(Please use total_items). The total number of people in the list
+without pagination.
+*/
+/**
+ * @typedef Birthday
+ * @memberOf! people(v1)
+ * @type object
+ * @property {people(v1).FieldMetadata} metadata Metadata about the birthday.
+ * @property {string} text A free-form string representing the user&#39;s birthday.
+ * @property {people(v1).Date} date The date of the birthday.
+ */
+/**
+ * @typedef Residence
+ * @memberOf! people(v1)
+ * @type object
+* @property {people(v1).FieldMetadata} metadata Metadata about the residence.
+* @property {boolean} current True if the residence is the person&#39;s current residence;
+false if the residence is a past residence.
+* @property {string} value The address of the residence.
+*/
+/**
+ * @typedef Address
+ * @memberOf! people(v1)
+ * @type object
+* @property {string} streetAddress The street address.
+* @property {people(v1).FieldMetadata} metadata Metadata about the address.
+* @property {string} countryCode The [ISO 3166-1 alpha-2](http://www.iso.org/iso/country_codes.htm) country
+code of the address.
+* @property {string} formattedType The read-only type of the address translated and formatted in the viewer&#39;s
+account locale or the `Accept-Language` HTTP header locale.
+* @property {string} city The city of the address.
+* @property {string} formattedValue The unstructured value of the address. If this is not set by the user it
+will be automatically constructed from structured values.
+* @property {string} country The country of the address.
+* @property {string} type The type of the address. The type can be custom or predefined.
+Possible values include, but are not limited to, the following:
+
+* `home`
+* `work`
+* `other`
+* @property {string} extendedAddress The extended address of the address; for example, the apartment number.
+* @property {string} poBox The P.O. box of the address.
+* @property {string} postalCode The postal code of the address.
+* @property {string} region The region of the address; for example, the state or province.
+*/
+/**
  * @typedef ContactGroupMembership
  * @memberOf! people(v1)
  * @type object
@@ -173,23 +437,36 @@ limited to, the following:
 *  A numerical ID for user-created groups.
 */
 /**
+ * @typedef Status
+ * @memberOf! people(v1)
+ * @type object
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+*/
+/**
  * @typedef Event
  * @memberOf! people(v1)
  * @type object
-* @property {people(v1).Date} date The date of the event.
-* @property {string} formattedType The read-only type of the event translated and formatted in the
-viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
 * @property {people(v1).FieldMetadata} metadata Metadata about the event.
 * @property {string} type The type of the event. The type can be custom or predefined.
 Possible values include, but are not limited to, the following:
 
 * `anniversary`
 * `other`
+* @property {people(v1).Date} date The date of the event.
+* @property {string} formattedType The read-only type of the event translated and formatted in the
+viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
 */
 /**
  * @typedef PersonMetadata
  * @memberOf! people(v1)
  * @type object
+* @property {string} objectType DEPRECATED(Please read person.metadata.sources.profile_metadata instead).
+The type of the person object.
 * @property {string[]} linkedPeopleResourceNames Resource names of people linked to this resource.
 * @property {people(v1).Source[]} sources The sources of data for the person.
 * @property {string[]} previousResourceNames Any former resource names this person has had. Populated only for
@@ -202,8 +479,6 @@ profile URL.
 * @property {boolean} deleted True if the person resource has been deleted. Populated only for
 [`connections.list`](/people/api/rest/v1/people.connections/list) requests
 that include a sync token.
-* @property {string} objectType DEPRECATED(Please read person.metadata.sources.profile_metadata instead).
-The type of the person object.
 */
 /**
  * @typedef ProfileMetadata
@@ -261,8 +536,8 @@ false if the cover photo is a user-provided cover photo.
  * @typedef Interest
  * @memberOf! people(v1)
  * @type object
- * @property {people(v1).FieldMetadata} metadata Metadata about the interest.
  * @property {string} value The interest; for example, `stargazing`.
+ * @property {people(v1).FieldMetadata} metadata Metadata about the interest.
  */
 /**
  * @typedef ImClient
@@ -272,6 +547,7 @@ false if the cover photo is a user-provided cover photo.
 locale or the `Accept-Language` HTTP header locale.
 * @property {string} formattedType The read-only type of the IM client translated and formatted in the
 viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+* @property {people(v1).FieldMetadata} metadata Metadata about the IM client.
 * @property {string} type The type of the IM client. The type can be custom or predefined.
 Possible values include, but are not limited to, the following:
 
@@ -290,24 +566,7 @@ Possible values include, but are not limited to, the following:
 * `icq`
 * `jabber`
 * `netMeeting`
-* @property {people(v1).FieldMetadata} metadata Metadata about the IM client.
 * @property {string} username The user name used in the IM client.
-*/
-/**
- * @typedef EmailAddress
- * @memberOf! people(v1)
- * @type object
-* @property {string} displayName The display name of the email.
-* @property {people(v1).FieldMetadata} metadata Metadata about the email address.
-* @property {string} type The type of the email address. The type can be custom or predefined.
-Possible values include, but are not limited to, the following:
-
-* `home`
-* `work`
-* `other`
-* @property {string} value The email address.
-* @property {string} formattedType The read-only type of the email address translated and formatted in the
-viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
 */
 /**
  * @typedef Nickname
@@ -318,11 +577,27 @@ viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
  * @property {string} value The nickname.
  */
 /**
+ * @typedef EmailAddress
+ * @memberOf! people(v1)
+ * @type object
+* @property {string} value The email address.
+* @property {string} formattedType The read-only type of the email address translated and formatted in the
+viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+* @property {string} displayName The display name of the email.
+* @property {people(v1).FieldMetadata} metadata Metadata about the email address.
+* @property {string} type The type of the email address. The type can be custom or predefined.
+Possible values include, but are not limited to, the following:
+
+* `home`
+* `work`
+* `other`
+*/
+/**
  * @typedef Skill
  * @memberOf! people(v1)
  * @type object
- * @property {string} value The skill; for example, `underwater basket weaving`.
  * @property {people(v1).FieldMetadata} metadata Metadata about the skill.
+ * @property {string} value The skill; for example, `underwater basket weaving`.
  */
 /**
  * @typedef DomainMembership
@@ -334,14 +609,17 @@ viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
  * @typedef Membership
  * @memberOf! people(v1)
  * @type object
+ * @property {people(v1).FieldMetadata} metadata Metadata about the membership.
  * @property {people(v1).ContactGroupMembership} contactGroupMembership The contact group membership.
  * @property {people(v1).DomainMembership} domainMembership The domain membership.
- * @property {people(v1).FieldMetadata} metadata Metadata about the membership.
  */
 /**
  * @typedef RelationshipStatus
  * @memberOf! people(v1)
  * @type object
+* @property {string} formattedValue The read-only value of the relationship status translated and formatted in
+the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
+* @property {people(v1).FieldMetadata} metadata Metadata about the relationship status.
 * @property {string} value The relationship status. The value can be custom or predefined.
 Possible values include, but are not limited to, the following:
 
@@ -354,9 +632,6 @@ Possible values include, but are not limited to, the following:
 * `widowed`
 * `inDomesticPartnership`
 * `inCivilUnion`
-* @property {string} formattedValue The read-only value of the relationship status translated and formatted in
-the viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
-* @property {people(v1).FieldMetadata} metadata Metadata about the relationship status.
 */
 /**
  * @typedef Tagline
@@ -401,268 +676,7 @@ the viewer&#39;s account or the &lt;code&gt;Accept-Language&lt;/code&gt; HTTP he
  * @typedef BraggingRights
  * @memberOf! people(v1)
  * @type object
- * @property {people(v1).FieldMetadata} metadata Metadata about the bragging rights.
  * @property {string} value The bragging rights; for example, `climbed mount everest`.
+ * @property {people(v1).FieldMetadata} metadata Metadata about the bragging rights.
  */
-/**
- * @typedef Locale
- * @memberOf! people(v1)
- * @type object
-* @property {string} value The well-formed [IETF BCP 47](https://tools.ietf.org/html/bcp47)
-language tag representing the locale.
-* @property {people(v1).FieldMetadata} metadata Metadata about the locale.
-*/
-/**
- * @typedef Organization
- * @memberOf! people(v1)
- * @type object
-* @property {string} domain The domain name associated with the organization; for example, `google.com`.
-* @property {string} department The person&#39;s department at the organization.
-* @property {string} phoneticName The phonetic name of the organization.
-* @property {string} type The type of the organization. The type can be custom or predefined.
-Possible values include, but are not limited to, the following:
-
-* `work`
-* `school`
-* @property {string} jobDescription The person&#39;s job description at the organization.
-* @property {people(v1).Date} endDate The end date when the person left the organization.
-* @property {string} symbol The symbol associated with the organization; for example, a stock ticker
-symbol, abbreviation, or acronym.
-* @property {string} name The name of the organization.
-* @property {people(v1).FieldMetadata} metadata Metadata about the organization.
-* @property {string} location The location of the organization office the person works at.
-* @property {string} title The person&#39;s job title at the organization.
-* @property {boolean} current True if the organization is the person&#39;s current organization;
-false if the organization is a past organization.
-* @property {people(v1).Date} startDate The start date when the person joined the organization.
-* @property {string} formattedType The read-only type of the organization translated and formatted in the
-viewer&#39;s account locale or the `Accept-Language` HTTP header locale.
-*/
-/**
- * @typedef Biography
- * @memberOf! people(v1)
- * @type object
- * @property {string} value The short biography.
- * @property {string} contentType The content type of the biography.
- * @property {people(v1).FieldMetadata} metadata Metadata about the biography.
- */
-/**
- * @typedef AgeRangeType
- * @memberOf! people(v1)
- * @type object
- * @property {string} ageRange The age range.
- * @property {people(v1).FieldMetadata} metadata Metadata about the age range.
- */
-/**
- * @typedef FieldMetadata
- * @memberOf! people(v1)
- * @type object
-* @property {boolean} primary True if the field is the primary field; false if the field is a secondary
-field.
-* @property {people(v1).Source} source The source of the field.
-* @property {boolean} verified True if the field is verified; false if the field is unverified. A
-verified field is typically a name, email address, phone number, or
-website that has been confirmed to be owned by the person.
-*/
-/**
- * @typedef RelationshipInterest
- * @memberOf! people(v1)
- * @type object
-* @property {string} value The kind of relationship the person is looking for. The value can be custom
-or predefined. Possible values include, but are not limited to, the
-following values:
-
-* `friend`
-* `date`
-* `relationship`
-* `networking`
-* @property {string} formattedValue The value of the relationship interest translated and formatted in the
-viewer&#39;s account locale or the locale specified in the Accept-Language
-HTTP header.
-* @property {people(v1).FieldMetadata} metadata Metadata about the relationship interest.
-*/
-/**
- * @typedef PersonResponse
- * @memberOf! people(v1)
- * @type object
-* @property {people(v1).Person} person The person.
-* @property {integer} httpStatusCode [HTTP 1.1 status code](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
-* @property {string} requestedResourceName The original requested resource name. May be different than the resource
-name on the returned person.
-
-The resource name can change when adding or removing fields that link a
-contact and profile such as a verified email, verified phone number, or a
-profile URL.
-*/
-/**
- * @typedef Source
- * @memberOf! people(v1)
- * @type object
-* @property {string} etag The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the
-source. Used for web cache validation. Only populated in
-person.metadata.sources.
-* @property {string} id The unique identifier within the source type generated by the server.
-* @property {people(v1).ProfileMetadata} profileMetadata Metadata about a source of type PROFILE.
-* @property {string} type The source type.
-*/
-/**
- * @typedef Relation
- * @memberOf! people(v1)
- * @type object
-* @property {string} person The name of the other person this relation refers to.
-* @property {string} formattedType The type of the relation translated and formatted in the viewer&#39;s account
-locale or the locale specified in the Accept-Language HTTP header.
-* @property {people(v1).FieldMetadata} metadata Metadata about the relation.
-* @property {string} type The person&#39;s relation to the other person. The type can be custom or predefined.
-Possible values include, but are not limited to, the following values:
-
-* `spouse`
-* `child`
-* `mother`
-* `father`
-* `parent`
-* `brother`
-* `sister`
-* `friend`
-* `relative`
-* `domesticPartner`
-* `manager`
-* `assistant`
-* `referredBy`
-* `partner`
-*/
-/**
- * @typedef Occupation
- * @memberOf! people(v1)
- * @type object
- * @property {string} value The occupation; for example, `carpenter`.
- * @property {people(v1).FieldMetadata} metadata Metadata about the occupation.
- */
-/**
- * @typedef Person
- * @memberOf! people(v1)
- * @type object
-* @property {people(v1).Address[]} addresses The person&#39;s street addresses.
-* @property {people(v1).Event[]} events The person&#39;s events.
-* @property {people(v1).Membership[]} memberships The person&#39;s group memberships.
-* @property {people(v1).PhoneNumber[]} phoneNumbers The person&#39;s phone numbers.
-* @property {people(v1).CoverPhoto[]} coverPhotos The person&#39;s cover photos.
-* @property {people(v1).ImClient[]} imClients The person&#39;s instant messaging clients.
-* @property {people(v1).Birthday[]} birthdays The person&#39;s birthdays.
-* @property {people(v1).Locale[]} locales The person&#39;s locale preferences.
-* @property {people(v1).RelationshipInterest[]} relationshipInterests The kind of relationship the person is looking for.
-* @property {people(v1).Url[]} urls The person&#39;s associated URLs.
-* @property {people(v1).Nickname[]} nicknames The person&#39;s nicknames.
-* @property {people(v1).Name[]} names The person&#39;s names.
-* @property {people(v1).Relation[]} relations The person&#39;s relations.
-* @property {people(v1).Occupation[]} occupations The person&#39;s occupations.
-* @property {people(v1).EmailAddress[]} emailAddresses The person&#39;s email addresses.
-* @property {people(v1).Organization[]} organizations The person&#39;s past or current organizations.
-* @property {string} etag The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the
-resource. Used for web cache validation.
-* @property {people(v1).BraggingRights[]} braggingRights The person&#39;s bragging rights.
-* @property {people(v1).PersonMetadata} metadata Metadata about the person.
-* @property {people(v1).Residence[]} residences The person&#39;s residences.
-* @property {people(v1).Gender[]} genders The person&#39;s genders.
-* @property {people(v1).Interest[]} interests The person&#39;s interests.
-* @property {string} resourceName The resource name for the person, assigned by the server. An ASCII string
-with a max length of 27 characters. Always starts with `people/`.
-* @property {people(v1).Biography[]} biographies The person&#39;s biographies.
-* @property {people(v1).Skill[]} skills The person&#39;s skills.
-* @property {people(v1).RelationshipStatus[]} relationshipStatuses The person&#39;s relationship statuses.
-* @property {people(v1).Photo[]} photos The person&#39;s photos.
-* @property {string} ageRange DEPRECATED(Please read person.age_ranges instead). The person&#39;s age range.
-* @property {people(v1).Tagline[]} taglines The person&#39;s taglines.
-* @property {people(v1).AgeRangeType[]} ageRanges The person&#39;s age ranges.
-*/
-/**
- * @typedef GetPeopleResponse
- * @memberOf! people(v1)
- * @type object
- * @property {people(v1).PersonResponse[]} responses The response for each requested resource name.
- */
-/**
- * @typedef PhoneNumber
- * @memberOf! people(v1)
- * @type object
-* @property {string} value The phone number.
-* @property {string} formattedType The read-only type of the phone number translated and formatted in the
-viewer&#39;s account locale or the the `Accept-Language` HTTP header locale.
-* @property {string} canonicalForm The read-only canonicalized [ITU-T E.164](https://law.resource.org/pub/us/cfr/ibr/004/itu-t.E.164.1.2008.pdf)
-form of the phone number.
-* @property {people(v1).FieldMetadata} metadata Metadata about the phone number.
-* @property {string} type The type of the phone number. The type can be custom or predefined.
-Possible values include, but are not limited to, the following:
-
-* `home`
-* `work`
-* `mobile`
-* `homeFax`
-* `workFax`
-* `otherFax`
-* `pager`
-* `workMobile`
-* `workPager`
-* `main`
-* `googleVoice`
-* `other`
-*/
-/**
- * @typedef Photo
- * @memberOf! people(v1)
- * @type object
- * @property {string} url The URL of the photo.
- * @property {people(v1).FieldMetadata} metadata Metadata about the photo.
- */
-/**
- * @typedef ListConnectionsResponse
- * @memberOf! people(v1)
- * @type object
- * @property {string} nextPageToken The token that can be used to retrieve the next page of results.
- * @property {people(v1).Person[]} connections The list of people that the requestor is connected to.
- * @property {string} nextSyncToken The token that can be used to retrieve changes since the last request.
- * @property {integer} totalPeople The total number of people in the list without pagination.
- */
-/**
- * @typedef Birthday
- * @memberOf! people(v1)
- * @type object
- * @property {people(v1).FieldMetadata} metadata Metadata about the birthday.
- * @property {string} text A free-form string representing the user&#39;s birthday.
- * @property {people(v1).Date} date The date of the birthday.
- */
-/**
- * @typedef Address
- * @memberOf! people(v1)
- * @type object
-* @property {string} poBox The P.O. box of the address.
-* @property {string} postalCode The postal code of the address.
-* @property {string} region The region of the address; for example, the state or province.
-* @property {string} streetAddress The street address.
-* @property {people(v1).FieldMetadata} metadata Metadata about the address.
-* @property {string} countryCode The [ISO 3166-1 alpha-2](http://www.iso.org/iso/country_codes.htm) country
-code of the address.
-* @property {string} formattedType The read-only type of the address translated and formatted in the viewer&#39;s
-account locale or the `Accept-Language` HTTP header locale.
-* @property {string} city The city of the address.
-* @property {string} formattedValue The unstructured value of the address. If this is not set by the user it
-will be automatically constructed from structured values.
-* @property {string} country The country of the address.
-* @property {string} type The type of the address. The type can be custom or predefined.
-Possible values include, but are not limited to, the following:
-
-* `home`
-* `work`
-* `other`
-* @property {string} extendedAddress The extended address of the address; for example, the apartment number.
-*/
-/**
- * @typedef Residence
- * @memberOf! people(v1)
- * @type object
-* @property {people(v1).FieldMetadata} metadata Metadata about the residence.
-* @property {boolean} current True if the residence is the person&#39;s current residence;
-false if the residence is a past residence.
-* @property {string} value The address of the residence.
-*/
 export = People;

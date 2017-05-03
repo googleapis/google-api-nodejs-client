@@ -16,19 +16,17 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Cloud Speech API
  *
- * Google Cloud Speech API.
+ * Converts audio to text by applying powerful neural network models.
  *
  * @example
- * var google = require('googleapis');
- * var speech = google.speech('v1beta1');
+ * const google = require('googleapis');
+ * const speech = google.speech('v1beta1');
  *
  * @namespace speech
  * @type {Function}
@@ -37,83 +35,10 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Speech
  */
 function Speech(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.operations = {
-
-    /**
-     * speech.operations.list
-     *
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
-     *
-     * @alias speech.operations.list
-     * @memberOf! speech(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.filter The standard list filter.
-     * @param {string=} params.name The name of the operation collection.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://speech.googleapis.com/v1beta1/operations',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * speech.operations.get
-     *
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     *
-     * @alias speech.operations.get
-     * @memberOf! speech(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      var parameters = {
-        options: utils.extend({
-          url: 'https://speech.googleapis.com/v1beta1/operations/{name}',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
 
     /**
      * speech.operations.cancel
@@ -136,7 +61,7 @@ function Speech(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://speech.googleapis.com/v1beta1/operations/{name}:cancel',
           method: 'POST'
@@ -171,10 +96,83 @@ function Speech(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://speech.googleapis.com/v1beta1/operations/{name}',
           method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * speech.operations.list
+     *
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
+     *
+     * @alias speech.operations.list
+     * @memberOf! speech(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
+     * @param {string=} params.name The name of the operation collection.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://speech.googleapis.com/v1beta1/operations',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * speech.operations.get
+     *
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @alias speech.operations.get
+     * @memberOf! speech(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://speech.googleapis.com/v1beta1/operations/{name}',
+          method: 'GET'
         }, options),
         params: params,
         requiredParams: ['name'],
@@ -210,7 +208,7 @@ function Speech(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://speech.googleapis.com/v1beta1/speech:asyncrecognize',
           method: 'POST'
@@ -245,7 +243,7 @@ function Speech(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://speech.googleapis.com/v1beta1/speech:syncrecognize',
           method: 'POST'
@@ -262,6 +260,29 @@ function Speech(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef Status
+ * @memberOf! speech(v1beta1)
+ * @type object
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+*/
+/**
+ * @typedef SyncRecognizeResponse
+ * @memberOf! speech(v1beta1)
+ * @type object
+* @property {speech(v1beta1).SpeechRecognitionResult[]} results *Output-only* Sequential list of transcription results corresponding to
+sequential portions of audio.
+*/
+/**
+ * @typedef Empty
+ * @memberOf! speech(v1beta1)
+ * @type object
+ */
 /**
  * @typedef ListOperationsResponse
  * @memberOf! speech(v1beta1)
@@ -326,14 +347,6 @@ process the request.
  * @typedef Operation
  * @memberOf! speech(v1beta1)
  * @type object
-* @property {speech(v1beta1).Status} error The error result of the operation in case of failure or cancellation.
-* @property {object} metadata Service-specific metadata associated with the operation.  It typically
-contains progress information and common metadata such as create time.
-Some services might not provide such metadata.  Any method that returns a
-long-running operation should document the metadata type, if any.
-* @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
-available.
 * @property {object} response The normal response of the operation in case of success.  If the original
 method returns no data on success, such as `Delete`, the response is
 `google.protobuf.Empty`.  If the original method is standard
@@ -345,6 +358,14 @@ is `TakeSnapshot()`, the inferred response type is
 * @property {string} name The server-assigned name, which is only unique within the same service that
 originally returns it. If you use the default HTTP mapping, the
 `name` should have the format of `operations/some/unique/name`.
+* @property {speech(v1beta1).Status} error The error result of the operation in case of failure or cancellation.
+* @property {object} metadata Service-specific metadata associated with the operation.  It typically
+contains progress information and common metadata such as create time.
+Some services might not provide such metadata.  Any method that returns a
+long-running operation should document the metadata type, if any.
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
 */
 /**
  * @typedef RecognitionConfig
@@ -381,27 +402,4 @@ won&#39;t be filtered out.
 process the request.
 * @property {speech(v1beta1).RecognitionAudio} audio *Required* The audio data to be recognized.
 */
-/**
- * @typedef Status
- * @memberOf! speech(v1beta1)
- * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-*/
-/**
- * @typedef SyncRecognizeResponse
- * @memberOf! speech(v1beta1)
- * @type object
-* @property {speech(v1beta1).SpeechRecognitionResult[]} results *Output-only* Sequential list of transcription results corresponding to
-sequential portions of audio.
-*/
-/**
- * @typedef Empty
- * @memberOf! speech(v1beta1)
- * @type object
- */
 export = Speech;

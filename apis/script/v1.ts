@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Apps Script Execution API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Executes Google Apps Script projects.
  *
  * @example
- * var google = require('googleapis');
- * var script = google.script('v1');
+ * const google = require('googleapis');
+ * const script = google.script('v1');
  *
  * @namespace script
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Script
  */
 function Script(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.scripts = {
@@ -64,7 +62,7 @@ function Script(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://script.googleapis.com/v1/scripts/{scriptId}:run',
           method: 'POST'
@@ -82,6 +80,44 @@ function Script(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef JoinAsyncRequest
+ * @memberOf! script(v1)
+ * @type object
+* @property {string} scriptId The script id which specifies the script which all processes in the names
+field must be from.
+* @property {string[]} names List of operation resource names that we want to join,
+as returned from a call to RunAsync.
+* @property {string} timeout Timeout for information retrieval in milliseconds.
+*/
+/**
+ * @typedef ExecutionResponse
+ * @memberOf! script(v1)
+ * @type object
+* @property {any} result The return value of the script function. The type matches the object type
+returned in Apps Script. Functions called through the Execution API cannot
+return Apps Script-specific objects (such as a `Document` or a `Calendar`);
+they can only return primitive types such as a `string`, `number`, `array`,
+`object`, or `boolean`.
+*/
+/**
+ * @typedef Operation
+ * @memberOf! script(v1)
+ * @type object
+ * @property {string} name This field is not used.
+ * @property {script(v1).Status} error If a `run` call succeeds but the script function (or Apps Script itself) throws an exception, this field will contain a `Status` object. The `Status` object&#39;s `details` field will contain an array with a single `ExecutionError` object that provides information about the nature of the error.
+ * @property {object} metadata This field is not used.
+ * @property {boolean} done This field is not used.
+ * @property {object} response If the script function returns successfully, this field will contain an `ExecutionResponse` object with the function&#39;s return value as the object&#39;s `result` field.
+ */
+/**
+ * @typedef JoinAsyncResponse
+ * @memberOf! script(v1)
+ * @type object
+* @property {object} results The return values for each script function, in a map of operation resource
+names to the Operation containing the result of the process. The response
+will contain either an error or the result of the script function.
+*/
+/**
  * @typedef ScriptStackTraceElement
  * @memberOf! script(v1)
  * @type object
@@ -92,20 +128,20 @@ function Script(options) { // eslint-disable-line
  * @typedef ExecutionError
  * @memberOf! script(v1)
  * @type object
+* @property {script(v1).ScriptStackTraceElement[]} scriptStackTraceElements An array of objects that provide a stack trace through the script to show
+where the execution failed, with the deepest call first.
 * @property {string} errorType The error type, for example `TypeError` or `ReferenceError`. If the error
 type is unavailable, this field is not included.
 * @property {string} errorMessage The error message thrown by Apps Script, usually localized into the user&#39;s
 language.
-* @property {script(v1).ScriptStackTraceElement[]} scriptStackTraceElements An array of objects that provide a stack trace through the script to show
-where the execution failed, with the deepest call first.
 */
 /**
  * @typedef Status
  * @memberOf! script(v1)
  * @type object
- * @property {integer} code The status code. For this API, this value will always be 3, corresponding to an INVALID_ARGUMENT error.
  * @property {string} message A developer-facing error message, which is in English. Any user-facing error message is localized and sent in the [`google.rpc.Status.details`](google.rpc.Status.details) field, or localized by the client.
  * @property {object[]} details An array that contains a single `ExecutionError` object that provides information about the nature of the error.
+ * @property {integer} code The status code. For this API, this value will always be 3, corresponding to an INVALID_ARGUMENT error.
  */
 /**
  * @typedef ExecutionRequest
@@ -132,24 +168,4 @@ Parameters cannot be Apps Script-specific object types (such as a
 `Document` or a `Calendar`); they can only be primitive types such as
 `string`, `number`, `array`, `object`, or `boolean`. Optional.
 */
-/**
- * @typedef ExecutionResponse
- * @memberOf! script(v1)
- * @type object
-* @property {any} result The return value of the script function. The type matches the object type
-returned in Apps Script. Functions called through the Execution API cannot
-return Apps Script-specific objects (such as a `Document` or a `Calendar`);
-they can only return primitive types such as a `string`, `number`, `array`,
-`object`, or `boolean`.
-*/
-/**
- * @typedef Operation
- * @memberOf! script(v1)
- * @type object
- * @property {boolean} done This field is not used.
- * @property {object} response If the script function returns successfully, this field will contain an `ExecutionResponse` object with the function&#39;s return value as the object&#39;s `result` field.
- * @property {string} name This field is not used.
- * @property {script(v1).Status} error If a `run` call succeeds but the script function (or Apps Script itself) throws an exception, this field will contain a `Status` object. The `Status` object&#39;s `details` field will contain an array with a single `ExecutionError` object that provides information about the nature of the error.
- * @property {object} metadata This field is not used.
- */
 export = Script;

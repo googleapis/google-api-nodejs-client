@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Fonts Developer API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Accesses the metadata for all families served by Google Fonts, providing a list of families currently available (including available styles and a list of supported script subsets).
  *
  * @example
- * var google = require('googleapis');
- * var webfonts = google.webfonts('v1');
+ * const google = require('googleapis');
+ * const webfonts = google.webfonts('v1');
  *
  * @namespace webfonts
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Webfonts
  */
 function Webfonts(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.webfonts = {
@@ -63,7 +61,7 @@ function Webfonts(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/webfonts/v1/webfonts',
           method: 'GET'

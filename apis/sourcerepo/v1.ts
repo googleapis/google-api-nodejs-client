@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Cloud Source Repositories API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Access source code repositories hosted by Google.
  *
  * @example
- * var google = require('googleapis');
- * var sourcerepo = google.sourcerepo('v1');
+ * const google = require('googleapis');
+ * const sourcerepo = google.sourcerepo('v1');
  *
  * @namespace sourcerepo
  * @type {Function}
@@ -37,12 +35,47 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Sourcerepo
  */
 function Sourcerepo(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.projects = {
 
     repos: {
+
+      /**
+       * sourcerepo.projects.repos.delete
+       *
+       * @desc Deletes a repo.
+       *
+       * @alias sourcerepo.projects.repos.delete
+       * @memberOf! sourcerepo(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the repo to delete. Values are of the form `projects/<project>/repos/<repo>`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://sourcerepo.googleapis.com/v1/{name}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
 
       /**
        * sourcerepo.projects.repos.list
@@ -65,7 +98,7 @@ function Sourcerepo(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://sourcerepo.googleapis.com/v1/{name}/repos',
             method: 'GET'
@@ -73,42 +106,6 @@ function Sourcerepo(options) { // eslint-disable-line
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * sourcerepo.projects.repos.create
-       *
-       * @desc Creates a repo in the given project with the given name..  If the named repository already exists, `CreateRepo` returns `ALREADY_EXISTS`.
-       *
-       * @alias sourcerepo.projects.repos.create
-       * @memberOf! sourcerepo(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.parent The project in which to create the repo. Values are of the form `projects/<project>`.
-       * @param {sourcerepo(v1).Repo} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://sourcerepo.googleapis.com/v1/{parent}/repos',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
           context: self
         };
 
@@ -137,7 +134,7 @@ function Sourcerepo(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://sourcerepo.googleapis.com/v1/{resource}:setIamPolicy',
             method: 'POST'
@@ -145,6 +142,42 @@ function Sourcerepo(options) { // eslint-disable-line
           params: params,
           requiredParams: ['resource'],
           pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * sourcerepo.projects.repos.create
+       *
+       * @desc Creates a repo in the given project with the given name..  If the named repository already exists, `CreateRepo` returns `ALREADY_EXISTS`.
+       *
+       * @alias sourcerepo.projects.repos.create
+       * @memberOf! sourcerepo(v1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.parent The project in which to create the repo. Values are of the form `projects/<project>`.
+       * @param {sourcerepo(v1).Repo} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://sourcerepo.googleapis.com/v1/{parent}/repos',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
           context: self
         };
 
@@ -172,7 +205,7 @@ function Sourcerepo(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://sourcerepo.googleapis.com/v1/{resource}:getIamPolicy',
             method: 'GET'
@@ -207,7 +240,7 @@ function Sourcerepo(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://sourcerepo.googleapis.com/v1/{name}',
             method: 'GET'
@@ -243,7 +276,7 @@ function Sourcerepo(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://sourcerepo.googleapis.com/v1/{resource}:testIamPermissions',
             method: 'POST'
@@ -255,81 +288,11 @@ function Sourcerepo(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * sourcerepo.projects.repos.delete
-       *
-       * @desc Deletes a repo.
-       *
-       * @alias sourcerepo.projects.repos.delete
-       * @memberOf! sourcerepo(v1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the repo to delete. Values are of the form `projects/<project>/repos/<repo>`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        var parameters = {
-          options: utils.extend({
-            url: 'https://sourcerepo.googleapis.com/v1/{name}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
       }
     }
   };
 }
 
-/**
- * @typedef DataAccessOptions
- * @memberOf! sourcerepo(v1)
- * @type object
- */
-/**
- * @typedef AuditConfig
- * @memberOf! sourcerepo(v1)
- * @type object
-* @property {sourcerepo(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
-Next ID: 4
-* @property {string[]} exemptedMembers 
-* @property {string} service Specifies a service that will be enabled for audit logging.
-For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
-`allServices` is a special value that covers all services.
-*/
-/**
- * @typedef SetIamPolicyRequest
- * @memberOf! sourcerepo(v1)
- * @type object
-* @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
-the fields in the mask will be modified. If no mask is provided, the
-following default mask is used:
-paths: &quot;bindings, etag&quot;
-This field is only used by Cloud IAM.
-* @property {sourcerepo(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
-the policy is limited to a few 10s of KB. An empty policy is a
-valid policy but certain Cloud Platform services (such as Projects)
-might reject them.
-*/
-/**
- * @typedef CloudAuditOptions
- * @memberOf! sourcerepo(v1)
- * @type object
- */
 /**
  * @typedef Binding
  * @memberOf! sourcerepo(v1)
@@ -365,6 +328,7 @@ Required
  * @typedef MirrorConfig
  * @memberOf! sourcerepo(v1)
  * @type object
+* @property {string} url URL of the main repository at the other hosting service.
 * @property {string} webhookId ID of the webhook listening to updates to trigger mirroring.
 Removing this webook from the other hosting service will stop
 Google Cloud Source Repositories from receiving notifications,
@@ -372,7 +336,6 @@ and thereby disabling mirroring.
 * @property {string} deployKeyId ID of the SSH deploy key at the other hosting service.
 Removing this key from the other service would deauthorize
 Google Cloud Source Repositories from mirroring.
-* @property {string} url URL of the main repository at the other hosting service.
 */
 /**
  * @typedef Empty
@@ -383,18 +346,12 @@ Google Cloud Source Repositories from mirroring.
  * @typedef Repo
  * @memberOf! sourcerepo(v1)
  * @type object
+* @property {string} name Resource name of the repository, of the form
+`projects/&lt;project&gt;/repos/&lt;repo&gt;`.
 * @property {sourcerepo(v1).MirrorConfig} mirrorConfig How this repository mirrors a repository managed by another service.
 * @property {string} url URL to clone the repository from Google Cloud Source Repositories.
 * @property {string} size The size in bytes of the repo.
-* @property {string} name Resource name of the repository, of the form
-`projects/&lt;project&gt;/repos/&lt;repo&gt;`.
 */
-/**
- * @typedef ListReposResponse
- * @memberOf! sourcerepo(v1)
- * @type object
- * @property {sourcerepo(v1).Repo[]} repos The listed repos.
- */
 /**
  * @typedef TestIamPermissionsResponse
  * @memberOf! sourcerepo(v1)
@@ -402,6 +359,12 @@ Google Cloud Source Repositories from mirroring.
 * @property {string[]} permissions A subset of `TestPermissionsRequest.permissions` that the caller is
 allowed.
 */
+/**
+ * @typedef ListReposResponse
+ * @memberOf! sourcerepo(v1)
+ * @type object
+ * @property {sourcerepo(v1).Repo[]} repos The listed repos.
+ */
 /**
  * @typedef Condition
  * @memberOf! sourcerepo(v1)
@@ -434,13 +397,6 @@ Follows the same format of Binding.members.
  * @typedef Rule
  * @memberOf! sourcerepo(v1)
  * @type object
-* @property {sourcerepo(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
-that match the LOG action.
-* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
-the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
-* @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
-(e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
-and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
 * @property {string} action Required
 * @property {string[]} notIn If one or more &#39;not_in&#39; clauses are specified, the rule matches
 if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
@@ -448,14 +404,21 @@ The format for in and not_in entries is the same as for members in a
 Binding (see google/iam/v1/policy.proto).
 * @property {string} description Human-readable description of the rule.
 * @property {sourcerepo(v1).Condition[]} conditions Additional restrictions that must be met
+* @property {sourcerepo(v1).LogConfig[]} logConfig The config returned to callers of tech.iam.IAM.CheckPolicy for any entries
+that match the LOG action.
+* @property {string[]} in If one or more &#39;in&#39; clauses are specified, the rule matches if
+the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+* @property {string[]} permissions A permission is a string of form &#39;&lt;service&gt;.&lt;resource type&gt;.&lt;verb&gt;&#39;
+(e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions,
+and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
 */
 /**
  * @typedef LogConfig
  * @memberOf! sourcerepo(v1)
  * @type object
- * @property {sourcerepo(v1).CounterOptions} counter Counter options.
  * @property {sourcerepo(v1).DataAccessOptions} dataAccess Data access options.
  * @property {sourcerepo(v1).CloudAuditOptions} cloudAudit Cloud audit options.
+ * @property {sourcerepo(v1).CounterOptions} counter Counter options.
  */
 /**
  * @typedef TestIamPermissionsRequest
@@ -496,4 +459,39 @@ manner:
 Multiple `bindings` must not be specified for the same `role`.
 `bindings` with no members will result in an error.
 */
+/**
+ * @typedef DataAccessOptions
+ * @memberOf! sourcerepo(v1)
+ * @type object
+ */
+/**
+ * @typedef AuditConfig
+ * @memberOf! sourcerepo(v1)
+ * @type object
+* @property {string[]} exemptedMembers 
+* @property {string} service Specifies a service that will be enabled for audit logging.
+For example, `storage.googleapis.com`, `cloudsql.googleapis.com`.
+`allServices` is a special value that covers all services.
+* @property {sourcerepo(v1).AuditLogConfig[]} auditLogConfigs The configuration for logging of each type of permission.
+Next ID: 4
+*/
+/**
+ * @typedef SetIamPolicyRequest
+ * @memberOf! sourcerepo(v1)
+ * @type object
+* @property {sourcerepo(v1).Policy} policy REQUIRED: The complete policy to be applied to the `resource`. The size of
+the policy is limited to a few 10s of KB. An empty policy is a
+valid policy but certain Cloud Platform services (such as Projects)
+might reject them.
+* @property {string} updateMask OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+the fields in the mask will be modified. If no mask is provided, the
+following default mask is used:
+paths: &quot;bindings, etag&quot;
+This field is only used by Cloud IAM.
+*/
+/**
+ * @typedef CloudAuditOptions
+ * @memberOf! sourcerepo(v1)
+ * @type object
+ */
 export = Sourcerepo;

@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Cloud Billing API
@@ -28,8 +26,8 @@ var utils = require('../../lib/utils');
     programmatically.
  *
  * @example
- * var google = require('googleapis');
- * var cloudbilling = google.cloudbilling('v1');
+ * const google = require('googleapis');
+ * const cloudbilling = google.cloudbilling('v1');
  *
  * @namespace cloudbilling
  * @type {Function}
@@ -38,7 +36,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Cloudbilling
  */
 function Cloudbilling(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.projects = {
@@ -123,7 +121,7 @@ function Cloudbilling(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://cloudbilling.googleapis.com/v1/{name}/billingInfo',
           method: 'PUT'
@@ -211,7 +209,7 @@ function Cloudbilling(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://cloudbilling.googleapis.com/v1/{name}/billingInfo',
           method: 'GET'
@@ -303,7 +301,7 @@ function Cloudbilling(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://cloudbilling.googleapis.com/v1/{name}',
           method: 'GET'
@@ -400,7 +398,7 @@ function Cloudbilling(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://cloudbilling.googleapis.com/v1/billingAccounts',
           method: 'GET'
@@ -505,7 +503,7 @@ function Cloudbilling(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://cloudbilling.googleapis.com/v1/{name}/projects',
             method: 'GET'

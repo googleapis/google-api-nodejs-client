@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Cloud Storage JSON API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Lets you store and retrieve potentially-large, immutable data objects.
  *
  * @example
- * var google = require('googleapis');
- * var storage = google.storage('v1beta1');
+ * const google = require('googleapis');
+ * const storage = google.storage('v1beta1');
  *
  * @namespace storage
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Storage
  */
 function Storage(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.bucketAccessControls = {
@@ -64,7 +62,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
           method: 'DELETE'
@@ -100,7 +98,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
           method: 'GET'
@@ -136,7 +134,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl',
           method: 'POST'
@@ -171,7 +169,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl',
           method: 'GET'
@@ -208,7 +206,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
           method: 'PATCH'
@@ -245,7 +243,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
           method: 'PUT'
@@ -284,7 +282,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
           method: 'DELETE'
@@ -320,7 +318,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
           method: 'GET'
@@ -356,7 +354,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b',
           method: 'POST'
@@ -394,7 +392,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b',
           method: 'GET'
@@ -431,7 +429,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
           method: 'PATCH'
@@ -468,7 +466,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
           method: 'PUT'
@@ -509,7 +507,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
           method: 'DELETE'
@@ -546,7 +544,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
           method: 'GET'
@@ -583,7 +581,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl',
           method: 'POST'
@@ -619,7 +617,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl',
           method: 'GET'
@@ -657,7 +655,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
           method: 'PATCH'
@@ -695,7 +693,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
           method: 'PUT'
@@ -735,7 +733,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
           method: 'DELETE'
@@ -772,7 +770,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
           method: 'GET'
@@ -813,7 +811,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o',
           method: 'POST'
@@ -854,7 +852,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o',
           method: 'GET'
@@ -892,7 +890,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
           method: 'PATCH'
@@ -930,7 +928,7 @@ function Storage(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
           method: 'PUT'

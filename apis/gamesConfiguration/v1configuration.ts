@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Play Game Services Publishing API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * The Publishing API for Google Play Game Services.
  *
  * @example
- * var google = require('googleapis');
- * var gamesConfiguration = google.gamesConfiguration('v1configuration');
+ * const google = require('googleapis');
+ * const gamesConfiguration = google.gamesConfiguration('v1configuration');
  *
  * @namespace gamesConfiguration
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Gamesconfiguration
  */
 function Gamesconfiguration(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.achievementConfigurations = {
@@ -63,7 +61,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/achievements/{achievementId}',
           method: 'DELETE'
@@ -98,7 +96,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/achievements/{achievementId}',
           method: 'GET'
@@ -134,7 +132,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/applications/{applicationId}/achievements',
           method: 'POST'
@@ -171,7 +169,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/applications/{applicationId}/achievements',
           method: 'GET'
@@ -207,7 +205,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/achievements/{achievementId}',
           method: 'PATCH'
@@ -243,7 +241,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/achievements/{achievementId}',
           method: 'PUT'
@@ -286,7 +284,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/images/{resourceId}/imageType/{imageType}',
           method: 'POST'
@@ -326,7 +324,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/leaderboards/{leaderboardId}',
           method: 'DELETE'
@@ -361,7 +359,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/leaderboards/{leaderboardId}',
           method: 'GET'
@@ -397,7 +395,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/applications/{applicationId}/leaderboards',
           method: 'POST'
@@ -434,7 +432,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/applications/{applicationId}/leaderboards',
           method: 'GET'
@@ -470,7 +468,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/leaderboards/{leaderboardId}',
           method: 'PATCH'
@@ -506,7 +504,7 @@ function Gamesconfiguration(options) { // eslint-disable-line
       }
       options || (options = {});
 
-      var parameters = {
+      const parameters = {
         options: utils.extend({
           url: 'https://www.googleapis.com/games/v1configuration/leaderboards/{leaderboardId}',
           method: 'PUT'

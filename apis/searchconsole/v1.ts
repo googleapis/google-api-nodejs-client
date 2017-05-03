@@ -16,10 +16,8 @@
 
 /* jshint maxlen: false */
 
-'use strict';
-
-var createAPIRequest = require('../../lib/apirequest');
-var utils = require('../../lib/utils');
+const createAPIRequest = require('../../lib/apirequest');
+const utils = require('../../lib/utils');
 
 /**
  * Google Search Console URL Testing Tools API
@@ -27,8 +25,8 @@ var utils = require('../../lib/utils');
  * Provides tools for running validation tests against single URLs
  *
  * @example
- * var google = require('googleapis');
- * var searchconsole = google.searchconsole('v1');
+ * const google = require('googleapis');
+ * const searchconsole = google.searchconsole('v1');
  *
  * @namespace searchconsole
  * @type {Function}
@@ -37,7 +35,7 @@ var utils = require('../../lib/utils');
  * @param {object=} options Options for Searchconsole
  */
 function Searchconsole(options) { // eslint-disable-line
-  var self = this;
+  const self = this;
   self._options = options || {};
 
   self.urlTestingTools = {
@@ -65,7 +63,7 @@ function Searchconsole(options) { // eslint-disable-line
         }
         options || (options = {});
 
-        var parameters = {
+        const parameters = {
           options: utils.extend({
             url: 'https://searchconsole.googleapis.com/v1/urlTestingTools/mobileFriendlyTest:run',
             method: 'POST'
@@ -82,6 +80,22 @@ function Searchconsole(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef MobileFriendlyIssue
+ * @memberOf! searchconsole(v1)
+ * @type object
+ * @property {string} rule Rule violated.
+ */
+/**
+ * @typedef RunMobileFriendlyTestResponse
+ * @memberOf! searchconsole(v1)
+ * @type object
+ * @property {searchconsole(v1).TestStatus} testStatus Final state of the test, can be either complete or an error.
+ * @property {searchconsole(v1).ResourceIssue[]} resourceIssues Information about embedded resources issues.
+ * @property {string} mobileFriendliness Test verdict, whether the page is mobile friendly or not.
+ * @property {searchconsole(v1).MobileFriendlyIssue[]} mobileFriendlyIssues List of mobile-usability issues.
+ * @property {searchconsole(v1).Image} screenshot Screenshot of the requested URL.
+ */
 /**
  * @typedef ResourceIssue
  * @memberOf! searchconsole(v1)
@@ -105,9 +119,9 @@ function Searchconsole(options) { // eslint-disable-line
  * @typedef Image
  * @memberOf! searchconsole(v1)
  * @type object
-* @property {string} mimeType The mime-type of the image data.
 * @property {string} data Image data in format determined by the mime type. Currently, the format
 will always be &quot;image/png&quot;, but this might change in the future.
+* @property {string} mimeType The mime-type of the image data.
 */
 /**
  * @typedef RunMobileFriendlyTestRequest
@@ -115,21 +129,5 @@ will always be &quot;image/png&quot;, but this might change in the future.
  * @type object
  * @property {string} url URL for inspection.
  * @property {boolean} requestScreenshot Whether or not screenshot is requested. Default is false.
- */
-/**
- * @typedef MobileFriendlyIssue
- * @memberOf! searchconsole(v1)
- * @type object
- * @property {string} rule Rule violated.
- */
-/**
- * @typedef RunMobileFriendlyTestResponse
- * @memberOf! searchconsole(v1)
- * @type object
- * @property {string} mobileFriendliness Test verdict, whether the page is mobile friendly or not.
- * @property {searchconsole(v1).MobileFriendlyIssue[]} mobileFriendlyIssues List of mobile-usability issues.
- * @property {searchconsole(v1).Image} screenshot Screenshot of the requested URL.
- * @property {searchconsole(v1).TestStatus} testStatus Final state of the test, can be either complete or an error.
- * @property {searchconsole(v1).ResourceIssue[]} resourceIssues Information about embedded resources issues.
  */
 export = Searchconsole;
