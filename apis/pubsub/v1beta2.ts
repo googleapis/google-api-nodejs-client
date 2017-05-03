@@ -41,14 +41,14 @@ function Pubsub(options) { // eslint-disable-line
 
   self.projects = {
 
-    topics: {
+    subscriptions: {
 
       /**
-       * pubsub.projects.topics.testIamPermissions
+       * pubsub.projects.subscriptions.testIamPermissions
        *
        * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
        *
-       * @alias pubsub.projects.topics.testIamPermissions
+       * @alias pubsub.projects.subscriptions.testIamPermissions
        * @memberOf! pubsub(v1beta2)
        *
        * @param {object} params Parameters for request
@@ -80,15 +80,51 @@ function Pubsub(options) { // eslint-disable-line
       },
 
       /**
-       * pubsub.projects.topics.delete
+       * pubsub.projects.subscriptions.modifyPushConfig
        *
-       * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
+       * @desc Modifies the `PushConfig` for a specified subscription.  This may be used to change a push subscription to a pull one (signified by an empty `PushConfig`) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the `PushConfig`.
        *
-       * @alias pubsub.projects.topics.delete
+       * @alias pubsub.projects.subscriptions.modifyPushConfig
        * @memberOf! pubsub(v1beta2)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.topic Name of the topic to delete.
+       * @param {string} params.subscription The name of the subscription.
+       * @param {pubsub(v1beta2).ModifyPushConfigRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      modifyPushConfig: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:modifyPushConfig',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['subscription'],
+          pathParams: ['subscription'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.delete
+       *
+       * @desc Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to `Pull` after deletion will return `NOT_FOUND`. After a subscription is deleted, a new one may be created with the same name, but the new one has no association with the old subscription, or its topic unless the same topic is specified.
+       *
+       * @alias pubsub.projects.subscriptions.delete
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.subscription The subscription to delete.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -102,12 +138,12 @@ function Pubsub(options) { // eslint-disable-line
 
         const parameters = {
           options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{topic}',
+            url: 'https://pubsub.googleapis.com/v1beta2/{subscription}',
             method: 'DELETE'
           }, options),
           params: params,
-          requiredParams: ['topic'],
-          pathParams: ['topic'],
+          requiredParams: ['subscription'],
+          pathParams: ['subscription'],
           context: self
         };
 
@@ -115,22 +151,21 @@ function Pubsub(options) { // eslint-disable-line
       },
 
       /**
-       * pubsub.projects.topics.list
+       * pubsub.projects.subscriptions.pull
        *
-       * @desc Lists matching topics.
+       * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The server may return `UNAVAILABLE` if there are too many concurrent pull requests pending for the given subscription.
        *
-       * @alias pubsub.projects.topics.list
+       * @alias pubsub.projects.subscriptions.pull
        * @memberOf! pubsub(v1beta2)
        *
        * @param {object} params Parameters for request
-       * @param {integer=} params.pageSize Maximum number of topics to return.
-       * @param {string} params.project The name of the cloud project that topics belong to.
-       * @param {string=} params.pageToken The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
+       * @param {string} params.subscription The subscription from which messages should be pulled.
+       * @param {pubsub(v1beta2).PullRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, options, callback) {
+      pull: function (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -139,238 +174,17 @@ function Pubsub(options) { // eslint-disable-line
 
         const parameters = {
           options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{project}/topics',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['project'],
-          pathParams: ['project'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * pubsub.projects.topics.create
-       *
-       * @desc Creates the given topic with the given name.
-       *
-       * @alias pubsub.projects.topics.create
-       * @memberOf! pubsub(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
-       * @param {pubsub(v1beta2).Topic} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{name}',
-            method: 'PUT'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * pubsub.projects.topics.setIamPolicy
-       *
-       * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
-       *
-       * @alias pubsub.projects.topics.setIamPolicy
-       * @memberOf! pubsub(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-       * @param {pubsub(v1beta2).SetIamPolicyRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      setIamPolicy: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:setIamPolicy',
+            url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:pull',
             method: 'POST'
           }, options),
           params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
+          requiredParams: ['subscription'],
+          pathParams: ['subscription'],
           context: self
         };
 
         return createAPIRequest(parameters, callback);
       },
-
-      /**
-       * pubsub.projects.topics.getIamPolicy
-       *
-       * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-       *
-       * @alias pubsub.projects.topics.getIamPolicy
-       * @memberOf! pubsub(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      getIamPolicy: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:getIamPolicy',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * pubsub.projects.topics.get
-       *
-       * @desc Gets the configuration of a topic.
-       *
-       * @alias pubsub.projects.topics.get
-       * @memberOf! pubsub(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.topic The name of the topic to get.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{topic}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['topic'],
-          pathParams: ['topic'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * pubsub.projects.topics.publish
-       *
-       * @desc Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic does not exist. The message payload must not be empty; it must contain  either a non-empty data field, or at least one attribute.
-       *
-       * @alias pubsub.projects.topics.publish
-       * @memberOf! pubsub(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.topic The messages in the request will be published on this topic.
-       * @param {pubsub(v1beta2).PublishRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      publish: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{topic}:publish',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['topic'],
-          pathParams: ['topic'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      subscriptions: {
-
-        /**
-         * pubsub.projects.topics.subscriptions.list
-         *
-         * @desc Lists the name of the subscriptions for this topic.
-         *
-         * @alias pubsub.projects.topics.subscriptions.list
-         * @memberOf! pubsub(v1beta2)
-         *
-         * @param {object} params Parameters for request
-         * @param {integer=} params.pageSize Maximum number of subscription names to return.
-         * @param {string} params.topic The name of the topic that subscriptions are attached to.
-         * @param {string=} params.pageToken The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        list: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const parameters = {
-            options: utils.extend({
-              url: 'https://pubsub.googleapis.com/v1beta2/{topic}/subscriptions',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['topic'],
-            pathParams: ['topic'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        }
-      }
-    },
-
-    subscriptions: {
 
       /**
        * pubsub.projects.subscriptions.list
@@ -518,41 +332,6 @@ function Pubsub(options) { // eslint-disable-line
       },
 
       /**
-       * pubsub.projects.subscriptions.getIamPolicy
-       *
-       * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-       *
-       * @alias pubsub.projects.subscriptions.getIamPolicy
-       * @memberOf! pubsub(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      getIamPolicy: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:getIamPolicy',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
        * pubsub.projects.subscriptions.modifyAckDeadline
        *
        * @desc Modifies the ack deadline for a specific message. This method is useful to indicate that more time is needed to process a message by the subscriber, or to make the message available for redelivery if the processing was interrupted. Note that this does not modify the subscription-level `ackDeadlineSeconds` used for subsequent messages.
@@ -582,6 +361,41 @@ function Pubsub(options) { // eslint-disable-line
           params: params,
           requiredParams: ['subscription'],
           pathParams: ['subscription'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.subscriptions.getIamPolicy
+       *
+       * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+       *
+       * @alias pubsub.projects.subscriptions.getIamPolicy
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      getIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:getIamPolicy',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['resource'],
+          pathParams: ['resource'],
           context: self
         };
 
@@ -621,14 +435,123 @@ function Pubsub(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
+      }
+    },
+
+    topics: {
+
+      /**
+       * pubsub.projects.topics.getIamPolicy
+       *
+       * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+       *
+       * @alias pubsub.projects.topics.getIamPolicy
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      getIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:getIamPolicy',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['resource'],
+          pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       },
 
       /**
-       * pubsub.projects.subscriptions.testIamPermissions
+       * pubsub.projects.topics.get
+       *
+       * @desc Gets the configuration of a topic.
+       *
+       * @alias pubsub.projects.topics.get
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.topic The name of the topic to get.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1beta2/{topic}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['topic'],
+          pathParams: ['topic'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.topics.publish
+       *
+       * @desc Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic does not exist. The message payload must not be empty; it must contain  either a non-empty data field, or at least one attribute.
+       *
+       * @alias pubsub.projects.topics.publish
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.topic The messages in the request will be published on this topic.
+       * @param {pubsub(v1beta2).PublishRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      publish: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1beta2/{topic}:publish',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['topic'],
+          pathParams: ['topic'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.topics.testIamPermissions
        *
        * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.  Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
        *
-       * @alias pubsub.projects.subscriptions.testIamPermissions
+       * @alias pubsub.projects.topics.testIamPermissions
        * @memberOf! pubsub(v1beta2)
        *
        * @param {object} params Parameters for request
@@ -660,87 +583,15 @@ function Pubsub(options) { // eslint-disable-line
       },
 
       /**
-       * pubsub.projects.subscriptions.modifyPushConfig
+       * pubsub.projects.topics.delete
        *
-       * @desc Modifies the `PushConfig` for a specified subscription.  This may be used to change a push subscription to a pull one (signified by an empty `PushConfig`) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the `PushConfig`.
+       * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
        *
-       * @alias pubsub.projects.subscriptions.modifyPushConfig
+       * @alias pubsub.projects.topics.delete
        * @memberOf! pubsub(v1beta2)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.subscription The name of the subscription.
-       * @param {pubsub(v1beta2).ModifyPushConfigRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      modifyPushConfig: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:modifyPushConfig',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['subscription'],
-          pathParams: ['subscription'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * pubsub.projects.subscriptions.pull
-       *
-       * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The server may return `UNAVAILABLE` if there are too many concurrent pull requests pending for the given subscription.
-       *
-       * @alias pubsub.projects.subscriptions.pull
-       * @memberOf! pubsub(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.subscription The subscription from which messages should be pulled.
-       * @param {pubsub(v1beta2).PullRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      pull: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{subscription}:pull',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['subscription'],
-          pathParams: ['subscription'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * pubsub.projects.subscriptions.delete
-       *
-       * @desc Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to `Pull` after deletion will return `NOT_FOUND`. After a subscription is deleted, a new one may be created with the same name, but the new one has no association with the old subscription, or its topic unless the same topic is specified.
-       *
-       * @alias pubsub.projects.subscriptions.delete
-       * @memberOf! pubsub(v1beta2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.subscription The subscription to delete.
+       * @param {string} params.topic Name of the topic to delete.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -754,66 +605,170 @@ function Pubsub(options) { // eslint-disable-line
 
         const parameters = {
           options: utils.extend({
-            url: 'https://pubsub.googleapis.com/v1beta2/{subscription}',
+            url: 'https://pubsub.googleapis.com/v1beta2/{topic}',
             method: 'DELETE'
           }, options),
           params: params,
-          requiredParams: ['subscription'],
-          pathParams: ['subscription'],
+          requiredParams: ['topic'],
+          pathParams: ['topic'],
           context: self
         };
 
         return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.topics.list
+       *
+       * @desc Lists matching topics.
+       *
+       * @alias pubsub.projects.topics.list
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.pageToken The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
+       * @param {integer=} params.pageSize Maximum number of topics to return.
+       * @param {string} params.project The name of the cloud project that topics belong to.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1beta2/{project}/topics',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['project'],
+          pathParams: ['project'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.topics.setIamPolicy
+       *
+       * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+       *
+       * @alias pubsub.projects.topics.setIamPolicy
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+       * @param {pubsub(v1beta2).SetIamPolicyRequest} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      setIamPolicy: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1beta2/{resource}:setIamPolicy',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['resource'],
+          pathParams: ['resource'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * pubsub.projects.topics.create
+       *
+       * @desc Creates the given topic with the given name.
+       *
+       * @alias pubsub.projects.topics.create
+       * @memberOf! pubsub(v1beta2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+       * @param {pubsub(v1beta2).Topic} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://pubsub.googleapis.com/v1beta2/{name}',
+            method: 'PUT'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      subscriptions: {
+
+        /**
+         * pubsub.projects.topics.subscriptions.list
+         *
+         * @desc Lists the name of the subscriptions for this topic.
+         *
+         * @alias pubsub.projects.topics.subscriptions.list
+         * @memberOf! pubsub(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string=} params.pageToken The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
+         * @param {integer=} params.pageSize Maximum number of subscription names to return.
+         * @param {string} params.topic The name of the topic that subscriptions are attached to.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: utils.extend({
+              url: 'https://pubsub.googleapis.com/v1beta2/{topic}/subscriptions',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['topic'],
+            pathParams: ['topic'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        }
       }
     }
   };
 }
 
-/**
- * @typedef ListTopicsResponse
- * @memberOf! pubsub(v1beta2)
- * @type object
-* @property {string} nextPageToken If not empty, indicates that there may be more topics that match the
-request; this value should be passed in a new `ListTopicsRequest`.
-* @property {pubsub(v1beta2).Topic[]} topics The resulting topics.
-*/
-/**
- * @typedef AcknowledgeRequest
- * @memberOf! pubsub(v1beta2)
- * @type object
-* @property {string[]} ackIds The acknowledgment ID for the messages being acknowledged that was returned
-by the Pub/Sub system in the `Pull` response. Must not be empty.
-*/
-/**
- * @typedef Empty
- * @memberOf! pubsub(v1beta2)
- * @type object
- */
-/**
- * @typedef ListTopicSubscriptionsResponse
- * @memberOf! pubsub(v1beta2)
- * @type object
-* @property {string} nextPageToken If not empty, indicates that there may be more subscriptions that match
-the request; this value should be passed in a new
-`ListTopicSubscriptionsRequest` to get more subscriptions.
-* @property {string[]} subscriptions The names of the subscriptions that match the request.
-*/
-/**
- * @typedef PullResponse
- * @memberOf! pubsub(v1beta2)
- * @type object
-* @property {pubsub(v1beta2).ReceivedMessage[]} receivedMessages Received Pub/Sub messages. The Pub/Sub system will return zero messages if
-there are no more available in the backlog. The Pub/Sub system may return
-fewer than the `maxMessages` requested even if there are more messages
-available in the backlog.
-*/
-/**
- * @typedef ReceivedMessage
- * @memberOf! pubsub(v1beta2)
- * @type object
- * @property {pubsub(v1beta2).PubsubMessage} message The message.
- * @property {string} ackId This ID can be used to acknowledge the received message.
- */
 /**
  * @typedef PushConfig
  * @memberOf! pubsub(v1beta2)
@@ -854,13 +809,13 @@ allowed.
  * @typedef PullRequest
  * @memberOf! pubsub(v1beta2)
  * @type object
-* @property {integer} maxMessages The maximum number of messages returned for this request. The Pub/Sub
-system may return fewer than the number specified.
 * @property {boolean} returnImmediately If this is specified as true the system will respond immediately even if
 it is not able to return a message in the `Pull` response. Otherwise the
 system is allowed to wait until at least one message is available rather
 than returning no messages. The client may cancel the request if it does
 not wish to wait any longer for the response.
+* @property {integer} maxMessages The maximum number of messages returned for this request. The Pub/Sub
+system may return fewer than the number specified.
 */
 /**
  * @typedef ListSubscriptionsResponse
@@ -889,12 +844,6 @@ the topic.
  * @typedef Subscription
  * @memberOf! pubsub(v1beta2)
  * @type object
-* @property {string} topic The name of the topic from which this subscription is receiving messages.
-The value of this field will be `_deleted-topic_` if the topic has been
-deleted.
-* @property {pubsub(v1beta2).PushConfig} pushConfig If push delivery is used with this subscription, this field is
-used to configure it. An empty `pushConfig` signifies that the subscriber
-will pull and ack messages using API methods.
 * @property {integer} ackDeadlineSeconds This value is the maximum time after a subscriber receives a message
 before the subscriber should acknowledge the message. After message
 delivery but before the ack deadline expires and before the message is
@@ -919,6 +868,12 @@ start with a letter, and contain only letters (`[A-Za-z]`), numbers
 (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
 plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
 in length, and it must not start with `&quot;goog&quot;`.
+* @property {string} topic The name of the topic from which this subscription is receiving messages.
+The value of this field will be `_deleted-topic_` if the topic has been
+deleted.
+* @property {pubsub(v1beta2).PushConfig} pushConfig If push delivery is used with this subscription, this field is
+used to configure it. An empty `pushConfig` signifies that the subscriber
+will pull and ack messages using API methods.
 */
 /**
  * @typedef TestIamPermissionsRequest
@@ -928,25 +883,6 @@ in length, and it must not start with `&quot;goog&quot;`.
 wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more
 information see
 [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
-*/
-/**
- * @typedef Policy
- * @memberOf! pubsub(v1beta2)
- * @type object
-* @property {pubsub(v1beta2).Binding[]} bindings Associates a list of `members` to a `role`.
-Multiple `bindings` must not be specified for the same `role`.
-`bindings` with no members will result in an error.
-* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
-prevent simultaneous updates of a policy from overwriting each other.
-It is strongly suggested that systems make use of the `etag` in the
-read-modify-write cycle to perform policy updates in order to avoid race
-conditions: An `etag` is returned in the response to `getIamPolicy`, and
-systems are expected to put that etag in the request to `setIamPolicy` to
-ensure that their change will be applied to the same version of the policy.
-
-If no `etag` is provided in the call to `setIamPolicy`, then the existing
-policy is overwritten blindly.
-* @property {integer} version Version of the `Policy`. The default version is 0.
 */
 /**
  * @typedef Topic
@@ -960,17 +896,36 @@ signs (`%`). It must be between 3 and 255 characters in length, and it
 must not start with `&quot;goog&quot;`.
 */
 /**
+ * @typedef Policy
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+* @property {string} etag `etag` is used for optimistic concurrency control as a way to help
+prevent simultaneous updates of a policy from overwriting each other.
+It is strongly suggested that systems make use of the `etag` in the
+read-modify-write cycle to perform policy updates in order to avoid race
+conditions: An `etag` is returned in the response to `getIamPolicy`, and
+systems are expected to put that etag in the request to `setIamPolicy` to
+ensure that their change will be applied to the same version of the policy.
+
+If no `etag` is provided in the call to `setIamPolicy`, then the existing
+policy is overwritten blindly.
+* @property {integer} version Version of the `Policy`. The default version is 0.
+* @property {pubsub(v1beta2).Binding[]} bindings Associates a list of `members` to a `role`.
+Multiple `bindings` must not be specified for the same `role`.
+`bindings` with no members will result in an error.
+*/
+/**
  * @typedef ModifyAckDeadlineRequest
  * @memberOf! pubsub(v1beta2)
  * @type object
-* @property {string[]} ackIds List of acknowledgment IDs.
-* @property {string} ackId The acknowledgment ID. Either this or ack_ids must be populated, but not
-both.
 * @property {integer} ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
 the Pub/Sub system. Must be &gt;= 0. For example, if the value is 10, the new
 ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
 was made. Specifying zero may immediately make the message available for
 another pull request.
+* @property {string[]} ackIds List of acknowledgment IDs.
+* @property {string} ackId The acknowledgment ID. Either this or ack_ids must be populated, but not
+both.
 */
 /**
  * @typedef SetIamPolicyRequest
@@ -980,17 +935,6 @@ another pull request.
 the policy is limited to a few 10s of KB. An empty policy is a
 valid policy but certain Cloud Platform services (such as Projects)
 might reject them.
-*/
-/**
- * @typedef ModifyPushConfigRequest
- * @memberOf! pubsub(v1beta2)
- * @type object
-* @property {pubsub(v1beta2).PushConfig} pushConfig The push configuration for future deliveries.
-
-An empty `pushConfig` indicates that the Pub/Sub system should
-stop pushing messages from the given subscription and allow
-messages to be pulled and acknowledged - effectively pausing
-the subscription if `Pull` is not called.
 */
 /**
  * @typedef PubsubMessage
@@ -1006,6 +950,17 @@ delivery. It must not be populated by the publisher in a `Publish` call.
 * @property {string} publishTime The time at which the message was published, populated by the server when
 it receives the `Publish` call. It must not be populated by the
 publisher in a `Publish` call.
+*/
+/**
+ * @typedef ModifyPushConfigRequest
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+* @property {pubsub(v1beta2).PushConfig} pushConfig The push configuration for future deliveries.
+
+An empty `pushConfig` indicates that the Pub/Sub system should
+stop pushing messages from the given subscription and allow
+messages to be pulled and acknowledged - effectively pausing
+the subscription if `Pull` is not called.
 */
 /**
  * @typedef Binding
@@ -1038,4 +993,49 @@ publisher in a `Publish` call.
 For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
 Required
 */
+/**
+ * @typedef ListTopicsResponse
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+* @property {string} nextPageToken If not empty, indicates that there may be more topics that match the
+request; this value should be passed in a new `ListTopicsRequest`.
+* @property {pubsub(v1beta2).Topic[]} topics The resulting topics.
+*/
+/**
+ * @typedef Empty
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ */
+/**
+ * @typedef AcknowledgeRequest
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+* @property {string[]} ackIds The acknowledgment ID for the messages being acknowledged that was returned
+by the Pub/Sub system in the `Pull` response. Must not be empty.
+*/
+/**
+ * @typedef ListTopicSubscriptionsResponse
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+* @property {string} nextPageToken If not empty, indicates that there may be more subscriptions that match
+the request; this value should be passed in a new
+`ListTopicSubscriptionsRequest` to get more subscriptions.
+* @property {string[]} subscriptions The names of the subscriptions that match the request.
+*/
+/**
+ * @typedef PullResponse
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+* @property {pubsub(v1beta2).ReceivedMessage[]} receivedMessages Received Pub/Sub messages. The Pub/Sub system will return zero messages if
+there are no more available in the backlog. The Pub/Sub system may return
+fewer than the `maxMessages` requested even if there are more messages
+available in the backlog.
+*/
+/**
+ * @typedef ReceivedMessage
+ * @memberOf! pubsub(v1beta2)
+ * @type object
+ * @property {pubsub(v1beta2).PubsubMessage} message The message.
+ * @property {string} ackId This ID can be used to acknowledge the received message.
+ */
 export = Pubsub;

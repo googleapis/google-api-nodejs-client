@@ -262,13 +262,6 @@ function Speech(options) { // eslint-disable-line
 }
 
 /**
- * @typedef RecognizeResponse
- * @memberOf! speech(v1)
- * @type object
-* @property {speech(v1).SpeechRecognitionResult[]} results *Output-only* Sequential list of transcription results corresponding to
-sequential portions of audio.
-*/
-/**
  * @typedef CancelOperationRequest
  * @memberOf! speech(v1)
  * @type object
@@ -277,6 +270,9 @@ sequential portions of audio.
  * @typedef Operation
  * @memberOf! speech(v1)
  * @type object
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
 * @property {object} response The normal response of the operation in case of success.  If the original
 method returns no data on success, such as `Delete`, the response is
 `google.protobuf.Empty`.  If the original method is standard
@@ -293,20 +289,11 @@ originally returns it. If you use the default HTTP mapping, the
 contains progress information and common metadata such as create time.
 Some services might not provide such metadata.  Any method that returns a
 long-running operation should document the metadata type, if any.
-* @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
-available.
 */
 /**
  * @typedef RecognitionConfig
  * @memberOf! speech(v1)
  * @type object
-* @property {boolean} profanityFilter *Optional* If set to `true`, the server will attempt to filter out
-profanities, replacing all but the initial character in each filtered word
-with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities
-won&#39;t be filtered out.
-* @property {speech(v1).SpeechContext[]} speechContexts *Optional* A means to provide context to assist the speech recognition.
-* @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
 * @property {integer} sampleRateHertz *Required* Sample rate in Hertz of the audio data sent in all
 `RecognitionAudio` messages. Valid values are: 8000-48000.
 16000 is optimal. For best results, set the sampling rate of the audio
@@ -323,17 +310,23 @@ one. If omitted, will return a maximum of one.
 Example: &quot;en-US&quot;.
 See [Language Support](https://cloud.google.com/speech/docs/languages)
 for a list of the currently supported language codes.
+* @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
+* @property {boolean} profanityFilter *Optional* If set to `true`, the server will attempt to filter out
+profanities, replacing all but the initial character in each filtered word
+with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities
+won&#39;t be filtered out.
+* @property {speech(v1).SpeechContext[]} speechContexts *Optional* A means to provide context to assist the speech recognition.
 */
 /**
  * @typedef Status
  * @memberOf! speech(v1)
  * @type object
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
 * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
 */
 /**
  * @typedef Empty
@@ -349,6 +342,17 @@ process the request.
 * @property {speech(v1).RecognitionAudio} audio *Required* The audio data to be recognized.
 */
 /**
+ * @typedef SpeechContext
+ * @memberOf! speech(v1)
+ * @type object
+* @property {string[]} phrases *Optional* A list of strings containing words and phrases &quot;hints&quot; so that
+the speech recognition is more likely to recognize them. This can be used
+to improve the accuracy for specific words and phrases, for example, if
+specific commands are typically spoken by the user. This can also be used
+to add additional words to the vocabulary of the recognizer. See
+[usage limits](https://cloud.google.com/speech/limits#content).
+*/
+/**
  * @typedef SpeechRecognitionAlternative
  * @memberOf! speech(v1)
  * @type object
@@ -360,17 +364,6 @@ only for `is_final=true` results. Clients should not rely on the
 any of the results.
 The default of 0.0 is a sentinel value indicating `confidence` was not set.
 * @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
-*/
-/**
- * @typedef SpeechContext
- * @memberOf! speech(v1)
- * @type object
-* @property {string[]} phrases *Optional* A list of strings containing words and phrases &quot;hints&quot; so that
-the speech recognition is more likely to recognize them. This can be used
-to improve the accuracy for specific words and phrases, for example, if
-specific commands are typically spoken by the user. This can also be used
-to add additional words to the vocabulary of the recognizer. See
-[usage limits](https://cloud.google.com/speech/limits#content).
 */
 /**
  * @typedef ListOperationsResponse
@@ -409,5 +402,12 @@ google.rpc.Code.INVALID_ARGUMENT). For more information, see
 * @property {speech(v1).RecognitionConfig} config *Required* Provides information to the recognizer that specifies how to
 process the request.
 * @property {speech(v1).RecognitionAudio} audio *Required* The audio data to be recognized.
+*/
+/**
+ * @typedef RecognizeResponse
+ * @memberOf! speech(v1)
+ * @type object
+* @property {speech(v1).SpeechRecognitionResult[]} results *Output-only* Sequential list of transcription results corresponding to
+sequential portions of audio.
 */
 export = Speech;

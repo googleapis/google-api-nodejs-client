@@ -88,8 +88,8 @@ function Manufacturers(options) { // eslint-disable-line
        * @memberOf! manufacturers(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
        * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
+       * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -108,7 +108,7 @@ function Manufacturers(options) { // eslint-disable-line
           }, options),
           params: params,
           requiredParams: ['parent', 'name'],
-          pathParams: ['parent', 'name'],
+          pathParams: ['name', 'parent'],
           context: self
         };
 
@@ -119,68 +119,11 @@ function Manufacturers(options) { // eslint-disable-line
 }
 
 /**
- * @typedef Count
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {string} value The numeric value of the number of products in a package.
- * @property {string} unit The unit in which these products are counted.
- */
-/**
- * @typedef Product
- * @memberOf! manufacturers(v1)
- * @type object
-* @property {manufacturers(v1).Issue[]} issues A server-generated list of issues associated with the product.
-@OutputOnly
-* @property {string[]} manuallyDeletedAttributes Names of the attributes of the product deleted manually via the
-Manufacturer Center UI.
-@OutputOnly
-* @property {manufacturers(v1).Attributes} finalAttributes Final attributes of the product. The final attributes are obtained by
-overriding the uploaded attributes with the manually provided and deleted
-attributes. Google systems only process, evaluate, review, and/or use final
-attributes.
-@OutputOnly
-* @property {string} productId The ID of the product. For more information, see
-https://support.google.com/manufacturers/answer/6124116#id.
-@OutputOnly
-* @property {manufacturers(v1).Attributes} uploadedAttributes Attributes of the product uploaded via the Manufacturer Center API or via
-feeds.
-* @property {string} parent Parent ID in the format `accounts/{account_id}`.
-
-`account_id` - The ID of the Manufacturer Center account.
-@OutputOnly
-* @property {manufacturers(v1).Attributes} manuallyProvidedAttributes Attributes of the product provided manually via the Manufacturer Center UI.
-@OutputOnly
-* @property {string} contentLanguage The content language of the product as a two-letter ISO 639-1 language code
-(for example, en).
-@OutputOnly
-* @property {string} targetCountry The target country of the product as a CLDR territory code (for example,
-US).
-@OutputOnly
-* @property {string} name Name in the format `{target_country}:{content_language}:{product_id}`.
-
-`target_country`   - The target country of the product as a CLDR territory
-                     code (for example, US).
-
-`content_language` - The content language of the product as a two-letter
-                     ISO 639-1 language code (for example, en).
-
-`product_id`     -   The ID of the product. For more information, see
-                     https://support.google.com/manufacturers/answer/6124116#id.
-@OutputOnly
-*/
-/**
- * @typedef Capacity
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {string} value The numeric value of the capacity.
- * @property {string} unit The unit of the capacity, i.e., MB, GB, or TB.
- */
-/**
  * @typedef ListProductsResponse
  * @memberOf! manufacturers(v1)
  * @type object
- * @property {string} nextPageToken The token for the retrieval of the next page of product statuses.
  * @property {manufacturers(v1).Product[]} products List of the products.
+ * @property {string} nextPageToken The token for the retrieval of the next page of product statuses.
  */
 /**
  * @typedef ProductDetail
@@ -189,14 +132,6 @@ US).
  * @property {string} attributeValue The value of the attribute.
  * @property {string} sectionName A short section name that can be reused between multiple product details.
  * @property {string} attributeName The name of the attribute.
- */
-/**
- * @typedef FeatureDescription
- * @memberOf! manufacturers(v1)
- * @type object
- * @property {manufacturers(v1).Image} image An optional image describing the feature.
- * @property {string} headline A short description of the feature.
- * @property {string} text A detailed description of the feature.
  */
 /**
  * @typedef Issue
@@ -211,6 +146,14 @@ about attributes, see
 https://support.google.com/manufacturers/answer/6124116.
 * @property {string} timestamp The timestamp when this issue appeared.
 */
+/**
+ * @typedef FeatureDescription
+ * @memberOf! manufacturers(v1)
+ * @type object
+ * @property {manufacturers(v1).Image} image An optional image describing the feature.
+ * @property {string} headline A short description of the feature.
+ * @property {string} text A detailed description of the feature.
+ */
 /**
  * @typedef Price
  * @memberOf! manufacturers(v1)
@@ -234,24 +177,14 @@ processed successfully.
  * @typedef Attributes
  * @memberOf! manufacturers(v1)
  * @type object
-* @property {string} sizeType The size type of the product. For more information, see
-https://support.google.com/manufacturers/answer/6124116#sizetype.
-* @property {manufacturers(v1).Price} suggestedRetailPrice The suggested retail price (MSRP) of the product. For more information,
-see https://support.google.com/manufacturers/answer/6124116#price.
-* @property {manufacturers(v1).FeatureDescription[]} featureDescription The rich format description of the product. For more information, see
-https://support.google.com/manufacturers/answer/6124116#featuredesc.
-* @property {string} size The size of the product. For more information, see
-https://support.google.com/manufacturers/answer/6124116#size.
-* @property {string} title The title of the product. For more information, see
-https://support.google.com/manufacturers/answer/6124116#title.
 * @property {manufacturers(v1).Count} count The count of the product. For more information, see
 https://support.google.com/manufacturers/answer/6124116#count.
 * @property {string} brand The brand name of the product. For more information, see
 https://support.google.com/manufacturers/answer/6124116#brand.
-* @property {string} disclosureDate The disclosure date of the product. For more information, see
-https://support.google.com/manufacturers/answer/6124116#disclosure.
 * @property {string} material The material of the product. For more information, see
 https://support.google.com/manufacturers/answer/6124116#material.
+* @property {string} disclosureDate The disclosure date of the product. For more information, see
+https://support.google.com/manufacturers/answer/6124116#disclosure.
 * @property {string} scent The scent of the product. For more information, see
  https://support.google.com/manufacturers/answer/6124116#scent.
 * @property {string} ageGroup The target age group of the product. For more information, see
@@ -299,5 +232,72 @@ https://support.google.com/manufacturers/answer/6124116#video.
 https://support.google.com/manufacturers/answer/6124116#color.
 * @property {string} productName The canonical name of the product. For more information, see
 https://support.google.com/manufacturers/answer/6124116#productname.
+* @property {string} sizeType The size type of the product. For more information, see
+https://support.google.com/manufacturers/answer/6124116#sizetype.
+* @property {manufacturers(v1).Price} suggestedRetailPrice The suggested retail price (MSRP) of the product. For more information,
+see https://support.google.com/manufacturers/answer/6124116#price.
+* @property {manufacturers(v1).FeatureDescription[]} featureDescription The rich format description of the product. For more information, see
+https://support.google.com/manufacturers/answer/6124116#featuredesc.
+* @property {string} size The size of the product. For more information, see
+https://support.google.com/manufacturers/answer/6124116#size.
+* @property {string} title The title of the product. For more information, see
+https://support.google.com/manufacturers/answer/6124116#title.
 */
+/**
+ * @typedef Count
+ * @memberOf! manufacturers(v1)
+ * @type object
+ * @property {string} value The numeric value of the number of products in a package.
+ * @property {string} unit The unit in which these products are counted.
+ */
+/**
+ * @typedef Product
+ * @memberOf! manufacturers(v1)
+ * @type object
+* @property {manufacturers(v1).Attributes} uploadedAttributes Attributes of the product uploaded via the Manufacturer Center API or via
+feeds.
+* @property {string} parent Parent ID in the format `accounts/{account_id}`.
+
+`account_id` - The ID of the Manufacturer Center account.
+@OutputOnly
+* @property {manufacturers(v1).Attributes} manuallyProvidedAttributes Attributes of the product provided manually via the Manufacturer Center UI.
+@OutputOnly
+* @property {string} contentLanguage The content language of the product as a two-letter ISO 639-1 language code
+(for example, en).
+@OutputOnly
+* @property {string} targetCountry The target country of the product as a CLDR territory code (for example,
+US).
+@OutputOnly
+* @property {string} name Name in the format `{target_country}:{content_language}:{product_id}`.
+
+`target_country`   - The target country of the product as a CLDR territory
+                     code (for example, US).
+
+`content_language` - The content language of the product as a two-letter
+                     ISO 639-1 language code (for example, en).
+
+`product_id`     -   The ID of the product. For more information, see
+                     https://support.google.com/manufacturers/answer/6124116#id.
+@OutputOnly
+* @property {manufacturers(v1).Issue[]} issues A server-generated list of issues associated with the product.
+@OutputOnly
+* @property {string[]} manuallyDeletedAttributes Names of the attributes of the product deleted manually via the
+Manufacturer Center UI.
+@OutputOnly
+* @property {manufacturers(v1).Attributes} finalAttributes Final attributes of the product. The final attributes are obtained by
+overriding the uploaded attributes with the manually provided and deleted
+attributes. Google systems only process, evaluate, review, and/or use final
+attributes.
+@OutputOnly
+* @property {string} productId The ID of the product. For more information, see
+https://support.google.com/manufacturers/answer/6124116#id.
+@OutputOnly
+*/
+/**
+ * @typedef Capacity
+ * @memberOf! manufacturers(v1)
+ * @type object
+ * @property {string} value The numeric value of the capacity.
+ * @property {string} unit The unit of the capacity, i.e., MB, GB, or TB.
+ */
 export = Manufacturers;

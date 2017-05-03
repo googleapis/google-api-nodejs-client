@@ -38,6 +38,157 @@ function Dlp(options) { // eslint-disable-line
   const self = this;
   self._options = options || {};
 
+  self.content = {
+
+    /**
+     * dlp.content.redact
+     *
+     * @desc Redact potentially sensitive info from a list of strings. This method has limits on input size, processing time, and output size.
+     *
+     * @alias dlp.content.redact
+     * @memberOf! dlp(v2beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {dlp(v2beta1).RedactContentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    redact: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://dlp.googleapis.com/v2beta1/content:redact',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * dlp.content.inspect
+     *
+     * @desc Find potentially sensitive info in a list of strings. This method has limits on input size, processing time, and output size.
+     *
+     * @alias dlp.content.inspect
+     * @memberOf! dlp(v2beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {dlp(v2beta1).InspectContentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    inspect: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://dlp.googleapis.com/v2beta1/content:inspect',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    }
+
+  };
+
+  self.rootCategories = {
+
+    /**
+     * dlp.rootCategories.list
+     *
+     * @desc Returns the list of root categories of sensitive information.
+     *
+     * @alias dlp.rootCategories.list
+     * @memberOf! dlp(v2beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.languageCode Optional language code for localized friendly category names. If omitted or if localized strings are not available, en-US strings will be returned.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://dlp.googleapis.com/v2beta1/rootCategories',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    infoTypes: {
+
+      /**
+       * dlp.rootCategories.infoTypes.list
+       *
+       * @desc Returns sensitive information types for given category.
+       *
+       * @alias dlp.rootCategories.infoTypes.list
+       * @memberOf! dlp(v2beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.category Category name as returned by ListRootCategories.
+       * @param {string=} params.languageCode Optional BCP-47 language code for localized info type friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://dlp.googleapis.com/v2beta1/rootCategories/{category}/infoTypes',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['category'],
+          pathParams: ['category'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    }
+  };
+
   self.inspect = {
 
     results: {
@@ -84,77 +235,6 @@ function Dlp(options) { // eslint-disable-line
     },
 
     operations: {
-
-      /**
-       * dlp.inspect.operations.cancel
-       *
-       * @desc Cancels an operation. Use the get method to check whether the cancellation succeeded or whether the operation completed despite cancellation.
-       *
-       * @alias dlp.inspect.operations.cancel
-       * @memberOf! dlp(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the operation resource to be cancelled.
-       * @param {dlp(v2beta1).CancelOperationRequest} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      cancel: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://dlp.googleapis.com/v2beta1/{name}:cancel',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * dlp.inspect.operations.delete
-       *
-       * @desc This method is not supported and the server returns `UNIMPLEMENTED`.
-       *
-       * @alias dlp.inspect.operations.delete
-       * @memberOf! dlp(v2beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The name of the operation resource to be deleted.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      delete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://dlp.googleapis.com/v2beta1/{name}',
-            method: 'DELETE'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
 
       /**
        * dlp.inspect.operations.list
@@ -262,139 +342,24 @@ function Dlp(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
-      }
-    }
-  };
-
-  self.content = {
-
-    /**
-     * dlp.content.inspect
-     *
-     * @desc Find potentially sensitive info in a list of strings. This method has limits on input size, processing time, and output size.
-     *
-     * @alias dlp.content.inspect
-     * @memberOf! dlp(v2beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {dlp(v2beta1).InspectContentRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    inspect: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: utils.extend({
-          url: 'https://dlp.googleapis.com/v2beta1/content:inspect',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * dlp.content.redact
-     *
-     * @desc Redact potentially sensitive info from a list of strings. This method has limits on input size, processing time, and output size.
-     *
-     * @alias dlp.content.redact
-     * @memberOf! dlp(v2beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {dlp(v2beta1).RedactContentRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    redact: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: utils.extend({
-          url: 'https://dlp.googleapis.com/v2beta1/content:redact',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    }
-
-  };
-
-  self.rootCategories = {
-
-    /**
-     * dlp.rootCategories.list
-     *
-     * @desc Returns the list of root categories of sensitive information.
-     *
-     * @alias dlp.rootCategories.list
-     * @memberOf! dlp(v2beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional language code for localized friendly category names. If omitted or if localized strings are not available, en-US strings will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: utils.extend({
-          url: 'https://dlp.googleapis.com/v2beta1/rootCategories',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    infoTypes: {
+      },
 
       /**
-       * dlp.rootCategories.infoTypes.list
+       * dlp.inspect.operations.cancel
        *
-       * @desc Returns sensitive information types for given category.
+       * @desc Cancels an operation. Use the get method to check whether the cancellation succeeded or whether the operation completed despite cancellation.
        *
-       * @alias dlp.rootCategories.infoTypes.list
+       * @alias dlp.inspect.operations.cancel
        * @memberOf! dlp(v2beta1)
        *
        * @param {object} params Parameters for request
-       * @param {string} params.category Category name as returned by ListRootCategories.
-       * @param {string=} params.languageCode Optional BCP-47 language code for localized info type friendly names. If omitted, or if localized strings are not available, en-US strings will be returned.
+       * @param {string} params.name The name of the operation resource to be cancelled.
+       * @param {dlp(v2beta1).CancelOperationRequest} params.resource Request body data
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
        */
-      list: function (params, options, callback) {
+      cancel: function (params, options, callback) {
         if (typeof options === 'function') {
           callback = options;
           options = {};
@@ -403,12 +368,47 @@ function Dlp(options) { // eslint-disable-line
 
         const parameters = {
           options: utils.extend({
-            url: 'https://dlp.googleapis.com/v2beta1/rootCategories/{category}/infoTypes',
-            method: 'GET'
+            url: 'https://dlp.googleapis.com/v2beta1/{name}:cancel',
+            method: 'POST'
           }, options),
           params: params,
-          requiredParams: ['category'],
-          pathParams: ['category'],
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * dlp.inspect.operations.delete
+       *
+       * @desc This method is not supported and the server returns `UNIMPLEMENTED`.
+       *
+       * @alias dlp.inspect.operations.delete
+       * @memberOf! dlp(v2beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The name of the operation resource to be deleted.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      delete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://dlp.googleapis.com/v2beta1/{name}',
+            method: 'DELETE'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
           context: self
         };
 
@@ -418,6 +418,48 @@ function Dlp(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef InspectResult
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).Finding[]} findings List of findings for an item.
+* @property {boolean} findingsTruncated If true, then this item might have more findings than were returned,
+and the findings returned are an arbitrary subset of all findings.
+The findings list might be truncated because the input items were too
+large, or because the server reached the maximum amount of resources
+allowed for a single API call. For best results, divide the input into
+smaller batches.
+*/
+/**
+ * @typedef Status
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+*/
+/**
+ * @typedef RedactContentResponse
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).ContentItem[]} items The redacted content.
+ */
+/**
+ * @typedef Range
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {string} start Index of the first character of the range (inclusive).
+ * @property {string} end Index of the last character of the range (exclusive).
+ */
+/**
+ * @typedef FieldId
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {string} columnName Column name describing the field.
+ */
 /**
  * @typedef ListInfoTypesResponse
  * @memberOf! dlp(v2beta1)
@@ -431,11 +473,20 @@ function Dlp(options) { // eslint-disable-line
  * @property {string} name The name of the kind.
  */
 /**
+ * @typedef InspectContentRequest
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).InspectConfig} inspectConfig Configuration for the inspector.
+* @property {dlp(v2beta1).ContentItem[]} items The list of items to inspect. Items in a single request are
+considered &quot;related&quot; unless inspect_config.independent_inputs is true.
+Up to 100 are allowed per request.
+*/
+/**
  * @typedef ListOperationsResponse
  * @memberOf! dlp(v2beta1)
  * @type object
- * @property {string} nextPageToken The standard List next-page token.
  * @property {dlp(v2beta1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ * @property {string} nextPageToken The standard List next-page token.
  */
 /**
  * @typedef Key
@@ -453,15 +504,6 @@ A path can never be empty, and a path can have at most 100 elements.
 * @property {dlp(v2beta1).PartitionId} partitionId Entities are partitioned into subsets, currently identified by a project
 ID and namespace ID.
 Queries are scoped to a single partition.
-*/
-/**
- * @typedef InspectContentRequest
- * @memberOf! dlp(v2beta1)
- * @type object
-* @property {dlp(v2beta1).ContentItem[]} items The list of items to inspect. Items in a single request are
-considered &quot;related&quot; unless inspect_config.independent_inputs is true.
-Up to 100 are allowed per request.
-* @property {dlp(v2beta1).InspectConfig} inspectConfig Configuration for the inspector.
 */
 /**
  * @typedef PropertyReference
@@ -486,9 +528,9 @@ If name includes &quot;.&quot;s, it may be interpreted as a property name path.
  * @typedef InfoTypeDescription
  * @memberOf! dlp(v2beta1)
  * @type object
+ * @property {dlp(v2beta1).CategoryDescription[]} categories List of categories this info type belongs to.
  * @property {string} name Internal name of the info type.
  * @property {string} displayName Human readable form of the info type name.
- * @property {dlp(v2beta1).CategoryDescription[]} categories List of categories this info type belongs to.
  */
 /**
  * @typedef ImageLocation
@@ -510,22 +552,16 @@ If name includes &quot;.&quot;s, it may be interpreted as a property name path.
  * @typedef DatastoreOptions
  * @memberOf! dlp(v2beta1)
  * @type object
+* @property {dlp(v2beta1).PartitionId} partitionId A partition ID identifies a grouping of entities. The grouping is always
+by project and namespace, however the namespace ID may be empty.
 * @property {dlp(v2beta1).KindExpression} kind The kind to process.
 * @property {dlp(v2beta1).Projection[]} projection Properties to scan. If none are specified, all properties will be scanned
 by default.
-* @property {dlp(v2beta1).PartitionId} partitionId A partition ID identifies a grouping of entities. The grouping is always
-by project and namespace, however the namespace ID may be empty.
 */
 /**
  * @typedef Empty
  * @memberOf! dlp(v2beta1)
  * @type object
- */
-/**
- * @typedef DatastoreKey
- * @memberOf! dlp(v2beta1)
- * @type object
- * @property {dlp(v2beta1).Key} entityKey Datastore entity key.
  */
 /**
  * @typedef ListRootCategoriesResponse
@@ -534,15 +570,21 @@ by project and namespace, however the namespace ID may be empty.
  * @property {dlp(v2beta1).CategoryDescription[]} categories List of all into type categories supported by the API.
  */
 /**
+ * @typedef DatastoreKey
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).Key} entityKey Datastore entity key.
+ */
+/**
  * @typedef Location
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {dlp(v2beta1).ImageLocation[]} imageBoxes Location within an image&#39;s pixels.
-* @property {dlp(v2beta1).Range} byteRange Zero-based byte offsets within a content item.
-* @property {dlp(v2beta1).RecordKey} recordKey Key of the finding.
 * @property {dlp(v2beta1).Range} codepointRange Character offsets within a content item, included when content type
 is a text. Default charset assumed to be UTF-8.
 * @property {dlp(v2beta1).FieldId} fieldId Field id of the field containing the finding.
+* @property {dlp(v2beta1).ImageLocation[]} imageBoxes Location within an image&#39;s pixels.
+* @property {dlp(v2beta1).Range} byteRange Zero-based byte offsets within a content item.
+* @property {dlp(v2beta1).RecordKey} recordKey Key of the finding.
 */
 /**
  * @typedef ListInspectFindingsResponse
@@ -556,41 +598,13 @@ request; this value should be passed in a new `ListInspectFindingsRequest`.
  * @typedef RecordKey
  * @memberOf! dlp(v2beta1)
  * @type object
- * @property {dlp(v2beta1).DatastoreKey} datastoreKey 
  * @property {dlp(v2beta1).CloudStorageKey} cloudStorageKey 
+ * @property {dlp(v2beta1).DatastoreKey} datastoreKey 
  */
-/**
- * @typedef Finding
- * @memberOf! dlp(v2beta1)
- * @type object
- * @property {dlp(v2beta1).InfoType} infoType The specific type of info the string might be.
- * @property {string} createTime Timestamp when finding was detected.
- * @property {string} quote The specific string that may be potentially sensitive info.
- * @property {dlp(v2beta1).Location} location Location of the info found.
- * @property {string} likelihood Estimate of how likely it is that the info_type is correct.
- */
-/**
- * @typedef ContentItem
- * @memberOf! dlp(v2beta1)
- * @type object
-* @property {string} value String data to inspect or redact.
-* @property {string} data Content data to inspect or redact.
-* @property {string} type Type of the content, as defined in Content-Type HTTP header.
-Supported types are: all &quot;text&quot; types, octet streams, PNG images,
-JPEG images.
-*/
-/**
- * @typedef InspectContentResponse
- * @memberOf! dlp(v2beta1)
- * @type object
-* @property {dlp(v2beta1).InspectResult[]} results Each content_item from the request will have a result in this list, in the
-same order as the request.
-*/
 /**
  * @typedef CreateInspectOperationRequest
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {dlp(v2beta1).StorageConfig} storageConfig Specification of the data set to process.
 * @property {dlp(v2beta1).OutputStorageConfig} outputConfig Optional location to store findings. The bucket must already exist and
 the Google APIs service account for DLP must have write permission to
 write to the given bucket.
@@ -604,12 +618,39 @@ For cloud storage the next two columns are: file_path, start_offset
 For datastore the next two columns are: project_id, namespace_id, path,
     column_name, offset.
 * @property {dlp(v2beta1).InspectConfig} inspectConfig Configuration for the inspector.
+* @property {dlp(v2beta1).StorageConfig} storageConfig Specification of the data set to process.
 */
+/**
+ * @typedef InspectContentResponse
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {dlp(v2beta1).InspectResult[]} results Each content_item from the request will have a result in this list, in the
+same order as the request.
+*/
+/**
+ * @typedef ContentItem
+ * @memberOf! dlp(v2beta1)
+ * @type object
+* @property {string} type Type of the content, as defined in Content-Type HTTP header.
+Supported types are: all &quot;text&quot; types, octet streams, PNG images,
+JPEG images.
+* @property {string} value String data to inspect or redact.
+* @property {string} data Content data to inspect or redact.
+*/
+/**
+ * @typedef Finding
+ * @memberOf! dlp(v2beta1)
+ * @type object
+ * @property {dlp(v2beta1).InfoType} infoType The specific type of info the string might be.
+ * @property {string} createTime Timestamp when finding was detected.
+ * @property {string} quote The specific string that may be potentially sensitive info.
+ * @property {dlp(v2beta1).Location} location Location of the info found.
+ * @property {string} likelihood Estimate of how likely it is that the info_type is correct.
+ */
 /**
  * @typedef InspectConfig
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {string} minLikelihood Only return findings equal or above this threshold.
 * @property {integer} maxFindings Limit the number of findings per content item.
 * @property {dlp(v2beta1).InfoType[]} infoTypes Restrict what info_types to look for. The values must correspond to
 InfoType values returned by ListInfoTypes or found in documentation.
@@ -617,6 +658,7 @@ Empty info_types runs all enabled detectors.
 * @property {boolean} excludeTypes When true, exclude type information of the findings.
 * @property {boolean} includeQuote When true, a contextual quote from the data that triggered a finding will
 be included in the response; see Finding.quote.
+* @property {string} minLikelihood Only return findings equal or above this threshold.
 */
 /**
  * @typedef InfoType
@@ -628,11 +670,11 @@ be included in the response; see Finding.quote.
  * @typedef ReplaceConfig
  * @memberOf! dlp(v2beta1)
  * @type object
+* @property {string} replaceWith Content replacing sensitive information of given type. Max 256 chars.
 * @property {dlp(v2beta1).InfoType} infoType Type of information to replace. Only one ReplaceConfig per info_type
 should be provided. If ReplaceConfig does not have an info_type, we&#39;ll
 match it against all info_types that are found but not specified in
 another ReplaceConfig.
-* @property {string} replaceWith Content replacing sensitive information of given type. Max 256 chars.
 */
 /**
  * @typedef FileSet
@@ -658,9 +700,9 @@ path is allowed.
  * @typedef RedactContentRequest
  * @memberOf! dlp(v2beta1)
  * @type object
+ * @property {dlp(v2beta1).InspectConfig} inspectConfig Configuration for the inspector.
  * @property {dlp(v2beta1).ContentItem[]} items The list of items to inspect. Up to 100 are allowed per request.
  * @property {dlp(v2beta1).ReplaceConfig[]} replaceConfigs The strings to replace findings with. Must specify at least one.
- * @property {dlp(v2beta1).InspectConfig} inspectConfig Configuration for the inspector.
  */
 /**
  * @typedef PartitionId
@@ -705,9 +747,6 @@ available.
  * @typedef PathElement
  * @memberOf! dlp(v2beta1)
  * @type object
-* @property {string} id The auto-allocated ID of the entity.
-Never equal to zero. Values less than zero are discouraged and may not
-be supported in the future.
 * @property {string} name The name of the entity.
 A name matching regex `__.*__` is reserved/read-only.
 A name must not be more than 1500 bytes when UTF-8 encoded.
@@ -716,47 +755,8 @@ Cannot be `&quot;&quot;`.
 A kind matching regex `__.*__` is reserved/read-only.
 A kind must not contain more than 1500 bytes when UTF-8 encoded.
 Cannot be `&quot;&quot;`.
+* @property {string} id The auto-allocated ID of the entity.
+Never equal to zero. Values less than zero are discouraged and may not
+be supported in the future.
 */
-/**
- * @typedef InspectResult
- * @memberOf! dlp(v2beta1)
- * @type object
-* @property {boolean} findingsTruncated If true, then this item might have more findings than were returned,
-and the findings returned are an arbitrary subset of all findings.
-The findings list might be truncated because the input items were too
-large, or because the server reached the maximum amount of resources
-allowed for a single API call. For best results, divide the input into
-smaller batches.
-* @property {dlp(v2beta1).Finding[]} findings List of findings for an item.
-*/
-/**
- * @typedef Status
- * @memberOf! dlp(v2beta1)
- * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-*/
-/**
- * @typedef RedactContentResponse
- * @memberOf! dlp(v2beta1)
- * @type object
- * @property {dlp(v2beta1).ContentItem[]} items The redacted content.
- */
-/**
- * @typedef Range
- * @memberOf! dlp(v2beta1)
- * @type object
- * @property {string} start Index of the first character of the range (inclusive).
- * @property {string} end Index of the last character of the range (exclusive).
- */
-/**
- * @typedef FieldId
- * @memberOf! dlp(v2beta1)
- * @type object
- * @property {string} columnName Column name describing the field.
- */
 export = Dlp;

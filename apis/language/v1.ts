@@ -41,41 +41,6 @@ function Language(options) { // eslint-disable-line
   self.documents = {
 
     /**
-     * language.documents.analyzeSentiment
-     *
-     * @desc Analyzes the sentiment of the provided text.
-     *
-     * @alias language.documents.analyzeSentiment
-     * @memberOf! language(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {language(v1).AnalyzeSentimentRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    analyzeSentiment: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: utils.extend({
-          url: 'https://language.googleapis.com/v1/documents:analyzeSentiment',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * language.documents.annotateText
      *
      * @desc A convenience method that provides all the features that analyzeSentiment, analyzeEntities, and analyzeSyntax provide in one call.
@@ -178,11 +143,156 @@ function Language(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * language.documents.analyzeSentiment
+     *
+     * @desc Analyzes the sentiment of the provided text.
+     *
+     * @alias language.documents.analyzeSentiment
+     * @memberOf! language(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {language(v1).AnalyzeSentimentRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    analyzeSentiment: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://language.googleapis.com/v1/documents:analyzeSentiment',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
 }
 
+/**
+ * @typedef AnalyzeEntitiesResponse
+ * @memberOf! language(v1)
+ * @type object
+* @property {string} language The language of the text, which will be the same as the language specified
+in the request or, if not specified, the automatically-detected language.
+See Document.language field for more details.
+* @property {language(v1).Entity[]} entities The recognized entities in the input document.
+*/
+/**
+ * @typedef Entity
+ * @memberOf! language(v1)
+ * @type object
+* @property {string} type The entity type.
+* @property {object} metadata Metadata associated with the entity.
+
+Currently, Wikipedia URLs and Knowledge Graph MIDs are provided, if
+available. The associated keys are &quot;wikipedia_url&quot; and &quot;mid&quot;, respectively.
+* @property {number} salience The salience score associated with the entity in the [0, 1.0] range.
+
+The salience score for an entity provides information about the
+importance or centrality of that entity to the entire document text.
+Scores closer to 0 are less salient, while scores closer to 1.0 are highly
+salient.
+* @property {language(v1).EntityMention[]} mentions The mentions of this entity in the input document. The API currently
+supports proper noun mentions.
+* @property {string} name The representative name for the entity.
+*/
+/**
+ * @typedef AnalyzeSyntaxResponse
+ * @memberOf! language(v1)
+ * @type object
+* @property {string} language The language of the text, which will be the same as the language specified
+in the request or, if not specified, the automatically-detected language.
+See Document.language field for more details.
+* @property {language(v1).Sentence[]} sentences Sentences in the input document.
+* @property {language(v1).Token[]} tokens Tokens, along with their syntactic information, in the input document.
+*/
+/**
+ * @typedef AnnotateTextRequest
+ * @memberOf! language(v1)
+ * @type object
+ * @property {language(v1).Document} document Input document.
+ * @property {language(v1).Features} features The enabled features.
+ * @property {string} encodingType The encoding type used by the API to calculate offsets.
+ */
+/**
+ * @typedef AnalyzeSentimentRequest
+ * @memberOf! language(v1)
+ * @type object
+ * @property {language(v1).Document} document Input document.
+ * @property {string} encodingType The encoding type used by the API to calculate sentence offsets.
+ */
+/**
+ * @typedef AnnotateTextResponse
+ * @memberOf! language(v1)
+ * @type object
+* @property {language(v1).Sentence[]} sentences Sentences in the input document. Populated if the user enables
+AnnotateTextRequest.Features.extract_syntax.
+* @property {language(v1).Token[]} tokens Tokens, along with their syntactic information, in the input document.
+Populated if the user enables
+AnnotateTextRequest.Features.extract_syntax.
+* @property {language(v1).Entity[]} entities Entities, along with their semantic information, in the input document.
+Populated if the user enables
+AnnotateTextRequest.Features.extract_entities.
+* @property {language(v1).Sentiment} documentSentiment The overall sentiment for the document. Populated if the user enables
+AnnotateTextRequest.Features.extract_document_sentiment.
+* @property {string} language The language of the text, which will be the same as the language specified
+in the request or, if not specified, the automatically-detected language.
+See Document.language field for more details.
+*/
+/**
+ * @typedef DependencyEdge
+ * @memberOf! language(v1)
+ * @type object
+* @property {integer} headTokenIndex Represents the head of this token in the dependency tree.
+This is the index of the token which has an arc going to this token.
+The index is the position of the token in the array of tokens returned
+by the API method. If this token is a root token, then the
+`head_token_index` is its own index.
+* @property {string} label The parse label for the token.
+*/
+/**
+ * @typedef TextSpan
+ * @memberOf! language(v1)
+ * @type object
+* @property {integer} beginOffset The API calculates the beginning offset of the content in the original
+document according to the EncodingType specified in the API request.
+* @property {string} content The content of the output text.
+*/
+/**
+ * @typedef Token
+ * @memberOf! language(v1)
+ * @type object
+ * @property {language(v1).TextSpan} text The token text.
+ * @property {language(v1).DependencyEdge} dependencyEdge Dependency tree parse for this token.
+ * @property {string} lemma [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
+ * @property {language(v1).PartOfSpeech} partOfSpeech Parts of speech tag for this token.
+ */
+/**
+ * @typedef Status
+ * @memberOf! language(v1)
+ * @type object
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+*/
 /**
  * @typedef EntityMention
  * @memberOf! language(v1)
@@ -199,13 +309,18 @@ function Language(options) { // eslint-disable-line
  * @property {boolean} extractEntities Extract entities.
  */
 /**
+ * @typedef Sentence
+ * @memberOf! language(v1)
+ * @type object
+* @property {language(v1).TextSpan} text The sentence text.
+* @property {language(v1).Sentiment} sentiment For calls to AnalyzeSentiment or if
+AnnotateTextRequest.Features.extract_document_sentiment is set to
+true, this field will contain the sentiment for the sentence.
+*/
+/**
  * @typedef Document
  * @memberOf! language(v1)
  * @type object
-* @property {string} gcsContentUri The Google Cloud Storage URI where the file content is located.
-This URI must be of the form: gs://bucket_name/object_name. For more
-details, see https://cloud.google.com/storage/docs/reference-uris.
-NOTE: Cloud Storage object versioning is not supported.
 * @property {string} language The language of the document (if not specified, the language is
 automatically detected). Both ISO and BCP-47 language codes are
 accepted.&lt;br&gt;
@@ -217,15 +332,10 @@ is returned.
 * @property {string} type Required. If the type is not set or is `TYPE_UNSPECIFIED`,
 returns an `INVALID_ARGUMENT` error.
 * @property {string} content The content of the input in string format.
-*/
-/**
- * @typedef Sentence
- * @memberOf! language(v1)
- * @type object
-* @property {language(v1).TextSpan} text The sentence text.
-* @property {language(v1).Sentiment} sentiment For calls to AnalyzeSentiment or if
-AnnotateTextRequest.Features.extract_document_sentiment is set to
-true, this field will contain the sentiment for the sentence.
+* @property {string} gcsContentUri The Google Cloud Storage URI where the file content is located.
+This URI must be of the form: gs://bucket_name/object_name. For more
+details, see https://cloud.google.com/storage/docs/reference-uris.
+NOTE: Cloud Storage object versioning is not supported.
 */
 /**
  * @typedef Sentiment
@@ -241,15 +351,13 @@ negative).
  * @typedef AnalyzeEntitiesRequest
  * @memberOf! language(v1)
  * @type object
- * @property {string} encodingType The encoding type used by the API to calculate offsets.
  * @property {language(v1).Document} document Input document.
+ * @property {string} encodingType The encoding type used by the API to calculate offsets.
  */
 /**
  * @typedef PartOfSpeech
  * @memberOf! language(v1)
  * @type object
- * @property {string} form The grammatical form.
- * @property {string} number The grammatical number.
  * @property {string} voice The grammatical voice.
  * @property {string} aspect The grammatical aspect.
  * @property {string} mood The grammatical mood.
@@ -260,132 +368,24 @@ negative).
  * @property {string} case The grammatical case.
  * @property {string} tense The grammatical tense.
  * @property {string} reciprocity The grammatical reciprocity.
+ * @property {string} form The grammatical form.
+ * @property {string} number The grammatical number.
  */
 /**
  * @typedef AnalyzeSyntaxRequest
  * @memberOf! language(v1)
  * @type object
- * @property {string} encodingType The encoding type used by the API to calculate offsets.
  * @property {language(v1).Document} document Input document.
+ * @property {string} encodingType The encoding type used by the API to calculate offsets.
  */
 /**
  * @typedef AnalyzeSentimentResponse
  * @memberOf! language(v1)
  * @type object
+* @property {language(v1).Sentiment} documentSentiment The overall sentiment of the input document.
 * @property {string} language The language of the text, which will be the same as the language specified
 in the request or, if not specified, the automatically-detected language.
 See Document.language field for more details.
 * @property {language(v1).Sentence[]} sentences The sentiment for all the sentences in the document.
-* @property {language(v1).Sentiment} documentSentiment The overall sentiment of the input document.
-*/
-/**
- * @typedef AnalyzeEntitiesResponse
- * @memberOf! language(v1)
- * @type object
-* @property {string} language The language of the text, which will be the same as the language specified
-in the request or, if not specified, the automatically-detected language.
-See Document.language field for more details.
-* @property {language(v1).Entity[]} entities The recognized entities in the input document.
-*/
-/**
- * @typedef AnalyzeSyntaxResponse
- * @memberOf! language(v1)
- * @type object
-* @property {string} language The language of the text, which will be the same as the language specified
-in the request or, if not specified, the automatically-detected language.
-See Document.language field for more details.
-* @property {language(v1).Sentence[]} sentences Sentences in the input document.
-* @property {language(v1).Token[]} tokens Tokens, along with their syntactic information, in the input document.
-*/
-/**
- * @typedef Entity
- * @memberOf! language(v1)
- * @type object
-* @property {language(v1).EntityMention[]} mentions The mentions of this entity in the input document. The API currently
-supports proper noun mentions.
-* @property {string} name The representative name for the entity.
-* @property {string} type The entity type.
-* @property {object} metadata Metadata associated with the entity.
-
-Currently, Wikipedia URLs and Knowledge Graph MIDs are provided, if
-available. The associated keys are &quot;wikipedia_url&quot; and &quot;mid&quot;, respectively.
-* @property {number} salience The salience score associated with the entity in the [0, 1.0] range.
-
-The salience score for an entity provides information about the
-importance or centrality of that entity to the entire document text.
-Scores closer to 0 are less salient, while scores closer to 1.0 are highly
-salient.
-*/
-/**
- * @typedef AnnotateTextRequest
- * @memberOf! language(v1)
- * @type object
- * @property {string} encodingType The encoding type used by the API to calculate offsets.
- * @property {language(v1).Document} document Input document.
- * @property {language(v1).Features} features The enabled features.
- */
-/**
- * @typedef AnalyzeSentimentRequest
- * @memberOf! language(v1)
- * @type object
- * @property {string} encodingType The encoding type used by the API to calculate sentence offsets.
- * @property {language(v1).Document} document Input document.
- */
-/**
- * @typedef AnnotateTextResponse
- * @memberOf! language(v1)
- * @type object
-* @property {string} language The language of the text, which will be the same as the language specified
-in the request or, if not specified, the automatically-detected language.
-See Document.language field for more details.
-* @property {language(v1).Sentence[]} sentences Sentences in the input document. Populated if the user enables
-AnnotateTextRequest.Features.extract_syntax.
-* @property {language(v1).Token[]} tokens Tokens, along with their syntactic information, in the input document.
-Populated if the user enables
-AnnotateTextRequest.Features.extract_syntax.
-* @property {language(v1).Entity[]} entities Entities, along with their semantic information, in the input document.
-Populated if the user enables
-AnnotateTextRequest.Features.extract_entities.
-* @property {language(v1).Sentiment} documentSentiment The overall sentiment for the document. Populated if the user enables
-AnnotateTextRequest.Features.extract_document_sentiment.
-*/
-/**
- * @typedef DependencyEdge
- * @memberOf! language(v1)
- * @type object
-* @property {integer} headTokenIndex Represents the head of this token in the dependency tree.
-This is the index of the token which has an arc going to this token.
-The index is the position of the token in the array of tokens returned
-by the API method. If this token is a root token, then the
-`head_token_index` is its own index.
-* @property {string} label The parse label for the token.
-*/
-/**
- * @typedef Token
- * @memberOf! language(v1)
- * @type object
- * @property {language(v1).PartOfSpeech} partOfSpeech Parts of speech tag for this token.
- * @property {language(v1).TextSpan} text The token text.
- * @property {language(v1).DependencyEdge} dependencyEdge Dependency tree parse for this token.
- * @property {string} lemma [Lemma](https://en.wikipedia.org/wiki/Lemma_%28morphology%29) of the token.
- */
-/**
- * @typedef TextSpan
- * @memberOf! language(v1)
- * @type object
-* @property {integer} beginOffset The API calculates the beginning offset of the content in the original
-document according to the EncodingType specified in the API request.
-* @property {string} content The content of the output text.
-*/
-/**
- * @typedef Status
- * @memberOf! language(v1)
- * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
 */
 export = Language;

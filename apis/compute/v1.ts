@@ -25644,7 +25644,7 @@ This cannot be used for internal load balancing.
 * @property {integer} maxRate The max requests per second (RPS) of the group. Can be used with either RATE or UTILIZATION balancing modes, but required if RATE mode. For RATE mode, either maxRate or maxRatePerInstance must be set.
 
 This cannot be used for internal load balancing.
-* @property {number} maxRatePerInstance The max requests per second (RPS) that a single backend instance can handle.This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerInstance must be set.
+* @property {number} maxRatePerInstance The max requests per second (RPS) that a single backend instance can handle. This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerInstance must be set.
 
 This cannot be used for internal load balancing.
 * @property {number} maxUtilization Used when balancingMode is UTILIZATION. This ratio defines the CPU utilization target for the group. The default is 0.8. Valid range is [0.0, 1.0].
@@ -26003,7 +26003,7 @@ For internal load balancing, this field identifies the BackendService resource t
 * @property {string} network This field is not used for external load balancing.
 
 For internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.
-* @property {string} portRange This field is used for external load balancing and VPN.
+* @property {string} portRange This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.
 
 Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
 
@@ -26013,7 +26013,7 @@ Some types of forwarding target have constraints on the acceptable ports:
 - TargetSslProxy: 443 
 - TargetVpnGateway: 500, 4500
 -
-* @property {string[]} ports This field is only used for internal load balancing.
+* @property {string[]} ports This field is used along with the backend_service field for internal load balancing.
 
 When the load balancing scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule.
 

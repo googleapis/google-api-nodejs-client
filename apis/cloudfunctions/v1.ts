@@ -44,9 +44,9 @@ function Cloudfunctions(options) { // eslint-disable-line
  * @typedef OperationMetadataV1Beta2
  * @memberOf! cloudfunctions(v1)
  * @type object
+* @property {string} type Type of operation.
 * @property {string} target Target of the operation - for example
 projects/project-1/locations/region-1/functions/function-1
 * @property {object} request The original request that started the operation.
-* @property {string} type Type of operation.
 */
 export = Cloudfunctions;

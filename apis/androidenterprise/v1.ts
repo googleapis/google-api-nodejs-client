@@ -3077,13 +3077,17 @@ Possible values include:
  * @typedef GroupLicense
  * @memberOf! androidenterprise(v1)
  * @type object
- * @property {string} acquisitionKind How this group license was acquired. &quot;bulkPurchase&quot; means that this Grouplicenses resource was created because the enterprise purchased licenses for this product; otherwise, the value is &quot;free&quot; (for free products).
- * @property {string} approval Whether the product to which this group license relates is currently approved by the enterprise. Products are approved when a group license is first created, but this approval may be revoked by an enterprise admin via Google Play. Unapproved products will not be visible to end users in collections, and new entitlements to them should not normally be created.
- * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#groupLicense&quot;.
- * @property {integer} numProvisioned The total number of provisioned licenses for this product. Returned by read operations, but ignored in write operations.
- * @property {integer} numPurchased The number of purchased licenses (possibly in multiple purchases). If this field is omitted, then there is no limit on the number of licenses that can be provisioned (for example, if the acquisition kind is &quot;free&quot;).
- * @property {string} productId The ID of the product that the license is for. For example, &quot;app:com.google.android.gm&quot;.
- */
+* @property {string} acquisitionKind How this group license was acquired. &quot;bulkPurchase&quot; means that this Grouplicenses resource was created because the enterprise purchased licenses for this product; otherwise, the value is &quot;free&quot; (for free products).
+* @property {string} approval Whether the product to which this group license relates is currently approved by the enterprise. Products are approved when a group license is first created, but this approval may be revoked by an enterprise admin via Google Play. Unapproved products will not be visible to end users in collections, and new entitlements to them should not normally be created.
+* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;androidenterprise#groupLicense&quot;.
+* @property {integer} numProvisioned The total number of provisioned licenses for this product. Returned by read operations, but ignored in write operations.
+* @property {integer} numPurchased The number of purchased licenses (possibly in multiple purchases). If this field is omitted, then there is no limit on the number of licenses that can be provisioned (for example, if the acquisition kind is &quot;free&quot;).
+* @property {string} permissions The state of permission acceptance with this product. This field is only set if the product is approved. Possible states are: 
+- &quot;currentApproved&quot;, the current set of permissions is approved, but additional permissions will require the administrator to reapprove the product (if the product was approved without specifying what to when the required permissions change, this is the default), 
+- &quot;needsReapproval&quot;, there are permissions which need to be accepted (currently the product is not assignable), 
+- &quot;allCurrentAndFutureApproved&quot;, the current permissions are approved and any future permission updates will be automatically approved without administrator review.
+* @property {string} productId The ID of the product that the license is for. For example, &quot;app:com.google.android.gm&quot;.
+*/
 /**
  * @typedef GroupLicenseUsersListResponse
  * @memberOf! androidenterprise(v1)
@@ -3289,6 +3293,7 @@ Possible values include:
  * @memberOf! androidenterprise(v1)
  * @type object
  * @property {androidenterprise(v1).ApprovalUrlInfo} approvalUrlInfo The approval URL that was shown to the user. Only the permissions shown to the user with that URL will be accepted, which may not be the product&#39;s entire set of permissions. For example, the URL may only display new permissions from an update after the product was approved, or not include new permissions if the product was updated since the URL was generated.
+ * @property {string} approvedPermissions The permissions being approved with this app. This can either be the current set of permissions only (additional permissions added to the app through updates will require review by the administrator) or all current and future permissions for the app. If not specified, only the current set of permissions will be approved.
  */
 /**
  * @typedef ProductsGenerateApprovalUrlResponse

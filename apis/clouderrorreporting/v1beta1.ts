@@ -76,172 +76,7 @@ function Clouderrorreporting(options) { // eslint-disable-line
       return createAPIRequest(parameters, callback);
     },
 
-    groups: {
-
-      /**
-       * clouderrorreporting.projects.groups.get
-       *
-       * @desc Get the specified group.
-       *
-       * @alias clouderrorreporting.projects.groups.get
-       * @memberOf! clouderrorreporting(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.groupName [Required] The group resource name. Written as <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>. Call <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list"> <code>groupStats.list</code></a> to return a list of groups belonging to this project.  Example: <code>projects/my-project-123/groups/my-group</code>
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://clouderrorreporting.googleapis.com/v1beta1/{groupName}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['groupName'],
-          pathParams: ['groupName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * clouderrorreporting.projects.groups.update
-       *
-       * @desc Replace the data for the specified group. Fails if the group does not exist.
-       *
-       * @alias clouderrorreporting.projects.groups.update
-       * @memberOf! clouderrorreporting(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.name The group resource name. Example: <code>projects/my-project-123/groups/my-groupid</code>
-       * @param {clouderrorreporting(v1beta1).ErrorGroup} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      update: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://clouderrorreporting.googleapis.com/v1beta1/{name}',
-            method: 'PUT'
-          }, options),
-          params: params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
-    },
-
-    groupStats: {
-
-      /**
-       * clouderrorreporting.projects.groupStats.list
-       *
-       * @desc Lists the specified groups.
-       *
-       * @alias clouderrorreporting.projects.groupStats.list
-       * @memberOf! clouderrorreporting(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.alignment [Optional] The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
-       * @param {string=} params.groupId [Optional] List all <code>ErrorGroupStats</code> with these IDs.
-       * @param {string=} params.serviceFilter.service [Optional] The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
-       * @param {integer=} params.pageSize [Optional] The maximum number of results to return per response. Default is 20.
-       * @param {string=} params.order [Optional] The sort order in which the results are returned. Default is `COUNT_DESC`.
-       * @param {string=} params.serviceFilter.version [Optional] The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
-       * @param {string=} params.alignmentTime [Optional] Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
-       * @param {string=} params.serviceFilter.resourceType [Optional] The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
-       * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as <code>projects/</code> plus the <a href="https://support.google.com/cloud/answer/6158840">Google Cloud Platform project ID</a>.  Example: <code>projects/my-project-123</code>.
-       * @param {string=} params.timedCountDuration [Optional] The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
-       * @param {string=} params.pageToken [Optional] A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
-       * @param {string=} params.timeRange.period Restricts the query to the specified time range.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/groupStats',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['projectName'],
-          pathParams: ['projectName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
-    },
-
     events: {
-
-      /**
-       * clouderrorreporting.projects.events.list
-       *
-       * @desc Lists the specified events.
-       *
-       * @alias clouderrorreporting.projects.events.list
-       * @memberOf! clouderrorreporting(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
-       * @param {string=} params.groupId [Required] The group for which events shall be returned.
-       * @param {string=} params.pageToken [Optional] A `next_page_token` provided by a previous response.
-       * @param {string=} params.serviceFilter.service [Optional] The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
-       * @param {integer=} params.pageSize [Optional] The maximum number of results to return per response.
-       * @param {string=} params.serviceFilter.version [Optional] The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
-       * @param {string=} params.serviceFilter.resourceType [Optional] The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
-       * @param {string=} params.timeRange.period Restricts the query to the specified time range.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['projectName'],
-          pathParams: ['projectName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
 
       /**
        * clouderrorreporting.projects.events.report
@@ -277,103 +112,176 @@ function Clouderrorreporting(options) { // eslint-disable-line
         };
 
         return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * clouderrorreporting.projects.events.list
+       *
+       * @desc Lists the specified events.
+       *
+       * @alias clouderrorreporting.projects.events.list
+       * @memberOf! clouderrorreporting(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.serviceFilter.service [Optional] The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+       * @param {string=} params.pageToken [Optional] A `next_page_token` provided by a previous response.
+       * @param {integer=} params.pageSize [Optional] The maximum number of results to return per response.
+       * @param {string=} params.serviceFilter.version [Optional] The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+       * @param {string=} params.serviceFilter.resourceType [Optional] The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+       * @param {string=} params.timeRange.period Restricts the query to the specified time range.
+       * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as `projects/` plus the [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840). Example: `projects/my-project-123`.
+       * @param {string=} params.groupId [Required] The group for which events shall be returned.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/events',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['projectName'],
+          pathParams: ['projectName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    groups: {
+
+      /**
+       * clouderrorreporting.projects.groups.update
+       *
+       * @desc Replace the data for the specified group. Fails if the group does not exist.
+       *
+       * @alias clouderrorreporting.projects.groups.update
+       * @memberOf! clouderrorreporting(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.name The group resource name. Example: <code>projects/my-project-123/groups/my-groupid</code>
+       * @param {clouderrorreporting(v1beta1).ErrorGroup} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      update: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://clouderrorreporting.googleapis.com/v1beta1/{name}',
+            method: 'PUT'
+          }, options),
+          params: params,
+          requiredParams: ['name'],
+          pathParams: ['name'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * clouderrorreporting.projects.groups.get
+       *
+       * @desc Get the specified group.
+       *
+       * @alias clouderrorreporting.projects.groups.get
+       * @memberOf! clouderrorreporting(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.groupName [Required] The group resource name. Written as <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>. Call <a href="/error-reporting/reference/rest/v1beta1/projects.groupStats/list"> <code>groupStats.list</code></a> to return a list of groups belonging to this project.  Example: <code>projects/my-project-123/groups/my-group</code>
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://clouderrorreporting.googleapis.com/v1beta1/{groupName}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['groupName'],
+          pathParams: ['groupName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
+    },
+
+    groupStats: {
+
+      /**
+       * clouderrorreporting.projects.groupStats.list
+       *
+       * @desc Lists the specified groups.
+       *
+       * @alias clouderrorreporting.projects.groupStats.list
+       * @memberOf! clouderrorreporting(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.timeRange.period Restricts the query to the specified time range.
+       * @param {string=} params.alignment [Optional] The alignment of the timed counts to be returned. Default is `ALIGNMENT_EQUAL_AT_END`.
+       * @param {string=} params.groupId [Optional] List all <code>ErrorGroupStats</code> with these IDs.
+       * @param {string=} params.serviceFilter.service [Optional] The exact value to match against [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
+       * @param {integer=} params.pageSize [Optional] The maximum number of results to return per response. Default is 20.
+       * @param {string=} params.serviceFilter.version [Optional] The exact value to match against [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
+       * @param {string=} params.order [Optional] The sort order in which the results are returned. Default is `COUNT_DESC`.
+       * @param {string=} params.alignmentTime [Optional] Time where the timed counts shall be aligned if rounded alignment is chosen. Default is 00:00 UTC.
+       * @param {string=} params.serviceFilter.resourceType [Optional] The exact value to match against [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
+       * @param {string} params.projectName [Required] The resource name of the Google Cloud Platform project. Written as <code>projects/</code> plus the <a href="https://support.google.com/cloud/answer/6158840">Google Cloud Platform project ID</a>.  Example: <code>projects/my-project-123</code>.
+       * @param {string=} params.timedCountDuration [Optional] The preferred duration for a single returned `TimedCount`. If not set, no timed counts are returned.
+       * @param {string=} params.pageToken [Optional] A `next_page_token` provided by a previous response. To view additional results, pass this token along with the identical query parameters as the first request.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: utils.extend({
+            url: 'https://clouderrorreporting.googleapis.com/v1beta1/{projectName}/groupStats',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['projectName'],
+          pathParams: ['projectName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
       }
     }
   };
 }
 
-/**
- * @typedef ListEventsResponse
- * @memberOf! clouderrorreporting(v1beta1)
- * @type object
-* @property {string} timeRangeBegin The timestamp specifies the start time to which the request was restricted.
-* @property {clouderrorreporting(v1beta1).ErrorEvent[]} errorEvents The error events which match the given request.
-* @property {string} nextPageToken If non-empty, more results are available.
-Pass this token, along with the same query parameters as the first
-request, to view the next page of results.
-*/
-/**
- * @typedef TimedCount
- * @memberOf! clouderrorreporting(v1beta1)
- * @type object
- * @property {string} endTime End of the time period to which `count` refers (excluded).
- * @property {string} count Approximate number of occurrences in the given time period.
- * @property {string} startTime Start of the time period to which `count` refers (included).
- */
-/**
- * @typedef ErrorGroup
- * @memberOf! clouderrorreporting(v1beta1)
- * @type object
-* @property {string} groupId Group IDs are unique for a given project. If the same kind of error
-occurs in different service contexts, it will receive the same group ID.
-* @property {clouderrorreporting(v1beta1).TrackingIssue[]} trackingIssues Associated tracking issues.
-* @property {string} name The group resource name.
-Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
-*/
-/**
- * @typedef SourceLocation
- * @memberOf! clouderrorreporting(v1beta1)
- * @type object
-* @property {integer} lineNumber 1-based. 0 indicates that the line number is unknown.
-* @property {string} functionName Human-readable name of a function or method.
-The value can include optional context like the class or package name.
-For example, `my.package.MyClass.method` in case of Java.
-* @property {string} filePath The source code filename, which can include a truncated relative
-path, or a full path from a production machine.
-*/
-/**
- * @typedef ServiceContext
- * @memberOf! clouderrorreporting(v1beta1)
- * @type object
-* @property {string} resourceType Type of the MonitoredResource. List of possible values:
-https://cloud.google.com/monitoring/api/resources
-
-Value is set automatically for incoming errors and must not be set when
-reporting errors.
-* @property {string} version Represents the source code version that the developer provided,
-which could represent a version label or a Git SHA-1 hash, for example.
-For App Engine standard environment, the version is set to the version of
-the app.
-* @property {string} service An identifier of the service, such as the name of the
-executable, job, or Google App Engine service name. This field is expected
-to have a low number of values that are relatively stable over time, as
-opposed to `version`, which can be changed whenever new code is deployed.
-
-Contains the service name for error reports extracted from Google
-App Engine logs or `default` if the App Engine default service is used.
-*/
-/**
- * @typedef ReportErrorEventResponse
- * @memberOf! clouderrorreporting(v1beta1)
- * @type object
- */
-/**
- * @typedef HttpRequestContext
- * @memberOf! clouderrorreporting(v1beta1)
- * @type object
-* @property {integer} responseStatusCode The HTTP response status code for the request.
-* @property {string} method The type of HTTP request, such as `GET`, `POST`, etc.
-* @property {string} remoteIp The IP address from which the request originated.
-This can be IPv4, IPv6, or a token which is derived from the
-IP address, depending on the data that has been provided
-in the error report.
-* @property {string} referrer The referrer information that is provided with the request.
-* @property {string} userAgent The user agent information that is provided with the request.
-* @property {string} url The URL of the request.
-*/
-/**
- * @typedef ListGroupStatsResponse
- * @memberOf! clouderrorreporting(v1beta1)
- * @type object
-* @property {string} nextPageToken If non-empty, more results are available.
-Pass this token, along with the same query parameters as the first
-request, to view the next page of results.
-* @property {string} timeRangeBegin The timestamp specifies the start time to which the request was restricted.
-The start time is set based on the requested time range. It may be adjusted
-to a later time if a project has exceeded the storage quota and older data
-has been deleted.
-* @property {clouderrorreporting(v1beta1).ErrorGroupStats[]} errorGroupStats The error group stats which match the given request.
-*/
 /**
  * @typedef DeleteEventsResponse
  * @memberOf! clouderrorreporting(v1beta1)
@@ -394,9 +302,6 @@ by the Error Reporting system is used.
  * @typedef ReportedErrorEvent
  * @memberOf! clouderrorreporting(v1beta1)
  * @type object
-* @property {string} eventTime [Optional] Time when the event occurred.
-If not provided, the time when the event was received by the
-Error Reporting system will be used.
 * @property {clouderrorreporting(v1beta1).ErrorContext} context [Optional] A description of the context in which the error occurred.
 * @property {string} message [Required] The error message.
 If no `context.reportLocation` is provided, the message must contain a
@@ -416,13 +321,14 @@ as returned by V8.
 and contain the result of [`(string)$exception`](http://php.net/manual/en/exception.tostring.php).
 * **Go**: Must be the return value of [`runtime.Stack()`](https://golang.org/pkg/runtime/debug/#Stack).
 * @property {clouderrorreporting(v1beta1).ServiceContext} serviceContext [Required] The service context in which this error has occurred.
+* @property {string} eventTime [Optional] Time when the event occurred.
+If not provided, the time when the event was received by the
+Error Reporting system will be used.
 */
 /**
  * @typedef ErrorContext
  * @memberOf! clouderrorreporting(v1beta1)
  * @type object
-* @property {clouderrorreporting(v1beta1).HttpRequestContext} httpRequest The HTTP request which was processed when the error was
-triggered.
 * @property {string} user The user who caused or was affected by the crash.
 This can be a user ID, an email address, or an arbitrary token that
 uniquely identifies the user.
@@ -437,6 +343,8 @@ For a logged exception this would be the source line where the
 exception is logged, usually close to the place where it was
 caught. This value is in contrast to `Exception.cause_location`,
 which describes the source line where the exception was thrown.
+* @property {clouderrorreporting(v1beta1).HttpRequestContext} httpRequest The HTTP request which was processed when the error was
+triggered.
 */
 /**
  * @typedef TrackingIssue
@@ -449,11 +357,21 @@ Example: https://github.com/user/project/issues/4
  * @typedef ErrorGroupStats
  * @memberOf! clouderrorreporting(v1beta1)
  * @type object
+* @property {clouderrorreporting(v1beta1).TimedCount[]} timedCounts Approximate number of occurrences over time.
+Timed counts returned by ListGroups are guaranteed to be:
+
+- Inside the requested time interval
+- Non-overlapping, and
+- Ordered by ascending time.
+* @property {clouderrorreporting(v1beta1).ErrorGroup} group Group data that is independent of the filter criteria.
 * @property {string} firstSeenTime Approximate first occurrence that was ever seen for this group
 and which matches the given filter criteria, ignoring the
 time_range that was specified in the request.
 * @property {string} count Approximate total number of events in the given group that match
 the filter criteria.
+* @property {string} lastSeenTime Approximate last occurrence that was ever seen for this group and
+which matches the given filter criteria, ignoring the time_range
+that was specified in the request.
 * @property {string} affectedUsersCount Approximate number of affected users in the given group that
 match the filter criteria.
 Users are distinguished by data in the `ErrorContext` of the
@@ -466,9 +384,6 @@ Users are counted based on data in the request
 context that was provided in the error report. If more users are
 implicitly affected, such as due to a crash of the whole service,
 this is not reflected here.
-* @property {string} lastSeenTime Approximate last occurrence that was ever seen for this group and
-which matches the given filter criteria, ignoring the time_range
-that was specified in the request.
 * @property {clouderrorreporting(v1beta1).ServiceContext[]} affectedServices Service contexts with a non-zero error count for the given filter
 criteria. This list can be truncated if multiple services are affected.
 Refer to `num_affected_services` for the total count.
@@ -479,12 +394,97 @@ The representative event is intended to be used as a quick preview for
 the whole group. Events in the group are usually sufficiently similar
 to each other such that showing an arbitrary representative provides
 insight into the characteristics of the group as a whole.
-* @property {clouderrorreporting(v1beta1).TimedCount[]} timedCounts Approximate number of occurrences over time.
-Timed counts returned by ListGroups are guaranteed to be:
+*/
+/**
+ * @typedef ListEventsResponse
+ * @memberOf! clouderrorreporting(v1beta1)
+ * @type object
+* @property {string} timeRangeBegin The timestamp specifies the start time to which the request was restricted.
+* @property {clouderrorreporting(v1beta1).ErrorEvent[]} errorEvents The error events which match the given request.
+* @property {string} nextPageToken If non-empty, more results are available.
+Pass this token, along with the same query parameters as the first
+request, to view the next page of results.
+*/
+/**
+ * @typedef TimedCount
+ * @memberOf! clouderrorreporting(v1beta1)
+ * @type object
+ * @property {string} count Approximate number of occurrences in the given time period.
+ * @property {string} startTime Start of the time period to which `count` refers (included).
+ * @property {string} endTime End of the time period to which `count` refers (excluded).
+ */
+/**
+ * @typedef ErrorGroup
+ * @memberOf! clouderrorreporting(v1beta1)
+ * @type object
+* @property {string} groupId Group IDs are unique for a given project. If the same kind of error
+occurs in different service contexts, it will receive the same group ID.
+* @property {clouderrorreporting(v1beta1).TrackingIssue[]} trackingIssues Associated tracking issues.
+* @property {string} name The group resource name.
+Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
+*/
+/**
+ * @typedef SourceLocation
+ * @memberOf! clouderrorreporting(v1beta1)
+ * @type object
+* @property {string} functionName Human-readable name of a function or method.
+The value can include optional context like the class or package name.
+For example, `my.package.MyClass.method` in case of Java.
+* @property {string} filePath The source code filename, which can include a truncated relative
+path, or a full path from a production machine.
+* @property {integer} lineNumber 1-based. 0 indicates that the line number is unknown.
+*/
+/**
+ * @typedef ServiceContext
+ * @memberOf! clouderrorreporting(v1beta1)
+ * @type object
+* @property {string} version Represents the source code version that the developer provided,
+which could represent a version label or a Git SHA-1 hash, for example.
+For App Engine standard environment, the version is set to the version of
+the app.
+* @property {string} service An identifier of the service, such as the name of the
+executable, job, or Google App Engine service name. This field is expected
+to have a low number of values that are relatively stable over time, as
+opposed to `version`, which can be changed whenever new code is deployed.
 
-- Inside the requested time interval
-- Non-overlapping, and
-- Ordered by ascending time.
-* @property {clouderrorreporting(v1beta1).ErrorGroup} group Group data that is independent of the filter criteria.
+Contains the service name for error reports extracted from Google
+App Engine logs or `default` if the App Engine default service is used.
+* @property {string} resourceType Type of the MonitoredResource. List of possible values:
+https://cloud.google.com/monitoring/api/resources
+
+Value is set automatically for incoming errors and must not be set when
+reporting errors.
+*/
+/**
+ * @typedef ReportErrorEventResponse
+ * @memberOf! clouderrorreporting(v1beta1)
+ * @type object
+ */
+/**
+ * @typedef HttpRequestContext
+ * @memberOf! clouderrorreporting(v1beta1)
+ * @type object
+* @property {string} method The type of HTTP request, such as `GET`, `POST`, etc.
+* @property {string} remoteIp The IP address from which the request originated.
+This can be IPv4, IPv6, or a token which is derived from the
+IP address, depending on the data that has been provided
+in the error report.
+* @property {string} referrer The referrer information that is provided with the request.
+* @property {string} userAgent The user agent information that is provided with the request.
+* @property {string} url The URL of the request.
+* @property {integer} responseStatusCode The HTTP response status code for the request.
+*/
+/**
+ * @typedef ListGroupStatsResponse
+ * @memberOf! clouderrorreporting(v1beta1)
+ * @type object
+* @property {string} timeRangeBegin The timestamp specifies the start time to which the request was restricted.
+The start time is set based on the requested time range. It may be adjusted
+to a later time if a project has exceeded the storage quota and older data
+has been deleted.
+* @property {clouderrorreporting(v1beta1).ErrorGroupStats[]} errorGroupStats The error group stats which match the given request.
+* @property {string} nextPageToken If non-empty, more results are available.
+Pass this token, along with the same query parameters as the first
+request, to view the next page of results.
 */
 export = Clouderrorreporting;

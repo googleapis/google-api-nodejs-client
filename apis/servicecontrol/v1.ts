@@ -41,42 +41,6 @@ function Servicecontrol(options) { // eslint-disable-line
   self.services = {
 
     /**
-     * servicecontrol.services.endReconciliation
-     *
-     * @desc Signals the quota controller that service ends the ongoing usage reconciliation.  This method requires the `servicemanagement.services.quota` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
-     *
-     * @alias servicecontrol.services.endReconciliation
-     * @memberOf! servicecontrol(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
-     * @param {servicecontrol(v1).EndReconciliationRequest} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    endReconciliation: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: utils.extend({
-          url: 'https://servicecontrol.googleapis.com/v1/services/{serviceName}:endReconciliation',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['serviceName'],
-        pathParams: ['serviceName'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
      * servicecontrol.services.report
      *
      * @desc Reports operation results to Google Service Control, such as logs and metrics. It should be called after an operation is completed.  If feasible, the client should aggregate reporting data for up to 5 seconds to reduce API traffic. Limiting aggregation to 5 seconds is to reduce data loss during client crashes. Clients should carefully choose the aggregation time window to avoid data loss risk more than 0.01% for business and compliance reasons.  NOTE: the `ReportRequest` has the size limit of 1MB.  This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
@@ -254,22 +218,47 @@ function Servicecontrol(options) { // eslint-disable-line
       };
 
       return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * servicecontrol.services.endReconciliation
+     *
+     * @desc Signals the quota controller that service ends the ongoing usage reconciliation.  This method requires the `servicemanagement.services.quota` permission on the specified service. For more information, see [Google Cloud IAM](https://cloud.google.com/iam).
+     *
+     * @alias servicecontrol.services.endReconciliation
+     * @memberOf! servicecontrol(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.serviceName Name of the service as specified in the service configuration. For example, `"pubsub.googleapis.com"`.  See google.api.Service for the definition of a service name.
+     * @param {servicecontrol(v1).EndReconciliationRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    endReconciliation: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: utils.extend({
+          url: 'https://servicecontrol.googleapis.com/v1/services/{serviceName}:endReconciliation',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['serviceName'],
+        pathParams: ['serviceName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
     }
 
   };
 }
 
-/**
- * @typedef Status
- * @memberOf! servicecontrol(v1)
- * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-*/
 /**
  * @typedef ReportRequest
  * @memberOf! servicecontrol(v1)
@@ -291,9 +280,48 @@ If unspecified or no matching version can be found, the
 latest one will be used.
 */
 /**
+ * @typedef Status
+ * @memberOf! servicecontrol(v1)
+ * @type object
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+*/
+/**
+ * @typedef LogEntry
+ * @memberOf! servicecontrol(v1)
+ * @type object
+* @property {string} insertId A unique ID for the log entry used for deduplication. If omitted,
+the implementation will generate one based on operation_id.
+* @property {string} name Required. The log to which this log entry belongs. Examples: `&quot;syslog&quot;`,
+`&quot;book_log&quot;`.
+* @property {object} structPayload The log entry payload, represented as a structure that
+is expressed as a JSON object.
+* @property {string} textPayload The log entry payload, represented as a Unicode string (UTF-8).
+* @property {object} protoPayload The log entry payload, represented as a protocol buffer that is
+expressed as a JSON object. You can only pass `protoPayload`
+values that belong to a set of approved types.
+* @property {string} timestamp The time the event described by the log entry occurred. If
+omitted, defaults to operation start time.
+* @property {object} labels A set of user-defined (key, value) data that provides additional
+information about the log entry.
+* @property {string} severity The severity of the log entry. The default value is
+`LogSeverity.DEFAULT`.
+*/
+/**
  * @typedef AuditLog
  * @memberOf! servicecontrol(v1)
  * @type object
+* @property {object} serviceData Other service-specific data about the request, response, and other
+activities.
+* @property {servicecontrol(v1).RequestMetadata} requestMetadata Metadata about the operation.
+* @property {string} numResponseItems The number of items returned from a List or Query API method,
+if applicable.
+* @property {servicecontrol(v1).AuthenticationInfo} authenticationInfo Authentication information.
+* @property {servicecontrol(v1).Status} status The status of the overall operation.
 * @property {string} serviceName The name of the API service performing the operation. For example,
 `&quot;datastore.googleapis.com&quot;`.
 * @property {object} response The operation response. This may not include all response elements,
@@ -323,39 +351,15 @@ elsewhere in the log record.
 It should never include user-generated data, such as file contents.
 When the JSON object represented here has a proto equivalent, the proto
 name will be indicated in the `@type` property.
-* @property {object} serviceData Other service-specific data about the request, response, and other
-activities.
-* @property {servicecontrol(v1).RequestMetadata} requestMetadata Metadata about the operation.
-* @property {string} numResponseItems The number of items returned from a List or Query API method,
-if applicable.
-* @property {servicecontrol(v1).AuthenticationInfo} authenticationInfo Authentication information.
-* @property {servicecontrol(v1).Status} status The status of the overall operation.
-*/
-/**
- * @typedef LogEntry
- * @memberOf! servicecontrol(v1)
- * @type object
-* @property {object} labels A set of user-defined (key, value) data that provides additional
-information about the log entry.
-* @property {string} severity The severity of the log entry. The default value is
-`LogSeverity.DEFAULT`.
-* @property {string} name Required. The log to which this log entry belongs. Examples: `&quot;syslog&quot;`,
-`&quot;book_log&quot;`.
-* @property {string} insertId A unique ID for the log entry used for deduplication. If omitted,
-the implementation will generate one based on operation_id.
-* @property {object} structPayload The log entry payload, represented as a structure that
-is expressed as a JSON object.
-* @property {string} textPayload The log entry payload, represented as a Unicode string (UTF-8).
-* @property {object} protoPayload The log entry payload, represented as a protocol buffer that is
-expressed as a JSON object. You can only pass `protoPayload`
-values that belong to a set of approved types.
-* @property {string} timestamp The time the event described by the log entry occurred. If
-omitted, defaults to operation start time.
 */
 /**
  * @typedef MetricValue
  * @memberOf! servicecontrol(v1)
  * @type object
+* @property {number} doubleValue A double precision floating point value.
+* @property {string} int64Value A signed 64-bit integer value.
+* @property {servicecontrol(v1).Distribution} distributionValue A distribution value.
+* @property {boolean} boolValue A boolean value.
 * @property {string} endTime The end of the time period over which this metric value&#39;s measurement
 applies.
 * @property {string} startTime The start of the time period over which this metric value&#39;s measurement
@@ -363,20 +367,15 @@ applies. The time period has different semantics for different metric
 types (cumulative, delta, and gauge). See the metric definition
 documentation in the service configuration for details.
 * @property {servicecontrol(v1).Money} moneyValue A money value.
+* @property {string} stringValue A text string value.
 * @property {object} labels The labels describing the metric value.
 See comments on google.api.servicecontrol.v1.Operation.labels for
 the overriding relationship.
-* @property {string} stringValue A text string value.
-* @property {number} doubleValue A double precision floating point value.
-* @property {string} int64Value A signed 64-bit integer value.
-* @property {servicecontrol(v1).Distribution} distributionValue A distribution value.
-* @property {boolean} boolValue A boolean value.
 */
 /**
  * @typedef Money
  * @memberOf! servicecontrol(v1)
  * @type object
-* @property {string} currencyCode The 3-letter currency code defined in ISO 4217.
 * @property {integer} nanos Number of nano (10^-9) units of the amount.
 The value must be between -999,999,999 and +999,999,999 inclusive.
 If `units` is positive, `nanos` must be positive or zero.
@@ -385,6 +384,7 @@ If `units` is negative, `nanos` must be negative or zero.
 For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
 * @property {string} units The whole units of the amount.
 For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
+* @property {string} currencyCode The 3-letter currency code defined in ISO 4217.
 */
 /**
  * @typedef EndReconciliationResponse
@@ -467,6 +467,10 @@ Any suffix of trailing zeros may be omitted.
  * @typedef ExponentialBuckets
  * @memberOf! servicecontrol(v1)
  * @type object
+* @property {number} growthFactor The i&#39;th exponential bucket covers the interval
+  [scale * growth_factor^(i-1), scale * growth_factor^i)
+where i ranges from 1 to num_finite_buckets inclusive.
+Must be larger than 1.0.
 * @property {number} scale The i&#39;th exponential bucket covers the interval
   [scale * growth_factor^(i-1), scale * growth_factor^i)
 where i ranges from 1 to num_finite_buckets inclusive.
@@ -474,26 +478,25 @@ Must be &gt; 0.
 * @property {integer} numFiniteBuckets The number of finite buckets. With the underflow and overflow buckets,
 the total number of buckets is `num_finite_buckets` + 2.
 See comments on `bucket_options` for details.
-* @property {number} growthFactor The i&#39;th exponential bucket covers the interval
-  [scale * growth_factor^(i-1), scale * growth_factor^i)
-where i ranges from 1 to num_finite_buckets inclusive.
-Must be larger than 1.0.
 */
 /**
  * @typedef AuthorizationInfo
  * @memberOf! servicecontrol(v1)
  * @type object
+* @property {string} permission The required IAM permission.
 * @property {string} resource The resource being accessed, as a REST-style string. For example:
 
     bigquery.googlapis.com/projects/PROJECTID/datasets/DATASETID
 * @property {boolean} granted Whether or not authorization for `resource` and `permission`
 was granted.
-* @property {string} permission The required IAM permission.
 */
 /**
  * @typedef StartReconciliationResponse
  * @memberOf! servicecontrol(v1)
  * @type object
+* @property {string} operationId The same operation_id value used in the StartReconciliationRequest. Used
+for logging and diagnostics purposes.
+* @property {servicecontrol(v1).QuotaError[]} reconciliationErrors Indicates the decision of the reconciliation start.
 * @property {string} serviceConfigId ID of the actual config used to process the request.
 * @property {servicecontrol(v1).MetricValueSet[]} quotaMetrics Metric values as tracked by One Platform before the start of
 reconciliation. The following metrics will be included:
@@ -505,9 +508,6 @@ metric:
 2. Value for each quota limit associated with the metrics will be specified
 using the following gauge metric:
   &quot;serviceruntime.googleapis.com/quota/limit&quot;
-* @property {string} operationId The same operation_id value used in the StartReconciliationRequest. Used
-for logging and diagnostics purposes.
-* @property {servicecontrol(v1).QuotaError[]} reconciliationErrors Indicates the decision of the reconciliation start.
 */
 /**
  * @typedef QuotaProperties
@@ -589,7 +589,6 @@ one will be used.
  * @typedef RequestMetadata
  * @memberOf! servicecontrol(v1)
  * @type object
-* @property {string} callerIp The IP address of the caller.
 * @property {string} callerSuppliedUserAgent The user agent of the caller.
 This information is not authenticated and should be treated accordingly.
 For example:
@@ -600,6 +599,7 @@ For example:
     The request was made by the Google Cloud SDK CLI (gcloud).
 +   `AppEngine-Google; (+http://code.google.com/appengine; appid: s~my-project`:
     The request was made from the `my-project` App Engine app.
+* @property {string} callerIp The IP address of the caller.
 */
 /**
  * @typedef QuotaError
@@ -623,10 +623,6 @@ performance and allow better aggregation.
  * @typedef ReleaseQuotaResponse
  * @memberOf! servicecontrol(v1)
  * @type object
-* @property {string} operationId The same operation_id value used in the ReleaseQuotaRequest. Used for
-logging and diagnostics purposes.
-* @property {string} serviceConfigId ID of the actual config used to process the request.
-* @property {servicecontrol(v1).QuotaError[]} releaseErrors Indicates the decision of the release.
 * @property {servicecontrol(v1).MetricValueSet[]} quotaMetrics Quota metrics to indicate the result of release. Depending on the
 request, one or more of the following metrics will be included:
 
@@ -641,17 +637,21 @@ using the following gauge metric:
 3. For allocation quota, value for each quota limit associated with
 the metrics will be specified using the following gauge metric:
   &quot;serviceruntime.googleapis.com/quota/limit&quot;
+* @property {string} operationId The same operation_id value used in the ReleaseQuotaRequest. Used for
+logging and diagnostics purposes.
+* @property {string} serviceConfigId ID of the actual config used to process the request.
+* @property {servicecontrol(v1).QuotaError[]} releaseErrors Indicates the decision of the release.
 */
 /**
  * @typedef AllocateQuotaRequest
  * @memberOf! servicecontrol(v1)
  * @type object
+* @property {string} allocationMode Allocation mode for this operation.
+Deprecated: use QuotaMode inside the QuotaOperation.
 * @property {string} serviceConfigId Specifies which version of service configuration should be used to process
 the request. If unspecified or no matching version can be found, the latest
 one will be used.
 * @property {servicecontrol(v1).QuotaOperation} allocateOperation Operation that describes the quota allocation.
-* @property {string} allocationMode Allocation mode for this operation.
-Deprecated: use QuotaMode inside the QuotaOperation.
 */
 /**
  * @typedef MetricValueSet
@@ -668,6 +668,13 @@ Deprecated: use QuotaMode inside the QuotaOperation.
  * @property {string} operationId The Operation.operation_id value from the request.
  */
 /**
+ * @typedef CheckError
+ * @memberOf! servicecontrol(v1)
+ * @type object
+ * @property {string} detail Free-form text providing details on the error cause of the error.
+ * @property {string} code The error code.
+ */
+/**
  * @typedef StartReconciliationRequest
  * @memberOf! servicecontrol(v1)
  * @type object
@@ -677,21 +684,9 @@ the request. If unspecified or no matching version can be found, the latest
 one will be used.
 */
 /**
- * @typedef CheckError
- * @memberOf! servicecontrol(v1)
- * @type object
- * @property {string} detail Free-form text providing details on the error cause of the error.
- * @property {string} code The error code.
- */
-/**
  * @typedef QuotaInfo
  * @memberOf! servicecontrol(v1)
  * @type object
-* @property {string[]} limitExceeded Quota Metrics that have exceeded quota limits.
-For QuotaGroup-based quota, this is QuotaGroup.name
-For QuotaLimit-based quota, this is QuotaLimit.name
-See: google.api.Quota
-Deprecated: Use quota_metrics to get per quota group limit exceeded status.
 * @property {object} quotaConsumed Map of quota group name to the actual number of tokens consumed. If the
 quota check was not successful, then this will not be populated due to no
 quota consumption.
@@ -710,13 +705,16 @@ using the following gauge metric:
 3. For both rate quota and allocation quota, the quota limit reached
 condition will be specified using the following boolean metric:
   &quot;serviceruntime.googleapis.com/quota/exceeded&quot;
+* @property {string[]} limitExceeded Quota Metrics that have exceeded quota limits.
+For QuotaGroup-based quota, this is QuotaGroup.name
+For QuotaLimit-based quota, this is QuotaLimit.name
+See: google.api.Quota
+Deprecated: Use quota_metrics to get per quota group limit exceeded status.
 */
 /**
  * @typedef CheckRequest
  * @memberOf! servicecontrol(v1)
  * @type object
-* @property {boolean} skipActivationCheck Indicates if service activation check should be skipped for this request.
-Default behavior is to perform the check and apply relevant quota.
 * @property {servicecontrol(v1).Operation} operation The operation to be checked.
 * @property {boolean} requestProjectSettings Requests the project settings to be returned as part of the check response.
 * @property {string} serviceConfigId Specifies which version of service configuration should be used to process
@@ -724,11 +722,23 @@ the request.
 
 If unspecified or no matching version can be found, the
 latest one will be used.
+* @property {boolean} skipActivationCheck Indicates if service activation check should be skipped for this request.
+Default behavior is to perform the check and apply relevant quota.
 */
 /**
  * @typedef QuotaOperation
  * @memberOf! servicecontrol(v1)
  * @type object
+* @property {servicecontrol(v1).MetricValueSet[]} quotaMetrics Represents information about this operation. Each MetricValueSet
+corresponds to a metric defined in the service configuration.
+The data type used in the MetricValueSet must agree with
+the data type specified in the metric definition.
+
+Within a single operation, it is not allowed to have more than one
+MetricValue instances that have the same metric names and identical
+label value combinations. If a request has such duplicated MetricValue
+instances, the entire request is rejected with
+an invalid argument error.
 * @property {object} labels Labels describing the operation.
 * @property {string} consumerId Identity of the consumer for whom this quota operation is being performed.
 
@@ -745,6 +755,7 @@ UUID version 4 is recommended, though not required. In scenarios where an
 operation is computed from existing information and an idempotent id is
 desirable for deduplication purpose, UUID version 5 is recommended. See
 RFC 4122 for details.
+* @property {string} quotaMode Quota mode for this operation.
 * @property {string} methodName Fully qualified name of the API method for which this quota operation is
 requested. This name is used for matching quota rules or metric rules and
 billing status rules defined in service configuration. This field is not
@@ -752,26 +763,15 @@ required if the quota operation is performed on non-API resources.
 
 Example of an RPC method name:
     google.example.library.v1.LibraryService.CreateShelf
-* @property {string} quotaMode Quota mode for this operation.
-* @property {servicecontrol(v1).MetricValueSet[]} quotaMetrics Represents information about this operation. Each MetricValueSet
-corresponds to a metric defined in the service configuration.
-The data type used in the MetricValueSet must agree with
-the data type specified in the metric definition.
-
-Within a single operation, it is not allowed to have more than one
-MetricValue instances that have the same metric names and identical
-label value combinations. If a request has such duplicated MetricValue
-instances, the entire request is rejected with
-an invalid argument error.
 */
 /**
  * @typedef EndReconciliationRequest
  * @memberOf! servicecontrol(v1)
  * @type object
-* @property {servicecontrol(v1).QuotaOperation} reconciliationOperation Operation that describes the quota reconciliation.
 * @property {string} serviceConfigId Specifies which version of service configuration should be used to process
 the request. If unspecified or no matching version can be found, the latest
 one will be used.
+* @property {servicecontrol(v1).QuotaOperation} reconciliationOperation Operation that describes the quota reconciliation.
 */
 /**
  * @typedef ReportInfo
@@ -813,18 +813,6 @@ If there is no quota release request, report_quota_info will be empty.
  * @typedef Operation
  * @memberOf! servicecontrol(v1)
  * @type object
-* @property {string} operationName Fully qualified name of the operation. Reserved for future use.
-* @property {string} endTime End time of the operation.
-Required when the operation is used in ServiceController.Report,
-but optional when the operation is used in ServiceController.Check.
-* @property {string} startTime Required. Start time of the operation.
-* @property {string} importance DO NOT USE. This is an experimental field.
-* @property {string} resourceContainer The resource name of the parent of a resource in the resource hierarchy.
-
-This can be in one of the following formats:
-    - “projects/&lt;project-id or project-number&gt;”
-    - “folders/&lt;folder-id&gt;”
-    - “organizations/&lt;organization-id&gt;”
 * @property {object} labels Labels describing the operation. Only the following labels are allowed:
 
 - Labels describing monitored resources as defined in
@@ -873,6 +861,18 @@ UUID version 4 is recommended, though not required.
 In scenarios where an operation is computed from existing information
 and an idempotent id is desirable for deduplication purpose, UUID version 5
 is recommended. See RFC 4122 for details.
+* @property {string} endTime End time of the operation.
+Required when the operation is used in ServiceController.Report,
+but optional when the operation is used in ServiceController.Check.
+* @property {string} operationName Fully qualified name of the operation. Reserved for future use.
+* @property {string} startTime Required. Start time of the operation.
+* @property {string} importance DO NOT USE. This is an experimental field.
+* @property {string} resourceContainer The resource name of the parent of a resource in the resource hierarchy.
+
+This can be in one of the following formats:
+    - “projects/&lt;project-id or project-number&gt;”
+    - “folders/&lt;folder-id&gt;”
+    - “organizations/&lt;organization-id&gt;”
 */
 /**
  * @typedef CheckResponse

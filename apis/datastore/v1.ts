@@ -261,102 +261,17 @@ function Datastore(options) { // eslint-disable-line
 }
 
 /**
- * @typedef PathElement
- * @memberOf! datastore(v1)
- * @type object
-* @property {string} name The name of the entity.
-A name matching regex `__.*__` is reserved/read-only.
-A name must not be more than 1500 bytes when UTF-8 encoded.
-Cannot be `&quot;&quot;`.
-* @property {string} kind The kind of the entity.
-A kind matching regex `__.*__` is reserved/read-only.
-A kind must not contain more than 1500 bytes when UTF-8 encoded.
-Cannot be `&quot;&quot;`.
-* @property {string} id The auto-allocated ID of the entity.
-Never equal to zero. Values less than zero are discouraged and may not
-be supported in the future.
-*/
-/**
- * @typedef GqlQueryParameter
- * @memberOf! datastore(v1)
- * @type object
-* @property {string} cursor A query cursor. Query cursors are returned in query
-result batches.
-* @property {datastore(v1).Value} value A value parameter.
-*/
-/**
- * @typedef BeginTransactionResponse
- * @memberOf! datastore(v1)
- * @type object
- * @property {string} transaction The transaction identifier (always present).
- */
-/**
- * @typedef RunQueryResponse
- * @memberOf! datastore(v1)
- * @type object
- * @property {datastore(v1).QueryResultBatch} batch A batch of query results (always present).
- * @property {datastore(v1).Query} query The parsed form of the `GqlQuery` from the request, if it was set.
- */
-/**
- * @typedef LookupResponse
- * @memberOf! datastore(v1)
- * @type object
-* @property {datastore(v1).Key[]} deferred A list of keys that were not looked up due to resource constraints. The
-order of results in this field is undefined and has no relation to the
-order of the keys in the input.
-* @property {datastore(v1).EntityResult[]} found Entities found as `ResultType.FULL` entities. The order of results in this
-field is undefined and has no relation to the order of the keys in the
-input.
-* @property {datastore(v1).EntityResult[]} missing Entities not found as `ResultType.KEY_ONLY` entities. The order of results
-in this field is undefined and has no relation to the order of the keys
-in the input.
-*/
-/**
- * @typedef AllocateIdsRequest
- * @memberOf! datastore(v1)
- * @type object
-* @property {datastore(v1).Key[]} keys A list of keys with incomplete key paths for which to allocate IDs.
-No key may be reserved/read-only.
-*/
-/**
- * @typedef CommitRequest
- * @memberOf! datastore(v1)
- * @type object
-* @property {string} transaction The identifier of the transaction associated with the commit. A
-transaction identifier is returned by a call to
-Datastore.BeginTransaction.
-* @property {string} mode The type of commit to perform. Defaults to `TRANSACTIONAL`.
-* @property {datastore(v1).Mutation[]} mutations The mutations to perform.
-
-When mode is `TRANSACTIONAL`, mutations affecting a single entity are
-applied in order. The following sequences of mutations affecting a single
-entity are not permitted in a single `Commit` request:
-
-- `insert` followed by `insert`
-- `update` followed by `insert`
-- `upsert` followed by `insert`
-- `delete` followed by `update`
-
-When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single
-entity.
-*/
-/**
- * @typedef BeginTransactionRequest
- * @memberOf! datastore(v1)
- * @type object
- */
-/**
- * @typedef PropertyOrder
- * @memberOf! datastore(v1)
- * @type object
- * @property {datastore(v1).PropertyReference} property The property to order by.
- * @property {string} direction The direction to order by. Defaults to `ASCENDING`.
- */
-/**
  * @typedef KindExpression
  * @memberOf! datastore(v1)
  * @type object
  * @property {string} name The name of the kind.
+ */
+/**
+ * @typedef LatLng
+ * @memberOf! datastore(v1)
+ * @type object
+ * @property {number} latitude The latitude in degrees. It must be in the range [-90.0, +90.0].
+ * @property {number} longitude The longitude in degrees. It must be in the range [-180.0, +180.0].
  */
 /**
  * @typedef Key
@@ -382,13 +297,6 @@ A path can never be empty, and a path can have at most 100 elements.
 ID and namespace ID.
 Queries are scoped to a single partition.
 */
-/**
- * @typedef LatLng
- * @memberOf! datastore(v1)
- * @type object
- * @property {number} longitude The longitude in degrees. It must be in the range [-180.0, +180.0].
- * @property {number} latitude The latitude in degrees. It must be in the range [-90.0, +90.0].
- */
 /**
  * @typedef PropertyReference
  * @memberOf! datastore(v1)
@@ -483,23 +391,23 @@ numbered parameter. The inverse must also be true.
  * @property {datastore(v1).PropertyFilter} propertyFilter A filter on a property.
  */
 /**
- * @typedef RunQueryRequest
- * @memberOf! datastore(v1)
- * @type object
-* @property {datastore(v1).ReadOptions} readOptions The options for this query.
-* @property {datastore(v1).Query} query The query to run.
-* @property {datastore(v1).PartitionId} partitionId Entities are partitioned into subsets, identified by a partition ID.
-Queries are scoped to a single partition.
-This partition ID is normalized with the standard default context
-partition ID.
-* @property {datastore(v1).GqlQuery} gqlQuery The GQL query to run.
-*/
-/**
  * @typedef RollbackRequest
  * @memberOf! datastore(v1)
  * @type object
 * @property {string} transaction The transaction identifier, returned by a call to
 Datastore.BeginTransaction.
+*/
+/**
+ * @typedef RunQueryRequest
+ * @memberOf! datastore(v1)
+ * @type object
+* @property {datastore(v1).PartitionId} partitionId Entities are partitioned into subsets, identified by a partition ID.
+Queries are scoped to a single partition.
+This partition ID is normalized with the standard default context
+partition ID.
+* @property {datastore(v1).GqlQuery} gqlQuery The GQL query to run.
+* @property {datastore(v1).ReadOptions} readOptions The options for this query.
+* @property {datastore(v1).Query} query The query to run.
 */
 /**
  * @typedef CompositeFilter
@@ -520,7 +428,6 @@ its key path completed with a newly allocated ID.
  * @typedef Query
  * @memberOf! datastore(v1)
  * @type object
-* @property {datastore(v1).Projection[]} projection The projection to return. Defaults to returning all properties.
 * @property {string} endCursor An ending point for the query results. Query cursors are
 returned in query result batches and
 [can only be used to limit the same query](https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets).
@@ -540,6 +447,7 @@ Currently at most 1 kind may be specified.
 result for each distinct combination of values for the given properties
 (if empty, all results are returned).
 * @property {datastore(v1).PropertyOrder[]} order The order to apply to the query results (if empty, order is unspecified).
+* @property {datastore(v1).Projection[]} projection The projection to return. Defaults to returning all properties.
 */
 /**
  * @typedef PropertyFilter
@@ -567,6 +475,15 @@ is always set except for eventually consistent reads.
 * @property {datastore(v1).Entity} entity The resulting entity.
 */
 /**
+ * @typedef CommitResponse
+ * @memberOf! datastore(v1)
+ * @type object
+* @property {datastore(v1).MutationResult[]} mutationResults The result of performing the mutations.
+The i-th mutation result corresponds to the i-th mutation in the request.
+* @property {integer} indexUpdates The number of index entries updated during the commit, or zero if none were
+updated.
+*/
+/**
  * @typedef Value
  * @memberOf! datastore(v1)
  * @type object
@@ -576,8 +493,8 @@ explicitly.
 * @property {string} timestampValue A timestamp value.
 When stored in the Datastore, precise only to microseconds;
 any additional precision is rounded down.
-* @property {boolean} booleanValue A boolean value.
 * @property {string} nullValue A null value.
+* @property {boolean} booleanValue A boolean value.
 * @property {string} blobValue A blob value.
 May have at most 1,000,000 bytes.
 When `exclude_from_indexes` is false, may have at most 1500 bytes.
@@ -600,15 +517,6 @@ When `exclude_from_indexes` is false (it is indexed) , may have at most 1500 byt
 Otherwise, may be set to at least 1,000,000 bytes.
 */
 /**
- * @typedef CommitResponse
- * @memberOf! datastore(v1)
- * @type object
-* @property {integer} indexUpdates The number of index entries updated during the commit, or zero if none were
-updated.
-* @property {datastore(v1).MutationResult[]} mutationResults The result of performing the mutations.
-The i-th mutation result corresponds to the i-th mutation in the request.
-*/
-/**
  * @typedef PartitionId
  * @memberOf! datastore(v1)
  * @type object
@@ -619,25 +527,26 @@ The i-th mutation result corresponds to the i-th mutation in the request.
  * @typedef Entity
  * @memberOf! datastore(v1)
  * @type object
-* @property {datastore(v1).Key} key The entity&#39;s key.
-
-An entity must have a key, unless otherwise documented (for example,
-an entity in `Value.entity_value` may have no key).
-An entity&#39;s kind is its key path&#39;s last element&#39;s kind,
-or null if it has no key.
 * @property {object} properties The entity&#39;s properties.
 The map&#39;s keys are property names.
 A property name matching regex `__.*__` is reserved.
 A reserved property name is forbidden in certain documented contexts.
 The name must not contain more than 500 characters.
 The name cannot be `&quot;&quot;`.
+* @property {datastore(v1).Key} key The entity&#39;s key.
+
+An entity must have a key, unless otherwise documented (for example,
+an entity in `Value.entity_value` may have no key).
+An entity&#39;s kind is its key path&#39;s last element&#39;s kind,
+or null if it has no key.
 */
 /**
  * @typedef QueryResultBatch
  * @memberOf! datastore(v1)
  * @type object
-* @property {string} endCursor A cursor that points to the position after the last result in the batch.
+* @property {datastore(v1).EntityResult[]} entityResults The results for this batch.
 * @property {string} moreResults The state of the query after the current batch.
+* @property {string} endCursor A cursor that points to the position after the last result in the batch.
 * @property {string} snapshotVersion The version number of the snapshot this batch was returned from.
 This applies to the range of results from the query&#39;s `start_cursor` (or
 the beginning of the query if no cursor was given) to this batch&#39;s
@@ -651,13 +560,104 @@ The value will be zero for eventually consistent queries.
 Will be set when `skipped_results` != 0.
 * @property {integer} skippedResults The number of results skipped, typically because of an offset.
 * @property {string} entityResultType The result type for every entity in `entity_results`.
-* @property {datastore(v1).EntityResult[]} entityResults The results for this batch.
 */
 /**
  * @typedef LookupRequest
  * @memberOf! datastore(v1)
  * @type object
- * @property {datastore(v1).ReadOptions} readOptions The options for this lookup request.
  * @property {datastore(v1).Key[]} keys Keys of entities to look up.
+ * @property {datastore(v1).ReadOptions} readOptions The options for this lookup request.
  */
+/**
+ * @typedef PathElement
+ * @memberOf! datastore(v1)
+ * @type object
+* @property {string} name The name of the entity.
+A name matching regex `__.*__` is reserved/read-only.
+A name must not be more than 1500 bytes when UTF-8 encoded.
+Cannot be `&quot;&quot;`.
+* @property {string} kind The kind of the entity.
+A kind matching regex `__.*__` is reserved/read-only.
+A kind must not contain more than 1500 bytes when UTF-8 encoded.
+Cannot be `&quot;&quot;`.
+* @property {string} id The auto-allocated ID of the entity.
+Never equal to zero. Values less than zero are discouraged and may not
+be supported in the future.
+*/
+/**
+ * @typedef GqlQueryParameter
+ * @memberOf! datastore(v1)
+ * @type object
+* @property {string} cursor A query cursor. Query cursors are returned in query
+result batches.
+* @property {datastore(v1).Value} value A value parameter.
+*/
+/**
+ * @typedef BeginTransactionResponse
+ * @memberOf! datastore(v1)
+ * @type object
+ * @property {string} transaction The transaction identifier (always present).
+ */
+/**
+ * @typedef AllocateIdsRequest
+ * @memberOf! datastore(v1)
+ * @type object
+* @property {datastore(v1).Key[]} keys A list of keys with incomplete key paths for which to allocate IDs.
+No key may be reserved/read-only.
+*/
+/**
+ * @typedef LookupResponse
+ * @memberOf! datastore(v1)
+ * @type object
+* @property {datastore(v1).Key[]} deferred A list of keys that were not looked up due to resource constraints. The
+order of results in this field is undefined and has no relation to the
+order of the keys in the input.
+* @property {datastore(v1).EntityResult[]} found Entities found as `ResultType.FULL` entities. The order of results in this
+field is undefined and has no relation to the order of the keys in the
+input.
+* @property {datastore(v1).EntityResult[]} missing Entities not found as `ResultType.KEY_ONLY` entities. The order of results
+in this field is undefined and has no relation to the order of the keys
+in the input.
+*/
+/**
+ * @typedef RunQueryResponse
+ * @memberOf! datastore(v1)
+ * @type object
+ * @property {datastore(v1).Query} query The parsed form of the `GqlQuery` from the request, if it was set.
+ * @property {datastore(v1).QueryResultBatch} batch A batch of query results (always present).
+ */
+/**
+ * @typedef BeginTransactionRequest
+ * @memberOf! datastore(v1)
+ * @type object
+ */
+/**
+ * @typedef PropertyOrder
+ * @memberOf! datastore(v1)
+ * @type object
+ * @property {datastore(v1).PropertyReference} property The property to order by.
+ * @property {string} direction The direction to order by. Defaults to `ASCENDING`.
+ */
+/**
+ * @typedef CommitRequest
+ * @memberOf! datastore(v1)
+ * @type object
+* @property {string} transaction The identifier of the transaction associated with the commit. A
+transaction identifier is returned by a call to
+Datastore.BeginTransaction.
+* @property {string} mode The type of commit to perform. Defaults to `TRANSACTIONAL`.
+* @property {datastore(v1).Mutation[]} mutations The mutations to perform.
+
+When mode is `TRANSACTIONAL`, mutations affecting a single entity are
+applied in order. The following sequences of mutations affecting a single
+entity are not permitted in a single `Commit` request:
+
+- `insert` followed by `insert`
+- `update` followed by `insert`
+- `upsert` followed by `insert`
+- `delete` followed by `update`
+
+When mode is `NON_TRANSACTIONAL`, no two mutations may affect a single
+entity.
+*/
 export = Datastore;

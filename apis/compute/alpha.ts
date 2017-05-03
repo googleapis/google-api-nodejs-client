@@ -16123,7 +16123,7 @@ This cannot be used for internal load balancing.
 * @property {integer} maxRate The max requests per second (RPS) of the group. Can be used with either RATE or UTILIZATION balancing modes, but required if RATE mode. For RATE mode, either maxRate or maxRatePerInstance must be set.
 
 This cannot be used for internal load balancing.
-* @property {number} maxRatePerInstance The max requests per second (RPS) that a single backend instance can handle.This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerInstance must be set.
+* @property {number} maxRatePerInstance The max requests per second (RPS) that a single backend instance can handle. This is used to calculate the capacity of the group. Can be used in either balancing mode. For RATE mode, either maxRate or maxRatePerInstance must be set.
 
 This cannot be used for internal load balancing.
 * @property {number} maxUtilization Used when balancingMode is UTILIZATION. This ratio defines the CPU utilization target for the group. The default is 0.8. Valid range is [0.0, 1.0].
@@ -16148,8 +16148,8 @@ This cannot be used for internal load balancing.
  * @typedef BackendBucketCdnPolicy
  * @memberOf! compute(alpha)
  * @type object
+ * @property {string} signedUrlCacheMaxAgeSec Number of seconds up to which the response to a signed URL request will be cached in the CDN. After this time period, the Signed URL will be revalidated before being served. Defaults to 1hr (3600s). If this field is set, Cloud CDN will internally act as though all responses from this bucket had a ?Cache-Control: public, max-age=[TTL]? header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
  * @property {string[]} signedUrlKeyNames [Output Only] Names of the keys currently configured for Cloud CDN Signed URL on this backend bucket.
- * @property {string} signedUrlTtlSec Number of seconds up to which the response to a signed URL request will be cached in the CDN. After this time period, the Signed URL will be revalidated before being served. Defaults to 1hr (3600s). If this field is set, Cloud CDN will internally act as though all responses from this bucket had a ?Cache-Control: public, max-age=[TTL]? header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
  */
 /**
  * @typedef BackendBucketList
@@ -16229,8 +16229,8 @@ When the protocol is UDP, this field is not used.
  * @memberOf! compute(alpha)
  * @type object
  * @property {compute(alpha).CacheKeyPolicy} cacheKeyPolicy The CacheKeyPolicy for this CdnPolicy.
+ * @property {string} signedUrlCacheMaxAgeSec Number of seconds up to which the response to a signed URL request will be cached in the CDN. After this time period, the Signed URL will be revalidated before being served. Defaults to 1hr (3600s). If this field is set, Cloud CDN will internally act as though all responses from this backend had a ?Cache-Control: public, max-age=[TTL]? header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
  * @property {string[]} signedUrlKeyNames [Output Only] Names of the keys currently configured for Cloud CDN Signed URL on this backend service.
- * @property {string} signedUrlTtlSec Number of seconds up to which the response to a signed URL request will be cached in the CDN. After this time period, the Signed URL will be revalidated before being served. Defaults to 1hr (3600s). If this field is set, Cloud CDN will internally act as though all responses from this backend had a ?Cache-Control: public, max-age=[TTL]? header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
  */
 /**
  * @typedef BackendServiceGroupHealth
@@ -16632,7 +16632,7 @@ To see the latest fingerprint, make a get() request to retrieve a ForwardingRule
 
 For internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.
 * @property {string} networkTier This signifies the networking tier used for configuring this load balancer and can only take the following values: PREMIUM , SELECT. If this field is not specified, it is assumed to be PREMIUM.
-* @property {string} portRange This field is used for external load balancing and VPN.
+* @property {string} portRange This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance.
 
 Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.
 
@@ -16642,7 +16642,7 @@ Some types of forwarding target have constraints on the acceptable ports:
 - TargetSslProxy: 443 
 - TargetVpnGateway: 500, 4500
 -
-* @property {string[]} ports This field is only used for internal load balancing.
+* @property {string[]} ports This field is used along with the backend_service field for internal load balancing.
 
 When the load balancing scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets addressed to these ports will be forwarded to the backends configured with this forwarding rule.
 

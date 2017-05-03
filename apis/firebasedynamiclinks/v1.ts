@@ -22,7 +22,7 @@ const utils = require('../../lib/utils');
 /**
  * Firebase Dynamic Links API
  *
- * Firebase Dynamic Links API enables third party developers to programmatically create and manage Dynamic Links.
+ * Programmatically creates and manages Firebase Dynamic Links.
  *
  * @example
  * const google = require('googleapis');
@@ -79,6 +79,50 @@ function Firebasedynamiclinks(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef DynamicLinkInfo
+ * @memberOf! firebasedynamiclinks(v1)
+ * @type object
+* @property {string} dynamicLinkDomain Dynamic Links domain that the project owns, e.g. abcd.app.goo.gl
+[Learn more](https://firebase.google.com/docs/dynamic-links/android#set-up-firebase-and-the-dynamic-links-sdk)
+on how to set up Dynamic Link domain associated with your Firebase project.
+
+Required.
+* @property {string} link The link your app will open, You can specify any URL your app can handle.
+This link must be a well-formatted URL, be properly URL-encoded, and use
+the HTTP or HTTPS scheme. See &#39;link&#39; parameters in the
+[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
+
+Required.
+* @property {firebasedynamiclinks(v1).IosInfo} iosInfo iOS related information. See iOS related parameters in the
+[documentation](https://firebase.google.com/docs/dynamic-links/ios#create-a-dynamic-link-programmatically).
+* @property {firebasedynamiclinks(v1).SocialMetaTagInfo} socialMetaTagInfo Parameters for social meta tag params.
+Used to set meta tag data for link previews on social sites.
+* @property {firebasedynamiclinks(v1).AndroidInfo} androidInfo Android related information. See Android related parameters in the
+[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
+* @property {firebasedynamiclinks(v1).NavigationInfo} navigationInfo Information of navigation behavior of a Firebase Dynamic Links.
+* @property {firebasedynamiclinks(v1).AnalyticsInfo} analyticsInfo Parameters used for tracking. See all tracking parameters in the
+[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
+*/
+/**
+ * @typedef ITunesConnectAnalytics
+ * @memberOf! firebasedynamiclinks(v1)
+ * @type object
+* @property {string} at Affiliate token used to create affiliate-coded links.
+* @property {string} ct Campaign text that developers can optionally add to any link in order to
+track sales from a specific marketing campaign.
+* @property {string} mt iTune media types, including music, podcasts, audiobooks and so on.
+* @property {string} pt Provider token that enables analytics for Dynamic Links from within iTunes
+Connect.
+*/
+/**
+ * @typedef SocialMetaTagInfo
+ * @memberOf! firebasedynamiclinks(v1)
+ * @type object
+ * @property {string} socialTitle Title to be displayed. Optional.
+ * @property {string} socialImageLink An image url string. Optional.
+ * @property {string} socialDescription A short description of the link. Optional.
+ */
+/**
  * @typedef AndroidInfo
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
@@ -126,13 +170,13 @@ this param.
  * @typedef CreateShortDynamicLinkRequest
  * @memberOf! firebasedynamiclinks(v1)
  * @type object
+* @property {firebasedynamiclinks(v1).Suffix} suffix Short Dynamic Link suffix. Optional.
 * @property {firebasedynamiclinks(v1).DynamicLinkInfo} dynamicLinkInfo Information about the Dynamic Link to be shortened.
 [Learn more](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
 * @property {string} longDynamicLink Full long Dynamic Link URL with desired query parameters specified.
 For example,
 &quot;https://sample.app.goo.gl/?link=http://www.google.com&amp;apn=com.sample&quot;,
 [Learn more](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
-* @property {firebasedynamiclinks(v1).Suffix} suffix Short Dynamic Link suffix. Optional.
 */
 /**
  * @typedef CreateShortDynamicLinkResponse
@@ -164,48 +208,4 @@ promotion or strategic campaign.
 * @property {string} utmContent Campaign content; used for A/B testing and content-targeted ads to
 differentiate ads or links that point to the same URL.
 */
-/**
- * @typedef DynamicLinkInfo
- * @memberOf! firebasedynamiclinks(v1)
- * @type object
-* @property {string} dynamicLinkDomain Dynamic Links domain that the project owns, e.g. abcd.app.goo.gl
-[Learn more](https://firebase.google.com/docs/dynamic-links/android#set-up-firebase-and-the-dynamic-links-sdk)
-on how to set up Dynamic Link domain associated with your Firebase project.
-
-Required.
-* @property {string} link The link your app will open, You can specify any URL your app can handle.
-This link must be a well-formatted URL, be properly URL-encoded, and use
-the HTTP or HTTPS scheme. See &#39;link&#39; parameters in the
-[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
-
-Required.
-* @property {firebasedynamiclinks(v1).IosInfo} iosInfo iOS related information. See iOS related parameters in the
-[documentation](https://firebase.google.com/docs/dynamic-links/ios#create-a-dynamic-link-programmatically).
-* @property {firebasedynamiclinks(v1).SocialMetaTagInfo} socialMetaTagInfo Parameters for social meta tag params.
-Used to set meta tag data for link previews on social sites.
-* @property {firebasedynamiclinks(v1).AndroidInfo} androidInfo Android related information. See Android related parameters in the
-[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
-* @property {firebasedynamiclinks(v1).NavigationInfo} navigationInfo Information of navigation behavior of a Firebase Dynamic Links.
-* @property {firebasedynamiclinks(v1).AnalyticsInfo} analyticsInfo Parameters used for tracking. See all tracking parameters in the
-[documentation](https://firebase.google.com/docs/dynamic-links/android#create-a-dynamic-link-programmatically).
-*/
-/**
- * @typedef ITunesConnectAnalytics
- * @memberOf! firebasedynamiclinks(v1)
- * @type object
-* @property {string} at Affiliate token used to create affiliate-coded links.
-* @property {string} ct Campaign text that developers can optionally add to any link in order to
-track sales from a specific marketing campaign.
-* @property {string} mt iTune media types, including music, podcasts, audiobooks and so on.
-* @property {string} pt Provider token that enables analytics for Dynamic Links from within iTunes
-Connect.
-*/
-/**
- * @typedef SocialMetaTagInfo
- * @memberOf! firebasedynamiclinks(v1)
- * @type object
- * @property {string} socialDescription A short description of the link. Optional.
- * @property {string} socialTitle Title to be displayed. Optional.
- * @property {string} socialImageLink An image url string. Optional.
- */
 export = Firebasedynamiclinks;

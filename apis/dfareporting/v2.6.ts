@@ -715,7 +715,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "user profile*2015" will return objects with names like "user profile June 2015", "user profile April 2015", or simply "user profile 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "user profile" will match objects with name "my user profile", "user profile 2015", or simply "user profile".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {string=} params.subaccountId Select only user profiles with the specified subaccount ID.
      * @param {string=} params.userRoleId Select only user profiles with the specified user role ID.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1084,7 +1084,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "account*2015" will return objects with names like "account June 2015", "account April 2015", or simply "account 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "account" will match objects with name "my account", "account 2015", or simply "account".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1551,7 +1551,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "ad*2015" will return objects with names like "ad June 2015", "ad April 2015", or simply "ad 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "ad" will match objects with name "my ad", "ad 2015", or simply "ad".
      * @param {string=} params.sizeIds Select only ads with these size IDs.
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {boolean=} params.sslCompliant Select only ads that are SSL-compliant.
      * @param {boolean=} params.sslRequired Select only ads that require SSL.
      * @param {string=} params.type Select only ads with these types.
@@ -2088,7 +2088,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser group June 2015", "advertiser group April 2015", or simply "advertiser group 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertisergroup" will match objects with name "my advertisergroup", "advertisergroup 2015", or simply "advertisergroup".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -2544,7 +2544,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {string=} params.status Select only advertisers with the specified status.
      * @param {string=} params.subaccountId Select only advertisers with these subaccount IDs.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3003,7 +3003,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {integer=} params.maxResults Maximum number of results to return.
      * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
      * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -3292,7 +3292,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for campaigns by name or ID. Wildcards (*) are allowed. For example, "campaign*2015" will return campaigns with names like "campaign June 2015", "campaign April 2015", or simply "campaign 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "campaign" will match campaigns with name "my campaign", "campaign 2015", or simply "campaign".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {string=} params.subaccountId Select only campaigns that belong to this subaccount.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -4279,7 +4279,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "contentcategory*2015" will return objects with names like "contentcategory June 2015", "contentcategory April 2015", or simply "contentcategory 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "contentcategory" will match objects with name "my contentcategory", "contentcategory 2015", or simply "contentcategory".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5194,7 +5194,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for creative field values by their values. Wildcards (e.g. *) are not allowed.
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -5737,7 +5737,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for creative fields by name or ID. Wildcards (*) are allowed. For example, "creativefield*2015" will return creative fields with names like "creativefield June 2015", "creativefield April 2015", or simply "creativefield 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativefield" will match creative fields with the name "my creativefield", "creativefield 2015", or simply "creativefield".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6191,7 +6191,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for creative groups by name or ID. Wildcards (*) are allowed. For example, "creativegroup*2015" will return creative groups with names like "creativegroup June 2015", "creativegroup April 2015", or simply "creativegroup 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativegroup" will match creative groups with the name "my creativegroup", "creativegroup 2015", or simply "creativegroup".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -6651,7 +6651,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "creative*2015" will return objects with names like "creative June 2015", "creative April 2015", or simply "creative 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "creative" will match objects with name "my creative", "creative 2015", or simply "creative".
      * @param {string=} params.sizeIds Select only creatives with these size IDs.
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {string=} params.studioCreativeId Select only creatives corresponding to this Studio creative ID.
      * @param {string=} params.types Select only creatives with these creative types.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7125,7 +7125,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "directory site contact*2015" will return objects with names like "directory site contact June 2015", "directory site contact April 2015", or simply "directory site contact 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site contact" will match objects with name "my directory site contact", "directory site contact 2015", or simply "directory site contact".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -7407,7 +7407,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name, ID or URL. Wildcards (*) are allowed. For example, "directory site*2015" will return objects with names like "directory site June 2015", "directory site April 2015", or simply "directory site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site" will match objects with name "my directory site", "directory site 2015" or simply, "directory site".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8021,7 +8021,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "eventtag*2015" will return objects with names like "eventtag June 2015", "eventtag April 2015", or simply "eventtag 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "eventtag" will match objects with name "my eventtag", "eventtag 2015", or simply "eventtag".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -8835,7 +8835,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivity*2015" will return objects with names like "floodlightactivity June 2015", "floodlightactivity April 2015", or simply "floodlightactivity 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivity" will match objects with name "my floodlightactivity activity", "floodlightactivity 2015", or simply "floodlightactivity".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {string=} params.tagString Select only floodlight activities with the specified tag string.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -9290,7 +9290,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivitygroup*2015" will return objects with names like "floodlightactivitygroup June 2015", "floodlightactivitygroup April 2015", or simply "floodlightactivitygroup 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivitygroup" will match objects with name "my floodlightactivitygroup activity", "floodlightactivitygroup 2015", or simply "floodlightactivitygroup".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {string=} params.type Select only floodlight activity groups with the specified floodlight activity group type.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -10015,7 +10015,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.projectId Project ID for order documents.
      * @param {string=} params.siteId Select only inventory items that are associated with these sites.
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {string=} params.type Select only inventory items with this type.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -11435,7 +11435,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for order documents by name or ID. Wildcards (*) are allowed. For example, "orderdocument*2015" will return order documents with names like "orderdocument June 2015", "orderdocument April 2015", or simply "orderdocument 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "orderdocument" will match order documents with name "my orderdocument", "orderdocument 2015", or simply "orderdocument".
      * @param {string=} params.siteId Select only order documents that are associated with these sites.
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11633,7 +11633,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for orders by name or ID. Wildcards (*) are allowed. For example, "order*2015" will return orders with names like "order June 2015", "order April 2015", or simply "order 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "order" will match orders with name "my order", "order 2015", or simply "order".
      * @param {string=} params.siteId Select only orders that are associated with these site IDs.
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -11921,7 +11921,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.searchString Allows searching for placement groups by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placement groups with names like "placement group June 2015", "placement group May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementgroup" will match placement groups with name "my placementgroup", "placementgroup 2015", or simply "placementgroup".
      * @param {string=} params.siteIds Select only placement groups that are associated with these sites.
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -12455,7 +12455,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "placementstrategy*2015" will return objects with names like "placementstrategy June 2015", "placementstrategy April 2015", or simply "placementstrategy 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementstrategy" will match objects with name "my placementstrategy", "placementstrategy 2015", or simply "placementstrategy".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13007,7 +13007,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.siteIds Select only placements that are associated with these sites.
      * @param {string=} params.sizeIds Select only placements that are associated with these sizes.
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -13714,7 +13714,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, "project*2015" will return projects with names like "project June 2015", "project April 2015", or simply "project 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "project" will match projects with name "my project", "project 2015", or simply "project".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -14345,7 +14345,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -15713,7 +15713,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name, ID or keyName. Wildcards (*) are allowed. For example, "site*2015" will return objects with names like "site June 2015", "site April 2015", or simply "site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "site" will match objects with name "my site", "site 2015", or simply "site".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {string=} params.subaccountId Select only sites with this subaccount ID.
      * @param {boolean=} params.unmappedSite Select only sites that have not been mapped to a directory site.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16427,7 +16427,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -16797,7 +16797,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -17073,7 +17073,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "template*2015" will return objects with names like "template June 2015", "template April 2015", or simply "template 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "template" will match objects with name "my template", "template 2015", or simply "template".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -18113,7 +18113,7 @@ function Dfareporting(options) { // eslint-disable-line
      * @param {string} params.profileId User profile ID associated with this request.
      * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "userrole*2015" will return objects with names like "userrole June 2015", "userrole April 2015", or simply "userrole 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "userrole" will match objects with name "my userrole", "userrole 2015", or simply "userrole".
      * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results, default is ASCENDING.
+     * @param {string=} params.sortOrder Order of sorted results.
      * @param {string=} params.subaccountId Select only user roles that belong to this subaccount.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -18379,7 +18379,8 @@ Acceptable values are:
 - &quot;45&quot; for RUB 
 - &quot;46&quot; for AED 
 - &quot;47&quot; for BGN 
-- &quot;48&quot; for HRK
+- &quot;48&quot; for HRK 
+- &quot;49&quot; for MXN
 * @property {string} defaultCreativeSizeId Default placement dimensions for this account.
 * @property {string} description Description of this account.
 * @property {string} id ID of this account. This is a read-only, auto-generated field.
@@ -18402,12 +18403,12 @@ Acceptable values are:
 - &quot;tr&quot; (Turkish) 
 - &quot;zh-CN&quot; (Chinese Simplified) 
 - &quot;zh-TW&quot; (Chinese Traditional)
-* @property {string} maximumImageSize Maximum image size allowed for this account.
+* @property {string} maximumImageSize Maximum image size allowed for this account, in kilobytes. Value must be greater than or equal to 1.
 * @property {string} name Name of this account. This is a required field, and must be less than 128 characters long and be globally unique.
 * @property {boolean} nielsenOcrEnabled Whether campaigns created in this account will be enabled for Nielsen OCR reach ratings by default.
 * @property {dfareporting(v2.6).ReportsConfiguration} reportsConfiguration Reporting configuration of this account.
 * @property {boolean} shareReportsWithTwitter Share Path to Conversion reports with Twitter.
-* @property {string} teaserSizeLimit File size limit in kilobytes of Rich Media teaser creatives. Must be between 1 and 10240.
+* @property {string} teaserSizeLimit File size limit in kilobytes of Rich Media teaser creatives. Acceptable values are 1 to 10240, inclusive.
 */
 /**
  * @typedef AccountActiveAdSummary
@@ -18634,7 +18635,7 @@ Acceptable values are:
  * @typedef AudienceSegment
  * @memberOf! dfareporting(v2.6)
  * @type object
- * @property {integer} allocation Weight allocated to this segment. Must be between 1 and 1000. The weight assigned will be understood in proportion to the weights assigned to other segments in the same segment group.
+ * @property {integer} allocation Weight allocated to this segment. The weight assigned will be understood in proportion to the weights assigned to other segments in the same segment group. Acceptable values are 1 to 1000, inclusive.
  * @property {string} id ID of this audience segment. This is a read-only, auto-generated field.
  * @property {string} name Name of this audience segment. This is a required field and must be less than 65 characters long.
  */
@@ -18892,7 +18893,7 @@ Acceptable values are:
  * @type object
  * @property {boolean} hasFailures Indicates that some or all conversions failed to insert.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchInsertResponse&quot;.
- * @property {dfareporting(v2.6).ConversionStatus[]} status The status of each conversion&#39;s insertion status. The status is returned in the same order that conversions are inserted.
+ * @property {dfareporting(v2.6).ConversionStatus[]} status The insert status of each conversion. Statuses are returned in the same order that conversions are inserted.
  */
 /**
  * @typedef CountriesListResponse
@@ -18999,10 +19000,10 @@ Note: FLASH_INPAGE, HTML5_BANNER, and IMAGE are only used for existing creatives
 * @property {string} childAssetType Rich media child asset type. This is a read-only field. Applicable to the following creative types: all VPAID.
 * @property {dfareporting(v2.6).Size} collapsedSize Size of an asset when collapsed. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA and all VPAID. Additionally, applicable to assets whose displayType is ASSET_DISPLAY_TYPE_EXPANDING or ASSET_DISPLAY_TYPE_PEEL_DOWN.
 * @property {string[]} companionCreativeIds List of companion creatives assigned to an in-stream video creative asset. Acceptable values include IDs of existing flash and image creatives. Applicable to INSTREAM_VIDEO creative type with dynamicAssetSelection set to true.
-* @property {integer} customStartTimeValue Custom start time in seconds for making the asset visible. Applicable to the following creative types: all RICH_MEDIA.
+* @property {integer} customStartTimeValue Custom start time in seconds for making the asset visible. Applicable to the following creative types: all RICH_MEDIA. Value must be greater than or equal to 0.
 * @property {string[]} detectedFeatures List of feature dependencies for the creative asset that are detected by DCM. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative correctly. This is a read-only, auto-generated field. Applicable to the following creative types: HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
 * @property {string} displayType Type of rich media asset. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
-* @property {integer} duration Duration in seconds for which an asset will be displayed. Applicable to the following creative types: INSTREAM_VIDEO and VPAID_LINEAR_VIDEO.
+* @property {integer} duration Duration in seconds for which an asset will be displayed. Applicable to the following creative types: INSTREAM_VIDEO and VPAID_LINEAR_VIDEO. Value must be greater than or equal to 1.
 * @property {string} durationType Duration type for which an asset will be displayed. Applicable to the following creative types: all RICH_MEDIA.
 * @property {dfareporting(v2.6).Size} expandedDimension Detected expanded dimension for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
 * @property {string} fileSize File size associated with this creative asset. This is a read-only field. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT.
@@ -19020,7 +19021,7 @@ Note: FLASH_INPAGE, HTML5_BANNER, and IMAGE are only used for existing creatives
 * @property {string} positionTopUnit Offset top unit for an asset. This is a read-only field if the asset displayType is ASSET_DISPLAY_TYPE_OVERLAY. Applicable to the following creative types: all RICH_MEDIA.
 * @property {string} progressiveServingUrl Progressive URL for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
 * @property {boolean} pushdown Whether the asset pushes down other content. Applicable to the following creative types: all RICH_MEDIA. Additionally, only applicable when the asset offsets are 0, the collapsedSize.width matches size.width, and the collapsedSize.height is less than size.height.
-* @property {number} pushdownDuration Pushdown duration in seconds for an asset. Must be between 0 and 9.99. Applicable to the following creative types: all RICH_MEDIA.Additionally, only applicable when the asset pushdown field is true, the offsets are 0, the collapsedSize.width matches size.width, and the collapsedSize.height is less than size.height.
+* @property {number} pushdownDuration Pushdown duration in seconds for an asset. Applicable to the following creative types: all RICH_MEDIA.Additionally, only applicable when the asset pushdown field is true, the offsets are 0, the collapsedSize.width matches size.width, and the collapsedSize.height is less than size.height. Acceptable values are 0 to 9.99, inclusive.
 * @property {string} role Role of the asset in relation to creative. Applicable to all but the following creative types: all REDIRECT and TRACKING_TEXT. This is a required field.
 PRIMARY applies to DISPLAY, FLASH_INPAGE, HTML5_BANNER, IMAGE, DISPLAY_IMAGE_GALLERY, all RICH_MEDIA (which may contain multiple primary assets), and all VPAID creatives.
 BACKUP_IMAGE applies to FLASH_INPAGE, HTML5_BANNER, all RICH_MEDIA, and all VPAID creatives. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
@@ -19038,7 +19039,7 @@ For VPAID_LINEAR_VIDEO creatives, PARENT_VIDEO, TRANSCODED_VIDEO and ALTERNATE_V
 * @property {boolean} verticallyLocked Whether the asset is vertically locked. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.
 * @property {number} videoDuration Detected video duration for video asset. This is a read-only field. Applicable to the following creative types: INSTREAM_VIDEO and all VPAID.
 * @property {string} windowMode Window mode options for flash assets. Applicable to the following creative types: FLASH_INPAGE, RICH_MEDIA_DISPLAY_EXPANDING, RICH_MEDIA_IM_EXPAND, RICH_MEDIA_DISPLAY_BANNER, and RICH_MEDIA_INPAGE_FLOATING.
-* @property {integer} zIndex zIndex value of an asset. This is a read-only field. Applicable to the following creative types: all RICH_MEDIA.Additionally, only applicable to assets whose displayType is NOT one of the following types: ASSET_DISPLAY_TYPE_INPAGE or ASSET_DISPLAY_TYPE_OVERLAY.
+* @property {integer} zIndex zIndex value of an asset. Applicable to the following creative types: all RICH_MEDIA.Additionally, only applicable to assets whose displayType is NOT one of the following types: ASSET_DISPLAY_TYPE_INPAGE or ASSET_DISPLAY_TYPE_OVERLAY. Acceptable values are -999999999 to 999999999, inclusive.
 * @property {string} zipFilename File name of zip file. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
 * @property {string} zipFilesize Size of zip file. This is a read-only field. Applicable to the following creative types: HTML5_BANNER.
 */
@@ -19108,6 +19109,7 @@ Possible values are:
 * @property {string} endTime Date and time that the assigned creative should stop serving. Must be later than the start time.
 * @property {dfareporting(v2.6).RichMediaExitOverride[]} richMediaExitOverrides Rich media exit overrides for this creative assignment.
 Applicable when the creative type is any of the following: 
+- DISPLAY
 - RICH_MEDIA_INPAGE
 - RICH_MEDIA_INPAGE_FLOATING
 - RICH_MEDIA_IM_EXPAND
@@ -19116,13 +19118,12 @@ Applicable when the creative type is any of the following:
 - RICH_MEDIA_MOBILE_IN_APP
 - RICH_MEDIA_MULTI_FLOATING
 - RICH_MEDIA_PEEL_DOWN
-- ADVANCED_BANNER
 - VPAID_LINEAR
 - VPAID_NON_LINEAR
-* @property {integer} sequence Sequence number of the creative assignment, applicable when the rotation type is CREATIVE_ROTATION_TYPE_SEQUENTIAL.
+* @property {integer} sequence Sequence number of the creative assignment, applicable when the rotation type is CREATIVE_ROTATION_TYPE_SEQUENTIAL. Acceptable values are 1 to 65535, inclusive.
 * @property {boolean} sslCompliant Whether the creative to be assigned is SSL-compliant. This is a read-only field that is auto-generated when the ad is inserted or updated.
 * @property {string} startTime Date and time that the assigned creative should start serving.
-* @property {integer} weight Weight of the creative assignment, applicable when the rotation type is CREATIVE_ROTATION_TYPE_RANDOM.
+* @property {integer} weight Weight of the creative assignment, applicable when the rotation type is CREATIVE_ROTATION_TYPE_RANDOM. Value must be greater than or equal to 1.
 */
 /**
  * @typedef CreativeCustomEvent
@@ -19186,18 +19187,15 @@ Applicable when the creative type is any of the following:
  * @typedef CreativeGroup
  * @memberOf! dfareporting(v2.6)
  * @type object
-* @property {string} accountId Account ID of this creative group. This is a read-only field that can be left blank.
-* @property {string} advertiserId Advertiser ID of this creative group. This is a required field on insertion.
-* @property {dfareporting(v2.6).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
-* @property {integer} groupNumber Subgroup of the creative group. Assign your creative groups to one of the following subgroups in order to filter or manage them more easily. This field is required on insertion and is read-only after insertion.
-Acceptable values are: 
-- 1
-- 2
-* @property {string} id ID of this creative group. This is a read-only, auto-generated field.
-* @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeGroup&quot;.
-* @property {string} name Name of this creative group. This is a required field and must be less than 256 characters long and unique among creative groups of the same advertiser.
-* @property {string} subaccountId Subaccount ID of this creative group. This is a read-only field that can be left blank.
-*/
+ * @property {string} accountId Account ID of this creative group. This is a read-only field that can be left blank.
+ * @property {string} advertiserId Advertiser ID of this creative group. This is a required field on insertion.
+ * @property {dfareporting(v2.6).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
+ * @property {integer} groupNumber Subgroup of the creative group. Assign your creative groups to a subgroup in order to filter or manage them more easily. This field is required on insertion and is read-only after insertion. Acceptable values are 1 to 2, inclusive.
+ * @property {string} id ID of this creative group. This is a read-only, auto-generated field.
+ * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeGroup&quot;.
+ * @property {string} name Name of this creative group. This is a required field and must be less than 256 characters long and unique among creative groups of the same advertiser.
+ * @property {string} subaccountId Subaccount ID of this creative group. This is a read-only field that can be left blank.
+ */
 /**
  * @typedef CreativeGroupAssignment
  * @memberOf! dfareporting(v2.6)
@@ -19294,7 +19292,7 @@ Acceptable values are:
 - &quot;THURSDAY&quot;
 - &quot;FRIDAY&quot;
 - &quot;SATURDAY&quot;
-* @property {integer[]} hoursOfDay Hours of the day when the ad will serve. Must be an integer between 0 and 23 (inclusive), where 0 is midnight to 1 AM, and 23 is 11 PM to midnight. Can be specified with days of week, in which case the ad would serve during these hours on the specified days. For example, if Monday, Wednesday, Friday are the days of week specified and 9-10am, 3-5pm (hours 9, 15, and 16) is specified, the ad would serve Monday, Wednesdays, and Fridays at 9-10am and 3-5pm.
+* @property {integer[]} hoursOfDay Hours of the day when the ad will serve, where 0 is midnight to 1 AM and 23 is 11 PM to midnight. Can be specified with days of week, in which case the ad would serve during these hours on the specified days. For example if Monday, Wednesday, Friday are the days of week specified and 9-10am, 3-5pm (hours 9, 15, and 16) is specified, the ad would serve Monday, Wednesdays, and Fridays at 9-10am and 3-5pm. Acceptable values are 0 to 23, inclusive.
 * @property {boolean} userLocalTime Whether or not to use the user&#39;s local time. If false, the America/New York time zone applies.
 */
 /**
@@ -19310,7 +19308,7 @@ Acceptable values are:
  * @type object
  * @property {dfareporting(v2.6).FrequencyCap} frequencyCap Limit on the number of times an individual user can be served the ad within a specified period of time.
  * @property {boolean} hardCutoff Whether or not hard cutoff is enabled. If true, the ad will not serve after the end date and time. Otherwise the ad will continue to be served until it has reached its delivery goals.
- * @property {string} impressionRatio Impression ratio for this ad. This ratio determines how often each ad is served relative to the others. For example, if ad A has an impression ratio of 1 and ad B has an impression ratio of 3, then DCM will serve ad B three times as often as ad A. Must be between 1 and 10.
+ * @property {string} impressionRatio Impression ratio for this ad. This ratio determines how often each ad is served relative to the others. For example, if ad A has an impression ratio of 1 and ad B has an impression ratio of 3, then DCM will serve ad B three times as often as ad A. Acceptable values are 1 to 10, inclusive.
  * @property {string} priority Serving priority of an ad, with respect to other ads. The lower the priority number, the greater the priority with which it is served.
  */
 /**
@@ -19374,8 +19372,8 @@ Acceptable values are:
  * @type object
 * @property {boolean} active Whether this directory site is active.
 * @property {dfareporting(v2.6).DirectorySiteContactAssignment[]} contactAssignments Directory site contacts.
-* @property {string} countryId Country ID of this directory site.
-* @property {string} currencyId Currency ID of this directory site.
+* @property {string} countryId Country ID of this directory site. This is a read-only field.
+* @property {string} currencyId Currency ID of this directory site. This is a read-only field.
 Possible values are: 
 - &quot;1&quot; for USD 
 - &quot;2&quot; for GBP 
@@ -19423,8 +19421,9 @@ Possible values are:
 - &quot;45&quot; for RUB 
 - &quot;46&quot; for AED 
 - &quot;47&quot; for BGN 
-- &quot;48&quot; for HRK
-* @property {string} description Description of this directory site.
+- &quot;48&quot; for HRK 
+- &quot;49&quot; for MXN
+* @property {string} description Description of this directory site. This is a read-only field.
 * @property {string} id ID of this directory site. This is a read-only, auto-generated field.
 * @property {dfareporting(v2.6).DimensionValue} idDimensionValue Dimension value for the ID of this directory site. This is a read-only, auto-generated field.
 * @property {string[]} inpageTagFormats Tag types for regular placements.
@@ -19613,7 +19612,7 @@ Acceptable values are:
 * @property {string} accountId Account ID of this floodlight activity. This is a read-only field that can be left blank.
 * @property {string} advertiserId Advertiser ID of this floodlight activity. If this field is left blank, the value will be copied over either from the activity group&#39;s advertiser or the existing activity&#39;s advertiser.
 * @property {dfareporting(v2.6).DimensionValue} advertiserIdDimensionValue Dimension value for the ID of the advertiser. This is a read-only, auto-generated field.
-* @property {string} cacheBustingType Code type used for cache busting in the generated tag.
+* @property {string} cacheBustingType Code type used for cache busting in the generated tag. Applicable only when floodlightActivityGroupType is COUNTER and countingMethod is STANDARD_COUNTING or UNIQUE_COUNTING.
 * @property {string} countingMethod Counting method for conversions for this floodlight activity. This is a required field.
 * @property {dfareporting(v2.6).FloodlightActivityDynamicTag[]} defaultTags Dynamic floodlight tags.
 * @property {string} expectedUrl URL where this tag will be deployed. If specified, must be less than 256 characters long.
@@ -19751,8 +19750,8 @@ Acceptable values are:
  * @typedef FrequencyCap
  * @memberOf! dfareporting(v2.6)
  * @type object
- * @property {string} duration Duration of time, in seconds, for this frequency cap. The maximum duration is 90 days in seconds, or 7,776,000.
- * @property {string} impressions Number of times an individual user can be served the ad within the specified duration. The maximum allowed is 15.
+ * @property {string} duration Duration of time, in seconds, for this frequency cap. The maximum duration is 90 days. Acceptable values are 1 to 7776000, inclusive.
+ * @property {string} impressions Number of times an individual user can be served the ad within the specified duration. Acceptable values are 1 to 15, inclusive.
  */
 /**
  * @typedef FsCommand
@@ -19896,8 +19895,8 @@ Acceptable values are:
  * @typedef LookbackConfiguration
  * @memberOf! dfareporting(v2.6)
  * @type object
- * @property {integer} clickDuration Lookback window, in days, from the last time a given user clicked on one of your ads. If you enter 0, clicks will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used.
- * @property {integer} postImpressionActivitiesDuration Lookback window, in days, from the last time a given user viewed one of your ads. If you enter 0, impressions will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used.
+ * @property {integer} clickDuration Lookback window, in days, from the last time a given user clicked on one of your ads. If you enter 0, clicks will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used. Acceptable values are 0 to 90, inclusive.
+ * @property {integer} postImpressionActivitiesDuration Lookback window, in days, from the last time a given user viewed one of your ads. If you enter 0, impressions will not be considered as triggering events for floodlight tracking. If you leave this field blank, the default value for your account will be used. Acceptable values are 0 to 90, inclusive.
  */
 /**
  * @typedef Metric
@@ -20005,7 +20004,7 @@ Acceptable values are:
  * @type object
  * @property {string} floodlightActivityId Floodlight activity ID of this optimization activity. This is a required field.
  * @property {dfareporting(v2.6).DimensionValue} floodlightActivityIdDimensionValue Dimension value for the ID of the floodlight activity. This is a read-only, auto-generated field.
- * @property {integer} weight Weight associated with this optimization. Must be greater than 1. The weight assigned will be understood in proportion to the weights assigned to the other optimization activities.
+ * @property {integer} weight Weight associated with this optimization. The weight assigned will be understood in proportion to the weights assigned to the other optimization activities. Value must be greater than or equal to 1.
  */
 /**
  * @typedef Order
@@ -20140,6 +20139,8 @@ Acceptable values are:
 - &quot;PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT&quot;
 - &quot;PLACEMENT_TAG_CLICK_COMMANDS&quot;
 - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH&quot;
+- &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3&quot;
+- &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4&quot;
 - &quot;PLACEMENT_TAG_TRACKING&quot;
 - &quot;PLACEMENT_TAG_TRACKING_IFRAME&quot;
 - &quot;PLACEMENT_TAG_TRACKING_JAVASCRIPT&quot;
@@ -20309,9 +20310,9 @@ Acceptable values are:
  * @type object
  * @property {string} endDate Pricing period end date. This date must be later than, or the same day as, the pricing period start date, but not later than the placement end date. The period end date can be the same date as the period start date. If, for example, you set 6/25/2015 as both the start and end dates, the effective pricing period date is just that day only, 6/25/2015. The hours, minutes, and seconds of the end date should not be set, as doing so will result in an error.
  * @property {string} pricingComment Comments for this pricing period.
- * @property {string} rateOrCostNanos Rate or cost of this pricing period.
+ * @property {string} rateOrCostNanos Rate or cost of this pricing period in nanos (i.e., multipled by 1000000000). Acceptable values are 0 to 1000000000000000000, inclusive.
  * @property {string} startDate Pricing period start date. This date must be later than, or the same day as, the placement start date. The hours, minutes, and seconds of the start date should not be set, as doing so will result in an error.
- * @property {string} units Units of this pricing period.
+ * @property {string} units Units of this pricing period. Acceptable values are 0 to 10000000000, inclusive.
  */
 /**
  * @typedef Project
@@ -20396,7 +20397,7 @@ Acceptable values are:
  * @property {string} description Remarketing list description.
  * @property {string} id Remarketing list ID. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingList&quot;.
- * @property {string} lifeSpan Number of days that a user should remain in the remarketing list without an impression.
+ * @property {string} lifeSpan Number of days that a user should remain in the remarketing list without an impression. Acceptable values are 1 to 540, inclusive.
  * @property {dfareporting(v2.6).ListPopulationRule} listPopulationRule Rule used to populate the remarketing list with users.
  * @property {string} listSize Number of users currently in the list. This is a read-only field.
  * @property {string} listSource Product from which this remarketing list was originated.
@@ -20555,11 +20556,11 @@ Acceptable values are:
  * @typedef Size
  * @memberOf! dfareporting(v2.6)
  * @type object
- * @property {integer} height Height of this size.
+ * @property {integer} height Height of this size. Acceptable values are 0 to 32767, inclusive.
  * @property {boolean} iab IAB standard size. This is a read-only, auto-generated field.
  * @property {string} id ID of this size. This is a read-only, auto-generated field.
  * @property {string} kind Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#size&quot;.
- * @property {integer} width Width of this size.
+ * @property {integer} width Width of this size. Acceptable values are 0 to 32767, inclusive.
  */
 /**
  * @typedef SizesListResponse
@@ -20598,9 +20599,9 @@ Acceptable values are:
  * @typedef TagData
  * @memberOf! dfareporting(v2.6)
  * @type object
- * @property {string} adId Ad associated with this placement tag.
+ * @property {string} adId Ad associated with this placement tag. Applicable only when format is PLACEMENT_TAG_TRACKING.
  * @property {string} clickTag Tag string to record a click.
- * @property {string} creativeId Creative associated with this placement tag.
+ * @property {string} creativeId Creative associated with this placement tag. Applicable only when format is PLACEMENT_TAG_TRACKING.
  * @property {string} format TagData tag format of this tag.
  * @property {string} impressionTag Tag string for serving an ad.
  */

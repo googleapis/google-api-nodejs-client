@@ -122,10 +122,10 @@ function Ml(options) { // eslint-disable-line
        * @memberOf! ml(v1)
        *
        * @param {object} params Parameters for request
+       * @param {integer=} params.pageSize The standard list page size.
        * @param {string=} params.filter The standard list filter.
        * @param {string} params.name The name of the operation collection.
        * @param {string=} params.pageToken The standard list page token.
-       * @param {integer=} params.pageSize The standard list page size.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -405,41 +405,6 @@ function Ml(options) { // eslint-disable-line
       versions: {
 
         /**
-         * ml.projects.models.versions.delete
-         *
-         * @desc Deletes a model version.  Each model can have multiple versions deployed and in use at any given time. Use this method to remove a single version.  Note: You cannot delete the version that is set as the default version of the model unless it is the only remaining version.
-         *
-         * @alias ml.projects.models.versions.delete
-         * @memberOf! ml(v1)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name Required. The name of the version. You can get the names of all the versions of a model by calling [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).  Authorization: requires `Editor` role on the parent project.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        delete: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const parameters = {
-            options: utils.extend({
-              url: 'https://ml.googleapis.com/v1/{name}',
-              method: 'DELETE'
-            }, options),
-            params: params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
          * ml.projects.models.versions.list
          *
          * @desc Gets basic information about all the versions of a model.  If you expect that a model has a lot of versions, or if you need to handle only a limited number of results at a time, you can request that the list be retrieved in batches (called pages):
@@ -581,6 +546,41 @@ function Ml(options) { // eslint-disable-line
           };
 
           return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * ml.projects.models.versions.delete
+         *
+         * @desc Deletes a model version.  Each model can have multiple versions deployed and in use at any given time. Use this method to remove a single version.  Note: You cannot delete the version that is set as the default version of the model unless it is the only remaining version.
+         *
+         * @alias ml.projects.models.versions.delete
+         * @memberOf! ml(v1)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name Required. The name of the version. You can get the names of all the versions of a model by calling [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).  Authorization: requires `Editor` role on the parent project.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: utils.extend({
+              url: 'https://ml.googleapis.com/v1/{name}',
+              method: 'DELETE'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
         }
       }
     },
@@ -596,10 +596,10 @@ function Ml(options) { // eslint-disable-line
        * @memberOf! ml(v1)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.pageToken Optional. A page token to request the next page of results.  You get the token from the `next_page_token` field of the response from the previous call.
-       * @param {integer=} params.pageSize Optional. The number of jobs to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field.  The default value is 20, and the maximum page size is 100.
        * @param {string} params.parent Required. The name of the project for which to list jobs.  Authorization: requires `Viewer` role on the specified project.
        * @param {string=} params.filter Optional. Specifies the subset of jobs to retrieve.
+       * @param {string=} params.pageToken Optional. A page token to request the next page of results.  You get the token from the `next_page_token` field of the response from the previous call.
+       * @param {integer=} params.pageSize Optional. The number of jobs to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field.  The default value is 20, and the maximum page size is 100.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -736,6 +736,24 @@ function Ml(options) { // eslint-disable-line
 }
 
 /**
+ * @typedef GoogleCloudMlV1__HyperparameterOutput
+ * @memberOf! ml(v1)
+ * @type object
+ * @property {ml(v1).GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric[]} allMetrics All recorded object metrics for this trial.
+ * @property {ml(v1).GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric} finalMetric The final objective metric seen for this trial.
+ * @property {object} hyperparameters The hyperparameters given to this trial.
+ * @property {string} trialId The trial id for these results.
+ */
+/**
+ * @typedef GoogleCloudMlV1__PredictionOutput
+ * @memberOf! ml(v1)
+ * @type object
+ * @property {string} errorCount The number of data instances which resulted in errors.
+ * @property {string} outputPath The output Google Cloud Storage location provided at the job creation time.
+ * @property {number} nodeHours Node hours used by the batch prediction job.
+ * @property {string} predictionCount The number of generated predictions.
+ */
+/**
  * @typedef GoogleLongrunning__ListOperationsResponse
  * @memberOf! ml(v1)
  * @type object
@@ -755,12 +773,12 @@ deployment.
  * @typedef GoogleCloudMlV1__TrainingOutput
  * @memberOf! ml(v1)
  * @type object
-* @property {ml(v1).GoogleCloudMlV1__HyperparameterOutput[]} trials Results for individual Hyperparameter trials.
-Only set for hyperparameter tuning jobs.
 * @property {string} completedTrialCount The number of hyperparameter tuning trials that completed successfully.
 Only set for hyperparameter tuning jobs.
 * @property {boolean} isHyperparameterTuningJob Whether this job is a hyperparameter tuning job.
 * @property {number} consumedMLUnits The amount of ML units consumed by the job.
+* @property {ml(v1).GoogleCloudMlV1__HyperparameterOutput[]} trials Results for individual Hyperparameter trials.
+Only set for hyperparameter tuning jobs.
 */
 /**
  * @typedef GoogleCloudMlV1__PredictRequest
@@ -780,20 +798,6 @@ Required. The prediction request body.
  * @typedef GoogleCloudMlV1__Version
  * @memberOf! ml(v1)
  * @type object
-* @property {string} createTime Output only. The time the version was created.
-* @property {ml(v1).GoogleCloudMlV1__ManualScaling} manualScaling Optional. Manually select the number of nodes to use for serving the
-model. If unset (i.e., by default), the number of nodes used to serve
-the model automatically scales with traffic. However, care should be
-taken to ramp up traffic according to the model&#39;s ability to scale. If
-your model needs to handle bursts of traffic beyond it&#39;s ability to
-scale, it is recommended you set this field appropriately.
-* @property {string} name Required.The name specified for the version when it was created.
-
-The version name must be unique within the model it is created in.
-* @property {string} lastUseTime Output only. The time the version was last used for prediction.
-* @property {string} runtimeVersion Optional. The Google Cloud ML runtime version to use for this deployment.
-If not set, Google Cloud ML will choose a version.
-* @property {string} description Optional. The description specified for the version when it was created.
 * @property {string} deploymentUri Required. The Google Cloud Storage location of the trained model used to
 create the version. See the
 [overview of model
@@ -811,36 +815,49 @@ requests that do not specify a version.
 
 You can change the default version by calling
 [projects.methods.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).
+* @property {string} createTime Output only. The time the version was created.
+* @property {ml(v1).GoogleCloudMlV1__ManualScaling} manualScaling Optional. Manually select the number of nodes to use for serving the
+model. If unset (i.e., by default), the number of nodes used to serve
+the model automatically scales with traffic. However, care should be
+taken to ramp up traffic according to the model&#39;s ability to scale. If
+your model needs to handle bursts of traffic beyond it&#39;s ability to
+scale, it is recommended you set this field appropriately.
+* @property {string} name Required.The name specified for the version when it was created.
+
+The version name must be unique within the model it is created in.
+* @property {string} lastUseTime Output only. The time the version was last used for prediction.
+* @property {string} runtimeVersion Optional. The Google Cloud ML runtime version to use for this deployment.
+If not set, Google Cloud ML will choose a version.
+* @property {string} description Optional. The description specified for the version when it was created.
 */
 /**
  * @typedef GoogleCloudMlV1__ParameterSpec
  * @memberOf! ml(v1)
  * @type object
-* @property {number} minValue Required if type is `DOUBLE` or `INTEGER`. This field
-should be unset if type is `CATEGORICAL`. This value should be integers if
-type is INTEGER.
 * @property {number[]} discreteValues Required if type is `DISCRETE`.
 A list of feasible points.
 The list should be in strictly increasing order. For instance, this
 parameter might have possible settings of 1.5, 2.5, and 4.0. This list
 should not contain more than 1,000 values.
-* @property {number} maxValue Required if typeis `DOUBLE` or `INTEGER`. This field
-should be unset if type is `CATEGORICAL`. This value should be integers if
-type is `INTEGER`.
 * @property {string} scaleType Optional. How the parameter should be scaled to the hypercube.
 Leave unset for categorical parameters.
 Some kind of scaling is strongly recommended for real or integral
 parameters (e.g., `UNIT_LINEAR_SCALE`).
+* @property {number} maxValue Required if typeis `DOUBLE` or `INTEGER`. This field
+should be unset if type is `CATEGORICAL`. This value should be integers if
+type is `INTEGER`.
 * @property {string} type Required. The type of the parameter.
+* @property {string[]} categoricalValues Required if type is `CATEGORICAL`. The list of possible categories.
 * @property {string} parameterName Required. The parameter name must be unique amongst all ParameterConfigs in
 a HyperparameterSpec message. E.g., &quot;learning_rate&quot;.
-* @property {string[]} categoricalValues Required if type is `CATEGORICAL`. The list of possible categories.
+* @property {number} minValue Required if type is `DOUBLE` or `INTEGER`. This field
+should be unset if type is `CATEGORICAL`. This value should be integers if
+type is INTEGER.
 */
 /**
  * @typedef GoogleCloudMlV1__PredictionInput
  * @memberOf! ml(v1)
  * @type object
-* @property {string} region Required. The Google Compute Engine region to run the prediction job in.
 * @property {string} versionName Use this field if you want to specify a version of the model to use. The
 string is formatted the same way as `model_version`, with the addition
 of the version information:
@@ -851,10 +868,10 @@ model. The string must use the following format:
 
 `&quot;projects/&lt;var&gt;[YOUR_PROJECT]&lt;/var&gt;/models/&lt;var&gt;[YOUR_MODEL]&lt;/var&gt;&quot;`
 * @property {string} outputPath Required. The output Google Cloud Storage location.
-* @property {string} uri Use this field if you want to specify a Google Cloud Storage path for
-the model to use.
 * @property {string} maxWorkerCount Optional. The maximum number of workers to be used for parallel processing.
 Defaults to 10 if not specified.
+* @property {string} uri Use this field if you want to specify a Google Cloud Storage path for
+the model to use.
 * @property {string} dataFormat Required. The format of the input data files.
 * @property {string} runtimeVersion Optional. The Google Cloud ML runtime version to use for this batch
 prediction. If not set, Google Cloud ML will pick the runtime version used
@@ -863,40 +880,36 @@ latest stable version when model version information is not available
 such as when the model is specified by uri.
 * @property {string[]} inputPaths Required. The Google Cloud Storage location of the input data files.
 May contain wildcards.
+* @property {string} region Required. The Google Compute Engine region to run the prediction job in.
 */
 /**
  * @typedef GoogleCloudMlV1beta1__OperationMetadata
  * @memberOf! ml(v1)
  * @type object
+ * @property {string} modelName Contains the name of the model associated with the operation.
  * @property {ml(v1).GoogleCloudMlV1beta1__Version} version Contains the version associated with the operation.
  * @property {string} endTime The time operation processing completed.
  * @property {string} operationType The operation type.
  * @property {string} startTime The time operation processing started.
  * @property {boolean} isCancellationRequested Indicates whether a request to cancel this operation has been made.
  * @property {string} createTime The time the operation was submitted.
- * @property {string} modelName Contains the name of the model associated with the operation.
  */
 /**
  * @typedef GoogleCloudMlV1__OperationMetadata
  * @memberOf! ml(v1)
  * @type object
- * @property {string} operationType The operation type.
- * @property {string} startTime The time operation processing started.
- * @property {boolean} isCancellationRequested Indicates whether a request to cancel this operation has been made.
  * @property {string} createTime The time the operation was submitted.
  * @property {string} modelName Contains the name of the model associated with the operation.
  * @property {ml(v1).GoogleCloudMlV1__Version} version Contains the version associated with the operation.
  * @property {string} endTime The time operation processing completed.
+ * @property {string} operationType The operation type.
+ * @property {string} startTime The time operation processing started.
+ * @property {boolean} isCancellationRequested Indicates whether a request to cancel this operation has been made.
  */
 /**
  * @typedef GoogleCloudMlV1__HyperparameterSpec
  * @memberOf! ml(v1)
  * @type object
-* @property {ml(v1).GoogleCloudMlV1__ParameterSpec[]} params Required. The set of parameters to tune.
-* @property {integer} maxTrials Optional. How many training trials should be attempted to optimize
-the specified hyperparameters.
-
-Defaults to one.
 * @property {integer} maxParallelTrials Optional. The number of training trials to run concurrently.
 You can reduce the time it takes to perform hyperparameter tuning by adding
 trials in parallel. However, each trail only benefits from the information
@@ -916,14 +929,19 @@ current versions of Tensorflow, this tag name should exactly match what is
 shown in Tensorboard, including all scopes.  For versions of Tensorflow
 prior to 0.12, this should be only the tag passed to tf.Summary.
 By default, &quot;training/hptuning/metric&quot; will be used.
+* @property {ml(v1).GoogleCloudMlV1__ParameterSpec[]} params Required. The set of parameters to tune.
+* @property {integer} maxTrials Optional. How many training trials should be attempted to optimize
+the specified hyperparameters.
+
+Defaults to one.
 */
 /**
  * @typedef GoogleCloudMlV1__ListJobsResponse
  * @memberOf! ml(v1)
  * @type object
+* @property {ml(v1).GoogleCloudMlV1__Job[]} jobs The list of jobs.
 * @property {string} nextPageToken Optional. Pass this token as the `page_token` field of the request for a
 subsequent call.
-* @property {ml(v1).GoogleCloudMlV1__Job[]} jobs The list of jobs.
 */
 /**
  * @typedef GoogleCloudMlV1__SetDefaultVersionRequest
@@ -958,11 +976,6 @@ originally returns it. If you use the default HTTP mapping, the
  * @typedef GoogleCloudMlV1__Model
  * @memberOf! ml(v1)
  * @type object
-* @property {ml(v1).GoogleCloudMlV1__Version} defaultVersion Output only. The default version of the model. This version will be used to
-handle prediction requests that do not specify a version.
-
-You can change the default version by calling
-[projects.methods.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).
 * @property {string[]} regions Optional. The list of regions where the model is going to be deployed.
 Currently only one region per model is supported.
 Defaults to &#39;us-central1&#39; if nothing is set.
@@ -978,6 +991,11 @@ The model name must be unique within the project it is created in.
 * @property {string} description Optional. The description specified for the model when it was created.
 * @property {boolean} onlinePredictionLogging Optional. If true, enables StackDriver Logging for online prediction.
 Default is false.
+* @property {ml(v1).GoogleCloudMlV1__Version} defaultVersion Output only. The default version of the model. This version will be used to
+handle prediction requests that do not specify a version.
+
+You can change the default version by calling
+[projects.methods.versions.setDefault](/ml-engine/reference/rest/v1/projects.models.versions/setDefault).
 */
 /**
  * @typedef GoogleProtobuf__Empty
@@ -1010,46 +1028,17 @@ deployment.
  * @typedef GoogleRpc__Status
  * @memberOf! ml(v1)
  * @type object
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
 * @property {object[]} details A list of messages that carry the error details.  There will be a
 common set of message types for APIs to use.
 * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-*/
-/**
- * @typedef GoogleCloudMlV1__ListModelsResponse
- * @memberOf! ml(v1)
- * @type object
-* @property {string} nextPageToken Optional. Pass this token as the `page_token` field of the request for a
-subsequent call.
-* @property {ml(v1).GoogleCloudMlV1__Model[]} models The list of models.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
 */
 /**
  * @typedef GoogleCloudMlV1__TrainingInput
  * @memberOf! ml(v1)
  * @type object
-* @property {string} scaleTier Required. Specifies the machine types, the number of replicas for workers
-and parameter servers.
-* @property {string} jobDir Optional. A Google Cloud Storage path in which to store training outputs
-and other data needed for training. This path is passed to your TensorFlow
-program as the &#39;job_dir&#39; command-line argument. The benefit of specifying
-this field is that Cloud ML validates the path for use in training.
-* @property {ml(v1).GoogleCloudMlV1__HyperparameterSpec} hyperparameters Optional. The set of Hyperparameters to tune.
-* @property {string} parameterServerCount Optional. The number of parameter server replicas to use for the training
-job. Each replica in the cluster will be of the type specified in
-`parameter_server_type`.
-
-This value can only be used when `scale_tier` is set to `CUSTOM`.If you
-set this value, you must also set `parameter_server_type`.
-* @property {string[]} packageUris Required. The Google Cloud Storage location of the packages with
-the training program and any additional dependencies.
-The maximum number of package URIs is 100.
-* @property {string} workerCount Optional. The number of worker replicas to use for the training job. Each
-replica in the cluster will be of the type specified in `worker_type`.
-
-This value can only be used when `scale_tier` is set to `CUSTOM`. If you
-set this value, you must also set `worker_type`.
 * @property {string} masterType Optional. Specifies the type of virtual machine to use for your training
 job&#39;s master worker.
 
@@ -1120,6 +1109,35 @@ The supported values are the same as those described in the entry for
 
 This value must be present when `scaleTier` is set to `CUSTOM` and
 `parameter_server_count` is greater than zero.
+* @property {string} scaleTier Required. Specifies the machine types, the number of replicas for workers
+and parameter servers.
+* @property {string} jobDir Optional. A Google Cloud Storage path in which to store training outputs
+and other data needed for training. This path is passed to your TensorFlow
+program as the &#39;job_dir&#39; command-line argument. The benefit of specifying
+this field is that Cloud ML validates the path for use in training.
+* @property {ml(v1).GoogleCloudMlV1__HyperparameterSpec} hyperparameters Optional. The set of Hyperparameters to tune.
+* @property {string} parameterServerCount Optional. The number of parameter server replicas to use for the training
+job. Each replica in the cluster will be of the type specified in
+`parameter_server_type`.
+
+This value can only be used when `scale_tier` is set to `CUSTOM`.If you
+set this value, you must also set `parameter_server_type`.
+* @property {string[]} packageUris Required. The Google Cloud Storage location of the packages with
+the training program and any additional dependencies.
+The maximum number of package URIs is 100.
+* @property {string} workerCount Optional. The number of worker replicas to use for the training job. Each
+replica in the cluster will be of the type specified in `worker_type`.
+
+This value can only be used when `scale_tier` is set to `CUSTOM`. If you
+set this value, you must also set `worker_type`.
+*/
+/**
+ * @typedef GoogleCloudMlV1__ListModelsResponse
+ * @memberOf! ml(v1)
+ * @type object
+* @property {string} nextPageToken Optional. Pass this token as the `page_token` field of the request for a
+subsequent call.
+* @property {ml(v1).GoogleCloudMlV1__Model[]} models The list of models.
 */
 /**
  * @typedef GoogleCloudMlV1__Job
@@ -1133,26 +1151,23 @@ This value must be present when `scaleTier` is set to `CUSTOM` and
  * @property {string} startTime Output only. When the job processing was started.
  * @property {ml(v1).GoogleCloudMlV1__PredictionOutput} predictionOutput The current prediction job result.
  * @property {ml(v1).GoogleCloudMlV1__TrainingOutput} trainingOutput The current training job result.
- * @property {string} createTime Output only. When the job was created.
  * @property {ml(v1).GoogleCloudMlV1__TrainingInput} trainingInput Input parameters to create a training job.
+ * @property {string} createTime Output only. When the job was created.
  */
 /**
  * @typedef GoogleApi__HttpBody
  * @memberOf! ml(v1)
  * @type object
- * @property {string} contentType The HTTP Content-Type string representing the content type of the body.
  * @property {string} data HTTP body binary data.
+ * @property {string} contentType The HTTP Content-Type string representing the content type of the body.
  */
 /**
  * @typedef GoogleCloudMlV1beta1__Version
  * @memberOf! ml(v1)
  * @type object
-* @property {string} name Required.The name specified for the version when it was created.
-
-The version name must be unique within the model it is created in.
+* @property {string} lastUseTime Output only. The time the version was last used for prediction.
 * @property {string} runtimeVersion Optional. The Google Cloud ML runtime version to use for this deployment.
 If not set, Google Cloud ML will choose a version.
-* @property {string} lastUseTime Output only. The time the version was last used for prediction.
 * @property {string} description Optional. The description specified for the version when it was created.
 * @property {string} deploymentUri Required. The Google Cloud Storage location of the trained model used to
 create the version. See the
@@ -1178,6 +1193,9 @@ the model automatically scales with traffic. However, care should be
 taken to ramp up traffic according to the model&#39;s ability to scale. If
 your model needs to handle bursts of traffic beyond it&#39;s ability to
 scale, it is recommended you set this field appropriately.
+* @property {string} name Required.The name specified for the version when it was created.
+
+The version name must be unique within the model it is created in.
 */
 /**
  * @typedef GoogleCloudMlV1__GetConfigResponse
@@ -1185,23 +1203,5 @@ scale, it is recommended you set this field appropriately.
  * @type object
  * @property {string} serviceAccountProject The project number for `service_account`.
  * @property {string} serviceAccount The service account Cloud ML uses to access resources in the project.
- */
-/**
- * @typedef GoogleCloudMlV1__HyperparameterOutput
- * @memberOf! ml(v1)
- * @type object
- * @property {ml(v1).GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric[]} allMetrics All recorded object metrics for this trial.
- * @property {ml(v1).GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric} finalMetric The final objective metric seen for this trial.
- * @property {object} hyperparameters The hyperparameters given to this trial.
- * @property {string} trialId The trial id for these results.
- */
-/**
- * @typedef GoogleCloudMlV1__PredictionOutput
- * @memberOf! ml(v1)
- * @type object
- * @property {string} errorCount The number of data instances which resulted in errors.
- * @property {string} outputPath The output Google Cloud Storage location provided at the job creation time.
- * @property {number} nodeHours Node hours used by the batch prediction job.
- * @property {string} predictionCount The number of generated predictions.
  */
 export = Ml;
