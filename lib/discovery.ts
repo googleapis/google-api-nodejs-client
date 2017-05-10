@@ -12,14 +12,14 @@
 // limitations under the License.
 
 import generatorUtils from '../scripts/generator_utils';
-const handleError = generatorUtils.handleError;
-const async = require('async');
-const fs = require('fs');
-const url = require('url');
-const util = require('util');
-const createAPIRequest = require('./apirequest');
+import * as async from 'async';
+import * as fs from 'fs';
+import * as url from 'url';
+import * as util from 'util';
+import createAPIRequest from './apirequest';
 import * as DefaultTransporter from 'google-auth-library/lib/transporters';
 
+const handleError = generatorUtils.handleError;
 const transporter = new DefaultTransporter();
 
 function getPathParams (params) {
@@ -288,4 +288,4 @@ Discovery.prototype.discoverAPI = function (apiDiscoveryUrl, callback) {
  * Export the Discovery object
  * @type {Discovery}
  */
-export = Discovery;
+export default Discovery;

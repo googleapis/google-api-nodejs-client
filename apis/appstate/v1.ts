@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google App State API
@@ -63,7 +62,7 @@ function Appstate(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}/clear',
           method: 'POST'
         }, options),
@@ -98,7 +97,7 @@ function Appstate(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
           method: 'DELETE'
         }, options),
@@ -133,7 +132,7 @@ function Appstate(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
           method: 'GET'
         }, options),
@@ -168,7 +167,7 @@ function Appstate(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/appstate/v1/states',
           method: 'GET'
         }, options),
@@ -205,7 +204,7 @@ function Appstate(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/appstate/v1/states/{stateKey}',
           method: 'PUT'
         }, options),

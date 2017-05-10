@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Play Game Services Management API
@@ -62,7 +61,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/achievements/{achievementId}/reset',
           method: 'POST'
         }, options),
@@ -96,7 +95,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/achievements/reset',
           method: 'POST'
         }, options),
@@ -130,7 +129,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/achievements/resetAllForAllPlayers',
           method: 'POST'
         }, options),
@@ -165,7 +164,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/achievements/{achievementId}/resetForAllPlayers',
           method: 'POST'
         }, options),
@@ -200,7 +199,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/achievements/resetMultipleForAllPlayers',
           method: 'POST'
         }, options),
@@ -241,7 +240,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden',
           method: 'GET'
         }, options),
@@ -280,7 +279,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/events/{eventId}/reset',
           method: 'POST'
         }, options),
@@ -314,7 +313,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/events/reset',
           method: 'POST'
         }, options),
@@ -348,7 +347,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/events/resetAllForAllPlayers',
           method: 'POST'
         }, options),
@@ -383,7 +382,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/events/{eventId}/resetForAllPlayers',
           method: 'POST'
         }, options),
@@ -418,7 +417,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/events/resetMultipleForAllPlayers',
           method: 'POST'
         }, options),
@@ -458,7 +457,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden/{playerId}',
           method: 'POST'
         }, options),
@@ -494,7 +493,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/applications/{applicationId}/players/hidden/{playerId}',
           method: 'DELETE'
         }, options),
@@ -533,7 +532,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/quests/{questId}/reset',
           method: 'POST'
         }, options),
@@ -567,7 +566,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/quests/reset',
           method: 'POST'
         }, options),
@@ -601,7 +600,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/quests/resetAllForAllPlayers',
           method: 'POST'
         }, options),
@@ -636,7 +635,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/quests/{questId}/resetForAllPlayers',
           method: 'POST'
         }, options),
@@ -671,7 +670,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/quests/resetMultipleForAllPlayers',
           method: 'POST'
         }, options),
@@ -709,7 +708,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/rooms/reset',
           method: 'POST'
         }, options),
@@ -743,7 +742,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/rooms/resetForAllPlayers',
           method: 'POST'
         }, options),
@@ -782,7 +781,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/leaderboards/{leaderboardId}/scores/reset',
           method: 'POST'
         }, options),
@@ -816,7 +815,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/scores/reset',
           method: 'POST'
         }, options),
@@ -850,7 +849,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/scores/resetAllForAllPlayers',
           method: 'POST'
         }, options),
@@ -885,7 +884,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/leaderboards/{leaderboardId}/scores/resetForAllPlayers',
           method: 'POST'
         }, options),
@@ -920,7 +919,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/scores/resetMultipleForAllPlayers',
           method: 'POST'
         }, options),
@@ -958,7 +957,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/turnbasedmatches/reset',
           method: 'POST'
         }, options),
@@ -992,7 +991,7 @@ function Gamesmanagement(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/games/v1management/turnbasedmatches/resetForAllPlayers',
           method: 'POST'
         }, options),

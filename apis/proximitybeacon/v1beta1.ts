@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Proximity Beacon API
@@ -62,7 +61,7 @@ function Proximitybeacon(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://proximitybeacon.googleapis.com/v1beta1/beaconinfo:getforobserved',
           method: 'POST'
         }, options),
@@ -101,7 +100,7 @@ function Proximitybeacon(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://proximitybeacon.googleapis.com/v1beta1/namespaces',
           method: 'GET'
         }, options),
@@ -123,8 +122,8 @@ function Proximitybeacon(options) { // eslint-disable-line
      * @memberOf! proximitybeacon(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.namespaceName Resource name of this namespace. Namespaces names have the format: <code>namespaces/<var>namespace</var></code>.
      * @param {string=} params.projectId The project id of the namespace to update. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
+     * @param {string} params.namespaceName Resource name of this namespace. Namespaces names have the format: <code>namespaces/<var>namespace</var></code>.
      * @param {proximitybeacon(v1beta1).Namespace} params.resource Request body data
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
@@ -138,7 +137,7 @@ function Proximitybeacon(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://proximitybeacon.googleapis.com/v1beta1/{namespaceName}',
           method: 'PUT'
         }, options),
@@ -176,7 +175,7 @@ function Proximitybeacon(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://proximitybeacon.googleapis.com/v1beta1/eidparams',
           method: 'GET'
         }, options),
@@ -192,116 +191,6 @@ function Proximitybeacon(options) { // eslint-disable-line
   };
 
   self.beacons = {
-
-    /**
-     * proximitybeacon.beacons.register
-     *
-     * @desc Registers a previously unregistered beacon given its `advertisedId`. These IDs are unique within the system. An ID can be registered only once.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **Is owner** or **Can edit** permissions in the Google Developers Console project.
-     *
-     * @alias proximitybeacon.beacons.register
-     * @memberOf! proximitybeacon(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.projectId The project id of the project the beacon will be registered to. If the project id is not specified then the project making the request is used. Optional.
-     * @param {proximitybeacon(v1beta1).Beacon} params.resource Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    register: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: utils.extend({
-          url: 'https://proximitybeacon.googleapis.com/v1beta1/beacons:register',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * proximitybeacon.beacons.list
-     *
-     * @desc Searches the beacon registry for beacons that match the given search criteria. Only those beacons that the client has permission to list will be returned.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **viewer**, **Is owner** or **Can edit** permissions in the Google Developers Console project.
-     *
-     * @alias proximitybeacon.beacons.list
-     * @memberOf! proximitybeacon(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.pageToken A pagination token obtained from a previous request to list beacons.
-     * @param {string=} params.q Filter query string that supports the following field filters:  * **description:`"<string>"`**   For example: **description:"Room 3"**   Returns beacons whose description matches tokens in the string "Room 3"   (not necessarily that exact string).   The string must be double-quoted. * **status:`<enum>`**   For example: **status:active**   Returns beacons whose status matches the given value. Values must be   one of the Beacon.Status enum values (case insensitive). Accepts   multiple filters which will be combined with OR logic. * **stability:`<enum>`**   For example: **stability:mobile**   Returns beacons whose expected stability matches the given value.   Values must be one of the Beacon.Stability enum values (case   insensitive). Accepts multiple filters which will be combined with   OR logic. * **place\_id:`"<string>"`**   For example: **place\_id:"ChIJVSZzVR8FdkgRXGmmm6SslKw="**   Returns beacons explicitly registered at the given place, expressed as   a Place ID obtained from [Google Places API](/places/place-id). Does not   match places inside the given place. Does not consider the beacon's   actual location (which may be different from its registered place).   Accepts multiple filters that will be combined with OR logic. The place   ID must be double-quoted. * **registration\_time`[<|>|<=|>=]<integer>`**   For example: **registration\_time>=1433116800**   Returns beacons whose registration time matches the given filter.   Supports the operators: <, >, <=, and >=. Timestamp must be expressed as   an integer number of seconds since midnight January 1, 1970 UTC. Accepts   at most two filters that will be combined with AND logic, to support   "between" semantics. If more than two are supplied, the latter ones are   ignored. * **lat:`<double> lng:<double> radius:<integer>`**   For example: **lat:51.1232343 lng:-1.093852 radius:1000**   Returns beacons whose registered location is within the given circle.   When any of these fields are given, all are required. Latitude and   longitude must be decimal degrees between -90.0 and 90.0 and between   -180.0 and 180.0 respectively. Radius must be an integer number of   meters between 10 and 1,000,000 (1000 km). * **property:`"<string>=<string>"`**   For example: **property:"battery-type=CR2032"**   Returns beacons which have a property of the given name and value.   Supports multiple filters which will be combined with OR logic.   The entire name=value string must be double-quoted as one string. * **attachment\_type:`"<string>"`**   For example: **attachment_type:"my-namespace/my-type"**   Returns beacons having at least one attachment of the given namespaced   type. Supports "any within this namespace" via the partial wildcard   syntax: "my-namespace/x". Supports multiple filters which will be   combined with OR logic. The string must be double-quoted. * **indoor\_level:`"<string>"`**   For example: **indoor\_level:"1"**   Returns beacons which are located on the given indoor level. Accepts   multiple filters that will be combined with OR logic.  Multiple filters on the same field are combined with OR logic (except registration_time which is combined with AND logic). Multiple filters on different fields are combined with AND logic. Filters should be separated by spaces.  As with any HTTP query string parameter, the whole filter expression must be URL-encoded.  Example REST request: `GET /v1beta1/beacons?q=status:active%20lat:51.123%20lng:-1.095%20radius:1000`
-     * @param {integer=} params.pageSize The maximum number of records to return for this request, up to a server-defined upper limit.
-     * @param {string=} params.projectId The project id to list beacons under. If not present then the project credential that made the request is used as the project. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: utils.extend({
-          url: 'https://proximitybeacon.googleapis.com/v1beta1/beacons',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * proximitybeacon.beacons.activate
-     *
-     * @desc Activates a beacon. A beacon that is active will return information and attachment data when queried via `beaconinfo.getforobserved`. Calling this method on an already active beacon will do nothing (but will return a successful response code).  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **Is owner** or **Can edit** permissions in the Google Developers Console project.
-     *
-     * @alias proximitybeacon.beacons.activate
-     * @memberOf! proximitybeacon(v1beta1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.projectId The project id of the beacon to activate. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
-     * @param {string} params.beaconName Beacon that should be activated. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    activate: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: utils.extend({
-          url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}:activate',
-          method: 'POST'
-        }, options),
-        params: params,
-        requiredParams: ['beaconName'],
-        pathParams: ['beaconName'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
 
     /**
      * proximitybeacon.beacons.get
@@ -326,7 +215,7 @@ function Proximitybeacon(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}',
           method: 'GET'
         }, options),
@@ -363,7 +252,7 @@ function Proximitybeacon(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}',
           method: 'PUT'
         }, options),
@@ -385,8 +274,8 @@ function Proximitybeacon(options) { // eslint-disable-line
      * @memberOf! proximitybeacon(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string} params.beaconName Beacon that should be decommissioned. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID of the beacon's "stable" UID. Required.
      * @param {string=} params.projectId The project id of the beacon to decommission. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
+     * @param {string} params.beaconName Beacon that should be decommissioned. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID of the beacon's "stable" UID. Required.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -399,9 +288,45 @@ function Proximitybeacon(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}:decommission',
           method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: ['beaconName'],
+        pathParams: ['beaconName'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * proximitybeacon.beacons.delete
+     *
+     * @desc Deletes the specified beacon including all diagnostics data for the beacon as well as any attachments on the beacon (including those belonging to other projects). This operation cannot be undone.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **Is owner** or **Can edit** permissions in the Google Developers Console project.
+     *
+     * @alias proximitybeacon.beacons.delete
+     * @memberOf! proximitybeacon(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.beaconName Beacon that should be deleted. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+     * @param {string=} params.projectId The project id of the beacon to delete. If not provided, the project that is making the request is used. Optional.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: Object.assign({
+          url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}',
+          method: 'DELETE'
         }, options),
         params: params,
         requiredParams: ['beaconName'],
@@ -435,7 +360,7 @@ function Proximitybeacon(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}:deactivate',
           method: 'POST'
         }, options),
@@ -449,21 +374,23 @@ function Proximitybeacon(options) { // eslint-disable-line
     },
 
     /**
-     * proximitybeacon.beacons.delete
+     * proximitybeacon.beacons.list
      *
-     * @desc Deletes the specified beacon including all diagnostics data for the beacon as well as any attachments on the beacon (including those belonging to other projects). This operation cannot be undone.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **Is owner** or **Can edit** permissions in the Google Developers Console project.
+     * @desc Searches the beacon registry for beacons that match the given search criteria. Only those beacons that the client has permission to list will be returned.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **viewer**, **Is owner** or **Can edit** permissions in the Google Developers Console project.
      *
-     * @alias proximitybeacon.beacons.delete
+     * @alias proximitybeacon.beacons.list
      * @memberOf! proximitybeacon(v1beta1)
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.projectId The project id of the beacon to delete. If not provided, the project that is making the request is used. Optional.
-     * @param {string} params.beaconName Beacon that should be deleted. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+     * @param {string=} params.q Filter query string that supports the following field filters:  * **description:`"<string>"`**   For example: **description:"Room 3"**   Returns beacons whose description matches tokens in the string "Room 3"   (not necessarily that exact string).   The string must be double-quoted. * **status:`<enum>`**   For example: **status:active**   Returns beacons whose status matches the given value. Values must be   one of the Beacon.Status enum values (case insensitive). Accepts   multiple filters which will be combined with OR logic. * **stability:`<enum>`**   For example: **stability:mobile**   Returns beacons whose expected stability matches the given value.   Values must be one of the Beacon.Stability enum values (case   insensitive). Accepts multiple filters which will be combined with   OR logic. * **place\_id:`"<string>"`**   For example: **place\_id:"ChIJVSZzVR8FdkgRXGmmm6SslKw="**   Returns beacons explicitly registered at the given place, expressed as   a Place ID obtained from [Google Places API](/places/place-id). Does not   match places inside the given place. Does not consider the beacon's   actual location (which may be different from its registered place).   Accepts multiple filters that will be combined with OR logic. The place   ID must be double-quoted. * **registration\_time`[<|>|<=|>=]<integer>`**   For example: **registration\_time>=1433116800**   Returns beacons whose registration time matches the given filter.   Supports the operators: <, >, <=, and >=. Timestamp must be expressed as   an integer number of seconds since midnight January 1, 1970 UTC. Accepts   at most two filters that will be combined with AND logic, to support   "between" semantics. If more than two are supplied, the latter ones are   ignored. * **lat:`<double> lng:<double> radius:<integer>`**   For example: **lat:51.1232343 lng:-1.093852 radius:1000**   Returns beacons whose registered location is within the given circle.   When any of these fields are given, all are required. Latitude and   longitude must be decimal degrees between -90.0 and 90.0 and between   -180.0 and 180.0 respectively. Radius must be an integer number of   meters between 10 and 1,000,000 (1000 km). * **property:`"<string>=<string>"`**   For example: **property:"battery-type=CR2032"**   Returns beacons which have a property of the given name and value.   Supports multiple filters which will be combined with OR logic.   The entire name=value string must be double-quoted as one string. * **attachment\_type:`"<string>"`**   For example: **attachment_type:"my-namespace/my-type"**   Returns beacons having at least one attachment of the given namespaced   type. Supports "any within this namespace" via the partial wildcard   syntax: "my-namespace/x". Supports multiple filters which will be   combined with OR logic. The string must be double-quoted. * **indoor\_level:`"<string>"`**   For example: **indoor\_level:"1"**   Returns beacons which are located on the given indoor level. Accepts   multiple filters that will be combined with OR logic.  Multiple filters on the same field are combined with OR logic (except registration_time which is combined with AND logic). Multiple filters on different fields are combined with AND logic. Filters should be separated by spaces.  As with any HTTP query string parameter, the whole filter expression must be URL-encoded.  Example REST request: `GET /v1beta1/beacons?q=status:active%20lat:51.123%20lng:-1.095%20radius:1000`
+     * @param {integer=} params.pageSize The maximum number of records to return for this request, up to a server-defined upper limit.
+     * @param {string=} params.projectId The project id to list beacons under. If not present then the project credential that made the request is used as the project. Optional.
+     * @param {string=} params.pageToken A pagination token obtained from a previous request to list beacons.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete: function (params, options, callback) {
+    list: function (params, options, callback) {
       if (typeof options === 'function') {
         callback = options;
         options = {};
@@ -471,9 +398,81 @@ function Proximitybeacon(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
-          url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}',
-          method: 'DELETE'
+        options: Object.assign({
+          url: 'https://proximitybeacon.googleapis.com/v1beta1/beacons',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * proximitybeacon.beacons.register
+     *
+     * @desc Registers a previously unregistered beacon given its `advertisedId`. These IDs are unique within the system. An ID can be registered only once.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **Is owner** or **Can edit** permissions in the Google Developers Console project.
+     *
+     * @alias proximitybeacon.beacons.register
+     * @memberOf! proximitybeacon(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.projectId The project id of the project the beacon will be registered to. If the project id is not specified then the project making the request is used. Optional.
+     * @param {proximitybeacon(v1beta1).Beacon} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    register: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: Object.assign({
+          url: 'https://proximitybeacon.googleapis.com/v1beta1/beacons:register',
+          method: 'POST'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * proximitybeacon.beacons.activate
+     *
+     * @desc Activates a beacon. A beacon that is active will return information and attachment data when queried via `beaconinfo.getforobserved`. Calling this method on an already active beacon will do nothing (but will return a successful response code).  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **Is owner** or **Can edit** permissions in the Google Developers Console project.
+     *
+     * @alias proximitybeacon.beacons.activate
+     * @memberOf! proximitybeacon(v1beta1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.beaconName Beacon that should be activated. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+     * @param {string=} params.projectId The project id of the beacon to activate. If the project id is not specified then the project making the request is used. The project id must match the project that owns the beacon. Optional.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    activate: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: Object.assign({
+          url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}:activate',
+          method: 'POST'
         }, options),
         params: params,
         requiredParams: ['beaconName'],
@@ -485,6 +484,80 @@ function Proximitybeacon(options) { // eslint-disable-line
     },
 
     attachments: {
+
+      /**
+       * proximitybeacon.beacons.attachments.create
+       *
+       * @desc Associates the given data with the specified beacon. Attachment data must contain two parts: <ul> <li>A namespaced type.</li> <li>The actual attachment data itself.</li> </ul> The namespaced type consists of two parts, the namespace and the type. The namespace must be one of the values returned by the `namespaces` endpoint, while the type can be a string of any characters except for the forward slash (`/`) up to 100 characters in length.  Attachment data can be up to 1024 bytes long.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **Is owner** or **Can edit** permissions in the Google Developers Console project.
+       *
+       * @alias proximitybeacon.beacons.attachments.create
+       * @memberOf! proximitybeacon(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.beaconName Beacon on which the attachment should be created. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+       * @param {string=} params.projectId The project id of the project the attachment will belong to. If the project id is not specified then the project making the request is used. Optional.
+       * @param {proximitybeacon(v1beta1).BeaconAttachment} params.resource Request body data
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      create: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: Object.assign({
+            url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}/attachments',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['beaconName'],
+          pathParams: ['beaconName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * proximitybeacon.beacons.attachments.batchDelete
+       *
+       * @desc Deletes multiple attachments on a given beacon. This operation is permanent and cannot be undone.  You can optionally specify `namespacedType` to choose which attachments should be deleted. If you do not specify `namespacedType`,  all your attachments on the given beacon will be deleted. You also may explicitly specify `x/x` to delete all.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **Is owner** or **Can edit** permissions in the Google Developers Console project.
+       *
+       * @alias proximitybeacon.beacons.attachments.batchDelete
+       * @memberOf! proximitybeacon(v1beta1)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.namespacedType Specifies the namespace and type of attachments to delete in `namespace/type` format. Accepts `x/x` to specify "all types in all namespaces". Optional.
+       * @param {string} params.beaconName The beacon whose attachments should be deleted. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
+       * @param {string=} params.projectId The project id to delete beacon attachments under. This field can be used when "*" is specified to mean all attachment namespaces. Projects may have multiple attachments with multiple namespaces. If "*" is specified and the projectId string is empty, then the project making the request is used. Optional.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      batchDelete: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: Object.assign({
+            url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}/attachments:batchDelete',
+            method: 'POST'
+          }, options),
+          params: params,
+          requiredParams: ['beaconName'],
+          pathParams: ['beaconName'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
 
       /**
        * proximitybeacon.beacons.attachments.delete
@@ -509,7 +582,7 @@ function Proximitybeacon(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://proximitybeacon.googleapis.com/v1beta1/{attachmentName}',
             method: 'DELETE'
           }, options),
@@ -546,83 +619,9 @@ function Proximitybeacon(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}/attachments',
             method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * proximitybeacon.beacons.attachments.create
-       *
-       * @desc Associates the given data with the specified beacon. Attachment data must contain two parts: <ul> <li>A namespaced type.</li> <li>The actual attachment data itself.</li> </ul> The namespaced type consists of two parts, the namespace and the type. The namespace must be one of the values returned by the `namespaces` endpoint, while the type can be a string of any characters except for the forward slash (`/`) up to 100 characters in length.  Attachment data can be up to 1024 bytes long.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **Is owner** or **Can edit** permissions in the Google Developers Console project.
-       *
-       * @alias proximitybeacon.beacons.attachments.create
-       * @memberOf! proximitybeacon(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.beaconName Beacon on which the attachment should be created. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-       * @param {string=} params.projectId The project id of the project the attachment will belong to. If the project id is not specified then the project making the request is used. Optional.
-       * @param {proximitybeacon(v1beta1).BeaconAttachment} params.resource Request body data
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      create: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}/attachments',
-            method: 'POST'
-          }, options),
-          params: params,
-          requiredParams: ['beaconName'],
-          pathParams: ['beaconName'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * proximitybeacon.beacons.attachments.batchDelete
-       *
-       * @desc Deletes multiple attachments on a given beacon. This operation is permanent and cannot be undone.  You can optionally specify `namespacedType` to choose which attachments should be deleted. If you do not specify `namespacedType`,  all your attachments on the given beacon will be deleted. You also may explicitly specify `x/x` to delete all.  Authenticate using an [OAuth access token](https://developers.google.com/identity/protocols/OAuth2) from a signed-in user with **Is owner** or **Can edit** permissions in the Google Developers Console project.
-       *
-       * @alias proximitybeacon.beacons.attachments.batchDelete
-       * @memberOf! proximitybeacon(v1beta1)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.projectId The project id to delete beacon attachments under. This field can be used when "*" is specified to mean all attachment namespaces. Projects may have multiple attachments with multiple namespaces. If "*" is specified and the projectId string is empty, then the project making the request is used. Optional.
-       * @param {string=} params.namespacedType Specifies the namespace and type of attachments to delete in `namespace/type` format. Accepts `x/x` to specify "all types in all namespaces". Optional.
-       * @param {string} params.beaconName The beacon whose attachments should be deleted. A beacon name has the format "beacons/N!beaconId" where the beaconId is the base16 ID broadcast by the beacon and N is a code for the beacon's type. Possible values are `3` for Eddystone-UID, `4` for Eddystone-EID, `1` for iBeacon, or `5` for AltBeacon. For Eddystone-EID beacons, you may use either the current EID or the beacon's "stable" UID. Required.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      batchDelete: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}/attachments:batchDelete',
-            method: 'POST'
           }, options),
           params: params,
           requiredParams: ['beaconName'],
@@ -662,7 +661,7 @@ function Proximitybeacon(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://proximitybeacon.googleapis.com/v1beta1/{beaconName}/diagnostics',
             method: 'GET'
           }, options),
@@ -679,80 +678,6 @@ function Proximitybeacon(options) { // eslint-disable-line
 }
 
 /**
- * @typedef Empty
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
- */
-/**
- * @typedef GetInfoForObservedBeaconsRequest
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
-* @property {proximitybeacon(v1beta1).Observation[]} observations The beacons that the client has encountered.
-At least one must be given.
-* @property {string[]} namespacedTypes Specifies what kind of attachments to include in the response.
-When given, the response will include only attachments of the given types.
-When empty, no attachments will be returned. Must be in the format
-&lt;var&gt;namespace/type&lt;/var&gt;. Accepts `*` to specify all types in
-all namespaces owned by the client.
-Optional.
-*/
-/**
- * @typedef BeaconAttachment
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
-* @property {string} creationTimeMs The UTC time when this attachment was created, in milliseconds since the
-UNIX epoch.
-* @property {string} attachmentName Resource name of this attachment. Attachment names have the format:
-&lt;code&gt;beacons/&lt;var&gt;beacon_id&lt;/var&gt;/attachments/&lt;var&gt;attachment_id&lt;/var&gt;&lt;/code&gt;.
-Leave this empty on creation.
-* @property {string} namespacedType Specifies what kind of attachment this is. Tells a client how to
-interpret the `data` field. Format is &lt;var&gt;namespace/type&lt;/var&gt;. Namespace
-provides type separation between clients. Type describes the type of
-`data`, for use by the client when parsing the `data` field.
-Required.
-* @property {string} data An opaque data container for client-provided data. Must be
-[base64](http://tools.ietf.org/html/rfc4648#section-4) encoded in HTTP
-requests, and will be so encoded (with padding) in responses.
-Required.
-*/
-/**
- * @typedef EphemeralIdRegistration
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
-* @property {integer} rotationPeriodExponent Indicates the nominal period between each rotation of the beacon&#39;s
-ephemeral ID. &quot;Nominal&quot; because the beacon should randomize the
-actual interval. See [the spec at github](https://github.com/google/eddystone/tree/master/eddystone-eid)
-for details. This value corresponds to a power-of-two scaler on the
-beacon&#39;s clock: when the scaler value is K, the beacon will begin
-broadcasting a new ephemeral ID on average every 2^K seconds.
-* @property {string} serviceEcdhPublicKey The service&#39;s public key used for the Elliptic curve Diffie-Hellman
-key exchange. When this field is populated, `beacon_ecdh_public_key`
-must also be populated, and `beacon_identity_key` must not be.
-* @property {string} beaconIdentityKey The private key of the beacon. If this field is populated,
-`beacon_ecdh_public_key` and `service_ecdh_public_key` must not be
-populated.
-* @property {string} initialEid An initial ephemeral ID calculated using the clock value submitted as
-`initial_clock_value`, and the secret key generated by the
-Diffie-Hellman key exchange using `service_ecdh_public_key` and
-`service_ecdh_public_key`. This initial EID value will be used by the
-service to confirm that the key exchange process was successful.
-* @property {string} beaconEcdhPublicKey The beacon&#39;s public key used for the Elliptic curve Diffie-Hellman
-key exchange. When this field is populated, `service_ecdh_public_key`
-must also be populated, and `beacon_identity_key` must not be.
-* @property {string} initialClockValue The initial clock value of the beacon. The beacon&#39;s clock must have
-begun counting at this value immediately prior to transmitting this
-value to the resolving service. Significant delay in transmitting this
-value to the service risks registration or resolution failures. If a
-value is not provided, the default is zero.
-*/
-/**
- * @typedef LatLng
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
- * @property {number} latitude The latitude in degrees. It must be in the range [-90.0, +90.0].
- * @property {number} longitude The longitude in degrees. It must be in the range [-180.0, +180.0].
- */
-/**
  * @typedef ListBeaconAttachmentsResponse
  * @memberOf! proximitybeacon(v1beta1)
  * @type object
@@ -768,15 +693,6 @@ value is not provided, the default is zero.
 via `beaconinfo.getforobserved`.
 */
 /**
- * @typedef AttachmentInfo
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
-* @property {string} namespacedType Specifies what kind of attachment this is. Tells a client how to
-interpret the `data` field. Format is &lt;var&gt;namespace/type&lt;/var&gt;, for
-example &lt;code&gt;scrupulous-wombat-12345/welcome-message&lt;/code&gt;
-* @property {string} data An opaque data container for client-provided data.
-*/
-/**
  * @typedef BeaconInfo
  * @memberOf! proximitybeacon(v1beta1)
  * @type object
@@ -784,6 +700,15 @@ example &lt;code&gt;scrupulous-wombat-12345/welcome-message&lt;/code&gt;
 * @property {proximitybeacon(v1beta1).AdvertisedId} advertisedId The ID advertised by the beacon.
 * @property {proximitybeacon(v1beta1).AttachmentInfo[]} attachments Attachments matching the type(s) requested.
 May be empty if no attachment types were requested.
+*/
+/**
+ * @typedef AttachmentInfo
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+* @property {string} namespacedType Specifies what kind of attachment this is. Tells a client how to
+interpret the `data` field. Format is &lt;var&gt;namespace/type&lt;/var&gt;, for
+example &lt;code&gt;scrupulous-wombat-12345/welcome-message&lt;/code&gt;
+* @property {string} data An opaque data container for client-provided data.
 */
 /**
  * @typedef DeleteAttachmentsResponse
@@ -795,12 +720,12 @@ May be empty if no attachment types were requested.
  * @typedef EphemeralIdRegistrationParams
  * @memberOf! proximitybeacon(v1beta1)
  * @type object
-* @property {string} serviceEcdhPublicKey The beacon service&#39;s public key for use by a beacon to derive its
-Identity Key using Elliptic Curve Diffie-Hellman key exchange.
 * @property {integer} minRotationPeriodExponent Indicates the minimum rotation period supported by the service.
 See EddystoneEidRegistration.rotation_period_exponent
 * @property {integer} maxRotationPeriodExponent Indicates the maximum rotation period supported by the service.
 See EddystoneEidRegistration.rotation_period_exponent
+* @property {string} serviceEcdhPublicKey The beacon service&#39;s public key for use by a beacon to derive its
+Identity Key using Elliptic Curve Diffie-Hellman key exchange.
 */
 /**
  * @typedef Observation
@@ -836,14 +761,6 @@ May be empty if the request matched no beacons.
  * @typedef Beacon
  * @memberOf! proximitybeacon(v1beta1)
  * @type object
-* @property {proximitybeacon(v1beta1).AdvertisedId} advertisedId The identifier of a beacon as advertised by it. This field must be
-populated when registering. It may be empty when updating a beacon
-record because it is ignored in updates.
-
-When registering a beacon that broadcasts Eddystone-EID, this field
-should contain a &quot;stable&quot; Eddystone-UID that identifies the beacon and
-links it to its attachments. The stable Eddystone-UID is only used for
-administering the beacon.
 * @property {proximitybeacon(v1beta1).EphemeralIdRegistration} ephemeralIdRegistration Write-only registration parameters for beacons using Eddystone-EID
 (remotely resolved ephemeral ID) format. This information will not be
 populated in API responses. When submitting this data, the `advertised_id`
@@ -857,25 +774,25 @@ from users with write access to the given beacon. That is to say: If the
 user is authorized to write the beacon&#39;s confidential data in the service,
 the service considers them authorized to configure the beacon. Note
 that this key grants nothing on the service, only on the beacon itself.
-* @property {string} description Free text used to identify and describe the beacon. Maximum length 140
-characters.
+* @property {proximitybeacon(v1beta1).LatLng} latLng The location of the beacon, expressed as a latitude and longitude pair.
+This location is given when the beacon is registered or updated. It does
+not necessarily indicate the actual current location of the beacon.
 Optional.
 * @property {string} placeId The [Google Places API](/places/place-id) Place ID of the place where
 the beacon is deployed. This is given when the beacon is registered or
 updated, not automatically detected in any way.
 Optional.
-* @property {proximitybeacon(v1beta1).LatLng} latLng The location of the beacon, expressed as a latitude and longitude pair.
-This location is given when the beacon is registered or updated. It does
-not necessarily indicate the actual current location of the beacon.
+* @property {string} description Free text used to identify and describe the beacon. Maximum length 140
+characters.
 Optional.
 * @property {object} properties Properties of the beacon device, for example battery type or firmware
 version.
 Optional.
-* @property {string} status Current status of the beacon.
-Required.
 * @property {proximitybeacon(v1beta1).IndoorLevel} indoorLevel The indoor level information for this beacon, if known. As returned by the
 Google Maps API.
 Optional.
+* @property {string} status Current status of the beacon.
+Required.
 * @property {string} beaconName Resource name of this beacon. A beacon name has the format
 &quot;beacons/N!beaconId&quot; where the beaconId is the base16 ID broadcast by
 the beacon and N is a code for the beacon&#39;s type. Possible values are
@@ -886,6 +803,14 @@ clients can use the name for future operations.
 * @property {string} expectedStability Expected location stability. This is set when the beacon is registered or
 updated, not automatically detected in any way.
 Optional.
+* @property {proximitybeacon(v1beta1).AdvertisedId} advertisedId The identifier of a beacon as advertised by it. This field must be
+populated when registering. It may be empty when updating a beacon
+record because it is ignored in updates.
+
+When registering a beacon that broadcasts Eddystone-EID, this field
+should contain a &quot;stable&quot; Eddystone-UID that identifies the beacon and
+links it to its attachments. The stable Eddystone-UID is only used for
+administering the beacon.
 */
 /**
  * @typedef AdvertisedId
@@ -901,12 +826,6 @@ hex) representation thereof.
 Required.
 */
 /**
- * @typedef IndoorLevel
- * @memberOf! proximitybeacon(v1beta1)
- * @type object
- * @property {string} name The name of this level.
- */
-/**
  * @typedef Date
  * @memberOf! proximitybeacon(v1beta1)
  * @type object
@@ -916,6 +835,12 @@ a year.
 if specifying a year/month where the day is not significant.
 * @property {integer} month Month of year. Must be from 1 to 12.
 */
+/**
+ * @typedef IndoorLevel
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+ * @property {string} name The name of this level.
+ */
 /**
  * @typedef ListNamespacesResponse
  * @memberOf! proximitybeacon(v1beta1)
@@ -943,4 +868,78 @@ This value is only an estimate, not an exact date.
 * @property {string} beaconName Resource name of the beacon. For Eddystone-EID beacons, this may
 be the beacon&#39;s current EID, or the beacon&#39;s &quot;stable&quot; Eddystone-UID.
 */
+/**
+ * @typedef Empty
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+ */
+/**
+ * @typedef GetInfoForObservedBeaconsRequest
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+* @property {string[]} namespacedTypes Specifies what kind of attachments to include in the response.
+When given, the response will include only attachments of the given types.
+When empty, no attachments will be returned. Must be in the format
+&lt;var&gt;namespace/type&lt;/var&gt;. Accepts `*` to specify all types in
+all namespaces owned by the client.
+Optional.
+* @property {proximitybeacon(v1beta1).Observation[]} observations The beacons that the client has encountered.
+At least one must be given.
+*/
+/**
+ * @typedef BeaconAttachment
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+* @property {string} attachmentName Resource name of this attachment. Attachment names have the format:
+&lt;code&gt;beacons/&lt;var&gt;beacon_id&lt;/var&gt;/attachments/&lt;var&gt;attachment_id&lt;/var&gt;&lt;/code&gt;.
+Leave this empty on creation.
+* @property {string} namespacedType Specifies what kind of attachment this is. Tells a client how to
+interpret the `data` field. Format is &lt;var&gt;namespace/type&lt;/var&gt;. Namespace
+provides type separation between clients. Type describes the type of
+`data`, for use by the client when parsing the `data` field.
+Required.
+* @property {string} data An opaque data container for client-provided data. Must be
+[base64](http://tools.ietf.org/html/rfc4648#section-4) encoded in HTTP
+requests, and will be so encoded (with padding) in responses.
+Required.
+* @property {string} creationTimeMs The UTC time when this attachment was created, in milliseconds since the
+UNIX epoch.
+*/
+/**
+ * @typedef EphemeralIdRegistration
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+* @property {integer} rotationPeriodExponent Indicates the nominal period between each rotation of the beacon&#39;s
+ephemeral ID. &quot;Nominal&quot; because the beacon should randomize the
+actual interval. See [the spec at github](https://github.com/google/eddystone/tree/master/eddystone-eid)
+for details. This value corresponds to a power-of-two scaler on the
+beacon&#39;s clock: when the scaler value is K, the beacon will begin
+broadcasting a new ephemeral ID on average every 2^K seconds.
+* @property {string} beaconIdentityKey The private key of the beacon. If this field is populated,
+`beacon_ecdh_public_key` and `service_ecdh_public_key` must not be
+populated.
+* @property {string} serviceEcdhPublicKey The service&#39;s public key used for the Elliptic curve Diffie-Hellman
+key exchange. When this field is populated, `beacon_ecdh_public_key`
+must also be populated, and `beacon_identity_key` must not be.
+* @property {string} initialEid An initial ephemeral ID calculated using the clock value submitted as
+`initial_clock_value`, and the secret key generated by the
+Diffie-Hellman key exchange using `service_ecdh_public_key` and
+`service_ecdh_public_key`. This initial EID value will be used by the
+service to confirm that the key exchange process was successful.
+* @property {string} beaconEcdhPublicKey The beacon&#39;s public key used for the Elliptic curve Diffie-Hellman
+key exchange. When this field is populated, `service_ecdh_public_key`
+must also be populated, and `beacon_identity_key` must not be.
+* @property {string} initialClockValue The initial clock value of the beacon. The beacon&#39;s clock must have
+begun counting at this value immediately prior to transmitting this
+value to the resolving service. Significant delay in transmitting this
+value to the service risks registration or resolution failures. If a
+value is not provided, the default is zero.
+*/
+/**
+ * @typedef LatLng
+ * @memberOf! proximitybeacon(v1beta1)
+ * @type object
+ * @property {number} latitude The latitude in degrees. It must be in the range [-90.0, +90.0].
+ * @property {number} longitude The longitude in degrees. It must be in the range [-180.0, +180.0].
+ */
 export = Proximitybeacon;

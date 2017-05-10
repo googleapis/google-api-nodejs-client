@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Cloud Speech API
@@ -39,79 +38,6 @@ function Speech(options) { // eslint-disable-line
   self._options = options || {};
 
   self.operations = {
-
-    /**
-     * speech.operations.list
-     *
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
-     *
-     * @alias speech.operations.list
-     * @memberOf! speech(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string=} params.name The name of the operation collection.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: utils.extend({
-          url: 'https://speech.googleapis.com/v1/operations',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: [],
-        pathParams: [],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * speech.operations.get
-     *
-     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     *
-     * @alias speech.operations.get
-     * @memberOf! speech(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    get: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: utils.extend({
-          url: 'https://speech.googleapis.com/v1/operations/{name}',
-          method: 'GET'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
 
     /**
      * speech.operations.cancel
@@ -136,7 +62,7 @@ function Speech(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://speech.googleapis.com/v1/operations/{name}:cancel',
           method: 'POST'
         }, options),
@@ -171,9 +97,82 @@ function Speech(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://speech.googleapis.com/v1/operations/{name}',
           method: 'DELETE'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * speech.operations.list
+     *
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
+     *
+     * @alias speech.operations.list
+     * @memberOf! speech(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
+     * @param {string=} params.name The name of the operation collection.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: Object.assign({
+          url: 'https://speech.googleapis.com/v1/operations',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: [],
+        pathParams: [],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
+
+    /**
+     * speech.operations.get
+     *
+     * @desc Gets the latest state of a long-running operation.  Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @alias speech.operations.get
+     * @memberOf! speech(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation resource.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: Object.assign({
+          url: 'https://speech.googleapis.com/v1/operations/{name}',
+          method: 'GET'
         }, options),
         params: params,
         requiredParams: ['name'],
@@ -210,7 +209,7 @@ function Speech(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://speech.googleapis.com/v1/speech:longrunningrecognize',
           method: 'POST'
         }, options),
@@ -245,7 +244,7 @@ function Speech(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://speech.googleapis.com/v1/speech:recognize',
           method: 'POST'
         }, options),
@@ -261,11 +260,6 @@ function Speech(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef CancelOperationRequest
- * @memberOf! speech(v1)
- * @type object
- */
 /**
  * @typedef Operation
  * @memberOf! speech(v1)
@@ -310,23 +304,23 @@ one. If omitted, will return a maximum of one.
 Example: &quot;en-US&quot;.
 See [Language Support](https://cloud.google.com/speech/docs/languages)
 for a list of the currently supported language codes.
-* @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
 * @property {boolean} profanityFilter *Optional* If set to `true`, the server will attempt to filter out
 profanities, replacing all but the initial character in each filtered word
 with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities
 won&#39;t be filtered out.
 * @property {speech(v1).SpeechContext[]} speechContexts *Optional* A means to provide context to assist the speech recognition.
+* @property {string} encoding *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
 */
 /**
  * @typedef Status
  * @memberOf! speech(v1)
  * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 */
 /**
  * @typedef Empty
@@ -341,6 +335,13 @@ google.rpc.Status.details field, or localized by the client.
 process the request.
 * @property {speech(v1).RecognitionAudio} audio *Required* The audio data to be recognized.
 */
+/**
+ * @typedef ListOperationsResponse
+ * @memberOf! speech(v1)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {speech(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
 /**
  * @typedef SpeechContext
  * @memberOf! speech(v1)
@@ -366,13 +367,6 @@ The default of 0.0 is a sentinel value indicating `confidence` was not set.
 * @property {string} transcript *Output-only* Transcript text representing the words that the user spoke.
 */
 /**
- * @typedef ListOperationsResponse
- * @memberOf! speech(v1)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {speech(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-/**
  * @typedef SpeechRecognitionResult
  * @memberOf! speech(v1)
  * @type object
@@ -385,15 +379,15 @@ alternative being the most probable, as ranked by the recognizer.
  * @typedef RecognitionAudio
  * @memberOf! speech(v1)
  * @type object
-* @property {string} content The audio data bytes encoded as specified in
-`RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
-pure binary representation, whereas JSON representations use base64.
 * @property {string} uri URI that points to a file that contains audio data bytes as specified in
 `RecognitionConfig`. Currently, only Google Cloud Storage URIs are
 supported, which must be specified in the following format:
 `gs://bucket_name/object_name` (other URI formats return
 google.rpc.Code.INVALID_ARGUMENT). For more information, see
 [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
+* @property {string} content The audio data bytes encoded as specified in
+`RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
+pure binary representation, whereas JSON representations use base64.
 */
 /**
  * @typedef LongRunningRecognizeRequest
@@ -410,4 +404,9 @@ process the request.
 * @property {speech(v1).SpeechRecognitionResult[]} results *Output-only* Sequential list of transcription results corresponding to
 sequential portions of audio.
 */
+/**
+ * @typedef CancelOperationRequest
+ * @memberOf! speech(v1)
+ * @type object
+ */
 export = Speech;

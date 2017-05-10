@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * TaskQueue API
@@ -64,7 +63,7 @@ function Taskqueue(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}',
           method: 'GET'
         }, options),
@@ -105,7 +104,7 @@ function Taskqueue(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
           method: 'DELETE'
         }, options),
@@ -142,7 +141,7 @@ function Taskqueue(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
           method: 'GET'
         }, options),
@@ -179,7 +178,7 @@ function Taskqueue(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks',
           method: 'POST'
         }, options),
@@ -219,7 +218,7 @@ function Taskqueue(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/lease',
           method: 'POST'
         }, options),
@@ -255,7 +254,7 @@ function Taskqueue(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks',
           method: 'GET'
         }, options),
@@ -294,7 +293,7 @@ function Taskqueue(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
           method: 'PATCH'
         }, options),
@@ -333,7 +332,7 @@ function Taskqueue(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/taskqueue/v1beta2/projects/{project}/taskqueues/{taskqueue}/tasks/{task}',
           method: 'POST'
         }, options),

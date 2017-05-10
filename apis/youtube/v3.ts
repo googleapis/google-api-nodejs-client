@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * YouTube Data API
@@ -63,7 +62,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/activities',
           method: 'POST'
         }, options),
@@ -106,7 +105,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/activities',
           method: 'GET'
         }, options),
@@ -147,7 +146,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/captions',
           method: 'DELETE'
         }, options),
@@ -186,7 +185,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/captions/{id}',
           method: 'GET'
         }, options),
@@ -228,7 +227,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/captions',
           method: 'POST'
         }, options),
@@ -268,7 +267,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/captions',
           method: 'GET'
         }, options),
@@ -310,7 +309,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/captions',
           method: 'PUT'
         }, options),
@@ -354,7 +353,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/channelBanners/insert',
           method: 'POST'
         }, options),
@@ -395,7 +394,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/channelSections',
           method: 'DELETE'
         }, options),
@@ -433,7 +432,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/channelSections',
           method: 'POST'
         }, options),
@@ -473,7 +472,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/channelSections',
           method: 'GET'
         }, options),
@@ -510,7 +509,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/channelSections',
           method: 'PUT'
         }, options),
@@ -559,7 +558,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/channels',
           method: 'GET'
         }, options),
@@ -596,7 +595,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/channels',
           method: 'PUT'
         }, options),
@@ -636,7 +635,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/commentThreads',
           method: 'POST'
         }, options),
@@ -681,7 +680,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/commentThreads',
           method: 'GET'
         }, options),
@@ -717,7 +716,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/commentThreads',
           method: 'PUT'
         }, options),
@@ -756,7 +755,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/comments',
           method: 'DELETE'
         }, options),
@@ -792,7 +791,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/comments',
           method: 'POST'
         }, options),
@@ -832,7 +831,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/comments',
           method: 'GET'
         }, options),
@@ -867,7 +866,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/comments/markAsSpam',
           method: 'POST'
         }, options),
@@ -904,7 +903,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/comments/setModerationStatus',
           method: 'POST'
         }, options),
@@ -940,7 +939,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/comments',
           method: 'PUT'
         }, options),
@@ -982,7 +981,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/fanFundingEvents',
           method: 'GET'
         }, options),
@@ -1024,7 +1023,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/guideCategories',
           method: 'GET'
         }, options),
@@ -1064,7 +1063,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/i18nLanguages',
           method: 'GET'
         }, options),
@@ -1104,7 +1103,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/i18nRegions',
           method: 'GET'
         }, options),
@@ -1147,7 +1146,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts/bind',
           method: 'POST'
         }, options),
@@ -1188,7 +1187,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts/control',
           method: 'POST'
         }, options),
@@ -1225,7 +1224,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
           method: 'DELETE'
         }, options),
@@ -1263,7 +1262,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
           method: 'POST'
         }, options),
@@ -1306,7 +1305,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
           method: 'GET'
         }, options),
@@ -1345,7 +1344,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts/transition',
           method: 'POST'
         }, options),
@@ -1383,7 +1382,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
           method: 'PUT'
         }, options),
@@ -1422,7 +1421,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveChat/bans',
           method: 'DELETE'
         }, options),
@@ -1458,7 +1457,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveChat/bans',
           method: 'POST'
         }, options),
@@ -1497,7 +1496,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveChat/messages',
           method: 'DELETE'
         }, options),
@@ -1533,7 +1532,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveChat/messages',
           method: 'POST'
         }, options),
@@ -1573,7 +1572,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveChat/messages',
           method: 'GET'
         }, options),
@@ -1612,7 +1611,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveChat/moderators',
           method: 'DELETE'
         }, options),
@@ -1648,7 +1647,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveChat/moderators',
           method: 'POST'
         }, options),
@@ -1686,7 +1685,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveChat/moderators',
           method: 'GET'
         }, options),
@@ -1727,7 +1726,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveStreams',
           method: 'DELETE'
         }, options),
@@ -1765,7 +1764,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveStreams',
           method: 'POST'
         }, options),
@@ -1806,7 +1805,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveStreams',
           method: 'GET'
         }, options),
@@ -1844,7 +1843,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/liveStreams',
           method: 'PUT'
         }, options),
@@ -1884,7 +1883,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/playlistItems',
           method: 'DELETE'
         }, options),
@@ -1921,7 +1920,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/playlistItems',
           method: 'POST'
         }, options),
@@ -1962,7 +1961,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/playlistItems',
           method: 'GET'
         }, options),
@@ -1999,7 +1998,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/playlistItems',
           method: 'PUT'
         }, options),
@@ -2039,7 +2038,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/playlists',
           method: 'DELETE'
         }, options),
@@ -2077,7 +2076,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/playlists',
           method: 'POST'
         }, options),
@@ -2120,7 +2119,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/playlists',
           method: 'GET'
         }, options),
@@ -2157,7 +2156,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/playlists',
           method: 'PUT'
         }, options),
@@ -2226,7 +2225,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/search',
           method: 'GET'
         }, options),
@@ -2268,7 +2267,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/sponsors',
           method: 'GET'
         }, options),
@@ -2307,7 +2306,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/subscriptions',
           method: 'DELETE'
         }, options),
@@ -2343,7 +2342,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/subscriptions',
           method: 'POST'
         }, options),
@@ -2389,7 +2388,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/subscriptions',
           method: 'GET'
         }, options),
@@ -2431,7 +2430,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/superChatEvents',
           method: 'GET'
         }, options),
@@ -2474,7 +2473,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/thumbnails/set',
           method: 'POST'
         }, options),
@@ -2515,7 +2514,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/videoAbuseReportReasons',
           method: 'GET'
         }, options),
@@ -2557,7 +2556,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/videoCategories',
           method: 'GET'
         }, options),
@@ -2597,7 +2596,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/videos',
           method: 'DELETE'
         }, options),
@@ -2633,7 +2632,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/videos/getRating',
           method: 'GET'
         }, options),
@@ -2677,7 +2676,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/videos',
           method: 'POST'
         }, options),
@@ -2725,7 +2724,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/videos',
           method: 'GET'
         }, options),
@@ -2761,7 +2760,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/videos/rate',
           method: 'POST'
         }, options),
@@ -2797,7 +2796,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/videos/reportAbuse',
           method: 'POST'
         }, options),
@@ -2834,7 +2833,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/videos',
           method: 'PUT'
         }, options),
@@ -2878,7 +2877,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/watermarks/set',
           method: 'POST'
         }, options),
@@ -2915,7 +2914,7 @@ function Youtube(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/youtube/v3/watermarks/unset',
           method: 'POST'
         }, options),

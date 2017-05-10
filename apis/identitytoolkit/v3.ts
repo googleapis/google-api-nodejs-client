@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Identity Toolkit API
@@ -62,7 +61,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/createAuthUri',
           method: 'POST'
         }, options),
@@ -97,7 +96,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/deleteAccount',
           method: 'POST'
         }, options),
@@ -132,7 +131,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/downloadAccount',
           method: 'POST'
         }, options),
@@ -167,7 +166,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo',
           method: 'POST'
         }, options),
@@ -202,7 +201,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode',
           method: 'POST'
         }, options),
@@ -238,7 +237,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getProjectConfig',
           method: 'GET'
         }, options),
@@ -272,7 +271,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/publicKeys',
           method: 'GET'
         }, options),
@@ -306,7 +305,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getRecaptchaParam',
           method: 'GET'
         }, options),
@@ -341,7 +340,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/resetPassword',
           method: 'POST'
         }, options),
@@ -376,7 +375,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setAccountInfo',
           method: 'POST'
         }, options),
@@ -411,7 +410,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/setProjectConfig',
           method: 'POST'
         }, options),
@@ -446,7 +445,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signOutUser',
           method: 'POST'
         }, options),
@@ -481,7 +480,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser',
           method: 'POST'
         }, options),
@@ -516,7 +515,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/uploadAccount',
           method: 'POST'
         }, options),
@@ -551,7 +550,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyAssertion',
           method: 'POST'
         }, options),
@@ -586,7 +585,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken',
           method: 'POST'
         }, options),
@@ -621,7 +620,7 @@ function Identitytoolkit(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword',
           method: 'POST'
         }, options),

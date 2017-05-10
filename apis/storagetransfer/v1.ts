@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Storage Transfer API
@@ -114,7 +113,7 @@ function Storagetransfer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://storagetransfer.googleapis.com/v1/googleServiceAccounts/{projectId}',
           method: 'GET'
         }, options),
@@ -205,7 +204,7 @@ function Storagetransfer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://storagetransfer.googleapis.com/v1/transferJobs',
           method: 'POST'
         }, options),
@@ -297,7 +296,7 @@ function Storagetransfer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://storagetransfer.googleapis.com/v1/{jobName}',
           method: 'PATCH'
         }, options),
@@ -384,7 +383,7 @@ function Storagetransfer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://storagetransfer.googleapis.com/v1/{jobName}',
           method: 'GET'
         }, options),
@@ -482,7 +481,7 @@ function Storagetransfer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://storagetransfer.googleapis.com/v1/transferJobs',
           method: 'GET'
         }, options),
@@ -574,7 +573,7 @@ function Storagetransfer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://storagetransfer.googleapis.com/v1/{name}:resume',
           method: 'POST'
         }, options),
@@ -657,7 +656,7 @@ function Storagetransfer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://storagetransfer.googleapis.com/v1/{name}:cancel',
           method: 'POST'
         }, options),
@@ -743,7 +742,7 @@ function Storagetransfer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://storagetransfer.googleapis.com/v1/{name}',
           method: 'GET'
         }, options),
@@ -831,7 +830,7 @@ function Storagetransfer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://storagetransfer.googleapis.com/v1/{name}:pause',
           method: 'POST'
         }, options),
@@ -914,7 +913,7 @@ function Storagetransfer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://storagetransfer.googleapis.com/v1/{name}',
           method: 'DELETE'
         }, options),
@@ -1016,7 +1015,7 @@ function Storagetransfer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://storagetransfer.googleapis.com/v1/{name}',
           method: 'GET'
         }, options),
@@ -1032,6 +1031,39 @@ function Storagetransfer(options) { // eslint-disable-line
   };
 }
 
+/**
+ * @typedef ListOperationsResponse
+ * @memberOf! storagetransfer(v1)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {storagetransfer(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+/**
+ * @typedef GoogleServiceAccount
+ * @memberOf! storagetransfer(v1)
+ * @type object
+ * @property {string} accountEmail Required.
+ */
+/**
+ * @typedef TimeOfDay
+ * @memberOf! storagetransfer(v1)
+ * @type object
+* @property {integer} seconds Seconds of minutes of the time. Must normally be from 0 to 59. An API may
+allow the value 60 if it allows leap-seconds.
+* @property {integer} minutes Minutes of hour of day. Must be from 0 to 59.
+* @property {integer} hours Hours of day in 24 hour format. Should be from 0 to 23. An API may choose
+to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+* @property {integer} nanos Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+*/
+/**
+ * @typedef ErrorLogEntry
+ * @memberOf! storagetransfer(v1)
+ * @type object
+* @property {string} url A URL that refers to the target (a data source, a data sink,
+or an object) with which the error is associated.
+Required.
+* @property {string[]} errorDetails A list of messages that carry the error details.
+*/
 /**
  * @typedef TransferJob
  * @memberOf! storagetransfer(v1)
@@ -1092,10 +1124,6 @@ if specifying a year/month where the day is not significant.
  * @typedef TransferOperation
  * @memberOf! storagetransfer(v1)
  * @type object
-* @property {storagetransfer(v1).ErrorSummary[]} errorBreakdowns Summarizes errors encountered with sample error log entries.
-* @property {string} name A globally unique ID assigned by the system.
-* @property {string} projectId The ID of the Google Cloud Platform Console project that owns the operation.
-Required.
 * @property {string} endTime End time of this transfer execution.
 * @property {string} startTime Start time of this transfer execution.
 * @property {string} transferJobName The name of the transfer job that triggers this transfer operation.
@@ -1103,6 +1131,10 @@ Required.
 Required.
 * @property {string} status Status of the transfer operation.
 * @property {storagetransfer(v1).TransferCounters} counters Information about the progress of the transfer operation.
+* @property {storagetransfer(v1).ErrorSummary[]} errorBreakdowns Summarizes errors encountered with sample error log entries.
+* @property {string} name A globally unique ID assigned by the system.
+* @property {string} projectId The ID of the Google Cloud Platform Console project that owns the operation.
+Required.
 */
 /**
  * @typedef AwsS3Data
@@ -1117,6 +1149,11 @@ Required.
 Required.
 */
 /**
+ * @typedef Empty
+ * @memberOf! storagetransfer(v1)
+ * @type object
+ */
+/**
  * @typedef AwsAccessKey
  * @memberOf! storagetransfer(v1)
  * @type object
@@ -1126,11 +1163,6 @@ Required.
 Required.
 */
 /**
- * @typedef Empty
- * @memberOf! storagetransfer(v1)
- * @type object
- */
-/**
  * @typedef PauseTransferOperationRequest
  * @memberOf! storagetransfer(v1)
  * @type object
@@ -1139,6 +1171,17 @@ Required.
  * @typedef TransferCounters
  * @memberOf! storagetransfer(v1)
  * @type object
+* @property {string} bytesFromSourceFailed Bytes in the data source that failed during the transfer.
+* @property {string} objectsCopiedToSink Objects that are copied to the data sink.
+* @property {string} objectsFromSourceFailed Objects in the data source that failed during the transfer.
+* @property {string} bytesFoundOnlyFromSink Bytes found only in the data sink that are scheduled to be deleted.
+* @property {string} objectsDeletedFromSource Objects that are deleted from the data source.
+* @property {string} bytesCopiedToSink Bytes that are copied to the data sink.
+* @property {string} bytesFoundFromSource Bytes found in the data source that are scheduled to be transferred,
+which will be copied, excluded based on conditions, or skipped due to
+failures.
+* @property {string} objectsFromSourceSkippedBySync Objects in the data source that are not transferred because they already
+exist in the data sink.
 * @property {string} bytesDeletedFromSource Bytes that are deleted from the data source.
 * @property {string} objectsFoundFromSource Objects found in the data source that are scheduled to be transferred,
 which will be copied, excluded based on conditions, or skipped due to
@@ -1148,19 +1191,8 @@ failures.
 * @property {string} objectsDeletedFromSink Objects that are deleted from the data sink.
 * @property {string} bytesFromSourceSkippedBySync Bytes in the data source that are not transferred because they already
 exist in the data sink.
-* @property {string} bytesDeletedFromSink Bytes that are deleted from the data sink.
 * @property {string} bytesFailedToDeleteFromSink Bytes that failed to be deleted from the data sink.
-* @property {string} bytesFromSourceFailed Bytes in the data source that failed during the transfer.
-* @property {string} objectsFromSourceFailed Objects in the data source that failed during the transfer.
-* @property {string} objectsCopiedToSink Objects that are copied to the data sink.
-* @property {string} bytesFoundOnlyFromSink Bytes found only in the data sink that are scheduled to be deleted.
-* @property {string} objectsDeletedFromSource Objects that are deleted from the data source.
-* @property {string} bytesCopiedToSink Bytes that are copied to the data sink.
-* @property {string} objectsFromSourceSkippedBySync Objects in the data source that are not transferred because they already
-exist in the data sink.
-* @property {string} bytesFoundFromSource Bytes found in the data source that are scheduled to be transferred,
-which will be copied, excluded based on conditions, or skipped due to
-failures.
+* @property {string} bytesDeletedFromSink Bytes that are deleted from the data sink.
 */
 /**
  * @typedef ErrorSummary
@@ -1192,13 +1224,15 @@ Required.
  * @typedef ListTransferJobsResponse
  * @memberOf! storagetransfer(v1)
  * @type object
- * @property {storagetransfer(v1).TransferJob[]} transferJobs A list of transfer jobs.
  * @property {string} nextPageToken The list next page token.
+ * @property {storagetransfer(v1).TransferJob[]} transferJobs A list of transfer jobs.
  */
 /**
  * @typedef UpdateTransferJobRequest
  * @memberOf! storagetransfer(v1)
  * @type object
+* @property {storagetransfer(v1).TransferJob} transferJob The job to update.
+Required.
 * @property {string} projectId The ID of the Google Cloud Platform Console project that owns the job.
 Required.
 * @property {string} updateTransferJobFieldMask The field mask of the fields in `transferJob` that are to be updated in
@@ -1207,13 +1241,22 @@ this request.  Fields in `transferJob` that can be updated are:
 of the job, a complete transfer specification has to be provided. An
 incomplete specification which misses any required fields will be rejected
 with the error `INVALID_ARGUMENT`.
-* @property {storagetransfer(v1).TransferJob} transferJob The job to update.
-Required.
 */
 /**
  * @typedef ObjectConditions
  * @memberOf! storagetransfer(v1)
  * @type object
+* @property {string} minTimeElapsedSinceLastModification If unspecified, `minTimeElapsedSinceLastModification` takes a zero value
+and `maxTimeElapsedSinceLastModification` takes the maximum possible
+value of Duration. Objects that satisfy the object conditions
+must either have a `lastModificationTime` greater or equal to
+`NOW` - `maxTimeElapsedSinceLastModification` and less than
+`NOW` - `minTimeElapsedSinceLastModification`, or not have a
+`lastModificationTime`.
+* @property {string[]} excludePrefixes `excludePrefixes` must follow the requirements described for
+`includePrefixes`.
+
+The max size of `excludePrefixes` is 1000.
 * @property {string} maxTimeElapsedSinceLastModification `maxTimeElapsedSinceLastModification` is the complement to
 `minTimeElapsedSinceLastModification`.
 * @property {string[]} includePrefixes If `includePrefixes` is specified, objects that satisfy the object
@@ -1249,23 +1292,11 @@ Requirements:
     with the value of a path explicitly included by `includePrefixes`.
 
 The max size of `includePrefixes` is 1000.
-* @property {string} minTimeElapsedSinceLastModification If unspecified, `minTimeElapsedSinceLastModification` takes a zero value
-and `maxTimeElapsedSinceLastModification` takes the maximum possible
-value of Duration. Objects that satisfy the object conditions
-must either have a `lastModificationTime` greater or equal to
-`NOW` - `maxTimeElapsedSinceLastModification` and less than
-`NOW` - `minTimeElapsedSinceLastModification`, or not have a
-`lastModificationTime`.
-* @property {string[]} excludePrefixes `excludePrefixes` must follow the requirements described for
-`includePrefixes`.
-
-The max size of `excludePrefixes` is 1000.
 */
 /**
  * @typedef Operation
  * @memberOf! storagetransfer(v1)
  * @type object
-* @property {object} metadata Represents the transfer operation object.
 * @property {boolean} done If the value is `false`, it means the operation is still in progress.
 If true, the operation is completed, and either `error` or `response` is
 available.
@@ -1279,12 +1310,12 @@ is `TakeSnapshot()`, the inferred response type is
 `TakeSnapshotResponse`.
 * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `transferOperations/some/unique/name`.
 * @property {storagetransfer(v1).Status} error The error result of the operation in case of failure or cancellation.
+* @property {object} metadata Represents the transfer operation object.
 */
 /**
  * @typedef TransferSpec
  * @memberOf! storagetransfer(v1)
  * @type object
-* @property {storagetransfer(v1).AwsS3Data} awsS3DataSource An AWS S3 data source.
 * @property {storagetransfer(v1).HttpData} httpDataSource An HTTP URL data source.
 * @property {storagetransfer(v1).ObjectConditions} objectConditions Only objects that satisfy these object conditions are included in the set
 of data source and data sink objects.  Object conditions based on
@@ -1294,6 +1325,7 @@ objects&#39; `lastModificationTime` do not exclude objects in a data sink.
 * @property {storagetransfer(v1).TransferOptions} transferOptions If the option `deleteObjectsUniqueInSink` is `true`, object conditions
 based on objects&#39; `lastModificationTime` are ignored and do not exclude
 objects in a data source or a data sink.
+* @property {storagetransfer(v1).AwsS3Data} awsS3DataSource An AWS S3 data source.
 */
 /**
  * @typedef TransferOptions
@@ -1313,44 +1345,11 @@ transferred to the sink.
  * @typedef Status
  * @memberOf! storagetransfer(v1)
  * @type object
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
 * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-*/
-/**
- * @typedef ListOperationsResponse
- * @memberOf! storagetransfer(v1)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {storagetransfer(v1).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-/**
- * @typedef GoogleServiceAccount
- * @memberOf! storagetransfer(v1)
- * @type object
- * @property {string} accountEmail Required.
- */
-/**
- * @typedef TimeOfDay
- * @memberOf! storagetransfer(v1)
- * @type object
-* @property {integer} nanos Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
-* @property {integer} seconds Seconds of minutes of the time. Must normally be from 0 to 59. An API may
-allow the value 60 if it allows leap-seconds.
-* @property {integer} minutes Minutes of hour of day. Must be from 0 to 59.
-* @property {integer} hours Hours of day in 24 hour format. Should be from 0 to 23. An API may choose
-to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
-*/
-/**
- * @typedef ErrorLogEntry
- * @memberOf! storagetransfer(v1)
- * @type object
-* @property {string} url A URL that refers to the target (a data source, a data sink,
-or an object) with which the error is associated.
-Required.
-* @property {string[]} errorDetails A list of messages that carry the error details.
 */
 export = Storagetransfer;

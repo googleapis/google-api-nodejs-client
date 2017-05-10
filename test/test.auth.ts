@@ -15,8 +15,9 @@ import * as assert from 'power-assert';
 import * as async from 'async';
 import * as nock from 'nock';
 import utils from './utils';
-let googleapis = require('../');
-let googleauth = require('../lib/googleauth.js');
+import googleauth from '../lib/googleauth';
+const googleapis = require('../');
+
 
 describe('JWT client', () => {
   it('should expose the default auth module', () => {

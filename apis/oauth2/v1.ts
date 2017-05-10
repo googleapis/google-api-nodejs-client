@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google OAuth2 API
@@ -59,7 +58,7 @@ function Oauth2(options) { // eslint-disable-line
     options || (options = {});
 
     const parameters = {
-      options: utils.extend({
+      options: Object.assign({
         url: 'https://www.googleapis.com/oauth2/v1/certs',
         method: 'GET'
       }, options),
@@ -93,7 +92,7 @@ function Oauth2(options) { // eslint-disable-line
     options || (options = {});
 
     const parameters = {
-      options: utils.extend({
+      options: Object.assign({
         url: 'https://www.googleapis.com/oauth2/v1/raw_public_keys',
         method: 'GET'
       }, options),
@@ -128,7 +127,7 @@ function Oauth2(options) { // eslint-disable-line
     options || (options = {});
 
     const parameters = {
-      options: utils.extend({
+      options: Object.assign({
         url: 'https://www.googleapis.com/service_accounts/v1/jwk/{robotEmail}',
         method: 'GET'
       }, options),
@@ -163,7 +162,7 @@ function Oauth2(options) { // eslint-disable-line
     options || (options = {});
 
     const parameters = {
-      options: utils.extend({
+      options: Object.assign({
         url: 'https://www.googleapis.com/service_accounts/v1/metadata/raw/{robotEmail}',
         method: 'GET'
       }, options),
@@ -198,7 +197,7 @@ function Oauth2(options) { // eslint-disable-line
     options || (options = {});
 
     const parameters = {
-      options: utils.extend({
+      options: Object.assign({
         url: 'https://www.googleapis.com/service_accounts/v1/metadata/x509/{robotEmail}',
         method: 'GET'
       }, options),
@@ -234,7 +233,7 @@ function Oauth2(options) { // eslint-disable-line
     options || (options = {});
 
     const parameters = {
-      options: utils.extend({
+      options: Object.assign({
         url: 'https://www.googleapis.com/oauth2/v1/tokeninfo',
         method: 'POST'
       }, options),
@@ -270,7 +269,7 @@ function Oauth2(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/oauth2/v1/userinfo',
           method: 'GET'
         }, options),
@@ -308,7 +307,7 @@ function Oauth2(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://www.googleapis.com/userinfo/v2/me',
               method: 'GET'
             }, options),

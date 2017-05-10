@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google App Engine Admin API
@@ -40,83 +39,6 @@ function Appengine(options) { // eslint-disable-line
 
   self.apps = {
 
-    locations: {
-
-      /**
-       * appengine.apps.locations.list
-       *
-       * @desc Lists information about the supported locations for this service.
-       *
-       * @alias appengine.apps.locations.list
-       * @memberOf! appengine(v1alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.filter The standard list filter.
-       * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
-       * @param {string=} params.pageToken The standard list page token.
-       * @param {integer=} params.pageSize The standard list page size.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      list: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://appengine.googleapis.com/v1alpha/apps/{appsId}/locations',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['appsId'],
-          pathParams: ['appsId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * appengine.apps.locations.get
-       *
-       * @desc Get information about a location.
-       *
-       * @alias appengine.apps.locations.get
-       * @memberOf! appengine(v1alpha)
-       *
-       * @param {object} params Parameters for request
-       * @param {string} params.locationsId Part of `name`. See documentation of `appsId`.
-       * @param {string} params.appsId Part of `name`. Resource name for the location.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      get: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://appengine.googleapis.com/v1alpha/apps/{appsId}/locations/{locationsId}',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['appsId', 'locationsId'],
-          pathParams: ['locationsId', 'appsId'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      }
-    },
-
     operations: {
 
       /**
@@ -128,10 +50,10 @@ function Appengine(options) { // eslint-disable-line
        * @memberOf! appengine(v1alpha)
        *
        * @param {object} params Parameters for request
-       * @param {string=} params.filter The standard list filter.
        * @param {string} params.appsId Part of `name`. The name of the operation collection.
        * @param {string=} params.pageToken The standard list page token.
        * @param {integer=} params.pageSize The standard list page size.
+       * @param {string=} params.filter The standard list filter.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
        * @return {object} Request object
@@ -144,7 +66,7 @@ function Appengine(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://appengine.googleapis.com/v1alpha/apps/{appsId}/operations',
             method: 'GET'
           }, options),
@@ -180,7 +102,7 @@ function Appengine(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://appengine.googleapis.com/v1alpha/apps/{appsId}/operations/{operationsId}',
             method: 'GET'
           }, options),
@@ -192,39 +114,87 @@ function Appengine(options) { // eslint-disable-line
 
         return createAPIRequest(parameters, callback);
       }
+    },
+
+    locations: {
+
+      /**
+       * appengine.apps.locations.list
+       *
+       * @desc Lists information about the supported locations for this service.
+       *
+       * @alias appengine.apps.locations.list
+       * @memberOf! appengine(v1alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
+       * @param {string=} params.pageToken The standard list page token.
+       * @param {integer=} params.pageSize The standard list page size.
+       * @param {string=} params.filter The standard list filter.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      list: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: Object.assign({
+            url: 'https://appengine.googleapis.com/v1alpha/apps/{appsId}/locations',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['appsId'],
+          pathParams: ['appsId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
+       * appengine.apps.locations.get
+       *
+       * @desc Get information about a location.
+       *
+       * @alias appengine.apps.locations.get
+       * @memberOf! appengine(v1alpha)
+       *
+       * @param {object} params Parameters for request
+       * @param {string} params.appsId Part of `name`. Resource name for the location.
+       * @param {string} params.locationsId Part of `name`. See documentation of `appsId`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      get: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: Object.assign({
+            url: 'https://appengine.googleapis.com/v1alpha/apps/{appsId}/locations/{locationsId}',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['appsId', 'locationsId'],
+          pathParams: ['appsId', 'locationsId'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      }
     }
   };
 }
 
-/**
- * @typedef OperationMetadataV1
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {string} method API method that initiated this operation. Example: google.appengine.v1.Versions.CreateVersion.@OutputOnly
- * @property {string} endTime Time that this operation completed.@OutputOnly
- * @property {string[]} warning Durable messages that persist on every operation poll. @OutputOnly
- * @property {string} insertTime Time that this operation was created.@OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
- * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
- * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
- */
-/**
- * @typedef Operation
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {appengine(v1alpha).Status} error The error result of the operation in case of failure or cancellation.
- * @property {object} metadata Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
- * @property {boolean} done If the value is false, it means the operation is still in progress. If true, the operation is completed, and either error or response is available.
- * @property {object} response The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
- * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should have the format of operations/some/unique/name.
- */
-/**
- * @typedef ListOperationsResponse
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {appengine(v1alpha).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
 /**
  * @typedef OperationMetadata
  * @memberOf! appengine(v1alpha)
@@ -250,19 +220,26 @@ function Appengine(options) { // eslint-disable-line
  * @typedef OperationMetadataV1Beta5
  * @memberOf! appengine(v1alpha)
  * @type object
- * @property {string} method API method name that initiated this operation. Example: google.appengine.v1beta5.Version.CreateVersion.@OutputOnly
- * @property {string} insertTime Timestamp that this operation was created.@OutputOnly
  * @property {string} endTime Timestamp that this operation completed.@OutputOnly
  * @property {string} user User who requested this operation.@OutputOnly
  * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
+ * @property {string} method API method name that initiated this operation. Example: google.appengine.v1beta5.Version.CreateVersion.@OutputOnly
+ * @property {string} insertTime Timestamp that this operation was created.@OutputOnly
  */
 /**
  * @typedef Status
  * @memberOf! appengine(v1alpha)
  * @type object
- * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
  * @property {object[]} details A list of messages that carry the error details. There will be a common set of message types for APIs to use.
  * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+ * @property {string} message A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+ */
+/**
+ * @typedef LocationMetadata
+ * @memberOf! appengine(v1alpha)
+ * @type object
+ * @property {boolean} flexibleEnvironmentAvailable App Engine Flexible Environment is available in the given location.@OutputOnly
+ * @property {boolean} standardEnvironmentAvailable App Engine Standard Environment is available in the given location.@OutputOnly
  */
 /**
  * @typedef ListLocationsResponse
@@ -272,20 +249,13 @@ function Appengine(options) { // eslint-disable-line
  * @property {appengine(v1alpha).Location[]} locations A list of locations that matches the specified filter in the request.
  */
 /**
- * @typedef LocationMetadata
- * @memberOf! appengine(v1alpha)
- * @type object
- * @property {boolean} standardEnvironmentAvailable App Engine Standard Environment is available in the given location.@OutputOnly
- * @property {boolean} flexibleEnvironmentAvailable App Engine Flexible Environment is available in the given location.@OutputOnly
- */
-/**
  * @typedef OperationMetadataV1Beta
  * @memberOf! appengine(v1alpha)
  * @type object
- * @property {string[]} warning Durable messages that persist on every operation poll. @OutputOnly
  * @property {string} insertTime Time that this operation was created.@OutputOnly
- * @property {string} user User who requested this operation.@OutputOnly
+ * @property {string[]} warning Durable messages that persist on every operation poll. @OutputOnly
  * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
+ * @property {string} user User who requested this operation.@OutputOnly
  * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
  * @property {string} method API method that initiated this operation. Example: google.appengine.v1beta.Versions.CreateVersion.@OutputOnly
  * @property {string} endTime Time that this operation completed.@OutputOnly
@@ -294,11 +264,40 @@ function Appengine(options) { // eslint-disable-line
  * @typedef Location
  * @memberOf! appengine(v1alpha)
  * @type object
-* @property {string} locationId The canonical id for this location. For example: &quot;us-east1&quot;.
-* @property {object} metadata Service-specific metadata. For example the available capacity at the given location.
 * @property {object} labels Cross-service attributes for the location. For example
 {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
 
 * @property {string} name Resource name for the location, which may vary between implementations. For example: &quot;projects/example-project/locations/us-east1&quot;
+* @property {string} locationId The canonical id for this location. For example: &quot;us-east1&quot;.
+* @property {object} metadata Service-specific metadata. For example the available capacity at the given location.
 */
+/**
+ * @typedef OperationMetadataV1
+ * @memberOf! appengine(v1alpha)
+ * @type object
+ * @property {string} user User who requested this operation.@OutputOnly
+ * @property {string} target Name of the resource that this operation is acting on. Example: apps/myapp/services/default.@OutputOnly
+ * @property {string} ephemeralMessage Ephemeral message that may change every time the operation is polled. @OutputOnly
+ * @property {string} method API method that initiated this operation. Example: google.appengine.v1.Versions.CreateVersion.@OutputOnly
+ * @property {string} endTime Time that this operation completed.@OutputOnly
+ * @property {string[]} warning Durable messages that persist on every operation poll. @OutputOnly
+ * @property {string} insertTime Time that this operation was created.@OutputOnly
+ */
+/**
+ * @typedef ListOperationsResponse
+ * @memberOf! appengine(v1alpha)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {appengine(v1alpha).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+/**
+ * @typedef Operation
+ * @memberOf! appengine(v1alpha)
+ * @type object
+ * @property {string} name The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should have the format of operations/some/unique/name.
+ * @property {appengine(v1alpha).Status} error The error result of the operation in case of failure or cancellation.
+ * @property {object} metadata Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
+ * @property {boolean} done If the value is false, it means the operation is still in progress. If true, the operation is completed, and either error or response is available.
+ * @property {object} response The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
+ */
 export = Appengine;

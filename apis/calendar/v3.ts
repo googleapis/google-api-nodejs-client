@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Calendar API
@@ -63,7 +62,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
           method: 'DELETE'
         }, options),
@@ -99,7 +98,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
           method: 'GET'
         }, options),
@@ -135,7 +134,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl',
           method: 'POST'
         }, options),
@@ -174,7 +173,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl',
           method: 'GET'
         }, options),
@@ -211,7 +210,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
           method: 'PATCH'
         }, options),
@@ -248,7 +247,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/{ruleId}',
           method: 'PUT'
         }, options),
@@ -288,7 +287,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/acl/watch',
           method: 'POST'
         }, options),
@@ -327,7 +326,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
           method: 'DELETE'
         }, options),
@@ -362,7 +361,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
           method: 'GET'
         }, options),
@@ -398,7 +397,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
           method: 'POST'
         }, options),
@@ -438,7 +437,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
           method: 'GET'
         }, options),
@@ -475,7 +474,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
           method: 'PATCH'
         }, options),
@@ -512,7 +511,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/{calendarId}',
           method: 'PUT'
         }, options),
@@ -553,7 +552,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList/watch',
           method: 'POST'
         }, options),
@@ -592,7 +591,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/clear',
           method: 'POST'
         }, options),
@@ -627,7 +626,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
           method: 'DELETE'
         }, options),
@@ -662,7 +661,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
           method: 'GET'
         }, options),
@@ -697,7 +696,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars',
           method: 'POST'
         }, options),
@@ -733,7 +732,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
           method: 'PATCH'
         }, options),
@@ -769,7 +768,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}',
           method: 'PUT'
         }, options),
@@ -808,7 +807,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/channels/stop',
           method: 'POST'
         }, options),
@@ -846,7 +845,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/colors',
           method: 'GET'
         }, options),
@@ -887,7 +886,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
           method: 'DELETE'
         }, options),
@@ -926,7 +925,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
           method: 'GET'
         }, options),
@@ -963,7 +962,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/import',
           method: 'POST'
         }, options),
@@ -1002,7 +1001,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events',
           method: 'POST'
         }, options),
@@ -1047,7 +1046,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/instances',
           method: 'GET'
         }, options),
@@ -1099,7 +1098,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events',
           method: 'GET'
         }, options),
@@ -1137,7 +1136,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}/move',
           method: 'POST'
         }, options),
@@ -1178,7 +1177,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
           method: 'PATCH'
         }, options),
@@ -1215,7 +1214,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/quickAdd',
           method: 'POST'
         }, options),
@@ -1256,7 +1255,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/{eventId}',
           method: 'PUT'
         }, options),
@@ -1309,7 +1308,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/watch',
           method: 'POST'
         }, options),
@@ -1348,7 +1347,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/freeBusy',
           method: 'POST'
         }, options),
@@ -1387,7 +1386,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/users/me/settings/{setting}',
           method: 'GET'
         }, options),
@@ -1424,7 +1423,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/users/me/settings',
           method: 'GET'
         }, options),
@@ -1462,7 +1461,7 @@ function Calendar(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/calendar/v3/users/me/settings/watch',
           method: 'POST'
         }, options),

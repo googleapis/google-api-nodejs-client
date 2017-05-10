@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Compute Engine Instance Group Manager API
@@ -65,7 +64,7 @@ function Replicapool(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
           method: 'POST'
         }, options),
@@ -102,7 +101,7 @@ function Replicapool(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'DELETE'
         }, options),
@@ -140,7 +139,7 @@ function Replicapool(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
           method: 'POST'
         }, options),
@@ -177,7 +176,7 @@ function Replicapool(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
           method: 'GET'
         }, options),
@@ -215,7 +214,7 @@ function Replicapool(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'POST'
         }, options),
@@ -254,7 +253,7 @@ function Replicapool(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers',
           method: 'GET'
         }, options),
@@ -292,7 +291,7 @@ function Replicapool(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
           method: 'POST'
         }, options),
@@ -330,7 +329,7 @@ function Replicapool(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resize',
           method: 'POST'
         }, options),
@@ -368,7 +367,7 @@ function Replicapool(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
           method: 'POST'
         }, options),
@@ -406,7 +405,7 @@ function Replicapool(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
           method: 'POST'
         }, options),
@@ -447,7 +446,7 @@ function Replicapool(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/operations/{operation}',
           method: 'GET'
         }, options),
@@ -486,7 +485,7 @@ function Replicapool(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/replicapool/v1beta2/projects/{project}/zones/{zone}/operations',
           method: 'GET'
         }, options),

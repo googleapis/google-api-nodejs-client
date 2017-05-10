@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Resource Views API
@@ -65,7 +64,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/addResources',
           method: 'POST'
         }, options),
@@ -102,7 +101,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}',
           method: 'DELETE'
         }, options),
@@ -139,7 +138,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}',
           method: 'GET'
         }, options),
@@ -176,7 +175,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews',
           method: 'POST'
         }, options),
@@ -214,7 +213,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews',
           method: 'GET'
         }, options),
@@ -253,7 +252,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/resources',
           method: 'POST'
         }, options),
@@ -291,7 +290,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/removeResources',
           method: 'POST'
         }, options),
@@ -333,7 +332,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/addResources',
           method: 'POST'
         }, options),
@@ -370,7 +369,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}',
           method: 'DELETE'
         }, options),
@@ -407,7 +406,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}',
           method: 'GET'
         }, options),
@@ -444,7 +443,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews',
           method: 'POST'
         }, options),
@@ -482,7 +481,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews',
           method: 'GET'
         }, options),
@@ -521,7 +520,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/resources',
           method: 'POST'
         }, options),
@@ -559,7 +558,7 @@ function Resourceviews(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/removeResources',
           method: 'POST'
         }, options),

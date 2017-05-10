@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Blogger API
@@ -64,7 +63,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/users/{userId}/blogs/{blogId}',
           method: 'GET'
         }, options),
@@ -105,7 +104,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}',
           method: 'GET'
         }, options),
@@ -141,7 +140,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/byurl',
           method: 'GET'
         }, options),
@@ -180,7 +179,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/users/{userId}/blogs',
           method: 'GET'
         }, options),
@@ -221,7 +220,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/approve',
           method: 'POST'
         }, options),
@@ -258,7 +257,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}',
           method: 'DELETE'
         }, options),
@@ -296,7 +295,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}',
           method: 'GET'
         }, options),
@@ -339,7 +338,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments',
           method: 'GET'
         }, options),
@@ -380,7 +379,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/comments',
           method: 'GET'
         }, options),
@@ -417,7 +416,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/spam',
           method: 'POST'
         }, options),
@@ -454,7 +453,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/comments/{commentId}/removecontent',
           method: 'POST'
         }, options),
@@ -494,7 +493,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pageviews',
           method: 'GET'
         }, options),
@@ -534,7 +533,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}',
           method: 'DELETE'
         }, options),
@@ -571,7 +570,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}',
           method: 'GET'
         }, options),
@@ -608,7 +607,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages',
           method: 'POST'
         }, options),
@@ -648,7 +647,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages',
           method: 'GET'
         }, options),
@@ -687,7 +686,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}',
           method: 'PATCH'
         }, options),
@@ -723,7 +722,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}/publish',
           method: 'POST'
         }, options),
@@ -759,7 +758,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}/revert',
           method: 'POST'
         }, options),
@@ -798,7 +797,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/pages/{pageId}',
           method: 'PUT'
         }, options),
@@ -840,7 +839,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/users/{userId}/blogs/{blogId}/posts/{postId}',
           method: 'GET'
         }, options),
@@ -885,7 +884,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/users/{userId}/blogs/{blogId}/posts',
           method: 'GET'
         }, options),
@@ -925,7 +924,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}',
           method: 'DELETE'
         }, options),
@@ -965,7 +964,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}',
           method: 'GET'
         }, options),
@@ -1003,7 +1002,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/bypath',
           method: 'GET'
         }, options),
@@ -1042,7 +1041,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts',
           method: 'POST'
         }, options),
@@ -1087,7 +1086,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts',
           method: 'GET'
         }, options),
@@ -1129,7 +1128,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}',
           method: 'PATCH'
         }, options),
@@ -1166,7 +1165,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/publish',
           method: 'POST'
         }, options),
@@ -1202,7 +1201,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}/revert',
           method: 'POST'
         }, options),
@@ -1240,7 +1239,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/search',
           method: 'GET'
         }, options),
@@ -1282,7 +1281,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/blogs/{blogId}/posts/{postId}',
           method: 'PUT'
         }, options),
@@ -1321,7 +1320,7 @@ function Blogger(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/blogger/v3/users/{userId}',
           method: 'GET'
         }, options),

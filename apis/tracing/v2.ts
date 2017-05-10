@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Tracing API
@@ -44,6 +43,42 @@ function Tracing(options) { // eslint-disable-line
     traces: {
 
       /**
+       * tracing.projects.traces.listSpans
+       *
+       * @desc Returns a list of spans within a trace.
+       *
+       * @alias tracing.projects.traces.listSpans
+       * @memberOf! tracing(v2)
+       *
+       * @param {object} params Parameters for request
+       * @param {string=} params.pageToken Token identifying the page of results to return. If provided, use the value of the `nextPageToken` field from a previous request. Optional.
+       * @param {string} params.parent ID of the trace for which to list child spans. Format is `projects/PROJECT_ID/traces/TRACE_ID`.
+       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+       * @param {callback} callback The callback that handles the response.
+       * @return {object} Request object
+       */
+      listSpans: function (params, options, callback) {
+        if (typeof options === 'function') {
+          callback = options;
+          options = {};
+        }
+        options || (options = {});
+
+        const parameters = {
+          options: Object.assign({
+            url: 'https://tracing.googleapis.com/v2/{parent}:listSpans',
+            method: 'GET'
+          }, options),
+          params: params,
+          requiredParams: ['parent'],
+          pathParams: ['parent'],
+          context: self
+        };
+
+        return createAPIRequest(parameters, callback);
+      },
+
+      /**
        * tracing.projects.traces.list
        *
        * @desc Returns of a list of traces that match the specified filter conditions.
@@ -56,8 +91,8 @@ function Tracing(options) { // eslint-disable-line
        * @param {string=} params.orderBy Field used to sort the returned traces. Optional. Can be one of the following:  *   `trace_id` *   `name` (`name` field of root span in the trace) *   `duration` (difference between `end_time` and `start_time` fields of      the root span) *   `start` (`start_time` field of the root span)  Descending order can be specified by appending `desc` to the sort field (for example, `name desc`).  Only one sort field is permitted.
        * @param {string=} params.filter An optional filter for the request. Example: `version_label_key:a some_label:some_label_key` returns traces from version `a` and has `some_label` with `some_label_key`.
        * @param {string=} params.endTime End of the time interval (inclusive) during which the trace data was collected from the application.
-       * @param {string=} params.pageToken Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request. Optional.
        * @param {string=} params.startTime Start of the time interval (inclusive) during which the trace data was collected from the application.
+       * @param {string=} params.pageToken Token identifying the page of results to return. If provided, use the value of the `next_page_token` field from a previous request. Optional.
        * @param {integer=} params.pageSize Maximum number of traces to return. If not specified or <= 0, the implementation selects a reasonable value. The implementation may return fewer traces than the requested page size. Optional.
        * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
        * @param {callback} callback The callback that handles the response.
@@ -71,7 +106,7 @@ function Tracing(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://tracing.googleapis.com/v2/{parent}/traces',
             method: 'GET'
           }, options),
@@ -107,49 +142,13 @@ function Tracing(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://tracing.googleapis.com/v2/{name}/traces:batchWrite',
             method: 'POST'
           }, options),
           params: params,
           requiredParams: ['name'],
           pathParams: ['name'],
-          context: self
-        };
-
-        return createAPIRequest(parameters, callback);
-      },
-
-      /**
-       * tracing.projects.traces.listSpans
-       *
-       * @desc Returns a list of spans within a trace.
-       *
-       * @alias tracing.projects.traces.listSpans
-       * @memberOf! tracing(v2)
-       *
-       * @param {object} params Parameters for request
-       * @param {string=} params.pageToken Token identifying the page of results to return. If provided, use the value of the `nextPageToken` field from a previous request. Optional.
-       * @param {string} params.parent ID of the trace for which to list child spans. Format is `projects/PROJECT_ID/traces/TRACE_ID`.
-       * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-       * @param {callback} callback The callback that handles the response.
-       * @return {object} Request object
-       */
-      listSpans: function (params, options, callback) {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options || (options = {});
-
-        const parameters = {
-          options: utils.extend({
-            url: 'https://tracing.googleapis.com/v2/{parent}:listSpans',
-            method: 'GET'
-          }, options),
-          params: params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
           context: self
         };
 
@@ -181,7 +180,7 @@ function Tracing(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://tracing.googleapis.com/v2/{name}',
               method: 'PUT'
             }, options),
@@ -199,23 +198,6 @@ function Tracing(options) { // eslint-disable-line
 }
 
 /**
- * @typedef Annotation
- * @memberOf! tracing(v2)
- * @type object
-* @property {tracing(v2).TruncatableString} description A user-supplied message describing the event. The maximum length for
-the description is 256 bytes.
-* @property {tracing(v2).Attributes} attributes A set of attributes on the annotation. A maximum of 4 attributes are
-allowed per Annotation.
-*/
-/**
- * @typedef StackFrames
- * @memberOf! tracing(v2)
- * @type object
-* @property {integer} droppedFramesCount The number of dropped stack frames after the maximum size was enforced.
-If 0 then no frames were dropped.
-* @property {tracing(v2).StackFrame[]} frame Stack frames in this stack trace.
-*/
-/**
  * @typedef Trace
  * @memberOf! tracing(v2)
  * @type object
@@ -228,11 +210,11 @@ string and is required to be 32 char long.
  * @typedef TimeEvents
  * @memberOf! tracing(v2)
  * @type object
+* @property {integer} droppedNetworkEventsCount The number of dropped network events after the maximum size was enforced.
+If 0 then no annotations were dropped.
 * @property {integer} droppedAnnotationsCount The number of dropped annotations after the maximum size was enforced. If
 0 then no annotations were dropped.
 * @property {tracing(v2).TimeEvent[]} timeEvent A collection of `TimeEvent`s.
-* @property {integer} droppedNetworkEventsCount The number of dropped network events after the maximum size was enforced.
-If 0 then no annotations were dropped.
 */
 /**
  * @typedef Module
@@ -247,12 +229,12 @@ contents (up to 128 characters).
  * @typedef Status
  * @memberOf! tracing(v2)
  * @type object
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
 * @property {integer} code The status code, which should be an enum value of google.rpc.Code.
 * @property {string} message A developer-facing error message, which should be in English. Any
 user-facing error message should be localized and sent in the
 google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
 */
 /**
  * @typedef BatchWriteSpansRequest
@@ -261,9 +243,31 @@ google.rpc.Status.details field, or localized by the client.
  * @property {tracing(v2).Span[]} spans A collection of spans.
  */
 /**
+ * @typedef ListTracesResponse
+ * @memberOf! tracing(v2)
+ * @type object
+* @property {tracing(v2).Trace[]} traces List of trace records returned.
+* @property {string} nextPageToken If defined, indicates that there are more traces that match the request
+and that this value should be passed to the next request to continue
+retrieving additional traces.
+*/
+/**
+ * @typedef Empty
+ * @memberOf! tracing(v2)
+ * @type object
+ */
+/**
  * @typedef Span
  * @memberOf! tracing(v2)
  * @type object
+* @property {string} parentSpanId ID of parent span which is a base 16-encoded, case-insensitive string of
+a 8-bytes array and is required to be 16 char long. If this is a root span,
+the value must be empty.
+* @property {string} endTime End time of the span.
+On the client side, this is the local machine clock time at which the span
+execution was ended; on the server
+side, this is the time at which the server application handler stopped
+running.
 * @property {string} startTime Start time of the span.
 On the client side, this is the local machine clock time at which the span
 execution was started; on the server
@@ -292,36 +296,14 @@ to be 16 char long.
 Span.
 * @property {string} spanId Unique identifier for a span within a trace. It is a base 16-encoded,
 case-insensitive string of a 8-bytes array and is required.
-* @property {string} parentSpanId ID of parent span which is a base 16-encoded, case-insensitive string of
-a 8-bytes array and is required to be 16 char long. If this is a root span,
-the value must be empty.
-* @property {string} endTime End time of the span.
-On the client side, this is the local machine clock time at which the span
-execution was ended; on the server
-side, this is the time at which the server application handler stopped
-running.
-*/
-/**
- * @typedef Empty
- * @memberOf! tracing(v2)
- * @type object
- */
-/**
- * @typedef ListTracesResponse
- * @memberOf! tracing(v2)
- * @type object
-* @property {tracing(v2).Trace[]} traces List of trace records returned.
-* @property {string} nextPageToken If defined, indicates that there are more traces that match the request
-and that this value should be passed to the next request to continue
-retrieving additional traces.
 */
 /**
  * @typedef AttributeValue
  * @memberOf! tracing(v2)
  * @type object
+ * @property {string} intValue An integer value.
  * @property {tracing(v2).TruncatableString} stringValue A string value (up to 256 bytes).
  * @property {boolean} boolValue A boolean value.
- * @property {string} intValue An integer value.
  */
 /**
  * @typedef Attributes
@@ -348,9 +330,9 @@ examples:
  * @typedef Links
  * @memberOf! tracing(v2)
  * @type object
-* @property {tracing(v2).Link[]} link A collection of links.
 * @property {integer} droppedLinksCount The number of dropped links after the maximum size was enforced. If
 0 then no links were dropped.
+* @property {tracing(v2).Link[]} link A collection of links.
 */
 /**
  * @typedef TruncatableString
@@ -380,10 +362,19 @@ to that stack trace by only setting `stackTraceHashId`.
  * @typedef TimeEvent
  * @memberOf! tracing(v2)
  * @type object
+ * @property {tracing(v2).Annotation} annotation One or more key:value pairs.
  * @property {string} time The timestamp indicating the time the event occurred.
  * @property {tracing(v2).NetworkEvent} networkEvent An event describing an RPC message sent/received on the network.
- * @property {tracing(v2).Annotation} annotation One or more key:value pairs.
  */
+/**
+ * @typedef ListSpansResponse
+ * @memberOf! tracing(v2)
+ * @type object
+* @property {string} nextPageToken If defined, indicates that there are more spans that match the request.
+Pass this as the value of `pageToken` in a subsequent request to retrieve
+additional spans.
+* @property {tracing(v2).Span[]} spans The requested spans if there are any in the specified trace.
+*/
 /**
  * @typedef NetworkEvent
  * @memberOf! tracing(v2)
@@ -399,29 +390,20 @@ to that stack trace by only setting `stackTraceHashId`.
 received.
 */
 /**
- * @typedef ListSpansResponse
- * @memberOf! tracing(v2)
- * @type object
-* @property {string} nextPageToken If defined, indicates that there are more spans that match the request.
-Pass this as the value of `pageToken` in a subsequent request to retrieve
-additional spans.
-* @property {tracing(v2).Span[]} spans The requested spans if there are any in the specified trace.
-*/
-/**
  * @typedef StackFrame
  * @memberOf! tracing(v2)
  * @type object
+* @property {tracing(v2).TruncatableString} fileName The filename of the file containing this frame (up to 256 characters).
+* @property {tracing(v2).TruncatableString} sourceVersion The version of the deployed source code (up to 128 characters).
+* @property {tracing(v2).TruncatableString} originalFunctionName Used when the function name is
+[mangled](http://www.avabodh.com/cxxin/namemangling.html). May be
+fully-qualified (up to 1024 characters).
 * @property {tracing(v2).TruncatableString} functionName The fully-qualified name that uniquely identifies this function or
 method (up to 1024 characters).
 * @property {string} lineNumber Line number of the frame.
 * @property {tracing(v2).Module} loadModule Binary module the code is loaded from.
 * @property {string} columnNumber Column number is important in JavaScript (anonymous functions).
 May not be available in some languages.
-* @property {tracing(v2).TruncatableString} fileName The filename of the file containing this frame (up to 256 characters).
-* @property {tracing(v2).TruncatableString} sourceVersion The version of the deployed source code (up to 128 characters).
-* @property {tracing(v2).TruncatableString} originalFunctionName Used when the function name is
-[mangled](http://www.avabodh.com/cxxin/namemangling.html). May be
-fully-qualified (up to 1024 characters).
 */
 /**
  * @typedef Link
@@ -434,5 +416,22 @@ required to be 32 char long.
 * @property {string} spanId `SPAN_ID` is a unique identifier for a span within a trace. It is a
 base16-encoded, case-insensitive string of a 8-bytes array and is
 required to be 16 char long.
+*/
+/**
+ * @typedef Annotation
+ * @memberOf! tracing(v2)
+ * @type object
+* @property {tracing(v2).TruncatableString} description A user-supplied message describing the event. The maximum length for
+the description is 256 bytes.
+* @property {tracing(v2).Attributes} attributes A set of attributes on the annotation. A maximum of 4 attributes are
+allowed per Annotation.
+*/
+/**
+ * @typedef StackFrames
+ * @memberOf! tracing(v2)
+ * @type object
+* @property {integer} droppedFramesCount The number of dropped stack frames after the maximum size was enforced.
+If 0 then no frames were dropped.
+* @property {tracing(v2).StackFrame[]} frame Stack frames in this stack trace.
 */
 export = Tracing;

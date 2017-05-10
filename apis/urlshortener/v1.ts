@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * URL Shortener API
@@ -63,7 +62,7 @@ function Urlshortener(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/urlshortener/v1/url',
           method: 'GET'
         }, options),
@@ -98,7 +97,7 @@ function Urlshortener(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/urlshortener/v1/url',
           method: 'POST'
         }, options),
@@ -134,7 +133,7 @@ function Urlshortener(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/urlshortener/v1/url/history',
           method: 'GET'
         }, options),

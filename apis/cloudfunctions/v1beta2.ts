@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Cloud Functions API
@@ -49,10 +48,10 @@ function Cloudfunctions(options) { // eslint-disable-line
      * @memberOf! cloudfunctions(v1beta2)
      *
      * @param {object} params Parameters for request
+     * @param {string=} params.filter The standard list filter.
      * @param {string=} params.name The name of the operation collection.
      * @param {string=} params.pageToken The standard list page token.
      * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.filter The standard list filter.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -65,7 +64,7 @@ function Cloudfunctions(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://cloudfunctions.googleapis.com/v1beta2/operations',
           method: 'GET'
         }, options),
@@ -100,7 +99,7 @@ function Cloudfunctions(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://cloudfunctions.googleapis.com/v1beta2/{name}',
           method: 'GET'
         }, options),
@@ -144,7 +143,7 @@ function Cloudfunctions(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://cloudfunctions.googleapis.com/v1beta2/{name}/locations',
             method: 'GET'
           }, options),
@@ -158,150 +157,6 @@ function Cloudfunctions(options) { // eslint-disable-line
       },
 
       functions: {
-
-        /**
-         * cloudfunctions.projects.locations.functions.delete
-         *
-         * @desc Deletes a function with the given name from the specified project. If the given function is used by some trigger, the trigger will be updated to remove this function.
-         *
-         * @alias cloudfunctions.projects.locations.functions.delete
-         * @memberOf! cloudfunctions(v1beta2)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name The name of the function which should be deleted.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        delete: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const parameters = {
-            options: utils.extend({
-              url: 'https://cloudfunctions.googleapis.com/v1beta2/{name}',
-              method: 'DELETE'
-            }, options),
-            params: params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * cloudfunctions.projects.locations.functions.list
-         *
-         * @desc Returns a list of functions that belong to the requested project.
-         *
-         * @alias cloudfunctions.projects.locations.functions.list
-         * @memberOf! cloudfunctions(v1beta2)
-         *
-         * @param {object} params Parameters for request
-         * @param {string=} params.pageToken The value returned by the last `ListFunctionsResponse`; indicates that this is a continuation of a prior `ListFunctions` call, and that the system should return the next page of data.
-         * @param {integer=} params.pageSize Maximum number of functions to return per call.
-         * @param {string} params.location The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location.
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        list: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const parameters = {
-            options: utils.extend({
-              url: 'https://cloudfunctions.googleapis.com/v1beta2/{location}/functions',
-              method: 'GET'
-            }, options),
-            params: params,
-            requiredParams: ['location'],
-            pathParams: ['location'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * cloudfunctions.projects.locations.functions.call
-         *
-         * @desc Invokes synchronously deployed function. To be used for testing, very limited traffic allowed.
-         *
-         * @alias cloudfunctions.projects.locations.functions.call
-         * @memberOf! cloudfunctions(v1beta2)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.name The name of the function to be called.
-         * @param {cloudfunctions(v1beta2).CallFunctionRequest} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        call: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const parameters = {
-            options: utils.extend({
-              url: 'https://cloudfunctions.googleapis.com/v1beta2/{name}:call',
-              method: 'POST'
-            }, options),
-            params: params,
-            requiredParams: ['name'],
-            pathParams: ['name'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
-
-        /**
-         * cloudfunctions.projects.locations.functions.create
-         *
-         * @desc Creates a new function. If a function with the given name already exists in the specified project, the long running operation will return `ALREADY_EXISTS` error.
-         *
-         * @alias cloudfunctions.projects.locations.functions.create
-         * @memberOf! cloudfunctions(v1beta2)
-         *
-         * @param {object} params Parameters for request
-         * @param {string} params.location The project and location in which the function should be created, specified in the format `projects/x/locations/x`
-         * @param {cloudfunctions(v1beta2).CloudFunction} params.resource Request body data
-         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-         * @param {callback} callback The callback that handles the response.
-         * @return {object} Request object
-         */
-        create: function (params, options, callback) {
-          if (typeof options === 'function') {
-            callback = options;
-            options = {};
-          }
-          options || (options = {});
-
-          const parameters = {
-            options: utils.extend({
-              url: 'https://cloudfunctions.googleapis.com/v1beta2/{location}/functions',
-              method: 'POST'
-            }, options),
-            params: params,
-            requiredParams: ['location'],
-            pathParams: ['location'],
-            context: self
-          };
-
-          return createAPIRequest(parameters, callback);
-        },
 
         /**
          * cloudfunctions.projects.locations.functions.get
@@ -325,7 +180,7 @@ function Cloudfunctions(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://cloudfunctions.googleapis.com/v1beta2/{name}',
               method: 'GET'
             }, options),
@@ -361,9 +216,153 @@ function Cloudfunctions(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://cloudfunctions.googleapis.com/v1beta2/{name}',
               method: 'PUT'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * cloudfunctions.projects.locations.functions.delete
+         *
+         * @desc Deletes a function with the given name from the specified project. If the given function is used by some trigger, the trigger will be updated to remove this function.
+         *
+         * @alias cloudfunctions.projects.locations.functions.delete
+         * @memberOf! cloudfunctions(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name The name of the function which should be deleted.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        delete: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: Object.assign({
+              url: 'https://cloudfunctions.googleapis.com/v1beta2/{name}',
+              method: 'DELETE'
+            }, options),
+            params: params,
+            requiredParams: ['name'],
+            pathParams: ['name'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * cloudfunctions.projects.locations.functions.list
+         *
+         * @desc Returns a list of functions that belong to the requested project.
+         *
+         * @alias cloudfunctions.projects.locations.functions.list
+         * @memberOf! cloudfunctions(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.location The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location.
+         * @param {string=} params.pageToken The value returned by the last `ListFunctionsResponse`; indicates that this is a continuation of a prior `ListFunctions` call, and that the system should return the next page of data.
+         * @param {integer=} params.pageSize Maximum number of functions to return per call.
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        list: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: Object.assign({
+              url: 'https://cloudfunctions.googleapis.com/v1beta2/{location}/functions',
+              method: 'GET'
+            }, options),
+            params: params,
+            requiredParams: ['location'],
+            pathParams: ['location'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * cloudfunctions.projects.locations.functions.create
+         *
+         * @desc Creates a new function. If a function with the given name already exists in the specified project, the long running operation will return `ALREADY_EXISTS` error.
+         *
+         * @alias cloudfunctions.projects.locations.functions.create
+         * @memberOf! cloudfunctions(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.location The project and location in which the function should be created, specified in the format `projects/x/locations/x`
+         * @param {cloudfunctions(v1beta2).CloudFunction} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        create: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: Object.assign({
+              url: 'https://cloudfunctions.googleapis.com/v1beta2/{location}/functions',
+              method: 'POST'
+            }, options),
+            params: params,
+            requiredParams: ['location'],
+            pathParams: ['location'],
+            context: self
+          };
+
+          return createAPIRequest(parameters, callback);
+        },
+
+        /**
+         * cloudfunctions.projects.locations.functions.call
+         *
+         * @desc Invokes synchronously deployed function. To be used for testing, very limited traffic allowed.
+         *
+         * @alias cloudfunctions.projects.locations.functions.call
+         * @memberOf! cloudfunctions(v1beta2)
+         *
+         * @param {object} params Parameters for request
+         * @param {string} params.name The name of the function to be called.
+         * @param {cloudfunctions(v1beta2).CallFunctionRequest} params.resource Request body data
+         * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+         * @param {callback} callback The callback that handles the response.
+         * @return {object} Request object
+         */
+        call: function (params, options, callback) {
+          if (typeof options === 'function') {
+            callback = options;
+            options = {};
+          }
+          options || (options = {});
+
+          const parameters = {
+            options: Object.assign({
+              url: 'https://cloudfunctions.googleapis.com/v1beta2/{name}:call',
+              method: 'POST'
             }, options),
             params: params,
             requiredParams: ['name'],
@@ -378,132 +377,6 @@ function Cloudfunctions(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef OperationMetadataV1Beta2
- * @memberOf! cloudfunctions(v1beta2)
- * @type object
-* @property {string} target Target of the operation - for example
-projects/project-1/locations/region-1/functions/function-1
-* @property {object} request The original request that started the operation.
-* @property {string} type Type of operation.
-*/
-/**
- * @typedef Status
- * @memberOf! cloudfunctions(v1beta2)
- * @type object
-* @property {string} message A developer-facing error message, which should be in English. Any
-user-facing error message should be localized and sent in the
-google.rpc.Status.details field, or localized by the client.
-* @property {object[]} details A list of messages that carry the error details.  There will be a
-common set of message types for APIs to use.
-* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
-*/
-/**
- * @typedef SourceRepository
- * @memberOf! cloudfunctions(v1beta2)
- * @type object
-* @property {string} sourcePath The path within the repository where the function is defined. The path
-should point to the directory where Cloud Functions files are located. Use
-&quot;/&quot; if the function is defined directly in the root directory of a
-repository.
-* @property {string} deployedRevision Output only. The id of the revision that was resolved at the moment of
-function creation or update. For example when a user deployed from a
-branch, it will be the revision id of the latest change on this branch at
-that time. If user deployed from revision then this value will be always
-equal to the revision specified by the user.
-* @property {string} revision The id of the revision that captures the state of the repository from
-which the function should be fetched.
-* @property {string} repositoryUrl URL to the hosted repository where the function is defined. Only paths in
-https://source.developers.google.com domain are supported. The path should
-contain the name of the repository.
-* @property {string} tag The name of the tag that captures the state of the repository from
-which the function should be fetched.
-* @property {string} branch The name of the branch from which the function should be fetched.
-*/
-/**
- * @typedef CallFunctionRequest
- * @memberOf! cloudfunctions(v1beta2)
- * @type object
- * @property {string} data Input to be passed to the function.
- */
-/**
- * @typedef CloudFunction
- * @memberOf! cloudfunctions(v1beta2)
- * @type object
-* @property {string} serviceAccount Output only. The service account of the function.
-* @property {string} sourceArchiveUrl The Google Cloud Storage URL, starting with gs://, pointing to the zip
-archive which contains the function.
-* @property {cloudfunctions(v1beta2).SourceRepository} sourceRepository The hosted repository where the function is defined.
-* @property {string} deployedSourceDownloadUrl Output only. The Google Cloud Storage signed URL generated for downloading
-the current deployed source code.
-* @property {string} entryPoint The name of the function (as defined in source code) that will be
-executed. Defaults to the resource name suffix, if not specified. For
-backward compatibility, if function with given name is not found, then the
-system will try to use function named &quot;function&quot;.
-For Node.js this is name of a function exported by the module specified
-in `source_location`.
-* @property {string} updateTime Output only. The last update timestamp of a Cloud Function.
-* @property {string} latestOperation Output only. Name of the most recent operation modifying the function. If
-the function status is `DEPLOYING` or `DELETING`, then it points to the
-active operation.
-* @property {cloudfunctions(v1beta2).HTTPSTrigger} httpsTrigger An HTTPS endpoint type of source that can be triggered via URL.
-* @property {cloudfunctions(v1beta2).EventTrigger} eventTrigger A source that fires events in response to a condition in another service.
-* @property {string} status Output only. Status of the function deployment.
-* @property {string} timeout The function execution timeout. Execution is considered failed and
-can be terminated if the function is not completed at the end of the
-timeout period. Defaults to 60 seconds.
-* @property {integer} availableMemoryMb The amount of memory in MB available for a function.
-Defaults to 256MB.
-* @property {string} name A user-defined name of the function. Function names must be unique
-globally and match pattern `projects/x/locations/x/functions/x
-*/
-/**
- * @typedef Location
- * @memberOf! cloudfunctions(v1beta2)
- * @type object
-* @property {string} name Resource name for the location, which may vary between implementations.
-For example: `&quot;projects/example-project/locations/us-east1&quot;`
-* @property {string} locationId The canonical id for this location. For example: `&quot;us-east1&quot;`.
-* @property {object} metadata Service-specific metadata. For example the available capacity at the given
-location.
-* @property {object} labels Cross-service attributes for the location. For example
-
-    {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
-*/
-/**
- * @typedef ListOperationsResponse
- * @memberOf! cloudfunctions(v1beta2)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {cloudfunctions(v1beta2).Operation[]} operations A list of operations that matches the specified filter in the request.
- */
-/**
- * @typedef ListFunctionsResponse
- * @memberOf! cloudfunctions(v1beta2)
- * @type object
-* @property {string} nextPageToken If not empty, indicates that there may be more functions that match
-the request; this value should be passed in a new
-google.cloud.functions.v1beta2.ListFunctionsRequest
-to get more functions.
-* @property {cloudfunctions(v1beta2).CloudFunction[]} functions The functions that match the request.
-*/
-/**
- * @typedef ListLocationsResponse
- * @memberOf! cloudfunctions(v1beta2)
- * @type object
- * @property {string} nextPageToken The standard List next-page token.
- * @property {cloudfunctions(v1beta2).Location[]} locations A list of locations that matches the specified filter in the request.
- */
-/**
- * @typedef CallFunctionResponse
- * @memberOf! cloudfunctions(v1beta2)
- * @type object
-* @property {string} result Result populated for successful execution of synchronous function. Will
-not be populated if function does not return a result through context.
-* @property {string} error Either system or user-function generated error. Set if execution
-was not successful.
-* @property {string} executionId Execution id of function invocation.
-*/
 /**
  * @typedef EventTrigger
  * @memberOf! cloudfunctions(v1beta2)
@@ -554,4 +427,128 @@ contains progress information and common metadata such as create time.
 Some services might not provide such metadata.  Any method that returns a
 long-running operation should document the metadata type, if any.
 */
+/**
+ * @typedef OperationMetadataV1Beta2
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+* @property {string} target Target of the operation - for example
+projects/project-1/locations/region-1/functions/function-1
+* @property {object} request The original request that started the operation.
+* @property {string} type Type of operation.
+*/
+/**
+ * @typedef Status
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+* @property {integer} code The status code, which should be an enum value of google.rpc.Code.
+* @property {string} message A developer-facing error message, which should be in English. Any
+user-facing error message should be localized and sent in the
+google.rpc.Status.details field, or localized by the client.
+* @property {object[]} details A list of messages that carry the error details.  There will be a
+common set of message types for APIs to use.
+*/
+/**
+ * @typedef CallFunctionRequest
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+ * @property {string} data Input to be passed to the function.
+ */
+/**
+ * @typedef SourceRepository
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+* @property {string} revision The id of the revision that captures the state of the repository from
+which the function should be fetched.
+* @property {string} repositoryUrl URL to the hosted repository where the function is defined. Only paths in
+https://source.developers.google.com domain are supported. The path should
+contain the name of the repository.
+* @property {string} tag The name of the tag that captures the state of the repository from
+which the function should be fetched.
+* @property {string} branch The name of the branch from which the function should be fetched.
+* @property {string} sourcePath The path within the repository where the function is defined. The path
+should point to the directory where Cloud Functions files are located. Use
+&quot;/&quot; if the function is defined directly in the root directory of a
+repository.
+* @property {string} deployedRevision Output only. The id of the revision that was resolved at the moment of
+function creation or update. For example when a user deployed from a
+branch, it will be the revision id of the latest change on this branch at
+that time. If user deployed from revision then this value will be always
+equal to the revision specified by the user.
+*/
+/**
+ * @typedef CloudFunction
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+* @property {cloudfunctions(v1beta2).HTTPSTrigger} httpsTrigger An HTTPS endpoint type of source that can be triggered via URL.
+* @property {string} status Output only. Status of the function deployment.
+* @property {string} timeout The function execution timeout. Execution is considered failed and
+can be terminated if the function is not completed at the end of the
+timeout period. Defaults to 60 seconds.
+* @property {cloudfunctions(v1beta2).EventTrigger} eventTrigger A source that fires events in response to a condition in another service.
+* @property {integer} availableMemoryMb The amount of memory in MB available for a function.
+Defaults to 256MB.
+* @property {string} name A user-defined name of the function. Function names must be unique
+globally and match pattern `projects/x/locations/x/functions/x
+* @property {string} serviceAccount Output only. The service account of the function.
+* @property {string} sourceArchiveUrl The Google Cloud Storage URL, starting with gs://, pointing to the zip
+archive which contains the function.
+* @property {cloudfunctions(v1beta2).SourceRepository} sourceRepository The hosted repository where the function is defined.
+* @property {string} entryPoint The name of the function (as defined in source code) that will be
+executed. Defaults to the resource name suffix, if not specified. For
+backward compatibility, if function with given name is not found, then the
+system will try to use function named &quot;function&quot;.
+For Node.js this is name of a function exported by the module specified
+in `source_location`.
+* @property {string} updateTime Output only. The last update timestamp of a Cloud Function.
+* @property {string} latestOperation Output only. Name of the most recent operation modifying the function. If
+the function status is `DEPLOYING` or `DELETING`, then it points to the
+active operation.
+*/
+/**
+ * @typedef Location
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+* @property {object} labels Cross-service attributes for the location. For example
+
+    {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+* @property {string} name Resource name for the location, which may vary between implementations.
+For example: `&quot;projects/example-project/locations/us-east1&quot;`
+* @property {string} locationId The canonical id for this location. For example: `&quot;us-east1&quot;`.
+* @property {object} metadata Service-specific metadata. For example the available capacity at the given
+location.
+*/
+/**
+ * @typedef ListOperationsResponse
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {cloudfunctions(v1beta2).Operation[]} operations A list of operations that matches the specified filter in the request.
+ */
+/**
+ * @typedef ListFunctionsResponse
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+* @property {cloudfunctions(v1beta2).CloudFunction[]} functions The functions that match the request.
+* @property {string} nextPageToken If not empty, indicates that there may be more functions that match
+the request; this value should be passed in a new
+google.cloud.functions.v1beta2.ListFunctionsRequest
+to get more functions.
+*/
+/**
+ * @typedef CallFunctionResponse
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+* @property {string} executionId Execution id of function invocation.
+* @property {string} result Result populated for successful execution of synchronous function. Will
+not be populated if function does not return a result through context.
+* @property {string} error Either system or user-function generated error. Set if execution
+was not successful.
+*/
+/**
+ * @typedef ListLocationsResponse
+ * @memberOf! cloudfunctions(v1beta2)
+ * @type object
+ * @property {string} nextPageToken The standard List next-page token.
+ * @property {cloudfunctions(v1beta2).Location[]} locations A list of locations that matches the specified filter in the request.
+ */
 export = Cloudfunctions;

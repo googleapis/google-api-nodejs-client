@@ -11,16 +11,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const googleauth = require('./googleauth.js');
-const utils = googleauth.utils;
+import googleauth from './googleauth';
+import * as stream from 'stream';
+import * as parseString from 'string-template';
+
 const DefaultTransporter = googleauth.transporters;
-const stream = require('stream');
-const parseString = require('string-template');
 
 function isReadableStream (obj) {
   return obj instanceof stream.Stream &&
-    typeof obj._read === 'function' &&
-    typeof obj._readableState === 'object';
+    typeof (obj as any)._read === 'function' &&
+    typeof (obj as any)._readableState === 'object';
 }
 
 function logError (err) {
@@ -56,7 +56,7 @@ function getMissingParams (params, required) {
 function createAPIRequest (parameters, callback) {
   let req, body, missingParams;
   let params = parameters.params;
-  let options = utils.extend({}, parameters.options);
+  let options = Object.assign({}, parameters.options);
 
   // If the params are not present, and callback was passed instead,
   // use params as the callback and create empty params.
@@ -67,7 +67,7 @@ function createAPIRequest (parameters, callback) {
 
   // Create a new params object so it can no longer be modified from outside code
   // Also support global and per-client params, but allow them to be overriden per-request
-  params = utils.extend(
+  params = Object.assign(
     {}, // New base object
     parameters.context.google._options.params, // Global params
     parameters.context._options.params, // Per-client params
@@ -146,7 +146,7 @@ function createAPIRequest (parameters, callback) {
       ];
     } else {
       params.uploadType = 'media';
-      utils.extend(headers, {
+      Object.assign(headers, {
         'Content-Type': media.mimeType || defaultMime
       });
 
@@ -166,7 +166,7 @@ function createAPIRequest (parameters, callback) {
   options.qs = params;
   options.useQuerystring = true;
 
-  options = utils.extend({},
+  options = Object.assign({},
     parameters.context.google._options,
     parameters.context._options,
     options
@@ -191,4 +191,4 @@ function createAPIRequest (parameters, callback) {
  * Exports createAPIRequest
  * @type {Function}
  */
-export = createAPIRequest;
+export default createAPIRequest;

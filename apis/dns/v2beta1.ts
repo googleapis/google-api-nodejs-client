@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Cloud DNS API
@@ -123,7 +122,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones/{managedZone}/changes',
           method: 'POST'
         }, options),
@@ -218,7 +217,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones/{managedZone}/changes/{changeId}',
           method: 'GET'
         }, options),
@@ -325,7 +324,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones/{managedZone}/changes',
           method: 'GET'
         }, options),
@@ -425,7 +424,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones/{managedZone}/dnsKeys/{dnsKeyId}',
           method: 'GET'
         }, options),
@@ -531,7 +530,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones/{managedZone}/dnsKeys',
           method: 'GET'
         }, options),
@@ -630,7 +629,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones/{managedZone}/operations/{operation}',
           method: 'GET'
         }, options),
@@ -736,7 +735,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones/{managedZone}/operations',
           method: 'GET'
         }, options),
@@ -832,7 +831,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones',
           method: 'POST'
         }, options),
@@ -923,7 +922,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones/{managedZone}',
           method: 'DELETE'
         }, options),
@@ -1014,7 +1013,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones/{managedZone}',
           method: 'GET'
         }, options),
@@ -1116,7 +1115,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones',
           method: 'GET'
         }, options),
@@ -1213,7 +1212,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones/{managedZone}',
           method: 'PATCH'
         }, options),
@@ -1310,7 +1309,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones/{managedZone}',
           method: 'PUT'
         }, options),
@@ -1401,7 +1400,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}',
           method: 'GET'
         }, options),
@@ -1512,7 +1511,7 @@ function Dns(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/dns/v2beta1/projects/{project}/managedZones/{managedZone}/rrsets',
           method: 'GET'
         }, options),

@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * APIs Discovery Service
@@ -63,7 +62,7 @@ function Discovery(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/discovery/v1/apis/{api}/{version}/rest',
           method: 'GET'
         }, options),
@@ -99,7 +98,7 @@ function Discovery(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/discovery/v1/apis',
           method: 'GET'
         }, options),

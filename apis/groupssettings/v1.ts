@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Groups Settings API
@@ -62,7 +61,7 @@ function Groupssettings(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
           method: 'GET'
         }, options),
@@ -98,7 +97,7 @@ function Groupssettings(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
           method: 'PATCH'
         }, options),
@@ -134,7 +133,7 @@ function Groupssettings(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/groups/v1/groups/{groupUniqueId}',
           method: 'PUT'
         }, options),

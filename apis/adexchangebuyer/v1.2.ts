@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Ad Exchange Buyer API
@@ -62,7 +61,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/{id}',
           method: 'GET'
         }, options),
@@ -96,7 +95,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts',
           method: 'GET'
         }, options),
@@ -132,7 +131,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/{id}',
           method: 'PATCH'
         }, options),
@@ -168,7 +167,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/accounts/{id}',
           method: 'PUT'
         }, options),
@@ -208,7 +207,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/creatives/{accountId}/{buyerCreativeId}',
           method: 'GET'
         }, options),
@@ -243,7 +242,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/creatives',
           method: 'POST'
         }, options),
@@ -280,7 +279,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.2/creatives',
           method: 'GET'
         }, options),

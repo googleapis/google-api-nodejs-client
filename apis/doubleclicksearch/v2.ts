@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * DoubleClick Search API
@@ -72,7 +71,7 @@ function Doubleclicksearch(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion',
           method: 'GET'
         }, options),
@@ -107,7 +106,7 @@ function Doubleclicksearch(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
           method: 'POST'
         }, options),
@@ -149,7 +148,7 @@ function Doubleclicksearch(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
           method: 'PATCH'
         }, options),
@@ -184,7 +183,7 @@ function Doubleclicksearch(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion',
           method: 'PUT'
         }, options),
@@ -219,7 +218,7 @@ function Doubleclicksearch(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/conversion/updateAvailability',
           method: 'POST'
         }, options),
@@ -258,7 +257,7 @@ function Doubleclicksearch(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/generate',
           method: 'POST'
         }, options),
@@ -293,7 +292,7 @@ function Doubleclicksearch(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/{reportId}',
           method: 'GET'
         }, options),
@@ -329,7 +328,7 @@ function Doubleclicksearch(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}',
           method: 'GET'
         }, options),
@@ -364,7 +363,7 @@ function Doubleclicksearch(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/reports',
           method: 'POST'
         }, options),
@@ -404,7 +403,7 @@ function Doubleclicksearch(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns',
           method: 'GET'
         }, options),

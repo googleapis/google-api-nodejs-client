@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Prediction API
@@ -63,7 +62,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.5/hostedmodels/{hostedModelName}/predict',
           method: 'POST'
         }, options),
@@ -102,7 +101,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}/analyze',
           method: 'GET'
         }, options),
@@ -137,7 +136,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}',
           method: 'DELETE'
         }, options),
@@ -172,7 +171,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}',
           method: 'GET'
         }, options),
@@ -207,7 +206,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels',
           method: 'POST'
         }, options),
@@ -243,7 +242,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/list',
           method: 'GET'
         }, options),
@@ -279,7 +278,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}/predict',
           method: 'POST'
         }, options),
@@ -315,7 +314,7 @@ function Prediction(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/prediction/v1.5/trainedmodels/{id}',
           method: 'PUT'
         }, options),

@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Analytics Reporting API
@@ -62,7 +61,7 @@ function Analyticsreporting(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://analyticsreporting.googleapis.com/v4/reports:batchGet',
           method: 'POST'
         }, options),
@@ -78,20 +77,6 @@ function Analyticsreporting(options) { // eslint-disable-line
   };
 }
 
-/**
- * @typedef SegmentDefinition
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {analyticsreporting(v4).SegmentFilter[]} segmentFilters A segment is defined by a set of segment filters which are combined
-together with a logical `AND` operation.
-*/
-/**
- * @typedef MetricHeaderEntry
- * @memberOf! analyticsreporting(v4)
- * @type object
- * @property {string} name The name of the header.
- * @property {string} type The type of the metric, for example `INTEGER`.
- */
 /**
  * @typedef ReportData
  * @memberOf! analyticsreporting(v4)
@@ -146,15 +131,11 @@ If `IN_LIST` operator, then the entire list is used to filter the
 dimensions as explained in the description of the `IN_LIST` operator.
 */
 /**
- * @typedef SegmentDimensionFilter
+ * @typedef Segment
  * @memberOf! analyticsreporting(v4)
  * @type object
- * @property {string} dimensionName Name of the dimension for which the filter is being applied.
- * @property {string} operator The operator to use to match the dimension with the expressions.
- * @property {string[]} expressions The list of expressions, only the first element is used for all operators
- * @property {boolean} caseSensitive Should the match be case sensitive, ignored for `IN_LIST` operator.
- * @property {string} minComparisonValue Minimum comparison values for `BETWEEN` match type.
- * @property {string} maxComparisonValue Maximum comparison values for `BETWEEN` match type.
+ * @property {string} segmentId The segment ID of a built-in or custom segment, for example `gaid::-3`.
+ * @property {analyticsreporting(v4).DynamicSegment} dynamicSegment A dynamic segment definition in the request.
  */
 /**
  * @typedef OrderBy
@@ -168,11 +149,15 @@ Note, that you can only specify one field for sort here. For example,
 * @property {string} orderType The order type. The default orderType is `VALUE`.
 */
 /**
- * @typedef Segment
+ * @typedef SegmentDimensionFilter
  * @memberOf! analyticsreporting(v4)
  * @type object
- * @property {analyticsreporting(v4).DynamicSegment} dynamicSegment A dynamic segment definition in the request.
- * @property {string} segmentId The segment ID of a built-in or custom segment, for example `gaid::-3`.
+ * @property {string[]} expressions The list of expressions, only the first element is used for all operators
+ * @property {boolean} caseSensitive Should the match be case sensitive, ignored for `IN_LIST` operator.
+ * @property {string} minComparisonValue Minimum comparison values for `BETWEEN` match type.
+ * @property {string} maxComparisonValue Maximum comparison values for `BETWEEN` match type.
+ * @property {string} operator The operator to use to match the dimension with the expressions.
+ * @property {string} dimensionName Name of the dimension for which the filter is being applied.
  */
 /**
  * @typedef SegmentSequenceStep
@@ -187,6 +172,8 @@ next step.
  * @typedef Metric
  * @memberOf! analyticsreporting(v4)
  * @type object
+* @property {string} formattingType Specifies how the metric expression should be formatted, for example
+`INTEGER`.
 * @property {string} alias An alias for the metric expression is an alternate name for the
 expression. The alias can be used for filtering and sorting. This field
 is optional and is useful if the expression is not a single metric but
@@ -200,8 +187,6 @@ Positive cardinal numbers (0-9), can include decimals and is limited to
 metric expression is just a single metric name like `ga:users`.
 Adding mixed `MetricType` (E.g., `CURRENCY` + `PERCENTAGE`) metrics
 will result in unexpected results.
-* @property {string} formattingType Specifies how the metric expression should be formatted, for example
-`INTEGER`.
 */
 /**
  * @typedef PivotValueRegion
@@ -228,49 +213,13 @@ will result in unexpected results.
  * @typedef DateRange
  * @memberOf! analyticsreporting(v4)
  * @type object
- * @property {string} endDate The end date for the query in the format `YYYY-MM-DD`.
  * @property {string} startDate The start date for the query in the format `YYYY-MM-DD`.
+ * @property {string} endDate The end date for the query in the format `YYYY-MM-DD`.
  */
-/**
- * @typedef MetricFilter
- * @memberOf! analyticsreporting(v4)
- * @type object
-* @property {string} metricName The metric that will be filtered on. A metricFilter must contain a metric
-name. A metric name can be an alias earlier defined as a metric or it can
-also be a metric expression.
-* @property {string} comparisonValue The value to compare against.
-* @property {string} operator Is the metric `EQUAL`, `LESS_THAN` or `GREATER_THAN` the
-comparisonValue, the default is `EQUAL`. If the operator is
-`IS_MISSING`, checks if the metric is missing and would ignore the
-comparisonValue.
-* @property {boolean} not Logical `NOT` operator. If this boolean is set to true, then the matching
-metric values will be excluded in the report. The default is false.
-*/
 /**
  * @typedef ReportRequest
  * @memberOf! analyticsreporting(v4)
  * @type object
-* @property {analyticsreporting(v4).Dimension[]} dimensions The dimensions requested.
-Requests can have a total of 7 dimensions.
-* @property {string} pageToken A continuation token to get the next page of the results. Adding this to
-the request will return the rows after the pageToken. The pageToken should
-be the value returned in the nextPageToken parameter in the response to
-the GetReports request.
-* @property {analyticsreporting(v4).DateRange[]} dateRanges Date ranges in the request. The request can have a maximum of 2 date
-ranges. The response will contain a set of metric values for each
-combination of the dimensions for each date range in the request. So, if
-there are two date ranges, there will be two set of metric values, one for
-the original date range and one for the second date range.
-The `reportRequest.dateRanges` field should not be specified for cohorts
-or Lifetime value requests.
-If a date range is not provided, the default date range is (startDate:
-current date - 7 days, endDate: current date - 1 day). Every
-[ReportRequest](#ReportRequest) within a `batchGet` method must
-contain the same `dateRanges` definition.
-* @property {analyticsreporting(v4).Pivot[]} pivots The pivot definitions. Requests can have a maximum of 2 pivots.
-* @property {boolean} includeEmptyRows If set to false, the response does not include rows if all the retrieved
-metrics are equal to zero. The default is false which will exclude these
-rows.
 * @property {analyticsreporting(v4).MetricFilterClause[]} metricFilterClauses The metric filter clauses. They are logically combined with the `AND`
 operator.  Metric filters look at only the first date range and not the
 comparing date range. Note that filtering on metrics occurs after the
@@ -287,10 +236,6 @@ even if you set `pageSize` to a higher value.
 The default is false and the value ranges are returned.
 * @property {boolean} hideTotals If set to true, hides the total of all metrics for all the matching rows,
 for every date range. The default false and will return the totals.
-* @property {analyticsreporting(v4).CohortGroup} cohortGroup Cohort group associated with this request. If there is a cohort group
-in the request the `ga:cohort` dimension must be present.
-Every [ReportRequest](#ReportRequest) within a `batchGet` method must
-contain the same `cohortGroup` definition.
 * @property {string} filtersExpression Dimension or metric filters that restrict the data returned for your
 request. To use the `filtersExpression`, supply a dimension or metric on
 which to filter, followed by the filter expression. For example, the
@@ -298,6 +243,10 @@ following expression selects `ga:browser` dimension which starts with
 Firefox; `ga:browser=~^Firefox`. For more information on dimensions
 and metric filters, see
 [Filters reference](https://developers.google.com/analytics/devguides/reporting/core/v3/reference#filters).
+* @property {analyticsreporting(v4).CohortGroup} cohortGroup Cohort group associated with this request. If there is a cohort group
+in the request the `ga:cohort` dimension must be present.
+Every [ReportRequest](#ReportRequest) within a `batchGet` method must
+contain the same `cohortGroup` definition.
 * @property {string} viewId The Analytics
 [view ID](https://support.google.com/analytics/answer/1009618)
 from which to retrieve data. Every [ReportRequest](#ReportRequest)
@@ -324,6 +273,42 @@ level is used. Every [ReportRequest](#ReportRequest) within a
 `batchGet` method must contain the same `samplingLevel` definition. See
 [developer guide](/analytics/devguides/reporting/core/v4/basics#sampling)
  for details.
+* @property {analyticsreporting(v4).Dimension[]} dimensions The dimensions requested.
+Requests can have a total of 7 dimensions.
+* @property {string} pageToken A continuation token to get the next page of the results. Adding this to
+the request will return the rows after the pageToken. The pageToken should
+be the value returned in the nextPageToken parameter in the response to
+the GetReports request.
+* @property {analyticsreporting(v4).DateRange[]} dateRanges Date ranges in the request. The request can have a maximum of 2 date
+ranges. The response will contain a set of metric values for each
+combination of the dimensions for each date range in the request. So, if
+there are two date ranges, there will be two set of metric values, one for
+the original date range and one for the second date range.
+The `reportRequest.dateRanges` field should not be specified for cohorts
+or Lifetime value requests.
+If a date range is not provided, the default date range is (startDate:
+current date - 7 days, endDate: current date - 1 day). Every
+[ReportRequest](#ReportRequest) within a `batchGet` method must
+contain the same `dateRanges` definition.
+* @property {analyticsreporting(v4).Pivot[]} pivots The pivot definitions. Requests can have a maximum of 2 pivots.
+* @property {boolean} includeEmptyRows If set to false, the response does not include rows if all the retrieved
+metrics are equal to zero. The default is false which will exclude these
+rows.
+*/
+/**
+ * @typedef MetricFilter
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {string} comparisonValue The value to compare against.
+* @property {string} operator Is the metric `EQUAL`, `LESS_THAN` or `GREATER_THAN` the
+comparisonValue, the default is `EQUAL`. If the operator is
+`IS_MISSING`, checks if the metric is missing and would ignore the
+comparisonValue.
+* @property {boolean} not Logical `NOT` operator. If this boolean is set to true, then the matching
+metric values will be excluded in the report. The default is false.
+* @property {string} metricName The metric that will be filtered on. A metricFilter must contain a metric
+name. A metric name can be an alias earlier defined as a metric or it can
+also be a metric expression.
 */
 /**
  * @typedef Dimension
@@ -403,6 +388,9 @@ operator.
  * @typedef Cohort
  * @memberOf! analyticsreporting(v4)
  * @type object
+* @property {string} type Type of the cohort. The only supported type as of now is
+`FIRST_VISIT_DATE`. If this field is unspecified the cohort is treated
+as `FIRST_VISIT_DATE` type cohort.
 * @property {string} name A unique name for the cohort. If not defined name will be auto-generated
 with values cohort_[1234...].
 * @property {analyticsreporting(v4).DateRange} dateRange This is used for `FIRST_VISIT_DATE` cohort, the cohort selects users
@@ -416,9 +404,6 @@ last day of the month).
 For LTV requests there are no such restrictions.
 You do not need to supply a date range for the
 `reportsRequest.dateRanges` field.
-* @property {string} type Type of the cohort. The only supported type as of now is
-`FIRST_VISIT_DATE`. If this field is unspecified the cohort is treated
-as `FIRST_VISIT_DATE` type cohort.
 */
 /**
  * @typedef MetricFilterClause
@@ -439,8 +424,8 @@ operator specified.
  * @typedef MetricHeader
  * @memberOf! analyticsreporting(v4)
  * @type object
- * @property {analyticsreporting(v4).MetricHeaderEntry[]} metricHeaderEntries Headers for the metrics in the response.
  * @property {analyticsreporting(v4).PivotHeader[]} pivotHeaders Headers for the pivots in the response.
+ * @property {analyticsreporting(v4).MetricHeaderEntry[]} metricHeaderEntries Headers for the metrics in the response.
  */
 /**
  * @typedef DimensionFilterClause
@@ -461,16 +446,14 @@ operator specified.
  * @typedef SequenceSegment
  * @memberOf! analyticsreporting(v4)
  * @type object
+* @property {analyticsreporting(v4).SegmentSequenceStep[]} segmentSequenceSteps The list of steps in the sequence.
 * @property {boolean} firstStepShouldMatchFirstHit If set, first step condition must match the first hit of the visitor (in
 the date range).
-* @property {analyticsreporting(v4).SegmentSequenceStep[]} segmentSequenceSteps The list of steps in the sequence.
 */
 /**
  * @typedef SegmentMetricFilter
  * @memberOf! analyticsreporting(v4)
  * @type object
-* @property {string} operator Specifies is the operation to perform to compare the metric. The default
-is `EQUAL`.
 * @property {string} metricName The metric that will be filtered on. A `metricFilter` must contain a
 metric name.
 * @property {string} scope Scope for a metric defines the level at which that metric is defined.  The
@@ -480,13 +463,15 @@ segment is selecting users or sessions.
 * @property {string} maxComparisonValue Max comparison value is only used for `BETWEEN` operator.
 * @property {string} comparisonValue The value to compare against. If the operator is `BETWEEN`, this value is
 treated as minimum comparison value.
+* @property {string} operator Specifies is the operation to perform to compare the metric. The default
+is `EQUAL`.
 */
 /**
  * @typedef DateRangeValues
  * @memberOf! analyticsreporting(v4)
  * @type object
- * @property {analyticsreporting(v4).PivotValueRegion[]} pivotValueRegions The values of each pivot region.
  * @property {string[]} values Each value corresponds to each Metric in the request.
+ * @property {analyticsreporting(v4).PivotValueRegion[]} pivotValueRegions The values of each pivot region.
  */
 /**
  * @typedef CohortGroup
@@ -575,6 +560,9 @@ The default value is 10, also the maximum value is 1,000.
  * @typedef SegmentFilter
  * @memberOf! analyticsreporting(v4)
  * @type object
+* @property {analyticsreporting(v4).SequenceSegment} sequenceSegment Sequence conditions consist of one or more steps, where each step is
+defined by one or more dimension/metric conditions. Multiple steps can
+be combined with special sequence operators.
 * @property {boolean} not If true, match the complement of simple or sequence segment.
 For example, to match all visits not from &quot;New York&quot;, we can define the
 segment as follows:
@@ -596,8 +584,19 @@ segment as follows:
       },
 * @property {analyticsreporting(v4).SimpleSegment} simpleSegment A Simple segment conditions consist of one or more dimension/metric
 conditions that can be combined
-* @property {analyticsreporting(v4).SequenceSegment} sequenceSegment Sequence conditions consist of one or more steps, where each step is
-defined by one or more dimension/metric conditions. Multiple steps can
-be combined with special sequence operators.
 */
+/**
+ * @typedef SegmentDefinition
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+* @property {analyticsreporting(v4).SegmentFilter[]} segmentFilters A segment is defined by a set of segment filters which are combined
+together with a logical `AND` operation.
+*/
+/**
+ * @typedef MetricHeaderEntry
+ * @memberOf! analyticsreporting(v4)
+ * @type object
+ * @property {string} name The name of the header.
+ * @property {string} type The type of the metric, for example `INTEGER`.
+ */
 export = Analyticsreporting;

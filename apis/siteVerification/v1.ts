@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Site Verification API
@@ -62,7 +61,7 @@ function Siteverification(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
           method: 'DELETE'
         }, options),
@@ -97,7 +96,7 @@ function Siteverification(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
           method: 'GET'
         }, options),
@@ -132,7 +131,7 @@ function Siteverification(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/siteVerification/v1/token',
           method: 'POST'
         }, options),
@@ -168,7 +167,7 @@ function Siteverification(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/siteVerification/v1/webResource',
           method: 'POST'
         }, options),
@@ -202,7 +201,7 @@ function Siteverification(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/siteVerification/v1/webResource',
           method: 'GET'
         }, options),
@@ -238,7 +237,7 @@ function Siteverification(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
           method: 'PATCH'
         }, options),
@@ -274,7 +273,7 @@ function Siteverification(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/siteVerification/v1/webResource/{id}',
           method: 'PUT'
         }, options),

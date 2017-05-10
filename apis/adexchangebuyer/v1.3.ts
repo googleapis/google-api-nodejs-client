@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Ad Exchange Buyer API
@@ -62,7 +61,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/{id}',
           method: 'GET'
         }, options),
@@ -96,7 +95,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts',
           method: 'GET'
         }, options),
@@ -132,7 +131,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/{id}',
           method: 'PATCH'
         }, options),
@@ -168,7 +167,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/accounts/{id}',
           method: 'PUT'
         }, options),
@@ -207,7 +206,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/{accountId}',
           method: 'GET'
         }, options),
@@ -241,7 +240,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo',
           method: 'GET'
         }, options),
@@ -281,7 +280,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}',
           method: 'GET'
         }, options),
@@ -318,7 +317,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}',
           method: 'PATCH'
         }, options),
@@ -355,7 +354,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/billinginfo/{accountId}/{billingId}',
           method: 'PUT'
         }, options),
@@ -395,7 +394,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives/{accountId}/{buyerCreativeId}',
           method: 'GET'
         }, options),
@@ -430,7 +429,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives',
           method: 'POST'
         }, options),
@@ -469,7 +468,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/creatives',
           method: 'GET'
         }, options),
@@ -508,7 +507,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/directdeals/{id}',
           method: 'GET'
         }, options),
@@ -542,7 +541,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/directdeals',
           method: 'GET'
         }, options),
@@ -585,7 +584,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/performancereport',
           method: 'GET'
         }, options),
@@ -625,7 +624,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}',
           method: 'DELETE'
         }, options),
@@ -661,7 +660,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}',
           method: 'GET'
         }, options),
@@ -697,7 +696,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}',
           method: 'POST'
         }, options),
@@ -732,7 +731,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}',
           method: 'GET'
         }, options),
@@ -769,7 +768,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}',
           method: 'PATCH'
         }, options),
@@ -806,7 +805,7 @@ function Adexchangebuyer(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/adexchangebuyer/v1.3/pretargetingconfigs/{accountId}/{configId}',
           method: 'PUT'
         }, options),

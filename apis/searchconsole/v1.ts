@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Search Console URL Testing Tools API
@@ -64,7 +63,7 @@ function Searchconsole(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://searchconsole.googleapis.com/v1/urlTestingTools/mobileFriendlyTest:run',
             method: 'POST'
           }, options),
@@ -90,11 +89,11 @@ function Searchconsole(options) { // eslint-disable-line
  * @typedef RunMobileFriendlyTestResponse
  * @memberOf! searchconsole(v1)
  * @type object
+ * @property {searchconsole(v1).Image} screenshot Screenshot of the requested URL.
  * @property {searchconsole(v1).TestStatus} testStatus Final state of the test, can be either complete or an error.
  * @property {searchconsole(v1).ResourceIssue[]} resourceIssues Information about embedded resources issues.
  * @property {string} mobileFriendliness Test verdict, whether the page is mobile friendly or not.
  * @property {searchconsole(v1).MobileFriendlyIssue[]} mobileFriendlyIssues List of mobile-usability issues.
- * @property {searchconsole(v1).Image} screenshot Screenshot of the requested URL.
  */
 /**
  * @typedef ResourceIssue
@@ -116,18 +115,18 @@ function Searchconsole(options) { // eslint-disable-line
  * @property {string} details Error details if applicable.
  */
 /**
- * @typedef Image
- * @memberOf! searchconsole(v1)
- * @type object
-* @property {string} data Image data in format determined by the mime type. Currently, the format
-will always be &quot;image/png&quot;, but this might change in the future.
-* @property {string} mimeType The mime-type of the image data.
-*/
-/**
  * @typedef RunMobileFriendlyTestRequest
  * @memberOf! searchconsole(v1)
  * @type object
  * @property {string} url URL for inspection.
  * @property {boolean} requestScreenshot Whether or not screenshot is requested. Default is false.
  */
+/**
+ * @typedef Image
+ * @memberOf! searchconsole(v1)
+ * @type object
+* @property {string} mimeType The mime-type of the image data.
+* @property {string} data Image data in format determined by the mime type. Currently, the format
+will always be &quot;image/png&quot;, but this might change in the future.
+*/
 export = Searchconsole;

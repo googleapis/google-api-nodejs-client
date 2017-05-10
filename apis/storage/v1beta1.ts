@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Cloud Storage JSON API
@@ -63,7 +62,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
           method: 'DELETE'
         }, options),
@@ -99,7 +98,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
           method: 'GET'
         }, options),
@@ -135,7 +134,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl',
           method: 'POST'
         }, options),
@@ -170,7 +169,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl',
           method: 'GET'
         }, options),
@@ -207,7 +206,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
           method: 'PATCH'
         }, options),
@@ -244,7 +243,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/acl/{entity}',
           method: 'PUT'
         }, options),
@@ -283,7 +282,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
           method: 'DELETE'
         }, options),
@@ -319,7 +318,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
           method: 'GET'
         }, options),
@@ -355,7 +354,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b',
           method: 'POST'
         }, options),
@@ -393,7 +392,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b',
           method: 'GET'
         }, options),
@@ -430,7 +429,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
           method: 'PATCH'
         }, options),
@@ -467,7 +466,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}',
           method: 'PUT'
         }, options),
@@ -508,7 +507,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
           method: 'DELETE'
         }, options),
@@ -545,7 +544,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
           method: 'GET'
         }, options),
@@ -582,7 +581,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl',
           method: 'POST'
         }, options),
@@ -618,7 +617,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl',
           method: 'GET'
         }, options),
@@ -656,7 +655,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
           method: 'PATCH'
         }, options),
@@ -694,7 +693,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}/acl/{entity}',
           method: 'PUT'
         }, options),
@@ -734,7 +733,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
           method: 'DELETE'
         }, options),
@@ -771,7 +770,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
           method: 'GET'
         }, options),
@@ -812,7 +811,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o',
           method: 'POST'
         }, options),
@@ -853,7 +852,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o',
           method: 'GET'
         }, options),
@@ -891,7 +890,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
           method: 'PATCH'
         }, options),
@@ -929,7 +928,7 @@ function Storage(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/storage/v1beta1/b/{bucket}/o/{object}',
           method: 'PUT'
         }, options),

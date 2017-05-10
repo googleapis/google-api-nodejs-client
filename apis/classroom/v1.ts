@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Classroom API
@@ -62,7 +61,7 @@ function Classroom(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://classroom.googleapis.com/v1/invitations',
           method: 'POST'
         }, options),
@@ -97,7 +96,7 @@ function Classroom(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://classroom.googleapis.com/v1/invitations/{id}',
           method: 'GET'
         }, options),
@@ -135,7 +134,7 @@ function Classroom(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://classroom.googleapis.com/v1/invitations',
           method: 'GET'
         }, options),
@@ -170,7 +169,7 @@ function Classroom(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://classroom.googleapis.com/v1/invitations/{id}',
           method: 'DELETE'
         }, options),
@@ -205,7 +204,7 @@ function Classroom(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://classroom.googleapis.com/v1/invitations/{id}:accept',
           method: 'POST'
         }, options),
@@ -248,7 +247,7 @@ function Classroom(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://classroom.googleapis.com/v1/courses',
           method: 'GET'
         }, options),
@@ -283,7 +282,7 @@ function Classroom(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://classroom.googleapis.com/v1/courses/{id}',
           method: 'GET'
         }, options),
@@ -318,7 +317,7 @@ function Classroom(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://classroom.googleapis.com/v1/courses',
           method: 'POST'
         }, options),
@@ -354,7 +353,7 @@ function Classroom(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://classroom.googleapis.com/v1/courses/{id}',
           method: 'PUT'
         }, options),
@@ -391,7 +390,7 @@ function Classroom(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://classroom.googleapis.com/v1/courses/{id}',
           method: 'PATCH'
         }, options),
@@ -426,7 +425,7 @@ function Classroom(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://classroom.googleapis.com/v1/courses/{id}',
           method: 'DELETE'
         }, options),
@@ -464,7 +463,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers',
             method: 'POST'
           }, options),
@@ -500,7 +499,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
             method: 'GET'
           }, options),
@@ -537,7 +536,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers',
             method: 'GET'
           }, options),
@@ -573,7 +572,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/teachers/{userId}',
             method: 'DELETE'
           }, options),
@@ -612,7 +611,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases',
             method: 'POST'
           }, options),
@@ -649,7 +648,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases',
             method: 'GET'
           }, options),
@@ -685,7 +684,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/aliases/{alias}',
             method: 'DELETE'
           }, options),
@@ -725,7 +724,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students',
             method: 'POST'
           }, options),
@@ -761,7 +760,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students/{userId}',
             method: 'GET'
           }, options),
@@ -798,7 +797,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students',
             method: 'GET'
           }, options),
@@ -834,7 +833,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/students/{userId}',
             method: 'DELETE'
           }, options),
@@ -873,7 +872,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork',
             method: 'POST'
           }, options),
@@ -909,7 +908,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{id}',
             method: 'GET'
           }, options),
@@ -948,7 +947,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork',
             method: 'GET'
           }, options),
@@ -986,7 +985,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{id}',
             method: 'PATCH'
           }, options),
@@ -1022,7 +1021,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{id}',
             method: 'DELETE'
           }, options),
@@ -1062,7 +1061,7 @@ function Classroom(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:modifyAttachments',
               method: 'POST'
             }, options),
@@ -1100,7 +1099,7 @@ function Classroom(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:reclaim',
               method: 'POST'
             }, options),
@@ -1138,7 +1137,7 @@ function Classroom(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:turnIn',
               method: 'POST'
             }, options),
@@ -1179,7 +1178,7 @@ function Classroom(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions',
               method: 'GET'
             }, options),
@@ -1216,7 +1215,7 @@ function Classroom(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
               method: 'GET'
             }, options),
@@ -1254,7 +1253,7 @@ function Classroom(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}:return',
               method: 'POST'
             }, options),
@@ -1293,7 +1292,7 @@ function Classroom(options) { // eslint-disable-line
           options || (options = {});
 
           const parameters = {
-            options: utils.extend({
+            options: Object.assign({
               url: 'https://classroom.googleapis.com/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions/{id}',
               method: 'PATCH'
             }, options),
@@ -1333,7 +1332,7 @@ function Classroom(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://classroom.googleapis.com/v1/userProfiles/{userId}',
           method: 'GET'
         }, options),
@@ -1371,7 +1370,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
             method: 'GET'
           }, options),
@@ -1409,7 +1408,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians',
             method: 'GET'
           }, options),
@@ -1445,7 +1444,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardians/{guardianId}',
             method: 'DELETE'
           }, options),
@@ -1484,7 +1483,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
             method: 'GET'
           }, options),
@@ -1520,7 +1519,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
             method: 'POST'
           }, options),
@@ -1559,7 +1558,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations',
             method: 'GET'
           }, options),
@@ -1597,7 +1596,7 @@ function Classroom(options) { // eslint-disable-line
         options || (options = {});
 
         const parameters = {
-          options: utils.extend({
+          options: Object.assign({
             url: 'https://classroom.googleapis.com/v1/userProfiles/{studentId}/guardianInvitations/{invitationId}',
             method: 'PATCH'
           }, options),

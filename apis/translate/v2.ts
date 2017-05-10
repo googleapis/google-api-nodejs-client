@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Translate API
@@ -62,7 +61,7 @@ function Translate(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/language/translate/v2/detect',
           method: 'GET'
         }, options),
@@ -101,7 +100,7 @@ function Translate(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/language/translate/v2/languages',
           method: 'GET'
         }, options),
@@ -144,7 +143,7 @@ function Translate(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://www.googleapis.com/language/translate/v2',
           method: 'GET'
         }, options),

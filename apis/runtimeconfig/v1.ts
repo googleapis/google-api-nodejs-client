@@ -16,8 +16,7 @@
 
 /* jshint maxlen: false */
 
-const createAPIRequest = require('../../lib/apirequest');
-const utils = require('../../lib/utils');
+import createAPIRequest from '../../lib/apirequest';
 
 /**
  * Google Cloud Runtime Configuration API
@@ -39,6 +38,44 @@ function Runtimeconfig(options) { // eslint-disable-line
   self._options = options || {};
 
   self.operations = {
+
+    /**
+     * runtimeconfig.operations.list
+     *
+     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
+     *
+     * @alias runtimeconfig.operations.list
+     * @memberOf! runtimeconfig(v1)
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the operation collection.
+     * @param {string=} params.pageToken The standard list page token.
+     * @param {integer=} params.pageSize The standard list page size.
+     * @param {string=} params.filter The standard list filter.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list: function (params, options, callback) {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      options || (options = {});
+
+      const parameters = {
+        options: Object.assign({
+          url: 'https://runtimeconfig.googleapis.com/v1/{name}',
+          method: 'GET'
+        }, options),
+        params: params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: self
+      };
+
+      return createAPIRequest(parameters, callback);
+    },
 
     /**
      * runtimeconfig.operations.cancel
@@ -63,7 +100,7 @@ function Runtimeconfig(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://runtimeconfig.googleapis.com/v1/{name}:cancel',
           method: 'POST'
         }, options),
@@ -98,47 +135,9 @@ function Runtimeconfig(options) { // eslint-disable-line
       options || (options = {});
 
       const parameters = {
-        options: utils.extend({
+        options: Object.assign({
           url: 'https://runtimeconfig.googleapis.com/v1/{name}',
           method: 'DELETE'
-        }, options),
-        params: params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: self
-      };
-
-      return createAPIRequest(parameters, callback);
-    },
-
-    /**
-     * runtimeconfig.operations.list
-     *
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/x/operations`.
-     *
-     * @alias runtimeconfig.operations.list
-     * @memberOf! runtimeconfig(v1)
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation collection.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list: function (params, options, callback) {
-      if (typeof options === 'function') {
-        callback = options;
-        options = {};
-      }
-      options || (options = {});
-
-      const parameters = {
-        options: utils.extend({
-          url: 'https://runtimeconfig.googleapis.com/v1/{name}',
-          method: 'GET'
         }, options),
         params: params,
         requiredParams: ['name'],
@@ -179,9 +178,6 @@ google.rpc.Status.details field, or localized by the client.
  * @typedef Operation
  * @memberOf! runtimeconfig(v1)
  * @type object
-* @property {boolean} done If the value is `false`, it means the operation is still in progress.
-If true, the operation is completed, and either `error` or `response` is
-available.
 * @property {object} response The normal response of the operation in case of success.  If the original
 method returns no data on success, such as `Delete`, the response is
 `google.protobuf.Empty`.  If the original method is standard
@@ -198,6 +194,9 @@ originally returns it. If you use the default HTTP mapping, the
 contains progress information and common metadata such as create time.
 Some services might not provide such metadata.  Any method that returns a
 long-running operation should document the metadata type, if any.
+* @property {boolean} done If the value is `false`, it means the operation is still in progress.
+If true, the operation is completed, and either `error` or `response` is
+available.
 */
 /**
  * @typedef Empty
